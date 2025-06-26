@@ -89,7 +89,7 @@ const InfiniteCarousel = () => {
             <div className="carousel-track flex gap-6 animate-scroll-infinite">
               {allItems.map((item, index) => (
                 <div
-                  key={`${item.name || item.title}-${index}`}
+                  key={`${('name' in item ? item.name : item.title)}-${index}`}
                   className="carousel-item flex-shrink-0 w-72 glass-card p-6 hover:scale-105 transition-all duration-300"
                 >
                   {'logo' in item ? (
