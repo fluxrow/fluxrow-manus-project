@@ -90,10 +90,11 @@ class PerformanceOptimizer {
     const cleanupAnimations = () => {
       const elements = document.querySelectorAll('.cinematic-reveal');
       elements.forEach(el => {
+        const htmlEl = el as HTMLElement;
         const rect = el.getBoundingClientRect();
         if (rect.bottom < -200 || rect.top > window.innerHeight + 200) {
-          el.style.transform = 'none';
-          el.style.animation = 'none';
+          htmlEl.style.transform = 'none';
+          htmlEl.style.animation = 'none';
         }
       });
       ticking = false;
