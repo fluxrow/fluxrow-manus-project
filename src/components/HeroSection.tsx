@@ -14,6 +14,25 @@ const HeroSection = () => {
       if (subtitle) subtitle.setAttribute('data-aos', 'fade-up');
       if (cta) cta.setAttribute('data-aos', 'fade-up');
     }
+
+    // Video optimization
+    const video = document.querySelector('.hero-video') as HTMLVideoElement;
+    if (video) {
+      // Pause video when not in viewport for performance
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            video.play().catch(console.log);
+          } else {
+            video.pause();
+          }
+        });
+      });
+      
+      observer.observe(video);
+      
+      return () => observer.disconnect();
+    }
   }, []);
 
   const handleCTAClick = () => {
@@ -37,6 +56,25 @@ const HeroSection = () => {
 
   return (
     <section id="hero" className="min-h-screen flex flex-col justify-center items-center text-center px-6 bg-[#0f0f0f] relative overflow-hidden">
+      {/* Video Background */}
+      <div className="absolute inset-0 w-full h-full overflow-hidden">
+        <video
+          className="hero-video absolute inset-0 w-full h-full object-cover opacity-20"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+        >
+          <source src="https://cdn.pixabay.com/vimeo/460421046/technology-36537.mp4?width=1280&height=720" type="video/mp4" />
+          <source src="https://cdn.pixabay.com/vimeo/460421046/technology-36537.webm?width=1280&height=720" type="video/webm" />
+        </video>
+        
+        {/* Video overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/80"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-purple-900/20 via-transparent to-cyan-900/20"></div>
+      </div>
+
       {/* Cinematic Background Layers with Images */}
       <div className="hero-background">
         <div className="layer layer-1" data-scroll-speed="0.2">

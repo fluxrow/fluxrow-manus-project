@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -79,6 +80,65 @@ body {
   color: var(--text-primary);
   line-height: 1.6;
   overflow-x: hidden;
+}
+
+/* ===========================================
+   INFINITE CAROUSEL ANIMATIONS
+   =========================================== */
+
+.carousel-container {
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.carousel-track {
+  animation: scroll-infinite 60s linear infinite;
+}
+
+@keyframes scroll-infinite {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.carousel-item {
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+.carousel-track:hover {
+  animation-play-state: paused;
+}
+
+/* ===========================================
+   VIDEO BACKGROUND OPTIMIZATIONS
+   =========================================== */
+
+.hero-video {
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+/* Hide video on mobile for performance */
+@media (max-width: 1024px) {
+  .hero-video {
+    display: none;
+  }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .carousel-track {
+    animation-duration: 120s;
+  }
+  
+  .hero-video {
+    animation: none;
+  }
 }
 
 /* ===========================================
@@ -581,7 +641,8 @@ img:not(.lazy) {
 .layer,
 .ai-showcase-item,
 .benefit-card,
-.demo-card {
+.demo-card,
+.carousel-item {
   will-change: transform;
   backface-visibility: hidden;
   transform-style: preserve-3d;
@@ -632,6 +693,14 @@ img:not(.lazy) {
     padding: 1.2rem 2rem;
     font-size: 1.1rem;
   }
+
+  .carousel-item {
+    width: 240px;
+  }
+
+  .carousel-track {
+    animation-duration: 40s;
+  }
 }
 
 @media (max-width: 480px) {
@@ -646,6 +715,10 @@ img:not(.lazy) {
   
   .demo-card img {
     height: 160px;
+  }
+
+  .carousel-item {
+    width: 200px;
   }
 }
 
