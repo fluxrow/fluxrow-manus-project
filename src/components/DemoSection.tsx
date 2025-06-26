@@ -1,11 +1,11 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 
 const DemoSection = () => {
   const demos = [
     {
       emoji: "🔍",
-      title: "Fundamentos de IA",
+      title: "Fundamentos de IA", 
       description: "Conceitos aplicados de IA generativa, engenharia de prompts e casos de uso reais."
     },
     {
@@ -20,19 +20,31 @@ const DemoSection = () => {
     }
   ];
 
+  useEffect(() => {
+    // Add AOS attributes
+    const demoCards = document.querySelectorAll('.demo-card');
+    demoCards.forEach((card, index) => {
+      card.setAttribute('data-aos', 'zoom-in');
+      card.setAttribute('data-aos-delay', (index * 150).toString());
+    });
+  }, []);
+
   return (
     <section id="demo" className="py-20 px-6 bg-[#0f0f0f]">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-3xl md:text-5xl font-bold text-center mb-16 font-space-grotesk">
+        <h2 className="section-title font-space-grotesk text-center" data-aos="fade-up">
           Veja o que está <span className="gradient-text">lá dentro</span>
         </h2>
-        <div className="grid md:grid-cols-3 gap-10">
+        <div className="grid md:grid-cols-3 gap-10">  
           {demos.map((demo, index) => (
-            <div key={index} className="hover:transform hover:scale-105 transition-all duration-300">
-              <h3 className="text-xl font-semibold mb-2 font-space-grotesk">
-                {demo.emoji} {demo.title}
+            <div key={index} className="demo-card glass-card p-8 text-center hover:transform hover:scale-105 transition-all duration-300">
+              <div className="text-5xl mb-6">{demo.emoji}</div>
+              <h3 className="text-xl font-semibold mb-4 font-space-grotesk text-white">
+                {demo.title}
               </h3>
-              <p className="text-gray-300 font-space-grotesk">{demo.description}</p>
+              <p className="text-gray-300 font-space-grotesk leading-relaxed">
+                {demo.description}
+              </p>
             </div>
           ))}
         </div>

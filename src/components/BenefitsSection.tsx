@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 
 const BenefitsSection = () => {
   const benefits = [
@@ -35,19 +35,31 @@ const BenefitsSection = () => {
     }
   ];
 
+  useEffect(() => {
+    // Add AOS attributes to cards
+    const cards = document.querySelectorAll('.benefit-card');
+    cards.forEach((card, index) => {
+      card.setAttribute('data-aos', 'fade-up');
+      card.setAttribute('data-aos-delay', (index * 100).toString());
+    });
+  }, []);
+
   return (
     <section id="benefits" className="py-20 bg-black px-6">
       <div className="max-w-6xl mx-auto text-center">
-        <h2 className="text-3xl md:text-5xl font-bold mb-12 font-space-grotesk">
+        <h2 className="section-title font-space-grotesk" data-aos="fade-up">
           O que você vai <span className="gradient-text">desbloquear</span>
         </h2>
-        <div className="grid md:grid-cols-3 gap-10 text-left">
+        <div className="grid md:grid-cols-3 gap-10">
           {benefits.map((benefit, index) => (
-            <div key={index} className="hover:transform hover:scale-105 transition-all duration-300">
-              <h3 className="text-xl font-semibold mb-2 font-space-grotesk">
-                {benefit.emoji} {benefit.title}
+            <div key={index} className="benefit-card glass-card">
+              <div className="benefit-icon text-4xl mb-4">{benefit.emoji}</div>
+              <h3 className="text-xl font-semibold mb-3 font-space-grotesk text-white">
+                {benefit.title}
               </h3>
-              <p className="text-gray-300 font-space-grotesk">{benefit.description}</p>
+              <p className="text-gray-300 font-space-grotesk leading-relaxed">
+                {benefit.description}
+              </p>
             </div>
           ))}
         </div>
