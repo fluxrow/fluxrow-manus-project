@@ -37,11 +37,32 @@ const HeroSection = () => {
 
   return (
     <section id="hero" className="min-h-screen flex flex-col justify-center items-center text-center px-6 bg-[#0f0f0f] relative overflow-hidden">
-      {/* Animated Background Layers */}
+      {/* Cinematic Background Layers with Images */}
       <div className="hero-background">
-        <div className="layer layer-1" data-scroll-speed="0.2"></div>
-        <div className="layer layer-2" data-scroll-speed="0.4"></div>
-        <div className="layer layer-3" data-scroll-speed="0.6"></div>
+        <div className="layer layer-1" data-scroll-speed="0.2">
+          <img 
+            src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1920&q=80" 
+            alt="AI Matrix Background"
+            className="absolute inset-0 w-full h-full object-cover opacity-5 mix-blend-screen"
+            loading="lazy"
+          />
+        </div>
+        <div className="layer layer-2" data-scroll-speed="0.4">
+          <img 
+            src="https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?auto=format&fit=crop&w=1920&q=80" 
+            alt="Code Background"
+            className="absolute inset-0 w-full h-full object-cover opacity-3 mix-blend-overlay"
+            loading="lazy"
+          />
+        </div>
+        <div className="layer layer-3" data-scroll-speed="0.6">
+          <img 
+            src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1920&q=80" 
+            alt="Circuit Board"
+            className="absolute inset-0 w-full h-full object-cover opacity-2 mix-blend-multiply"
+            loading="lazy"
+          />
+        </div>
       </div>
       
       <div className="max-w-4xl hero-content relative z-10">

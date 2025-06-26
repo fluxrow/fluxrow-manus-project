@@ -4,34 +4,40 @@ import React, { useEffect } from 'react';
 const BenefitsSection = () => {
   const benefits = [
     {
-      emoji: "📘",
+      icon: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=400&q=80",
       title: "Guia IA Generativa",
-      description: "Domine ChatGPT, Gemini e Claude com métodos práticos para negócios."
+      description: "Domine ChatGPT, Gemini e Claude com métodos práticos para negócios.",
+      preview: "Interface completa com prompts testados"
     },
     {
-      emoji: "🤖",
+      icon: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=400&q=80",
       title: "Automações Reais",
-      description: "Templates prontos com n8n, Zapier e WhatsApp API integrados."
+      description: "Templates prontos com n8n, Zapier e WhatsApp API integrados.",
+      preview: "Fluxos de automação visual"
     },
     {
-      emoji: "💡",
+      icon: "https://images.unsplash.com/photo-1487887235947-a955ef187fcc?auto=format&fit=crop&w=400&q=80",
       title: "Estratégia de Crescimento",
-      description: "Do lead ao faturamento com planos de ação prontos pra executar."
+      description: "Do lead ao faturamento com planos de ação prontos pra executar.",
+      preview: "Dashboard de resultados em tempo real"
     },
     {
-      emoji: "📈",
+      icon: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=400&q=80",
       title: "Modelos de Tráfego",
-      description: "Campanhas testadas para Meta, Google e Bing IA com baixa concorrência."
+      description: "Campanhas testadas para Meta, Google e Bing IA com baixa concorrência.",
+      preview: "ROI de 300%+ comprovado"
     },
     {
-      emoji: "🧠",
+      icon: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=400&q=80",
       title: "Atualizações Semanais",
-      description: "Novo conteúdo toda semana com IA aplicada em tempo real."
+      description: "Novo conteúdo toda semana com IA aplicada em tempo real.",
+      preview: "Biblioteca sempre atualizada"
     },
     {
-      emoji: "🌐",
+      icon: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?auto=format&fit=crop&w=400&q=80",
       title: "Comunidade Premium",
-      description: "Troca entre membros, mentorias em grupo e insights de bastidor."
+      description: "Troca entre membros, mentorias em grupo e insights de bastidor.",
+      preview: "Rede de networking exclusiva"
     }
   ];
 
@@ -52,8 +58,19 @@ const BenefitsSection = () => {
         </h2>
         <div className="grid md:grid-cols-3 gap-10">
           {benefits.map((benefit, index) => (
-            <div key={index} className="benefit-card glass-card">
-              <div className="benefit-icon text-4xl mb-4">{benefit.emoji}</div>
+            <div key={index} className="benefit-card glass-card group">
+              <div className="benefit-icon relative overflow-hidden rounded-xl mb-6">
+                <img 
+                  src={benefit.icon} 
+                  alt={benefit.title}
+                  className="w-full h-32 object-cover transition-transform duration-500 group-hover:scale-110"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                <div className="absolute bottom-2 left-2 text-xs text-white/80 font-space-grotesk">
+                  {benefit.preview}
+                </div>
+              </div>
               <h3 className="text-xl font-semibold mb-3 font-space-grotesk text-white">
                 {benefit.title}
               </h3>

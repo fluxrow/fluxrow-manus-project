@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -426,7 +425,167 @@ body {
   box-shadow: 0 30px 60px rgba(0, 255, 255, 0.2);
 }
 
-/* ... keep existing code (other styles remain the same) */
+/* Enhanced Visual Styles */
+/* Image Optimization */
+img {
+  transition: all 0.3s ease;
+}
+
+img.lazy {
+  filter: blur(5px);
+  opacity: 0;
+}
+
+img:not(.lazy) {
+  filter: blur(0);
+  opacity: 1;
+}
+
+/* Enhanced Benefit Cards with Images */
+.benefit-card .benefit-icon {
+  position: relative;
+  height: 128px;
+  margin-bottom: 1.5rem;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.benefit-card .benefit-icon img {
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.benefit-card:hover .benefit-icon img {
+  transform: scale(1.1);
+}
+
+/* Demo Section Enhancements */
+.demo-card {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.demo-card:hover {
+  transform: translateY(-15px) scale(1.02);
+  box-shadow: 0 25px 50px rgba(255, 0, 204, 0.2);
+}
+
+/* Pricing Section Layout */
+.pricing-preview {
+  position: relative;
+}
+
+.pricing-preview img {
+  transition: transform 0.5s ease;
+}
+
+.pricing-preview:hover img {
+  transform: scale(1.05);
+}
+
+/* Testimonial Cards Enhanced */
+.testimonial-card {
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.testimonial-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 255, 255, 0.15);
+}
+
+.testimonial-result {
+  margin-bottom: 1rem;
+}
+
+.author-avatar {
+  position: relative;
+  width: 48px;
+  height: 48px;
+}
+
+.author-avatar img {
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.testimonial-card:hover .author-avatar img {
+  border-color: var(--accent-magenta);
+  transform: scale(1.1);
+}
+
+/* Hero Background Layers Enhanced */
+.hero-background .layer img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.layer-1 img {
+  opacity: 0.05;
+  mix-blend-mode: screen;
+}
+
+.layer-2 img {
+  opacity: 0.03;
+  mix-blend-mode: overlay;
+}
+
+.layer-3 img {
+  opacity: 0.02;
+  mix-blend-mode: multiply;
+}
+
+/* Enhanced CTA Buttons */
+.cta-large {
+  padding: 1.5rem 3rem;
+  font-size: 1.3rem;
+  font-weight: 700;
+  border-radius: 60px;
+  box-shadow: 0 15px 35px rgba(255, 0, 204, 0.4);
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-large:hover {
+  box-shadow: 0 25px 60px rgba(255, 0, 204, 0.7);
+  transform: translateY(-5px);
+}
+
+/* Enhanced Scroll Animations */
+.cinematic-reveal {
+  animation: cinematicReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes cinematicReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(60px) scale(0.95);
+    filter: blur(10px);
+  }
+  50% {
+    opacity: 0.8;
+    transform: translateY(20px) scale(0.98);
+    filter: blur(5px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+/* Performance Optimizations */
+.layer,
+.ai-showcase-item,
+.benefit-card,
+.demo-card {
+  will-change: transform;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
 
 /* Mobile Responsiveness Enhanced */
 @media (max-width: 768px) {
@@ -450,6 +609,43 @@ body {
   .cta-primary {
     padding: 1rem 2rem;
     font-size: 1rem;
+  }
+  
+  .hero-background .layer img {
+    opacity: 0.02;
+  }
+  
+  .benefit-card .benefit-icon {
+    height: 96px;
+  }
+  
+  .pricing-preview {
+    order: 2;
+    margin-top: 2rem;
+  }
+  
+  .pricing-card {
+    order: 1;
+  }
+  
+  .cta-large {
+    padding: 1.2rem 2rem;
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .testimonial-card {
+    padding: 1.5rem;
+  }
+  
+  .author-avatar {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .demo-card img {
+    height: 160px;
   }
 }
 
