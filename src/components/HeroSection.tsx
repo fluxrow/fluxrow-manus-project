@@ -66,8 +66,7 @@ const HeroSection = () => {
           playsInline
           preload="metadata"
         >
-          <source src="https://cdn.pixabay.com/vimeo/460421046/technology-36537.mp4?width=1280&height=720" type="video/mp4" />
-          <source src="https://cdn.pixabay.com/vimeo/460421046/technology-36537.webm?width=1280&height=720" type="video/webm" />
+          <source src="https://fngjxjrgovhxbdlkomvw.supabase.co/storage/v1/object/sign/site-fluxrow/video-hero-site-flux-row.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV80MDRjODEwNC00MDM2LTQ0MGMtODA2Mi00NWM3MGRhZTBlMjMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJzaXRlLWZsdXhyb3cvdmlkZW8taGVyby1zaXRlLWZsdXgtcm93Lm1wNCIsImlhdCI6MTc1MDk2NDY2MiwiZXhwIjoyMDY2MzI0NjYyfQ.md-yLIMGrgU7lwg_jGUlTipfPj4g5oJ6wRpj7bhX2WE" type="video/mp4" />
         </video>
         
         {/* Video overlay */}
