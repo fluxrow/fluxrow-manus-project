@@ -119,8 +119,8 @@ const HeroSection = () => {
             Quero desbloquear agora 
             <span className="cta-arrow">→</span>
           </button>
-          <p className="cta-guarantee mt-4 text-sm text-gray-400 font-space-grotesk">
-            ✓ Garantia de 7 dias ou seu dinheiro de volta
+          <p className="cta-guarantee mt-4 text-sm text-pink-400 font-space-grotesk">
+            ⚡ Últimas horas para entrar com bônus exclusivo
           </p>
         </div>
       </div>
