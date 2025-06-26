@@ -5,38 +5,38 @@ const BenefitsSection = () => {
   const benefits = [
     {
       icon: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=400&q=80",
-      title: "Guia IA Generativa",
-      description: "Domine ChatGPT, Gemini e Claude com métodos práticos para negócios.",
+      title: "Guia de IA Generativa",
+      description: "Aprenda a usar ChatGPT, Gemini e Claude para criar conteúdo, vender e automatizar processos.",
       preview: "Interface completa com prompts testados"
     },
     {
       icon: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=400&q=80",
       title: "Automações Reais",
-      description: "Templates prontos com n8n, Zapier e WhatsApp API integrados.",
+      description: "Tenha acesso a fluxos prontos com n8n, Zapier e WhatsApp API que já estão funcionando em negócios reais.",
       preview: "Fluxos de automação visual"
     },
     {
       icon: "https://images.unsplash.com/photo-1487887235947-a955ef187fcc?auto=format&fit=crop&w=400&q=80",
-      title: "Estratégia de Crescimento",
-      description: "Do lead ao faturamento com planos de ação prontos pra executar.",
+      title: "Playbooks de Crescimento",
+      description: "Estratégias práticas para sair do zero e começar a faturar com inteligência artificial aplicada.",
       preview: "Dashboard de resultados em tempo real"
     },
     {
       icon: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=400&q=80",
-      title: "Modelos de Tráfego",
-      description: "Campanhas testadas para Meta, Google e Bing IA com baixa concorrência.",
+      title: "Campanhas Testadas",
+      description: "Modelos de tráfego prontos para rodar em Meta, Google e Bing com IA generativa.",
       preview: "ROI de 300%+ comprovado"
     },
     {
       icon: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=400&q=80",
       title: "Atualizações Semanais",
-      description: "Novo conteúdo toda semana com IA aplicada em tempo real.",
+      description: "Conteúdos novos toda semana com as tendências mais quentes e tutoriais aplicados.",
       preview: "Biblioteca sempre atualizada"
     },
     {
       icon: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?auto=format&fit=crop&w=400&q=80",
       title: "Comunidade Premium",
-      description: "Troca entre membros, mentorias em grupo e insights de bastidor.",
+      description: "Mentorias em grupo, troca com outros membros e suporte direto com especialistas em IA.",
       preview: "Rede de networking exclusiva"
     }
   ];
