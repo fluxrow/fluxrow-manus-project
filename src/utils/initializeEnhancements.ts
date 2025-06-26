@@ -4,6 +4,7 @@ import UrgencyTimer from './urgencyTimer';
 import PerformanceOptimizer from './performanceOptimizer';
 import ABTesting from './abTesting';
 import IntegrationManager from './integrationManager';
+import CinematicAnimations from './cinematicAnimations';
 
 // Initialize everything when DOM is loaded
 export const initializeEnhancements = () => {
@@ -23,5 +24,6 @@ const initAll = () => {
   new PerformanceOptimizer();
   new ABTesting();
   new IntegrationManager();
-  console.log('All enhancements initialized');
+  new CinematicAnimations();
+  console.log('All enhancements initialized with cinematic effects');
 };
