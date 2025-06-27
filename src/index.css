@@ -92,7 +92,7 @@ body {
 }
 
 .carousel-track {
-  animation: scroll-infinite 60s linear infinite;
+  animation: scroll-infinite 48s linear infinite;
 }
 
 @keyframes scroll-infinite {
@@ -133,7 +133,7 @@ body {
 /* Reduce motion for accessibility */
 @media (prefers-reduced-motion: reduce) {
   .carousel-track {
-    animation-duration: 120s;
+    animation-duration: 96s;
   }
   
   .hero-video {
@@ -699,7 +699,7 @@ img:not(.lazy) {
   }
 
   .carousel-track {
-    animation-duration: 40s;
+    animation-duration: 32s;
   }
 }
 
