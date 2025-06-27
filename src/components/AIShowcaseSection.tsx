@@ -106,9 +106,9 @@ const AIShowcaseSection = () => {
           {/* Main large card */}
           <div 
             ref={(el) => (cardsRef.current[0] = el)}
-            className="lg:col-span-2 lg:row-span-2 ai-showcase-card opacity-0 transform translate-y-20"
+            className="lg:col-span-2 lg:row-span-2 opacity-0 translate-y-20 transition-all duration-600 ease-out [.ai-showcase-active_&]:opacity-100 [.ai-showcase-active_&]:translate-y-0"
           >
-            <div className="glass-card h-full relative overflow-hidden rounded-3xl group">
+            <div className="bg-white/[0.02] backdrop-blur-[10px] border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.3)] hover:bg-white/[0.05] hover:border-white/20 hover:shadow-[0_12px_48px_rgba(0,0,0,0.4)] transition-all duration-300 h-full relative overflow-hidden rounded-3xl group">
               <div className="absolute top-4 left-4 z-10">
                 <Badge className="bg-purple-500/20 text-purple-300 border-purple-500/30">
                   {showcaseItems[0].badge}
@@ -134,9 +134,9 @@ const AIShowcaseSection = () => {
           {/* Top right card */}
           <div 
             ref={(el) => (cardsRef.current[1] = el)}
-            className="lg:col-span-2 ai-showcase-card opacity-0 transform translate-y-20"
+            className="lg:col-span-2 opacity-0 translate-y-20 transition-all duration-600 ease-out [.ai-showcase-active_&]:opacity-100 [.ai-showcase-active_&]:translate-y-0 [.ai-showcase-active_&]:delay-200"
           >
-            <div className="glass-card h-full relative overflow-hidden rounded-3xl group">
+            <div className="bg-white/[0.02] backdrop-blur-[10px] border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.3)] hover:bg-white/[0.05] hover:border-white/20 hover:shadow-[0_12px_48px_rgba(0,0,0,0.4)] transition-all duration-300 h-full relative overflow-hidden rounded-3xl group">
               <div className="absolute top-4 left-4 z-10">
                 <Badge className="bg-cyan-500/20 text-cyan-300 border-cyan-500/30">
                   {showcaseItems[1].badge}
@@ -162,9 +162,9 @@ const AIShowcaseSection = () => {
           {/* Bottom left small card */}
           <div 
             ref={(el) => (cardsRef.current[2] = el)}
-            className="ai-showcase-card opacity-0 transform translate-y-20"
+            className="opacity-0 translate-y-20 transition-all duration-600 ease-out [.ai-showcase-active_&]:opacity-100 [.ai-showcase-active_&]:translate-y-0 [.ai-showcase-active_&]:delay-400"
           >
-            <div className="glass-card h-full relative overflow-hidden rounded-3xl group">
+            <div className="bg-white/[0.02] backdrop-blur-[10px] border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.3)] hover:bg-white/[0.05] hover:border-white/20 hover:shadow-[0_12px_48px_rgba(0,0,0,0.4)] transition-all duration-300 h-full relative overflow-hidden rounded-3xl group">
               <div className="absolute top-3 left-3 z-10">
                 <Badge className="bg-pink-500/20 text-pink-300 border-pink-500/30 text-xs">
                   {showcaseItems[3].badge}
@@ -190,9 +190,9 @@ const AIShowcaseSection = () => {
           {/* Middle right card */}
           <div 
             ref={(el) => (cardsRef.current[3] = el)}
-            className="ai-showcase-card opacity-0 transform translate-y-20"
+            className="opacity-0 translate-y-20 transition-all duration-600 ease-out [.ai-showcase-active_&]:opacity-100 [.ai-showcase-active_&]:translate-y-0 [.ai-showcase-active_&]:delay-600"
           >
-            <div className="glass-card h-full relative overflow-hidden rounded-3xl group">
+            <div className="bg-white/[0.02] backdrop-blur-[10px] border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.3)] hover:bg-white/[0.05] hover:border-white/20 hover:shadow-[0_12px_48px_rgba(0,0,0,0.4)] transition-all duration-300 h-full relative overflow-hidden rounded-3xl group">
               <div className="absolute top-4 left-4 z-10">
                 <Badge className="bg-green-500/20 text-green-300 border-green-500/30">
                   {showcaseItems[2].badge}
@@ -218,9 +218,9 @@ const AIShowcaseSection = () => {
           {/* Bottom right card */}
           <div 
             ref={(el) => (cardsRef.current[4] = el)}
-            className="ai-showcase-card opacity-0 transform translate-y-20"
+            className="opacity-0 translate-y-20 transition-all duration-600 ease-out [.ai-showcase-active_&]:opacity-100 [.ai-showcase-active_&]:translate-y-0 [.ai-showcase-active_&]:delay-800"
           >
-            <div className="glass-card h-full relative overflow-hidden rounded-3xl group">
+            <div className="bg-white/[0.02] backdrop-blur-[10px] border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.3)] hover:bg-white/[0.05] hover:border-white/20 hover:shadow-[0_12px_48px_rgba(0,0,0,0.4)] transition-all duration-300 h-full relative overflow-hidden rounded-3xl group">
               <div className="absolute top-4 left-4 z-10">
                 <Badge className="bg-orange-500/20 text-orange-300 border-orange-500/30">
                   {showcaseItems[4].badge}
@@ -250,30 +250,6 @@ const AIShowcaseSection = () => {
         <div className="ai-particles"></div>
         <div className="ai-grid-overlay"></div>
       </div>
-
-      <style jsx>{`
-        .ai-showcase-card {
-          transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-        
-        .ai-card-revealed {
-          opacity: 1 !important;
-          transform: translateY(0) !important;
-        }
-        
-        .glass-card {
-          background: rgba(255, 255, 255, 0.02);
-          backdrop-filter: blur(10px);
-          border: 1px solid rgba(255, 255, 255, 0.1);
-          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-        }
-        
-        .glass-card:hover {
-          background: rgba(255, 255, 255, 0.05);
-          border: 1px solid rgba(255, 255, 255, 0.2);
-          box-shadow: 0 12px 48px rgba(0, 0, 0, 0.4);
-        }
-      `}</style>
     </section>
   );
 };
