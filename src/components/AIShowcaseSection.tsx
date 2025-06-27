@@ -1,9 +1,10 @@
 
 import React, { useEffect, useRef } from 'react';
+import { Badge } from './ui/badge';
 
 const AIShowcaseSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const imagesRef = useRef<(HTMLDivElement | null)[]>([]);
+  const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -13,12 +14,12 @@ const AIShowcaseSection = () => {
             const section = entry.target as HTMLElement;
             section.classList.add('ai-showcase-active');
             
-            // Animação sequencial das imagens
-            imagesRef.current.forEach((img, index) => {
-              if (img) {
+            // Animação sequencial dos cards
+            cardsRef.current.forEach((card, index) => {
+              if (card) {
                 setTimeout(() => {
-                  img.classList.add('ai-image-revealed');
-                }, index * 400);
+                  card.classList.add('ai-card-revealed');
+                }, index * 200);
               }
             });
           }
@@ -31,53 +32,54 @@ const AIShowcaseSection = () => {
       observer.observe(sectionRef.current);
     }
 
-    // Scroll-based animation para a última imagem
-    const handleScroll = () => {
-      const section = sectionRef.current;
-      if (!section) return;
-
-      const rect = section.getBoundingClientRect();
-      const progress = Math.max(0, Math.min(1, (window.innerHeight - rect.top) / window.innerHeight));
-      
-      const lastImage = imagesRef.current[3];
-      if (lastImage && progress > 0.8) {
-        const scale = 1 + (progress - 0.8) * 5;
-        lastImage.style.transform = `scale(${Math.min(scale, 2)})`;
-        lastImage.style.zIndex = '50';
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      observer.disconnect();
-    };
+    return () => observer.disconnect();
   }, []);
 
-  const aiShowcases = [
+  const showcaseItems = [
     {
-      title: "Neural Networks",
-      description: "Arquiteturas profundas de aprendizado",
-      gradient: "from-purple-500 to-pink-500",
-      delay: "0ms"
+      id: 'main',
+      title: 'Engenharia de Prompts Avançada',
+      badge: '200+ PROMPTS TESTADOS',
+      description: 'Domine técnicas de prompt engineering que geram resultados consistentes e de alta qualidade.',
+      image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=80',
+      size: 'large',
+      position: 'main'
     },
     {
-      title: "Code Generation", 
-      description: "IA que programa para você",
-      gradient: "from-blue-500 to-cyan-500",
-      delay: "400ms"
+      id: 'automation',
+      title: 'Automação Completa',
+      badge: 'SETUP EM 30MIN',
+      description: 'Fluxos prontos para WhatsApp, LinkedIn e email marketing.',
+      image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=600&q=80',
+      size: 'medium',
+      position: 'top-right'
     },
     {
-      title: "AI Assistants",
-      description: "Automação inteligente completa", 
-      gradient: "from-green-500 to-emerald-500",
-      delay: "800ms"
+      id: 'templates',
+      title: 'Templates que Convertem',
+      badge: 'ROI DE 340%',
+      description: 'Modelos testados para campanhas, propostas e landing pages.',
+      image: 'https://images.unsplash.com/photo-1487887235947-a955ef187fcc?auto=format&fit=crop&w=600&q=80',
+      size: 'medium',
+      position: 'middle-right'
     },
     {
-      title: "Digital Matrix",
-      description: "O futuro da inteligência artificial",
-      gradient: "from-orange-500 to-red-500",
-      delay: "1200ms"
+      id: 'mobile',
+      title: 'IA no Seu Bolso',
+      badge: 'MOBILE FIRST',
+      description: 'Apps e ferramentas que funcionam 24/7 no seu smartphone.',
+      image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=400&q=80',
+      size: 'small',
+      position: 'bottom-left'
+    },
+    {
+      id: 'results',
+      title: 'Resultados Comprovados',
+      badge: 'CASES REAIS',
+      description: 'Estratégias que já geraram milhões em vendas.',
+      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80',
+      size: 'medium',
+      position: 'bottom-right'
     }
   ];
 
@@ -99,28 +101,147 @@ const AIShowcaseSection = () => {
           </p>
         </div>
 
-        <div className="ai-showcase-grid grid grid-cols-1 md:grid-cols-2 gap-8 relative">
-          {aiShowcases.map((showcase, index) => (
-            <div
-              key={index}
-              ref={(el) => (imagesRef.current[index] = el)}
-              className={`ai-showcase-item relative overflow-hidden rounded-3xl aspect-video bg-gradient-to-br ${showcase.gradient} opacity-0 transform translate-y-20`}
-              style={{ animationDelay: showcase.delay }}
-            >
-              <div className="absolute inset-0 bg-black/20 backdrop-blur-sm"></div>
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-center text-white p-8">
-                  <h3 className="text-3xl font-bold mb-4 font-space-grotesk">
-                    {showcase.title}
-                  </h3>
-                  <p className="text-lg opacity-90 font-space-grotesk">
-                    {showcase.description}
-                  </p>
-                </div>
+        {/* Asymmetric Grid Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 h-auto lg:h-[600px]">
+          {/* Main large card */}
+          <div 
+            ref={(el) => (cardsRef.current[0] = el)}
+            className="lg:col-span-2 lg:row-span-2 ai-showcase-card opacity-0 transform translate-y-20"
+          >
+            <div className="glass-card h-full relative overflow-hidden rounded-3xl group">
+              <div className="absolute top-4 left-4 z-10">
+                <Badge className="bg-purple-500/20 text-purple-300 border-purple-500/30">
+                  {showcaseItems[0].badge}
+                </Badge>
               </div>
-              <div className="absolute inset-0 ai-neural-pattern opacity-10"></div>
+              <img 
+                src={showcaseItems[0].image}
+                alt={showcaseItems[0].title}
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+              <div className="absolute bottom-0 left-0 right-0 p-8">
+                <h3 className="text-3xl font-bold text-white mb-4 font-space-grotesk">
+                  {showcaseItems[0].title}
+                </h3>
+                <p className="text-gray-300 text-lg font-space-grotesk">
+                  {showcaseItems[0].description}
+                </p>
+              </div>
             </div>
-          ))}
+          </div>
+
+          {/* Top right card */}
+          <div 
+            ref={(el) => (cardsRef.current[1] = el)}
+            className="lg:col-span-2 ai-showcase-card opacity-0 transform translate-y-20"
+          >
+            <div className="glass-card h-full relative overflow-hidden rounded-3xl group">
+              <div className="absolute top-4 left-4 z-10">
+                <Badge className="bg-cyan-500/20 text-cyan-300 border-cyan-500/30">
+                  {showcaseItems[1].badge}
+                </Badge>
+              </div>
+              <img 
+                src={showcaseItems[1].image}
+                alt={showcaseItems[1].title}
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+              <div className="absolute bottom-0 left-0 right-0 p-6">
+                <h3 className="text-2xl font-bold text-white mb-3 font-space-grotesk">
+                  {showcaseItems[1].title}
+                </h3>
+                <p className="text-gray-300 font-space-grotesk">
+                  {showcaseItems[1].description}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom left small card */}
+          <div 
+            ref={(el) => (cardsRef.current[2] = el)}
+            className="ai-showcase-card opacity-0 transform translate-y-20"
+          >
+            <div className="glass-card h-full relative overflow-hidden rounded-3xl group">
+              <div className="absolute top-3 left-3 z-10">
+                <Badge className="bg-pink-500/20 text-pink-300 border-pink-500/30 text-xs">
+                  {showcaseItems[3].badge}
+                </Badge>
+              </div>
+              <img 
+                src={showcaseItems[3].image}
+                alt={showcaseItems[3].title}
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+              <div className="absolute bottom-0 left-0 right-0 p-4">
+                <h3 className="text-lg font-bold text-white mb-2 font-space-grotesk">
+                  {showcaseItems[3].title}
+                </h3>
+                <p className="text-gray-300 text-sm font-space-grotesk">
+                  {showcaseItems[3].description}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Middle right card */}
+          <div 
+            ref={(el) => (cardsRef.current[3] = el)}
+            className="ai-showcase-card opacity-0 transform translate-y-20"
+          >
+            <div className="glass-card h-full relative overflow-hidden rounded-3xl group">
+              <div className="absolute top-4 left-4 z-10">
+                <Badge className="bg-green-500/20 text-green-300 border-green-500/30">
+                  {showcaseItems[2].badge}
+                </Badge>
+              </div>
+              <img 
+                src={showcaseItems[2].image}
+                alt={showcaseItems[2].title}
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+              <div className="absolute bottom-0 left-0 right-0 p-6">
+                <h3 className="text-xl font-bold text-white mb-3 font-space-grotesk">
+                  {showcaseItems[2].title}
+                </h3>
+                <p className="text-gray-300 font-space-grotesk">
+                  {showcaseItems[2].description}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom right card */}
+          <div 
+            ref={(el) => (cardsRef.current[4] = el)}
+            className="ai-showcase-card opacity-0 transform translate-y-20"
+          >
+            <div className="glass-card h-full relative overflow-hidden rounded-3xl group">
+              <div className="absolute top-4 left-4 z-10">
+                <Badge className="bg-orange-500/20 text-orange-300 border-orange-500/30">
+                  {showcaseItems[4].badge}
+                </Badge>
+              </div>
+              <img 
+                src={showcaseItems[4].image}
+                alt={showcaseItems[4].title}
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+              <div className="absolute bottom-0 left-0 right-0 p-6">
+                <h3 className="text-xl font-bold text-white mb-3 font-space-grotesk">
+                  {showcaseItems[4].title}
+                </h3>
+                <p className="text-gray-300 font-space-grotesk">
+                  {showcaseItems[4].description}
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -129,6 +250,30 @@ const AIShowcaseSection = () => {
         <div className="ai-particles"></div>
         <div className="ai-grid-overlay"></div>
       </div>
+
+      <style jsx>{`
+        .ai-showcase-card {
+          transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        
+        .ai-card-revealed {
+          opacity: 1 !important;
+          transform: translateY(0) !important;
+        }
+        
+        .glass-card {
+          background: rgba(255, 255, 255, 0.02);
+          backdrop-filter: blur(10px);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        
+        .glass-card:hover {
+          background: rgba(255, 255, 255, 0.05);
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          box-shadow: 0 12px 48px rgba(0, 0, 0, 0.4);
+        }
+      `}</style>
     </section>
   );
 };
