@@ -2,48 +2,42 @@
 import React, { useEffect } from 'react';
 
 const BenefitsSection = () => {
-  const benefits = [
+  const targetProfiles = [
     {
-      icon: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=400&q=80",
-      title: "Guia de IA Generativa",
-      description: "Aprenda a usar ChatGPT, Gemini e Claude para criar conteúdo, vender e automatizar processos.",
-      preview: "Interface completa com prompts testados"
+      icon: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80",
+      title: "Empreendedores Iniciantes",
+      description: "Quer começar um negócio online mas não sabe por onde começar com IA.",
+      highlight: "Do zero ao primeiro faturamento"
     },
     {
-      icon: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=400&q=80",
-      title: "Automações Reais",
-      description: "Tenha acesso a fluxos prontos com n8n, Zapier e WhatsApp API que já estão funcionando em negócios reais.",
-      preview: "Fluxos de automação visual"
+      icon: "https://images.unsplash.com/photo-1494790108755-2616b612b786?auto=format&fit=crop&w=400&q=80",
+      title: "Profissionais Liberais",
+      description: "Consultores, advogados, médicos que querem automatizar processos e ganhar escala.",
+      highlight: "Automatização inteligente"
     },
     {
-      icon: "https://images.unsplash.com/photo-1487887235947-a955ef187fcc?auto=format&fit=crop&w=400&q=80",
-      title: "Playbooks de Crescimento",
-      description: "Estratégias práticas para sair do zero e começar a faturar com inteligência artificial aplicada.",
-      preview: "Dashboard de resultados em tempo real"
+      icon: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=400&q=80",
+      title: "Donos de Pequenos Negócios",
+      description: "Já tem um negócio e quer usar IA para aumentar vendas e reduzir custos.",
+      highlight: "Escalar operações"
     },
     {
-      icon: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=400&q=80",
-      title: "Campanhas Testadas",
-      description: "Modelos de tráfego prontos para rodar em Meta, Google e Bing com IA generativa.",
-      preview: "ROI de 300%+ comprovado"
+      icon: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=400&q=80",
+      title: "Freelancers e Agências",
+      description: "Quer oferecer serviços de IA para clientes e se destacar no mercado.",
+      highlight: "Novo nicho de mercado"
     },
     {
-      icon: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=400&q=80",
-      title: "Atualizações Semanais",
-      description: "Conteúdos novos toda semana com as tendências mais quentes e tutoriais aplicados.",
-      preview: "Biblioteca sempre atualizada"
-    },
-    {
-      icon: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?auto=format&fit=crop&w=400&q=80",
-      title: "Comunidade Premium",
-      description: "Mentorias em grupo, troca com outros membros e suporte direto com especialistas em IA.",
-      preview: "Rede de networking exclusiva"
+      icon: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?auto=format&fit=crop&w=400&q=80",
+      title: "Estudantes e Curiosos",
+      description: "Quer aprender IA de forma prática e aplicada para criar oportunidades.",
+      highlight: "Conhecimento aplicado"
     }
   ];
 
   useEffect(() => {
     // Add AOS attributes to cards
-    const cards = document.querySelectorAll('.benefit-card');
+    const cards = document.querySelectorAll('.target-card');
     cards.forEach((card, index) => {
       card.setAttribute('data-aos', 'fade-up');
       card.setAttribute('data-aos-delay', (index * 100).toString());
@@ -51,34 +45,60 @@ const BenefitsSection = () => {
   }, []);
 
   return (
-    <section id="benefits" className="py-20 bg-black px-6">
+    <section id="target-audience" className="py-20 bg-gradient-to-b from-black to-gray-900 px-6">
       <div className="max-w-6xl mx-auto text-center">
         <h2 className="section-title font-space-grotesk" data-aos="fade-up">
-          O que você vai <span className="gradient-text">desbloquear</span>
+          Para quem é <span className="gradient-text">este curso</span>
         </h2>
-        <div className="grid md:grid-cols-3 gap-10">
-          {benefits.map((benefit, index) => (
-            <div key={index} className="benefit-card glass-card group">
-              <div className="benefit-icon relative overflow-hidden rounded-xl mb-6">
+        <p className="text-xl text-gray-300 mb-16 font-space-grotesk max-w-3xl mx-auto" data-aos="fade-up">
+          Se você se identifica com algum desses perfis, este curso foi feito especialmente para você
+        </p>
+        
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {targetProfiles.map((profile, index) => (
+            <div key={index} className="target-card glass-card group">
+              <div className="relative overflow-hidden rounded-xl mb-6">
                 <img 
-                  src={benefit.icon} 
-                  alt={benefit.title}
-                  className="w-full h-32 object-cover transition-transform duration-500 group-hover:scale-110"
+                  src={profile.icon} 
+                  alt={profile.title}
+                  className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                <div className="absolute bottom-2 left-2 text-xs text-white/80 font-space-grotesk">
-                  {benefit.preview}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                <div className="absolute bottom-4 left-4 right-4">
+                  <div className="bg-gradient-to-r from-pink-500 to-cyan-500 text-white px-3 py-1 rounded-full text-xs font-bold font-space-grotesk inline-block">
+                    {profile.highlight}
+                  </div>
                 </div>
               </div>
-              <h3 className="text-xl font-semibold mb-3 font-space-grotesk text-white">
-                {benefit.title}
+              
+              <h3 className="text-xl font-semibold mb-4 font-space-grotesk text-white">
+                {profile.title}
               </h3>
+              
               <p className="text-gray-300 font-space-grotesk leading-relaxed">
-                {benefit.description}
+                {profile.description}
               </p>
+              
+              <div className="mt-6 pt-4 border-t border-gray-700">
+                <div className="flex items-center justify-center text-cyan-400 font-space-grotesk text-sm font-semibold">
+                  ✓ Método adaptado para seu perfil
+                </div>
+              </div>
             </div>
           ))}
+        </div>
+        
+        <div className="mt-16 text-center" data-aos="fade-up">
+          <div className="bg-gradient-to-r from-purple-900/20 to-blue-900/20 border border-purple-500/30 rounded-2xl p-8 max-w-3xl mx-auto">
+            <h3 className="text-2xl font-bold font-space-grotesk text-white mb-4">
+              Não importa seu nível atual
+            </h3>
+            <p className="text-gray-300 font-space-grotesk text-lg">
+              O curso foi desenvolvido para funcionar tanto para iniciantes quanto para quem já tem experiência. 
+              Cada módulo tem explicações do básico ao avançado.
+            </p>
+          </div>
         </div>
       </div>
     </section>

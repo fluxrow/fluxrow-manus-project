@@ -1,0 +1,265 @@
+
+import React, { useState } from 'react';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+import { MessageCircle, Mail, Phone, MapPin, Send, CheckCircle } from 'lucide-react';
+
+const Contato = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  });
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log('Form submitted:', formData);
+    setIsSubmitted(true);
+    // Aqui seria integrado com um sistema de contato real
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const contactMethods = [
+    {
+      icon: MessageCircle,
+      title: 'WhatsApp',
+      description: 'Suporte direto via WhatsApp',
+      action: 'Chamar no WhatsApp',
+      link: '#',
+      color: 'from-green-500 to-emerald-500'
+    },
+    {
+      icon: Mail,
+      title: 'E-mail',
+      description: 'contato@fluxrowstart.com',
+      action: 'Enviar E-mail',
+      link: 'mailto:contato@fluxrowstart.com',
+      color: 'from-blue-500 to-cyan-500'
+    },
+    {
+      icon: Phone,
+      title: 'Telefone',
+      description: '+55 (11) 99999-9999',
+      action: 'Ligar Agora',
+      link: 'tel:+5511999999999',
+      color: 'from-purple-500 to-pink-500'
+    }
+  ];
+
+  const faqs = [
+    {
+      question: 'Como funciona o acesso ao curso?',
+      answer: 'Após a compra, você recebe acesso imediato à plataforma com todos os módulos, materiais e bônus.'
+    },
+    {
+      question: 'Existe garantia?',
+      answer: 'Sim! Oferecemos 7 dias de garantia incondicional. Se não ficar satisfeito, devolvemos 100% do valor.'
+    },
+    {
+      question: 'Preciso de conhecimento técnico?',
+      answer: 'Não! O curso foi pensado para pessoas sem conhecimento técnico. Tudo é explicado do básico ao avançado.'
+    },
+    {
+      question: 'Por quanto tempo tenho acesso?',
+      answer: 'O acesso é vitalício. Você pode acessar o conteúdo quando quiser, quantas vezes precisar.'
+    }
+  ];
+
+  return (
+    <div className="min-h-screen bg-[#0f0f0f] text-white">
+      <Header />
+      
+      <main className="pt-24 pb-20">
+        {/* Header Section */}
+        <section className="py-16 px-6 bg-gradient-to-r from-green-900/20 via-black to-blue-900/20">
+          <div className="max-w-4xl mx-auto text-center">
+            <h1 className="text-4xl md:text-6xl font-bold font-space-grotesk mb-6">
+              <span className="gradient-text">Entre em Contato</span>
+            </h1>
+            <p className="text-xl text-gray-300 mb-8 font-space-grotesk">
+              Estamos aqui para ajudar você a ter sucesso com IA
+            </p>
+          </div>
+        </section>
+
+        {/* Contact Methods */}
+        <section className="py-16 px-6">
+          <div className="max-w-6xl mx-auto">
+            <div className="grid md:grid-cols-3 gap-8 mb-16">
+              {contactMethods.map((method, index) => {
+                const IconComponent = method.icon;
+                return (
+                  <div key={index} className="glass-card p-6 text-center group hover:scale-105 transition-all duration-300">
+                    <div className={`w-16 h-16 rounded-xl bg-gradient-to-r ${method.color} flex items-center justify-center mx-auto mb-6`}>
+                      <IconComponent className="w-8 h-8 text-white" />
+                    </div>
+                    
+                    <h3 className="text-xl font-semibold font-space-grotesk text-white mb-3">
+                      {method.title}
+                    </h3>
+                    
+                    <p className="text-gray-300 font-space-grotesk mb-6">
+                      {method.description}
+                    </p>
+                    
+                    <a
+                      href={method.link}
+                      className={`inline-block bg-gradient-to-r ${method.color} text-white px-6 py-3 rounded-full font-semibold font-space-grotesk hover:opacity-90 transition-all duration-300`}
+                    >
+                      {method.action}
+                    </a>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
+        {/* Contact Form */}
+        <section className="py-16 px-6 bg-gradient-to-r from-purple-900/10 via-transparent to-blue-900/10">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold font-space-grotesk mb-4">
+                <span className="gradient-text">Envie sua Mensagem</span>
+              </h2>
+              <p className="text-gray-300 font-space-grotesk">
+                Preencha o formulário abaixo e retornaremos em até 24 horas
+              </p>
+            </div>
+
+            {!isSubmitted ? (
+              <form onSubmit={handleSubmit} className="glass-card p-8">
+                <div className="grid md:grid-cols-2 gap-6 mb-6">
+                  <div>
+                    <label className="block text-gray-300 font-space-grotesk mb-2">
+                      Nome Completo
+                    </label>
+                    <input
+                      type="text"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
+                      className="w-full bg-black/50 border border-gray-600 rounded-lg px-4 py-3 text-white font-space-grotesk focus:border-cyan-500 focus:outline-none"
+                      placeholder="Seu nome completo"
+                    />
+                  </div>
+                  
+                  <div>
+                    <label className="block text-gray-300 font-space-grotesk mb-2">
+                      E-mail
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
+                      className="w-full bg-black/50 border border-gray-600 rounded-lg px-4 py-3 text-white font-space-grotesk focus:border-cyan-500 focus:outline-none"
+                      placeholder="seu@email.com"
+                    />
+                  </div>
+                </div>
+                
+                <div className="mb-6">
+                  <label className="block text-gray-300 font-space-grotesk mb-2">
+                    Assunto
+                  </label>
+                  <select
+                    name="subject"
+                    value={formData.subject}
+                    onChange={handleChange}
+                    required
+                    className="w-full bg-black/50 border border-gray-600 rounded-lg px-4 py-3 text-white font-space-grotesk focus:border-cyan-500 focus:outline-none"
+                  >
+                    <option value="">Selecione um assunto</option>
+                    <option value="duvida-curso">Dúvida sobre o curso</option>
+                    <option value="problema-tecnico">Problema técnico</option>
+                    <option value="suporte-pagamento">Suporte de pagamento</option>
+                    <option value="parceria">Proposta de parceria</option>
+                    <option value="outro">Outro</option>
+                  </select>
+                </div>
+                
+                <div className="mb-8">
+                  <label className="block text-gray-300 font-space-grotesk mb-2">
+                    Mensagem
+                  </label>
+                  <textarea
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    required
+                    rows={5}
+                    className="w-full bg-black/50 border border-gray-600 rounded-lg px-4 py-3 text-white font-space-grotesk focus:border-cyan-500 focus:outline-none resize-none"
+                    placeholder="Descreva sua dúvida ou mensagem..."
+                  />
+                </div>
+                
+                <button
+                  type="submit"
+                  className="w-full bg-gradient-to-r from-pink-500 to-cyan-500 text-white py-4 rounded-full font-bold font-space-grotesk hover:from-pink-600 hover:to-cyan-600 transition-all duration-300 flex items-center justify-center space-x-2"
+                >
+                  <Send className="w-5 h-5" />
+                  <span>Enviar Mensagem</span>
+                </button>
+              </form>
+            ) : (
+              <div className="glass-card p-8 text-center">
+                <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-6" />
+                <h3 className="text-2xl font-bold font-space-grotesk text-white mb-4">
+                  Mensagem Enviada!
+                </h3>
+                <p className="text-gray-300 font-space-grotesk mb-6">
+                  Obrigado pelo contato. Retornaremos em até 24 horas.
+                </p>
+                <button
+                  onClick={() => setIsSubmitted(false)}
+                  className="bg-gradient-to-r from-pink-500 to-cyan-500 text-white px-6 py-3 rounded-full font-semibold font-space-grotesk hover:from-pink-600 hover:to-cyan-600 transition-all duration-300"
+                >
+                  Enviar Nova Mensagem
+                </button>
+              </div>
+            )}
+          </div>
+        </section>
+
+        {/* FAQ Section */}
+        <section className="py-16 px-6">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold font-space-grotesk mb-4">
+                <span className="gradient-text">Perguntas Frequentes</span>
+              </h2>
+            </div>
+
+            <div className="space-y-6">
+              {faqs.map((faq, index) => (
+                <div key={index} className="glass-card p-6">
+                  <h3 className="text-lg font-semibold font-space-grotesk text-white mb-3">
+                    {faq.question}
+                  </h3>
+                  <p className="text-gray-300 font-space-grotesk leading-relaxed">
+                    {faq.answer}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <Footer />
+    </div>
+  );
+};
+
+export default Contato;

@@ -30,7 +30,7 @@ const PricingSection = () => {
     <section id="pricing" className="py-20 px-6 bg-gradient-to-tr from-[#111111] to-[#1a1a1a]">
       <div className="max-w-6xl mx-auto">
         <h2 className="section-title font-space-grotesk text-center" data-aos="fade-up">
-          Invista no seu <span className="gradient-text">crescimento</span>
+          Comece a faturar <span className="gradient-text">R$5K em 30 dias</span>
         </h2>
         
         <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -39,81 +39,120 @@ const PricingSection = () => {
             <div className="relative">
               <img 
                 src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=80" 
-                alt="Plataforma Fluxrow"
+                alt="Fluxrow Start - Curso de IA"
                 className="w-full h-80 object-cover rounded-3xl shadow-2xl"
                 loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent rounded-3xl"></div>
               <div className="absolute bottom-6 left-6 text-white">
                 <h3 className="text-2xl font-bold font-space-grotesk mb-2">
-                  Interface Completa
+                  Fluxrow Start
                 </h3>
                 <p className="text-gray-200 font-space-grotesk">
-                  Dashboard, automações, templates e muito mais
+                  6 módulos + materiais + bônus + acesso vitalício
                 </p>
               </div>
               
               {/* Floating Stats */}
               <div className="absolute top-6 right-6 bg-black/40 backdrop-blur-sm rounded-xl p-4 text-white">
-                <div className="text-2xl font-bold gradient-text">2,4x</div>
-                <div className="text-xs text-gray-300">ROI Médio</div>
+                <div className="text-2xl font-bold gradient-text">R$5.000</div>
+                <div className="text-xs text-gray-300">em 30 dias</div>
+              </div>
+            </div>
+            
+            {/* Course Features Preview */}
+            <div className="grid grid-cols-2 gap-4 mt-6">
+              <div className="bg-gradient-to-r from-purple-900/20 to-blue-900/20 border border-purple-500/30 rounded-xl p-4">
+                <div className="text-2xl font-bold gradient-text font-space-grotesk">6</div>
+                <div className="text-gray-300 text-sm font-space-grotesk">Módulos Práticos</div>
+              </div>
+              <div className="bg-gradient-to-r from-green-900/20 to-teal-900/20 border border-green-500/30 rounded-xl p-4">
+                <div className="text-2xl font-bold gradient-text font-space-grotesk">200+</div>
+                <div className="text-gray-300 text-sm font-space-grotesk">Templates Prontos</div>
               </div>
             </div>
           </div>
 
           {/* Pricing Card */}
           <div className="pricing-card max-w-lg" data-aos="fade-left">
-            <div className="pricing-header">
-              <h3 className="text-2xl font-bold mb-2 font-space-grotesk text-white">
-                Fluxrow Complete
+            <div className="pricing-header text-center mb-8">
+              <div className="bg-gradient-to-r from-pink-500/20 to-cyan-500/20 border border-pink-500/30 text-pink-300 px-4 py-2 rounded-full text-sm font-semibold font-space-grotesk inline-block mb-4">
+                🚀 Oferta por tempo limitado
+              </div>
+              <h3 className="text-3xl font-bold mb-2 font-space-grotesk text-white">
+                Fluxrow Start
               </h3>
               <p className="text-gray-400 mb-6 font-space-grotesk">
-                Acesso vitalício + bônus + atualizações semanais
+                O método completo para faturar R$5K com IA em 30 dias
               </p>
             </div>
             
-            <div className="price-container mb-8">
-              <div className="price-old text-gray-500 line-through font-space-grotesk">
+            <div className="price-container mb-8 text-center">
+              <div className="price-old text-gray-500 line-through font-space-grotesk text-xl">
                 De R$ 997
               </div>
-              <div className="price-current text-4xl font-extrabold gradient-text font-space-grotesk">
+              <div className="price-current text-5xl font-extrabold gradient-text font-space-grotesk">
                 R$ 497
               </div>
               <div className="price-installments text-gray-400 font-space-grotesk">
-                ou 12x de R$ 47
+                ou 12x de R$ 47 sem juros
               </div>
             </div>
             
             <div className="pricing-features text-left mb-8">
-              <div className="feature py-3 border-b border-gray-700 text-white font-space-grotesk">
-                ✓ Curso completo de IA e automações
+              <div className="feature py-3 border-b border-gray-700 text-white font-space-grotesk flex items-center">
+                <span className="text-green-500 mr-3">✓</span>
+                6 módulos completos (8h de conteúdo)
               </div>
-              <div className="feature py-3 border-b border-gray-700 text-white font-space-grotesk">
-                ✓ Templates prontos e personalizáveis
+              <div className="feature py-3 border-b border-gray-700 text-white font-space-grotesk flex items-center">
+                <span className="text-green-500 mr-3">✓</span>
+                200+ templates e prompts testados
               </div>
-              <div className="feature py-3 border-b border-gray-700 text-white font-space-grotesk">
-                ✓ Comunidade e mentorias em grupo
+              <div className="feature py-3 border-b border-gray-700 text-white font-space-grotesk flex items-center">
+                <span className="text-green-500 mr-3">✓</span>
+                Fluxos de automação prontos
               </div>
-              <div className="feature py-3 border-b border-gray-700 text-white font-space-grotesk">
-                ✓ Suporte e atualizações semanais
+              <div className="feature py-3 border-b border-gray-700 text-white font-space-grotesk flex items-center">
+                <span className="text-green-500 mr-3">✓</span>
+                Suporte e comunidade exclusiva
               </div>
-              <div className="feature py-3 text-white font-space-grotesk">
-                ✓ Garantia de 7 dias
+              <div className="feature py-3 border-b border-gray-700 text-white font-space-grotesk flex items-center">
+                <span className="text-green-500 mr-3">✓</span>
+                Acesso vitalício + atualizações
+              </div>
+              <div className="feature py-3 text-white font-space-grotesk flex items-center">
+                <span className="text-yellow-500 mr-3">🛡️</span>
+                <strong>Garantia incondicional de 7 dias</strong>
               </div>
             </div>
             
             <button 
               onClick={handlePurchaseClick}
-              className="cta-primary cta-large w-full font-space-grotesk mb-4"
+              className="cta-primary cta-large w-full font-space-grotesk mb-6 text-lg"
               data-event="pricing_cta_click"
             >
-              Quero desbloquear agora
+              Garantir Minha Vaga Agora
             </button>
             
-            <div className="urgency-indicator">
-              <p className="urgency-text font-space-grotesk text-center">
-                ⚡ Últimas 24 vagas com bônus extra
+            <div className="urgency-indicator text-center">
+              <p className="urgency-text font-space-grotesk text-pink-400 mb-2">
+                ⚡ Últimas 48 horas com este preço
               </p>
+              <p className="text-gray-400 text-sm font-space-grotesk">
+                💳 Pagamento 100% seguro • 🔒 Dados protegidos
+              </p>
+            </div>
+            
+            {/* Bonus Section */}
+            <div className="mt-8 p-6 bg-gradient-to-r from-yellow-900/20 to-orange-900/20 border border-yellow-500/30 rounded-xl">
+              <h4 className="text-lg font-bold font-space-grotesk text-yellow-400 mb-3">
+                🎁 Bônus Exclusivos (Valor: R$ 297)
+              </h4>
+              <ul className="space-y-2 text-sm text-gray-300 font-space-grotesk">
+                <li>• Scripts de vídeo com IA</li>
+                <li>• Base de 10.000+ leads qualificados</li>
+                <li>• 1 hora de mentoria em grupo</li>
+              </ul>
             </div>
           </div>
         </div>

@@ -1,5 +1,6 @@
 
 import React, { useEffect } from 'react';
+import Header from './Header';
 
 const HeroSection = () => {
   useEffect(() => {
@@ -56,6 +57,8 @@ const HeroSection = () => {
 
   return (
     <section id="hero" className="min-h-screen flex flex-col justify-center items-center text-center px-6 bg-[#0f0f0f] relative overflow-hidden">
+      <Header />
+      
       {/* Video Background */}
       <div className="absolute inset-0 w-full h-full overflow-hidden">
         <video
@@ -102,26 +105,64 @@ const HeroSection = () => {
         </div>
       </div>
       
-      <div className="max-w-4xl hero-content relative z-10">
+      <div className="max-w-5xl hero-content relative z-10">
+        {/* Highlight Badge */}
+        <div className="mb-6">
+          <span className="inline-block bg-gradient-to-r from-pink-500/20 to-cyan-500/20 border border-pink-500/30 text-pink-300 px-6 py-2 rounded-full text-sm font-semibold font-space-grotesk">
+            ⚡ Método comprovado para faturar R$5K em 30 dias
+          </span>
+        </div>
+        
         <h1 className="hero-title font-space-grotesk">
-          <span className="line-1">Domine a IA. </span>
-          <span className="line-2 gradient-text">Multiplique seu lucro.</span>
+          <span className="line-1">Como fazer </span>
+          <span className="line-2 gradient-text">R$5.000 com IA</span>
+          <span className="line-3"> em 30 dias</span>
         </h1>
-        <p className="hero-subtitle text-gray-300 font-space-grotesk">
-          Acesso completo ao ecossistema que transforma inteligência em recorrência. Templates, automações e growth de verdade.
+        
+        <p className="hero-subtitle text-gray-300 font-space-grotesk text-xl max-w-3xl mx-auto">
+          Aprenda o método completo para transformar inteligência artificial em receita recorrente, mesmo sem conhecimento técnico
         </p>
-        <div className="hero-cta">
+        
+        <div className="hero-cta flex flex-col sm:flex-row items-center justify-center gap-4 mt-8">
           <button
             onClick={handleCTAClick}
-            className="cta-primary font-space-grotesk"
+            className="cta-primary font-space-grotesk text-lg px-8 py-4"
             data-event="hero_cta_click"
           >
-            Quero desbloquear agora 
+            Começar Agora 
             <span className="cta-arrow">→</span>
           </button>
-          <p className="cta-guarantee mt-4 text-sm text-pink-400 font-space-grotesk">
-            ⚡ Últimas horas para entrar com bônus exclusivo
-          </p>
+          
+          <a 
+            href="/modulos"
+            className="bg-transparent border-2 border-cyan-500 text-cyan-400 px-8 py-4 rounded-full font-semibold font-space-grotesk hover:bg-cyan-500/10 transition-all duration-300"
+          >
+            Ver Módulos
+          </a>
+        </div>
+        
+        <p className="cta-guarantee mt-6 text-sm text-pink-400 font-space-grotesk">
+          🎯 Garantia de 7 dias • Acesso vitalício • Suporte incluso
+        </p>
+      </div>
+
+      {/* Stats Section */}
+      <div className="absolute bottom-20 left-0 right-0">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="grid grid-cols-3 gap-8 text-center">
+            <div>
+              <div className="text-3xl font-bold gradient-text font-space-grotesk">R$5K</div>
+              <div className="text-gray-400 font-space-grotesk text-sm">em 30 dias</div>
+            </div>
+            <div>
+              <div className="text-3xl font-bold gradient-text font-space-grotesk">6</div>
+              <div className="text-gray-400 font-space-grotesk text-sm">Módulos</div>
+            </div>
+            <div>
+              <div className="text-3xl font-bold gradient-text font-space-grotesk">200+</div>
+              <div className="text-gray-400 font-space-grotesk text-sm">Templates</div>
+            </div>
+          </div>
         </div>
       </div>
 
