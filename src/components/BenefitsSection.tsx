@@ -60,9 +60,7 @@ const BenefitsSection = () => {
                 <img 
                   src={profile.icon} 
                   alt={profile.title}
-                  className={`w-full h-48 transition-transform duration-500 group-hover:scale-110 ${
-                    index === 0 ? 'object-contain object-center bg-gray-100' : 'object-cover'
-                  }`}
+                  className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
                   loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
