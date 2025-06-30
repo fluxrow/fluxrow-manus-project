@@ -1,10 +1,9 @@
-
 import React, { useEffect } from 'react';
 
 const BenefitsSection = () => {
   const targetProfiles = [
     {
-      icon: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80",
+      icon: "https://fngjxjrgovhxbdlkomvw.supabase.co/storage/v1/object/sign/site-fluxrow/empreendedores-iniciantes.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV80MDRjODEwNC00MDM2LTQ0MGMtODA2Mi00NWM3MGRhZTBlMjMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJzaXRlLWZsdXhyb3cvZW1wcmVlbmRlZG9yZXMtaW5pY2lhbnRlcy5wbmciLCJpYXQiOjE3NTEzMDQ5MDIsImV4cCI6MjA2NjY2NDkwMn0.zHNSAfDwsRCNq_X9taUD09sLRPKvuDWqn2prPt1weks",
       title: "Empreendedores Iniciantes",
       description: "Quer começar um negócio online mas não sabe por onde começar com IA.",
       highlight: "Do zero ao primeiro faturamento"
