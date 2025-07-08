@@ -5,13 +5,13 @@
 
 /* Modern CSS Variables */
 :root {
-  --bg-primary: #0f0f0f;
-  --text-primary: #ffffff;
-  --accent-magenta: #ff00cc;
-  --accent-blue: #00ffff;
-  --text-secondary: #a0a0a0;
-  --card-bg: rgba(255, 255, 255, 0.05);
-  --border-color: rgba(255, 255, 255, 0.1);
+  --bg-primary: hsl(0, 0%, 6%);
+  --text-primary: hsl(0, 0%, 100%);
+  --accent-magenta: hsl(312, 100%, 50%);
+  --accent-blue: hsl(180, 100%, 50%);
+  --text-secondary: hsl(0, 0%, 63%);
+  --card-bg: hsla(0, 0%, 100%, 0.05);
+  --border-color: hsla(0, 0%, 100%, 0.1);
   
   /* Shadcn variables */
   --background: 0 0% 100%;
