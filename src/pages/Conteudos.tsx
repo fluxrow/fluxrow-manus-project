@@ -42,10 +42,23 @@ const Conteudos = () => {
             <h1 className="text-4xl md:text-5xl font-bold font-space-grotesk mb-6">
               <span className="gradient-text">Conteúdos Exclusivos</span>
             </h1>
-            <p className="text-xl text-gray-300 font-space-grotesk max-w-3xl mx-auto">
+            <p className="text-xl text-gray-300 font-space-grotesk max-w-3xl mx-auto mb-8">
               Materiais de valor gratuitos para quem está começando na jornada com IA. 
               Comente em nossos posts para receber o link de acesso!
             </p>
+            
+            {/* Info sobre primeiro conteúdo */}
+            <div className="bg-gradient-to-r from-purple-900/20 to-blue-900/20 border border-purple-500/30 rounded-2xl p-6 max-w-2xl mx-auto">
+              <p className="text-lg font-space-grotesk text-white mb-2">
+                <strong>Esse é só o primeiro.</strong>
+              </p>
+              <p className="text-gray-300 font-space-grotesk mb-4">
+                A cada post novo, liberamos mais conteúdo exclusivo por aqui.
+              </p>
+              <p className="text-cyan-400 font-space-grotesk font-semibold">
+                Pra receber o próximo, segue a @flux.row e comenta nos posts.
+              </p>
+            </div>
           </div>
 
           {/* Conteúdos Grid */}
@@ -99,7 +112,7 @@ const Conteudos = () => {
               <p className="text-gray-300 font-space-grotesk text-lg mb-6">
                 É simples! Siga nossas redes sociais, comente em nossos posts e receba o link exclusivo para acessar cada conteúdo.
               </p>
-              <div className="flex flex-wrap justify-center gap-4">
+              <div className="flex flex-wrap justify-center gap-4 mb-8">
                 <span className="bg-gradient-to-r from-pink-500 to-cyan-500 text-white px-4 py-2 rounded-full text-sm font-semibold font-space-grotesk">
                   ✓ 100% Gratuito
                 </span>
@@ -109,6 +122,40 @@ const Conteudos = () => {
                 <span className="bg-gradient-to-r from-pink-500 to-cyan-500 text-white px-4 py-2 rounded-full text-sm font-semibold font-space-grotesk">
                   ✓ Acesso Vitalício
                 </span>
+              </div>
+            </div>
+          </div>
+
+          {/* CTA para página principal */}
+          <div className="mt-16 text-center">
+            <div className="bg-gradient-to-r from-pink-900/30 to-cyan-900/30 border-2 border-gradient-to-r from-pink-500 to-cyan-500 rounded-3xl p-10 max-w-4xl mx-auto relative overflow-hidden">
+              {/* Background effects */}
+              <div className="absolute inset-0 bg-gradient-to-r from-pink-500/10 to-cyan-500/10 blur-xl"></div>
+              <div className="relative z-10">
+                <h3 className="text-3xl md:text-4xl font-bold font-space-grotesk text-white mb-6">
+                  Quer acessar <span className="gradient-text">TODO nosso material</span>?
+                </h3>
+                <p className="text-xl text-gray-300 font-space-grotesk mb-8 max-w-2xl mx-auto leading-relaxed">
+                  Estes conteúdos gratuitos são apenas uma amostra. Temos um curso completo com mais de 20 módulos, 
+                  ferramentas exclusivas e suporte direto para transformar sua vida com IA.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
+                  <span className="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-6 py-3 rounded-full text-lg font-bold font-space-grotesk">
+                    🚀 Mais de 20 Módulos Completos
+                  </span>
+                  <span className="bg-gradient-to-r from-blue-500 to-purple-500 text-white px-6 py-3 rounded-full text-lg font-bold font-space-grotesk">
+                    🎯 Suporte Direto dos Criadores
+                  </span>
+                </div>
+                <Link
+                  to="/"
+                  className="inline-block bg-gradient-to-r from-pink-500 to-cyan-500 text-white text-xl font-bold font-space-grotesk px-12 py-4 rounded-full hover:from-pink-600 hover:to-cyan-600 transition-all duration-300 hover:scale-105 shadow-2xl"
+                >
+                  🔥 VER CURSO COMPLETO AGORA
+                </Link>
+                <p className="text-sm text-gray-400 font-space-grotesk mt-4">
+                  Não perca essa oportunidade única de transformar sua carreira
+                </p>
               </div>
             </div>
           </div>
