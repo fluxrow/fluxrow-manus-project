@@ -1,4 +1,3 @@
-
 import promptEngineeringImg from '../../assets/prompt-engineering-avancado.jpg';
 import automacaoImg from '../../assets/automacao-marketing.jpg';
 import templatesImg from '../../assets/templates-conversao.jpg';
@@ -10,7 +9,7 @@ export interface ShowcaseItem {
   title: string;
   badge: string;
   description: string;
-  image: string;
+  image: any; // Changed to any to accept both string URLs and imported images
   size: 'large' | 'medium' | 'small';
   position: string;
 }
