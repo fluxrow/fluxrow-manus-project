@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react';
 import ImageWithFallback from './ui/image-with-fallback';
 import techWorkspace from '../assets/tech-workspace.jpg';
-import aiAutomation from '../assets/ai-automation.jpg';
+import playbooks from '../assets/playbooks.png';
 import templates from '../assets/templates.jpg';
 
 const DemoSection = () => {
@@ -14,7 +14,7 @@ const DemoSection = () => {
       highlight: "200+ prompts testados"
     },
     {
-      mockup: aiAutomation,
+      mockup: playbooks,
       title: "Setups Automatizados",
       description: "Playbooks com passo a passo pra WhatsApp, LinkedIn, e-mail e agendamentos automáticos.",
       highlight: "Automação completa em 30min"
