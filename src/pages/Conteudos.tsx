@@ -13,6 +13,15 @@ const conteudosData = [
     fileType: 'Guia Completo',
     fileSize: 'Leitura: 15min',
     available: true
+  },
+  {
+    id: 'produto-sugerido-ia',
+    title: 'Como fazer seu produto ser sugerido pelas IAs (sem pagar anúncio)',
+    description: 'Descubra como posicionar seu produto ou serviço nas respostas do ChatGPT, Perplexity, Claude e Gemini com prompts estratégicos que funcionam de verdade.',
+    icon: 'code',
+    fileType: 'Guia Estratégico',
+    fileSize: 'Leitura: 20min',
+    available: true
   }
   // Mais conteúdos serão adicionados aqui
 ];

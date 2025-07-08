@@ -11,6 +11,7 @@ import Conteudos from "./pages/Conteudos";
 import Contato from "./pages/Contato";
 import NotFound from "./pages/NotFound";
 import ConteudoPrompts from "./pages/ConteudoPrompts";
+import ConteudoIAMarketing from "./pages/ConteudoIAMarketing";
 
 const queryClient = new QueryClient();
 
@@ -26,6 +27,7 @@ const App = () => (
           <Route path="/materiais" element={<Materiais />} />
           <Route path="/conteudos" element={<Conteudos />} />
           <Route path="/conteudos/prompts-economia" element={<ConteudoPrompts />} />
+          <Route path="/conteudos/produto-sugerido-ia" element={<ConteudoIAMarketing />} />
           <Route path="/conteudos/:slug" element={<div>Página Individual de Conteúdo</div>} />
           <Route path="/contato" element={<Contato />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
