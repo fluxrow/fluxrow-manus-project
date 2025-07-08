@@ -6,12 +6,12 @@ import { Download, FileText, Code, Image } from 'lucide-react';
 // Dados dos conteúdos - aqui vamos adicionar todos os 20+
 const conteudosData = [
   {
-    id: 'exemplo-conteudo',
-    title: 'Exemplo de Conteúdo',
-    description: 'Descrição do primeiro conteúdo que será adicionado',
+    id: 'prompts-economia',
+    title: '6 Prompts Avançados para Economizar com ChatGPT',
+    description: 'Aprenda a usar ChatGPT como consultor de economia pessoal e economize até 50% nas suas compras',
     icon: 'file',
-    fileType: 'PDF',
-    fileSize: '2MB',
+    fileType: 'Guia Completo',
+    fileSize: 'Leitura: 15min',
     available: true
   }
   // Mais conteúdos serão adicionados aqui

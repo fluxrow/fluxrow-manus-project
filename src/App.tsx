@@ -10,6 +10,7 @@ import Materiais from "./pages/Materiais";
 import Conteudos from "./pages/Conteudos";
 import Contato from "./pages/Contato";
 import NotFound from "./pages/NotFound";
+import ConteudoPrompts from "./pages/ConteudoPrompts";
 
 const queryClient = new QueryClient();
 
@@ -24,6 +25,7 @@ const App = () => (
           <Route path="/modulos" element={<Modulos />} />
           <Route path="/materiais" element={<Materiais />} />
           <Route path="/conteudos" element={<Conteudos />} />
+          <Route path="/conteudos/prompts-economia" element={<ConteudoPrompts />} />
           <Route path="/conteudos/:slug" element={<div>Página Individual de Conteúdo</div>} />
           <Route path="/contato" element={<Contato />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
