@@ -9,6 +9,7 @@ import techWorkspace from '../assets/tech-workspace.jpg';
 import empreendedoresIniciantes from '../assets/empreendedores-iniciantes.png';
 import profissionaisLiberais from '../assets/profissionais-liberais.png';
 import donosPequenosNegocios from '../assets/donos-pequenos-negocios.png';
+import freelancerAgencias from '../assets/freelancer-agencias.png';
 
 const BenefitsSection = () => {
   const targetProfiles = [
@@ -34,7 +35,7 @@ const BenefitsSection = () => {
       checkText: "✓ Estratégias de crescimento"
     },
     {
-      icon: mobileTech,
+      icon: freelancerAgencias,
       title: "Freelancers e Agências",
       description: "Quer oferecer serviços de IA para clientes e se destacar no mercado.",
       highlight: "Novo nicho de mercado",
