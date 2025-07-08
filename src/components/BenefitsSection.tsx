@@ -6,11 +6,12 @@ import avatar2 from '../assets/avatar-2.jpg';
 import avatar3 from '../assets/avatar-3.jpg';
 import mobileTech from '../assets/mobile-tech.jpg';
 import techWorkspace from '../assets/tech-workspace.jpg';
+import empreendedoresIniciantes from '../assets/empreendedores-iniciantes.png';
 
 const BenefitsSection = () => {
   const targetProfiles = [
     {
-      icon: techWorkspace,
+      icon: empreendedoresIniciantes,
       title: "Empreendedores Iniciantes",
       description: "Quer começar um negócio online mas não sabe por onde começar com IA.",
       highlight: "Do zero ao primeiro faturamento",
