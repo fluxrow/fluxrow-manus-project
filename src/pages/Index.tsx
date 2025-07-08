@@ -4,7 +4,7 @@ import HeroSection from '../components/HeroSection';
 import BenefitsSection from '../components/BenefitsSection';
 import InfiniteCarousel from '../components/InfiniteCarousel';
 import DemoSection from '../components/DemoSection';
-import AIShowcaseSection from '../components/AIShowcaseSection';
+import SimpleAISection from '../components/SimpleAISection';
 import TestimonialsSection from '../components/TestimonialsSection';
 import PricingSection from '../components/PricingSection';
 import Footer from '../components/Footer';
@@ -22,7 +22,7 @@ const Index = () => {
       <BenefitsSection />
       <InfiniteCarousel />
       <DemoSection />
-      <AIShowcaseSection />
+      <SimpleAISection />
       <TestimonialsSection />
       <PricingSection />
       <Footer />
