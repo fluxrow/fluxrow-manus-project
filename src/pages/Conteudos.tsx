@@ -58,9 +58,6 @@ const Conteudos = () => {
             
             {/* Info sobre primeiro conteúdo */}
             <div className="bg-gradient-to-r from-purple-900/20 to-blue-900/20 border border-purple-500/30 rounded-2xl p-6 max-w-2xl mx-auto">
-              <p className="text-lg font-space-grotesk text-white mb-2">
-                <strong>Esse é só o primeiro.</strong>
-              </p>
               <p className="text-gray-300 font-space-grotesk mb-4">
                 A cada post novo, liberamos mais conteúdo exclusivo por aqui.
               </p>
