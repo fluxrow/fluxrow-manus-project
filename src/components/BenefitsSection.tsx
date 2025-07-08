@@ -7,6 +7,7 @@ import avatar3 from '../assets/avatar-3.jpg';
 import mobileTech from '../assets/mobile-tech.jpg';
 import techWorkspace from '../assets/tech-workspace.jpg';
 import empreendedoresIniciantes from '../assets/empreendedores-iniciantes.png';
+import profissionaisLiberais from '../assets/profissionais-liberais.png';
 
 const BenefitsSection = () => {
   const targetProfiles = [
@@ -18,7 +19,7 @@ const BenefitsSection = () => {
       checkText: "✓ Passo a passo para iniciantes"
     },
     {
-      icon: avatar2,
+      icon: profissionaisLiberais,
       title: "Profissionais Liberais",
       description: "Consultores, advogados, médicos que querem automatizar processos e ganhar escala.",
       highlight: "Automatização inteligente",
