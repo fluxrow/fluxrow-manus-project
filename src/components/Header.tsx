@@ -64,6 +64,16 @@ const Header = () => {
               Materiais
             </Link>
             <Link 
+              to="/conteudos" 
+              className={`font-space-grotesk transition-colors ${
+                isActive('/conteudos') 
+                  ? 'text-cyan-400 font-semibold' 
+                  : 'text-gray-300 hover:text-white'
+              }`}
+            >
+              Conteúdos
+            </Link>
+            <Link 
               to="/contato" 
               className={`font-space-grotesk transition-colors ${
                 isActive('/contato') 
