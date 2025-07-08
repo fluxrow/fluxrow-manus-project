@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { MessageCircle, Mail, Phone, MapPin, Send, CheckCircle } from 'lucide-react';
+import { MessageCircle, Mail, Phone, MapPin, Send, CheckCircle, Instagram, Facebook, Twitter, Hash } from 'lucide-react';
 
 const Contato = () => {
   const [formData, setFormData] = useState({
@@ -33,24 +33,49 @@ const Contato = () => {
       title: 'WhatsApp',
       description: 'Suporte direto via WhatsApp',
       action: 'Chamar no WhatsApp',
-      link: '#',
+      link: 'https://wa.me/5541992361868',
       color: 'from-green-500 to-emerald-500'
     },
     {
       icon: Mail,
       title: 'E-mail',
-      description: 'contato@fluxrowstart.com',
+      description: 'suporte@fluxrow.com.br',
       action: 'Enviar E-mail',
-      link: 'mailto:contato@fluxrowstart.com',
+      link: 'mailto:suporte@fluxrow.com.br',
       color: 'from-blue-500 to-cyan-500'
+    }
+  ];
+
+  const socialMedias = [
+    {
+      name: 'Instagram',
+      icon: 'instagram',
+      link: '#',
+      color: 'from-pink-500 to-purple-500'
     },
     {
-      icon: Phone,
-      title: 'Telefone',
-      description: '+55 (11) 99999-9999',
-      action: 'Ligar Agora',
-      link: 'tel:+5511999999999',
-      color: 'from-purple-500 to-pink-500'
+      name: 'Facebook', 
+      icon: 'facebook',
+      link: '#',
+      color: 'from-blue-600 to-blue-700'
+    },
+    {
+      name: 'Pinterest',
+      icon: 'pinterest', 
+      link: '#',
+      color: 'from-red-500 to-red-600'
+    },
+    {
+      name: 'X (Twitter)',
+      icon: 'twitter',
+      link: '#', 
+      color: 'from-gray-800 to-black'
+    },
+    {
+      name: 'Threads',
+      icon: 'MessageCircle',
+      link: '#',
+      color: 'from-gray-700 to-gray-800'
     }
   ];
 
@@ -93,7 +118,7 @@ const Contato = () => {
         {/* Contact Methods */}
         <section className="py-16 px-6">
           <div className="max-w-6xl mx-auto">
-            <div className="grid md:grid-cols-3 gap-8 mb-16">
+            <div className="grid md:grid-cols-2 gap-8 mb-16">
               {contactMethods.map((method, index) => {
                 const IconComponent = method.icon;
                 return (
@@ -112,9 +137,58 @@ const Contato = () => {
                     
                     <a
                       href={method.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className={`inline-block bg-gradient-to-r ${method.color} text-white px-6 py-3 rounded-full font-semibold font-space-grotesk hover:opacity-90 transition-all duration-300`}
                     >
                       {method.action}
+                    </a>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Social Media */}
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold font-space-grotesk mb-4">
+                <span className="gradient-text">Redes Sociais</span>
+              </h2>
+              <p className="text-gray-300 font-space-grotesk">
+                Siga-nos nas redes sociais para ficar por dentro das novidades
+              </p>
+            </div>
+
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
+              {socialMedias.map((social, index) => {
+                const getIcon = (iconName: string) => {
+                  switch(iconName) {
+                    case 'instagram': return Instagram;
+                    case 'facebook': return Facebook;
+                    case 'twitter': return Twitter;
+                    case 'pinterest': return Hash;
+                    default: return MessageCircle;
+                  }
+                };
+                
+                const IconComponent = getIcon(social.icon);
+                
+                return (
+                  <div key={index} className="glass-card p-4 text-center group hover:scale-105 transition-all duration-300">
+                    <div className={`w-12 h-12 rounded-xl bg-gradient-to-r ${social.color} flex items-center justify-center mx-auto mb-4`}>
+                      <IconComponent className="w-6 h-6 text-white" />
+                    </div>
+                    
+                    <h4 className="text-sm font-semibold font-space-grotesk text-white">
+                      {social.name}
+                    </h4>
+                    
+                    <a
+                      href={social.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`inline-block mt-3 bg-gradient-to-r ${social.color} text-white px-4 py-2 rounded-full text-xs font-semibold font-space-grotesk hover:opacity-90 transition-all duration-300`}
+                    >
+                      Seguir
                     </a>
                   </div>
                 );
