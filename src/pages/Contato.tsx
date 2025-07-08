@@ -79,24 +79,6 @@ const Contato = () => {
     }
   ];
 
-  const faqs = [
-    {
-      question: 'Como funciona o acesso ao curso?',
-      answer: 'Após a compra, você recebe acesso imediato à plataforma com todos os módulos, materiais e bônus.'
-    },
-    {
-      question: 'Existe garantia?',
-      answer: 'Sim! Oferecemos 7 dias de garantia incondicional. Se não ficar satisfeito, devolvemos 100% do valor.'
-    },
-    {
-      question: 'Preciso de conhecimento técnico?',
-      answer: 'Não! O curso foi pensado para pessoas sem conhecimento técnico. Tudo é explicado do básico ao avançado.'
-    },
-    {
-      question: 'Por quanto tempo tenho acesso?',
-      answer: 'O acesso é vitalício. Você pode acessar o conteúdo quando quiser, quantas vezes precisar.'
-    }
-  ];
 
   return (
     <div className="min-h-screen bg-[#0f0f0f] text-white">
@@ -306,29 +288,6 @@ const Contato = () => {
           </div>
         </section>
 
-        {/* FAQ Section */}
-        <section className="py-16 px-6">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold font-space-grotesk mb-4">
-                <span className="gradient-text">Perguntas Frequentes</span>
-              </h2>
-            </div>
-
-            <div className="space-y-6">
-              {faqs.map((faq, index) => (
-                <div key={index} className="glass-card p-6">
-                  <h3 className="text-lg font-semibold font-space-grotesk text-white mb-3">
-                    {faq.question}
-                  </h3>
-                  <p className="text-gray-300 font-space-grotesk leading-relaxed">
-                    {faq.answer}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
       </main>
 
       <Footer />

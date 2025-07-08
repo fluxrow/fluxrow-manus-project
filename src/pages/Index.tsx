@@ -6,6 +6,7 @@ import InfiniteCarousel from '../components/InfiniteCarousel';
 import DemoSection from '../components/DemoSection';
 import SimpleAISection from '../components/SimpleAISection';
 import TestimonialsSection from '../components/TestimonialsSection';
+import FAQSection from '../components/FAQSection';
 import PricingSection from '../components/PricingSection';
 import Footer from '../components/Footer';
 import { initializeEnhancements } from '../utils/initializeEnhancements';
@@ -24,6 +25,7 @@ const Index = () => {
       <DemoSection />
       <SimpleAISection />
       <TestimonialsSection />
+      <FAQSection />
       <PricingSection />
       <Footer />
     </div>
