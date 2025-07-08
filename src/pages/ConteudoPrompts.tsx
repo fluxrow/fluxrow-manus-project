@@ -443,7 +443,16 @@ Explique por quê e me mostre os períodos com maior histórico de desconto.`,
           <div className="mt-12 text-center">
             <div className="bg-gradient-to-r from-gray-900/40 to-gray-800/40 border border-gray-700 rounded-2xl p-6">
               <p className="text-gray-300 font-space-grotesk mb-4">
-                📱 <strong>Gostou do conteúdo?</strong> Compartilhe com seus amigos e marque <strong className="text-cyan-400">@flux.row</strong> nas redes sociais!
+                📱 <strong>Gostou do conteúdo?</strong> Compartilhe com seus amigos e marque{' '}
+                <a 
+                  href="https://instagram.com/flux.row" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-cyan-400 hover:text-cyan-300 font-bold transition-colors cursor-pointer"
+                >
+                  @flux.row
+                </a>
+                {' '}nas redes sociais!
               </p>
               <p className="text-sm text-gray-400 font-space-grotesk">
                 Quanto mais pessoas economizarem, mais conteúdos exclusivos liberamos para a comunidade.
