@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import ImageWithFallback from './ui/image-with-fallback';
 import techWorkspace from '../assets/tech-workspace.jpg';
 import playbooks from '../assets/playbooks.png';
-import templates from '../assets/templates.jpg';
+import templatesProntos from '../assets/templates-prontos.png';
 
 const DemoSection = () => {
   const demos = [
@@ -20,7 +20,7 @@ const DemoSection = () => {
       highlight: "Automação completa em 30min"
     },
     {
-      mockup: templates,
+      mockup: templatesProntos,
       title: "Templates Prontos",
       description: "Mais de 200 modelos de campanhas, propostas, fluxos e landing pages com IA.",
       highlight: "ROI médio de 340%"
