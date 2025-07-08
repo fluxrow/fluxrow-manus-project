@@ -119,8 +119,8 @@ const Header = () => {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 z-40 bg-black/98 backdrop-blur-md">
-          <div className="flex flex-col items-center justify-center h-full space-y-8">
+        <div className="fixed inset-0 z-50 bg-black backdrop-blur-xl">
+          <div className="flex flex-col items-center justify-center h-full space-y-12 px-8">
             <Link 
               to="/" 
               onClick={() => setMobileMenuOpen(false)}
