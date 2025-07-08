@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 
@@ -9,6 +9,18 @@ const Header = () => {
   
   const isActive = (path: string) => location.pathname === path;
   
+  // Auto-fechar menu ao fazer scroll
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      const handleScroll = () => {
+        setMobileMenuOpen(false);
+      };
+      
+      window.addEventListener('scroll', handleScroll, { passive: true });
+      return () => window.removeEventListener('scroll', handleScroll);
+    }
+  }, [mobileMenuOpen]);
+
   const handleCTAClick = () => {
     if (location.pathname !== '/') {
       // Se não estiver na home, vai para home e depois scroll
@@ -107,15 +119,15 @@ const Header = () => {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 z-40 bg-black/95 backdrop-blur-sm">
+        <div className="fixed inset-0 z-40 bg-black/98 backdrop-blur-md">
           <div className="flex flex-col items-center justify-center h-full space-y-8">
             <Link 
               to="/" 
               onClick={() => setMobileMenuOpen(false)}
-              className={`font-space-grotesk text-xl transition-colors ${
+              className={`font-space-grotesk text-xl transition-colors drop-shadow-lg ${
                 isActive('/') 
-                  ? 'text-cyan-400 font-semibold' 
-                  : 'text-gray-300 hover:text-white'
+                  ? 'text-cyan-400 font-semibold drop-shadow-[0_0_8px_rgba(34,211,238,0.6)]' 
+                  : 'text-white hover:text-cyan-300'
               }`}
             >
               Início
@@ -123,10 +135,10 @@ const Header = () => {
             <Link 
               to="/modulos" 
               onClick={() => setMobileMenuOpen(false)}
-              className={`font-space-grotesk text-xl transition-colors ${
+              className={`font-space-grotesk text-xl transition-colors drop-shadow-lg ${
                 isActive('/modulos') 
-                  ? 'text-cyan-400 font-semibold' 
-                  : 'text-gray-300 hover:text-white'
+                  ? 'text-cyan-400 font-semibold drop-shadow-[0_0_8px_rgba(34,211,238,0.6)]' 
+                  : 'text-white hover:text-cyan-300'
               }`}
             >
               Módulos
@@ -134,10 +146,10 @@ const Header = () => {
             <Link 
               to="/materiais" 
               onClick={() => setMobileMenuOpen(false)}
-              className={`font-space-grotesk text-xl transition-colors ${
+              className={`font-space-grotesk text-xl transition-colors drop-shadow-lg ${
                 isActive('/materiais') 
-                  ? 'text-cyan-400 font-semibold' 
-                  : 'text-gray-300 hover:text-white'
+                  ? 'text-cyan-400 font-semibold drop-shadow-[0_0_8px_rgba(34,211,238,0.6)]' 
+                  : 'text-white hover:text-cyan-300'
               }`}
             >
               Materiais
@@ -145,10 +157,10 @@ const Header = () => {
             <Link 
               to="/conteudos" 
               onClick={() => setMobileMenuOpen(false)}
-              className={`font-space-grotesk text-xl transition-colors ${
+              className={`font-space-grotesk text-xl transition-colors drop-shadow-lg ${
                 isActive('/conteudos') 
-                  ? 'text-cyan-400 font-semibold' 
-                  : 'text-gray-300 hover:text-white'
+                  ? 'text-cyan-400 font-semibold drop-shadow-[0_0_8px_rgba(34,211,238,0.6)]' 
+                  : 'text-white hover:text-cyan-300'
               }`}
             >
               Conteúdos
@@ -156,10 +168,10 @@ const Header = () => {
             <Link 
               to="/contato" 
               onClick={() => setMobileMenuOpen(false)}
-              className={`font-space-grotesk text-xl transition-colors ${
+              className={`font-space-grotesk text-xl transition-colors drop-shadow-lg ${
                 isActive('/contato') 
-                  ? 'text-cyan-400 font-semibold' 
-                  : 'text-gray-300 hover:text-white'
+                  ? 'text-cyan-400 font-semibold drop-shadow-[0_0_8px_rgba(34,211,238,0.6)]' 
+                  : 'text-white hover:text-cyan-300'
               }`}
             >
               Contato
@@ -170,7 +182,7 @@ const Header = () => {
                 setMobileMenuOpen(false);
                 handleCTAClick();
               }}
-              className="bg-gradient-to-r from-pink-500 to-cyan-500 text-white px-8 py-3 rounded-full font-semibold font-space-grotesk hover:from-pink-600 hover:to-cyan-600 transition-all duration-300 hover:scale-105 mt-8"
+              className="bg-gradient-to-r from-pink-500 to-cyan-500 text-white px-8 py-3 rounded-full font-semibold font-space-grotesk hover:from-pink-600 hover:to-cyan-600 transition-all duration-300 hover:scale-105 mt-8 drop-shadow-lg"
             >
               Começar Agora
             </button>
