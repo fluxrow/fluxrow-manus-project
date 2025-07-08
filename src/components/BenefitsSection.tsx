@@ -8,6 +8,7 @@ import mobileTech from '../assets/mobile-tech.jpg';
 import techWorkspace from '../assets/tech-workspace.jpg';
 import empreendedoresIniciantes from '../assets/empreendedores-iniciantes.png';
 import profissionaisLiberais from '../assets/profissionais-liberais.png';
+import donosPequenosNegocios from '../assets/donos-pequenos-negocios.png';
 
 const BenefitsSection = () => {
   const targetProfiles = [
@@ -26,7 +27,7 @@ const BenefitsSection = () => {
       checkText: "✓ Ferramentas para profissionais"
     },
     {
-      icon: avatar3,
+      icon: donosPequenosNegocios,
       title: "Donos de Pequenos Negócios",
       description: "Já tem um negócio e quer usar IA para aumentar vendas e reduzir custos.",
       highlight: "Escalar operações",
