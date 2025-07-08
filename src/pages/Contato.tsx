@@ -50,31 +50,31 @@ const Contato = () => {
     {
       name: 'Instagram',
       icon: 'instagram',
-      link: '#',
+      link: 'https://www.instagram.com/flux.row/',
       color: 'from-pink-500 to-purple-500'
     },
     {
       name: 'Facebook', 
       icon: 'facebook',
-      link: '#',
+      link: 'https://www.facebook.com/fluxrow',
       color: 'from-blue-600 to-blue-700'
     },
     {
       name: 'Pinterest',
       icon: 'pinterest', 
-      link: '#',
+      link: 'https://www.pinterest.com/fluxrow',
       color: 'from-red-500 to-red-600'
     },
     {
       name: 'X (Twitter)',
       icon: 'twitter',
-      link: '#', 
+      link: 'https://www.threads.com/@flux.row?igshid=NTc4MTIwNjQ2YQ==', 
       color: 'from-gray-800 to-black'
     },
     {
       name: 'Threads',
       icon: 'MessageCircle',
-      link: '#',
+      link: 'https://www.threads.com/@flux.row?igshid=NTc4MTIwNjQ2YQ==',
       color: 'from-gray-700 to-gray-800'
     }
   ];
