@@ -22,6 +22,15 @@ const conteudosData = [
     fileType: 'Guia Estratégico',
     fileSize: 'Leitura: 20min',
     available: true
+  },
+  {
+    id: 'retrato-viral-ia',
+    title: 'Como criar o retrato viral com IA: Water Droplet Portrait',
+    description: 'O efeito retrô e cinematográfico que tá bombando nas redes — com um prompt pronto e visual fora do comum.',
+    icon: 'image',
+    fileType: 'Guia Visual',
+    fileSize: 'Leitura: 12min',
+    available: true
   }
   // Mais conteúdos serão adicionados aqui
 ];
