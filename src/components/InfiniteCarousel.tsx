@@ -1,50 +1,68 @@
 
 import React from 'react';
 import ImageWithFallback from './ui/image-with-fallback';
-import logo1 from '../assets/logo-1.jpg';
-import logo2 from '../assets/logo-2.jpg';
-import logo3 from '../assets/logo-3.jpg';
-import logo4 from '../assets/logo-4.jpg';
-import logo5 from '../assets/logo-5.jpg';
-import logo6 from '../assets/logo-6.jpg';
+import zapierLogo from '../assets/zapier-logo.jpg';
+import makeLogo from '../assets/make-logo.jpg';
+import n8nLogo from '../assets/n8n-logo.jpg';
+import claudeLogo from '../assets/claude-logo.jpg';
+import notionLogo from '../assets/notion-logo.jpg';
+import prospectingLogo from '../assets/prospecting-logo.jpg';
 
 const InfiniteCarousel = () => {
   const tools = [
     {
       name: "Zapier",
-      logo: logo1,
+      logo: zapierLogo,
       type: "Automação",
-      description: "Conecte milhares de apps sem escrever uma linha de código."
+      description: "Conecte milhares de apps sem escrever uma linha de código.",
+      bgColor: "from-orange-500/20 to-orange-600/10",
+      borderColor: "border-orange-500/30",
+      badge: "5000+ Apps"
     },
     {
       name: "Make",
-      logo: logo2,
+      logo: makeLogo,
       type: "Integração",
-      description: "Automatize fluxos complexos com lógica visual e escalável."
+      description: "Automatize fluxos complexos com lógica visual e escalável.",
+      bgColor: "from-blue-500/20 to-purple-600/10",
+      borderColor: "border-blue-500/30",
+      badge: "Visual Builder"
     },
     {
       name: "n8n",
-      logo: logo3,
+      logo: n8nLogo,
       type: "Workflow",
-      description: "Crie automações ilimitadas com IA, webhooks e APIs abertas."
+      description: "Crie automações ilimitadas com IA, webhooks e APIs abertas.",
+      bgColor: "from-pink-500/20 to-red-600/10",
+      borderColor: "border-pink-500/30",
+      badge: "Open Source"
     },
     {
       name: "Claude",
-      logo: logo4,
+      logo: claudeLogo,
       type: "Assistente de IA",
-      description: "Criação de conteúdo e fluxos complexos com linguagem natural."
+      description: "Criação de conteúdo e fluxos complexos com linguagem natural.",
+      bgColor: "from-indigo-500/20 to-blue-600/10",
+      borderColor: "border-indigo-500/30",
+      badge: "AI Advanced"
     },
     {
       name: "Notion",
-      logo: logo5,
+      logo: notionLogo,
       type: "Produtividade",
-      description: "Organize ideias, clientes e projetos com IA e automações integradas."
+      description: "Organize ideias, clientes e projetos com IA e automações integradas.",
+      bgColor: "from-gray-500/20 to-slate-600/10",
+      borderColor: "border-gray-500/30",
+      badge: "All-in-One"
     },
     {
       name: "Prospecção Automatizada",
-      logo: logo6,
+      logo: prospectingLogo,
       type: "Leads e Conversões",
-      description: "Scripts prontos para captar leads e fechar vendas enquanto dorme."
+      description: "Scripts prontos para captar leads e fechar vendas enquanto dorme.",
+      bgColor: "from-green-500/20 to-emerald-600/10",
+      borderColor: "border-green-500/30",
+      badge: "ROI 340%"
     }
   ];
 
@@ -76,28 +94,33 @@ const InfiniteCarousel = () => {
 
           {/* Carousel container */}
           <div className="carousel-container overflow-hidden">
-            <div className="carousel-track flex gap-6 animate-scroll-infinite">
+            <div className="carousel-track flex gap-6 animate-scroll-infinite hover:pause">
               {allItems.map((item, index) => (
                 <div
                   key={`${item.name}-${index}`}
-                  className="carousel-item flex-shrink-0 w-80 glass-card p-6 hover:scale-105 transition-all duration-300"
+                  className={`carousel-item flex-shrink-0 w-80 bg-gradient-to-br ${item.bgColor} backdrop-blur-[10px] border ${item.borderColor} rounded-2xl p-6 hover:scale-105 hover:bg-white/[0.08] transition-all duration-300 group cursor-pointer`}
                 >
                   <div className="flex items-start gap-4">
-                    <div className="w-16 h-16 rounded-lg overflow-hidden bg-white/10 p-3 flex-shrink-0">
+                    <div className={`w-20 h-20 rounded-xl overflow-hidden bg-gradient-to-br ${item.bgColor} border ${item.borderColor} p-3 flex-shrink-0 group-hover:scale-110 transition-transform duration-300`}>
                       <ImageWithFallback 
                         src={item.logo} 
                         alt={item.name}
-                        className="w-full h-full object-cover rounded"
+                        className="w-full h-full object-cover rounded-lg"
                       />
                     </div>
                     <div className="flex-1">
-                      <h4 className="text-white font-semibold font-space-grotesk text-lg mb-1">
-                        {item.name}
-                      </h4>
-                      <span className="text-purple-400 text-sm font-space-grotesk block mb-2">
+                      <div className="flex items-center gap-2 mb-2">
+                        <h4 className="text-white font-semibold font-space-grotesk text-lg group-hover:text-white transition-colors">
+                          {item.name}
+                        </h4>
+                        <span className={`text-xs px-2 py-1 rounded-full bg-gradient-to-r ${item.bgColor} border ${item.borderColor} text-white font-space-grotesk`}>
+                          {item.badge}
+                        </span>
+                      </div>
+                      <span className="text-purple-400 text-sm font-space-grotesk block mb-3 group-hover:text-purple-300 transition-colors">
                         {item.type}
                       </span>
-                      <p className="text-gray-300 text-sm font-space-grotesk leading-relaxed">
+                      <p className="text-gray-300 text-sm font-space-grotesk leading-relaxed group-hover:text-gray-200 transition-colors">
                         {item.description}
                       </p>
                     </div>
