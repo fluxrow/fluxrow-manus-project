@@ -98,29 +98,29 @@ const InfiniteCarousel = () => {
               {allItems.map((item, index) => (
                 <div
                   key={`${item.name}-${index}`}
-                  className={`carousel-item flex-shrink-0 w-80 bg-gradient-to-br ${item.bgColor} backdrop-blur-[10px] border ${item.borderColor} rounded-2xl p-6 hover:scale-105 hover:bg-white/[0.08] transition-all duration-300 group cursor-pointer`}
+                  className={`carousel-item flex-shrink-0 w-72 md:w-80 bg-gradient-to-br ${item.bgColor} backdrop-blur-[10px] border ${item.borderColor} rounded-2xl p-4 md:p-6 hover:scale-105 hover:bg-white/[0.08] transition-all duration-300 group cursor-pointer`}
                 >
-                  <div className="flex items-start gap-4">
-                    <div className={`w-20 h-20 rounded-xl overflow-hidden bg-gradient-to-br ${item.bgColor} border ${item.borderColor} p-3 flex-shrink-0 group-hover:scale-110 transition-transform duration-300`}>
+                  <div className="flex items-start gap-3 md:gap-4">
+                    <div className={`w-16 h-16 md:w-20 md:h-20 rounded-xl overflow-hidden bg-gradient-to-br ${item.bgColor} border ${item.borderColor} p-2 md:p-3 flex-shrink-0 group-hover:scale-110 transition-transform duration-300`}>
                       <ImageWithFallback 
                         src={item.logo} 
                         alt={item.name}
                         className="w-full h-full object-cover rounded-lg"
                       />
                     </div>
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-2">
-                        <h4 className="text-white font-semibold font-space-grotesk text-lg group-hover:text-white transition-colors">
+                    <div className="flex-1 min-w-0">
+                      <div className="flex flex-col md:flex-row md:items-center gap-1 md:gap-2 mb-2">
+                        <h4 className="text-white font-semibold font-space-grotesk text-base md:text-lg group-hover:text-white transition-colors truncate">
                           {item.name}
                         </h4>
-                        <span className={`text-xs px-2 py-1 rounded-full bg-gradient-to-r ${item.bgColor} border ${item.borderColor} text-white font-space-grotesk`}>
+                        <span className={`text-xs px-2 py-1 rounded-full bg-gradient-to-r ${item.bgColor} border ${item.borderColor} text-white font-space-grotesk self-start`}>
                           {item.badge}
                         </span>
                       </div>
-                      <span className="text-purple-400 text-sm font-space-grotesk block mb-3 group-hover:text-purple-300 transition-colors">
+                      <span className="text-purple-400 text-xs md:text-sm font-space-grotesk block mb-2 md:mb-3 group-hover:text-purple-300 transition-colors">
                         {item.type}
                       </span>
-                      <p className="text-gray-300 text-sm font-space-grotesk leading-relaxed group-hover:text-gray-200 transition-colors">
+                      <p className="text-gray-300 text-xs md:text-sm font-space-grotesk leading-relaxed group-hover:text-gray-200 transition-colors line-clamp-3">
                         {item.description}
                       </p>
                     </div>

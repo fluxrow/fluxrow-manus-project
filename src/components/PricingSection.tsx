@@ -90,13 +90,13 @@ const PricingSection = () => {
             
             <div className="price-container mb-8 text-center">
               <div className="price-old text-gray-500 line-through font-space-grotesk text-xl">
-                De R$ 997
+                De R$ 297
               </div>
               <div className="price-current text-5xl font-extrabold gradient-text font-space-grotesk">
-                R$ 497
+                R$ 147
               </div>
               <div className="price-installments text-gray-400 font-space-grotesk">
-                ou 12x de R$ 47 sem juros
+                ou 12x de R$ 12,25 sem juros
               </div>
             </div>
             

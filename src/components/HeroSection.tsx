@@ -142,26 +142,26 @@ const HeroSection = () => {
           </a>
         </div>
         
-        <p className="cta-guarantee mt-6 text-sm text-pink-400 font-space-grotesk">
+        <p className="cta-guarantee mt-6 mb-16 text-sm text-pink-400 font-space-grotesk">
           🎯 Garantia de 7 dias • Acesso vitalício • Suporte incluso
         </p>
       </div>
 
       {/* Stats Section */}
-      <div className="absolute bottom-20 left-0 right-0">
+      <div className="absolute bottom-16 md:bottom-20 left-0 right-0">
         <div className="max-w-4xl mx-auto px-6">
-          <div className="grid grid-cols-3 gap-8 text-center">
+          <div className="grid grid-cols-3 gap-4 md:gap-8 text-center">
             <div>
-              <div className="text-3xl font-bold gradient-text font-space-grotesk">R$5K</div>
-              <div className="text-gray-400 font-space-grotesk text-sm">em 30 dias</div>
+              <div className="text-2xl md:text-3xl font-bold gradient-text font-space-grotesk">R$5K</div>
+              <div className="text-gray-400 font-space-grotesk text-xs md:text-sm">em 30 dias</div>
             </div>
             <div>
-              <div className="text-3xl font-bold gradient-text font-space-grotesk">6</div>
-              <div className="text-gray-400 font-space-grotesk text-sm">Módulos</div>
+              <div className="text-2xl md:text-3xl font-bold gradient-text font-space-grotesk">6</div>
+              <div className="text-gray-400 font-space-grotesk text-xs md:text-sm">Módulos</div>
             </div>
             <div>
-              <div className="text-3xl font-bold gradient-text font-space-grotesk">200+</div>
-              <div className="text-gray-400 font-space-grotesk text-sm">Templates</div>
+              <div className="text-2xl md:text-3xl font-bold gradient-text font-space-grotesk">200+</div>
+              <div className="text-gray-400 font-space-grotesk text-xs md:text-sm">Templates</div>
             </div>
           </div>
         </div>
