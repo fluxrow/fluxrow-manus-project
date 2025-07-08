@@ -1,22 +1,25 @@
 
 import React, { useEffect } from 'react';
+import promptEngineeringImg from '../assets/prompt-engineering-avancado.jpg';
+import automacaoImg from '../assets/automacao-marketing.jpg';
+import templatesImg from '../assets/templates-conversao.jpg';
 
 const DemoSection = () => {
   const demos = [
     {
-      mockup: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=600&q=80",
+      mockup: promptEngineeringImg,
       title: "Fundamentos de IA", 
       description: "Conceitos aplicados de IA generativa, engenharia de prompts e casos de uso reais.",
       highlight: "200+ prompts testados"
     },
     {
-      mockup: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=600&q=80",
+      mockup: automacaoImg,
       title: "Setups Automatizados",
       description: "Playbooks com passo a passo pra WhatsApp, LinkedIn, e-mail e agendamentos automáticos.",
       highlight: "Automação completa em 30min"
     },
     {
-      mockup: "https://images.unsplash.com/photo-1487887235947-a955ef187fcc?auto=format&fit=crop&w=600&q=80",
+      mockup: templatesImg,
       title: "Templates Prontos",
       description: "Mais de 200 modelos de campanhas, propostas, fluxos e landing pages com IA.",
       highlight: "ROI médio de 340%"

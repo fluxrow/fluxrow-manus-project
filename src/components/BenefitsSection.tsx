@@ -1,38 +1,43 @@
 
 import React, { useEffect } from 'react';
+import empreendedorImg from '../assets/empreendedor-ia-moderno.jpg';
+import profissionalImg from '../assets/profissional-liberal.jpg';
+import empresarioImg from '../assets/empresario-sucesso.jpg';
+import freelancerImg from '../assets/freelancer-agencia.jpg';
+import estudanteImg from '../assets/estudante-curioso.jpg';
 
 const BenefitsSection = () => {
   const targetProfiles = [
     {
-      icon: "https://fngjxjrgovhxbdlkomvw.supabase.co/storage/v1/object/sign/site-fluxrow/empreendedores-iniciantes.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV80MDRjODEwNC00MDM2LTQ0MGMtODA2Mi00NWM3MGRhZTBlMjMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJzaXRlLWZsdXhyb3cvZW1wcmVlbmRlZG9yZXMtaW5pY2lhbnRlcy5wbmciLCJpYXQiOjE3NTEzMDQ5MDIsImV4cCI6MjA2NjY2NDkwMn0.zHNSAfDwsRCNq_X9taUD09sLRPKvuDWqn2prPt1weks",
+      icon: empreendedorImg,
       title: "Empreendedores Iniciantes",
       description: "Quer começar um negócio online mas não sabe por onde começar com IA.",
       highlight: "Do zero ao primeiro faturamento",
       checkText: "✓ Passo a passo para iniciantes"
     },
     {
-      icon: "https://images.unsplash.com/photo-1494790108755-2616b612b786?auto=format&fit=crop&w=400&q=80",
+      icon: profissionalImg,
       title: "Profissionais Liberais",
       description: "Consultores, advogados, médicos que querem automatizar processos e ganhar escala.",
       highlight: "Automatização inteligente",
       checkText: "✓ Ferramentas para profissionais"
     },
     {
-      icon: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=400&q=80",
+      icon: empresarioImg,
       title: "Donos de Pequenos Negócios",
       description: "Já tem um negócio e quer usar IA para aumentar vendas e reduzir custos.",
       highlight: "Escalar operações",
       checkText: "✓ Estratégias de crescimento"
     },
     {
-      icon: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=400&q=80",
+      icon: freelancerImg,
       title: "Freelancers e Agências",
       description: "Quer oferecer serviços de IA para clientes e se destacar no mercado.",
       highlight: "Novo nicho de mercado",
       checkText: "✓ Serviços diferenciados"
     },
     {
-      icon: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?auto=format&fit=crop&w=400&q=80",
+      icon: estudanteImg,
       title: "Estudantes e Curiosos",
       description: "Quer aprender IA de forma prática e aplicada para criar oportunidades.",
       highlight: "Conhecimento aplicado",
