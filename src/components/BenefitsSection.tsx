@@ -10,6 +10,7 @@ import empreendedoresIniciantes from '../assets/empreendedores-iniciantes.png';
 import profissionaisLiberais from '../assets/profissionais-liberais.png';
 import donosPequenosNegocios from '../assets/donos-pequenos-negocios.png';
 import freelancerAgencias from '../assets/freelancer-agencias.png';
+import estudantes from '../assets/estudantes.png';
 
 const BenefitsSection = () => {
   const targetProfiles = [
@@ -42,7 +43,7 @@ const BenefitsSection = () => {
       checkText: "✓ Serviços diferenciados"
     },
     {
-      icon: avatar1,
+      icon: estudantes,
       title: "Estudantes e Curiosos",
       description: "Quer aprender IA de forma prática e aplicada para criar oportunidades.",
       highlight: "Conhecimento aplicado",
