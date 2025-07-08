@@ -1,5 +1,9 @@
 
 import React, { useEffect } from 'react';
+import ImageWithFallback from './ui/image-with-fallback';
+import avatar1 from '../assets/avatar-1.jpg';
+import avatar2 from '../assets/avatar-2.jpg';
+import avatar3 from '../assets/avatar-3.jpg';
 
 const TestimonialsSection = () => {
   const testimonials = [
@@ -8,7 +12,7 @@ const TestimonialsSection = () => {
       author: "Bruno R.",
       role: "Agência de Performance",
       initial: "B",
-      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80",
+      avatar: avatar1,
       result: "+240% faturamento"
     },
     {
@@ -16,7 +20,7 @@ const TestimonialsSection = () => {
       author: "Jéssica L.",
       role: "Infoprodutora", 
       initial: "J",
-      avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?auto=format&fit=crop&w=150&q=80",
+      avatar: avatar2,
       result: "ROI em 3 dias"
     },
     {
@@ -24,7 +28,7 @@ const TestimonialsSection = () => {
       author: "Felipe C.",
       role: "Autônomo",
       initial: "F",
-      avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=150&q=80",
+      avatar: avatar3,
       result: "Automatização completa"
     }
   ];
@@ -59,11 +63,10 @@ const TestimonialsSection = () => {
               </div>
               <div className="testimonial-author flex items-center gap-4">
                 <div className="author-avatar relative">
-                  <img 
+                  <ImageWithFallback 
                     src={testimonial.avatar} 
                     alt={testimonial.author}
                     className="w-12 h-12 rounded-full object-cover transition-transform duration-300 group-hover:scale-110"
-                    loading="lazy"
                   />
                   <div className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-500/20 to-pink-500/20 group-hover:opacity-100 opacity-0 transition-opacity duration-300"></div>
                 </div>

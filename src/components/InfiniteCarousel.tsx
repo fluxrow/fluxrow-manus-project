@@ -1,41 +1,48 @@
 
 import React from 'react';
+import ImageWithFallback from './ui/image-with-fallback';
+import logo1 from '../assets/logo-1.jpg';
+import logo2 from '../assets/logo-2.jpg';
+import logo3 from '../assets/logo-3.jpg';
+import logo4 from '../assets/logo-4.jpg';
+import logo5 from '../assets/logo-5.jpg';
+import logo6 from '../assets/logo-6.jpg';
 
 const InfiniteCarousel = () => {
   const tools = [
     {
       name: "Zapier",
-      logo: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?auto=format&fit=crop&w=100&q=80",
+      logo: logo1,
       type: "Automação",
       description: "Conecte milhares de apps sem escrever uma linha de código."
     },
     {
       name: "Make",
-      logo: "https://images.unsplash.com/photo-1558655146-364adaf1fcc9?auto=format&fit=crop&w=100&q=80",
+      logo: logo2,
       type: "Integração",
       description: "Automatize fluxos complexos com lógica visual e escalável."
     },
     {
       name: "n8n",
-      logo: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=100&q=80",
+      logo: logo3,
       type: "Workflow",
       description: "Crie automações ilimitadas com IA, webhooks e APIs abertas."
     },
     {
       name: "Claude",
-      logo: "https://images.unsplash.com/photo-1555255707-c07966088b7b?auto=format&fit=crop&w=100&q=80",
+      logo: logo4,
       type: "Assistente de IA",
       description: "Criação de conteúdo e fluxos complexos com linguagem natural."
     },
     {
       name: "Notion",
-      logo: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?auto=format&fit=crop&w=100&q=80",
+      logo: logo5,
       type: "Produtividade",
       description: "Organize ideias, clientes e projetos com IA e automações integradas."
     },
     {
       name: "Prospecção Automatizada",
-      logo: "https://images.unsplash.com/photo-1596526131083-e8c633c948d2?auto=format&fit=crop&w=100&q=80",
+      logo: logo6,
       type: "Leads e Conversões",
       description: "Scripts prontos para captar leads e fechar vendas enquanto dorme."
     }
@@ -77,11 +84,10 @@ const InfiniteCarousel = () => {
                 >
                   <div className="flex items-start gap-4">
                     <div className="w-16 h-16 rounded-lg overflow-hidden bg-white/10 p-3 flex-shrink-0">
-                      <img 
+                      <ImageWithFallback 
                         src={item.logo} 
                         alt={item.name}
                         className="w-full h-full object-cover rounded"
-                        loading="lazy"
                       />
                     </div>
                     <div className="flex-1">

@@ -51,10 +51,11 @@ class PerformanceOptimizer {
     fontLink.as = 'style';
     document.head.appendChild(fontLink);
 
-    // Preload hero images
+    // Preload critical local images (hero backgrounds)
     const heroImages = [
-      'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1920&q=80',
-      'https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?auto=format&fit=crop&w=1920&q=80'
+      '/src/assets/hero-bg-1.jpg',
+      '/src/assets/hero-bg-2.jpg', 
+      '/src/assets/hero-bg-3.jpg'
     ];
 
     heroImages.forEach(src => {

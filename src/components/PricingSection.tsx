@@ -1,5 +1,7 @@
 
 import React, { useEffect } from 'react';
+import ImageWithFallback from './ui/image-with-fallback';
+import techWorkspace from '../assets/tech-workspace.jpg';
 
 const PricingSection = () => {
   useEffect(() => {
@@ -37,11 +39,10 @@ const PricingSection = () => {
           {/* Product Preview */}
           <div className="pricing-preview" data-aos="fade-right">
             <div className="relative">
-              <img 
-                src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=80" 
+              <ImageWithFallback 
+                src={techWorkspace} 
                 alt="Fluxrow Start - Curso de IA"
                 className="w-full h-80 object-cover rounded-3xl shadow-2xl"
-                loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent rounded-3xl"></div>
               <div className="absolute bottom-6 left-6 text-white">

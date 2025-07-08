@@ -2,6 +2,7 @@
 import React from 'react';
 import { Badge } from '../ui/badge';
 import { ShowcaseItem } from './showcaseData';
+import ImageWithFallback from '../ui/image-with-fallback';
 
 interface ShowcaseCardProps {
   item: ShowcaseItem;
@@ -69,7 +70,7 @@ const ShowcaseCard: React.FC<ShowcaseCardProps> = ({ item, index }) => {
           {item.badge}
         </Badge>
       </div>
-      <img 
+      <ImageWithFallback 
         src={item.image}
         alt={item.title}
         className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"

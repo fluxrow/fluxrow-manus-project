@@ -1,22 +1,26 @@
 
 import React, { useEffect } from 'react';
+import ImageWithFallback from './ui/image-with-fallback';
+import techWorkspace from '../assets/tech-workspace.jpg';
+import aiAutomation from '../assets/ai-automation.jpg';
+import templates from '../assets/templates.jpg';
 
 const DemoSection = () => {
   const demos = [
     {
-      mockup: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=600&q=80",
+      mockup: techWorkspace,
       title: "Fundamentos de IA", 
       description: "Conceitos aplicados de IA generativa, engenharia de prompts e casos de uso reais.",
       highlight: "200+ prompts testados"
     },
     {
-      mockup: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=600&q=80",
+      mockup: aiAutomation,
       title: "Setups Automatizados",
       description: "Playbooks com passo a passo pra WhatsApp, LinkedIn, e-mail e agendamentos automáticos.",
       highlight: "Automação completa em 30min"
     },
     {
-      mockup: "https://images.unsplash.com/photo-1487887235947-a955ef187fcc?auto=format&fit=crop&w=600&q=80",
+      mockup: templates,
       title: "Templates Prontos",
       description: "Mais de 200 modelos de campanhas, propostas, fluxos e landing pages com IA.",
       highlight: "ROI médio de 340%"
@@ -42,11 +46,10 @@ const DemoSection = () => {
           {demos.map((demo, index) => (
             <div key={index} className="demo-card glass-card p-0 overflow-hidden group hover:transform hover:scale-105 transition-all duration-500">
               <div className="relative">
-                <img 
+                <ImageWithFallback 
                   src={demo.mockup} 
                   alt={demo.title}
                   className="w-full h-48 object-cover transition-transform duration-700 group-hover:scale-110"
-                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
                 <div className="absolute top-4 right-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white text-xs px-3 py-1 rounded-full font-space-grotesk">
