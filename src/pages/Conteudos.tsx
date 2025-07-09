@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../components/Header';
 import { Link } from 'react-router-dom';
-import { Download, FileText, Code, Image } from 'lucide-react';
+import { Download, FileText, Code, Image, Brain } from 'lucide-react';
 
 // Dados dos conteúdos - aqui vamos adicionar todos os 20+
 const conteudosData = [
@@ -31,6 +31,15 @@ const conteudosData = [
     fileType: 'Guia Visual',
     fileSize: 'Leitura: 12min',
     available: true
+  },
+  {
+    id: 'ia-tdah-organizacao',
+    title: 'A IA que ajuda quem tem TDAH a organizar a vida',
+    description: 'Como transformar caos em clareza com 5 prompts práticos que funcionam com o jeito que seu cérebro realmente pensa.',
+    icon: 'brain',
+    fileType: 'Guia Neuroadaptativo',
+    fileSize: 'Leitura: 25min',
+    available: true
   }
   // Mais conteúdos serão adicionados aqui
 ];
@@ -43,6 +52,8 @@ const getIcon = (iconType: string) => {
       return <Code className="w-8 h-8" />;
     case 'image':
       return <Image className="w-8 h-8" />;
+    case 'brain':
+      return <Brain className="w-8 h-8" />;
     default:
       return <FileText className="w-8 h-8" />;
   }

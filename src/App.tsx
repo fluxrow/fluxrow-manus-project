@@ -13,6 +13,7 @@ import NotFound from "./pages/NotFound";
 import ConteudoPrompts from "./pages/ConteudoPrompts";
 import ConteudoIAMarketing from "./pages/ConteudoIAMarketing";
 import ConteudoRetratoIA from "./pages/ConteudoRetratoIA";
+import ConteudoTDAH from "./pages/ConteudoTDAH";
 
 const queryClient = new QueryClient();
 
@@ -30,6 +31,7 @@ const App = () => (
           <Route path="/conteudos/prompts-economia" element={<ConteudoPrompts />} />
           <Route path="/conteudos/produto-sugerido-ia" element={<ConteudoIAMarketing />} />
           <Route path="/conteudos/retrato-viral-ia" element={<ConteudoRetratoIA />} />
+          <Route path="/conteudos/ia-tdah-organizacao" element={<ConteudoTDAH />} />
           <Route path="/conteudos/:slug" element={<div>Página Individual de Conteúdo</div>} />
           <Route path="/contato" element={<Contato />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
