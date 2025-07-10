@@ -1,11 +1,13 @@
 
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { ChevronDown, ChevronUp, Play, Clock, BookOpen } from 'lucide-react';
 
 const Modulos = () => {
   const [expandedModule, setExpandedModule] = useState<number | null>(null);
+  const navigate = useNavigate();
 
   const stats = [
     { number: '6', label: 'Módulos' },
@@ -205,7 +207,10 @@ const Modulos = () => {
                           ))}
                         </ul>
                       </div>
-                      <button className="flex items-center space-x-2 bg-gradient-to-r from-pink-500 to-cyan-500 text-white px-6 py-3 rounded-full font-semibold font-space-grotesk hover:from-pink-600 hover:to-cyan-600 transition-all duration-300">
+                      <button 
+                        onClick={() => module.id === 1 ? navigate('/modulos/1-premium') : null}
+                        className="flex items-center space-x-2 bg-gradient-to-r from-pink-500 to-cyan-500 text-white px-6 py-3 rounded-full font-semibold font-space-grotesk hover:from-pink-600 hover:to-cyan-600 transition-all duration-300"
+                      >
                         <Play className="w-4 h-4" />
                         <span>Começar Módulo</span>
                       </button>
