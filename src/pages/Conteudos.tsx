@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../components/Header';
 import { Link } from 'react-router-dom';
-import { Download, FileText, Code, Image, Brain } from 'lucide-react';
+import { Download, FileText, Code, Image, Brain, Video } from 'lucide-react';
 
 // Dados dos conteúdos - aqui vamos adicionar todos os 20+
 const conteudosData = [
@@ -40,6 +40,15 @@ const conteudosData = [
     fileType: 'Guia Neuroadaptativo',
     fileSize: 'Leitura: 25min',
     available: true
+  },
+  {
+    id: 'youtube-monetizacao-ia',
+    title: 'YouTube vai cortar monetização de conteúdos genéricos',
+    description: 'A partir de 15 de julho, só quem entrega originalidade e voz real continua no jogo. Descubra como usar IA do jeito certo.',
+    icon: 'video',
+    fileType: 'Guia de Adaptação',
+    fileSize: 'Leitura: 18min',
+    available: true
   }
   // Mais conteúdos serão adicionados aqui
 ];
@@ -54,6 +63,8 @@ const getIcon = (iconType: string) => {
       return <Image className="w-8 h-8" />;
     case 'brain':
       return <Brain className="w-8 h-8" />;
+    case 'video':
+      return <Video className="w-8 h-8" />;
     default:
       return <FileText className="w-8 h-8" />;
   }
