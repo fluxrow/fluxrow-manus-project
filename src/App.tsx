@@ -15,6 +15,7 @@ import ConteudoIAMarketing from "./pages/ConteudoIAMarketing";
 import ConteudoRetratoIA from "./pages/ConteudoRetratoIA";
 import ConteudoTDAH from "./pages/ConteudoTDAH";
 import ConteudoYouTubeMonetizacao from "./pages/ConteudoYouTubeMonetizacao";
+import ConteudoIAEscalar from "./pages/ConteudoIAEscalar";
 import Modulo1Premium from "./pages/Modulo1Premium";
 
 const queryClient = new QueryClient();
@@ -35,6 +36,7 @@ const App = () => (
           <Route path="/conteudos/retrato-viral-ia" element={<ConteudoRetratoIA />} />
           <Route path="/conteudos/ia-tdah-organizacao" element={<ConteudoTDAH />} />
           <Route path="/conteudos/youtube-monetizacao-ia" element={<ConteudoYouTubeMonetizacao />} />
+          <Route path="/conteudos/ia-escalar-negocio" element={<ConteudoIAEscalar />} />
           <Route path="/modulos/1-premium" element={<Modulo1Premium />} />
           <Route path="/conteudos/:slug" element={<div>Página Individual de Conteúdo</div>} />
           <Route path="/contato" element={<Contato />} />

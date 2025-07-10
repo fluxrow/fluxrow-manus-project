@@ -49,6 +49,15 @@ const conteudosData = [
     fileType: 'Guia de Adaptação',
     fileSize: 'Leitura: 18min',
     available: true
+  },
+  {
+    id: 'ia-escalar-negocio',
+    title: 'IA não é só pra quem cria conteúdo — é pra quem quer escalar qualquer coisa',
+    description: 'O maior erro das pessoas hoje é achar que inteligência artificial é só pra designers. Descubra como usar IA como acelerador de resultados em qualquer negócio.',
+    icon: 'code',
+    fileType: 'Guia Estratégico',
+    fileSize: 'Leitura: 22min',
+    available: true
   }
   // Mais conteúdos serão adicionados aqui
 ];
