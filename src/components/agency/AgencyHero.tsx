@@ -76,18 +76,18 @@ const AgencyHero = () => {
       
       <div className="max-w-6xl hero-content relative z-10">
         {/* Dynamic Social Proof */}
-        <div className="mb-8 flex justify-center items-center gap-8 text-sm">
-          <div className="bg-gradient-to-r from-cyan-500/20 to-purple-500/20 border border-cyan-500/30 rounded-full px-4 py-2">
+        <div className="mb-8 flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-4 md:gap-8 text-xs sm:text-sm px-4">
+          <div className="bg-gradient-to-r from-cyan-500/20 to-purple-500/20 border border-cyan-500/30 rounded-full px-3 py-2 whitespace-nowrap">
             <span className="text-cyan-400 font-bold">+{counters.automations}</span>
-            <span className="text-gray-300 ml-1">automações rodando</span>
+            <span className="text-gray-300 ml-1">automações</span>
           </div>
-          <div className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-500/30 rounded-full px-4 py-2">
+          <div className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-500/30 rounded-full px-3 py-2 whitespace-nowrap">
             <span className="text-purple-400 font-bold">+{counters.leads}</span>
-            <span className="text-gray-300 ml-1">leads qualificados</span>
+            <span className="text-gray-300 ml-1">leads</span>
           </div>
-          <div className="bg-gradient-to-r from-pink-500/20 to-yellow-500/20 border border-pink-500/30 rounded-full px-4 py-2">
+          <div className="bg-gradient-to-r from-pink-500/20 to-yellow-500/20 border border-pink-500/30 rounded-full px-3 py-2 whitespace-nowrap">
             <span className="text-pink-400 font-bold">+{counters.hours}</span>
-            <span className="text-gray-300 ml-1">horas economizadas</span>
+            <span className="text-gray-300 ml-1">horas</span>
           </div>
         </div>
         
