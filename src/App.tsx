@@ -5,6 +5,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
+import Curso from "./pages/Curso";
 import Modulos from "./pages/Modulos";
 import Materiais from "./pages/Materiais";
 import Conteudos from "./pages/Conteudos";
@@ -17,7 +18,6 @@ import ConteudoTDAH from "./pages/ConteudoTDAH";
 import ConteudoYouTubeMonetizacao from "./pages/ConteudoYouTubeMonetizacao";
 import ConteudoIAEscalar from "./pages/ConteudoIAEscalar";
 import Modulo1Premium from "./pages/Modulo1Premium";
-import Agencia from "./pages/Agencia";
 
 const queryClient = new QueryClient();
 
@@ -29,6 +29,7 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/curso" element={<Curso />} />
           <Route path="/modulos" element={<Modulos />} />
           <Route path="/materiais" element={<Materiais />} />
           <Route path="/conteudos" element={<Conteudos />} />
@@ -39,7 +40,6 @@ const App = () => (
           <Route path="/conteudos/youtube-monetizacao-ia" element={<ConteudoYouTubeMonetizacao />} />
           <Route path="/conteudos/ia-escalar-negocio" element={<ConteudoIAEscalar />} />
           <Route path="/modulos/1-premium" element={<Modulo1Premium />} />
-          <Route path="/agencia" element={<Agencia />} />
           <Route path="/conteudos/:slug" element={<div>Página Individual de Conteúdo</div>} />
           <Route path="/contato" element={<Contato />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

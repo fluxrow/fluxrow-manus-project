@@ -1,35 +1,69 @@
+import React, { useEffect, useState } from 'react';
+import AgencyHero from '../components/agency/AgencyHero';
+import ServicesGrid from '../components/agency/ServicesGrid';
+import CasesPortfolio from '../components/agency/CasesPortfolio';
+import ProcessTimeline from '../components/agency/ProcessTimeline';
+import EnhancedInteractiveBriefing from '../components/agency/EnhancedInteractiveBriefing';
+import PremiumEffects from '../components/agency/PremiumEffects';
+import DemoModal from '../components/agency/DemoModal';
+import AgencyCTA from '../components/agency/AgencyCTA';
+import BehindTheScenes from '../components/agency/BehindTheScenes';
+import MatrixBackground from '../components/agency/MatrixBackground';
 
-import React, { useEffect } from 'react';
-import HeroSection from '../components/HeroSection';
-import BenefitsSection from '../components/BenefitsSection';
-import InfiniteCarousel from '../components/InfiniteCarousel';
-import DemoSection from '../components/DemoSection';
-import SimpleAISection from '../components/SimpleAISection';
-import TestimonialsSection from '../components/TestimonialsSection';
-import FAQSection from '../components/FAQSection';
-import PricingSection from '../components/PricingSection';
-import Footer from '../components/Footer';
-import { initializeEnhancements } from '../utils/initializeEnhancements';
+const Agencia = () => {
+  const [isDemoOpen, setIsDemoOpen] = useState(false);
 
-const Index = () => {
   useEffect(() => {
-    // Initialize all enhancements after component mounts
-    initializeEnhancements();
+    // Initialize cinematic animations
+    const initAnimations = async () => {
+      if (typeof window !== 'undefined') {
+        const { initializeEnhancements } = await import('../utils/initializeEnhancements');
+        initializeEnhancements();
+      }
+    };
+    
+    initAnimations();
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#0f0f0f] text-white overflow-x-hidden">
-      <HeroSection />
-      <BenefitsSection />
-      <InfiniteCarousel />
-      <DemoSection />
-      <SimpleAISection />
-      <TestimonialsSection />
-      <FAQSection />
-      <PricingSection />
-      <Footer />
+    <div className="min-h-screen bg-[#0a0a0a] text-white overflow-x-hidden">
+      <MatrixBackground />
+      <PremiumEffects />
+      
+      {/* Hero Section */}
+      <AgencyHero />
+      
+      {/* Services Grid */}
+      <ServicesGrid />
+      
+      {/* Cases Portfolio */}
+      <CasesPortfolio />
+      
+      {/* Process Timeline */}
+      <ProcessTimeline />
+      
+      {/* Behind the Scenes */}
+      <BehindTheScenes />
+      
+      {/* Enhanced Interactive Briefing */}
+      <EnhancedInteractiveBriefing />
+      
+      {/* Final CTA */}
+      <AgencyCTA />
+      
+      {/* Demo Modal */}
+      <DemoModal isOpen={isDemoOpen} onClose={() => setIsDemoOpen(false)} />
+      
+      {/* Floating Demo Button */}
+      <button
+        onClick={() => setIsDemoOpen(true)}
+        className="fixed bottom-24 right-6 bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white px-6 py-3 rounded-full shadow-2xl hover:shadow-cyan-500/25 transition-all duration-300 transform hover:scale-105 z-40 flex items-center space-x-2"
+      >
+        <span className="text-xl">🚀</span>
+        <span className="font-semibold">Ver Demo</span>
+      </button>
     </div>
   );
 };
 
-export default Index;
+export default Agencia;
