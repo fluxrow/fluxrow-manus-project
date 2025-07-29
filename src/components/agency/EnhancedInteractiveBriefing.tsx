@@ -287,9 +287,14 @@ const EnhancedInteractiveBriefing = () => {
     
     setBriefingData(newData);
     
-    if (currentStep < questions.length - 1) {
-      setTimeout(() => setCurrentStep(currentStep + 1), 300);
-    }
+    // Move to next step or complete
+    setTimeout(() => {
+      if (currentStep < questions.length - 1) {
+        setCurrentStep(currentStep + 1);
+      } else {
+        setCurrentStep(questions.length); // This will trigger completion
+      }
+    }, 300);
   };
 
   const handleWhatsAppRedirect = async () => {
@@ -316,7 +321,7 @@ const EnhancedInteractiveBriefing = () => {
       console.log('Webhook error:', error);
     }
 
-    const whatsappUrl = `https://wa.me/5511999999999?text=${encodeURIComponent(summary)}`;
+    const whatsappUrl = `https://wa.me/5541992361868?text=${encodeURIComponent(summary)}`;
     window.open(whatsappUrl, '_blank');
   };
 

@@ -269,7 +269,7 @@ const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
             </p>
             <Button
               onClick={() => {
-                window.open('https://wa.me/5511999999999?text=Vi%20a%20demo%20e%20quero%20saber%20mais!', '_blank');
+                window.open('https://wa.me/5541992361868?text=Vi%20a%20demo%20e%20quero%20saber%20mais!', '_blank');
                 onClose();
               }}
               className="bg-gradient-to-r from-green-500 to-green-400 hover:from-green-600 hover:to-green-500 text-white"
