@@ -62,11 +62,6 @@ const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
     "✅ Lead qualificado e pronto para venda!"
   ];
 
-  const analyticsData = {
-    leads: { current: 1247, target: 1500, trend: "+12%" },
-    conversion: { current: 23.5, target: 25, trend: "+2.1%" },
-    revenue: { current: 89750, target: 100000, trend: "+15%" }
-  };
 
   useEffect(() => {
     let interval: NodeJS.Timeout;
@@ -181,39 +176,6 @@ const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
             <span className="text-gray-500">[{new Date().toLocaleTimeString()}]</span> ▋ Processando...
           </div>
         )}
-      </div>
-    </div>
-  );
-
-  const renderAnalyticsDemo = () => (
-    <div className="bg-gray-900 rounded-lg p-4 h-80">
-      <div className="flex items-center justify-between mb-4 pb-2 border-b border-gray-700">
-        <h3 className="text-white font-medium">Dashboard Analytics</h3>
-        <div className="text-green-400 text-sm">● Live</div>
-      </div>
-      
-      <div className="grid grid-cols-1 gap-4">
-        {Object.entries(analyticsData).map(([key, data]) => (
-          <div key={key} className="bg-black/50 rounded-lg p-3">
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-gray-400 capitalize">{key}</span>
-              <span className="text-green-400 text-sm">{data.trend}</span>
-            </div>
-            <div className="flex items-center justify-between">
-              <span className="text-2xl font-bold text-white">
-                {key === 'revenue' ? `R$ ${data.current.toLocaleString()}` : 
-                 key === 'conversion' ? `${data.current}%` : 
-                 data.current.toLocaleString()}
-              </span>
-              <div className="w-16 h-2 bg-gray-700 rounded-full overflow-hidden">
-                <div 
-                  className="h-full bg-green-400 transition-all duration-1000"
-                  style={{ width: `${(data.current / data.target) * 100}%` }}
-                />
-              </div>
-            </div>
-          </div>
-        ))}
       </div>
     </div>
   );
