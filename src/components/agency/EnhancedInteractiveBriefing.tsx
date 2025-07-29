@@ -297,7 +297,7 @@ const EnhancedInteractiveBriefing = () => {
     }, 300);
   };
 
-  const handleWhatsAppRedirect = async () => {
+  const activateSofIA = async () => {
     const summary = `🚀 *BRIEFING FLUXROW COMPLETO*
 
 📊 *PERFIL DO NEGÓCIO:*
@@ -310,6 +310,13 @@ const EnhancedInteractiveBriefing = () => {
 
 🎯 Quero uma consultoria estratégica personalizada para meu negócio!`;
 
+    // Save briefing context for Sof.IA
+    localStorage.setItem('briefingContext', JSON.stringify({
+      ...briefingData,
+      summary,
+      timestamp: new Date().toISOString()
+    }));
+
     // Send to webhook
     try {
       await fetch('https://hook.us1.make.com/YOUR_WEBHOOK_ID', {
@@ -321,8 +328,48 @@ const EnhancedInteractiveBriefing = () => {
       console.log('Webhook error:', error);
     }
 
-    const whatsappUrl = `https://wa.me/5541992361868?text=${encodeURIComponent(summary)}`;
-    window.open(whatsappUrl, '_blank');
+    // Try to activate Sof.IA widget
+    try {
+      // Method 1: Try to find and click the widget button
+      const chatWidget = document.querySelector('[data-gptmaker-widget], .gptmaker-widget, #gptmaker-widget, .chat-widget, [class*="chat"], [class*="widget"]');
+      if (chatWidget) {
+        (chatWidget as HTMLElement).click();
+        console.log('Sof.IA activated via click');
+        return;
+      }
+
+      // Method 2: Try common global methods
+      if ((window as any).gptmaker?.open) {
+        (window as any).gptmaker.open();
+        console.log('Sof.IA activated via gptmaker.open');
+        return;
+      }
+
+      if ((window as any).openChat) {
+        (window as any).openChat();
+        console.log('Sof.IA activated via openChat');
+        return;
+      }
+
+      // Method 3: Dispatch custom event that might trigger the widget
+      window.dispatchEvent(new CustomEvent('activateSofIA', { detail: { briefing: briefingData } }));
+      
+      // Wait a bit and check if widget opened
+      setTimeout(() => {
+        const activeWidget = document.querySelector('.chat-open, .widget-open, [class*="active"]');
+        if (!activeWidget) {
+          // Fallback to WhatsApp
+          const whatsappUrl = `https://wa.me/5541992361868?text=${encodeURIComponent(summary)}`;
+          window.open(whatsappUrl, '_blank');
+        }
+      }, 1000);
+
+    } catch (error) {
+      console.log('Error activating Sof.IA:', error);
+      // Fallback to WhatsApp
+      const whatsappUrl = `https://wa.me/5541992361868?text=${encodeURIComponent(summary)}`;
+      window.open(whatsappUrl, '_blank');
+    }
   };
 
   const progress = ((currentStep + 1) / questions.length) * 100;
@@ -430,11 +477,11 @@ const EnhancedInteractiveBriefing = () => {
               </div>
 
               <Button
-                onClick={handleWhatsAppRedirect}
+                onClick={activateSofIA}
                 className="bg-gradient-to-r from-green-500 to-green-400 hover:from-green-600 hover:to-green-500 text-white text-lg px-8 py-4 rounded-lg font-semibold transform hover:scale-105 transition-all duration-300"
               >
                 <MessageCircle className="w-5 h-5 mr-3" />
-                Receber Estratégia Personalizada
+                Falar com Consultor
               </Button>
               
               <p className="text-gray-500 text-sm mt-4">
