@@ -72,9 +72,9 @@ const BehindTheScenes = () => {
                 <div 
                   key={index} 
                   className={`mb-2 ${
-                    line.startsWith('$') ? 'text-cyan-400' : 
-                    line.startsWith('✓') ? 'text-green-400' :
-                    line.startsWith('🚀') ? 'text-yellow-400' :
+                    line && line.startsWith('$') ? 'text-cyan-400' : 
+                    line && line.startsWith('✓') ? 'text-green-400' :
+                    line && line.startsWith('🚀') ? 'text-yellow-400' :
                     'text-gray-300'
                   }`}
                 >
@@ -160,36 +160,36 @@ const BehindTheScenes = () => {
             </div>
             
             <div className="bg-black/50 rounded-lg p-4 font-mono text-xs h-64 overflow-y-auto">
-              <pre className="text-gray-300">
-{`// AI Agent Configuration
-const fluxrowAgent = {
-  name: "Sof.IA",
-  model: "gpt-4-turbo",
-  personality: "professional",
-  
-  async processLead(data) {
-    const analysis = await this.analyze(data);
-    const strategy = await this.createStrategy(analysis);
-    
-    return {
-      qualification: analysis.score,
-      recommendations: strategy.actions,
-      nextSteps: strategy.timeline
-    };
-  },
-  
-  async automate(workflow) {
-    // WhatsApp integration
-    await whatsapp.send(workflow.message);
-    
-    // CRM sync
-    await crm.update(workflow.data);
-    
-    // Analytics tracking
-    analytics.track('automation_executed');
-  }
-};`}
-              </pre>
+              <div className="text-gray-300 whitespace-pre-wrap">
+                <div className="text-green-400">// AI Agent Configuration</div>
+                <div className="text-cyan-400">const fluxrowAgent = &#123;</div>
+                <div className="ml-2 text-yellow-400">name: "Sof.IA",</div>
+                <div className="ml-2 text-yellow-400">model: "gpt-4-turbo",</div>
+                <div className="ml-2 text-yellow-400">personality: "professional",</div>
+                <br />
+                <div className="ml-2 text-purple-400">async processLead(data) &#123;</div>
+                <div className="ml-4 text-gray-300">const analysis = await this.analyze(data);</div>
+                <div className="ml-4 text-gray-300">const strategy = await this.createStrategy(analysis);</div>
+                <br />
+                <div className="ml-4 text-cyan-400">return &#123;</div>
+                <div className="ml-6 text-gray-300">qualification: analysis.score,</div>
+                <div className="ml-6 text-gray-300">recommendations: strategy.actions,</div>
+                <div className="ml-6 text-gray-300">nextSteps: strategy.timeline</div>
+                <div className="ml-4 text-cyan-400">&#125;;</div>
+                <div className="ml-2 text-purple-400">&#125;,</div>
+                <br />
+                <div className="ml-2 text-purple-400">async automate(workflow) &#123;</div>
+                <div className="ml-4 text-green-400">// WhatsApp integration</div>
+                <div className="ml-4 text-gray-300">await whatsapp.send(workflow.message);</div>
+                <br />
+                <div className="ml-4 text-green-400">// CRM sync</div>
+                <div className="ml-4 text-gray-300">await crm.update(workflow.data);</div>
+                <br />
+                <div className="ml-4 text-green-400">// Analytics tracking</div>
+                <div className="ml-4 text-gray-300">analytics.track('automation_executed');</div>
+                <div className="ml-2 text-purple-400">&#125;</div>
+                <div className="text-cyan-400">&#125;;</div>
+              </div>
             </div>
           </div>
         </div>
