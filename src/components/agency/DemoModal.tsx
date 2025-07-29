@@ -33,12 +33,16 @@ const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
   ];
 
   const whatsappMessages = [
-    { sender: "client", message: "Oi, gostaria de saber sobre automação" },
-    { sender: "bot", message: "Olá! 👋 Sou a Sof.IA, assistente virtual da Fluxrow. Como posso ajudá-lo hoje?" },
-    { sender: "client", message: "Quero automatizar meu e-commerce" },
-    { sender: "bot", message: "Perfeito! Para e-commerce, temos soluções específicas:\n\n✅ Carrinho abandonado\n✅ Pós-venda automático\n✅ Upsell inteligente\n\nQual seu faturamento mensal?" },
-    { sender: "client", message: "Entre 50k e 100k" },
-    { sender: "bot", message: "Excelente! Com esse volume, nossa automação pode aumentar suas vendas em até 40%. Vou transferir para nosso especialista em e-commerce. Um momento..." }
+    { sender: "client", message: "Olá! Sou da Promotrip e preciso de automação" },
+    { sender: "bot", message: "Olá! 👋 Sou a Sof.IA, assistente virtual da Fluxrow. Que área da Promotrip podemos otimizar?" },
+    { sender: "client", message: "Nosso site, landing pages e apresentações estão muito manuais" },
+    { sender: "bot", message: "Entendo! Vamos automatizar todo seu funil. Que tal começarmos pelo CRM?" },
+    { sender: "client", message: "Sim! E também precisamos melhorar nosso tráfego no Meta e Google" },
+    { sender: "bot", message: "Perfeito! Posso integrar tudo: CRM → Automação → Tráfego → Redes Sociais" },
+    { sender: "bot", message: "📊 Resultados esperados:\n📈 +47% nas conversões\n⏰ 6.5h/dia economizadas\n💰 ROI de 312%" },
+    { sender: "client", message: "Incrível! Como funciona a implementação?" },
+    { sender: "bot", message: "1️⃣ Análise do seu funil atual\n2️⃣ Criação das automações\n3️⃣ Integração com suas ferramentas\n4️⃣ Treinamento da equipe" },
+    { sender: "bot", message: "Posso agendar uma demonstração personalizada para a Promotrip? 🚀" }
   ];
 
   const n8nSteps = [
@@ -68,9 +72,9 @@ const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
             setIsPlaying(false);
             return 100;
           }
-          return prev + 2;
+          return prev + 1; // Mais lento
         });
-      }, 100);
+      }, 400); // Mais lento
     }
 
     return () => {

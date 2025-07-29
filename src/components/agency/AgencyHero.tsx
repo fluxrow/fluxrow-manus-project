@@ -92,6 +92,7 @@ const AgencyHero = () => {
         </div>
         
         <h1 className="hero-title font-space-grotesk mb-6">
+          <span className="block gradient-text">Fluxrow</span>
           <span className="block">Transformamos ideias em</span>
           <span className="block gradient-text">resultados com IA,</span>
           <span className="block">automação e criatividade</span>

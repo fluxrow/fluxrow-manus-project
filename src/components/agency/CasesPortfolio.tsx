@@ -6,30 +6,30 @@ const CasesPortfolio = () => {
 
   const cases = [
     {
-      title: "Promotrip",
-      challenge: "Automação de propostas comerciais",
-      solution: "Site + CRM integrado + automação WhatsApp",
-      result: "+300% agilidade nas propostas",
+      title: "Promotrip - Turismo",
+      challenge: "Site manual, apresentações repetitivas e baixo ROI em tráfego pago",
+      solution: "Implementamos automação completa: Site responsivo, Landing Pages otimizadas, Apresentações automatizadas, CRM integrado, Automação de tráfego Meta/Google e gestão de redes sociais com IA.",
+      result: "Aumento de 47% nas conversões, economia de 6.5h/dia e ROI de 312% em campanhas",
       image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=500&h=300&fit=crop",
-      tags: ["Automação", "CRM", "Site"],
+      tags: ["Turismo", "Tráfego Pago", "CRM"],
       color: "cyan"
     },
     {
-      title: "Maranata",
-      challenge: "Captação e qualificação de leads",
-      solution: "SDR virtual + tráfego pago + automação",
-      result: "+250% leads qualificados",
+      title: "Maranata - Consórcios",
+      challenge: "Captação de leads dispersa e atendimento descentralizado",
+      solution: "Criamos ecossistema completo: Redes sociais automatizadas, Site otimizado, Simulador de consórcios integrado, Home equity calculator, Captação automática com direcionamento inteligente para consultores qualificados.",
+      result: "Aumento de 83% em leads qualificados e redução de 71% no tempo de resposta",
       image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&h=300&fit=crop",
-      tags: ["SDR", "Tráfego", "Leads"],
+      tags: ["Consórcios", "Lead Generation", "Automação"],
       color: "purple"
     },
     {
-      title: "Fachini Industrial",
-      challenge: "Qualificação B2B complexa",
-      solution: "IA conversacional + CRM industrial",
-      result: "+180% conversão B2B",
+      title: "Fachini - Industrial",
+      challenge: "Controle interno manual, pós-venda deficiente e logística desorganizada",
+      solution: "Desenvolvemos SaaS personalizado para suporte e controle interno, automação completa do comercial, sistema de pós-venda automatizado, logística integrada e follow-up inteligente via RD Station.",
+      result: "Redução de 64% nos custos operacionais e aumento de 91% na satisfação do cliente",
       image: "https://images.unsplash.com/photo-1581092795442-4a8c5304e2d1?w=500&h=300&fit=crop",
-      tags: ["IA", "B2B", "Industrial"],
+      tags: ["SaaS", "Industrial", "RD Station"],
       color: "green"
     }
   ];
