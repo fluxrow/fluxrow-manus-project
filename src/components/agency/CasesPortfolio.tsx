@@ -30,7 +30,7 @@ const CasesPortfolio = () => {
       challenge: "Controle interno manual, pós-venda deficiente e logística desorganizada",
       solution: "Desenvolvemos SaaS personalizado para suporte e controle interno, automação completa do comercial, sistema de pós-venda automatizado, logística integrada e follow-up inteligente via RD Station.",
       result: "Redução de 64% nos custos operacionais e aumento de 91% na satisfação do cliente",
-      image: "https://images.unsplash.com/photo-1581092795442-4a8c5304e2d1?w=500&h=300&fit=crop",
+      image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=500&h=300&fit=crop",
       tags: ["SaaS", "Industrial", "RD Station"],
       color: "green"
     }
