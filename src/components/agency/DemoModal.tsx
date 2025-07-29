@@ -16,33 +16,39 @@ const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
 
   const demos = [
     {
-      title: "Automação WhatsApp + IA",
-      description: "Veja como nossa IA responde automaticamente no WhatsApp",
-      type: "whatsapp"
+      title: "SDR Virtual Promotrip",
+      description: "Agente IA qualificando leads em tempo real",
+      type: "sdr"
     },
     {
       title: "Workflow n8n em Ação",
       description: "Processo completo de lead → qualificação → venda",
       type: "n8n"
-    },
-    {
-      title: "Dashboard Analytics Real-time",
-      description: "Métricas e insights atualizados em tempo real",
-      type: "analytics"
     }
   ];
 
-  const whatsappMessages = [
-    { sender: "client", message: "Olá! Sou da Promotrip e preciso de automação" },
-    { sender: "bot", message: "Olá! 👋 Sou a Sof.IA, assistente virtual da Fluxrow. Que área da Promotrip podemos otimizar?" },
-    { sender: "client", message: "Nosso site, landing pages e apresentações estão muito manuais" },
-    { sender: "bot", message: "Entendo! Vamos automatizar todo seu funil. Que tal começarmos pelo CRM?" },
-    { sender: "client", message: "Sim! E também precisamos melhorar nosso tráfego no Meta e Google" },
-    { sender: "bot", message: "Perfeito! Posso integrar tudo: CRM → Automação → Tráfego → Redes Sociais" },
-    { sender: "bot", message: "📊 Resultados esperados:\n📈 +47% nas conversões\n⏰ 6.5h/dia economizadas\n💰 ROI de 312%" },
-    { sender: "client", message: "Incrível! Como funciona a implementação?" },
-    { sender: "bot", message: "1️⃣ Análise do seu funil atual\n2️⃣ Criação das automações\n3️⃣ Integração com suas ferramentas\n4️⃣ Treinamento da equipe" },
-    { sender: "bot", message: "Posso agendar uma demonstração personalizada para a Promotrip? 🚀" }
+  const sdrConversation = [
+    { sender: "lead", message: "Oi, vi vocês no Google. Trabalho com turismo e preciso de ajuda com marketing digital." },
+    { sender: "sdr", message: "Olá! Sou Sarah, SDR da Fluxrow 😊 Que bom que nos encontrou! Qual o nome da sua empresa de turismo?" },
+    { sender: "lead", message: "Promotrip. Somos uma agência especializada em pacotes personalizados." },
+    { sender: "sdr", message: "Perfeito! A Promotrip já tem site próprio? Como vocês captam clientes atualmente?" },
+    { sender: "lead", message: "Temos site, mas é bem básico. Captamos muito por indicação e Facebook." },
+    { sender: "sdr", message: "Entendi. E qual o principal desafio que vocês enfrentam hoje? Falta de leads, conversão baixa ou algo operacional?" },
+    { sender: "lead", message: "Nossa! Exatamente... falta de leads qualificados. Gastamos muito no Facebook e vem muito curioso." },
+    { sender: "sdr", message: "Isso é super comum no turismo! Quantos leads vocês recebem por mês em média? E desses, quantos viram venda?" },
+    { sender: "lead", message: "Uns 150 leads/mês, mas só uns 8-10 fecham. E olha que trabalhamos muito pra isso." },
+    { sender: "sdr", message: "6% de conversão... vejo que há muito potencial! E me conta, vocês têm algum CRM ou é tudo manual mesmo?" },
+    { sender: "lead", message: "Tudo no Excel e WhatsApp 😅 Um caos total. Perdemos muito lead por desorganização." },
+    { sender: "sdr", message: "Imagino! Sarah, aqui na Fluxrow temos um case idêntico ao seu. A Promotrip que atendemos tinha exatamente esse problema." },
+    { sender: "lead", message: "Sério? E como vocês resolveram?" },
+    { sender: "sdr", message: "Implementamos um sistema completo: Site otimizado + Landing pages + CRM automático + WhatsApp Business integrado. O resultado foi incrível:" },
+    { sender: "sdr", message: "📈 Saltaram de 150 para 380 leads/mês\n💰 Conversão foi de 6% para 18%\n⏰ Economizaram 6,5h/dia de trabalho manual\n🚀 ROI de 312% em 3 meses" },
+    { sender: "lead", message: "Nossa! Isso seria o sonho aqui. Quanto custa uma implementação dessas?" },
+    { sender: "sdr", message: "Depende do escopo, mas posso adiantar que o investimento se paga em 45-60 dias. Que tal marcarmos 15min para eu mostrar como seria na Promotrip?" },
+    { sender: "lead", message: "Sim! Quero muito ver isso. Quando podemos conversar?" },
+    { sender: "sdr", message: "Ótimo! Vou te passar para nosso especialista Carlos. Ele tem agenda hoje às 16h ou amanhã 10h. Qual prefere?" },
+    { sender: "lead", message: "Hoje 16h perfeito!" },
+    { sender: "sdr", message: "Perfeito! ✅ Agendado para hoje 16h\n📧 Vou enviar o link por email\n📊 Carlos vai preparar uma simulação personalizada para Promotrip\nObrigada pelo interesse! 🚀" }
   ];
 
   const n8nSteps = [
@@ -113,38 +119,38 @@ const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
     }
   };
 
-  const renderWhatsAppDemo = () => {
-    const messagesToShow = Math.floor((progress / 100) * whatsappMessages.length);
+  const renderSDRDemo = () => {
+    const messagesToShow = Math.floor((progress / 100) * sdrConversation.length);
     
     return (
       <div className="bg-gray-900 rounded-lg p-4 h-80 overflow-y-auto">
         <div className="flex items-center justify-between mb-4 pb-2 border-b border-gray-700">
           <div className="flex items-center space-x-2">
             <div className="w-3 h-3 bg-green-400 rounded-full"></div>
-            <span className="text-white font-medium">WhatsApp Business</span>
+            <span className="text-white font-medium">SDR Virtual - Sarah</span>
           </div>
-          <MessageCircle className="w-5 h-5 text-green-400" />
+          <Bot className="w-5 h-5 text-cyan-400" />
         </div>
         
         <div className="space-y-3">
-          {whatsappMessages.slice(0, messagesToShow).map((msg, index) => (
-            <div key={index} className={`flex ${msg.sender === 'client' ? 'justify-end' : 'justify-start'}`}>
-              <div className={`max-w-xs px-3 py-2 rounded-lg ${
-                msg.sender === 'client' 
+          {sdrConversation.slice(0, messagesToShow).map((msg, index) => (
+            <div key={index} className={`flex ${msg.sender === 'lead' ? 'justify-end' : 'justify-start'}`}>
+              <div className={`max-w-sm px-3 py-2 rounded-lg ${
+                msg.sender === 'lead' 
                   ? 'bg-blue-500 text-white' 
-                  : 'bg-gray-700 text-white'
+                  : 'bg-cyan-600 text-white'
               }`}>
                 <div className="text-sm whitespace-pre-line">{msg.message}</div>
               </div>
             </div>
           ))}
-          {isPlaying && messagesToShow < whatsappMessages.length && (
+          {isPlaying && messagesToShow < sdrConversation.length && (
             <div className="flex justify-start">
-              <div className="bg-gray-700 text-white px-3 py-2 rounded-lg">
+              <div className="bg-cyan-600 text-white px-3 py-2 rounded-lg">
                 <div className="flex space-x-1">
-                  <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
-                  <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{animationDelay: '0.1s'}}></div>
-                  <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></div>
+                  <div className="w-2 h-2 bg-cyan-200 rounded-full animate-bounce"></div>
+                  <div className="w-2 h-2 bg-cyan-200 rounded-full animate-bounce" style={{animationDelay: '0.1s'}}></div>
+                  <div className="w-2 h-2 bg-cyan-200 rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></div>
                 </div>
               </div>
             </div>
@@ -214,9 +220,8 @@ const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
 
   const renderCurrentDemo = () => {
     switch (currentDemo) {
-      case 0: return renderWhatsAppDemo();
+      case 0: return renderSDRDemo();
       case 1: return renderN8nDemo();
-      case 2: return renderAnalyticsDemo();
       default: return null;
     }
   };
