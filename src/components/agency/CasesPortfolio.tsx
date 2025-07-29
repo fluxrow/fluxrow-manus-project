@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { ExternalLink, ArrowRight, TrendingUp } from 'lucide-react';
+import ImageWithFallback from '../ui/image-with-fallback';
+import fachiniImage from '../../assets/fachini-industrial.jpg';
+import medclinicaImage from '../../assets/medclinica-saude.jpg';
 
 const CasesPortfolio = () => {
   const [selectedCase, setSelectedCase] = useState<number | null>(null);
@@ -30,7 +33,7 @@ const CasesPortfolio = () => {
       challenge: "Controle interno manual, pós-venda deficiente e logística desorganizada",
       solution: "Desenvolvemos SaaS personalizado para suporte e controle interno, automação completa do comercial, sistema de pós-venda automatizado, logística integrada e follow-up inteligente via RD Station.",
       result: "Redução de 64% nos custos operacionais e aumento de 91% na satisfação do cliente",
-      image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=500&h=300&fit=crop",
+      image: fachiniImage,
       tags: ["SaaS", "Industrial", "RD Station"],
       color: "green"
     }
@@ -42,7 +45,7 @@ const CasesPortfolio = () => {
       challenge: "Agendamentos manuais, filas longas e baixa retenção de pacientes",
       solution: "Sistema completo: Agendamento online com IA, confirmação automática via WhatsApp, lembretes personalizados, telemedicina integrada, prontuário digital e automação de receitas.",
       result: "Redução de 73% no no-show, aumento de 89% na retenção e economia de 4.2h/dia",
-      image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=500&h=300&fit=crop",
+      image: medclinicaImage,
       tags: ["Saúde", "Agendamento", "Telemedicina"],
       color: "blue"
     },
@@ -117,9 +120,10 @@ const CasesPortfolio = () => {
               <div className="glass-card overflow-hidden hover:scale-105 transition-all duration-500">
                 {/* Case Image */}
                 <div className="relative h-48 overflow-hidden">
-                  <img 
+                  <ImageWithFallback 
                     src={case_item.image} 
                     alt={case_item.title}
+                    fallbackSrc="/placeholder.svg"
                     className="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-500"
                   />
                   <div className={`absolute inset-0 bg-gradient-to-t from-${case_item.color}-900/80 to-transparent`}></div>
