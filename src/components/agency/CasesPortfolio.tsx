@@ -4,7 +4,9 @@ import { ExternalLink, ArrowRight, TrendingUp } from 'lucide-react';
 const CasesPortfolio = () => {
   const [selectedCase, setSelectedCase] = useState<number | null>(null);
 
-  const cases = [
+  const [showMore, setShowMore] = useState(false);
+
+  const baseCases = [
     {
       title: "Promotrip - Turismo",
       challenge: "Site manual, apresentações repetitivas e baixo ROI em tráfego pago",
@@ -33,6 +35,65 @@ const CasesPortfolio = () => {
       color: "green"
     }
   ];
+
+  const additionalCases = [
+    {
+      title: "MedClínica - Saúde",
+      challenge: "Agendamentos manuais, filas longas e baixa retenção de pacientes",
+      solution: "Sistema completo: Agendamento online com IA, confirmação automática via WhatsApp, lembretes personalizados, telemedicina integrada, prontuário digital e automação de receitas.",
+      result: "Redução de 73% no no-show, aumento de 89% na retenção e economia de 4.2h/dia",
+      image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=500&h=300&fit=crop",
+      tags: ["Saúde", "Agendamento", "Telemedicina"],
+      color: "blue"
+    },
+    {
+      title: "EduTech - Ensino Online",
+      challenge: "Baixa conversão de trials, alta evasão e suporte repetitivo",
+      solution: "Plataforma educacional completa: Onboarding automatizado, trilhas personalizadas por IA, chatbot para dúvidas frequentes, sistema de gamificação e acompanhamento inteligente.",
+      result: "Aumento de 156% na conversão trial-pago e redução de 68% na evasão",
+      image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=500&h=300&fit=crop",
+      tags: ["Educação", "IA", "Gamificação"],
+      color: "orange"
+    },
+    {
+      title: "FitLife - Academia",
+      challenge: "Baixa frequência de alunos, cobrança manual e falta de engajamento",
+      solution: "Ecossistema fitness: App personalizado com treinos por IA, cobrança automática, programa de recompensas, aulas online integradas e nutrição automatizada.",
+      result: "Aumento de 124% na frequência e redução de 82% na inadimplência",
+      image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=500&h=300&fit=crop",
+      tags: ["Fitness", "App Mobile", "Cobrança"],
+      color: "red"
+    },
+    {
+      title: "LogiExpress - Transportes",
+      challenge: "Rastreamento manual, atrasos constantes e comunicação falha",
+      solution: "Sistema logístico inteligente: Rastreamento GPS em tempo real, notificações automáticas aos clientes, otimização de rotas por IA e gestão automática de frotas.",
+      result: "Redução de 59% nos atrasos e aumento de 143% na satisfação do cliente",
+      image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=500&h=300&fit=crop",
+      tags: ["Logística", "GPS", "Otimização"],
+      color: "yellow"
+    },
+    {
+      title: "BellaEstética - Estética",
+      challenge: "Agenda desorganizada, follow-up manual e baixo ticket médio",
+      solution: "Plataforma de beleza: Agendamento inteligente, sequências de cuidados automatizadas, programa de fidelidade, avaliações por foto-IA e upsell automático.",
+      result: "Aumento de 267% no ticket médio e melhoria de 94% na organização",
+      image: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=500&h=300&fit=crop",
+      tags: ["Estética", "Fidelidade", "IA Visual"],
+      color: "pink"
+    },
+    {
+      title: "TechStartup - SaaS B2B",
+      challenge: "Vendas complexas, ciclo longo e baixa adoção de features",
+      solution: "Funil enterprise: Qualificação por IA, demos automatizadas, trials personalizados, onboarding progressivo e upsell baseado em uso real.",
+      result: "Redução de 45% no ciclo de vendas e aumento de 178% no upsell",
+      image: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=500&h=300&fit=crop",
+      tags: ["B2B", "Enterprise", "Upsell"],
+      color: "indigo"
+    }
+  ];
+
+  const cases = showMore ? [...baseCases, ...additionalCases] : baseCases;
 
   return (
     <section id="cases" className="py-20 px-6 relative z-10">
@@ -130,8 +191,11 @@ const CasesPortfolio = () => {
         
         {/* CTA to see more cases */}
         <div className="text-center mt-12">
-          <button className="bg-transparent border-2 border-cyan-500 text-cyan-400 px-8 py-4 rounded-full font-semibold font-space-grotesk hover:bg-cyan-500/10 transition-all duration-300">
-            Ver Todos os Cases
+          <button 
+            onClick={() => setShowMore(!showMore)}
+            className="bg-transparent border-2 border-cyan-500 text-cyan-400 px-8 py-4 rounded-full font-semibold font-space-grotesk hover:bg-cyan-500/10 transition-all duration-300"
+          >
+            {showMore ? 'Ver Menos Cases' : 'Ver Mais Cases'}
           </button>
         </div>
       </div>

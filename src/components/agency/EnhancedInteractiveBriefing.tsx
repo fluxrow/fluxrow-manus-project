@@ -398,7 +398,7 @@ const EnhancedInteractiveBriefing = () => {
                   <Button
                     onClick={() => setCurrentStep(currentStep - 1)}
                     variant="outline"
-                    className="border-gray-600 text-gray-300 hover:bg-gray-700"
+                    className="border-cyan-500 text-cyan-400 hover:bg-cyan-500/10 hover:text-cyan-300"
                   >
                     <ChevronLeft className="w-4 h-4 mr-2" />
                     Voltar
