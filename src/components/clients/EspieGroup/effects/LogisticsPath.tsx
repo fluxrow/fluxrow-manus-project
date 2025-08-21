@@ -171,6 +171,16 @@ const LogisticsPath: React.FC<LogisticsPathProps> = ({ className = "" }) => {
       draw();
     };
     
+    // Check if device is mobile/low-end for performance optimization
+    const isMobile = window.innerWidth < 768;
+    const isLowEndDevice = navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4;
+    
+    if (isMobile || isLowEndDevice) {
+      // Simplified animation for mobile
+      timeRef.current = 0;
+      return;
+    }
+    
     // Setup intersection observer for section-based color changes
     const observer = new IntersectionObserver(
       (entries) => {

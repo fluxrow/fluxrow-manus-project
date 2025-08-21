@@ -23,6 +23,10 @@ const MediaParallaxSection: React.FC<MediaParallaxSectionProps> = ({
   const mediaRef = useRef<HTMLDivElement>(null);
   
   useEffect(() => {
+    // Disable parallax on mobile for better performance
+    const isMobile = window.innerWidth < 768;
+    if (isMobile || !media) return;
+    
     const handleScroll = () => {
       if (!sectionRef.current || !mediaRef.current || !media) return;
       
@@ -40,7 +44,7 @@ const MediaParallaxSection: React.FC<MediaParallaxSectionProps> = ({
         ));
         
         // Parallax offset (media moves slower than content)
-        const parallaxOffset = (scrollProgress - 0.5) * 100;
+        const parallaxOffset = (scrollProgress - 0.5) * 50; // Reduced offset for mobile
         mediaRef.current.style.transform = `translateY(${parallaxOffset}px)`;
       }
     };
@@ -71,10 +75,10 @@ const MediaParallaxSection: React.FC<MediaParallaxSectionProps> = ({
       id={id}
       data-theme={theme}
       className={`relative espie-section scroll-mt-24 ${className}`}
-      style={{ height: media ? '200vh' : 'auto' }}
+      style={{ height: media && window.innerWidth >= 768 ? '200vh' : 'auto' }}
     >
-      {/* Media Layer (if provided) */}
-      {media && (
+      {/* Media Layer (if provided and not mobile) */}
+      {media && window.innerWidth >= 768 && (
         <div className="sticky top-0 w-full h-screen overflow-hidden">
           <div
             ref={mediaRef}
@@ -105,7 +109,7 @@ const MediaParallaxSection: React.FC<MediaParallaxSectionProps> = ({
       )}
       
       {/* Content Layer */}
-      <div className={`${media ? 'sticky top-0 z-20' : ''} w-full min-h-screen flex items-center justify-center`}>
+      <div className={`${media && window.innerWidth >= 768 ? 'sticky top-0 z-20' : ''} w-full min-h-screen flex items-center justify-center`}>
         <div className="w-full">
           {children}
         </div>

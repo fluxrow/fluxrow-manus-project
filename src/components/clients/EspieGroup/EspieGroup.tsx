@@ -26,8 +26,8 @@ const EspieGroup: React.FC = () => {
     <div className="theme-espie min-h-screen bg-white relative">
       <Header />
       
-      {/* Logistics Path Overlay */}
-      <div className="fixed inset-0 pointer-events-none z-30">
+      {/* Logistics Path Overlay - Hidden on mobile */}
+      <div className="fixed inset-0 pointer-events-none z-30 hidden md:block">
         <LogisticsPath />
       </div>
       

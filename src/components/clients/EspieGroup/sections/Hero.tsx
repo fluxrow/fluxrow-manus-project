@@ -48,10 +48,10 @@ const Hero: React.FC = () => {
           </div>
           
           {/* CTAs */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Button 
               size="lg" 
-              className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 shadow-sm"
+              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 shadow-sm text-sm sm:text-base"
               onClick={() => document.getElementById('quote-form')?.scrollIntoView({ behavior: 'smooth' })}
             >
               Get Free Quote
@@ -61,7 +61,7 @@ const Hero: React.FC = () => {
             <Button 
               variant="outline" 
               size="lg" 
-              className="border-slate-300 text-slate-600 hover:bg-slate-50 px-8 py-3"
+              className="border-slate-300 text-slate-600 hover:bg-slate-50 px-6 py-3 text-sm sm:text-base"
               onClick={() => document.getElementById('tracking')?.scrollIntoView({ behavior: 'smooth' })}
             >
               Track Shipment
@@ -78,8 +78,8 @@ const Hero: React.FC = () => {
         </div>
       </div>
       
-      {/* Quick Contact moved below hero */}
-      <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-full">
+      {/* Quick Contact moved below hero - Mobile optimized */}
+      <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-full hidden sm:block">
         <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-6 border border-slate-200 shadow-lg max-w-sm mx-auto">
           <div className="space-y-3 text-center">
             <h3 className="font-semibold text-slate-900">Quick Contact</h3>
