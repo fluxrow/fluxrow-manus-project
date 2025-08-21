@@ -10,6 +10,7 @@ export interface ClientProject {
 
 // Import client components
 import SampleClient1 from '../components/clients/SampleClient1';
+import EspieGroup from '../components/clients/EspieGroup';
 
 export const clientProjects: ClientProject[] = [
   {
@@ -17,6 +18,14 @@ export const clientProjects: ClientProject[] = [
     name: 'Sample Client 1',
     accessPin: '1234', // Optional PIN protection
     component: SampleClient1,
+    seoDisabled: true, // Prevents indexing by search engines
+    trackingDisabled: true, // Disables FB Pixel and other tracking
+  },
+  {
+    slug: 'espie-group',
+    name: 'Espie Group - Dedicated Transport Services',
+    accessPin: '2024', // PIN protection
+    component: EspieGroup,
     seoDisabled: true, // Prevents indexing by search engines
     trackingDisabled: true, // Disables FB Pixel and other tracking
   },
