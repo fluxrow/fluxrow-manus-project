@@ -542,13 +542,13 @@ const EspieGroup = () => {
       </section>
 
       {/* Quote Form CTA */}
-      <section className="py-20 espie-gradient-bg espie-hero-pattern">
-        <div className="container mx-auto px-4">
+      <section className="py-20 espie-hero">
+        <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center text-white">
             <h2 className="text-4xl font-bold mb-6">
               Ready to Optimize Your Logistics?
             </h2>
-            <p className="text-xl mb-12 text-blue-100">
+            <p className="text-xl mb-12 text-gray-300">
               Connect with our experts today for a tailored solution designed for your success
             </p>
             
@@ -598,11 +598,11 @@ const EspieGroup = () => {
                 </div>
                 <div>
                   <select className="w-full px-4 py-3 rounded-lg bg-white/20 border border-white/30 text-white focus:outline-none focus:ring-2 focus:ring-green-400">
-                    <option value="">Service Type</option>
-                    <option value="dedicated">Dedicated Transport</option>
-                    <option value="express">Express Delivery</option>
-                    <option value="regular">Regular Freight</option>
-                    <option value="emergency">Emergency Transport</option>
+                    <option value="" className="bg-gray-800 text-white">Service Type</option>
+                    <option value="dedicated" className="bg-gray-800 text-white">Dedicated Transport</option>
+                    <option value="express" className="bg-gray-800 text-white">Express Delivery</option>
+                    <option value="regular" className="bg-gray-800 text-white">Regular Freight</option>
+                    <option value="emergency" className="bg-gray-800 text-white">Emergency Transport</option>
                   </select>
                 </div>
                 <div>
@@ -624,7 +624,7 @@ const EspieGroup = () => {
                   Request Quote
                 </Button>
               </div>
-              <p className="text-sm text-blue-200 mt-4">
+              <p className="text-sm text-gray-300 mt-4">
                 Your data is secure with us. We respect your privacy.
               </p>
             </Card>
