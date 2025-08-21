@@ -1,50 +1,112 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { MapPin, Phone, Mail, Clock, Shield, Truck, Clock4, Users, CheckCircle, Star, FileText, Gauge } from 'lucide-react';
 
 const EspieGroup = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 100);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   useEffect(() => {
     // Add custom styles for Espie Group
     const style = document.createElement('style');
     style.textContent = `
       .espie-theme {
-        /* Espie Group Brand Colors */
-        --espie-primary-blue: 30 58 138; /* #1E3A8A */
-        --espie-dark-blue: 15 23 42; /* #0F172A */
-        --espie-accent-green: 5 150 105; /* #059669 */
-        --espie-accent-orange: 234 88 12; /* #EA580C */
-        --espie-neutral-gray: 55 65 81; /* #374151 */
-        --espie-light-gray: 248 250 252; /* #F8FAFC */
-        --espie-blue-light: 224 242 254; /* #E0F2FE */
+        /* Espie Group Brand Colors - Proper HSL values */
+        --espie-primary-blue: 222 84% 33%; /* #1E3A8A */
+        --espie-dark-blue: 222 47% 11%; /* #0F172A */
+        --espie-accent-green: 159 84% 30%; /* #059669 */
+        --espie-accent-orange: 20 91% 48%; /* #EA580C */
+        --espie-neutral-gray: 217 19% 27%; /* #374151 */
+        --espie-light-gray: 210 40% 98%; /* #F8FAFC */
+        --espie-blue-light: 195 100% 94%; /* #E0F2FE */
         
         /* Override primary colors for this theme */
         --primary: var(--espie-primary-blue);
-        --primary-foreground: 255 255 255;
+        --primary-foreground: 0 0% 100%;
         --secondary: var(--espie-light-gray);
         --secondary-foreground: var(--espie-dark-blue);
         --accent: var(--espie-accent-green);
-        --accent-foreground: 255 255 255;
+        --accent-foreground: 0 0% 100%;
         --muted: var(--espie-light-gray);
         --muted-foreground: var(--espie-neutral-gray);
-        --card: 255 255 255;
+        --card: 0 0% 100%;
         --card-foreground: var(--espie-dark-blue);
-        --background: 255 255 255;
+        --background: 0 0% 100%;
         --foreground: var(--espie-dark-blue);
-        --border: 229 231 235;
+        --border: 220 13% 91%;
       }
       
-      .espie-gradient-bg {
-        background: linear-gradient(135deg, hsl(var(--espie-primary-blue)) 0%, hsl(var(--espie-dark-blue)) 100%);
+      .espie-hero {
+        position: relative;
+        background: linear-gradient(135deg, hsl(222 84% 4%) 0%, hsl(222 47% 8%) 50%, hsl(217 32% 17%) 100%);
+        overflow: hidden;
       }
       
-      .espie-hero-pattern {
+      .espie-hero::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
         background-image: 
-          radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
-          radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
-        background-size: 60px 60px;
-        background-position: 0 0, 30px 30px;
+          linear-gradient(rgba(14, 165, 233, 0.15) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(14, 165, 233, 0.15) 1px, transparent 1px),
+          radial-gradient(circle at 20% 50%, rgba(34, 197, 94, 0.15) 0%, transparent 50%),
+          radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+          radial-gradient(circle at 40% 80%, rgba(168, 85, 247, 0.1) 0%, transparent 50%);
+        background-size: 100px 100px, 100px 100px, 600px 600px, 800px 800px, 1000px 1000px;
+        background-position: 0 0, 0 0, 0 0, 0 0, 0 0;
+        animation: grid-move 20s ease-in-out infinite;
+        pointer-events: none;
+      }
+      
+      .espie-hero::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: 
+          radial-gradient(600px circle at 30% 40%, rgba(29, 78, 216, 0.15), transparent 40%),
+          radial-gradient(800px circle at 80% 10%, rgba(34, 197, 94, 0.1), transparent 40%),
+          radial-gradient(400px circle at 80% 80%, rgba(168, 85, 247, 0.15), transparent 40%);
+        pointer-events: none;
+      }
+      
+      @keyframes grid-move {
+        0%, 100% { 
+          background-position: 0 0, 0 0, 0 0, 0 0, 0 0; 
+        }
+        50% { 
+          background-position: 100px 100px, 100px 100px, 50px 50px, -50px -50px, 25px 25px; 
+        }
+      }
+      
+      .espie-header-shrink {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      
+      .espie-header-shrink.scrolled {
+        backdrop-filter: blur(20px);
+        background: rgba(255, 255, 255, 0.9);
+        border-bottom: 1px solid rgba(30, 58, 138, 0.1);
+      }
+      
+      .espie-header-shrink.scrolled .header-content {
+        padding-top: 0.75rem;
+        padding-bottom: 0.75rem;
       }
       
       .espie-card-hover {
@@ -57,13 +119,28 @@ const EspieGroup = () => {
       }
       
       .espie-btn-primary {
-        background: linear-gradient(135deg, hsl(var(--espie-primary-blue)), hsl(var(--espie-accent-green)));
+        background: linear-gradient(135deg, hsl(var(--espie-accent-green)), hsl(159 84% 35%));
+        border: 1px solid hsl(var(--espie-accent-green));
         transition: all 0.3s ease;
       }
       
       .espie-btn-primary:hover {
         transform: translateY(-2px);
-        box-shadow: 0 10px 25px rgba(30, 58, 138, 0.3);
+        box-shadow: 0 10px 25px hsl(var(--espie-accent-green) / 0.4);
+        background: linear-gradient(135deg, hsl(159 84% 35%), hsl(var(--espie-accent-green)));
+      }
+      
+      .espie-btn-outline {
+        background: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        color: white;
+        transition: all 0.3s ease;
+      }
+      
+      .espie-btn-outline:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.5);
+        transform: translateY(-2px);
       }
       
       .espie-btn-emergency {
@@ -96,7 +173,7 @@ const EspieGroup = () => {
   return (
     <div className="espie-theme min-h-screen bg-background">
       {/* Header */}
-      <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b">
+      <header className={`espie-header-shrink sticky top-0 z-50 ${isScrolled ? 'scrolled' : 'bg-white/95 backdrop-blur-md border-b'}`}>
         <div className="bg-primary text-primary-foreground py-2">
           <div className="container mx-auto px-4 flex justify-between items-center text-sm">
             <div className="flex items-center gap-6">
@@ -116,7 +193,7 @@ const EspieGroup = () => {
           </div>
         </div>
         
-        <nav className="container mx-auto px-4 py-4">
+        <nav className={`header-content container mx-auto px-4 ${isScrolled ? '' : 'py-4'}`}>
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
               <div className="text-2xl font-bold text-primary">
@@ -149,51 +226,51 @@ const EspieGroup = () => {
       </header>
 
       {/* Hero Section */}
-      <section id="home" className="relative min-h-screen flex items-center espie-gradient-bg espie-hero-pattern">
-        <div className="container mx-auto px-4 py-20">
+      <section id="home" className="espie-hero relative min-h-screen flex items-center">
+        <div className="container mx-auto px-4 py-20 relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="text-white">
-              <h1 className="text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-                Dedicated Transport Solutions You Can
+            <div className="text-white space-y-6 animate-fade-in">
+              <h1 className="text-5xl lg:text-6xl font-bold leading-tight animate-fade-in" style={{ animationDelay: '0.2s' }}>
+                Dedicated Transport Solutions You Can{' '}
                 <span className="block text-green-400">Trust</span>
               </h1>
-              <h2 className="text-xl lg:text-2xl mb-6 text-blue-100">
+              <h2 className="text-xl lg:text-2xl text-gray-300 animate-fade-in" style={{ animationDelay: '0.4s' }}>
                 Serving Georgia and Beyond with Reliable, Secure Logistics
               </h2>
-              <p className="text-lg mb-8 text-blue-50 leading-relaxed">
+              <p className="text-lg text-gray-400 leading-relaxed animate-fade-in" style={{ animationDelay: '0.6s' }}>
                 From Kennesaw to nationwide delivery, we ensure your cargo arrives safely, on time, every time.
               </p>
               
-              <div className="grid grid-cols-3 gap-6 mb-8">
+              <div className="grid grid-cols-3 gap-6 mb-8 animate-fade-in" style={{ animationDelay: '0.8s' }}>
                 <div className="text-center">
                   <div className="espie-stat-counter text-3xl font-bold">99.8%</div>
-                  <div className="text-blue-200 text-sm">On-Time Delivery</div>
+                  <div className="text-gray-400 text-sm">On-Time Delivery</div>
                 </div>
                 <div className="text-center">
                   <div className="espie-stat-counter text-3xl font-bold">24/7</div>
-                  <div className="text-blue-200 text-sm">Dispatch Service</div>
+                  <div className="text-gray-400 text-sm">Dispatch Service</div>
                 </div>
                 <div className="text-center">
                   <div className="espie-stat-counter text-3xl font-bold">15+</div>
-                  <div className="text-blue-200 text-sm">Years Experience</div>
+                  <div className="text-gray-400 text-sm">Years Experience</div>
                 </div>
               </div>
               
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col sm:flex-row gap-4 animate-fade-in" style={{ animationDelay: '1s' }}>
                 <Button size="lg" className="espie-btn-primary text-lg px-8 py-6">
                   Request Quote
                 </Button>
-                <Button size="lg" variant="outline" className="text-white border-white hover:bg-white hover:text-primary text-lg px-8 py-6">
+                <Button size="lg" className="espie-btn-outline text-lg px-8 py-6">
                   Track Shipment
                 </Button>
               </div>
             </div>
             
-            <div className="relative">
-              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
+            <div className="relative animate-fade-in" style={{ animationDelay: '1.2s' }}>
+              <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:bg-white/10 transition-all duration-300">
                 <Truck className="w-16 h-16 text-green-400 mb-4" />
                 <h3 className="text-white text-xl font-semibold mb-2">Professional Fleet</h3>
-                <p className="text-blue-100">Modern vehicles with experienced drivers ensuring secure transport</p>
+                <p className="text-gray-300">Modern vehicles with experienced drivers ensuring secure transport</p>
               </div>
             </div>
           </div>
