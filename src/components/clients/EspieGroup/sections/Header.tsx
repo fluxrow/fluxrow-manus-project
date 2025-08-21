@@ -51,6 +51,7 @@ const Header: React.FC = () => {
             <nav className="hidden lg:flex items-center space-x-8">
               <a href="#home" className="text-espie-gray hover:text-espie-primary transition-colors">Home</a>
               <a href="#services" className="text-espie-gray hover:text-espie-primary transition-colors">Services</a>
+              <a href="#safety" className="text-espie-gray hover:text-espie-primary transition-colors">Safety</a>
               <a href="#about" className="text-espie-gray hover:text-espie-primary transition-colors">About</a>
               <a href="#tracking" className="text-espie-gray hover:text-espie-primary transition-colors">Tracking</a>
               <a href="#contact" className="text-espie-gray hover:text-espie-primary transition-colors">Contact</a>
