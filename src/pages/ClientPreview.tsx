@@ -35,9 +35,9 @@ const ClientPreview = () => {
     }
   }, [client]);
 
-  // If client doesn't exist, redirect to 404
+  // If client doesn't exist, redirect to home or show not found
   if (!client) {
-    return <Navigate to="/404" replace />;
+    return <Navigate to="/" replace />;
   }
 
   // If client has PIN protection and user is not authenticated
