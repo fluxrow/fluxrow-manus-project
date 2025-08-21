@@ -24,7 +24,7 @@ export const clientProjects: ClientProject[] = [
   {
     slug: 'espie-group',
     name: 'Dedicated Transport Services (Espie Group)',
-    accessPin: 'DTS2024', // PIN protection
+    // accessPin: 'DTS2024', // PIN protection temporarily disabled
     component: EspieGroup,
     seoDisabled: true, // Prevents indexing by search engines
     trackingDisabled: true, // Disables FB Pixel and other tracking
