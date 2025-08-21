@@ -172,6 +172,39 @@ const Conteudos = () => {
             </div>
           </div>
 
+          {/* Projeto Showcase - Espie Group */}
+          <div className="mt-16 text-center">
+            <div className="bg-gradient-to-r from-blue-900/30 to-cyan-900/30 border-2 border-blue-500/50 rounded-3xl p-10 max-w-4xl mx-auto relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-cyan-500/10 blur-xl"></div>
+              <div className="relative z-10">
+                <h3 className="text-3xl md:text-4xl font-bold font-space-grotesk text-white mb-6">
+                  🚛 <span className="gradient-text">Projeto Showcase</span> - Espie Group
+                </h3>
+                <p className="text-xl text-gray-300 font-space-grotesk mb-8 max-w-2xl mx-auto leading-relaxed">
+                  Veja um projeto real criado com nossa metodologia: um website completo para empresa de logística nos EUA,
+                  com design profissional e foco em conversão.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
+                  <span className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-6 py-3 rounded-full text-lg font-bold font-space-grotesk">
+                    💼 Projeto B2B Real
+                  </span>
+                  <span className="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-6 py-3 rounded-full text-lg font-bold font-space-grotesk">
+                    🎯 Design de Conversão
+                  </span>
+                </div>
+                <Link
+                  to="/preview/espie-group"
+                  className="inline-block bg-gradient-to-r from-blue-500 to-cyan-500 text-white text-xl font-bold font-space-grotesk px-12 py-4 rounded-full hover:from-blue-600 hover:to-cyan-600 transition-all duration-300 hover:scale-105 shadow-2xl"
+                >
+                  🚀 VER PROJETO ESPIE GROUP
+                </Link>
+                <p className="text-sm text-gray-400 font-space-grotesk mt-4">
+                  PIN de acesso: 2024
+                </p>
+              </div>
+            </div>
+          </div>
+
           {/* CTA para página principal */}
           <div className="mt-16 text-center">
             <div className="bg-gradient-to-r from-pink-900/30 to-cyan-900/30 border-2 border-gradient-to-r from-pink-500 to-cyan-500 rounded-3xl p-10 max-w-4xl mx-auto relative overflow-hidden">
