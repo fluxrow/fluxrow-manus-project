@@ -734,12 +734,33 @@ img:not(.lazy) {
 
 /* Theme Espie Group */
 .theme-espie {
-  --espie-primary: 30 58% 40%;
-  --espie-secondary: 210 100% 95%;
-  --espie-success: 159 84% 39%;
-  --espie-accent: 24 100% 50%;
-  --espie-gray: 55 4% 35%;
-  --espie-light: 210 20% 98%;
+  --espie-primary: 214 100% 59%;
+  --espie-primary-dark: 214 100% 45%;
+  --espie-secondary: 220 13% 91%;
+  --espie-accent: 142 76% 36%;
+  --espie-text: 215 25% 27%;
+  --espie-text-light: 215 16% 47%;
+  --espie-border: 220 13% 91%;
+  
+  /* Route accent for logistics path */
+  --route-accent: hsl(214, 100%, 59%); /* Default blue */
+}
+
+/* Section themes for route color changes */
+.espie-section[data-theme="blue"] {
+  --route-accent: hsl(214, 100%, 59%);
+}
+
+.espie-section[data-theme="green"] {
+  --route-accent: hsl(142, 76%, 36%);
+}
+
+.espie-section[data-theme="orange"] {
+  --route-accent: hsl(25, 95%, 53%);
+}
+
+.espie-section[data-theme="lime"] {
+  --route-accent: hsl(84, 81%, 44%);
 }
 
 /* Convenience aliases for easier usage */

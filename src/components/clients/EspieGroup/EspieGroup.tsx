@@ -13,6 +13,8 @@ import About from './sections/About';
 import Contact from './sections/Contact';
 import Map from './sections/Map';
 import Footer from './sections/Footer';
+import LogisticsPath from './effects/LogisticsPath';
+import MediaParallaxSection from './sections/MediaParallaxSection';
 import { initScrollAnimations } from './utils/scrollAnimations';
 
 const EspieGroup: React.FC = () => {
@@ -21,14 +23,43 @@ const EspieGroup: React.FC = () => {
   }, []);
 
   return (
-    <div className="theme-espie min-h-screen bg-white">
+    <div className="theme-espie min-h-screen bg-white relative">
       <Header />
+      
+      {/* Logistics Path Overlay */}
+      <div className="fixed inset-0 pointer-events-none z-30">
+        <LogisticsPath />
+      </div>
+      
       <main>
         <Hero />
         <TrustBar />
-        <WhyChooseUs />
+        
+        {/* Enhanced sections with parallax */}
+        <MediaParallaxSection 
+          theme="green"
+          media={{
+            type: 'image',
+            src: '/src/assets/tech-workspace.jpg',
+            alt: 'Modern logistics workspace'
+          }}
+        >
+          <WhyChooseUs />
+        </MediaParallaxSection>
+        
         <ServicesOverview />
-        <FeaturedCaseStudy />
+        
+        <MediaParallaxSection 
+          theme="orange"
+          media={{
+            type: 'image', 
+            src: '/src/assets/mobile-tech.jpg',
+            alt: 'Mobile logistics technology'
+          }}
+        >
+          <FeaturedCaseStudy />
+        </MediaParallaxSection>
+        
         <CTAQuote />
         <Services />
         <QuoteForm />
