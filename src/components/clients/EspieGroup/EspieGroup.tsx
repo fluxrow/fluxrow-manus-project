@@ -32,7 +32,9 @@ const EspieGroup: React.FC = () => {
       </div>
       
       <main>
+        {/* Quando quiser adicionar vídeo, descomente e adicione o caminho: */}
         <Hero />
+        {/* <Hero heroVideo="/path/to/your/video.mp4" /> */}
         <TrustBar />
         
         {/* Enhanced sections with parallax */}
