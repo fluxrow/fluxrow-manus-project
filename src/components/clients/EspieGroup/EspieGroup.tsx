@@ -51,11 +51,6 @@ const EspieGroup: React.FC = () => {
         
         <ServicesOverview />
         
-        <SplitVideoSection 
-          videoSrc="https://espwkkaldnisriqhxyzt.supabase.co/storage/v1/object/sign/sitefluxrow/video%20truck%20editado%20.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xZThjMGVmZS0zY2EzLTQwMGMtYTU0ZC1hZTk4YzRiMDhlMTIiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJzaXRlZmx1eHJvdy92aWRlbyB0cnVjayBlZGl0YWRvIC5tcDQiLCJpYXQiOjE3NTU4ODg4NDUsImV4cCI6MjA3MTI0ODg0NX0.qBmPDJjRdZoiwVjb_QkeBbP603aV0L5YNOT-hVtGi8Q&v=2"
-          videoAlt="Truck editado logistics services"
-        />
-        
         <CTAQuote />
         <Services />
         <QuoteForm />
