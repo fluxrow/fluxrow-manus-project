@@ -63,12 +63,12 @@ const TypewriterText: React.FC<TypewriterTextProps> = ({
   const highlightColorValue = getHighlightColor();
 
   return (
-    <span className={`relative inline-block ${className}`}>
+    <div className={`relative w-full ${className}`}>
       {/* Base text (invisible, maintains layout) */}
-      <span className="opacity-0 select-none">{text}</span>
+      <div className="opacity-0 select-none whitespace-normal break-words">{text}</div>
       
       {/* Visible typing text */}
-      <span className="absolute top-0 left-0">
+      <div className="absolute top-0 left-0 w-full whitespace-normal break-words">
         {displayText.split('').map((char, index) => {
           const isLastChar = index === displayText.length - 1;
           const shouldHighlight = isTyping && isLastChar;
@@ -130,8 +130,8 @@ const TypewriterText: React.FC<TypewriterTextProps> = ({
             }}
           />
         )}
-      </span>
-    </span>
+      </div>
+    </div>
   );
 };
 
