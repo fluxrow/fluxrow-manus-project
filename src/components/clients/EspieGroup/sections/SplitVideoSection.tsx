@@ -1,6 +1,7 @@
 import React from 'react';
 import { Truck, Package, Shield, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useScrollVideoScrub } from '@/hooks/useScrollVideoScrub';
 
 interface SplitVideoSectionProps {
   videoSrc: string;
@@ -8,6 +9,8 @@ interface SplitVideoSectionProps {
 }
 
 const SplitVideoSection: React.FC<SplitVideoSectionProps> = ({ videoSrc, videoAlt }) => {
+  const { videoRef, containerRef } = useScrollVideoScrub();
+  
   const services = [
     {
       icon: Truck,
@@ -43,13 +46,12 @@ const SplitVideoSection: React.FC<SplitVideoSectionProps> = ({ videoSrc, videoAl
   };
 
   return (
-    <section className="min-h-screen flex flex-col lg:flex-row">
+    <section ref={containerRef} className="min-h-screen flex flex-col lg:flex-row">
       {/* Video Side - Left */}
       <div className="w-full lg:w-1/2 relative overflow-hidden">
         <video
-          autoPlay
+          ref={videoRef}
           muted
-          loop
           playsInline
           className="w-full h-full object-cover"
           aria-label={videoAlt || 'Logistics services video'}
