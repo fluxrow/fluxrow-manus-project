@@ -2,7 +2,7 @@ import React from 'react';
 import { ArrowRight, Shield, Truck, Clock } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import SectionDivider from '../effects/SectionDivider';
-import MovingLines from '../effects/MovingLines';
+import TypewriterText from '../effects/TypewriterText';
 
 interface HeroProps {
   heroVideo?: string;
@@ -43,12 +43,24 @@ const Hero: React.FC<HeroProps> = ({ heroVideo }) => {
             </div>
             
             <h1 className={`text-[clamp(2rem,6vw,4rem)] font-bold leading-tight max-w-4xl mx-auto ${heroVideo ? 'text-white' : 'text-slate-900'}`}>
-              Reliable <span className="text-blue-600">Transport</span> Solutions
+              <TypewriterText 
+                text="Reliable Transport Solutions" 
+                speed={35} 
+                delay={150} 
+                highlightColor="green" 
+                className="block" 
+              />
             </h1>
             
             <p className={`text-lg md:text-xl max-w-2xl mx-auto ${heroVideo ? 'text-white/90' : 'text-slate-600'}`}>
-              Professional logistics services across the United States. 
-              Secure, timely, and compliant transportation for your business needs.
+              <TypewriterText
+                text="Professional logistics services across the United States. Secure, timely, and compliant transportation for your business needs."
+                speed={20}
+                delay={900}
+                highlightColor="green"
+                showCursor={false}
+                className="block"
+              />
             </p>
           </div>
             
@@ -91,8 +103,6 @@ const Hero: React.FC<HeroProps> = ({ heroVideo }) => {
         </div>
       </div>
 
-      {/* Moving Lines Background Effect */}
-      <MovingLines theme="blue" density="medium" className="opacity-30" />
       
       {/* Truck Scroll Indicator - High z-index to appear above buttons */}
       <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 animate-bounce z-50">

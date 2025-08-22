@@ -32,9 +32,7 @@ const EspieGroup: React.FC = () => {
       </div>
       
       <main>
-        {/* Quando quiser adicionar vídeo, descomente e adicione o caminho: */}
-        <Hero />
-        {/* <Hero heroVideo="/path/to/your/video.mp4" /> */}
+        <Hero heroVideo="https://espwkkaldnisriqhxyzt.supabase.co/storage/v1/object/sign/sitefluxrow/Futuristic_Neon_Truck_Video_Generation.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xZThjMGVmZS0zY2EzLTQwMGMtYTU0ZC1hZTk4YzRiMDhlMTIiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJzaXRlZmx1eHJvdy9GdXR1cmlzdGljX05lb25fVHJ1Y2tfVmlkZW9fR2VuZXJhdGlvbi5tcDQiLCJpYXQiOjE3NTU4ODY4NTYsImV4cCI6MjA3MTI0Njg1Nn0.TWnS6U1PO2BXegD8N1pdi9X1jPE6DSPrqzykTIeuWT0" />
         <TrustBar />
         
         {/* Enhanced sections with parallax */}
