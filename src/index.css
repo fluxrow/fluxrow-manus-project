@@ -168,6 +168,21 @@ body {
   }
 }
 
+/* Typewriter effect */
+.typewriter-highlight {
+  position: relative;
+  z-index: 2;
+}
+
+.typewriter-cursor {
+  animation: typewriter-blink 1s ease-in-out infinite;
+}
+
+@keyframes typewriter-blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
 /* Cinematic Cursor */
 .cinematic-cursor {
   position: fixed;
