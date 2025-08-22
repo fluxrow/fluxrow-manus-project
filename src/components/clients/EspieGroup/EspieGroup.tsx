@@ -53,9 +53,9 @@ const EspieGroup: React.FC = () => {
         <MediaParallaxSection 
           theme="orange"
           media={{
-            type: 'image', 
-            src: '/src/assets/mobile-tech.jpg',
-            alt: 'Mobile logistics technology'
+            type: 'video',
+            src: 'https://espwkkaldnisriqhxyzt.supabase.co/storage/v1/object/sign/sitefluxrow/Truck_Transformation_Hero_Video.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xZThjMGVmZS0zY2EzLTQwMGMtYTU0ZC1hZTk4YzRiMDhlMTIiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJzaXRlZmx1eHJvdy9UcnVja19UcmFuc2Zvcm1hdGlvbl9IZXJvX1ZpZGVvLm1wNCIsImlhdCI6MTc1NTg4ODM3MiwiZXhwIjoyMDcxMjQ4MzcyfQ.vIh1D_yym0ZqsnAYG3laA4e8VPJ_csRU-_X9ms2Rs40',
+            alt: 'Truck transformation logistics video'
           }}
         >
           <FeaturedCaseStudy />
