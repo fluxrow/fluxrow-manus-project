@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import Header from './sections/Header';
 import Hero from './sections/Hero';
 import TrustBar from './sections/TrustBar';
-import WhyChooseUs from './sections/WhyChooseUs';
+import OverlayHighlights from './sections/OverlayHighlights';
 import ServicesOverview from './sections/ServicesOverview';
 import FeaturedCaseStudy from './sections/FeaturedCaseStudy';
 import CTAQuote from './sections/CTAQuote';
@@ -38,13 +38,14 @@ const EspieGroup: React.FC = () => {
         {/* Enhanced sections with parallax */}
         <MediaParallaxSection 
           theme="green"
+          id="safety"
           media={{
             type: 'video',
             src: 'https://espwkkaldnisriqhxyzt.supabase.co/storage/v1/object/sign/sitefluxrow/video%202%20site%20espie.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xZThjMGVmZS0zY2EzLTQwMGMtYTU0ZC1hZTk4YzRiMDhlMTIiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJzaXRlZmx1eHJvdy92aWRlbyAyIHNpdGUgZXNwaWUubXA0IiwiaWF0IjoxNzU1ODg3NjE1LCJleHAiOjIwNzEyNDc2MTV9._ow51m0DDGA36IjpG9tbTVcd3Si1pQ_hmPTpmaoqMCM',
             alt: 'Espie Group logistics services'
           }}
         >
-          <WhyChooseUs />
+          <OverlayHighlights />
         </MediaParallaxSection>
         
         <ServicesOverview />
