@@ -52,8 +52,8 @@ const EspieGroup: React.FC = () => {
         <ServicesOverview />
         
         <SplitVideoSection 
-          videoSrc="https://espwkkaldnisriqhxyzt.supabase.co/storage/v1/object/sign/sitefluxrow/Truck_Transformation_Hero_Video.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xZThjMGVmZS0zY2EzLTQwMGMtYTU0ZC1hZTk4YzRiMDhlMTIiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJzaXRlZmx1eHJvdy9UcnVja19UcmFuc2Zvcm1hdGlvbl9IZXJvX1ZpZGVvLm1wNCIsImlhdCI6MTc1NTg4ODM3MiwiZXhwIjoyMDcxMjQ4MzcyfQ.vIh1D_yym0ZqsnAYG3laA4e8VPJ_csRU-_X9ms2Rs40"
-          videoAlt="Truck transformation logistics services"
+          videoSrc="https://espwkkaldnisriqhxyzt.supabase.co/storage/v1/object/sign/sitefluxrow/video%20truck%20editado%20.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xZThjMGVmZS0zY2EzLTQwMGMtYTU0ZC1hZTk4YzRiMDhlMTIiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJzaXRlZmx1eHJvdy92aWRlbyB0cnVjayBlZGl0YWRvIC5tcDQiLCJpYXQiOjE3NTU4ODg4NDUsImV4cCI6MjA3MTI0ODg0NX0.qBmPDJjRdZoiwVjb_QkeBbP603aV0L5YNOT-hVtGi8Q"
+          videoAlt="Truck editado logistics services"
         />
         
         <CTAQuote />
