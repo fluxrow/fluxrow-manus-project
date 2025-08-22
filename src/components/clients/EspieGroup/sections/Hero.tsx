@@ -54,7 +54,7 @@ const Hero: React.FC<HeroProps> = ({ heroVideo }) => {
             
             <div className={`text-lg md:text-xl max-w-2xl mx-auto ${heroVideo ? 'text-white/90' : 'text-slate-600'}`}>
               <TypewriterText
-                text="Professional logistics services across the United States. Secure, reliable, and compliant transportation for your business needs."
+                text="Top logistics services across the United States. Safe, fast, and compliant transport for your business needs."
                 speed={3}
                 delay={450}
                 highlightColor="green"
