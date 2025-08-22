@@ -52,16 +52,16 @@ const Hero: React.FC<HeroProps> = ({ heroVideo }) => {
               />
             </h1>
             
-            <p className={`text-lg md:text-xl max-w-2xl mx-auto ${heroVideo ? 'text-white/90' : 'text-slate-600'}`}>
+            <div className={`text-lg md:text-xl max-w-2xl mx-auto ${heroVideo ? 'text-white/90' : 'text-slate-600'}`}>
               <TypewriterText
                 text="Professional logistics services across the United States. Secure, timely, and compliant transportation for your business needs."
                 speed={3}
                 delay={450}
                 highlightColor="green"
                 showCursor={false}
-                className="block"
+                className="block break-words"
               />
-            </p>
+            </div>
           </div>
             
           {/* Trust Indicators */}
