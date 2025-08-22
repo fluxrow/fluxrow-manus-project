@@ -39,9 +39,9 @@ const EspieGroup: React.FC = () => {
         <MediaParallaxSection 
           theme="green"
           media={{
-            type: 'image',
-            src: '/src/assets/tech-workspace.jpg',
-            alt: 'Modern logistics workspace'
+            type: 'video',
+            src: 'https://espwkkaldnisriqhxyzt.supabase.co/storage/v1/object/sign/sitefluxrow/video%202%20site%20espie.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xZThjMGVmZS0zY2EzLTQwMGMtYTU0ZC1hZTk4YzRiMDhlMTIiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJzaXRlZmx1eHJvdy92aWRlbyAyIHNpdGUgZXNwaWUubXA0IiwiaWF0IjoxNzU1ODg3NjE1LCJleHAiOjIwNzEyNDc2MTV9._ow51m0DDGA36IjpG9tbTVcd3Si1pQ_hmPTpmaoqMCM',
+            alt: 'Espie Group logistics services'
           }}
         >
           <WhyChooseUs />
