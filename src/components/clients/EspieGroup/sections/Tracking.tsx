@@ -8,13 +8,27 @@ const Tracking: React.FC = () => {
   const [trackingNumber, setTrackingNumber] = useState("");
 
   return (
-    <section id="tracking" className="py-20 bg-espie-light">
-      <div className="container mx-auto px-4">
+    <section id="tracking" className="relative py-20 overflow-hidden">
+      {/* Video Background */}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover"
+      >
+        <source src="/src/assets/tracking-background.mp4" type="video/mp4" />
+      </video>
+      
+      {/* Dark overlay for readability */}
+      <div className="absolute inset-0 bg-black/60"></div>
+      
+      <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-espie-primary mb-4">
+          <h2 className="text-4xl font-bold text-white mb-4">
             Track Your Shipment
           </h2>
-          <p className="text-xl text-espie-gray max-w-2xl mx-auto">
+          <p className="text-xl text-white/90 max-w-2xl mx-auto">
             Real-time tracking and updates for complete visibility of your cargo
           </p>
         </div>
