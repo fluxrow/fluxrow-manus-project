@@ -55,7 +55,7 @@ const Hero: React.FC<HeroProps> = ({ heroVideo }) => {
             <p className={`text-lg md:text-xl max-w-2xl mx-auto ${heroVideo ? 'text-white/90' : 'text-slate-600'}`}>
               <TypewriterText
                 text="Professional logistics services across the United States. Secure, timely, and compliant transportation for your business needs."
-                speed={8}
+                speed={3}
                 delay={450}
                 highlightColor="green"
                 showCursor={false}
