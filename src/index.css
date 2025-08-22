@@ -820,3 +820,44 @@ img:not(.lazy) {
   opacity: 1;
   transform: translate(0);
 }
+
+/* ===========================
+   NEON SECTION DIVIDERS & MOVING LINES
+   =========================== */
+
+/* Neon flow animation for section dividers */
+@keyframes neonFlow {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Moving lines animations */
+@keyframes moveHorizontal {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100vw); }
+}
+
+@keyframes moveVertical {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+@keyframes moveDiagonal {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Enhanced pulse for nodes */
+@keyframes pulse {
+  0%, 100% { opacity: 0.8; transform: scale(1); }
+  50% { opacity: 0.3; transform: scale(1.5); }
+}
+
+/* Neon flow utility class */
+.neon-flow {
+  animation: neonFlow 3s linear infinite;
+}
+
+.neon-flow-reverse {
+  animation: neonFlow 3s linear infinite reverse;
+}

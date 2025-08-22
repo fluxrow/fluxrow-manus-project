@@ -1,6 +1,8 @@
 import React from 'react';
 import { ArrowRight, Shield, Truck, Clock } from 'lucide-react';
 import { Button } from "@/components/ui/button";
+import SectionDivider from '../effects/SectionDivider';
+import MovingLines from '../effects/MovingLines';
 
 interface HeroProps {
   heroVideo?: string;
@@ -89,12 +91,20 @@ const Hero: React.FC<HeroProps> = ({ heroVideo }) => {
         </div>
       </div>
 
+      {/* Moving Lines Background Effect */}
+      <MovingLines theme="blue" density="medium" className="opacity-30" />
+      
       {/* Truck Scroll Indicator - High z-index to appear above buttons */}
       <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 animate-bounce z-50">
         <div className={`flex flex-col items-center space-y-2 rounded-full px-3 py-2 shadow-sm border ${heroVideo ? 'bg-black/20 backdrop-blur-sm border-white/20' : 'bg-white/90 border-slate-200'}`}>
           <Truck className="w-6 h-6 text-blue-600" />
           <div className={`text-xs font-medium ${heroVideo ? 'text-white' : 'text-slate-500'}`}>Scroll</div>
         </div>
+      </div>
+      
+      {/* Section Divider at bottom */}
+      <div className="absolute bottom-0 left-0 right-0 z-40">
+        <SectionDivider theme="blue" animate={true} />
       </div>
       
       {/* Quick Contact moved below hero - Mobile optimized */}
