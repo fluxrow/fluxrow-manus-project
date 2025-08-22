@@ -68,7 +68,13 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				}
+				},
+				'espie-primary': 'hsl(var(--espie-primary))',
+				'espie-secondary': 'hsl(var(--espie-secondary))',
+				'espie-accent': 'hsl(var(--espie-accent))',
+				'espie-success': 'hsl(var(--espie-success))',
+				'espie-gray': 'hsl(var(--espie-gray))',
+				'espie-light': 'hsl(var(--espie-light))'
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
