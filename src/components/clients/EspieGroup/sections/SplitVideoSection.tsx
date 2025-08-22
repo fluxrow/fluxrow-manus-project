@@ -62,17 +62,6 @@ const SplitVideoSection: React.FC<SplitVideoSectionProps> = ({ videoSrc, videoAl
       {/* Content Side - Right */}
       <div className="w-full lg:w-1/2 flex items-center justify-center p-8 lg:p-16 bg-gray-50">
         <div className="max-w-xl w-full animate-fade-in">
-          {/* Header */}
-          <div className="text-center lg:text-left mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold text-espie-primary mb-4">
-              Complete Transport Solutions
-            </h2>
-            <p className="text-lg text-espie-gray leading-relaxed">
-              From single shipments to dedicated fleet services, we deliver results 
-              that exceed expectations.
-            </p>
-          </div>
-
           {/* Services Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
             {services.map((service, index) => {
