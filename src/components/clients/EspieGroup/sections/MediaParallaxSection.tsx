@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, ReactNode } from 'react';
 import SectionDivider from '../effects/SectionDivider';
-import MovingLines from '../effects/MovingLines';
 
 interface MediaParallaxSectionProps {
   children: ReactNode;
@@ -112,9 +111,6 @@ const MediaParallaxSection: React.FC<MediaParallaxSectionProps> = ({
       
       {/* Content Layer */}
       <div className={`${media && window.innerWidth >= 768 ? 'sticky top-0 z-20' : ''} w-full min-h-screen flex items-center justify-center relative`}>
-        {/* Moving Lines Background Effect */}
-        <MovingLines theme={theme} density="low" className="opacity-20" />
-        
         <div className="w-full relative z-10">
           {children}
         </div>

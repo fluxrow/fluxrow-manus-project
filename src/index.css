@@ -145,6 +145,29 @@ body {
    CINEMATIC ANIMATIONS & EFFECTS
    =========================================== */
 
+/* Card outline tracer animation */
+.border-outline-tracer {
+  position: relative;
+  border-width: 1px;
+  border-style: solid;
+  animation: outline-tracer 4s ease-in-out infinite;
+}
+
+@keyframes outline-tracer {
+  0%, 100% {
+    border-color: transparent transparent transparent currentColor;
+  }
+  25% {
+    border-color: currentColor transparent transparent transparent;
+  }
+  50% {
+    border-color: transparent currentColor transparent transparent;
+  }
+  75% {
+    border-color: transparent transparent currentColor transparent;
+  }
+}
+
 /* Cinematic Cursor */
 .cinematic-cursor {
   position: fixed;
