@@ -45,8 +45,8 @@ const Hero: React.FC<HeroProps> = ({ heroVideo }) => {
             <h1 className={`text-[clamp(2rem,6vw,4rem)] font-bold leading-tight max-w-4xl mx-auto ${heroVideo ? 'text-white' : 'text-slate-900'}`}>
               <TypewriterText 
                 text="Reliable Transport Solutions" 
-                speed={35} 
-                delay={150} 
+                speed={15} 
+                delay={50} 
                 highlightColor="green" 
                 className="block" 
               />
@@ -55,8 +55,8 @@ const Hero: React.FC<HeroProps> = ({ heroVideo }) => {
             <p className={`text-lg md:text-xl max-w-2xl mx-auto ${heroVideo ? 'text-white/90' : 'text-slate-600'}`}>
               <TypewriterText
                 text="Professional logistics services across the United States. Secure, timely, and compliant transportation for your business needs."
-                speed={20}
-                delay={900}
+                speed={8}
+                delay={450}
                 highlightColor="green"
                 showCursor={false}
                 className="block"
