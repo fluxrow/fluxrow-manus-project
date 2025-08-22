@@ -10,7 +10,7 @@ interface HeroProps {
 
 const Hero: React.FC<HeroProps> = ({ heroVideo }) => {
   return (
-    <section id="home" className="relative min-h-[70vh] flex items-center bg-white pt-32 overflow-hidden" data-theme="blue">
+    <section id="home" className="relative min-h-[70vh] flex items-center bg-white pt-32 overflow-hidden parallax-section" data-theme="blue">
       {/* Background Media */}
       {heroVideo ? (
         <div className="absolute inset-0 z-0">
@@ -33,7 +33,7 @@ const Hero: React.FC<HeroProps> = ({ heroVideo }) => {
         </div>
       )}
       
-      <div className="container mx-auto px-6 max-w-5xl relative z-20">
+      <div className="container mx-auto px-6 max-w-5xl relative z-20 parallax-content" data-parallax="0.5">
         <div className="text-center space-y-8 animate-fade-in">
           {/* Content */}
           <div className="space-y-6">
@@ -103,14 +103,6 @@ const Hero: React.FC<HeroProps> = ({ heroVideo }) => {
         </div>
       </div>
 
-      
-      {/* Truck Scroll Indicator - High z-index to appear above buttons */}
-      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 animate-bounce z-50">
-        <div className={`flex flex-col items-center space-y-2 rounded-full px-3 py-2 shadow-sm border ${heroVideo ? 'bg-black/20 backdrop-blur-sm border-white/20' : 'bg-white/90 border-slate-200'}`}>
-          <Truck className="w-6 h-6 text-blue-600" />
-          <div className={`text-xs font-medium ${heroVideo ? 'text-white' : 'text-slate-500'}`}>Scroll</div>
-        </div>
-      </div>
       
       {/* Section Divider at bottom */}
       <div className="absolute bottom-0 left-0 right-0 z-40">
