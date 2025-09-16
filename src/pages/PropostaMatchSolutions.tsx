@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { CheckCircle, Clock, DollarSign, FileText, Phone, Mail, MessageCircle, Star, Award, Users, TrendingUp } from 'lucide-react';
+import { CheckCircle, Clock, DollarSign, FileText, Phone, Mail, MessageCircle, Star, Award, Users, TrendingUp, Target, BarChart3, Zap, PieChart } from 'lucide-react';
 import aiAutomationImage from "@/assets/ai-sales-automation.jpg";
 import businessSuccessImage from "@/assets/business-success-roi.jpg";
 
@@ -61,21 +61,21 @@ export default function PropostaMatchSolutions() {
             <CardContent>
               <div className="space-y-6">
                 <p className="text-gray-300 text-lg leading-relaxed">
-                  <strong className="text-white">Nós resolvemos problemas através da tecnologia.</strong> Não vendemos apenas serviços - 
-                  criamos soluções sob medida que transformam desafios em oportunidades de crescimento.
+                  <strong className="text-white">Somos uma agência digital completa</strong> que resolve problemas através da tecnologia. 
+                  Não vendemos apenas serviços - criamos ecossistemas digitais integrados que transformam desafios em oportunidades de crescimento.
                 </p>
                 <p className="text-gray-400">
-                  Nossa expertise está focada em áreas estratégicas que realmente impactam o crescimento do seu negócio:
+                  Nossa expertise abrange todo o espectro digital, desde estratégia até execução, em áreas que realmente impactam o crescimento do seu negócio:
                 </p>
-                <div className="grid md:grid-cols-2 gap-6">
+                <div className="grid md:grid-cols-3 gap-6">
                   <div className="bg-gradient-to-br from-purple-900/30 to-transparent p-6 rounded-xl border border-purple-500/20 backdrop-blur-sm hover:border-purple-400/40 transition-all duration-300 hover:transform hover:scale-105">
                     <div className="flex items-start gap-3">
                       <TrendingUp className="w-7 h-7 text-purple-400 mt-1" />
                       <div>
-                        <h4 className="font-semibold mb-2 text-purple-300 text-lg">Estratégias de Mídia & Automação</h4>
+                        <h4 className="font-semibold mb-2 text-purple-300 text-lg">Automação com IA</h4>
                         <p className="text-sm text-gray-400 leading-relaxed">
-                          Criamos automações inteligentes que conectam suas campanhas de mídia ao funil de vendas, 
-                          maximizando cada lead gerado.
+                          Criamos automações inteligentes que conectam suas campanhas ao funil de vendas, 
+                          maximizando cada lead gerado com IA.
                         </p>
                       </div>
                     </div>
@@ -84,34 +84,58 @@ export default function PropostaMatchSolutions() {
                     <div className="flex items-start gap-3">
                       <MessageCircle className="w-7 h-7 text-pink-400 mt-1" />
                       <div>
-                        <h4 className="font-semibold mb-2 text-pink-300 text-lg">Agentes de IA Conversacionais</h4>
+                        <h4 className="font-semibold mb-2 text-pink-300 text-lg">Social Media</h4>
                         <p className="text-sm text-gray-400 leading-relaxed">
-                          Desenvolvemos assistentes virtuais que entendem seu negócio e se comunicam de forma 
-                          natural com seus prospects e clientes.
+                          Gestão completa de redes sociais com estratégias automatizadas, conteúdo personalizado 
+                          e engajamento inteligente.
                         </p>
                       </div>
                     </div>
                   </div>
                   <div className="bg-gradient-to-br from-cyan-900/30 to-transparent p-6 rounded-xl border border-cyan-500/20 backdrop-blur-sm hover:border-cyan-400/40 transition-all duration-300 hover:transform hover:scale-105">
                     <div className="flex items-start gap-3">
-                      <CheckCircle className="w-7 h-7 text-cyan-400 mt-1" />
+                      <Target className="w-7 h-7 text-cyan-400 mt-1" />
                       <div>
-                        <h4 className="font-semibold mb-2 text-cyan-300 text-lg">Gestão de Automações Inteligentes</h4>
+                        <h4 className="font-semibold mb-2 text-cyan-300 text-lg">Tráfego Pago</h4>
                         <p className="text-sm text-gray-400 leading-relaxed">
-                          Implementamos e otimizamos fluxos que trabalham 24/7, garantindo que nenhuma 
-                          oportunidade seja perdida.
+                          Google Ads, Meta Ads, LinkedIn Ads, YouTube Ads e TikTok Ads com otimização 
+                          contínua e ROI garantido.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="bg-gradient-to-br from-emerald-900/30 to-transparent p-6 rounded-xl border border-emerald-500/20 backdrop-blur-sm hover:border-emerald-400/40 transition-all duration-300 hover:transform hover:scale-105">
+                    <div className="flex items-start gap-3">
+                      <BarChart3 className="w-7 h-7 text-emerald-400 mt-1" />
+                      <div>
+                        <h4 className="font-semibold mb-2 text-emerald-300 text-lg">Marketing Digital</h4>
+                        <p className="text-sm text-gray-400 leading-relaxed">
+                          SEO, Email Marketing, Content Marketing e estratégias omnichannel 
+                          para presença digital completa.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="bg-gradient-to-br from-orange-900/30 to-transparent p-6 rounded-xl border border-orange-500/20 backdrop-blur-sm hover:border-orange-400/40 transition-all duration-300 hover:transform hover:scale-105">
+                    <div className="flex items-start gap-3">
+                      <Zap className="w-7 h-7 text-orange-400 mt-1" />
+                      <div>
+                        <h4 className="font-semibold mb-2 text-orange-300 text-lg">Automações de Marketing</h4>
+                        <p className="text-sm text-gray-400 leading-relaxed">
+                          Nutrição de leads, CRM integrado, workflows automatizados e 
+                          jornadas personalizadas do cliente.
                         </p>
                       </div>
                     </div>
                   </div>
                   <div className="bg-gradient-to-br from-indigo-900/30 to-transparent p-6 rounded-xl border border-indigo-500/20 backdrop-blur-sm hover:border-indigo-400/40 transition-all duration-300 hover:transform hover:scale-105">
                     <div className="flex items-start gap-3">
-                      <Star className="w-7 h-7 text-indigo-400 mt-1" />
+                      <PieChart className="w-7 h-7 text-indigo-400 mt-1" />
                       <div>
-                        <h4 className="font-semibold mb-2 text-indigo-300 text-lg">SaaS & Micro SaaS</h4>
+                        <h4 className="font-semibold mb-2 text-indigo-300 text-lg">Analytics & Relatórios</h4>
                         <p className="text-sm text-gray-400 leading-relaxed">
-                          Desenvolvemos soluções escaláveis e personalizadas que crescem junto com seu negócio, 
-                          resolvendo desafios específicos do seu mercado.
+                          Dashboard completo de resultados, métricas em tempo real e 
+                          insights estratégicos para tomada de decisão.
                         </p>
                       </div>
                     </div>
