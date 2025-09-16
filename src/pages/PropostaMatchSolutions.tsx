@@ -35,7 +35,7 @@ export default function PropostaMatchSolutions() {
             Olá, <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Thiago</span>! 👋
           </h1>
           <p className="text-xl text-gray-300 mb-6">
-            Proposta especial para você e sua <strong className="text-purple-300">Match Solutions</strong>
+            Proposta para Match Solutions
           </p>
           <p className="text-lg text-gray-400 max-w-2xl mx-auto leading-relaxed">
             Preparamos uma solução sob medida para suas necessidades. Confira todos os detalhes abaixo.
