@@ -19,6 +19,8 @@ import ConteudoYouTubeMonetizacao from "./pages/ConteudoYouTubeMonetizacao";
 import ConteudoIAEscalar from "./pages/ConteudoIAEscalar";
 import Modulo1Premium from "./pages/Modulo1Premium";
 import ClientPreview from "./pages/ClientPreview";
+import Propostas from "./pages/Propostas";
+import PropostaView from "./pages/PropostaView";
 
 const queryClient = new QueryClient();
 
@@ -42,6 +44,8 @@ const App = () => (
           <Route path="/conteudos/ia-escalar-negocio" element={<ConteudoIAEscalar />} />
           <Route path="/modulos/1-premium" element={<Modulo1Premium />} />
           <Route path="/preview/:slug" element={<ClientPreview />} />
+          <Route path="/propostas" element={<Propostas />} />
+          <Route path="/proposta/:clienteSlug" element={<PropostaView />} />
           <Route path="/conteudos/:slug" element={<div>Página Individual de Conteúdo</div>} />
           <Route path="/contato" element={<Contato />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
