@@ -39,10 +39,10 @@ export default function PropostaMatchSolutions() {
             </Badge>
           </div>
           <h1 className="text-5xl font-bold mb-4 bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent">
-            Olá, <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Match Solutions</span>! 👋
+            Olá, <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Thiago</span>! 👋
           </h1>
           <p className="text-xl text-gray-300 mb-6">
-            Proposta especial para <strong className="text-purple-300">Match Solutions</strong>
+            Proposta especial para você e sua <strong className="text-purple-300">Match Solutions</strong>
           </p>
           <p className="text-lg text-gray-400 max-w-2xl mx-auto leading-relaxed">
             Preparamos uma solução sob medida para suas necessidades. Confira todos os detalhes abaixo.
@@ -231,44 +231,44 @@ export default function PropostaMatchSolutions() {
           </div>
 
           {/* Diferenciais Técnicos */}
-          <Card className="border-green-200 bg-green-50">
+          <Card className="border-2 border-green-400/30 bg-gradient-to-br from-green-900/20 to-emerald-900/10 backdrop-blur-sm animate-scale-in">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-green-700">
-                <TrendingUp className="w-5 h-5" />
-                Diferenciais Técnicos Únicos
+              <CardTitle className="flex items-center gap-3 text-2xl">
+                <TrendingUp className="w-7 h-7 text-green-400" />
+                <span className="bg-gradient-to-r from-green-300 to-emerald-300 bg-clip-text text-transparent">Diferenciais Técnicos Únicos</span>
               </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-4">
                   <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
+                    <div className="w-2 h-2 bg-green-400 rounded-full mt-2"></div>
                     <div>
-                      <h4 className="font-semibold text-green-700">Capacidade 10x Superior</h4>
-                      <p className="text-sm text-green-600">SDR IA atende 100+ pessoas simultaneamente vs. 5-8 humano</p>
+                      <h4 className="font-semibold text-green-300">Capacidade 10x Superior</h4>
+                      <p className="text-sm text-gray-300">SDR IA atende 100+ pessoas simultaneamente vs. 5-8 humano</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
+                    <div className="w-2 h-2 bg-green-400 rounded-full mt-2"></div>
                     <div>
-                      <h4 className="font-semibold text-green-700">Follow-up Inteligente</h4>
-                      <p className="text-sm text-green-600">Sistema baseado em comportamento aumenta conversão em 35%</p>
+                      <h4 className="font-semibold text-green-300">Follow-up Inteligente</h4>
+                      <p className="text-sm text-gray-300">Sistema baseado em comportamento aumenta conversão em 35%</p>
                     </div>
                   </div>
                 </div>
                 <div className="space-y-4">
                   <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
+                    <div className="w-2 h-2 bg-green-400 rounded-full mt-2"></div>
                     <div>
-                      <h4 className="font-semibold text-green-700">Operação 24/7</h4>
-                      <p className="text-sm text-green-600">Sem pausas, intervalos ou limitações humanas</p>
+                      <h4 className="font-semibold text-green-300">Operação 24/7</h4>
+                      <p className="text-sm text-gray-300">Sem pausas, intervalos ou limitações humanas</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
+                    <div className="w-2 h-2 bg-green-400 rounded-full mt-2"></div>
                     <div>
-                      <h4 className="font-semibold text-green-700">Qualificação Instantânea</h4>
-                      <p className="text-sm text-green-600">IA identifica prospects qualificados em tempo real</p>
+                      <h4 className="font-semibold text-green-300">Qualificação Instantânea</h4>
+                      <p className="text-sm text-gray-300">IA identifica prospects qualificados em tempo real</p>
                     </div>
                   </div>
                 </div>
