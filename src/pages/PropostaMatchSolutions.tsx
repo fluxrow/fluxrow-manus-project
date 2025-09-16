@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { CheckCircle, Clock, DollarSign, FileText, Phone, Mail, MessageCircle, Star, Award, Users, TrendingUp, Target, BarChart3, Zap, PieChart } from 'lucide-react';
+import { CheckCircle, Clock, DollarSign, FileText, Phone, Mail, MessageCircle, Star, Award, Users, TrendingUp, Target, BarChart3, Zap, PieChart, Calendar } from 'lucide-react';
 import aiAutomationImage from "@/assets/ai-sales-automation.jpg";
 import businessSuccessImage from "@/assets/business-success-roi.jpg";
 
@@ -448,6 +448,51 @@ export default function PropostaMatchSolutions() {
                     <li>• Follow-up inteligente baseado em comportamento</li>
                     <li>• Qualificação automática com 94% de precisão</li>
                   </ul>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Condições de Investimento */}
+          <Card className="bg-gradient-to-br from-yellow-900/40 via-orange-900/30 to-yellow-900/40 border-2 border-yellow-400/40 backdrop-blur-sm shadow-2xl shadow-yellow-500/20">
+            <CardContent className="p-8">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="p-3 bg-yellow-500/20 rounded-xl">
+                  <FileText className="w-6 h-6 text-yellow-400" />
+                </div>
+                <h3 className="text-2xl font-bold">
+                  <span className="bg-gradient-to-r from-yellow-300 to-orange-300 bg-clip-text text-transparent">
+                    Condições de Investimento
+                  </span>
+                </h3>
+              </div>
+
+              <div className="space-y-4">
+                <div className="bg-black/20 rounded-xl p-6 border border-yellow-500/20">
+                  <h4 className="text-lg font-semibold text-yellow-300 mb-3 flex items-center gap-2">
+                    <DollarSign className="w-5 h-5" />
+                    Primeira Parcela
+                  </h4>
+                  <p className="text-gray-300 mb-2">Pagamento à vista na assinatura do contrato</p>
+                  <div className="flex gap-4 text-sm">
+                    <span className="bg-green-500/20 text-green-300 px-3 py-1 rounded-lg">✓ PIX</span>
+                    <span className="bg-blue-500/20 text-blue-300 px-3 py-1 rounded-lg">✓ Transferência Bancária</span>
+                  </div>
+                </div>
+
+                <div className="bg-black/20 rounded-xl p-6 border border-yellow-500/20">
+                  <h4 className="text-lg font-semibold text-yellow-300 mb-3 flex items-center gap-2">
+                    <Calendar className="w-5 h-5" />
+                    Parcelas Seguintes
+                  </h4>
+                  <p className="text-gray-300">A partir do 2º mês: cobrança via boleto bancário</p>
+                </div>
+
+                <div className="bg-gradient-to-r from-green-500/10 to-blue-500/10 rounded-xl p-4 border border-green-500/30">
+                  <p className="text-green-300 font-medium flex items-center gap-2">
+                    <CheckCircle className="w-5 h-5" />
+                    Início imediato do projeto após confirmação do pagamento
+                  </p>
                 </div>
               </div>
             </CardContent>
