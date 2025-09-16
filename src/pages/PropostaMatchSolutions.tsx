@@ -3,22 +3,15 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { CheckCircle, Clock, DollarSign, FileText, Phone, Mail, MessageCircle, Star, Award, Users, TrendingUp, Target, BarChart3, Zap, PieChart, Calendar } from 'lucide-react';
+import { CheckCircle, Clock, DollarSign, FileText, Phone, MessageCircle, Star, Award, Users, TrendingUp, Target, BarChart3, Zap, PieChart, Calendar } from 'lucide-react';
 import aiAutomationImage from "@/assets/ai-sales-automation.jpg";
 import businessSuccessImage from "@/assets/business-success-roi.jpg";
 
 export default function PropostaMatchSolutions() {
   const handleWhatsAppContact = () => {
     const message = `Olá! Vi a proposta para Sistema Completo de Automação em Vendas com IA e gostaria de conversar mais sobre o projeto. Com ticket médio de R$ 35.000, vejo que o ROI pode chegar a 2.233%!`;
-    const whatsappUrl = `https://wa.me/5511999999999?text=${encodeURIComponent(message)}`;
+    const whatsappUrl = `https://wa.me/5541992361868?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
-  };
-
-  const handleEmailContact = () => {
-    const subject = `Proposta: Sistema Completo de Automação em Vendas com IA - Match Solutions`;
-    const body = `Olá!\n\nVi a proposta personalizada para automação de vendas com IA e fiquei muito interessado.\n\nOs números apresentados são impressionantes:\n- ROI de até 2.233% com 3 vendas/mês\n- Economia de R$ 2.000-3.750/mês vs contratação interna\n- Capacidade de atender 100+ prospects simultaneamente\n\nGostaria de agendar uma conversa para discutir a implementação.\n\nObrigado!`;
-    const mailtoUrl = `mailto:contato@suaempresa.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    window.open(mailtoUrl);
   };
 
   return (
@@ -509,7 +502,7 @@ export default function PropostaMatchSolutions() {
               <p className="text-lg mb-6 text-gray-300">
                 Entre em contato e vamos transformar sua operação de vendas!
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <div className="flex justify-center">
                 <Button 
                   onClick={handleWhatsAppContact}
                   size="lg"
@@ -517,15 +510,6 @@ export default function PropostaMatchSolutions() {
                 >
                   <MessageCircle className="w-5 h-5 mr-2" />
                   WhatsApp
-                </Button>
-                <Button 
-                  onClick={handleEmailContact}
-                  size="lg" 
-                  variant="outline"
-                  className="border-purple-400/50 text-purple-300 hover:bg-purple-900/30 hover:text-purple-200 font-semibold py-3 px-8 rounded-xl transition-all duration-300 hover:scale-105"
-                >
-                  <Mail className="w-5 h-5 mr-2" />
-                  E-mail
                 </Button>
               </div>
             </CardContent>
