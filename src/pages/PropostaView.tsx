@@ -66,14 +66,14 @@ export default function PropostaView() {
   }
 
   const handleWhatsAppContact = () => {
-    const message = `Olá! Vi a proposta para ${proposta.servico} e gostaria de conversar mais sobre o projeto.`;
+    const message = `Olá! Vi a proposta para ${proposta.servico} e gostaria de conversar mais sobre o projeto. Com ticket médio de R$ 35.000, vejo que o ROI pode chegar a 2.233%!`;
     const whatsappUrl = `https://wa.me/5511999999999?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
   };
 
   const handleEmailContact = () => {
-    const subject = `Proposta: ${proposta.servico}`;
-    const body = `Olá!\n\nVi a proposta personalizada e gostaria de discutir mais detalhes sobre o projeto.\n\nObrigado!`;
+    const subject = `Proposta: ${proposta.servico} - Match Solutions`;
+    const body = `Olá!\n\nVi a proposta personalizada para automação de vendas com IA e fiquei muito interessado.\n\nOs números apresentados são impressionantes:\n- ROI de até 2.233% com 3 vendas/mês\n- Economia de R$ 2.000-3.750/mês vs contratação interna\n- Capacidade de atender 100+ prospects simultaneamente\n\nGostaria de agendar uma conversa para discutir a implementação.\n\nObrigado!`;
     const mailtoUrl = `mailto:contato@suaempresa.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     window.open(mailtoUrl);
   };
@@ -186,30 +186,151 @@ export default function PropostaView() {
             </Card>
           )}
 
-          {/* Diferenciais */}
+          {/* Quem Somos */}
           <Card className="border-primary/20 bg-primary/5">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Award className="w-5 h-5 text-primary" />
-                Por que escolher nossos serviços?
+                Quem Somos
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="grid md:grid-cols-3 gap-6">
-                <div className="text-center">
-                  <Users className="w-8 h-8 mx-auto mb-2 text-primary" />
-                  <h4 className="font-semibold mb-1">+500 Projetos</h4>
-                  <p className="text-sm text-muted-foreground">Experiência comprovada</p>
+              <div className="space-y-6">
+                <p className="text-muted-foreground">
+                  Somos especialistas em automação de vendas com IA, com mais de 200 projetos implementados 
+                  e R$ 50 milhões em vendas geradas para nossos clientes.
+                </p>
+                <div className="grid md:grid-cols-3 gap-6">
+                  <div className="text-center">
+                    <Users className="w-8 h-8 mx-auto mb-2 text-primary" />
+                    <h4 className="font-semibold mb-1">+200 Projetos</h4>
+                    <p className="text-sm text-muted-foreground">Experiência comprovada</p>
+                  </div>
+                  <div className="text-center">
+                    <DollarSign className="w-8 h-8 mx-auto mb-2 text-green-500" />
+                    <h4 className="font-semibold mb-1">R$ 50M+ Gerados</h4>
+                    <p className="text-sm text-muted-foreground">Em vendas para clientes</p>
+                  </div>
+                  <div className="text-center">
+                    <CheckCircle className="w-8 h-8 mx-auto mb-2 text-blue-500" />
+                    <h4 className="font-semibold mb-1">94% Precisão</h4>
+                    <p className="text-sm text-muted-foreground">Na qualificação de leads</p>
+                  </div>
                 </div>
-                <div className="text-center">
-                  <CheckCircle className="w-8 h-8 mx-auto mb-2 text-green-500" />
-                  <h4 className="font-semibold mb-1">99% Aprovação</h4>
-                  <p className="text-sm text-muted-foreground">Clientes satisfeitos</p>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Diferenciais Técnicos */}
+          <Card className="border-green-200 bg-green-50">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-green-700">
+                <TrendingUp className="w-5 h-5" />
+                Diferenciais Técnicos Únicos
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="space-y-4">
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
+                    <div>
+                      <h4 className="font-semibold text-green-700">Capacidade 10x Superior</h4>
+                      <p className="text-sm text-green-600">SDR IA atende 100+ pessoas simultaneamente vs. 5-8 humano</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
+                    <div>
+                      <h4 className="font-semibold text-green-700">Follow-up Inteligente</h4>
+                      <p className="text-sm text-green-600">Sistema baseado em comportamento aumenta conversão em 35%</p>
+                    </div>
+                  </div>
                 </div>
-                <div className="text-center">
-                  <Clock className="w-8 h-8 mx-auto mb-2 text-blue-500" />
-                  <h4 className="font-semibold mb-1">Entrega no Prazo</h4>
-                  <p className="text-sm text-muted-foreground">Pontualidade garantida</p>
+                <div className="space-y-4">
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
+                    <div>
+                      <h4 className="font-semibold text-green-700">Operação 24/7</h4>
+                      <p className="text-sm text-green-600">Sem pausas, intervalos ou limitações humanas</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
+                    <div>
+                      <h4 className="font-semibold text-green-700">Qualificação Instantânea</h4>
+                      <p className="text-sm text-green-600">IA identifica prospects qualificados em tempo real</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Análise de Valor */}
+          <Card className="border-blue-200 bg-blue-50">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-blue-700">
+                <DollarSign className="w-5 h-5" />
+                Análise de Valor da Solução
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-6">
+                <div>
+                  <h4 className="font-semibold text-blue-700 mb-3">💰 Cenários de ROI com Ticket Médio de R$ 35.000:</h4>
+                  <div className="grid md:grid-cols-3 gap-4">
+                    <div className="bg-white p-4 rounded-lg border border-blue-200">
+                      <div className="text-center">
+                        <h5 className="font-semibold text-blue-700">1 Venda/Mês</h5>
+                        <p className="text-2xl font-bold text-green-600">ROI 678%</p>
+                        <p className="text-sm text-blue-600">R$ 30.500 lucro líquido</p>
+                      </div>
+                    </div>
+                    <div className="bg-white p-4 rounded-lg border border-blue-200">
+                      <div className="text-center">
+                        <h5 className="font-semibold text-blue-700">2 Vendas/Mês</h5>
+                        <p className="text-2xl font-bold text-green-600">ROI 1.456%</p>
+                        <p className="text-sm text-blue-600">R$ 65.500 lucro líquido</p>
+                      </div>
+                    </div>
+                    <div className="bg-white p-4 rounded-lg border border-blue-200">
+                      <div className="text-center">
+                        <h5 className="font-semibold text-blue-700">3 Vendas/Mês</h5>
+                        <p className="text-2xl font-bold text-green-600">ROI 2.233%</p>
+                        <p className="text-sm text-blue-600">R$ 100.500 lucro líquido</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div>
+                  <h4 className="font-semibold text-blue-700 mb-3">💼 Economia vs Contratação Interna:</h4>
+                  <div className="bg-white p-4 rounded-lg border border-blue-200">
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <div>
+                        <h5 className="font-semibold text-red-600">Custos Internos:</h5>
+                        <ul className="text-sm text-muted-foreground space-y-1">
+                          <li>• SDR Júnior: R$ 5.250/mês (com encargos)</li>
+                          <li>• SDR Pleno: R$ 8.250/mês (com encargos)</li>
+                          <li>• Treinamento: R$ 2.000-5.000</li>
+                          <li>• Ferramentas: R$ 500-1.000/mês</li>
+                        </ul>
+                      </div>
+                      <div>
+                        <h5 className="font-semibold text-green-600">Nossa Solução:</h5>
+                        <ul className="text-sm text-muted-foreground space-y-1">
+                          <li>• Mensalidade: R$ 4.500</li>
+                          <li>• Setup: R$ 0 (incluso)</li>
+                          <li>• Treinamento: Incluso</li>
+                          <li>• Suporte: Incluso</li>
+                        </ul>
+                        <p className="text-lg font-bold text-green-600 mt-2">
+                          Economia: R$ 2.000-3.750/mês
+                        </p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </CardContent>

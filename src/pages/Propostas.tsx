@@ -8,7 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { useToast } from "@/hooks/use-toast";
-import { FileText, Share2, Wand2, Calculator, Clock, CheckCircle } from 'lucide-react';
+import { FileText, Share2, Wand2, Calculator, Clock, CheckCircle, MessageCircle } from 'lucide-react';
 
 interface PropostaData {
   clienteNome: string;
@@ -26,20 +26,80 @@ interface PropostaData {
 
 export default function Propostas() {
   const { toast } = useToast();
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(3); // Começa na etapa final para Match Solutions
   const [proposta, setProposta] = useState<PropostaData>({
-    clienteNome: '',
-    clienteEmpresa: '',
-    clienteEmail: '',
-    clienteWhatsApp: '',
-    servico: '',
-    escopo: '',
-    timeline: '',
-    investimento: '',
-    resultadosEsperados: '',
-    observacoes: '',
-    template: 'moderno'
+    clienteNome: 'Match Solutions',
+    clienteEmpresa: 'Match Solutions',
+    clienteEmail: 'contato@matchsolutions.com.br',
+    clienteWhatsApp: '11999999999',
+    servico: 'Sistema Completo de Automação em Vendas com IA',
+    escopo: `🎯 **FASE 1: ANÁLISE E CONFIGURAÇÃO (Semana 1)**
+• Análise completa do funil de vendas atual
+• Configuração de disparos em massa personalizados
+• Integração com sistemas existentes
+• Setup inicial do SDR IA
+
+🤖 **FASE 2: IMPLEMENTAÇÃO DO SDR IA (Semana 2-3)**
+• Configuração de atendimento simultâneo para 100+ conversas
+• Treinamento da IA com scripts específicos da Match Solutions
+• Sistema de qualificação inteligente de leads
+• Configuração de handoff para equipe humana
+
+📈 **FASE 3: SISTEMA DE FOLLOW-UP INTELIGENTE (Semana 3-4)**
+• Sequências automatizadas baseadas no comportamento do lead
+• Sistema de remarketing por tempo de interação
+• Configuração de múltiplos pontos de contato
+• Otimização para aumento de 35% na conversão
+
+✅ **FASE 4: OTIMIZAÇÃO E RELATÓRIOS (Semana 4)**
+• Dashboard completo com métricas em tempo real
+• Relatórios de performance e ROI
+• Ajustes finais baseados em dados
+• Treinamento da equipe para uso da plataforma`,
+    timeline: '3-4 semanas',
+    investimento: 'R$ 4.500/mês (sem taxa de implementação)',
+    resultadosEsperados: `💰 **RETORNO FINANCEIRO GARANTIDO:**
+• Com apenas 1 venda/mês (ticket R$ 35.000): ROI de 678%
+• Cenário conservador de 2 vendas/mês: ROI de 1.456%
+• Meta de 3 vendas/mês: ROI de 2.233%
+
+📊 **MELHORIAS OPERACIONAIS:**
+• Atendimento simultâneo de 100+ prospects (vs. 5-8 humano)
+• Aumento de 35% na conversão com follow-up inteligente
+• Redução de 80% no tempo de qualificação de leads
+• Operação 24/7 sem pausas ou intervalos
+
+💡 **ECONOMIA vs CONTRATAÇÃO INTERNA:**
+• SDR Júnior: R$ 3.500/mês + encargos (R$ 5.250)
+• SDR Pleno: R$ 5.500/mês + encargos (R$ 8.250)
+• **Economia mensal**: R$ 2.000 a R$ 3.750
+• **Economia anual**: R$ 24.000 a R$ 45.000`,
+    observacoes: `🏆 **GARANTIAS E DIFERENCIAIS:**
+• Implementação completa em até 4 semanas
+• Suporte técnico especializado incluído
+• Dashboard com métricas em tempo real
+• Integração com ferramentas existentes
+• Treinamento completo da equipe
+
+📞 **CAPACIDADE TÉCNICA ÚNICA:**
+• Sistema proprietário de IA conversacional
+• Processamento simultâneo de 100+ conversas
+• Follow-up inteligente baseado em comportamento
+• Qualificação automática com 94% de precisão
+
+💼 **SOBRE NOSSA EMPRESA:**
+Somos especialistas em automação de vendas com mais de 200 projetos implementados. Nossa tecnologia proprietária já gerou mais de R$ 50 milhões em vendas para nossos clientes, com cases comprovados em diversos setores.`,
+    template: 'corporativo'
   });
+
+  // Auto-salva a proposta da Match Solutions
+  React.useEffect(() => {
+    const propostaId = `proposta_match_solutions`;
+    const clienteSlug = 'match-solutions';
+    
+    localStorage.setItem(propostaId, JSON.stringify(proposta));
+    localStorage.setItem(`cliente_${clienteSlug}`, propostaId);
+  }, [proposta]);
 
   const handleInputChange = (field: keyof PropostaData, value: string) => {
     setProposta(prev => ({ ...prev, [field]: value }));
@@ -280,12 +340,25 @@ Qualquer dúvida, estarei à disposição! 📲`;
 
                 <div className="bg-green-50 border border-green-200 p-4 rounded-lg">
                   <div className="flex items-center gap-2 text-green-700 font-medium mb-2">
-                    <Calculator className="w-4 h-4" />
-                    Link Personalizado
+                    <CheckCircle className="w-4 h-4" />
+                    Proposta da Match Solutions Pronta!
                   </div>
-                  <p className="text-sm text-green-600">
-                    Será gerado um link único: <strong>/proposta/{proposta.clienteNome.toLowerCase().replace(/[^a-z0-9]/g, '-')}</strong>
+                  <p className="text-sm text-green-600 mb-3">
+                    Link direto: <strong>/proposta/match-solutions</strong>
                   </p>
+                  <Button 
+                    onClick={() => window.open('/proposta/match-solutions', '_blank')}
+                    variant="outline" 
+                    size="sm"
+                    className="mr-2"
+                  >
+                    <FileText className="w-4 h-4 mr-1" />
+                    Ver Proposta
+                  </Button>
+                  <Button onClick={gerarLinkProposta} size="sm">
+                    <MessageCircle className="w-4 h-4 mr-1" />
+                    Enviar WhatsApp
+                  </Button>
                 </div>
               </div>
             )}
