@@ -51,26 +51,68 @@ export default function PropostaMatchSolutions() {
             </CardHeader>
             <CardContent>
               <div className="space-y-6">
-                <p className="text-muted-foreground">
-                  Somos especialistas em automação de vendas com IA, com mais de 200 projetos implementados 
-                  e R$ 50 milhões em vendas geradas para nossos clientes.
+                <p className="text-muted-foreground text-lg leading-relaxed">
+                  <strong>Nós resolvemos problemas através da tecnologia.</strong> Não vendemos apenas serviços - 
+                  criamos soluções sob medida que transformam desafios em oportunidades de crescimento.
                 </p>
-                <div className="grid md:grid-cols-3 gap-6">
-                  <div className="text-center">
-                    <Users className="w-8 h-8 mx-auto mb-2 text-primary" />
-                    <h4 className="font-semibold mb-1">+200 Projetos</h4>
-                    <p className="text-sm text-muted-foreground">Experiência comprovada</p>
+                <p className="text-muted-foreground">
+                  Nossa expertise está focada em áreas estratégicas que realmente impactam o crescimento do seu negócio:
+                </p>
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div className="bg-white/50 p-4 rounded-lg border border-primary/10">
+                    <div className="flex items-start gap-3">
+                      <TrendingUp className="w-6 h-6 text-primary mt-1" />
+                      <div>
+                        <h4 className="font-semibold mb-2 text-primary">Estratégias de Mídia & Automação</h4>
+                        <p className="text-sm text-muted-foreground">
+                          Criamos automações inteligentes que conectam suas campanhas de mídia ao funil de vendas, 
+                          maximizando cada lead gerado.
+                        </p>
+                      </div>
+                    </div>
                   </div>
-                  <div className="text-center">
-                    <DollarSign className="w-8 h-8 mx-auto mb-2 text-green-500" />
-                    <h4 className="font-semibold mb-1">R$ 50M+ Gerados</h4>
-                    <p className="text-sm text-muted-foreground">Em vendas para clientes</p>
+                  <div className="bg-white/50 p-4 rounded-lg border border-primary/10">
+                    <div className="flex items-start gap-3">
+                      <MessageCircle className="w-6 h-6 text-primary mt-1" />
+                      <div>
+                        <h4 className="font-semibold mb-2 text-primary">Agentes de IA Conversacionais</h4>
+                        <p className="text-sm text-muted-foreground">
+                          Desenvolvemos assistentes virtuais que entendem seu negócio e se comunicam de forma 
+                          natural com seus prospects e clientes.
+                        </p>
+                      </div>
+                    </div>
                   </div>
-                  <div className="text-center">
-                    <CheckCircle className="w-8 h-8 mx-auto mb-2 text-blue-500" />
-                    <h4 className="font-semibold mb-1">94% Precisão</h4>
-                    <p className="text-sm text-muted-foreground">Na qualificação de leads</p>
+                  <div className="bg-white/50 p-4 rounded-lg border border-primary/10">
+                    <div className="flex items-start gap-3">
+                      <CheckCircle className="w-6 h-6 text-primary mt-1" />
+                      <div>
+                        <h4 className="font-semibold mb-2 text-primary">Gestão de Automações Inteligentes</h4>
+                        <p className="text-sm text-muted-foreground">
+                          Implementamos e otimizamos fluxos que trabalham 24/7, garantindo que nenhuma 
+                          oportunidade seja perdida.
+                        </p>
+                      </div>
+                    </div>
                   </div>
+                  <div className="bg-white/50 p-4 rounded-lg border border-primary/10">
+                    <div className="flex items-start gap-3">
+                      <Star className="w-6 h-6 text-primary mt-1" />
+                      <div>
+                        <h4 className="font-semibold mb-2 text-primary">SaaS & Micro SaaS</h4>
+                        <p className="text-sm text-muted-foreground">
+                          Desenvolvemos soluções escaláveis e personalizadas que crescem junto com seu negócio, 
+                          resolvendo desafios específicos do seu mercado.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="bg-primary/5 p-4 rounded-lg border-l-4 border-primary">
+                  <p className="text-sm text-muted-foreground italic">
+                    "Entendemos que cada negócio tem suas particularidades. Por isso, nossa abordagem é sempre 
+                    consultiva: primeiro entendemos seu desafio, depois criamos a solução perfeita para resolvê-lo."
+                  </p>
                 </div>
               </div>
             </CardContent>
