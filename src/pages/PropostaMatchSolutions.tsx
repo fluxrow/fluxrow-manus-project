@@ -446,18 +446,29 @@ export default function PropostaMatchSolutions() {
             </CardContent>
           </Card>
 
-          {/* Condições de Investimento */}
+          {/* Investimento */}
           <Card className="bg-gradient-to-br from-yellow-900/40 via-orange-900/30 to-yellow-900/40 border-2 border-yellow-400/40 backdrop-blur-sm shadow-2xl shadow-yellow-500/20">
             <CardContent className="p-8">
               <div className="flex items-center gap-3 mb-6">
                 <div className="p-3 bg-yellow-500/20 rounded-xl">
-                  <FileText className="w-6 h-6 text-yellow-400" />
+                  <DollarSign className="w-6 h-6 text-yellow-400" />
                 </div>
                 <h3 className="text-2xl font-bold">
                   <span className="bg-gradient-to-r from-yellow-300 to-orange-300 bg-clip-text text-transparent">
-                    Condições de Investimento
+                    Investimento
                   </span>
                 </h3>
+              </div>
+
+              {/* Valor do Investimento */}
+              <div className="bg-gradient-to-r from-green-900/30 to-emerald-900/20 rounded-xl p-6 border border-green-400/30 backdrop-blur-sm mb-6">
+                <div className="text-center">
+                  <h4 className="text-lg font-semibold text-green-300 mb-2">Valor Mensal</h4>
+                  <p className="text-4xl font-bold bg-gradient-to-r from-green-300 to-emerald-300 bg-clip-text text-transparent mb-2">
+                    R$ 4.500/mês
+                  </p>
+                  <p className="text-sm text-gray-400">Sem taxa de implementação</p>
+                </div>
               </div>
 
               <div className="space-y-4">
