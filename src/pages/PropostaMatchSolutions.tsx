@@ -435,7 +435,6 @@ export default function PropostaMatchSolutions() {
                   <ul className="text-sm space-y-2 text-yellow-200">
                     <li>• Implementação completa em até 4 semanas</li>
                     <li>• Suporte técnico especializado incluído</li>
-                    <li>• Dashboard com métricas em tempo real</li>
                     <li>• Integração com ferramentas existentes</li>
                     <li>• Treinamento completo da equipe</li>
                   </ul>
