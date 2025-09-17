@@ -239,7 +239,7 @@ export default function PropostaMatchSolutions() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-3xl font-bold bg-gradient-to-r from-green-300 to-emerald-300 bg-clip-text text-transparent">R$ 4.500/mês</p>
+                <p className="text-3xl font-bold bg-gradient-to-r from-green-300 to-emerald-300 bg-clip-text text-transparent">R$ 3.500/mês</p>
                 <p className="text-sm text-gray-400 mt-2">
                   Sem taxa de implementação
                 </p>
@@ -293,6 +293,74 @@ export default function PropostaMatchSolutions() {
             </CardContent>
           </Card>
 
+          {/* Limites do Plano */}
+          <Card className="border-2 border-blue-400/30 bg-gradient-to-br from-blue-900/20 to-indigo-900/10 backdrop-blur-sm animate-scale-in">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-3 text-2xl">
+                <Zap className="w-7 h-7 text-blue-400" />
+                <span className="bg-gradient-to-r from-blue-300 to-indigo-300 bg-clip-text text-transparent">Limites do Plano Inicial</span>
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-6">
+                <div className="bg-gradient-to-r from-blue-900/40 to-indigo-900/30 p-6 rounded-xl border border-blue-400/30 backdrop-blur-sm">
+                  <h5 className="font-semibold text-blue-300 mb-4 text-lg">📊 Limites Mensais Inclusos:</h5>
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div className="bg-gradient-to-br from-green-900/30 to-transparent p-4 rounded-xl border border-green-400/20">
+                      <div className="flex items-center gap-3 mb-2">
+                        <div className="w-3 h-3 bg-green-400 rounded-full"></div>
+                        <h6 className="font-semibold text-green-300">Tokens de IA</h6>
+                      </div>
+                      <p className="text-2xl font-bold text-green-400">5.000 tokens/mês</p>
+                      <p className="text-sm text-gray-400 mt-1">Suficiente para ~2.500 conversas completas</p>
+                    </div>
+                    <div className="bg-gradient-to-br from-purple-900/30 to-transparent p-4 rounded-xl border border-purple-400/20">
+                      <div className="flex items-center gap-3 mb-2">
+                        <div className="w-3 h-3 bg-purple-400 rounded-full"></div>
+                        <h6 className="font-semibold text-purple-300">Envio em Massa</h6>
+                      </div>
+                      <p className="text-2xl font-bold text-purple-400">5.000 mensagens/mês</p>
+                      <p className="text-sm text-gray-400 mt-1">Para campanhas de prospecção inicial</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-gradient-to-r from-amber-900/30 to-orange-900/20 p-6 rounded-xl border border-amber-400/30 backdrop-blur-sm">
+                  <h5 className="font-semibold text-amber-300 mb-3 text-lg">🚀 Estratégia de Crescimento:</h5>
+                  <div className="space-y-3">
+                    <div className="flex items-start gap-3">
+                      <div className="w-2 h-2 bg-amber-400 rounded-full mt-2"></div>
+                      <div>
+                        <p className="text-amber-200 font-medium">Plano Inicial para Demonstração de Resultados</p>
+                        <p className="text-sm text-gray-300">Ideal para comprovar eficácia antes de escalar</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <div className="w-2 h-2 bg-amber-400 rounded-full mt-2"></div>
+                      <div>
+                        <p className="text-amber-200 font-medium">Upgrade Disponível Conforme Necessidade</p>
+                        <p className="text-sm text-gray-300">Aumento de limites baseado no sucesso obtido</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <div className="w-2 h-2 bg-amber-400 rounded-full mt-2"></div>
+                      <div>
+                        <p className="text-amber-200 font-medium">Monitoramento em Tempo Real</p>
+                        <p className="text-sm text-gray-300">Dashboard com uso atual e projeções</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-gradient-to-r from-green-900/20 to-emerald-900/10 p-4 rounded-xl border border-green-400/30">
+                  <p className="text-green-300 font-medium text-center">
+                    💡 Limites pensados estrategicamente para construir confiança e demonstrar valor real
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
           {/* Análise de Valor */}
           <Card className="border-2 border-cyan-400/30 bg-gradient-to-br from-cyan-900/20 to-blue-900/10 backdrop-blur-sm animate-scale-in">
             <CardHeader>
@@ -318,22 +386,22 @@ export default function PropostaMatchSolutions() {
                     <div className="bg-gradient-to-br from-green-900/40 to-transparent border border-green-400/30 p-6 rounded-xl backdrop-blur-sm hover:scale-105 transition-all duration-300">
                       <div className="text-center">
                         <h5 className="font-semibold text-green-300 text-lg mb-2">1 Venda/Mês</h5>
-                        <p className="text-3xl font-bold text-green-400 mb-2">ROI 678%</p>
-                        <p className="text-sm text-gray-300">R$ 30.500 lucro líquido</p>
+                        <p className="text-3xl font-bold text-green-400 mb-2">ROI 900%</p>
+                        <p className="text-sm text-gray-300">R$ 31.500 lucro líquido</p>
                       </div>
                     </div>
                     <div className="bg-gradient-to-br from-emerald-900/40 to-transparent border border-emerald-400/30 p-6 rounded-xl backdrop-blur-sm hover:scale-105 transition-all duration-300">
                       <div className="text-center">
                         <h5 className="font-semibold text-emerald-300 text-lg mb-2">2 Vendas/Mês</h5>
-                        <p className="text-3xl font-bold text-emerald-400 mb-2">ROI 1.456%</p>
-                        <p className="text-sm text-gray-300">R$ 65.500 lucro líquido</p>
+                        <p className="text-3xl font-bold text-emerald-400 mb-2">ROI 1.900%</p>
+                        <p className="text-sm text-gray-300">R$ 66.500 lucro líquido</p>
                       </div>
                     </div>
                     <div className="bg-gradient-to-br from-teal-900/40 to-transparent border border-teal-400/30 p-6 rounded-xl backdrop-blur-sm hover:scale-105 transition-all duration-300">
                       <div className="text-center">
                         <h5 className="font-semibold text-teal-300 text-lg mb-2">3 Vendas/Mês</h5>
-                        <p className="text-3xl font-bold text-teal-400 mb-2">ROI 2.233%</p>
-                        <p className="text-sm text-gray-300">R$ 100.500 lucro líquido</p>
+                        <p className="text-3xl font-bold text-teal-400 mb-2">ROI 2.900%</p>
+                        <p className="text-sm text-gray-300">R$ 101.500 lucro líquido</p>
                       </div>
                     </div>
                   </div>
@@ -355,13 +423,13 @@ export default function PropostaMatchSolutions() {
                       <div>
                         <h5 className="font-semibold text-green-600">Nossa Solução:</h5>
                         <ul className="text-sm text-muted-foreground space-y-1">
-                          <li>• Mensalidade: R$ 4.500</li>
+                          <li>• Mensalidade: R$ 3.500</li>
                           <li>• Setup: R$ 0 (incluso)</li>
                           <li>• Treinamento: Incluso</li>
                           <li>• Suporte: Incluso</li>
                         </ul>
                         <p className="text-lg font-bold text-green-600 mt-2">
-                          Economia: R$ 2.000-3.750/mês
+                          Economia: R$ 3.000-4.750/mês
                         </p>
                       </div>
                     </div>
@@ -384,9 +452,9 @@ export default function PropostaMatchSolutions() {
                 <div className="bg-green-50 p-4 rounded-lg">
                   <h5 className="font-semibold text-green-700 mb-2">💰 RETORNO FINANCEIRO GARANTIDO:</h5>
                   <ul className="text-sm space-y-1 text-green-600">
-                    <li>• Com apenas 1 venda/mês (ticket R$ 35.000): ROI de 678%</li>
-                    <li>• Cenário conservador de 2 vendas/mês: ROI de 1.456%</li>
-                    <li>• Meta de 3 vendas/mês: ROI de 2.233%</li>
+                    <li>• Com apenas 1 venda/mês (ticket R$ 35.000): ROI de 900%</li>
+                    <li>• Cenário conservador de 2 vendas/mês: ROI de 1.900%</li>
+                    <li>• Meta de 3 vendas/mês: ROI de 2.900%</li>
                   </ul>
                 </div>
                 
@@ -405,8 +473,8 @@ export default function PropostaMatchSolutions() {
                   <ul className="text-sm space-y-1 text-purple-600">
                     <li>• SDR Júnior: R$ 3.500/mês + encargos (R$ 5.250)</li>
                     <li>• SDR Pleno: R$ 5.500/mês + encargos (R$ 8.250)</li>
-                    <li>• <strong>Economia mensal: R$ 2.000 a R$ 3.750</strong></li>
-                    <li>• <strong>Economia anual: R$ 24.000 a R$ 45.000</strong></li>
+                    <li>• <strong>Economia mensal: R$ 3.000 a R$ 4.750</strong></li>
+                    <li>• <strong>Economia anual: R$ 36.000 a R$ 57.000</strong></li>
                   </ul>
                 </div>
               </div>
@@ -465,7 +533,7 @@ export default function PropostaMatchSolutions() {
                 <div className="text-center">
                   <h4 className="text-lg font-semibold text-green-300 mb-2">Valor Mensal</h4>
                   <p className="text-4xl font-bold bg-gradient-to-r from-green-300 to-emerald-300 bg-clip-text text-transparent mb-2">
-                    R$ 4.500/mês
+                    R$ 3.500/mês
                   </p>
                   <p className="text-sm text-gray-400">Sem taxa de implementação</p>
                 </div>
