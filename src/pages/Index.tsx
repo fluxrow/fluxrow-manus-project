@@ -8,7 +8,7 @@ import EnhancedInteractiveBriefing from '../components/agency/EnhancedInteractiv
 import DemoModal from '../components/agency/DemoModal';
 import AgencyCTA from '../components/agency/AgencyCTA';
 import BehindTheScenes from '../components/agency/BehindTheScenes';
-import MatrixBackground from '../components/agency/MatrixBackground';
+
 import { SplashCursor } from '../components/ui/splash-cursor';
 
 
@@ -30,7 +30,6 @@ const Agencia = () => {
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white overflow-x-hidden">
       <SplashCursor />
-      <MatrixBackground />
       
       
       {/* Hero Section */}
