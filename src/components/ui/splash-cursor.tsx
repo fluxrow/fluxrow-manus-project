@@ -20,6 +20,13 @@ function SplashCursor({
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
+    // Skip on mobile devices for performance
+    const isMobile = window.innerWidth < 768;
+    if (isMobile) {
+      console.info('SplashCursor disabled on mobile for performance');
+      return;
+    }
+
     const canvas = canvasRef.current;
     if (!canvas) return;
 

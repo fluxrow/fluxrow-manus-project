@@ -148,20 +148,20 @@ const HeroSection = () => {
       </div>
 
       {/* Stats Section */}
-      <div className="absolute bottom-16 md:bottom-20 left-0 right-0">
-        <div className="max-w-4xl mx-auto px-6">
-          <div className="grid grid-cols-3 gap-4 md:gap-8 text-center">
-            <div>
-              <div className="text-2xl md:text-3xl font-bold gradient-text font-space-grotesk">R$5K</div>
-              <div className="text-white/80 font-space-grotesk text-xs md:text-sm">em 30 dias</div>
+      <div className="absolute bottom-12 md:bottom-20 left-0 right-0">
+        <div className="max-w-4xl mx-auto px-4 md:px-6">
+          <div className="grid grid-cols-3 gap-6 md:gap-8 text-center">
+            <div className="bg-black/20 backdrop-blur-sm rounded-lg px-3 py-4 md:px-4 md:py-5 border border-white/10">
+              <div className="text-xl md:text-3xl font-bold gradient-text font-space-grotesk mb-1">R$5K</div>
+              <div className="text-white/90 font-space-grotesk text-xs md:text-sm leading-tight">em 30 dias</div>
             </div>
-            <div>
-              <div className="text-2xl md:text-3xl font-bold gradient-text font-space-grotesk">6</div>
-              <div className="text-white/80 font-space-grotesk text-xs md:text-sm">Módulos</div>
+            <div className="bg-black/20 backdrop-blur-sm rounded-lg px-3 py-4 md:px-4 md:py-5 border border-white/10">
+              <div className="text-xl md:text-3xl font-bold gradient-text font-space-grotesk mb-1">6</div>
+              <div className="text-white/90 font-space-grotesk text-xs md:text-sm leading-tight">Módulos</div>
             </div>
-            <div>
-              <div className="text-2xl md:text-3xl font-bold gradient-text font-space-grotesk">200+</div>
-              <div className="text-white/80 font-space-grotesk text-xs md:text-sm">Templates</div>
+            <div className="bg-black/20 backdrop-blur-sm rounded-lg px-3 py-4 md:px-4 md:py-5 border border-white/10">
+              <div className="text-xl md:text-3xl font-bold gradient-text font-space-grotesk mb-1">200+</div>
+              <div className="text-white/90 font-space-grotesk text-xs md:text-sm leading-tight">Templates</div>
             </div>
           </div>
         </div>

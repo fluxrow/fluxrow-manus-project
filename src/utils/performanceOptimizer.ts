@@ -7,6 +7,27 @@ class PerformanceOptimizer {
     this.preloadCriticalResources();
     this.setupImageOptimization();
     this.setupMemoryManagement();
+    this.setupMobileOptimizations();
+  }
+
+  setupMobileOptimizations() {
+    const isMobile = window.innerWidth < 768;
+    
+    if (isMobile) {
+      // Reduce stars count for mobile Three.js scenes
+      const starsConfig = { count: 1000 }; // Instead of 2000+
+      
+      // Disable smooth scroll on mobile for better performance
+      document.documentElement.style.scrollBehavior = 'auto';
+      
+      // Reduce intersection observer threshold for mobile
+      const mobileOptions = {
+        rootMargin: '50px', // Reduced from 100px
+        threshold: 0.05 // Reduced from 0.1
+      };
+      
+      console.info('Mobile performance optimizations applied');
+    }
   }
 
   optimizeImages() {

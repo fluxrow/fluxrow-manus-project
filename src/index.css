@@ -124,7 +124,7 @@ body {
 }
 
 /* Hide video on mobile for performance */
-@media (max-width: 1024px) {
+@media (max-width: 768px) {
   .hero-video {
     display: none;
   }
@@ -693,11 +693,26 @@ img:not(.lazy) {
   }
   
   .hero-title {
-    font-size: clamp(2rem, 8vw, 3rem);
+    font-size: clamp(2rem, 7vw, 3rem);
+    line-height: 1.1;
   }
   
   .section-title {
-    font-size: clamp(1.8rem, 6vw, 2.5rem);
+    font-size: clamp(1.6rem, 6vw, 2.5rem);
+    line-height: 1.2;
+  }
+  
+  /* Improved touch areas */
+  .cta-primary, .cta-large {
+    min-height: 48px;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+  }
+  
+  /* Better section padding for mobile */
+  section {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
   }
   
   .ai-showcase-grid {
