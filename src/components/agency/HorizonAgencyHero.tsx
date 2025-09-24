@@ -24,11 +24,16 @@ const HorizonAgencyHero = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [currentSection, setCurrentSection] = useState(0);
   const [isReady, setIsReady] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
   const [counters, setCounters] = useState({
     automations: 0,
     leads: 0,
     hours: 0
   });
+
+  // Smooth interpolation refs for luminosity
+  const luminosityRef = useRef({ current: 1.0, target: 1.0 });
+  const bloomRef = useRef({ current: 1.0, target: 1.0 });
 
   const totalSections = 2;
   const stats = {
@@ -107,6 +112,11 @@ const HorizonAgencyHero = () => {
       
       // Mark as ready after Three.js is initialized
       setIsReady(true);
+      
+      // Add smooth fade-in after initialization
+      setTimeout(() => {
+        setIsLoaded(true);
+      }, 300);
     };
 
     const createStarField = () => {
@@ -169,10 +179,10 @@ const HorizonAgencyHero = () => {
               vColor = color;
               vec3 pos = position;
               
-              // Slow rotation based on depth
-              float angle = time * 0.05 * (1.0 - depth * 0.3);
-              mat2 rot = mat2(cos(angle), -sin(angle), sin(angle), cos(angle));
-              pos.xy = rot * pos.xy;
+            // Slow rotation based on depth - reduced speed
+            float angle = time * 0.02 * (1.0 - depth * 0.3);
+            mat2 rot = mat2(cos(angle), -sin(angle), sin(angle), cos(angle));
+            pos.xy = rot * pos.xy;
               
               vec4 mvPosition = modelViewMatrix * vec4(pos, 1.0);
               gl_PointSize = size * (300.0 / -mvPosition.z);
@@ -332,7 +342,7 @@ const HorizonAgencyHero = () => {
             float intensity = pow(0.7 - dot(vNormal, vec3(0.0, 0.0, 1.0)), 2.0);
             vec3 atmosphere = vec3(0.3, 0.6, 1.0) * intensity;
             
-            float pulse = sin(time * 2.0) * 0.1 + 0.9;
+            float pulse = sin(time * 0.5) * 0.05 + 0.95;
             atmosphere *= pulse * luminosity;
             
             gl_FragColor = vec4(atmosphere, intensity * 0.25 * luminosity);
@@ -363,16 +373,29 @@ const HorizonAgencyHero = () => {
       
       const time = Date.now() * 0.001;
 
-      // Update stars
+      // Smooth luminosity interpolation
+      const lerpFactor = 0.02;
+      luminosityRef.current.current += (luminosityRef.current.target - luminosityRef.current.current) * lerpFactor;
+      bloomRef.current.current += (bloomRef.current.target - bloomRef.current.current) * lerpFactor;
+
+      // Update stars with smooth luminosity
       refs.stars.forEach((starField) => {
         if (starField.material.uniforms) {
-          starField.material.uniforms.time.value = time;
+          starField.material.uniforms.time.value = time * 0.5;
+          starField.material.uniforms.luminosity.value = luminosityRef.current.current;
         }
       });
 
-      // Update nebula
+      // Update nebula with smooth transitions
       if (refs.nebula && refs.nebula.material.uniforms) {
-        refs.nebula.material.uniforms.time.value = time * 0.5;
+        refs.nebula.material.uniforms.time.value = time * 0.2;
+        refs.nebula.material.uniforms.opacity.value = 0.3 * luminosityRef.current.current;
+      }
+
+      // Update atmosphere with smooth luminosity
+      if (refs.atmosphere && refs.atmosphere.material.uniforms) {
+        refs.atmosphere.material.uniforms.time.value = time * 0.3;
+        refs.atmosphere.material.uniforms.luminosity.value = luminosityRef.current.current;
       }
 
       // Smooth camera movement
@@ -392,11 +415,11 @@ const HorizonAgencyHero = () => {
         refs.camera.lookAt(0, 10, -600);
       }
 
-      // Animate mountains
+      // Animate mountains with reduced intensity
       refs.mountains.forEach((mountain, i) => {
-        const parallaxFactor = 1 + i * 0.5;
-        mountain.position.x = Math.sin(time * 0.1) * 2 * parallaxFactor;
-        mountain.position.y = 50 + (Math.cos(time * 0.15) * 1 * parallaxFactor);
+        const parallaxFactor = 1 + i * 0.2;
+        mountain.position.x = Math.sin(time * 0.05) * 1 * parallaxFactor;
+        mountain.position.y = 50 + (Math.cos(time * 0.08) * 0.5 * parallaxFactor);
       });
 
       if (refs.composer) {
@@ -548,8 +571,10 @@ const HorizonAgencyHero = () => {
     };
   }, [isReady]);
 
-  // Scroll handling
+  // Scroll handling with debouncing
   useEffect(() => {
+    let scrollTimeout: NodeJS.Timeout;
+    
     const handleScroll = () => {
       const scrollY = window.scrollY;
       const windowHeight = window.innerHeight;
@@ -560,6 +585,19 @@ const HorizonAgencyHero = () => {
       setScrollProgress(progress);
       const newSection = Math.floor(progress * totalSections);
       setCurrentSection(newSection);
+
+      // Clear previous timeout
+      if (scrollTimeout) {
+        clearTimeout(scrollTimeout);
+      }
+
+      // Debounce expensive operations
+      scrollTimeout = setTimeout(() => {
+        updateThreeJSParams(progress, newSection, scrollY);
+      }, 16); // ~60fps
+    };
+
+    const updateThreeJSParams = (progress: number, newSection: number, scrollY: number) => {
 
       const { current: refs } = threeRefs;
       
@@ -578,64 +616,61 @@ const HorizonAgencyHero = () => {
       const currentPos = cameraPositions[newSection] || cameraPositions[0];
       const nextPos = cameraPositions[newSection + 1] || currentPos;
       
-      // Set target positions
+      // Set target positions smoothly
       refs.targetCameraX = currentPos.x + (nextPos.x - currentPos.x) * sectionProgress;
       refs.targetCameraY = currentPos.y + (nextPos.y - currentPos.y) * sectionProgress;
       refs.targetCameraZ = currentPos.z + (nextPos.z - currentPos.z) * sectionProgress;
 
-      // Scroll-based luminosity control
-      const luminosityFactor = Math.max(0.2, 1 - progress * 0.8); // From 1.0 to 0.2
-      const bloomFactor = Math.max(0.3, 1 - progress * 0.7); // From 1.0 to 0.3
+      // Smooth luminosity control - set targets instead of direct values
+      const luminosityFactor = Math.max(0.4, 1 - progress * 0.6);
+      const bloomFactor = Math.max(0.5, 1 - progress * 0.5);
       
-      // Adjust tone mapping exposure
+      // Update targets for smooth interpolation
+      luminosityRef.current.target = luminosityFactor;
+      bloomRef.current.target = bloomFactor;
+      
+      // Adjust tone mapping exposure smoothly
       if (refs.renderer) {
-        refs.renderer.toneMappingExposure = 0.5 * luminosityFactor;
+        refs.renderer.toneMappingExposure = 0.5 * luminosityRef.current.current;
       }
       
-      // Adjust bloom pass
+      // Adjust bloom pass smoothly
       if (refs.composer && refs.composer.passes[1]) {
         const bloomPass = refs.composer.passes[1];
-        bloomPass.strength = 0.8 * bloomFactor;
-      }
-      
-      // Adjust star opacity
-      refs.stars.forEach((starField) => {
-        if (starField.material.uniforms && starField.material.uniforms.luminosity) {
-          starField.material.uniforms.luminosity.value = luminosityFactor;
-        }
-      });
-      
-      // Adjust nebula opacity
-      if (refs.nebula && refs.nebula.material.uniforms) {
-        refs.nebula.material.uniforms.opacity.value = 0.3 * luminosityFactor;
-      }
-      
-      // Adjust atmosphere luminosity
-      if (refs.atmosphere && refs.atmosphere.material.uniforms) {
-        refs.atmosphere.material.uniforms.luminosity.value = luminosityFactor;
+        bloomPass.strength = 0.8 * bloomRef.current.current;
       }
 
-      // Mountain parallax
+      // Mountain parallax with smoother transitions
       refs.mountains.forEach((mountain, i) => {
-        const speed = 1 + i * 0.9;
-        const targetZ = mountain.userData.baseZ + scrollY * speed * 0.5;
+        const speed = 0.5 + i * 0.3;
+        const baseZ = mountain.userData.baseZ;
+        const parallaxOffset = scrollY * speed * 0.2;
         
-        if (progress > 0.7) {
-          mountain.position.z = 600000;
+        if (progress > 0.8) {
+          // Smooth transition out
+          const fadeProgress = (progress - 0.8) / 0.2;
+          mountain.position.z = baseZ + parallaxOffset + (fadeProgress * 1000);
         } else {
-          mountain.position.z = refs.locations[i];
+          mountain.position.z = baseZ + parallaxOffset;
         }
       });
 
       if (refs.nebula) {
-        refs.nebula.position.z = refs.mountains[3]?.position.z || -1050;
+        const baseNebulaZ = -1050;
+        const nebulaParallax = scrollY * 0.1;
+        refs.nebula.position.z = baseNebulaZ + nebulaParallax;
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
     
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (scrollTimeout) {
+        clearTimeout(scrollTimeout);
+      }
+    };
   }, [totalSections]);
 
   const scrollToServices = () => {
@@ -669,7 +704,12 @@ const HorizonAgencyHero = () => {
 
   return (
     <div ref={containerRef} className="hero-container min-h-screen relative overflow-hidden">
-      <canvas ref={canvasRef} className="fixed inset-0 z-0" />
+      <canvas 
+        ref={canvasRef} 
+        className={`fixed inset-0 z-0 transition-opacity duration-700 ${
+          isLoaded ? 'opacity-100' : 'opacity-0'
+        }`} 
+      />
       
       {/* Main content */}
       <div className="relative z-10 min-h-screen flex flex-col justify-center items-center text-center px-6">

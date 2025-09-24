@@ -62,7 +62,7 @@ const MatrixBackground = () => {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 z-0 pointer-events-none opacity-20"
+      className="fixed inset-0 z-10 pointer-events-none opacity-20"
       style={{ background: 'transparent' }}
     />
   );
