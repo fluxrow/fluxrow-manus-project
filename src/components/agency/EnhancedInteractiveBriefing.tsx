@@ -385,14 +385,14 @@ const EnhancedInteractiveBriefing = () => {
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
             Briefing Estratégico <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400">Inteligente</span>
           </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">
             Em 2 minutos, nossa IA analisa seu negócio e cria uma estratégia personalizada
           </p>
         </div>
 
         {/* Progress Bar */}
         <div className="max-w-2xl mx-auto mb-8">
-          <div className="flex justify-between text-sm text-gray-400 mb-2">
+          <div className="flex justify-between text-sm text-white/80 mb-2">
             <span>Pergunta {Math.min(currentStep + 1, questions.length)} de {questions.length}</span>
             <span>{Math.round(progress)}% completo</span>
           </div>
@@ -411,7 +411,7 @@ const EnhancedInteractiveBriefing = () => {
                 <h3 className="text-2xl font-bold text-white mb-2">
                   {questions[currentStep].title}
                 </h3>
-                <p className="text-gray-400">
+                <p className="text-white/80">
                   {questions[currentStep].subtitle}
                 </p>
               </div>
@@ -429,7 +429,7 @@ const EnhancedInteractiveBriefing = () => {
                         <h4 className="text-white font-semibold mb-2 group-hover:text-cyan-400 transition-colors">
                           {option.label}
                         </h4>
-                        <p className="text-gray-400 text-sm mb-3">
+                        <p className="text-white/80 text-sm mb-3">
                           {option.description}
                         </p>
                         <div className="flex flex-wrap gap-1">

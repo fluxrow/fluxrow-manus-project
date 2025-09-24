@@ -60,7 +60,7 @@ const DemoSection = () => {
                 <h3 className="text-xl font-semibold mb-4 font-space-grotesk text-white">
                   {demo.title}
                 </h3>
-                <p className="text-gray-300 font-space-grotesk leading-relaxed">
+                <p className="text-white/90 font-space-grotesk leading-relaxed">
                   {demo.description}
                 </p>
               </div>

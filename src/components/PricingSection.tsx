@@ -89,7 +89,7 @@ const PricingSection = () => {
             </div>
             
             <div className="price-container mb-8 text-center">
-              <div className="price-old text-gray-500 line-through font-space-grotesk text-xl">
+              <div className="price-old text-white/60 line-through font-space-grotesk text-xl">
                 De R$ 297
               </div>
               <div className="price-current text-5xl font-extrabold gradient-text font-space-grotesk">

@@ -80,7 +80,7 @@ const InfiniteCarousel = () => {
           <h3 className="text-2xl font-bold text-white font-space-grotesk mb-4">
             Fique Integrado com as <span className="gradient-text">melhores ferramentas</span>
           </h3>
-          <p className="text-gray-400 font-space-grotesk">
+          <p className="text-white/90 font-space-grotesk">
             Templates e automações prontas para as principais plataformas
           </p>
         </div>
@@ -120,7 +120,7 @@ const InfiniteCarousel = () => {
                       <span className="text-purple-400 text-xs md:text-sm font-space-grotesk block mb-2 md:mb-3 group-hover:text-purple-300 transition-colors">
                         {item.type}
                       </span>
-                      <p className="text-gray-300 text-xs md:text-sm font-space-grotesk leading-relaxed group-hover:text-gray-200 transition-colors line-clamp-3">
+                      <p className="text-white/90 text-xs md:text-sm font-space-grotesk leading-relaxed group-hover:text-white transition-colors line-clamp-3">
                         {item.description}
                       </p>
                     </div>
