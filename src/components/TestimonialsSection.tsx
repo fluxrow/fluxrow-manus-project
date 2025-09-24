@@ -74,7 +74,7 @@ const TestimonialsSection = () => {
                   <h4 className="font-semibold text-cyan-400 font-space-grotesk">
                     {testimonial.author}
                   </h4>
-                  <span className="text-gray-400 text-sm font-space-grotesk">
+                  <span className="text-white/80 text-sm font-space-grotesk">
                     {testimonial.role}
                   </span>
                 </div>

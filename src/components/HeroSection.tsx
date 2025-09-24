@@ -120,7 +120,7 @@ const HeroSection = () => {
           <span className="line-3"> em 30 dias</span>
         </h1>
         
-        <p className="hero-subtitle text-gray-300 font-space-grotesk text-xl max-w-3xl mx-auto">
+        <p className="hero-subtitle text-white font-space-grotesk text-xl max-w-3xl mx-auto">
           Aprenda o método completo para transformar inteligência artificial em receita recorrente, mesmo sem conhecimento técnico
         </p>
         
@@ -153,15 +153,15 @@ const HeroSection = () => {
           <div className="grid grid-cols-3 gap-4 md:gap-8 text-center">
             <div>
               <div className="text-2xl md:text-3xl font-bold gradient-text font-space-grotesk">R$5K</div>
-              <div className="text-gray-400 font-space-grotesk text-xs md:text-sm">em 30 dias</div>
+              <div className="text-white/80 font-space-grotesk text-xs md:text-sm">em 30 dias</div>
             </div>
             <div>
               <div className="text-2xl md:text-3xl font-bold gradient-text font-space-grotesk">6</div>
-              <div className="text-gray-400 font-space-grotesk text-xs md:text-sm">Módulos</div>
+              <div className="text-white/80 font-space-grotesk text-xs md:text-sm">Módulos</div>
             </div>
             <div>
               <div className="text-2xl md:text-3xl font-bold gradient-text font-space-grotesk">200+</div>
-              <div className="text-gray-400 font-space-grotesk text-xs md:text-sm">Templates</div>
+              <div className="text-white/80 font-space-grotesk text-xs md:text-sm">Templates</div>
             </div>
           </div>
         </div>

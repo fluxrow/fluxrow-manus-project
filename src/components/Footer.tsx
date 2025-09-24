@@ -10,7 +10,7 @@ const Footer = () => {
             <h3 className="text-2xl font-bold gradient-text font-space-grotesk mb-2">
               Fluxrow
             </h3>
-            <p className="text-gray-400 font-space-grotesk">
+            <p className="text-white/70 font-space-grotesk">
               Inteligência Criativa
             </p>
           </div>
@@ -23,10 +23,10 @@ const Footer = () => {
         </div>
         
         <div className="footer-bottom text-center border-t border-gray-800 pt-6">
-          <p className="text-gray-500 font-space-grotesk mb-2">
+          <p className="text-white/60 font-space-grotesk mb-2">
             &copy; 2025 Fluxrow Inteligência Criativa. Todos os direitos reservados.
           </p>
-          <p className="text-gray-500 font-space-grotesk">
+          <p className="text-white/60 font-space-grotesk">
             Desenvolvido com 💻 por Cauã Farias
           </p>
         </div>

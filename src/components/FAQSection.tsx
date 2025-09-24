@@ -50,7 +50,7 @@ const FAQSection = () => {
           <h2 className="text-4xl md:text-5xl font-bold font-space-grotesk mb-6">
             <span className="gradient-text">Perguntas Frequentes</span>
           </h2>
-          <p className="text-xl text-gray-300 font-space-grotesk max-w-2xl mx-auto">
+          <p className="text-xl text-white/90 font-space-grotesk max-w-2xl mx-auto">
             Tire suas dúvidas antes de começar sua transformação com IA
           </p>
         </div>
@@ -67,7 +67,7 @@ const FAQSection = () => {
                 <AccordionTrigger className="text-left text-lg font-semibold font-space-grotesk text-white hover:text-cyan-400 transition-colors duration-300 py-6">
                   {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-gray-300 font-space-grotesk leading-relaxed pb-6 pt-2">
+                <AccordionContent className="text-white/90 font-space-grotesk leading-relaxed pb-6 pt-2">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>
@@ -77,7 +77,7 @@ const FAQSection = () => {
 
         {/* CTA */}
         <div className="text-center mt-12">
-          <p className="text-gray-400 font-space-grotesk mb-6">
+          <p className="text-white/80 font-space-grotesk mb-6">
             Ainda tem dúvidas? Fale conosco diretamente!
           </p>
           <a

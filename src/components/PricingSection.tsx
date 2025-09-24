@@ -49,7 +49,7 @@ const PricingSection = () => {
                 <h3 className="text-2xl font-bold font-space-grotesk mb-2">
                   Fluxrow Start
                 </h3>
-                <p className="text-gray-200 font-space-grotesk">
+                <p className="text-white font-space-grotesk">
                   6 módulos + materiais + bônus + acesso vitalício
                 </p>
               </div>
@@ -57,7 +57,7 @@ const PricingSection = () => {
               {/* Floating Stats */}
               <div className="absolute top-6 right-6 bg-black/40 backdrop-blur-sm rounded-xl p-4 text-white">
                 <div className="text-2xl font-bold gradient-text">R$5.000</div>
-                <div className="text-xs text-gray-300">em 30 dias</div>
+                <div className="text-xs text-white/80">em 30 dias</div>
               </div>
             </div>
             
@@ -65,11 +65,11 @@ const PricingSection = () => {
             <div className="grid grid-cols-2 gap-4 mt-6">
               <div className="bg-gradient-to-r from-purple-900/20 to-blue-900/20 border border-purple-500/30 rounded-xl p-4">
                 <div className="text-2xl font-bold gradient-text font-space-grotesk">6</div>
-                <div className="text-gray-300 text-sm font-space-grotesk">Módulos Práticos</div>
+                <div className="text-white/80 text-sm font-space-grotesk">Módulos Práticos</div>
               </div>
               <div className="bg-gradient-to-r from-green-900/20 to-teal-900/20 border border-green-500/30 rounded-xl p-4">
                 <div className="text-2xl font-bold gradient-text font-space-grotesk">200+</div>
-                <div className="text-gray-300 text-sm font-space-grotesk">Templates Prontos</div>
+                <div className="text-white/80 text-sm font-space-grotesk">Templates Prontos</div>
               </div>
             </div>
           </div>
@@ -83,7 +83,7 @@ const PricingSection = () => {
               <h3 className="text-3xl font-bold mb-2 font-space-grotesk text-white">
                 Fluxrow Start
               </h3>
-              <p className="text-gray-400 mb-6 font-space-grotesk">
+              <p className="text-white/90 mb-6 font-space-grotesk">
                 O método completo para faturar R$5K com IA em 30 dias
               </p>
             </div>
@@ -95,7 +95,7 @@ const PricingSection = () => {
               <div className="price-current text-5xl font-extrabold gradient-text font-space-grotesk">
                 R$ 147
               </div>
-              <div className="price-installments text-gray-400 font-space-grotesk">
+              <div className="price-installments text-white/90 font-space-grotesk">
                 ou 12x de R$ 12,25 sem juros
               </div>
             </div>
@@ -149,7 +149,7 @@ const PricingSection = () => {
               <h4 className="text-lg font-bold font-space-grotesk text-yellow-400 mb-3">
                 🎁 Bônus Exclusivos (Valor: R$ 297)
               </h4>
-              <ul className="space-y-2 text-sm text-gray-300 font-space-grotesk">
+              <ul className="space-y-2 text-sm text-white/90 font-space-grotesk">
                 <li>• Scripts de vídeo com IA</li>
                 <li>• Base de 10.000+ leads qualificados</li>
                 <li>• 1 hora de mentoria em grupo</li>

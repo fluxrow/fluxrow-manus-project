@@ -38,7 +38,7 @@ const SimpleAISection = () => {
             <br />
             <span className="text-white">Em Todas as Frentes</span>
           </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto font-space-grotesk">
+          <p className="text-xl text-white/90 max-w-3xl mx-auto font-space-grotesk">
             Veja como nossa metodologia transforma cada aspecto da inteligência artificial em resultados reais para seu negócio.
           </p>
         </div>
@@ -57,7 +57,7 @@ const SimpleAISection = () => {
               <h3 className="text-2xl font-bold text-white mb-4 font-space-grotesk">
                 {feature.title}
               </h3>
-              <p className="text-gray-300 font-space-grotesk">
+              <p className="text-white/90 font-space-grotesk">
                 {feature.description}
               </p>
             </div>

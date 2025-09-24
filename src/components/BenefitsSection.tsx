@@ -66,7 +66,7 @@ const BenefitsSection = () => {
         <h2 className="section-title font-space-grotesk" data-aos="fade-up">
           Para quem é <span className="gradient-text">este curso</span>
         </h2>
-        <p className="text-xl text-gray-300 mb-16 font-space-grotesk max-w-3xl mx-auto" data-aos="fade-up">
+        <p className="text-xl text-white/90 mb-16 font-space-grotesk max-w-3xl mx-auto" data-aos="fade-up">
           Se você se identifica com algum desses perfis, este curso foi feito especialmente para você
         </p>
         
@@ -91,7 +91,7 @@ const BenefitsSection = () => {
                 {profile.title}
               </h3>
               
-              <p className="text-gray-300 font-space-grotesk leading-relaxed">
+              <p className="text-white/90 font-space-grotesk leading-relaxed">
                 {profile.description}
               </p>
               
@@ -109,7 +109,7 @@ const BenefitsSection = () => {
             <h3 className="text-2xl font-bold font-space-grotesk text-white mb-4">
               Não importa seu nível atual
             </h3>
-            <p className="text-gray-300 font-space-grotesk text-lg">
+            <p className="text-white/90 font-space-grotesk text-lg">
               O curso foi desenvolvido para funcionar tanto para iniciantes quanto para quem já tem experiência. 
               Cada módulo tem explicações do básico ao avançado.
             </p>

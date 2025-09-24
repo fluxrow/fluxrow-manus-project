@@ -52,7 +52,7 @@ const Header = () => {
               className={`font-space-grotesk transition-colors ${
                 isActive('/') 
                   ? 'text-cyan-400 font-semibold' 
-                  : 'text-gray-300 hover:text-white'
+                  : 'text-white/80 hover:text-white'
               }`}
             >
               Início
@@ -62,7 +62,7 @@ const Header = () => {
               className={`font-space-grotesk transition-colors ${
                 isActive('/modulos') 
                   ? 'text-cyan-400 font-semibold' 
-                  : 'text-gray-300 hover:text-white'
+                  : 'text-white/80 hover:text-white'
               }`}
             >
               Módulos
@@ -72,7 +72,7 @@ const Header = () => {
               className={`font-space-grotesk transition-colors ${
                 isActive('/materiais') 
                   ? 'text-cyan-400 font-semibold' 
-                  : 'text-gray-300 hover:text-white'
+                  : 'text-white/80 hover:text-white'
               }`}
             >
               Materiais
@@ -82,7 +82,7 @@ const Header = () => {
               className={`font-space-grotesk transition-colors ${
                 isActive('/conteudos') 
                   ? 'text-cyan-400 font-semibold' 
-                  : 'text-gray-300 hover:text-white'
+                  : 'text-white/80 hover:text-white'
               }`}
             >
               Conteúdos
@@ -92,7 +92,7 @@ const Header = () => {
               className={`font-space-grotesk transition-colors ${
                 isActive('/contato') 
                   ? 'text-cyan-400 font-semibold' 
-                  : 'text-gray-300 hover:text-white'
+                  : 'text-white/80 hover:text-white'
               }`}
             >
               Contato
