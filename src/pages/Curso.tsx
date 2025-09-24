@@ -1,11 +1,11 @@
 
 import React, { useEffect } from 'react';
 import HeroSection from '../components/HeroSection';
-import BenefitsSection from '../components/BenefitsSection';
+import { BenefitsMobileCards } from '../components/BenefitsMobileCards';
+import { TestimonialsMobileCards } from '../components/TestimonialsMobileCards';
 import InfiniteCarousel from '../components/InfiniteCarousel';
 import DemoSection from '../components/DemoSection';
 import SimpleAISection from '../components/SimpleAISection';
-import TestimonialsSection from '../components/TestimonialsSection';
 import FAQSection from '../components/FAQSection';
 import PricingSection from '../components/PricingSection';
 import Footer from '../components/Footer';
@@ -20,11 +20,11 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-[#0f0f0f] text-white overflow-x-hidden">
       <HeroSection />
-      <BenefitsSection />
+      <BenefitsMobileCards />
       <InfiniteCarousel />
       <DemoSection />
       <SimpleAISection />
-      <TestimonialsSection />
+      <TestimonialsMobileCards />
       <FAQSection />
       <PricingSection />
       <Footer />
