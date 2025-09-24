@@ -1240,11 +1240,11 @@ function SplashCursor({
   ]);
 
   return (
-    <div className="fixed inset-0 z-30 pointer-events-none">
+    <div className="fixed inset-0 z-30">
       <canvas 
         ref={canvasRef} 
         id="fluid" 
-        className="w-full h-full"
+        className="w-full h-full pointer-events-auto"
         style={{ mixBlendMode: 'screen' }}
       />
     </div>
