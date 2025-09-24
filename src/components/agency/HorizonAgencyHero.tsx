@@ -45,6 +45,7 @@ const HorizonAgencyHero = () => {
     stars: [],
     nebula: null,
     mountains: [],
+    atmosphere: null,
     animationId: null,
     targetCameraX: 0,
     targetCameraY: 30,
@@ -154,7 +155,8 @@ const HorizonAgencyHero = () => {
         const material = new THREE.ShaderMaterial({
           uniforms: {
             time: { value: 0 },
-            depth: { value: i }
+            depth: { value: i },
+            luminosity: { value: 1.0 }
           },
           vertexShader: `
             attribute float size;
@@ -179,13 +181,15 @@ const HorizonAgencyHero = () => {
           `,
           fragmentShader: `
             varying vec3 vColor;
+            uniform float luminosity;
             
             void main() {
               float dist = length(gl_PointCoord - vec2(0.5));
               if (dist > 0.5) discard;
               
               float opacity = 1.0 - smoothstep(0.0, 0.5, dist);
-              gl_FragColor = vec4(vColor, opacity);
+              opacity *= luminosity;
+              gl_FragColor = vec4(vColor * luminosity, opacity);
             }
           `,
           transparent: true,
@@ -305,7 +309,8 @@ const HorizonAgencyHero = () => {
       const geometry = new THREE.SphereGeometry(600, 32, 32);
       const material = new THREE.ShaderMaterial({
         uniforms: {
-          time: { value: 0 }
+          time: { value: 0 },
+          luminosity: { value: 1.0 }
         },
         vertexShader: `
           varying vec3 vNormal;
@@ -321,15 +326,16 @@ const HorizonAgencyHero = () => {
           varying vec3 vNormal;
           varying vec3 vPosition;
           uniform float time;
+          uniform float luminosity;
           
           void main() {
             float intensity = pow(0.7 - dot(vNormal, vec3(0.0, 0.0, 1.0)), 2.0);
             vec3 atmosphere = vec3(0.3, 0.6, 1.0) * intensity;
             
             float pulse = sin(time * 2.0) * 0.1 + 0.9;
-            atmosphere *= pulse;
+            atmosphere *= pulse * luminosity;
             
-            gl_FragColor = vec4(atmosphere, intensity * 0.25);
+            gl_FragColor = vec4(atmosphere, intensity * 0.25 * luminosity);
           }
         `,
         side: THREE.BackSide,
@@ -339,6 +345,7 @@ const HorizonAgencyHero = () => {
 
       const atmosphere = new THREE.Mesh(geometry, material);
       refs.scene.add(atmosphere);
+      refs.atmosphere = atmosphere;
     };
 
     const getLocation = () => {
@@ -438,6 +445,11 @@ const HorizonAgencyHero = () => {
       if (refs.nebula) {
         refs.nebula.geometry.dispose();
         refs.nebula.material.dispose();
+      }
+
+      if (refs.atmosphere) {
+        refs.atmosphere.geometry.dispose();
+        refs.atmosphere.material.dispose();
       }
 
       if (refs.renderer) {
@@ -570,6 +582,38 @@ const HorizonAgencyHero = () => {
       refs.targetCameraX = currentPos.x + (nextPos.x - currentPos.x) * sectionProgress;
       refs.targetCameraY = currentPos.y + (nextPos.y - currentPos.y) * sectionProgress;
       refs.targetCameraZ = currentPos.z + (nextPos.z - currentPos.z) * sectionProgress;
+
+      // Scroll-based luminosity control
+      const luminosityFactor = Math.max(0.2, 1 - progress * 0.8); // From 1.0 to 0.2
+      const bloomFactor = Math.max(0.3, 1 - progress * 0.7); // From 1.0 to 0.3
+      
+      // Adjust tone mapping exposure
+      if (refs.renderer) {
+        refs.renderer.toneMappingExposure = 0.5 * luminosityFactor;
+      }
+      
+      // Adjust bloom pass
+      if (refs.composer && refs.composer.passes[1]) {
+        const bloomPass = refs.composer.passes[1];
+        bloomPass.strength = 0.8 * bloomFactor;
+      }
+      
+      // Adjust star opacity
+      refs.stars.forEach((starField) => {
+        if (starField.material.uniforms) {
+          starField.material.uniforms.luminosity = { value: luminosityFactor };
+        }
+      });
+      
+      // Adjust nebula opacity
+      if (refs.nebula && refs.nebula.material.uniforms) {
+        refs.nebula.material.uniforms.opacity.value = 0.3 * luminosityFactor;
+      }
+      
+      // Adjust atmosphere luminosity
+      if (refs.atmosphere && refs.atmosphere.material.uniforms) {
+        refs.atmosphere.material.uniforms.luminosity.value = luminosityFactor;
+      }
 
       // Mountain parallax
       refs.mountains.forEach((mountain, i) => {
