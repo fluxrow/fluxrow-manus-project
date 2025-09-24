@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import AgencyHero from '../components/agency/AgencyHero';
+import HorizonAgencyHero from '../components/agency/HorizonAgencyHero';
 import ServicesGrid from '../components/agency/ServicesGrid';
 import CasesPortfolio from '../components/agency/CasesPortfolio';
 import ProcessTimeline from '../components/agency/ProcessTimeline';
@@ -31,7 +31,7 @@ const Agencia = () => {
       <PremiumEffects />
       
       {/* Hero Section */}
-      <AgencyHero />
+      <HorizonAgencyHero />
       
       {/* Services Grid */}
       <ServicesGrid />
