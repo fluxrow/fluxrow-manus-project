@@ -4,12 +4,13 @@ import ServicesGrid from '../components/agency/ServicesGrid';
 import CasesPortfolio from '../components/agency/CasesPortfolio';
 import ProcessTimeline from '../components/agency/ProcessTimeline';
 import EnhancedInteractiveBriefing from '../components/agency/EnhancedInteractiveBriefing';
-import PremiumEffects from '../components/agency/PremiumEffects';
+
 import DemoModal from '../components/agency/DemoModal';
 import AgencyCTA from '../components/agency/AgencyCTA';
 import BehindTheScenes from '../components/agency/BehindTheScenes';
 import MatrixBackground from '../components/agency/MatrixBackground';
 import { SplashCursor } from '../components/ui/splash-cursor';
+import DeveloperEasterEgg from '../components/agency/DeveloperEasterEgg';
 
 const Agencia = () => {
   const [isDemoOpen, setIsDemoOpen] = useState(false);
@@ -30,7 +31,7 @@ const Agencia = () => {
     <div className="min-h-screen bg-[#0a0a0a] text-white overflow-x-hidden">
       <SplashCursor />
       <MatrixBackground />
-      <PremiumEffects />
+      <DeveloperEasterEgg />
       
       {/* Hero Section */}
       <HorizonAgencyHero />
