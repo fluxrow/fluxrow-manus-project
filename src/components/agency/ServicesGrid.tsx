@@ -37,7 +37,7 @@ const ServicesGrid = () => {
           <h2 className="section-title font-space-grotesk gradient-text">
             O que fazemos
           </h2>
-          <p className="text-gray-400 text-lg max-w-3xl mx-auto">
+          <p className="text-white/90 text-lg max-w-3xl mx-auto">
             Soluções completas que transformam seu negócio em uma máquina de resultados
           </p>
         </div>
@@ -62,7 +62,7 @@ const ServicesGrid = () => {
                   {service.title}
                 </h3>
                 
-                <p className="text-gray-400 leading-relaxed group-hover:text-gray-300 transition-colors">
+                <p className="text-white/90 leading-relaxed group-hover:text-white transition-colors">
                   {service.description}
                 </p>
                 

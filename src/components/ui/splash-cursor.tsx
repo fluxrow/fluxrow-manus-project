@@ -1244,7 +1244,7 @@ function SplashCursor({
       <canvas 
         ref={canvasRef} 
         id="fluid" 
-        className="w-full h-full pointer-events-auto"
+        className="w-full h-full pointer-events-none"
         style={{ mixBlendMode: 'screen' }}
       />
     </div>
