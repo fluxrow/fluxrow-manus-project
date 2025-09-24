@@ -70,12 +70,12 @@ function SplashCursor({
         antialias: false,
         preserveDrawingBuffer: false,
       };
-      let gl = canvas.getContext("webgl2", params);
+      let gl: WebGL2RenderingContext | WebGLRenderingContext | null = canvas.getContext("webgl2", params) as WebGL2RenderingContext | null;
       const isWebGL2 = !!gl;
       if (!isWebGL2)
         gl =
-          canvas.getContext("webgl", params) ||
-          canvas.getContext("experimental-webgl", params);
+          (canvas.getContext("webgl", params) ||
+          canvas.getContext("experimental-webgl", params)) as WebGLRenderingContext | null;
       let halfFloat: any;
       let supportLinearFiltering: any;
       if (isWebGL2) {
