@@ -49,7 +49,7 @@ const AIShowcaseSection = () => {
             <br />
             <span className="text-white">Em Todas as Frentes</span>
           </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto font-space-grotesk">
+          <p className="text-xl text-white/90 max-w-3xl mx-auto font-space-grotesk">
             Veja como nossa metodologia transforma cada aspecto da inteligência artificial em resultados reais para seu negócio.
           </p>
         </div>

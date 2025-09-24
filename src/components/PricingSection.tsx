@@ -139,7 +139,7 @@ const PricingSection = () => {
               <p className="urgency-text font-space-grotesk text-pink-400 mb-2">
                 ⚡ Últimas 48 horas com este preço
               </p>
-              <p className="text-gray-400 text-sm font-space-grotesk">
+              <p className="text-white/70 text-sm font-space-grotesk">
                 💳 Pagamento 100% seguro • 🔒 Dados protegidos
               </p>
             </div>
