@@ -14,7 +14,7 @@ const HorizonAgencyHero = () => {
   const canvasRef = useRef(null);
   const titleRef = useRef(null);
   const subtitleRef = useRef(null);
-  const scrollProgressRef = useRef(null);
+  
   const menuRef = useRef(null);
   const statsRef = useRef(null);
   const ctaRef = useRef(null);
@@ -632,25 +632,25 @@ const HorizonAgencyHero = () => {
         <div className="max-w-6xl hero-content">
           {/* Stats */}
           <div ref={statsRef} className="mb-8 flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-4 md:gap-8 text-xs sm:text-sm px-4" style={{ visibility: 'hidden' }}>
-            <div className="bg-gradient-to-r from-cyan-500/40 to-purple-500/40 border border-cyan-500/50 rounded-full px-3 py-2 whitespace-nowrap backdrop-blur-md drop-shadow-lg">
-              <span className="text-cyan-400 font-bold drop-shadow-lg">+{counters.automations}</span>
+            <div className="bg-gradient-to-r from-cyan-500/40 to-purple-500/40 border border-cyan-500/30 rounded-full px-3 py-2 whitespace-nowrap backdrop-blur-md">
+              <span className="text-cyan-400 font-bold">+{counters.automations}</span>
               <span className="text-white ml-1 drop-shadow-lg">automações</span>
             </div>
-            <div className="bg-gradient-to-r from-purple-500/40 to-pink-500/40 border border-purple-500/50 rounded-full px-3 py-2 whitespace-nowrap backdrop-blur-md drop-shadow-lg">
-              <span className="text-purple-400 font-bold drop-shadow-lg">+{counters.leads}</span>
+            <div className="bg-gradient-to-r from-purple-500/40 to-pink-500/40 border border-purple-500/30 rounded-full px-3 py-2 whitespace-nowrap backdrop-blur-md">
+              <span className="text-purple-400 font-bold">+{counters.leads}</span>
               <span className="text-white ml-1 drop-shadow-lg">leads</span>
             </div>
-            <div className="bg-gradient-to-r from-pink-500/40 to-yellow-500/40 border border-pink-500/50 rounded-full px-3 py-2 whitespace-nowrap backdrop-blur-md drop-shadow-lg">
-              <span className="text-pink-400 font-bold drop-shadow-lg">+{counters.hours}</span>
+            <div className="bg-gradient-to-r from-pink-500/40 to-yellow-500/40 border border-pink-500/30 rounded-full px-3 py-2 whitespace-nowrap backdrop-blur-md">
+              <span className="text-pink-400 font-bold">+{counters.hours}</span>
               <span className="text-white ml-1 drop-shadow-lg">horas</span>
             </div>
           </div>
           
           <h1 ref={titleRef} className="hero-title font-space-grotesk mb-6" style={{ visibility: 'hidden' }}>
-            <span className="block gradient-text text-6xl md:text-8xl font-bold mb-4" style={{ textShadow: '0 0 20px rgba(6, 182, 212, 0.5), 0 0 40px rgba(139, 92, 246, 0.3), 2px 2px 4px rgba(0, 0, 0, 0.8)' }}>{content.title}</span>
+            <span className="block gradient-text text-6xl md:text-8xl font-bold mb-4 drop-shadow-2xl" style={{ textShadow: '0 0 20px rgba(6, 182, 212, 0.5), 0 0 40px rgba(139, 92, 246, 0.3), 2px 2px 4px rgba(0, 0, 0, 0.8)' }}>{content.title}</span>
           </h1>
           
-          <p ref={subtitleRef} className="hero-subtitle text-white font-space-grotesk text-xl max-w-4xl mx-auto mb-8" style={{ visibility: 'hidden', textShadow: '0 2px 8px rgba(0, 0, 0, 0.8), 0 0 20px rgba(6, 182, 212, 0.2)' }}>
+          <p ref={subtitleRef} className="hero-subtitle text-white font-space-grotesk text-xl max-w-4xl mx-auto mb-8 drop-shadow-lg" style={{ visibility: 'hidden', textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 8px rgba(0, 0, 0, 0.6)' }}>
             {content.subtitle}
           </p>
           
