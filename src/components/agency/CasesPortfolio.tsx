@@ -106,7 +106,7 @@ const CasesPortfolio = () => {
           <h2 className="section-title font-space-grotesk gradient-text">
             Cases de Sucesso
           </h2>
-          <p className="text-gray-400 text-lg max-w-3xl mx-auto">
+          <p className="text-white/80 text-lg max-w-3xl mx-auto">
             Resultados reais que transformaram negócios com tecnologia
           </p>
         </div>
@@ -163,19 +163,19 @@ const CasesPortfolio = () => {
                   {/* Preview Info */}
                   <div className="space-y-3">
                     <div>
-                      <span className="text-gray-500 text-sm">Desafio:</span>
-                      <p className="text-gray-300 text-sm">{case_item.challenge}</p>
+                      <span className="text-white/60 text-sm">Desafio:</span>
+                      <p className="text-white/90 text-sm">{case_item.challenge}</p>
                     </div>
                     
                     {selectedCase === index && (
                       <div className="space-y-3 animate-fade-in">
                         <div>
-                          <span className="text-gray-500 text-sm">Solução:</span>
-                          <p className="text-gray-300 text-sm">{case_item.solution}</p>
+                          <span className="text-white/60 text-sm">Solução:</span>
+                          <p className="text-white/90 text-sm">{case_item.solution}</p>
                         </div>
                         
                         <div>
-                          <span className="text-gray-500 text-sm">Resultado:</span>
+                          <span className="text-white/60 text-sm">Resultado:</span>
                           <p className={`text-${case_item.color}-400 font-semibold text-sm`}>
                             {case_item.result}
                           </p>

@@ -179,7 +179,7 @@ Olá! Completei o briefing no site da Fluxrow e gostaria de conversar sobre como
           <h2 className="section-title font-space-grotesk gradient-text">
             Briefing Interativo
           </h2>
-          <p className="text-gray-400 text-lg">
+          <p className="text-white/80 text-lg">
             Responda algumas perguntas para recebermos um atendimento personalizado
           </p>
         </div>
@@ -187,7 +187,7 @@ Olá! Completei o briefing no site da Fluxrow e gostaria de conversar sobre como
         <div className="glass-card p-8">
           {/* Progress Bar */}
           <div className="mb-8">
-            <div className="flex justify-between text-sm text-gray-400 mb-2">
+            <div className="flex justify-between text-sm text-white/80 mb-2">
               <span>Progresso</span>
               <span>{Math.round(progress)}%</span>
             </div>
@@ -224,7 +224,7 @@ Olá! Completei o briefing no site da Fluxrow e gostaria de conversar sobre como
                           <div className="font-semibold text-white group-hover:text-cyan-400 transition-colors">
                             {option.label}
                           </div>
-                          <div className="text-sm text-gray-400">
+                          <div className="text-sm text-white/80">
                             {option.description}
                           </div>
                         </div>
@@ -260,7 +260,7 @@ Olá! Completei o briefing no site da Fluxrow e gostaria de conversar sobre como
                   disabled={currentStep === 0}
                   className={`flex items-center gap-2 px-6 py-3 rounded-lg font-semibold transition-all duration-300 ${
                     currentStep === 0
-                      ? 'text-gray-500 cursor-not-allowed'
+                      ? 'text-white/60 cursor-not-allowed'
                       : 'text-cyan-400 hover:bg-cyan-500/10'
                   }`}
                 >
@@ -282,7 +282,7 @@ Olá! Completei o briefing no site da Fluxrow e gostaria de conversar sobre como
                     disabled={!briefingData[questions[currentStep].id as keyof BriefingData]}
                     className={`flex items-center gap-2 px-6 py-3 rounded-lg font-semibold transition-all duration-300 ${
                       !briefingData[questions[currentStep].id as keyof BriefingData]
-                        ? 'text-gray-500 cursor-not-allowed'
+                        ? 'text-white/60 cursor-not-allowed'
                         : 'text-cyan-400 hover:bg-cyan-500/10'
                     }`}
                   >
@@ -305,7 +305,7 @@ Olá! Completei o briefing no site da Fluxrow e gostaria de conversar sobre como
               
               <div className="bg-gray-800/50 rounded-lg p-6 mb-8 text-left max-w-2xl mx-auto">
                 <h4 className="font-semibold text-cyan-400 mb-4">Resumo das suas respostas:</h4>
-                <div className="space-y-3 text-gray-300">
+                <div className="space-y-3 text-white/80">
                   <p><strong>Tipo de negócio:</strong> {briefingData.businessType}</p>
                   <p><strong>Objetivo principal:</strong> {briefingData.objective}</p>
                   <p><strong>Nível atual:</strong> {briefingData.currentLevel}</p>
@@ -315,7 +315,7 @@ Olá! Completei o briefing no site da Fluxrow e gostaria de conversar sobre como
                 </div>
               </div>
               
-              <p className="text-gray-400 mb-8">
+              <p className="text-white/80 mb-8">
                 Nosso time vai analisar suas respostas e preparar um atendimento sob medida para o seu negócio.
               </p>
               

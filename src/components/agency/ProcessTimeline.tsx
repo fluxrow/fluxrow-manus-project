@@ -59,7 +59,7 @@ const ProcessTimeline = () => {
           <h2 className="section-title font-space-grotesk gradient-text">
             Como Trabalhamos
           </h2>
-          <p className="text-gray-400 text-lg max-w-3xl mx-auto">
+          <p className="text-white/80 text-lg max-w-3xl mx-auto">
             Um processo testado e refinado que entrega resultados consistentes
           </p>
         </div>
@@ -110,12 +110,12 @@ const ProcessTimeline = () => {
                       {step.title}
                     </h3>
                     
-                    <p className="text-gray-300 text-sm leading-relaxed">
+                    <p className="text-white/90 text-sm leading-relaxed">
                       {step.description}
                     </p>
                     
                     {isActive && (
-                      <p className="text-xs text-gray-500 animate-fade-in">
+                      <p className="text-xs text-white/60 animate-fade-in">
                         {step.details}
                       </p>
                     )}
@@ -145,10 +145,10 @@ const ProcessTimeline = () => {
                   <h3 className={`text-lg font-bold font-space-grotesk text-${step.color}-400 mb-2`}>
                     {step.title}
                   </h3>
-                  <p className="text-gray-300 text-sm leading-relaxed mb-2">
+                  <p className="text-white/90 text-sm leading-relaxed mb-2">
                     {step.description}
                   </p>
-                  <p className="text-xs text-gray-500">
+                  <p className="text-xs text-white/60">
                     {step.details}
                   </p>
                 </div>

@@ -168,12 +168,12 @@ const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
       <div className="space-y-2">
         {terminalLines.map((line, index) => (
           <div key={index} className="text-green-400 text-sm animate-fade-in">
-            <span className="text-gray-500">[{new Date().toLocaleTimeString()}]</span> {line}
+            <span className="text-white/80">[{new Date().toLocaleTimeString()}]</span> {line}
           </div>
         ))}
         {isPlaying && (
           <div className="text-yellow-400 text-sm animate-pulse">
-            <span className="text-gray-500">[{new Date().toLocaleTimeString()}]</span> ▋ Processando...
+            <span className="text-white/80">[{new Date().toLocaleTimeString()}]</span> ▋ Processando...
           </div>
         )}
       </div>
@@ -224,7 +224,7 @@ const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
             <h3 className="text-xl font-semibold text-white mb-2">
               {demos[currentDemo].title}
             </h3>
-            <p className="text-gray-400">
+            <p className="text-white/80">
               {demos[currentDemo].description}
             </p>
           </div>
@@ -255,7 +255,7 @@ const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
             <Button
               onClick={resetDemo}
               variant="outline"
-              className="border-gray-600 text-gray-300 hover:bg-gray-700"
+              className="border-gray-600 text-white/80 hover:bg-gray-700"
             >
               <RotateCcw className="w-4 h-4 mr-2" />
               Reiniciar
@@ -264,7 +264,7 @@ const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
 
           {/* CTA */}
           <div className="text-center pt-4 border-t border-gray-700">
-            <p className="text-gray-400 mb-4">
+            <p className="text-white/80 mb-4">
               Gostou do que viu? Vamos implementar isso no seu negócio!
             </p>
             <Button

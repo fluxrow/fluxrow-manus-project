@@ -91,7 +91,7 @@ const Contato = () => {
             <h1 className="text-4xl md:text-6xl font-bold font-space-grotesk mb-6">
               <span className="gradient-text">Entre em Contato</span>
             </h1>
-            <p className="text-xl text-gray-300 mb-8 font-space-grotesk">
+            <p className="text-xl text-white/90 mb-8 font-space-grotesk">
               Estamos aqui para ajudar você a ter sucesso com IA
             </p>
           </div>
@@ -113,7 +113,7 @@ const Contato = () => {
                       {method.title}
                     </h3>
                     
-                    <p className="text-gray-300 font-space-grotesk mb-6">
+                    <p className="text-white/90 font-space-grotesk mb-6">
                       {method.description}
                     </p>
                     
@@ -135,7 +135,7 @@ const Contato = () => {
               <h2 className="text-3xl font-bold font-space-grotesk mb-4">
                 <span className="gradient-text">Redes Sociais</span>
               </h2>
-              <p className="text-gray-300 font-space-grotesk">
+              <p className="text-white/90 font-space-grotesk">
                 Siga-nos nas redes sociais para ficar por dentro das novidades
               </p>
             </div>
@@ -186,7 +186,7 @@ const Contato = () => {
               <h2 className="text-3xl font-bold font-space-grotesk mb-4">
                 <span className="gradient-text">Envie sua Mensagem</span>
               </h2>
-              <p className="text-gray-300 font-space-grotesk">
+              <p className="text-white/90 font-space-grotesk">
                 Preencha o formulário abaixo e retornaremos em até 24 horas
               </p>
             </div>
@@ -195,7 +195,7 @@ const Contato = () => {
               <form onSubmit={handleSubmit} className="glass-card p-8">
                 <div className="grid md:grid-cols-2 gap-6 mb-6">
                   <div>
-                    <label className="block text-gray-300 font-space-grotesk mb-2">
+                    <label className="block text-white/90 font-space-grotesk mb-2">
                       Nome Completo
                     </label>
                     <input
@@ -210,7 +210,7 @@ const Contato = () => {
                   </div>
                   
                   <div>
-                    <label className="block text-gray-300 font-space-grotesk mb-2">
+                    <label className="block text-white/90 font-space-grotesk mb-2">
                       E-mail
                     </label>
                     <input
@@ -226,7 +226,7 @@ const Contato = () => {
                 </div>
                 
                 <div className="mb-6">
-                  <label className="block text-gray-300 font-space-grotesk mb-2">
+                  <label className="block text-white/90 font-space-grotesk mb-2">
                     Assunto
                   </label>
                   <select
@@ -246,7 +246,7 @@ const Contato = () => {
                 </div>
                 
                 <div className="mb-8">
-                  <label className="block text-gray-300 font-space-grotesk mb-2">
+                  <label className="block text-white/90 font-space-grotesk mb-2">
                     Mensagem
                   </label>
                   <textarea
@@ -274,7 +274,7 @@ const Contato = () => {
                 <h3 className="text-2xl font-bold font-space-grotesk text-white mb-4">
                   Mensagem Enviada!
                 </h3>
-                <p className="text-gray-300 font-space-grotesk mb-6">
+                <p className="text-white/90 font-space-grotesk mb-6">
                   Obrigado pelo contato. Retornaremos em até 24 horas.
                 </p>
                 <button

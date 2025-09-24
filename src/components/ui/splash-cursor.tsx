@@ -1240,7 +1240,7 @@ function SplashCursor({
   ]);
 
   return (
-    <div className="fixed inset-0 z-30">
+    <div className="fixed inset-0 z-30 pointer-events-none">
       <canvas 
         ref={canvasRef} 
         id="fluid" 

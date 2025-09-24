@@ -79,15 +79,15 @@ const AgencyHero = () => {
         <div className="mb-8 flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-4 md:gap-8 text-xs sm:text-sm px-4">
           <div className="bg-gradient-to-r from-cyan-500/20 to-purple-500/20 border border-cyan-500/30 rounded-full px-3 py-2 whitespace-nowrap">
             <span className="text-cyan-400 font-bold">+{counters.automations}</span>
-            <span className="text-gray-300 ml-1">automações</span>
+            <span className="text-white/90 ml-1">automações</span>
           </div>
           <div className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-500/30 rounded-full px-3 py-2 whitespace-nowrap">
             <span className="text-purple-400 font-bold">+{counters.leads}</span>
-            <span className="text-gray-300 ml-1">leads</span>
+            <span className="text-white/90 ml-1">leads</span>
           </div>
           <div className="bg-gradient-to-r from-pink-500/20 to-yellow-500/20 border border-pink-500/30 rounded-full px-3 py-2 whitespace-nowrap">
             <span className="text-pink-400 font-bold">+{counters.hours}</span>
-            <span className="text-gray-300 ml-1">horas</span>
+            <span className="text-white/90 ml-1">horas</span>
           </div>
         </div>
         
@@ -98,7 +98,7 @@ const AgencyHero = () => {
           <span className="block">automação e criatividade</span>
         </h1>
         
-        <p className="hero-subtitle text-gray-300 font-space-grotesk text-xl max-w-4xl mx-auto mb-8">
+        <p className="hero-subtitle text-white/90 font-space-grotesk text-xl max-w-4xl mx-auto mb-8">
           Da estratégia ao entregável, a Fluxrow cuida de tudo: sites, automações, conteúdo e resultados reais.
         </p>
         

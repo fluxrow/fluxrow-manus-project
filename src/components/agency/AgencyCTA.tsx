@@ -34,7 +34,7 @@ const AgencyCTA = () => {
           <span className="gradient-text">IA, automação e design estratégico?</span>
         </h2>
         
-        <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
+        <p className="text-xl text-white/90 mb-8 max-w-3xl mx-auto leading-relaxed">
           A Fluxrow está pronta para acelerar seus resultados. Vamos conversar sobre como podemos 
           transformar seus desafios em oportunidades de crescimento.
         </p>
@@ -53,7 +53,7 @@ const AgencyCTA = () => {
         </button>
         
         {/* Supporting Text */}
-        <p className="text-sm text-gray-400 mb-12">
+        <p className="text-sm text-white/80 mb-12">
           🎯 Atendemos empresas, criadores e startups que querem acelerar resultados
         </p>
         
@@ -62,25 +62,25 @@ const AgencyCTA = () => {
           <div className="flex flex-col sm:flex-row justify-center items-center gap-6 text-sm">
             <a 
               href="/" 
-              className="text-gray-400 hover:text-cyan-400 transition-colors"
+              className="text-white/80 hover:text-cyan-400 transition-colors"
             >
               Início
             </a>
             <a 
               href="/conteudos" 
-              className="text-gray-400 hover:text-cyan-400 transition-colors"
+              className="text-white/80 hover:text-cyan-400 transition-colors"
             >
               Conteúdos
             </a>
             <a 
               href="#cases" 
-              className="text-gray-400 hover:text-cyan-400 transition-colors"
+              className="text-white/80 hover:text-cyan-400 transition-colors"
             >
               Cases
             </a>
             <a 
               href="/contato" 
-              className="text-gray-400 hover:text-cyan-400 transition-colors"
+              className="text-white/80 hover:text-cyan-400 transition-colors"
             >
               Contato
             </a>
@@ -92,7 +92,7 @@ const AgencyCTA = () => {
               href="https://instagram.com/fluxrow" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-gray-400 hover:text-pink-400 transition-colors"
+              className="text-white/80 hover:text-pink-400 transition-colors"
             >
               Instagram
             </a>
@@ -100,7 +100,7 @@ const AgencyCTA = () => {
               href="https://linkedin.com/company/fluxrow" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-gray-400 hover:text-blue-400 transition-colors"
+              className="text-white/80 hover:text-blue-400 transition-colors"
             >
               LinkedIn
             </a>
@@ -108,7 +108,7 @@ const AgencyCTA = () => {
               href="https://youtube.com/@fluxrow" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-gray-400 hover:text-red-400 transition-colors"
+              className="text-white/80 hover:text-red-400 transition-colors"
             >
               YouTube
             </a>
@@ -116,7 +116,7 @@ const AgencyCTA = () => {
           
           {/* Company Signature */}
           <div className="mt-8 pt-6 border-t border-gray-800">
-            <p className="text-gray-500 text-sm">
+            <p className="text-white/60 text-sm">
               <span className="gradient-text font-semibold">Fluxrow</span> – Automação, IA e Criatividade que entregam resultados.
             </p>
           </div>

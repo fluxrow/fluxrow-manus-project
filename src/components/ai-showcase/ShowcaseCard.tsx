@@ -85,7 +85,7 @@ const ShowcaseCard: React.FC<ShowcaseCardProps> = ({ item, index }) => {
         <h3 className={`${textSizes.title} font-bold text-white ${textSizes.titleMargin} font-space-grotesk`}>
           {item.title}
         </h3>
-        <p className={`text-gray-300 ${textSizes.description} font-space-grotesk`}>
+        <p className={`text-white/90 ${textSizes.description} font-space-grotesk`}>
           {item.description}
         </p>
       </div>
