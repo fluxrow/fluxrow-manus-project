@@ -1,5 +1,6 @@
 import React from 'react';
 import { Bot, Megaphone, Globe, Palette } from 'lucide-react';
+import { GlowCard } from '../ui/spotlight-card';
 
 const ServicesGrid = () => {
   const services = [
@@ -45,9 +46,11 @@ const ServicesGrid = () => {
           {services.map((service, index) => {
             const Icon = service.icon;
             return (
-              <div 
+              <GlowCard 
                 key={index}
-                className="glass-card p-8 text-center group hover:scale-105 transition-all duration-500"
+                glowColor={index === 0 ? 'blue' : index === 1 ? 'purple' : index === 2 ? 'green' : 'orange'}
+                customSize={true}
+                className="p-8 text-center group hover:scale-105 transition-all duration-500 h-full"
                 data-aos="fade-up"
                 data-aos-delay={index * 100}
               >
@@ -63,9 +66,7 @@ const ServicesGrid = () => {
                   {service.description}
                 </p>
                 
-                {/* Animated border on hover */}
-                <div className="absolute inset-0 rounded-lg border-2 border-transparent group-hover:border-cyan-500/50 transition-all duration-300"></div>
-              </div>
+              </GlowCard>
             );
           })}
         </div>

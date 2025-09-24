@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ExternalLink, ArrowRight, TrendingUp } from 'lucide-react';
 import ImageWithFallback from '../ui/image-with-fallback';
+import { GlowCard } from '../ui/spotlight-card';
 import fachiniImage from '../../assets/fachini-industrial.jpg';
 import medclinicaImage from '../../assets/medclinica-saude.jpg';
 
@@ -117,7 +118,11 @@ const CasesPortfolio = () => {
               className="group cursor-pointer"
               onClick={() => setSelectedCase(selectedCase === index ? null : index)}
             >
-              <div className="glass-card overflow-hidden hover:scale-105 transition-all duration-500">
+              <GlowCard 
+                glowColor={case_item.color as 'blue' | 'purple' | 'green' | 'red' | 'orange'}
+                customSize={true}
+                className="overflow-hidden hover:scale-105 transition-all duration-500 h-full"
+              >
                 {/* Case Image */}
                 <div className="relative h-48 overflow-hidden">
                   <ImageWithFallback 
@@ -188,7 +193,7 @@ const CasesPortfolio = () => {
                     />
                   </div>
                 </div>
-              </div>
+              </GlowCard>
             </div>
           ))}
         </div>

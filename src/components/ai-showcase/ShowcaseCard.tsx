@@ -3,6 +3,7 @@ import React from 'react';
 import { Badge } from '../ui/badge';
 import { ShowcaseItem } from './showcaseData';
 import ImageWithFallback from '../ui/image-with-fallback';
+import { GlowCard } from '../ui/spotlight-card';
 
 interface ShowcaseCardProps {
   item: ShowcaseItem;
@@ -64,7 +65,11 @@ const ShowcaseCard: React.FC<ShowcaseCardProps> = ({ item, index }) => {
   const badgePosition = item.size === 'small' ? 'top-3 left-3' : 'top-4 left-4';
 
   return (
-    <div className="bg-white/[0.02] backdrop-blur-[10px] border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.3)] hover:bg-white/[0.05] hover:border-white/20 hover:shadow-[0_12px_48px_rgba(0,0,0,0.4)] transition-all duration-300 h-full relative overflow-hidden rounded-3xl group">
+    <GlowCard 
+      glowColor={item.id === 'main' ? 'purple' : item.id === 'automation' ? 'blue' : item.id === 'templates' ? 'green' : item.id === 'mobile' ? 'red' : 'orange'}
+      customSize={true}
+      className="h-full relative overflow-hidden rounded-3xl group backdrop-blur-[10px] border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.3)] hover:shadow-[0_12px_48px_rgba(0,0,0,0.4)] transition-all duration-300"
+    >
       <div className={`absolute ${badgePosition} z-10`}>
         <Badge className={getBadgeColor(item.id)}>
           {item.badge}
@@ -84,7 +89,7 @@ const ShowcaseCard: React.FC<ShowcaseCardProps> = ({ item, index }) => {
           {item.description}
         </p>
       </div>
-    </div>
+    </GlowCard>
   );
 };
 
