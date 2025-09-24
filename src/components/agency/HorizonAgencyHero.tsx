@@ -481,7 +481,7 @@ const HorizonAgencyHero = () => {
     if (!isReady) return;
     
     // Set initial states
-    gsap.set([titleRef.current, subtitleRef.current, statsRef.current, ctaRef.current, scrollProgressRef.current], {
+    gsap.set([titleRef.current, subtitleRef.current, statsRef.current, ctaRef.current], {
       visibility: 'visible'
     });
 
@@ -530,15 +530,6 @@ const HorizonAgencyHero = () => {
       }, "-=0.3");
     }
 
-    // Animate scroll indicator
-    if (scrollProgressRef.current) {
-      tl.from(scrollProgressRef.current, {
-        opacity: 0,
-        y: 50,
-        duration: 1,
-        ease: "power2.out"
-      }, "-=0.5");
-    }
 
     return () => {
       tl.kill();
@@ -641,25 +632,25 @@ const HorizonAgencyHero = () => {
         <div className="max-w-6xl hero-content">
           {/* Stats */}
           <div ref={statsRef} className="mb-8 flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-4 md:gap-8 text-xs sm:text-sm px-4" style={{ visibility: 'hidden' }}>
-            <div className="bg-gradient-to-r from-cyan-500/20 to-purple-500/20 border border-cyan-500/30 rounded-full px-3 py-2 whitespace-nowrap backdrop-blur-sm">
-              <span className="text-cyan-400 font-bold">+{counters.automations}</span>
-              <span className="text-gray-300 ml-1">automações</span>
+            <div className="bg-gradient-to-r from-cyan-500/40 to-purple-500/40 border border-cyan-500/50 rounded-full px-3 py-2 whitespace-nowrap backdrop-blur-md drop-shadow-lg">
+              <span className="text-cyan-400 font-bold drop-shadow-lg">+{counters.automations}</span>
+              <span className="text-white ml-1 drop-shadow-lg">automações</span>
             </div>
-            <div className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-500/30 rounded-full px-3 py-2 whitespace-nowrap backdrop-blur-sm">
-              <span className="text-purple-400 font-bold">+{counters.leads}</span>
-              <span className="text-gray-300 ml-1">leads</span>
+            <div className="bg-gradient-to-r from-purple-500/40 to-pink-500/40 border border-purple-500/50 rounded-full px-3 py-2 whitespace-nowrap backdrop-blur-md drop-shadow-lg">
+              <span className="text-purple-400 font-bold drop-shadow-lg">+{counters.leads}</span>
+              <span className="text-white ml-1 drop-shadow-lg">leads</span>
             </div>
-            <div className="bg-gradient-to-r from-pink-500/20 to-yellow-500/20 border border-pink-500/30 rounded-full px-3 py-2 whitespace-nowrap backdrop-blur-sm">
-              <span className="text-pink-400 font-bold">+{counters.hours}</span>
-              <span className="text-gray-300 ml-1">horas</span>
+            <div className="bg-gradient-to-r from-pink-500/40 to-yellow-500/40 border border-pink-500/50 rounded-full px-3 py-2 whitespace-nowrap backdrop-blur-md drop-shadow-lg">
+              <span className="text-pink-400 font-bold drop-shadow-lg">+{counters.hours}</span>
+              <span className="text-white ml-1 drop-shadow-lg">horas</span>
             </div>
           </div>
           
           <h1 ref={titleRef} className="hero-title font-space-grotesk mb-6" style={{ visibility: 'hidden' }}>
-            <span className="block gradient-text text-6xl md:text-8xl font-bold mb-4">{content.title}</span>
+            <span className="block gradient-text text-6xl md:text-8xl font-bold mb-4" style={{ textShadow: '0 0 20px rgba(6, 182, 212, 0.5), 0 0 40px rgba(139, 92, 246, 0.3), 2px 2px 4px rgba(0, 0, 0, 0.8)' }}>{content.title}</span>
           </h1>
           
-          <p ref={subtitleRef} className="hero-subtitle text-gray-300 font-space-grotesk text-xl max-w-4xl mx-auto mb-8" style={{ visibility: 'hidden' }}>
+          <p ref={subtitleRef} className="hero-subtitle text-white font-space-grotesk text-xl max-w-4xl mx-auto mb-8" style={{ visibility: 'hidden', textShadow: '0 2px 8px rgba(0, 0, 0, 0.8), 0 0 20px rgba(6, 182, 212, 0.2)' }}>
             {content.subtitle}
           </p>
           
@@ -683,19 +674,6 @@ const HorizonAgencyHero = () => {
         </div>
       </div>
 
-      {/* Scroll progress indicator */}
-      <div ref={scrollProgressRef} className="fixed bottom-8 right-8 z-20" style={{ visibility: 'hidden' }}>
-        <div className="scroll-text text-xs text-gray-400 mb-2">SCROLL</div>
-        <div className="w-1 h-20 bg-gray-600 rounded-full relative">
-          <div 
-            className="w-full bg-gradient-to-t from-cyan-400 to-purple-400 rounded-full transition-all duration-300" 
-            style={{ height: `${scrollProgress * 100}%` }}
-          />
-        </div>
-        <div className="text-xs text-gray-400 mt-2 font-mono">
-          {String(currentSection).padStart(2, '0')} / {String(totalSections).padStart(2, '0')}
-        </div>
-      </div>
 
       {/* Additional sections for scrolling */}
       <div className="scroll-sections">
