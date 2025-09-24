@@ -57,6 +57,13 @@ function SplashCursor({
     let pointers = [new (pointerPrototype as any)()];
 
     const { gl, ext } = getWebGLContext(canvas);
+    
+    if (!gl) {
+      console.warn("Unable to initialize WebGL. Your browser may not support it.");
+      canvas.style.display = 'none';
+      return;
+    }
+    
     if (!ext.supportLinearFiltering) {
       config.DYE_RESOLUTION = 256;
       config.SHADING = false;
@@ -1056,9 +1063,9 @@ function SplashCursor({
 
     function generateColor() {
       let c = HSVtoRGB(Math.random(), 1.0, 1.0);
-      c.r *= 0.15;
-      c.g *= 0.15;
-      c.b *= 0.15;
+      c.r *= 0.35;
+      c.g *= 0.35;
+      c.b *= 0.35;
       return c;
     }
 
@@ -1233,8 +1240,13 @@ function SplashCursor({
   ]);
 
   return (
-    <div className="fixed top-0 left-0 z-0 pointer-events-none">
-      <canvas ref={canvasRef} id="fluid" className="w-screen h-screen" />
+    <div className="fixed inset-0 z-30 pointer-events-none">
+      <canvas 
+        ref={canvasRef} 
+        id="fluid" 
+        className="w-full h-full"
+        style={{ mixBlendMode: 'screen' }}
+      />
     </div>
   );
 }
