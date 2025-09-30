@@ -139,8 +139,8 @@ const ContratoMatchSolutions = () => {
             <div>
               <h3 className="font-bold text-lg text-foreground mb-2">CONTRATANTE:</h3>
               <p className="text-muted-foreground">
-                <strong>Match Solutions Fios e Cabos Elétricos LTDA</strong><br />
-                CNPJ: 34.325.200/0001-36<br />
+                <strong>{contrato?.nome_contratante || 'Match Solutions Fios e Cabos Elétricos LTDA'}</strong><br />
+                CNPJ: {contrato?.cnpj_contratante ? formatarCNPJ(contrato.cnpj_contratante) : '34.325.200/0001-36'}<br />
                 Endereço: [Endereço completo]<br />
                 E-mail: thiagogea@matchsolutions.com.br<br />
                 Telefone: (41) 99236-1868
