@@ -141,7 +141,7 @@ const ContratoMatchSolutions = () => {
               <p className="text-muted-foreground">
                 <strong>Match Solutions Fios e Cabos Elétricos LTDA</strong><br />
                 CNPJ: 34.325.200/0001-36<br />
-                Endereço: [Endereço completo]<br />
+                Endereço: Rua Inacio de Loyola 317, Vila Primavera, São Paulo SP, CEP: 03389-080<br />
                 E-mail: thiagogea@matchsolutions.com.br<br />
                 Telefone: (41) 99236-1868
               </p>
