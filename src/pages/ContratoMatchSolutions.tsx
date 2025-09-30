@@ -31,7 +31,7 @@ const ContratoMatchSolutions = () => {
   const carregarContrato = async () => {
     try {
       const { data, error } = await supabase.functions.invoke('validar-contrato', {
-        body: { cnpj: '61.260.831/0001-97' } // CNPJ da Fluxrow (contratante)
+        body: { cnpj: '34.325.200/0001-36' } // CNPJ da Match Solutions (contratante)
       });
 
       if (error) throw error;
