@@ -84,12 +84,6 @@ const ContratoMatchSolutions = () => {
     }
   };
 
-  const handleWhatsAppContact = () => {
-    const message = encodeURIComponent(
-      "Olá! Gostaria de assinar o contrato do Sistema de Qualificação para Vendas com IA."
-    );
-    window.open(`https://wa.me/5541992801005?text=${message}`, "_blank");
-  };
 
   const handlePrint = () => {
     window.print();
@@ -653,25 +647,14 @@ const ContratoMatchSolutions = () => {
             <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
               Entre em contato conosco para formalizar este contrato e começar a qualificar seus leads com inteligência artificial.
             </p>
-            <div className="flex gap-4 justify-center flex-wrap">
-              <Button 
-                onClick={handleWhatsAppContact}
-                size="lg"
-                className="gap-2 text-lg px-8"
-              >
-                <Mail className="h-5 w-5" />
-                Assinar Contrato via WhatsApp
-              </Button>
-              <Button 
-                onClick={() => window.location.href = '/contrato/match-solutions'}
-                size="lg"
-                variant="outline"
-                className="gap-2 text-lg px-8"
-              >
-                <FileText className="h-5 w-5" />
-                Assinar Digitalmente
-              </Button>
-            </div>
+            <Button 
+              onClick={() => window.location.href = '/contrato/match-solutions'}
+              size="lg"
+              className="gap-2 text-lg px-8"
+            >
+              <FileText className="h-5 w-5" />
+              Assinar Digitalmente
+            </Button>
           </div>
         ) : (
           <div className="bg-gradient-to-r from-green-500/10 via-green-500/5 to-green-500/10 border border-green-500/20 rounded-lg p-8 text-center shadow-lg">
