@@ -132,7 +132,6 @@ const ContratoMatchSolutions = () => {
               <li>• Vencimento: Todo dia <strong>30 de cada mês</strong></li>
               <li>• Primeiro boleto: 30/10/2025</li>
               <li>• Segundo boleto: 30/11/2025</li>
-              <li>• Terceiro boleto: 30/12/2025</li>
             </ul>
 
             <p><strong>3.3. MULTA POR ATRASO:</strong></p>
