@@ -1,0 +1,319 @@
+import { useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
+import { Loader2, FileText, Shield, CheckCircle2 } from "lucide-react";
+
+interface ContratoData {
+  id: string;
+  nome_contratante: string;
+  cpf_contratante: string;
+  cnpj_contratante: string;
+  nome_contratada: string;
+  cpf_contratada: string;
+  status: string;
+  created_at: string;
+}
+
+export default function ContratoAssinatura() {
+  const { cliente } = useParams();
+  const navigate = useNavigate();
+  
+  // Estados para validação CNPJ
+  const [cnpj, setCnpj] = useState("");
+  const [validando, setValidando] = useState(false);
+  const [contratoValidado, setContratoValidado] = useState(false);
+  const [contratoData, setContratoData] = useState<ContratoData | null>(null);
+  
+  // Estados para assinatura
+  const [nomeResponsavel, setNomeResponsavel] = useState("");
+  const [cpfResponsavel, setCpfResponsavel] = useState("");
+  const [cargoResponsavel, setCargoResponsavel] = useState("");
+  const [assinando, setAssinando] = useState(false);
+
+  // Formatar CNPJ
+  const formatarCNPJ = (valor: string) => {
+    const numeros = valor.replace(/\D/g, "");
+    return numeros
+      .replace(/^(\d{2})(\d)/, "$1.$2")
+      .replace(/^(\d{2})\.(\d{3})(\d)/, "$1.$2.$3")
+      .replace(/\.(\d{3})(\d)/, ".$1/$2")
+      .replace(/(\d{4})(\d)/, "$1-$2")
+      .substring(0, 18);
+  };
+
+  // Formatar CPF
+  const formatarCPF = (valor: string) => {
+    const numeros = valor.replace(/\D/g, "");
+    return numeros
+      .replace(/^(\d{3})(\d)/, "$1.$2")
+      .replace(/^(\d{3})\.(\d{3})(\d)/, "$1.$2.$3")
+      .replace(/\.(\d{3})(\d)/, ".$1-$2")
+      .substring(0, 14);
+  };
+
+  const handleValidarCNPJ = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!cnpj) {
+      toast.error("Por favor, insira o CNPJ");
+      return;
+    }
+
+    setValidando(true);
+
+    try {
+      const { data, error } = await supabase.functions.invoke('validar-contrato', {
+        body: { cnpj }
+      });
+
+      if (error) throw error;
+
+      if (data.error) {
+        toast.error(data.error);
+        return;
+      }
+
+      setContratoData(data.contrato);
+      setContratoValidado(true);
+      toast.success("Contrato encontrado! Preencha os dados para assinar.");
+    } catch (error: any) {
+      console.error('Erro ao validar CNPJ:', error);
+      toast.error("Erro ao validar CNPJ. Tente novamente.");
+    } finally {
+      setValidando(false);
+    }
+  };
+
+  const handleAssinar = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!nomeResponsavel || !cpfResponsavel || !cargoResponsavel) {
+      toast.error("Por favor, preencha todos os campos");
+      return;
+    }
+
+    if (!contratoData) {
+      toast.error("Erro: dados do contrato não encontrados");
+      return;
+    }
+
+    setAssinando(true);
+
+    try {
+      const { data, error } = await supabase.functions.invoke('assinar-contrato', {
+        body: {
+          contratoId: contratoData.id,
+          nomeResponsavel,
+          cpfResponsavel,
+          cargoResponsavel
+        }
+      });
+
+      if (error) throw error;
+
+      if (data.error) {
+        toast.error(data.error);
+        return;
+      }
+
+      toast.success("Contrato assinado com sucesso! Email de confirmação enviado.");
+      
+      // Aguardar 2 segundos e redirecionar
+      setTimeout(() => {
+        navigate('/');
+      }, 2000);
+    } catch (error: any) {
+      console.error('Erro ao assinar contrato:', error);
+      toast.error("Erro ao processar assinatura. Tente novamente.");
+    } finally {
+      setAssinando(false);
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-primary/5 via-background to-secondary/5">
+      <div className="container mx-auto px-4 py-12">
+        <div className="max-w-3xl mx-auto">
+          {/* Header */}
+          <div className="text-center mb-8">
+            <h1 className="text-4xl font-bold mb-2 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+              Assinatura Digital de Contrato
+            </h1>
+            <p className="text-muted-foreground">
+              Sistema seguro de assinatura eletrônica
+            </p>
+          </div>
+
+          {!contratoValidado ? (
+            // Formulário de validação CNPJ
+            <Card className="border-2">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Shield className="h-5 w-5 text-primary" />
+                  Validação de Acesso
+                </CardTitle>
+                <CardDescription>
+                  Insira o CNPJ da empresa contratante para acessar o contrato
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <form onSubmit={handleValidarCNPJ} className="space-y-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="cnpj">CNPJ da Empresa</Label>
+                    <Input
+                      id="cnpj"
+                      type="text"
+                      placeholder="00.000.000/0000-00"
+                      value={cnpj}
+                      onChange={(e) => setCnpj(formatarCNPJ(e.target.value))}
+                      maxLength={18}
+                      className="text-lg"
+                      disabled={validando}
+                    />
+                  </div>
+
+                  <Button 
+                    type="submit" 
+                    className="w-full"
+                    size="lg"
+                    disabled={validando}
+                  >
+                    {validando ? (
+                      <>
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                        Validando...
+                      </>
+                    ) : (
+                      <>
+                        <FileText className="mr-2 h-4 w-4" />
+                        Validar e Acessar Contrato
+                      </>
+                    )}
+                  </Button>
+                </form>
+              </CardContent>
+            </Card>
+          ) : (
+            // Exibição do contrato e formulário de assinatura
+            <div className="space-y-6">
+              {/* Card com dados do contrato */}
+              <Card className="border-2 border-primary/20 bg-primary/5">
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <FileText className="h-5 w-5 text-primary" />
+                    Dados do Contrato
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-3">
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <p className="text-sm text-muted-foreground">Contratante</p>
+                      <p className="font-semibold">{contratoData?.nome_contratante}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm text-muted-foreground">CNPJ</p>
+                      <p className="font-semibold">{formatarCNPJ(contratoData?.cnpj_contratante || '')}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm text-muted-foreground">Contratada</p>
+                      <p className="font-semibold">{contratoData?.nome_contratada}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm text-muted-foreground">Status</p>
+                      <p className="font-semibold capitalize">{contratoData?.status}</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Formulário de assinatura */}
+              <Card className="border-2">
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <CheckCircle2 className="h-5 w-5 text-primary" />
+                    Assinatura Digital
+                  </CardTitle>
+                  <CardDescription>
+                    Preencha os dados do responsável pela assinatura
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <form onSubmit={handleAssinar} className="space-y-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="nome">Nome Completo do Responsável</Label>
+                      <Input
+                        id="nome"
+                        type="text"
+                        placeholder="Nome completo"
+                        value={nomeResponsavel}
+                        onChange={(e) => setNomeResponsavel(e.target.value)}
+                        disabled={assinando}
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label htmlFor="cpf">CPF do Responsável</Label>
+                      <Input
+                        id="cpf"
+                        type="text"
+                        placeholder="000.000.000-00"
+                        value={cpfResponsavel}
+                        onChange={(e) => setCpfResponsavel(formatarCPF(e.target.value))}
+                        maxLength={14}
+                        disabled={assinando}
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label htmlFor="cargo">Cargo/Função</Label>
+                      <Input
+                        id="cargo"
+                        type="text"
+                        placeholder="Ex: Diretor, Sócio, Gerente"
+                        value={cargoResponsavel}
+                        onChange={(e) => setCargoResponsavel(e.target.value)}
+                        disabled={assinando}
+                      />
+                    </div>
+
+                    <div className="pt-4 space-y-3">
+                      <div className="p-4 bg-muted/50 rounded-lg border">
+                        <p className="text-sm text-muted-foreground">
+                          Ao clicar em "Assinar Contrato", você confirma que leu e concorda com todos os termos e condições descritos no contrato, e que possui autorização para representar a empresa contratante.
+                        </p>
+                      </div>
+
+                      <Button 
+                        type="submit" 
+                        className="w-full"
+                        size="lg"
+                        disabled={assinando}
+                      >
+                        {assinando ? (
+                          <>
+                            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                            Processando Assinatura...
+                          </>
+                        ) : (
+                          <>
+                            <CheckCircle2 className="mr-2 h-4 w-4" />
+                            Assinar Contrato Digitalmente
+                          </>
+                        )}
+                      </Button>
+                    </div>
+                  </form>
+                </CardContent>
+              </Card>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
