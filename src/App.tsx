@@ -22,6 +22,7 @@ import ClientPreview from "./pages/ClientPreview";
 import Propostas from "./pages/Propostas";
 import PropostaView from "./pages/PropostaView";
 import PropostaMatchSolutions from "./pages/PropostaMatchSolutions";
+import ContratoMatchSolutions from "./pages/ContratoMatchSolutions";
 
 const queryClient = new QueryClient();
 
@@ -48,6 +49,7 @@ const App = () => (
           <Route path="/propostas" element={<Propostas />} />
           <Route path="/proposta/:clienteSlug" element={<PropostaView />} />
           <Route path="/match-solutions" element={<PropostaMatchSolutions />} />
+          <Route path="/contrato-match-solutions" element={<ContratoMatchSolutions />} />
           <Route path="/conteudos/:slug" element={<div>Página Individual de Conteúdo</div>} />
           <Route path="/contato" element={<Contato />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
