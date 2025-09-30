@@ -143,7 +143,7 @@ const ContratoMatchSolutions = () => {
                 CNPJ: 34.325.200/0001-36<br />
                 Endereço: Rua Inacio de Loyola 317, Vila Primavera, São Paulo SP, CEP: 03389-080<br />
                 E-mail: thiagogea@matchsolutions.com.br<br />
-                Telefone: (41) 99236-1868
+                Telefone: (11) 96405-6383
               </p>
             </div>
 
@@ -154,7 +154,7 @@ const ContratoMatchSolutions = () => {
                 CNPJ: 61.260.831/0001-97<br />
                 Endereço: Curitiba/PR<br />
                 E-mail: contato@fluxrow.com<br />
-                Telefone: (41) 99280-1005<br />
+                Telefone: (41) 99236-1868<br />
                 Chave PIX CNPJ: 61.260.831/0001-97
               </p>
             </div>
