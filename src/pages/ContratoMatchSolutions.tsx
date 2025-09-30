@@ -1,7 +1,89 @@
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { FileText, Download, Mail, CheckCircle } from "lucide-react";
+import { FileText, Download, Mail, CheckCircle, Loader2 } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
+import { format } from "date-fns";
+import { ptBR } from "date-fns/locale";
+
+interface ContratoData {
+  id: string;
+  nome_contratante: string;
+  cpf_contratante: string;
+  cnpj_contratante: string;
+  nome_contratada: string;
+  cpf_contratada: string;
+  status: string;
+  data_assinatura: string;
+  assinatura_nome_responsavel: string | null;
+  assinatura_cpf_responsavel: string | null;
+  assinatura_cargo_responsavel: string | null;
+  created_at: string;
+}
 
 const ContratoMatchSolutions = () => {
+  const [contrato, setContrato] = useState<ContratoData | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    carregarContrato();
+  }, []);
+
+  const carregarContrato = async () => {
+    try {
+      const { data, error } = await supabase.functions.invoke('validar-contrato', {
+        body: { cnpj: '34.325.200/0001-36' }
+      });
+
+      if (error) throw error;
+      if (data.contrato) {
+        setContrato(data.contrato);
+      }
+    } catch (error) {
+      console.error('Erro ao carregar contrato:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const formatarCNPJ = (cnpj: string) => {
+    if (!cnpj) return '';
+    const numeros = cnpj.replace(/\D/g, '');
+    return numeros
+      .replace(/^(\d{2})(\d)/, '$1.$2')
+      .replace(/^(\d{2})\.(\d{3})(\d)/, '$1.$2.$3')
+      .replace(/\.(\d{3})(\d)/, '.$1/$2')
+      .replace(/(\d{4})(\d)/, '$1-$2')
+      .substring(0, 18);
+  };
+
+  const formatarCPF = (cpf: string) => {
+    if (!cpf) return '';
+    const numeros = cpf.replace(/\D/g, '');
+    return numeros
+      .replace(/^(\d{3})(\d)/, '$1.$2')
+      .replace(/^(\d{3})\.(\d{3})(\d)/, '$1.$2.$3')
+      .replace(/\.(\d{3})(\d)/, '.$1-$2')
+      .substring(0, 14);
+  };
+
+  const formatarDataExtenso = (data: string) => {
+    if (!data) return '';
+    try {
+      return format(new Date(data), "dd 'de' MMMM 'de' yyyy", { locale: ptBR });
+    } catch {
+      return '';
+    }
+  };
+
+  const formatarDataHora = (data: string) => {
+    if (!data) return '';
+    try {
+      return format(new Date(data), "dd/MM/yyyy 'às' HH:mm", { locale: ptBR });
+    } catch {
+      return '';
+    }
+  };
+
   const handleWhatsAppContact = () => {
     const message = encodeURIComponent(
       "Olá! Gostaria de assinar o contrato do Sistema de Qualificação para Vendas com IA."
@@ -12,6 +94,14 @@ const ContratoMatchSolutions = () => {
   const handlePrint = () => {
     window.print();
   };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <Loader2 className="h-8 w-8 animate-spin text-primary" />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background via-background to-primary/5">
@@ -464,67 +554,144 @@ const ContratoMatchSolutions = () => {
           </h3>
           <div className="space-y-8">
             <div className="text-center">
-              <p className="text-muted-foreground mb-4">
-                Curitiba/PR, _____ de __________________ de 2025
-              </p>
+              {contrato?.status === 'assinado' && contrato?.data_assinatura ? (
+                <div className="space-y-2">
+                  <p className="text-muted-foreground mb-2">
+                    Curitiba/PR, {formatarDataExtenso(contrato.data_assinatura)}
+                  </p>
+                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-green-500/10 border border-green-500/20 rounded-lg">
+                    <CheckCircle className="h-5 w-5 text-green-600" />
+                    <span className="text-green-600 font-semibold">
+                      Contrato Assinado Digitalmente
+                    </span>
+                  </div>
+                  <p className="text-sm text-muted-foreground mt-2">
+                    Assinado em: {formatarDataHora(contrato.data_assinatura)}
+                  </p>
+                </div>
+              ) : (
+                <p className="text-muted-foreground mb-4">
+                  Curitiba/PR, _____ de __________________ de 2025
+                </p>
+              )}
             </div>
 
             <div className="grid md:grid-cols-2 gap-8">
               <div className="text-center">
-                <div className="border-t-2 border-muted pt-2 mt-12">
-                  <p className="font-bold text-foreground">CONTRATANTE</p>
+                <div className="border-t-2 border-muted pt-4 mt-8">
+                  <p className="font-bold text-foreground mb-2">CONTRATANTE</p>
                   <p className="text-sm text-muted-foreground">Match Solutions Fios e Cabos Elétricos LTDA</p>
-                  <p className="text-sm text-muted-foreground">CNPJ: 34.325.200/0001-36</p>
+                  <p className="text-sm text-muted-foreground">CNPJ: {formatarCNPJ(contrato?.cnpj_contratante || '34325200000136')}</p>
+                  
+                  {contrato?.status === 'assinado' && contrato?.assinatura_nome_responsavel && (
+                    <div className="mt-4 p-4 bg-primary/5 rounded-lg border border-primary/10">
+                      <p className="text-sm font-semibold text-foreground">Representante Legal:</p>
+                      <p className="text-sm text-muted-foreground mt-1">
+                        <strong>{contrato.assinatura_nome_responsavel}</strong>
+                      </p>
+                      <p className="text-sm text-muted-foreground">
+                        CPF: {formatarCPF(contrato.assinatura_cpf_responsavel || '')}
+                      </p>
+                      <p className="text-sm text-muted-foreground">
+                        Cargo: {contrato.assinatura_cargo_responsavel}
+                      </p>
+                    </div>
+                  )}
                 </div>
               </div>
 
               <div className="text-center">
-                <div className="border-t-2 border-muted pt-2 mt-12">
-                  <p className="font-bold text-foreground">CONTRATADA</p>
+                <div className="border-t-2 border-muted pt-4 mt-8">
+                  <p className="font-bold text-foreground mb-2">CONTRATADA</p>
                   <p className="text-sm text-muted-foreground">Fluxrow Inteligência Criativa</p>
                   <p className="text-sm text-muted-foreground">CNPJ: 61.260.831/0001-97</p>
+                  
+                  {contrato?.status === 'assinado' && (
+                    <div className="mt-4 p-4 bg-secondary/5 rounded-lg border border-secondary/10">
+                      <p className="text-sm font-semibold text-foreground">Representante Legal:</p>
+                      <p className="text-sm text-muted-foreground mt-1">
+                        <strong>Rafael Belusso</strong>
+                      </p>
+                      <p className="text-sm text-muted-foreground">
+                        Sócio-Fundador
+                      </p>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
 
-            <div className="text-center mt-8 space-y-2">
-              <p className="text-sm text-muted-foreground">Testemunhas:</p>
-              <div className="grid md:grid-cols-2 gap-8 mt-4">
-                <div className="text-center">
-                  <div className="border-t-2 border-muted pt-2 mt-12">
-                    <p className="text-sm text-muted-foreground">Nome: _______________________</p>
-                    <p className="text-sm text-muted-foreground">CPF: _______________________</p>
+            {contrato?.status !== 'assinado' && (
+              <div className="text-center mt-8 space-y-2">
+                <p className="text-sm text-muted-foreground">Testemunhas:</p>
+                <div className="grid md:grid-cols-2 gap-8 mt-4">
+                  <div className="text-center">
+                    <div className="border-t-2 border-muted pt-2 mt-12">
+                      <p className="text-sm text-muted-foreground">Nome: _______________________</p>
+                      <p className="text-sm text-muted-foreground">CPF: _______________________</p>
+                    </div>
                   </div>
-                </div>
-                <div className="text-center">
-                  <div className="border-t-2 border-muted pt-2 mt-12">
-                    <p className="text-sm text-muted-foreground">Nome: _______________________</p>
-                    <p className="text-sm text-muted-foreground">CPF: _______________________</p>
+                  <div className="text-center">
+                    <div className="border-t-2 border-muted pt-2 mt-12">
+                      <p className="text-sm text-muted-foreground">Nome: _______________________</p>
+                      <p className="text-sm text-muted-foreground">CPF: _______________________</p>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
 
         {/* CTA Section */}
-        <div className="bg-gradient-to-r from-primary/10 via-primary/5 to-primary/10 border border-primary/20 rounded-lg p-8 text-center shadow-lg">
-          <Mail className="h-12 w-12 mx-auto mb-4 text-primary" />
-          <h3 className="text-2xl font-bold text-foreground mb-3">
-            Pronto para Assinar?
-          </h3>
-          <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-            Entre em contato conosco para formalizar este contrato e começar a qualificar seus leads com inteligência artificial.
-          </p>
-          <Button 
-            onClick={handleWhatsAppContact}
-            size="lg"
-            className="gap-2 text-lg px-8"
-          >
-            <Mail className="h-5 w-5" />
-            Assinar Contrato via WhatsApp
-          </Button>
-        </div>
+        {contrato?.status !== 'assinado' ? (
+          <div className="bg-gradient-to-r from-primary/10 via-primary/5 to-primary/10 border border-primary/20 rounded-lg p-8 text-center shadow-lg">
+            <Mail className="h-12 w-12 mx-auto mb-4 text-primary" />
+            <h3 className="text-2xl font-bold text-foreground mb-3">
+              Pronto para Assinar?
+            </h3>
+            <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
+              Entre em contato conosco para formalizar este contrato e começar a qualificar seus leads com inteligência artificial.
+            </p>
+            <div className="flex gap-4 justify-center flex-wrap">
+              <Button 
+                onClick={handleWhatsAppContact}
+                size="lg"
+                className="gap-2 text-lg px-8"
+              >
+                <Mail className="h-5 w-5" />
+                Assinar Contrato via WhatsApp
+              </Button>
+              <Button 
+                onClick={() => window.location.href = '/contrato/match-solutions'}
+                size="lg"
+                variant="outline"
+                className="gap-2 text-lg px-8"
+              >
+                <FileText className="h-5 w-5" />
+                Assinar Digitalmente
+              </Button>
+            </div>
+          </div>
+        ) : (
+          <div className="bg-gradient-to-r from-green-500/10 via-green-500/5 to-green-500/10 border border-green-500/20 rounded-lg p-8 text-center shadow-lg">
+            <CheckCircle className="h-16 w-16 mx-auto mb-4 text-green-600" />
+            <h3 className="text-2xl font-bold text-foreground mb-3">
+              Contrato Assinado com Sucesso!
+            </h3>
+            <p className="text-muted-foreground mb-4 max-w-2xl mx-auto">
+              Este contrato foi assinado digitalmente em {formatarDataHora(contrato.data_assinatura)} e possui validade jurídica.
+            </p>
+            <div className="bg-card p-4 rounded-lg border max-w-md mx-auto">
+              <p className="text-sm font-semibold text-foreground mb-2">Dados da Assinatura Digital:</p>
+              <div className="text-sm text-muted-foreground space-y-1">
+                <p><strong>ID do Contrato:</strong> {contrato.id.substring(0, 8)}...</p>
+                <p><strong>Data:</strong> {formatarDataExtenso(contrato.data_assinatura)}</p>
+                <p><strong>Hora:</strong> {format(new Date(contrato.data_assinatura), "HH:mm:ss")}</p>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Footer */}
