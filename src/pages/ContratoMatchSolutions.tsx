@@ -647,9 +647,6 @@ const ContratoMatchSolutions = () => {
             <h3 className="text-2xl font-bold text-foreground mb-3">
               Pronto para Assinar?
             </h3>
-            <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-              Entre em contato conosco para formalizar este contrato e começar a qualificar seus leads com inteligência artificial.
-            </p>
             <Button 
               onClick={() => window.location.href = '/contrato/match-solutions'}
               size="lg"
