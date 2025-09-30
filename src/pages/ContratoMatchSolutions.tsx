@@ -218,14 +218,7 @@ const ContratoMatchSolutions = () => {
               <li>• Segundo boleto: 30/11/2025</li>
             </ul>
 
-            <p><strong>3.3. MULTA POR ATRASO:</strong></p>
-            <ul className="ml-6 space-y-1">
-              <li>• 2% sobre o valor da parcela</li>
-              <li>• Juros de 1% ao mês</li>
-              <li>• Correção monetária pelo IGPM</li>
-            </ul>
-
-            <p><strong>3.4. TAXA DE IMPLEMENTAÇÃO:</strong></p>
+            <p><strong>3.3. TAXA DE IMPLEMENTAÇÃO:</strong></p>
             <ul className="ml-6 space-y-1">
               <li>• <strong>ISENTA</strong> – Sem cobrança de taxa de setup</li>
             </ul>
@@ -463,7 +456,6 @@ const ContratoMatchSolutions = () => {
             <p><strong>11.1. RESCISÃO POR QUALQUER DAS PARTES:</strong></p>
             <ul className="ml-6 space-y-1">
               <li>• Aviso prévio de <strong>30 dias</strong></li>
-              <li>• Multa de <strong>30%</strong> sobre o valor restante do contrato</li>
               <li>• Pagamento de serviços já prestados até a data da rescisão</li>
             </ul>
 
@@ -471,7 +463,6 @@ const ContratoMatchSolutions = () => {
             <ul className="ml-6 space-y-1">
               <li>• Atraso superior a <strong>15 dias</strong> no pagamento</li>
               <li>• Suspensão imediata dos serviços</li>
-              <li>• Cobrança de multa e juros conforme cláusula 3.3</li>
               <li>• Rescisão unilateral sem aviso prévio</li>
             </ul>
 
