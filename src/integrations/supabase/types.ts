@@ -14,7 +14,60 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      contratos_assinados: {
+        Row: {
+          assinatura_cargo_responsavel: string | null
+          assinatura_cpf_responsavel: string | null
+          assinatura_nome_responsavel: string | null
+          cnpj_contratada: string | null
+          cnpj_contratante: string | null
+          cpf_contratada: string
+          cpf_contratante: string
+          created_at: string
+          data_assinatura: string
+          email_enviado: boolean
+          id: string
+          nome_contratada: string
+          nome_contratante: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          assinatura_cargo_responsavel?: string | null
+          assinatura_cpf_responsavel?: string | null
+          assinatura_nome_responsavel?: string | null
+          cnpj_contratada?: string | null
+          cnpj_contratante?: string | null
+          cpf_contratada: string
+          cpf_contratante: string
+          created_at?: string
+          data_assinatura?: string
+          email_enviado?: boolean
+          id?: string
+          nome_contratada: string
+          nome_contratante: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          assinatura_cargo_responsavel?: string | null
+          assinatura_cpf_responsavel?: string | null
+          assinatura_nome_responsavel?: string | null
+          cnpj_contratada?: string | null
+          cnpj_contratante?: string | null
+          cpf_contratada?: string
+          cpf_contratante?: string
+          created_at?: string
+          data_assinatura?: string
+          email_enviado?: boolean
+          id?: string
+          nome_contratada?: string
+          nome_contratante?: string
+          status?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
