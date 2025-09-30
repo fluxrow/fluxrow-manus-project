@@ -15,6 +15,7 @@ interface ContratoData {
   cnpj_contratante: string;
   nome_contratada: string;
   cpf_contratada: string;
+  cnpj_contratada: string;
   status: string;
   created_at: string;
 }
@@ -28,6 +29,7 @@ export default function ContratoAssinatura() {
   const [validando, setValidando] = useState(false);
   const [contratoValidado, setContratoValidado] = useState(false);
   const [contratoData, setContratoData] = useState<ContratoData | null>(null);
+  const [papelEmpresa, setPapelEmpresa] = useState<'contratante' | 'contratada' | null>(null);
   
   // Estados para assinatura
   const [nomeResponsavel, setNomeResponsavel] = useState("");
@@ -79,8 +81,11 @@ export default function ContratoAssinatura() {
       }
 
       setContratoData(data.contrato);
+      setPapelEmpresa(data.papel);
       setContratoValidado(true);
-      toast.success("Contrato encontrado! Preencha os dados para assinar.");
+      
+      const papelTexto = data.papel === 'contratante' ? 'Contratante' : 'Contratada';
+      toast.success(`Contrato encontrado! Você está assinando como ${papelTexto}.`);
     } catch (error: any) {
       console.error('Erro ao validar CNPJ:', error);
       toast.error("Erro ao validar CNPJ. Tente novamente.");
@@ -157,9 +162,9 @@ export default function ContratoAssinatura() {
                   <Shield className="h-5 w-5 text-primary" />
                   Validação de Acesso
                 </CardTitle>
-                <CardDescription>
-                  Insira o CNPJ da empresa contratante para acessar o contrato
-                </CardDescription>
+                 <CardDescription>
+                   Insira o CNPJ da sua empresa (contratante ou contratada) para acessar o contrato
+                 </CardDescription>
               </CardHeader>
               <CardContent>
                 <form onSubmit={handleValidarCNPJ} className="space-y-4">
@@ -208,27 +213,39 @@ export default function ContratoAssinatura() {
                     <FileText className="h-5 w-5 text-primary" />
                     Dados do Contrato
                   </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-3">
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <p className="text-sm text-muted-foreground">Contratante</p>
-                      <p className="font-semibold">{contratoData?.nome_contratante}</p>
-                    </div>
-                    <div>
-                      <p className="text-sm text-muted-foreground">CNPJ</p>
-                      <p className="font-semibold">{formatarCNPJ(contratoData?.cnpj_contratante || '')}</p>
-                    </div>
-                    <div>
-                      <p className="text-sm text-muted-foreground">Contratada</p>
-                      <p className="font-semibold">{contratoData?.nome_contratada}</p>
-                    </div>
-                    <div>
-                      <p className="text-sm text-muted-foreground">Status</p>
-                      <p className="font-semibold capitalize">{contratoData?.status}</p>
-                    </div>
-                  </div>
-                </CardContent>
+                 </CardHeader>
+                 <CardContent className="space-y-3">
+                   {/* Badge indicando o papel da empresa */}
+                   <div className="flex items-center gap-2 p-3 bg-primary/10 rounded-lg border border-primary/20">
+                     <CheckCircle2 className="h-5 w-5 text-primary" />
+                     <p className="font-semibold text-primary">
+                       Você está assinando como: {papelEmpresa === 'contratante' ? 'CONTRATANTE' : 'CONTRATADA'}
+                     </p>
+                   </div>
+                   
+                   <div className="grid grid-cols-2 gap-4">
+                     <div>
+                       <p className="text-sm text-muted-foreground">Contratante</p>
+                       <p className="font-semibold">{contratoData?.nome_contratante}</p>
+                     </div>
+                     <div>
+                       <p className="text-sm text-muted-foreground">CNPJ</p>
+                       <p className="font-semibold">{formatarCNPJ(contratoData?.cnpj_contratante || '')}</p>
+                     </div>
+                     <div>
+                       <p className="text-sm text-muted-foreground">Contratada</p>
+                       <p className="font-semibold">{contratoData?.nome_contratada}</p>
+                     </div>
+                     <div>
+                       <p className="text-sm text-muted-foreground">CNPJ</p>
+                       <p className="font-semibold">{formatarCNPJ(contratoData?.cnpj_contratada || '')}</p>
+                     </div>
+                     <div>
+                       <p className="text-sm text-muted-foreground">Status</p>
+                       <p className="font-semibold capitalize">{contratoData?.status}</p>
+                     </div>
+                   </div>
+                 </CardContent>
               </Card>
 
               {/* Formulário de assinatura */}
@@ -282,11 +299,11 @@ export default function ContratoAssinatura() {
                     </div>
 
                     <div className="pt-4 space-y-3">
-                      <div className="p-4 bg-muted/50 rounded-lg border">
-                        <p className="text-sm text-muted-foreground">
-                          Ao clicar em "Assinar Contrato", você confirma que leu e concorda com todos os termos e condições descritos no contrato, e que possui autorização para representar a empresa contratante.
-                        </p>
-                      </div>
+                       <div className="p-4 bg-muted/50 rounded-lg border">
+                         <p className="text-sm text-muted-foreground">
+                           Ao clicar em "Assinar Contrato", você confirma que leu e concorda com todos os termos e condições descritos no contrato, e que possui autorização para representar a empresa {papelEmpresa === 'contratante' ? 'contratante' : 'contratada'}.
+                         </p>
+                       </div>
 
                       <Button 
                         type="submit" 

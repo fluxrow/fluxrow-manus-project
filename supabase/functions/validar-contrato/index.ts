@@ -35,14 +35,13 @@ Deno.serve(async (req) => {
       Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? ''
     );
 
-    // Buscar contrato pelo CNPJ
-    const { data: contrato, error } = await supabaseAdmin
+    // Buscar contrato pelo CNPJ (pode ser contratante ou contratada)
+    const { data: contratos, error } = await supabaseAdmin
       .from('contratos_assinados')
       .select('*')
-      .eq('cnpj_contratante', cnpjLimpo)
-      .single();
+      .or(`cnpj_contratante.eq.${cnpjLimpo},cnpj_contratada.eq.${cnpjLimpo}`);
 
-    if (error || !contrato) {
+    if (error || !contratos || contratos.length === 0) {
       console.error('Contrato não encontrado:', error);
       return new Response(
         JSON.stringify({ error: 'Contrato não encontrado para este CNPJ' }),
@@ -53,10 +52,15 @@ Deno.serve(async (req) => {
       );
     }
 
-    console.log('Contrato encontrado:', contrato.id);
+    const contrato = contratos[0];
+    
+    // Determinar o papel da empresa (contratante ou contratada)
+    const papel = contrato.cnpj_contratante === cnpjLimpo ? 'contratante' : 'contratada';
+
+    console.log('Contrato encontrado:', contrato.id, '- Papel:', papel);
 
     return new Response(
-      JSON.stringify({ contrato }),
+      JSON.stringify({ contrato, papel }),
       { 
         status: 200, 
         headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
