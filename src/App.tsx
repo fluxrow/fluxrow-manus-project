@@ -24,6 +24,7 @@ import PropostaView from "./pages/PropostaView";
 import PropostaMatchSolutions from "./pages/PropostaMatchSolutions";
 import ContratoMatchSolutions from "./pages/ContratoMatchSolutions";
 import ContratoAssinatura from "./pages/ContratoAssinatura";
+import ResetContrato from "./pages/ResetContrato";
 
 const queryClient = new QueryClient();
 
@@ -52,6 +53,7 @@ const App = () => (
           <Route path="/match-solutions" element={<PropostaMatchSolutions />} />
           <Route path="/contrato-match-solutions" element={<ContratoMatchSolutions />} />
           <Route path="/contrato/:cliente" element={<ContratoAssinatura />} />
+          <Route path="/admin/reset-contrato" element={<ResetContrato />} />
           <Route path="/conteudos/:slug" element={<div>Página Individual de Conteúdo</div>} />
           <Route path="/contato" element={<Contato />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
