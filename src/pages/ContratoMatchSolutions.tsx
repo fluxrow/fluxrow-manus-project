@@ -52,8 +52,8 @@ const ContratoMatchSolutions = () => {
                 <strong>Match Solutions Fios e Cabos Elétricos LTDA</strong><br />
                 CNPJ: 34.325.200/0001-36<br />
                 Endereço: [Endereço completo]<br />
-                E-mail: [email@matchsolutions.com.br]<br />
-                Telefone: [Telefone de contato]
+                E-mail: thiagogea@matchsolutions.com.br<br />
+                Telefone: (41) 99236-1868
               </p>
             </div>
 
@@ -128,7 +128,7 @@ const ContratoMatchSolutions = () => {
             <p><strong>3.2. PAGAMENTOS MENSAIS SUBSEQUENTES:</strong></p>
             <ul className="ml-6 space-y-1">
               <li>• Forma: <strong>Boleto Bancário</strong></li>
-              <li>• Envio: Via e-mail informado pela CONTRATANTE</li>
+              <li>• Envio: Para o e-mail <strong>thiagogea@matchsolutions.com.br</strong></li>
               <li>• Vencimento: Todo dia <strong>30 de cada mês</strong></li>
               <li>• Primeiro boleto: 30/10/2025</li>
               <li>• Segundo boleto: 30/11/2025</li>
@@ -531,7 +531,7 @@ const ContratoMatchSolutions = () => {
       <div className="bg-muted/30 border-t py-6 mt-12">
         <div className="container mx-auto px-4 text-center text-sm text-muted-foreground">
           <p>Fluxrow Inteligência Criativa - CNPJ: 61.260.831/0001-97</p>
-          <p className="mt-1">Contato: (41) 99280-1005 | contato@fluxrow.com</p>
+          <p className="mt-1">Contato: (41) 99236-1868 | contato@fluxrow.com</p>
         </div>
       </div>
     </div>
