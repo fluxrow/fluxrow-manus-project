@@ -604,7 +604,10 @@ const ContratoMatchSolutions = () => {
                     <div className="mt-4 p-4 bg-secondary/5 rounded-lg border border-secondary/10">
                       <p className="text-sm font-semibold text-foreground">Representante Legal:</p>
                       <p className="text-sm text-muted-foreground mt-1">
-                        <strong>Rafael Belusso</strong>
+                        <strong>Fabio Cauã Faria de Farias</strong>
+                      </p>
+                      <p className="text-sm text-muted-foreground">
+                        CPF: 330.383.488-13
                       </p>
                       <p className="text-sm text-muted-foreground">
                         Sócio-Fundador
