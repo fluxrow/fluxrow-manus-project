@@ -33,6 +33,7 @@ export type Database = {
           cpf_contratante: string
           created_at: string
           data_assinatura: string
+          email_contratante: string | null
           email_enviado: boolean
           id: string
           nome_contratada: string
@@ -58,6 +59,7 @@ export type Database = {
           cpf_contratante: string
           created_at?: string
           data_assinatura?: string
+          email_contratante?: string | null
           email_enviado?: boolean
           id?: string
           nome_contratada: string
@@ -83,6 +85,7 @@ export type Database = {
           cpf_contratante?: string
           created_at?: string
           data_assinatura?: string
+          email_contratante?: string | null
           email_enviado?: boolean
           id?: string
           nome_contratada?: string
