@@ -21,6 +21,14 @@ export type Database = {
           assinatura_nome_responsavel: string | null
           cnpj_contratada: string | null
           cnpj_contratante: string | null
+          contratada_assinatura_cargo: string | null
+          contratada_assinatura_cpf: string | null
+          contratada_assinatura_nome: string | null
+          contratada_data_assinatura: string | null
+          contratante_assinatura_cargo: string | null
+          contratante_assinatura_cpf: string | null
+          contratante_assinatura_nome: string | null
+          contratante_data_assinatura: string | null
           cpf_contratada: string
           cpf_contratante: string
           created_at: string
@@ -38,6 +46,14 @@ export type Database = {
           assinatura_nome_responsavel?: string | null
           cnpj_contratada?: string | null
           cnpj_contratante?: string | null
+          contratada_assinatura_cargo?: string | null
+          contratada_assinatura_cpf?: string | null
+          contratada_assinatura_nome?: string | null
+          contratada_data_assinatura?: string | null
+          contratante_assinatura_cargo?: string | null
+          contratante_assinatura_cpf?: string | null
+          contratante_assinatura_nome?: string | null
+          contratante_data_assinatura?: string | null
           cpf_contratada: string
           cpf_contratante: string
           created_at?: string
@@ -55,6 +71,14 @@ export type Database = {
           assinatura_nome_responsavel?: string | null
           cnpj_contratada?: string | null
           cnpj_contratante?: string | null
+          contratada_assinatura_cargo?: string | null
+          contratada_assinatura_cpf?: string | null
+          contratada_assinatura_nome?: string | null
+          contratada_data_assinatura?: string | null
+          contratante_assinatura_cargo?: string | null
+          contratante_assinatura_cpf?: string | null
+          contratante_assinatura_nome?: string | null
+          contratante_data_assinatura?: string | null
           cpf_contratada?: string
           cpf_contratante?: string
           created_at?: string

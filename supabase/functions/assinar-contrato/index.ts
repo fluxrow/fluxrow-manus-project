@@ -15,9 +15,27 @@ Deno.serve(async (req) => {
   }
 
   try {
-    const { contratoId, nomeResponsavel, cpfResponsavel, cargoResponsavel } = await req.json();
+    const { contratoId, nomeResponsavel, cpfResponsavel, cargoResponsavel, papel } = await req.json();
 
-    if (!contratoId || !nomeResponsavel || !cpfResponsavel || !cargoResponsavel) {
+    if (!contratoId || !nomeResponsavel || !cpfResponsavel || !cargoResponsavel || !papel) {
+      return new Response(
+        JSON.stringify({ error: 'Todos os campos são obrigatórios, incluindo o papel (contratante ou contratada)' }),
+        { 
+          status: 400, 
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
+        }
+      );
+    }
+
+    if (papel !== 'contratante' && papel !== 'contratada') {
+      return new Response(
+        JSON.stringify({ error: 'Papel deve ser "contratante" ou "contratada"' }),
+        { 
+          status: 400, 
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
+        }
+      );
+    }
       return new Response(
         JSON.stringify({ error: 'Todos os campos são obrigatórios' }),
         { 
@@ -53,10 +71,10 @@ Deno.serve(async (req) => {
       );
     }
 
-    // Verificar se já foi assinado
-    if (contrato.status === 'assinado') {
+    // Verificar se já foi totalmente assinado
+    if (contrato.status === 'totalmente_assinado') {
       return new Response(
-        JSON.stringify({ error: 'Este contrato já foi assinado' }),
+        JSON.stringify({ error: 'Este contrato já foi totalmente assinado por ambas as partes' }),
         { 
           status: 400, 
           headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
@@ -64,17 +82,58 @@ Deno.serve(async (req) => {
       );
     }
 
+    // Verificar se esta parte já assinou
+    if (papel === 'contratante' && contrato.contratante_assinatura_nome) {
+      return new Response(
+        JSON.stringify({ error: 'A CONTRATANTE já assinou este contrato' }),
+        { 
+          status: 400, 
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
+        }
+      );
+    }
+
+    if (papel === 'contratada' && contrato.contratada_assinatura_nome) {
+      return new Response(
+        JSON.stringify({ error: 'A CONTRATADA já assinou este contrato' }),
+        { 
+          status: 400, 
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
+        }
+      );
+    }
+
+    // Preparar dados de atualização baseado no papel
+    const cpfLimpo = cpfResponsavel.replace(/[^\d]/g, '');
+    const dataAssinatura = new Date().toISOString();
+    
+    let updateData: any = {
+      email_enviado: false
+    };
+
+    if (papel === 'contratante') {
+      updateData.contratante_assinatura_nome = nomeResponsavel;
+      updateData.contratante_assinatura_cpf = cpfLimpo;
+      updateData.contratante_assinatura_cargo = cargoResponsavel;
+      updateData.contratante_data_assinatura = dataAssinatura;
+    } else {
+      updateData.contratada_assinatura_nome = nomeResponsavel;
+      updateData.contratada_assinatura_cpf = cpfLimpo;
+      updateData.contratada_assinatura_cargo = cargoResponsavel;
+      updateData.contratada_data_assinatura = dataAssinatura;
+    }
+
+    // Determinar novo status
+    const outraPapelJaAssinou = papel === 'contratante' 
+      ? contrato.contratada_assinatura_nome 
+      : contrato.contratante_assinatura_nome;
+    
+    updateData.status = outraPapelJaAssinou ? 'totalmente_assinado' : 'parcialmente_assinado';
+
     // Atualizar contrato com dados da assinatura
     const { error: updateError } = await supabaseAdmin
       .from('contratos_assinados')
-      .update({
-        status: 'assinado',
-        assinatura_nome_responsavel: nomeResponsavel,
-        assinatura_cpf_responsavel: cpfResponsavel.replace(/[^\d]/g, ''),
-        assinatura_cargo_responsavel: cargoResponsavel,
-        data_assinatura: new Date().toISOString(),
-        email_enviado: false
-      })
+      .update(updateData)
       .eq('id', contratoId);
 
     if (updateError) {

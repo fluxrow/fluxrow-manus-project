@@ -14,9 +14,19 @@ interface ContratoData {
   cpf_contratada: string;
   status: string;
   data_assinatura: string;
+  // Campos legados (ainda podem existir em registros antigos)
   assinatura_nome_responsavel: string | null;
   assinatura_cpf_responsavel: string | null;
   assinatura_cargo_responsavel: string | null;
+  // Novos campos separados
+  contratante_assinatura_nome: string | null;
+  contratante_assinatura_cpf: string | null;
+  contratante_assinatura_cargo: string | null;
+  contratante_data_assinatura: string | null;
+  contratada_assinatura_nome: string | null;
+  contratada_assinatura_cpf: string | null;
+  contratada_assinatura_cargo: string | null;
+  contratada_data_assinatura: string | null;
   created_at: string;
 }
 
@@ -482,7 +492,7 @@ const ContratoMatchSolutions = () => {
           </h3>
           <div className="space-y-8">
             <div className="text-center">
-              {contrato?.status === 'assinado' && contrato?.data_assinatura ? (
+              {(contrato?.status === 'totalmente_assinado' || contrato?.status === 'parcialmente_assinado' || contrato?.status === 'assinado') && contrato?.data_assinatura ? (
                 <div className="space-y-2">
                   <p className="text-muted-foreground mb-2">
                     Curitiba/PR, {formatarDataExtenso(contrato.data_assinatura)}
@@ -490,11 +500,20 @@ const ContratoMatchSolutions = () => {
                   <div className="inline-flex items-center gap-2 px-4 py-2 bg-green-500/10 border border-green-500/20 rounded-lg">
                     <CheckCircle className="h-5 w-5 text-green-600" />
                     <span className="text-green-600 font-semibold">
-                      Contrato Assinado Digitalmente
+                      {contrato.status === 'totalmente_assinado' ? 'Contrato Totalmente Assinado' : 
+                       contrato.status === 'parcialmente_assinado' ? 'Contrato Parcialmente Assinado' : 
+                       'Contrato Assinado Digitalmente'}
                     </span>
                   </div>
+                  {contrato.status === 'parcialmente_assinado' && (
+                    <p className="text-sm text-amber-600 mt-2 font-medium">
+                      Aguardando assinatura da outra parte
+                    </p>
+                  )}
                   <p className="text-sm text-muted-foreground mt-2">
-                    Assinado em: {formatarDataHora(contrato.data_assinatura)}
+                    {contrato.status === 'totalmente_assinado' 
+                      ? `Ambas as partes assinaram digitalmente`
+                      : `Assinado em: ${formatarDataHora(contrato.data_assinatura)}`}
                   </p>
                 </div>
               ) : (
@@ -511,7 +530,26 @@ const ContratoMatchSolutions = () => {
                   <p className="text-sm text-muted-foreground">Match Solutions Fios e Cabos Elétricos LTDA</p>
                   <p className="text-sm text-muted-foreground">CNPJ: {formatarCNPJ(contrato?.cnpj_contratante || '34325200000136')}</p>
                   
-                  {contrato?.status === 'assinado' && contrato?.assinatura_nome_responsavel && (
+                  {contrato?.contratante_assinatura_nome ? (
+                    <div className="mt-4 p-4 bg-primary/5 rounded-lg border border-primary/10">
+                      <p className="text-sm font-semibold text-foreground">Representante Legal:</p>
+                      <p className="text-sm text-muted-foreground mt-1">
+                        <strong>{contrato.contratante_assinatura_nome}</strong>
+                      </p>
+                      <p className="text-sm text-muted-foreground">
+                        CPF: {formatarCPF(contrato.contratante_assinatura_cpf || '')}
+                      </p>
+                      <p className="text-sm text-muted-foreground">
+                        Cargo: {contrato.contratante_assinatura_cargo}
+                      </p>
+                      {contrato.contratante_data_assinatura && (
+                        <p className="text-xs text-muted-foreground mt-2">
+                          Assinado em: {formatarDataHora(contrato.contratante_data_assinatura)}
+                        </p>
+                      )}
+                    </div>
+                  ) : contrato?.status === 'assinado' && contrato?.assinatura_nome_responsavel ? (
+                    // Fallback para dados legados
                     <div className="mt-4 p-4 bg-primary/5 rounded-lg border border-primary/10">
                       <p className="text-sm font-semibold text-foreground">Representante Legal:</p>
                       <p className="text-sm text-muted-foreground mt-1">
@@ -524,6 +562,12 @@ const ContratoMatchSolutions = () => {
                         Cargo: {contrato.assinatura_cargo_responsavel}
                       </p>
                     </div>
+                  ) : (
+                    <div className="mt-4 p-4 bg-amber-500/5 rounded-lg border border-amber-500/20">
+                      <p className="text-sm text-amber-600">
+                        ⏳ Aguardando assinatura
+                      </p>
+                    </div>
                   )}
                 </div>
               </div>
@@ -534,17 +578,28 @@ const ContratoMatchSolutions = () => {
                   <p className="text-sm text-muted-foreground">Fluxrow Inteligência Criativa</p>
                   <p className="text-sm text-muted-foreground">CNPJ: 61.260.831/0001-97</p>
                   
-                  {contrato?.status === 'assinado' && (
+                  {contrato?.contratada_assinatura_nome ? (
                     <div className="mt-4 p-4 bg-secondary/5 rounded-lg border border-secondary/10">
                       <p className="text-sm font-semibold text-foreground">Representante Legal:</p>
                       <p className="text-sm text-muted-foreground mt-1">
-                        <strong>Fabio Cauã Faria de Farias</strong>
+                        <strong>{contrato.contratada_assinatura_nome}</strong>
                       </p>
                       <p className="text-sm text-muted-foreground">
-                        CPF: 330.383.488-13
+                        CPF: {formatarCPF(contrato.contratada_assinatura_cpf || '')}
                       </p>
                       <p className="text-sm text-muted-foreground">
-                        Sócio-Fundador
+                        Cargo: {contrato.contratada_assinatura_cargo}
+                      </p>
+                      {contrato.contratada_data_assinatura && (
+                        <p className="text-xs text-muted-foreground mt-2">
+                          Assinado em: {formatarDataHora(contrato.contratada_data_assinatura)}
+                        </p>
+                      )}
+                    </div>
+                  ) : (
+                    <div className="mt-4 p-4 bg-amber-500/5 rounded-lg border border-amber-500/20">
+                      <p className="text-sm text-amber-600">
+                        ⏳ Aguardando assinatura
                       </p>
                     </div>
                   )}
@@ -552,7 +607,7 @@ const ContratoMatchSolutions = () => {
               </div>
             </div>
 
-            {contrato?.status !== 'assinado' && (
+            {contrato?.status !== 'totalmente_assinado' && contrato?.status !== 'parcialmente_assinado' && contrato?.status !== 'assinado' && (
               <div className="text-center mt-8 space-y-2">
                 <p className="text-sm text-muted-foreground">Testemunhas:</p>
                 <div className="grid md:grid-cols-2 gap-8 mt-4">
@@ -575,12 +630,17 @@ const ContratoMatchSolutions = () => {
         </div>
 
         {/* CTA Section */}
-        {contrato?.status !== 'assinado' ? (
+        {contrato?.status !== 'totalmente_assinado' && contrato?.status !== 'assinado' ? (
           <div className="bg-gradient-to-r from-primary/10 via-primary/5 to-primary/10 border border-primary/20 rounded-lg p-8 text-center shadow-lg">
             <Mail className="h-12 w-12 mx-auto mb-4 text-primary" />
             <h3 className="text-2xl font-bold text-foreground mb-3">
-              Pronto para Assinar?
+              {contrato?.status === 'parcialmente_assinado' ? 'Falta Sua Assinatura!' : 'Pronto para Assinar?'}
             </h3>
+            <p className="text-muted-foreground mb-4">
+              {contrato?.status === 'parcialmente_assinado' 
+                ? 'Uma das partes já assinou o contrato. Clique abaixo para adicionar sua assinatura.'
+                : 'Assine digitalmente este contrato de forma segura e jurídica.'}
+            </p>
             <Button 
               onClick={() => window.location.href = '/contrato/match-solutions'}
               size="lg"
@@ -597,14 +657,17 @@ const ContratoMatchSolutions = () => {
               Contrato Assinado com Sucesso!
             </h3>
             <p className="text-muted-foreground mb-4 max-w-2xl mx-auto">
-              Este contrato foi assinado digitalmente em {formatarDataHora(contrato.data_assinatura)} e possui validade jurídica.
+              Este contrato foi {contrato?.status === 'totalmente_assinado' ? 'totalmente assinado por ambas as partes' : 'assinado digitalmente'} e possui validade jurídica.
             </p>
             <div className="bg-card p-4 rounded-lg border max-w-md mx-auto">
               <p className="text-sm font-semibold text-foreground mb-2">Dados da Assinatura Digital:</p>
               <div className="text-sm text-muted-foreground space-y-1">
-                <p><strong>ID do Contrato:</strong> {contrato.id.substring(0, 8)}...</p>
-                <p><strong>Data:</strong> {formatarDataExtenso(contrato.data_assinatura)}</p>
-                <p><strong>Hora:</strong> {format(new Date(contrato.data_assinatura), "HH:mm:ss")}</p>
+                <p><strong>ID do Contrato:</strong> {contrato?.id.substring(0, 8)}...</p>
+                <p><strong>Data:</strong> {formatarDataExtenso(contrato?.data_assinatura || '')}</p>
+                <p><strong>Hora:</strong> {contrato?.data_assinatura && format(new Date(contrato.data_assinatura), "HH:mm:ss")}</p>
+                {contrato?.status === 'totalmente_assinado' && (
+                  <p className="text-green-600 font-medium mt-2">✓ Ambas as partes assinaram</p>
+                )}
               </div>
             </div>
           </div>

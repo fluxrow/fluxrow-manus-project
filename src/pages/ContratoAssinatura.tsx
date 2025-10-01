@@ -109,13 +109,20 @@ export default function ContratoAssinatura() {
 
     setAssinando(true);
 
+    if (!papelEmpresa) {
+      toast.error("Erro: papel da empresa não identificado");
+      setAssinando(false);
+      return;
+    }
+
     try {
       const { data, error } = await supabase.functions.invoke('assinar-contrato', {
         body: {
           contratoId: contratoData.id,
           nomeResponsavel,
           cpfResponsavel,
-          cargoResponsavel
+          cargoResponsavel,
+          papel: papelEmpresa
         }
       });
 
