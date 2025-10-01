@@ -162,17 +162,19 @@ const ContratoMatchSolutions = () => {
             CLÁUSULA PRIMEIRA – DO OBJETO
           </h3>
           <p className="text-muted-foreground mb-4">
-            O presente contrato tem por objeto a prestação de serviços de <strong>Sistema Completo de Qualificação para Vendas com Inteligência Artificial</strong>, compreendendo:
+            O presente contrato tem por objeto a prestação de serviços de <strong>Sistema Completo de Automação em Vendas com Inteligência Artificial</strong>, compreendendo:
           </p>
           <ul className="space-y-2 text-muted-foreground ml-6">
-            <li>• <strong>SDR IA (Sales Development Representative IA):</strong> Agente de IA para qualificação inicial de leads via WhatsApp</li>
+            <li>• <strong>6 Agentes IA Especializados:</strong> Múltiplos agentes de IA para qualificação paralela de leads via WhatsApp</li>
+            <li>• <strong>Sistema de Backup Duplo via Prometheus:</strong> Redundância por email garantindo continuidade operacional</li>
+            <li>• <strong>Email Marketing Quinzenal:</strong> Campanhas automáticas para base de 6-7k contatos com segmentação inteligente</li>
             <li>• <strong>Automação de Follow-up Inteligente:</strong> Sistema automatizado de nutrição e qualificação de leads</li>
-            <li>• <strong>Integração com Sistema Promotheus:</strong> Sincronização com CRM atual da CONTRATANTE</li>
+            <li>• <strong>Integração com Sistema Prometheus:</strong> Sincronização com CRM atual da CONTRATANTE</li>
             <li>• <strong>Dashboard de Resultados:</strong> Relatórios através da ferramenta Fluxrow para análise de conversão</li>
             <li>• <strong>Transferência Qualificada:</strong> Encaminhamento de leads qualificados para equipe de vendas humana</li>
           </ul>
           <p className="text-muted-foreground mt-4">
-            <strong>Importante:</strong> O sistema tem como objetivo <strong>qualificar leads para vendas</strong>, não realizar vendas automaticamente. A conversão final permanece sob responsabilidade da equipe de vendas da CONTRATANTE.
+            <strong>Importante:</strong> O sistema tem como objetivo <strong>qualificar e nutrir leads para vendas</strong>, não realizar vendas automaticamente. A conversão final permanece sob responsabilidade da equipe de vendas da CONTRATANTE.
           </p>
         </div>
 
@@ -197,13 +199,13 @@ const ContratoMatchSolutions = () => {
           </h3>
           <div className="space-y-4 text-muted-foreground">
             <div className="bg-primary/5 p-4 rounded-lg border border-primary/20">
-              <p className="text-lg font-bold text-foreground mb-2">Valor Mensal: R$ 2.500,00</p>
-              <p className="text-sm">Contrato trimestral (3 meses) = R$ 7.500,00</p>
+              <p className="text-lg font-bold text-foreground mb-2">Valor Mensal: R$ 5.200,00</p>
+              <p className="text-sm">Contrato trimestral (3 meses) = R$ 15.600,00</p>
             </div>
             
             <p><strong>3.1. PRIMEIRO PAGAMENTO (Na assinatura):</strong></p>
             <ul className="ml-6 space-y-1">
-              <li>• Valor: R$ 2.500,00</li>
+              <li>• Valor: R$ 5.200,00</li>
               <li>• Forma: PIX</li>
               <li>• Chave PIX (CNPJ): <strong>61.260.831/0001-97</strong></li>
               <li>• Momento: Junto com a assinatura do contrato</li>
@@ -214,6 +216,7 @@ const ContratoMatchSolutions = () => {
               <li>• Forma: <strong>Boleto Bancário</strong></li>
               <li>• Envio: Para o e-mail <strong>thiagogea@matchsolutions.com.br</strong></li>
               <li>• Vencimento: Todo dia <strong>30 de cada mês</strong></li>
+              <li>• Valor por boleto: <strong>R$ 5.200,00</strong></li>
               <li>• Primeiro boleto: 30/10/2025</li>
               <li>• Segundo boleto: 30/11/2025</li>
             </ul>
@@ -225,138 +228,83 @@ const ContratoMatchSolutions = () => {
           </div>
         </div>
 
-        {/* Cláusula 4: Comissões sobre Vendas */}
+        {/* Cláusula 4: Escopo Técnico */}
         <div className="bg-card border rounded-lg p-8 mb-6 shadow-sm">
           <h3 className="text-xl font-bold text-foreground mb-4 flex items-center gap-2">
             <CheckCircle className="h-5 w-5 text-primary" />
-            CLÁUSULA QUARTA – DAS COMISSÕES SOBRE VENDAS QUALIFICADAS
+            CLÁUSULA QUARTA – DO ESCOPO TÉCNICO DETALHADO
           </h3>
           <div className="space-y-4 text-muted-foreground">
-            <p><strong>4.1. PERCENTUAL DE COMISSÃO:</strong></p>
-            <ul className="ml-6 space-y-1">
-              <li>• <strong>0,20%</strong> (dois décimos por cento) sobre o valor bruto das vendas efetivadas</li>
-              <li>• Incidência apenas sobre vendas comprovadamente originadas de leads qualificados pela IA</li>
-            </ul>
-
-            <p><strong>4.2. CRITÉRIOS DE ELEGIBILIDADE PARA COMISSÃO:</strong></p>
-            <ul className="ml-6 space-y-1">
-              <li>• Lead deve ter sido qualificado pela agente IA da CONTRATADA</li>
-              <li>• Transferência documentada do lead qualificado para equipe de vendas humana</li>
-              <li>• Venda efetivada em até <strong>90 dias</strong> após o primeiro contato da IA</li>
-              <li>• Pagamento confirmado pelo cliente final</li>
-              <li>• Rastreabilidade completa desde qualificação até fechamento</li>
-            </ul>
-
-            <p><strong>4.3. SISTEMA DUPLO DE CONTROLE E AUDITORIA:</strong></p>
-            <ul className="ml-6 space-y-1">
-              <li>• <strong>Relatório Promotheus:</strong> Sistema oficial da CONTRATANTE para registro de vendas</li>
-              <li>• <strong>Relatório Fluxrow:</strong> Ferramenta da CONTRATADA para tracking de leads e conversões</li>
-              <li>• Ambos os relatórios devem ser apresentados mensalmente para comparação e validação</li>
-            </ul>
-
-            <p><strong>4.4. PROCESSO DE PAGAMENTO DAS COMISSÕES:</strong></p>
-            <ul className="ml-6 space-y-1">
-              <li>• Prazo: <strong>Junto com o pagamento da mensalidade</strong> (todo dia 30)</li>
-              <li>• Condição: Mediante apresentação e concordância entre os relatórios de ambos os sistemas</li>
-              <li>• Relatórios mensais obrigatórios até o dia <strong>25 de cada mês</strong></li>
-              <li>• Em caso de divergência, será considerado o menor valor entre os dois relatórios até esclarecimento</li>
-            </ul>
-
-            <p><strong>4.5. TRANSPARÊNCIA E AUDITORIA:</strong></p>
-            <ul className="ml-6 space-y-1">
-              <li>• Acesso mútuo aos dados de conversão durante vigência do contrato</li>
-              <li>• Direito de questionamento e esclarecimento em até 5 dias úteis</li>
-              <li>• Em caso de discrepância superior a 10%, auditoria conjunta obrigatória</li>
-              <li>• Documentação discriminada: data, valor, cliente, origem do lead</li>
-            </ul>
-
-            <p><strong>4.6. PROTEÇÃO PARA AMBAS AS PARTES:</strong></p>
-            <div className="bg-muted/50 p-4 rounded-lg space-y-2">
-              <p><strong>Para a CONTRATANTE (Match Solutions):</strong></p>
-              <ul className="ml-6 space-y-1">
-                <li>• Pagamento apenas de vendas comprovadamente geradas pela IA</li>
-                <li>• Dupla validação impede cobrança indevida</li>
-                <li>• Prazo de 90 dias evita comissões sobre vendas antigas</li>
-                <li>• Controle total via sistema Promotheus</li>
-              </ul>
-              <p className="mt-3"><strong>Para a CONTRATADA (Fluxrow):</strong></p>
-              <ul className="ml-6 space-y-1">
-                <li>• Impossibilidade de sonegação de vendas geradas pela IA</li>
-                <li>• Relatório próprio como backup de controle</li>
-                <li>• Pagamento garantido junto com mensalidade</li>
-                <li>• Critérios claros de elegibilidade</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        {/* Cláusula 5: Escopo Técnico */}
-        <div className="bg-card border rounded-lg p-8 mb-6 shadow-sm">
-          <h3 className="text-xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <CheckCircle className="h-5 w-5 text-primary" />
-            CLÁUSULA QUINTA – DO ESCOPO TÉCNICO DETALHADO
-          </h3>
-          <div className="space-y-4 text-muted-foreground">
-            <p><strong>5.1. FASE 1 – ANÁLISE E PLANEJAMENTO (Semana 1):</strong></p>
+            <p><strong>4.1. FASE 1 – ANÁLISE E CONFIGURAÇÃO (Semana 1):</strong></p>
             <ul className="ml-6 space-y-1">
               <li>• Mapeamento do perfil de cliente ideal (ICP)</li>
               <li>• Análise do funil de vendas atual</li>
               <li>• Definição de critérios de qualificação de leads</li>
-              <li>• Criação de scripts de qualificação personalizados</li>
+              <li>• Integração com sistema Prometheus (WhatsApp + Email backup)</li>
+              <li>• Configuração da base de email marketing (6-7k contatos)</li>
+              <li>• Planejamento dos 6 Agentes IA especializados</li>
             </ul>
 
-            <p><strong>5.2. FASE 2 – IMPLEMENTAÇÃO SDR IA (Semana 2):</strong></p>
+            <p><strong>4.2. FASE 2 – CRIAÇÃO DOS 6 AGENTES IA (Semana 2):</strong></p>
             <ul className="ml-6 space-y-1">
-              <li>• Configuração do agente IA para WhatsApp</li>
-              <li>• Treinamento da IA com informações da empresa</li>
-              <li>• Integração com base de contatos</li>
-              <li>• Testes de conversação e ajustes</li>
+              <li>• Desenvolvimento de 6 agentes IA especializados</li>
+              <li>• Cada agente verifica demanda em sua carteira de clientes</li>
+              <li>• Treinamento individual de cada agente com informações específicas</li>
+              <li>• Sistema de backup duplo: WhatsApp + Email via Prometheus</li>
+              <li>• Geração de leads qualificados por cada agente</li>
             </ul>
 
-            <p><strong>5.3. FASE 3 – INTEGRAÇÃO E AUTOMAÇÃO (Semana 3):</strong></p>
+            <p><strong>4.3. FASE 3 – EMAIL MARKETING + FOLLOW-UP INTELIGENTE (Semana 3):</strong></p>
             <ul className="ml-6 space-y-1">
-              <li>• Integração com sistema Promotheus</li>
+              <li>• Configuração de campanhas quinzenais para 6-7k contatos</li>
+              <li>• Segmentação inteligente da base de email marketing</li>
+              <li>• Integração com sistema Prometheus</li>
               <li>• Configuração de relatórios Fluxrow</li>
               <li>• Automação de follow-up inteligente</li>
               <li>• Sistema de transferência de leads qualificados</li>
             </ul>
 
-            <p><strong>5.4. FASE 4 – OTIMIZAÇÃO E ENTREGA (Semana 4):</strong></p>
+            <p><strong>4.4. FASE 4 – OTIMIZAÇÃO E ENTREGA (Semana 4):</strong></p>
             <ul className="ml-6 space-y-1">
-              <li>• Testes de carga e performance</li>
+              <li>• Testes de carga e performance dos 6 agentes</li>
               <li>• Ajustes finais baseados em feedback</li>
-              <li>• Treinamento da equipe de vendas</li>
+              <li>• Treinamento da equipe sobre os 6 agentes e email marketing</li>
               <li>• Entrega de documentação e acesso aos dashboards</li>
             </ul>
           </div>
         </div>
 
-        {/* Cláusula 6: Capacidade Técnica */}
+        {/* Cláusula 5: Capacidade Técnica */}
         <div className="bg-card border rounded-lg p-8 mb-6 shadow-sm">
           <h3 className="text-xl font-bold text-foreground mb-4 flex items-center gap-2">
             <CheckCircle className="h-5 w-5 text-primary" />
-            CLÁUSULA SEXTA – DA CAPACIDADE TÉCNICA
+            CLÁUSULA QUINTA – DA CAPACIDADE TÉCNICA
           </h3>
           <div className="space-y-4 text-muted-foreground">
-            <p><strong>6.1. CAPACIDADE DE QUALIFICAÇÃO:</strong></p>
+            <p><strong>5.1. CAPACIDADE DE QUALIFICAÇÃO:</strong></p>
             <ul className="ml-6 space-y-1">
-              <li>• <strong>100+ conversas simultâneas</strong> no WhatsApp</li>
+              <li>• <strong>6 Agentes IA especializados</strong> operando em paralelo</li>
+              <li>• <strong>Capacidade multiplicada</strong> com múltiplos agentes trabalhando simultaneamente</li>
+              <li>• <strong>Sistema de backup duplo:</strong> WhatsApp + Email via Prometheus</li>
               <li>• Operação <strong>24 horas por dia, 7 dias por semana</strong></li>
               <li>• Tempo médio de resposta: <strong>menos de 5 segundos</strong></li>
               <li>• Qualificação inteligente baseada em critérios pré-definidos</li>
             </ul>
 
-            <p><strong>6.2. LIMITES DO PLANO INICIAL:</strong></p>
+            <p><strong>5.2. LIMITES DO PLANO:</strong></p>
             <ul className="ml-6 space-y-1">
-              <li>• <strong>Tokens de IA:</strong> 1.000.000 tokens/mês (aproximadamente 5.000 conversas completas)</li>
-              <li>• <strong>Mensagens em massa:</strong> Até 10.000 envios/mês</li>
+              <li>• <strong>Tokens de IA:</strong> 1.000.000 tokens/mês por agente (aproximadamente 5.000 conversas completas por agente)</li>
+              <li>• <strong>Mensagens em massa:</strong> Até 10.000 envios/mês via WhatsApp</li>
+              <li>• <strong>Email Marketing:</strong> Campanhas quinzenais para base de 6-7k contatos</li>
               <li>• Upgrade disponível mediante solicitação e custo adicional</li>
             </ul>
 
-            <p><strong>6.3. FUNCIONALIDADES INCLUÍDAS:</strong></p>
+            <p><strong>5.3. FUNCIONALIDADES INCLUÍDAS:</strong></p>
             <ul className="ml-6 space-y-1">
-              <li>• Qualificação automática de leads via WhatsApp</li>
+              <li>• Qualificação automática de leads via WhatsApp com 6 agentes</li>
+              <li>• Email Marketing quinzenal com segmentação inteligente</li>
               <li>• Follow-up inteligente e nutrição automatizada</li>
+              <li>• Sistema de backup por email via Prometheus</li>
               <li>• Agendamento automático de reuniões</li>
               <li>• Transferência de leads qualificados para equipe</li>
               <li>• Relatórios de performance e conversão</li>
@@ -365,17 +313,18 @@ const ContratoMatchSolutions = () => {
           </div>
         </div>
 
-        {/* Cláusula 7: Obrigações da CONTRATADA */}
+        {/* Cláusula 6: Obrigações da CONTRATADA */}
         <div className="bg-card border rounded-lg p-8 mb-6 shadow-sm">
           <h3 className="text-xl font-bold text-foreground mb-4 flex items-center gap-2">
             <CheckCircle className="h-5 w-5 text-primary" />
-            CLÁUSULA SÉTIMA – DAS OBRIGAÇÕES DA CONTRATADA
+            CLÁUSULA SEXTA – DAS OBRIGAÇÕES DA CONTRATADA
           </h3>
           <ul className="space-y-2 text-muted-foreground ml-6">
-            <li>• Implementar o sistema de qualificação conforme especificações técnicas</li>
-            <li>• Entregar sistema funcional em até 4 semanas</li>
-            <li>• Fornecer treinamento para equipe da CONTRATANTE</li>
+            <li>• Implementar o sistema de automação completo conforme especificações técnicas</li>
+            <li>• Entregar os 6 Agentes IA + Email Marketing + Sistema de Backup em até 4 semanas</li>
+            <li>• Fornecer treinamento completo para equipe da CONTRATANTE</li>
             <li>• Manter disponibilidade do sistema 24/7</li>
+            <li>• Executar campanhas quinzenais de email marketing</li>
             <li>• Gerar relatórios mensais via ferramenta Fluxrow</li>
             <li>• Prestar suporte técnico durante vigência do contrato</li>
             <li>• Garantir sigilo de informações conforme LGPD</li>
@@ -383,90 +332,90 @@ const ContratoMatchSolutions = () => {
           </ul>
         </div>
 
-        {/* Cláusula 8: Obrigações da CONTRATANTE */}
+        {/* Cláusula 7: Obrigações da CONTRATANTE */}
         <div className="bg-card border rounded-lg p-8 mb-6 shadow-sm">
           <h3 className="text-xl font-bold text-foreground mb-4 flex items-center gap-2">
             <CheckCircle className="h-5 w-5 text-primary" />
-            CLÁUSULA OITAVA – DAS OBRIGAÇÕES DA CONTRATANTE
+            CLÁUSULA SÉTIMA – DAS OBRIGAÇÕES DA CONTRATANTE
           </h3>
           <ul className="space-y-2 text-muted-foreground ml-6">
             <li>• Fornecer informações necessárias para implementação</li>
-            <li>• Garantir acesso aos sistemas (Promotheus) para integração</li>
-            <li>• Disponibilizar base de contatos para qualificação</li>
-            <li>• Gerar relatórios mensais via sistema Promotheus</li>
-            <li>• Realizar atendimento de leads qualificados transferidos pela IA</li>
+            <li>• Garantir acesso aos sistemas (Prometheus) para integração</li>
+            <li>• Disponibilizar base de contatos para qualificação e email marketing</li>
+            <li>• Realizar atendimento de leads qualificados transferidos pelos 6 Agentes IA</li>
             <li>• Efetuar pagamentos nas datas acordadas</li>
             <li>• Informar imediatamente sobre problemas técnicos</li>
             <li>• Manter equipe disponível para receber leads qualificados</li>
           </ul>
         </div>
 
-        {/* Cláusula 9: SLA */}
+        {/* Cláusula 8: SLA */}
         <div className="bg-card border rounded-lg p-8 mb-6 shadow-sm">
           <h3 className="text-xl font-bold text-foreground mb-4 flex items-center gap-2">
             <CheckCircle className="h-5 w-5 text-primary" />
-            CLÁUSULA NONA – DO SLA (SERVICE LEVEL AGREEMENT)
+            CLÁUSULA OITAVA – DO SLA (SERVICE LEVEL AGREEMENT)
           </h3>
           <div className="space-y-4 text-muted-foreground">
-            <p><strong>9.1. DISPONIBILIDADE DO SISTEMA:</strong></p>
+            <p><strong>8.1. DISPONIBILIDADE DO SISTEMA:</strong></p>
             <ul className="ml-6 space-y-1">
               <li>• Uptime garantido: <strong>99%</strong> do tempo mensal</li>
               <li>• Janela de manutenção: Até 1% ao mês (aproximadamente 7 horas)</li>
               <li>• Manutenções programadas comunicadas com 48h de antecedência</li>
             </ul>
 
-            <p><strong>9.2. TEMPO DE RESPOSTA:</strong></p>
+            <p><strong>8.2. TEMPO DE RESPOSTA:</strong></p>
             <ul className="ml-6 space-y-1">
               <li>• Suporte técnico: Resposta em até <strong>24 horas úteis</strong></li>
               <li>• Problemas críticos: Atendimento em até <strong>4 horas</strong></li>
               <li>• Ajustes e melhorias: Implementação em até <strong>7 dias úteis</strong></li>
             </ul>
 
-            <p><strong>9.3. MÉTRICAS DE QUALIFICAÇÃO:</strong></p>
+            <p><strong>8.3. MÉTRICAS DE QUALIFICAÇÃO:</strong></p>
             <ul className="ml-6 space-y-1">
-              <li>• Taxa mínima de resposta da IA: <strong>95%</strong></li>
+              <li>• Taxa mínima de resposta dos 6 Agentes IA: <strong>95%</strong></li>
               <li>• Tempo máximo de resposta da IA: <strong>10 segundos</strong></li>
+              <li>• Entrega quinzenal de campanhas de email marketing</li>
               <li>• Taxa de transferência de leads qualificados: Conforme critérios definidos</li>
             </ul>
           </div>
         </div>
 
-        {/* Cláusula 10: Confidencialidade */}
+        {/* Cláusula 9: Confidencialidade */}
         <div className="bg-card border rounded-lg p-8 mb-6 shadow-sm">
           <h3 className="text-xl font-bold text-foreground mb-4 flex items-center gap-2">
             <CheckCircle className="h-5 w-5 text-primary" />
-            CLÁUSULA DÉCIMA – DA CONFIDENCIALIDADE E LGPD
+            CLÁUSULA NONA – DA CONFIDENCIALIDADE E LGPD
           </h3>
           <div className="space-y-3 text-muted-foreground">
-            <p><strong>10.1.</strong> As partes comprometem-se a manter sigilo sobre todas as informações confidenciais obtidas durante a vigência deste contrato.</p>
-            <p><strong>10.2.</strong> A CONTRATADA compromete-se a cumprir integralmente a Lei Geral de Proteção de Dados (LGPD - Lei 13.709/2018).</p>
-            <p><strong>10.3.</strong> Dados coletados e processados pela IA serão utilizados exclusivamente para fins de qualificação de leads.</p>
-            <p><strong>10.4.</strong> A CONTRATADA não compartilhará dados de clientes com terceiros sem autorização expressa.</p>
-            <p><strong>10.5.</strong> Ao término do contrato, todos os dados serão devolvidos ou destruídos conforme solicitação da CONTRATANTE.</p>
+            <p><strong>9.1.</strong> As partes comprometem-se a manter sigilo sobre todas as informações confidenciais obtidas durante a vigência deste contrato.</p>
+            <p><strong>9.2.</strong> A CONTRATADA compromete-se a cumprir integralmente a Lei Geral de Proteção de Dados (LGPD - Lei 13.709/2018).</p>
+            <p><strong>9.3.</strong> Dados coletados e processados pelos Agentes IA e email marketing serão utilizados exclusivamente para fins de qualificação de leads.</p>
+            <p><strong>9.4.</strong> A CONTRATADA não compartilhará dados de clientes com terceiros sem autorização expressa.</p>
+            <p><strong>9.5.</strong> Ao término do contrato, todos os dados serão devolvidos ou destruídos conforme solicitação da CONTRATANTE.</p>
           </div>
         </div>
 
-        {/* Cláusula 11: Rescisão */}
+        {/* Cláusula 10: Rescisão */}
         <div className="bg-card border rounded-lg p-8 mb-6 shadow-sm">
           <h3 className="text-xl font-bold text-foreground mb-4 flex items-center gap-2">
             <CheckCircle className="h-5 w-5 text-primary" />
-            CLÁUSULA DÉCIMA PRIMEIRA – DA RESCISÃO
+            CLÁUSULA DÉCIMA – DA RESCISÃO
           </h3>
           <div className="space-y-4 text-muted-foreground">
-            <p><strong>11.1. RESCISÃO POR QUALQUER DAS PARTES:</strong></p>
+            <p><strong>10.1. RESCISÃO POR QUALQUER DAS PARTES:</strong></p>
             <ul className="ml-6 space-y-1">
               <li>• Aviso prévio de <strong>30 dias</strong></li>
               <li>• Pagamento de serviços já prestados até a data da rescisão</li>
             </ul>
 
-            <p><strong>11.2. RESCISÃO POR INADIMPLÊNCIA DA CONTRATANTE:</strong></p>
+            <p><strong>10.2. RESCISÃO POR INADIMPLÊNCIA DA CONTRATANTE:</strong></p>
             <ul className="ml-6 space-y-1">
               <li>• Atraso superior a <strong>15 dias</strong> no pagamento</li>
               <li>• Suspensão imediata dos serviços</li>
               <li>• Rescisão unilateral sem aviso prévio</li>
             </ul>
 
-            <p><strong>11.3. RESCISÃO POR INADIMPLÊNCIA DA CONTRATADA:</strong></p>
+            <p><strong>10.3. RESCISÃO POR INADIMPLÊNCIA DA CONTRATADA:</strong></p>
             <ul className="ml-6 space-y-1">
               <li>• Não entrega do sistema no prazo estipulado</li>
               <li>• Descumprimento do SLA por mais de 3 ocorrências</li>
@@ -476,56 +425,50 @@ const ContratoMatchSolutions = () => {
           </div>
         </div>
 
-        {/* Cláusula 12: Cláusula Anti-Conflito */}
+        {/* Cláusula 11: Mediação e Resolução de Conflitos */}
         <div className="bg-card border rounded-lg p-8 mb-6 shadow-sm">
           <h3 className="text-xl font-bold text-foreground mb-4 flex items-center gap-2">
             <CheckCircle className="h-5 w-5 text-primary" />
-            CLÁUSULA DÉCIMA SEGUNDA – DA CLÁUSULA ANTI-CONFLITO
+            CLÁUSULA DÉCIMA PRIMEIRA – DA MEDIAÇÃO E RESOLUÇÃO DE CONFLITOS
           </h3>
           <div className="space-y-3 text-muted-foreground">
-            <p><strong>12.1. DIVERGÊNCIA NOS RELATÓRIOS:</strong></p>
+            <p><strong>11.1. MEDIAÇÃO:</strong></p>
             <ul className="ml-6 space-y-1">
-              <li>• Em caso de discordância irreconciliável entre relatórios Promotheus e Fluxrow</li>
-              <li>• Será solicitada auditoria independente especializada</li>
-              <li>• Custos de auditoria divididos igualmente entre as partes</li>
-            </ul>
-
-            <p><strong>12.2. SUSPENSÃO TEMPORÁRIA:</strong></p>
-            <ul className="ml-6 space-y-1">
-              <li>• Suspensão do pagamento de comissões até resolução do conflito</li>
-              <li>• Manutenção da mensalidade fixa durante período de auditoria</li>
-              <li>• Prazo máximo de resolução: 30 dias</li>
-            </ul>
-
-            <p><strong>12.3. MEDIAÇÃO:</strong></p>
-            <ul className="ml-6 space-y-1">
+              <li>• Em caso de conflitos relacionados ao contrato, as partes se comprometem a buscar solução amigável</li>
               <li>• Tentativa de mediação antes de processo judicial</li>
               <li>• Escolha de mediador em comum acordo</li>
               <li>• Prazo de 15 dias para tentativa de acordo</li>
             </ul>
+
+            <p><strong>11.2. AUDITORIA TÉCNICA:</strong></p>
+            <ul className="ml-6 space-y-1">
+              <li>• Em caso de divergências técnicas sobre performance do sistema</li>
+              <li>• Possibilidade de auditoria independente especializada</li>
+              <li>• Custos de auditoria divididos igualmente entre as partes</li>
+            </ul>
           </div>
         </div>
 
-        {/* Cláusula 13: Disposições Gerais */}
+        {/* Cláusula 12: Disposições Gerais */}
         <div className="bg-card border rounded-lg p-8 mb-6 shadow-sm">
           <h3 className="text-xl font-bold text-foreground mb-4 flex items-center gap-2">
             <CheckCircle className="h-5 w-5 text-primary" />
-            CLÁUSULA DÉCIMA TERCEIRA – DAS DISPOSIÇÕES GERAIS
+            CLÁUSULA DÉCIMA SEGUNDA – DAS DISPOSIÇÕES GERAIS
           </h3>
           <div className="space-y-3 text-muted-foreground">
-            <p><strong>13.1.</strong> Este contrato substitui todos os acordos anteriores, verbais ou escritos, entre as partes.</p>
-            <p><strong>13.2.</strong> Qualquer alteração deve ser feita por escrito e assinada por ambas as partes.</p>
-            <p><strong>13.3.</strong> A tolerância de uma parte em relação ao descumprimento de qualquer cláusula não constitui renúncia ou novação.</p>
-            <p><strong>13.4.</strong> Se qualquer cláusula for considerada inválida, as demais permanecerão em vigor.</p>
-            <p><strong>13.5.</strong> Este contrato obriga as partes e seus sucessores.</p>
+            <p><strong>12.1.</strong> Este contrato substitui todos os acordos anteriores, verbais ou escritos, entre as partes.</p>
+            <p><strong>12.2.</strong> Qualquer alteração deve ser feita por escrito e assinada por ambas as partes.</p>
+            <p><strong>12.3.</strong> A tolerância de uma parte em relação ao descumprimento de qualquer cláusula não constitui renúncia ou novação.</p>
+            <p><strong>12.4.</strong> Se qualquer cláusula for considerada inválida, as demais permanecerão em vigor.</p>
+            <p><strong>12.5.</strong> Este contrato obriga as partes e seus sucessores.</p>
           </div>
         </div>
 
-        {/* Cláusula 14: Foro */}
+        {/* Cláusula 13: Foro */}
         <div className="bg-card border rounded-lg p-8 mb-6 shadow-sm">
           <h3 className="text-xl font-bold text-foreground mb-4 flex items-center gap-2">
             <CheckCircle className="h-5 w-5 text-primary" />
-            CLÁUSULA DÉCIMA QUARTA – DO FORO
+            CLÁUSULA DÉCIMA TERCEIRA – DO FORO
           </h3>
           <p className="text-muted-foreground">
             Fica eleito o foro da comarca de <strong>Curitiba/PR</strong> para dirimir quaisquer dúvidas ou litígios oriundos do presente contrato, com renúncia expressa a qualquer outro, por mais privilegiado que seja.
