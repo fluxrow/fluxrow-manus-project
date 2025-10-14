@@ -24,6 +24,7 @@ import PropostaView from "./pages/PropostaView";
 import PropostaMatchSolutions from "./pages/PropostaMatchSolutions";
 import PropostaAmandaNeves from "./pages/PropostaAmandaNeves";
 import ContratoMatchSolutions from "./pages/ContratoMatchSolutions";
+import ContratoAmandaNeves from "./pages/ContratoAmandaNeves";
 import ContratoAssinatura from "./pages/ContratoAssinatura";
 import ResetContrato from "./pages/ResetContrato";
 
@@ -54,6 +55,7 @@ const App = () => (
           <Route path="/match-solutions" element={<PropostaMatchSolutions />} />
           <Route path="/amanda-neves-store" element={<PropostaAmandaNeves />} />
           <Route path="/contrato-match-solutions" element={<ContratoMatchSolutions />} />
+          <Route path="/contrato-amanda-neves" element={<ContratoAmandaNeves />} />
           <Route path="/contrato/:cliente" element={<ContratoAssinatura />} />
           <Route path="/admin/reset-contrato" element={<ResetContrato />} />
           <Route path="/conteudos/:slug" element={<div>Página Individual de Conteúdo</div>} />
