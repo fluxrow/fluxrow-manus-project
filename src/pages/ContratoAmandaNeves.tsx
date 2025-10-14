@@ -28,7 +28,7 @@ const ContratoAmandaNeves = () => {
     contratante_responsavel_cpf: "060.919.397-00",
     contratante_responsavel_cargo: "Proprietária",
     contratada_nome: "FLUXROW INTELIGENCIA CRIATIVA LTDA",
-    contratada_cnpj: "58.217.196/0001-13",
+    contratada_cnpj: "61.260.831/0001-97",
     status: "pendente",
     created_at: new Date().toISOString(),
   });
@@ -114,9 +114,10 @@ const ContratoAmandaNeves = () => {
                 <p><strong>Razão Social:</strong> {contrato.contratada_nome}</p>
                 <p><strong>Nome Fantasia:</strong> FLUXROW</p>
                 <p><strong>CNPJ:</strong> {formatarCNPJ(contrato.contratada_cnpj)}</p>
-                <p><strong>Endereço:</strong> Rua Exemplo, 123 - São Paulo/SP</p>
-                <p><strong>Email:</strong> contato@fluxrow.com.br</p>
-                <p><strong>Telefone:</strong> (11) 99999-9999</p>
+                <p><strong>Endereço:</strong> Curitiba/PR</p>
+                <p><strong>Email:</strong> suporte@fluxrow.com.br</p>
+                <p><strong>Telefone:</strong> (41) 99236-1868</p>
+                <p><strong>Chave PIX (CNPJ):</strong> 61.260.831/0001-97</p>
               </div>
             </div>
           </div>
@@ -152,6 +153,17 @@ const ContratoAmandaNeves = () => {
                 </p>
                 <div className="bg-muted/50 p-4 rounded-lg space-y-2 ml-4">
                   <p>• <strong>1º Pagamento:</strong> R$ 1.700,00 (um mil e setecentos reais) - Na assinatura do contrato</p>
+                  <div className="bg-primary/5 p-4 rounded-lg border border-primary/20 mt-3 mb-3">
+                    <p className="font-semibold text-foreground mb-2">💳 Link de Pagamento - 1ª Parcela:</p>
+                    <a 
+                      href="https://checkout.nubank.com.br/cobranca/?id=0668eea328-c287-4816-866d-3ba795682e54&parcela=1"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-primary hover:underline break-all text-sm"
+                    >
+                      Clique aqui para pagar R$ 1.700,00 via Nubank
+                    </a>
+                  </div>
                   <p>• <strong>2º Pagamento:</strong> R$ 1.200,00 (um mil e duzentos reais) - 30 dias após a assinatura</p>
                   <p>• <strong>3º Pagamento:</strong> R$ 1.200,00 (um mil e duzentos reais) - 60 dias após a assinatura</p>
                 </div>
