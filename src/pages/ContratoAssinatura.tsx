@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -19,6 +19,12 @@ interface ContratoData {
   status: string;
   created_at: string;
 }
+
+// Mapeamento de clientes para CNPJs
+const clienteCNPJMap: Record<string, string> = {
+  'amanda-neves': '61.153.521/0001-73',
+  'match-solutions': '34.325.200/0001-36'
+};
 
 export default function ContratoAssinatura() {
   const { cliente } = useParams();
@@ -58,19 +64,22 @@ export default function ContratoAssinatura() {
       .substring(0, 14);
   };
 
-  const handleValidarCNPJ = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    if (!cnpj) {
-      toast.error("Por favor, insira o CNPJ");
-      return;
+  // Auto-validar CNPJ baseado no cliente da URL
+  useEffect(() => {
+    if (cliente && clienteCNPJMap[cliente]) {
+      const cnpjCliente = clienteCNPJMap[cliente];
+      setCnpj(formatarCNPJ(cnpjCliente));
+      validarCNPJAutomatico(cnpjCliente);
     }
+  }, [cliente]);
 
+  // Validação automática de CNPJ
+  const validarCNPJAutomatico = async (cnpjParaValidar: string) => {
     setValidando(true);
 
     try {
       const { data, error } = await supabase.functions.invoke('validar-contrato', {
-        body: { cnpj }
+        body: { cnpj: cnpjParaValidar }
       });
 
       if (error) throw error;
@@ -85,13 +94,24 @@ export default function ContratoAssinatura() {
       setContratoValidado(true);
       
       const papelTexto = data.papel === 'contratante' ? 'Contratante' : 'Contratada';
-      toast.success(`Contrato encontrado! Você está assinando como ${papelTexto}.`);
+      toast.success(`Contrato carregado! Você está assinando como ${papelTexto}.`);
     } catch (error: any) {
       console.error('Erro ao validar CNPJ:', error);
-      toast.error("Erro ao validar CNPJ. Tente novamente.");
+      toast.error("Erro ao carregar contrato. Tente novamente.");
     } finally {
       setValidando(false);
     }
+  };
+
+  const handleValidarCNPJ = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!cnpj) {
+      toast.error("Por favor, insira o CNPJ");
+      return;
+    }
+
+    validarCNPJAutomatico(cnpj);
   };
 
   const handleAssinar = async (e: React.FormEvent) => {
