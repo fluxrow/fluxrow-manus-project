@@ -27,15 +27,21 @@ Deno.serve(async (req) => {
     // Limpar CNPJ (remover pontuação)
     const cnpjLimpo = cnpj.replace(/[^\d]/g, '');
 
-    // Mapear cliente para CNPJ contratante
-    const clienteMap: Record<string, string> = {
+    // Mapear cliente para CNPJ contratante e contratada
+    const clienteMapContratante: Record<string, string> = {
       'amanda-neves': '61153521000173',
       'match-solutions': '34325200000136'
     };
 
-    const cnpjContratante = cliente ? clienteMap[cliente] : null;
+    const clienteMapContratada: Record<string, string> = {
+      'amanda-neves': '61260831000197', // Fluxrow
+      'match-solutions': '61260831000197' // Fluxrow
+    };
 
-    console.log('Validando CNPJ:', cnpjLimpo, '| Cliente:', cliente, '| CNPJ Contratante:', cnpjContratante);
+    const cnpjContratante = cliente ? clienteMapContratante[cliente] : null;
+    const cnpjContratada = cliente ? clienteMapContratada[cliente] : null;
+
+    console.log('Validando CNPJ:', cnpjLimpo, '| Cliente:', cliente, '| CNPJ Contratante:', cnpjContratante, '| CNPJ Contratada:', cnpjContratada);
 
     // Criar cliente Supabase com service_role para acesso via edge function
     const supabaseAdmin = createClient(
@@ -44,16 +50,16 @@ Deno.serve(async (req) => {
     );
 
     // Buscar contrato pelo CNPJ (pode ser contratante ou contratada)
-    // Se temos o cliente, filtramos pelo CNPJ contratante específico
     let query = supabaseAdmin
       .from('contratos_assinados')
       .select('*');
 
-    if (cnpjContratante) {
-      // Busca exata: contratante específico + contratada = CNPJ fornecido
-      query = query
-        .eq('cnpj_contratante', cnpjContratante)
-        .eq('cnpj_contratada', cnpjLimpo);
+    if (cnpjContratante && cnpjContratada) {
+      // Busca flexível: CNPJ digitado pode ser da contratante OU da contratada
+      query = query.or(
+        `and(cnpj_contratante.eq.${cnpjContratante},cnpj_contratada.eq.${cnpjLimpo}),` +
+        `and(cnpj_contratante.eq.${cnpjLimpo},cnpj_contratada.eq.${cnpjContratada})`
+      );
     } else {
       // Busca genérica: CNPJ pode ser contratante ou contratada
       query = query.or(`cnpj_contratante.eq.${cnpjLimpo},cnpj_contratada.eq.${cnpjLimpo}`);
