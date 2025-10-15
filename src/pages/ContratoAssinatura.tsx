@@ -34,6 +34,7 @@ export default function ContratoAssinatura() {
   const [validando, setValidando] = useState(false);
   const [contratoValidado, setContratoValidado] = useState(false);
   const [contratoData, setContratoData] = useState<ContratoData | null>(null);
+  const [cnpjValidacao, setCnpjValidacao] = useState("");
   const papelEmpresa = 'contratada'; // Fluxrow sempre assina como contratada
   
   // Estados para assinatura
@@ -86,14 +87,26 @@ export default function ContratoAssinatura() {
       if (error) throw error;
       
       setContratoData(data);
-      setContratoValidado(true);
-      toast.success('Contrato carregado! Você está assinando como CONTRATADA.');
+      toast.success('Contrato carregado! Insira o CNPJ da CONTRATADA para continuar.');
     } catch (error: any) {
       console.error('Erro ao carregar contrato:', error);
       toast.error('Erro ao carregar contrato. Verifique se o contrato existe.');
       setTimeout(() => navigate('/'), 2000);
     } finally {
       setValidando(false);
+    }
+  };
+
+  const validarCNPJContratada = () => {
+    if (!contratoData) return;
+    
+    const cnpjLimpo = cnpjValidacao.replace(/\D/g, "");
+    
+    if (cnpjLimpo === contratoData.cnpj_contratada) {
+      setContratoValidado(true);
+      toast.success("CNPJ validado! Preencha os dados para assinar.");
+    } else {
+      toast.error("CNPJ não corresponde ao da empresa CONTRATADA neste contrato.");
     }
   };
 
@@ -166,6 +179,45 @@ export default function ContratoAssinatura() {
                   <Loader2 className="h-12 w-12 animate-spin mx-auto text-primary" />
                   <p className="text-lg text-muted-foreground">Carregando contrato...</p>
                 </div>
+              </CardContent>
+            </Card>
+          ) : contratoData && !contratoValidado ? (
+            // ETAPA 1: Validação de CNPJ da CONTRATADA
+            <Card className="border-2 border-primary/20">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <FileText className="h-5 w-5 text-primary" />
+                  Validação de Acesso
+                </CardTitle>
+                <CardDescription>
+                  Para assinar como CONTRATADA, insira o CNPJ da sua empresa
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="space-y-2">
+                  <Label htmlFor="cnpj-validacao">CNPJ da Empresa Contratada</Label>
+                  <Input
+                    id="cnpj-validacao"
+                    type="text"
+                    placeholder="00.000.000/0000-00"
+                    value={cnpjValidacao}
+                    onChange={(e) => setCnpjValidacao(formatarCNPJ(e.target.value))}
+                    maxLength={18}
+                  />
+                  <p className="text-xs text-muted-foreground">
+                    Digite o CNPJ da Fluxrow para validar seu acesso ao contrato
+                  </p>
+                </div>
+
+                <Button 
+                  onClick={validarCNPJContratada}
+                  className="w-full"
+                  size="lg"
+                  disabled={cnpjValidacao.replace(/\D/g, "").length !== 14}
+                >
+                  <CheckCircle2 className="mr-2 h-4 w-4" />
+                  Validar e Continuar
+                </Button>
               </CardContent>
             </Card>
           ) : contratoValidado ? (
