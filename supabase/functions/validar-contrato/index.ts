@@ -12,7 +12,7 @@ Deno.serve(async (req) => {
   }
 
   try {
-    const { cnpj } = await req.json();
+    const { cnpj, cliente } = await req.json();
 
     if (!cnpj) {
       return new Response(
@@ -27,7 +27,15 @@ Deno.serve(async (req) => {
     // Limpar CNPJ (remover pontuação)
     const cnpjLimpo = cnpj.replace(/[^\d]/g, '');
 
-    console.log('Validando CNPJ:', cnpjLimpo);
+    // Mapear cliente para CNPJ contratante
+    const clienteMap: Record<string, string> = {
+      'amanda-neves': '61153521000173',
+      'match-solutions': '34325200000136'
+    };
+
+    const cnpjContratante = cliente ? clienteMap[cliente] : null;
+
+    console.log('Validando CNPJ:', cnpjLimpo, '| Cliente:', cliente, '| CNPJ Contratante:', cnpjContratante);
 
     // Criar cliente Supabase com service_role para acesso via edge function
     const supabaseAdmin = createClient(
@@ -36,10 +44,22 @@ Deno.serve(async (req) => {
     );
 
     // Buscar contrato pelo CNPJ (pode ser contratante ou contratada)
-    const { data: contratos, error } = await supabaseAdmin
+    // Se temos o cliente, filtramos pelo CNPJ contratante específico
+    let query = supabaseAdmin
       .from('contratos_assinados')
-      .select('*')
-      .or(`cnpj_contratante.eq.${cnpjLimpo},cnpj_contratada.eq.${cnpjLimpo}`);
+      .select('*');
+
+    if (cnpjContratante) {
+      // Busca exata: contratante específico + contratada = CNPJ fornecido
+      query = query
+        .eq('cnpj_contratante', cnpjContratante)
+        .eq('cnpj_contratada', cnpjLimpo);
+    } else {
+      // Busca genérica: CNPJ pode ser contratante ou contratada
+      query = query.or(`cnpj_contratante.eq.${cnpjLimpo},cnpj_contratada.eq.${cnpjLimpo}`);
+    }
+
+    const { data: contratos, error } = await query;
 
     if (error || !contratos || contratos.length === 0) {
       console.error('Contrato não encontrado:', error);

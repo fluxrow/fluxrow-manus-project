@@ -70,7 +70,7 @@ export default function ContratoAssinatura() {
 
     try {
       const { data, error } = await supabase.functions.invoke('validar-contrato', {
-        body: { cnpj }
+        body: { cnpj, cliente }
       });
 
       if (error) throw error;
