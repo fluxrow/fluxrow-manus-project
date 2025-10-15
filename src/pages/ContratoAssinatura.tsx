@@ -6,7 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
-import { Loader2, FileText, Shield, CheckCircle2 } from "lucide-react";
+import { Loader2, FileText, CheckCircle2 } from "lucide-react";
 
 interface ContratoData {
   id: string;
@@ -20,22 +20,21 @@ interface ContratoData {
   created_at: string;
 }
 
-// Mapeamento de clientes para CNPJs
-const clienteCNPJMap: Record<string, string> = {
-  'amanda-neves': '61.153.521/0001-73',
-  'match-solutions': '34.325.200/0001-36'
+// Mapeamento de clientes para CNPJ da CONTRATANTE (sem pontuação para busca)
+const clienteContratoMap: Record<string, string> = {
+  'amanda-neves': '61153521000173',
+  'match-solutions': '34325200000136'
 };
 
 export default function ContratoAssinatura() {
   const { cliente } = useParams();
   const navigate = useNavigate();
   
-  // Estados para validação CNPJ
-  const [cnpj, setCnpj] = useState("");
+  // Estados
   const [validando, setValidando] = useState(false);
   const [contratoValidado, setContratoValidado] = useState(false);
   const [contratoData, setContratoData] = useState<ContratoData | null>(null);
-  const [papelEmpresa, setPapelEmpresa] = useState<'contratante' | 'contratada' | null>(null);
+  const papelEmpresa = 'contratada'; // Fluxrow sempre assina como contratada
   
   // Estados para assinatura
   const [nomeResponsavel, setNomeResponsavel] = useState("");
@@ -64,54 +63,38 @@ export default function ContratoAssinatura() {
       .substring(0, 14);
   };
 
-  // Auto-validar CNPJ baseado no cliente da URL
+  // Carregar contrato automaticamente baseado no cliente da URL
   useEffect(() => {
-    if (cliente && clienteCNPJMap[cliente]) {
-      const cnpjCliente = clienteCNPJMap[cliente];
-      setCnpj(formatarCNPJ(cnpjCliente));
-      validarCNPJAutomatico(cnpjCliente);
+    if (cliente && clienteContratoMap[cliente]) {
+      carregarContratoDoCliente(clienteContratoMap[cliente]);
+    } else if (cliente) {
+      toast.error("Cliente não encontrado");
+      navigate('/');
     }
   }, [cliente]);
 
-  // Validação automática de CNPJ
-  const validarCNPJAutomatico = async (cnpjParaValidar: string) => {
+  const carregarContratoDoCliente = async (cnpjContratante: string) => {
     setValidando(true);
-
+    
     try {
-      const { data, error } = await supabase.functions.invoke('validar-contrato', {
-        body: { cnpj: cnpjParaValidar }
-      });
-
-      if (error) throw error;
-
-      if (data.error) {
-        toast.error(data.error);
-        return;
-      }
-
-      setContratoData(data.contrato);
-      setPapelEmpresa(data.papel);
-      setContratoValidado(true);
+      const { data, error } = await supabase
+        .from('contratos_assinados')
+        .select('*')
+        .eq('cnpj_contratante', cnpjContratante)
+        .single();
       
-      const papelTexto = data.papel === 'contratante' ? 'Contratante' : 'Contratada';
-      toast.success(`Contrato carregado! Você está assinando como ${papelTexto}.`);
+      if (error) throw error;
+      
+      setContratoData(data);
+      setContratoValidado(true);
+      toast.success('Contrato carregado! Você está assinando como CONTRATADA.');
     } catch (error: any) {
-      console.error('Erro ao validar CNPJ:', error);
-      toast.error("Erro ao carregar contrato. Tente novamente.");
+      console.error('Erro ao carregar contrato:', error);
+      toast.error('Erro ao carregar contrato. Verifique se o contrato existe.');
+      setTimeout(() => navigate('/'), 2000);
     } finally {
       setValidando(false);
     }
-  };
-
-  const handleValidarCNPJ = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    if (!cnpj) {
-      toast.error("Por favor, insira o CNPJ");
-      return;
-    }
-
-    validarCNPJAutomatico(cnpj);
   };
 
   const handleAssinar = async (e: React.FormEvent) => {
@@ -129,11 +112,6 @@ export default function ContratoAssinatura() {
 
     setAssinando(true);
 
-    if (!papelEmpresa) {
-      toast.error("Erro: papel da empresa não identificado");
-      setAssinando(false);
-      return;
-    }
 
     try {
       const { data, error } = await supabase.functions.invoke('assinar-contrato', {
@@ -181,56 +159,16 @@ export default function ContratoAssinatura() {
             </p>
           </div>
 
-          {!contratoValidado ? (
-            // Formulário de validação CNPJ
+          {validando ? (
             <Card className="border-2">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Shield className="h-5 w-5 text-primary" />
-                  Validação de Acesso
-                </CardTitle>
-                 <CardDescription>
-                   Insira o CNPJ da sua empresa (contratante ou contratada) para acessar o contrato
-                 </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <form onSubmit={handleValidarCNPJ} className="space-y-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="cnpj">CNPJ da Empresa</Label>
-                    <Input
-                      id="cnpj"
-                      type="text"
-                      placeholder="00.000.000/0000-00"
-                      value={cnpj}
-                      onChange={(e) => setCnpj(formatarCNPJ(e.target.value))}
-                      maxLength={18}
-                      className="text-lg"
-                      disabled={validando}
-                    />
-                  </div>
-
-                  <Button 
-                    type="submit" 
-                    className="w-full"
-                    size="lg"
-                    disabled={validando}
-                  >
-                    {validando ? (
-                      <>
-                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                        Validando...
-                      </>
-                    ) : (
-                      <>
-                        <FileText className="mr-2 h-4 w-4" />
-                        Validar e Acessar Contrato
-                      </>
-                    )}
-                  </Button>
-                </form>
+              <CardContent className="py-12">
+                <div className="text-center space-y-4">
+                  <Loader2 className="h-12 w-12 animate-spin mx-auto text-primary" />
+                  <p className="text-lg text-muted-foreground">Carregando contrato...</p>
+                </div>
               </CardContent>
             </Card>
-          ) : (
+          ) : contratoValidado ? (
             // Exibição do contrato e formulário de assinatura
             <div className="space-y-6">
               {/* Card com dados do contrato */}
@@ -245,8 +183,8 @@ export default function ContratoAssinatura() {
                    {/* Badge indicando o papel da empresa */}
                    <div className="flex items-center gap-2 p-3 bg-primary/10 rounded-lg border border-primary/20">
                      <CheckCircle2 className="h-5 w-5 text-primary" />
-                     <p className="font-semibold text-primary">
-                       Você está assinando como: {papelEmpresa === 'contratante' ? 'CONTRATANTE' : 'CONTRATADA'}
+                      <p className="font-semibold text-primary">
+                        Você está assinando como: CONTRATADA
                      </p>
                    </div>
                    
@@ -328,7 +266,7 @@ export default function ContratoAssinatura() {
                     <div className="pt-4 space-y-3">
                        <div className="p-4 bg-muted/50 rounded-lg border">
                          <p className="text-sm text-muted-foreground">
-                           Ao clicar em "Assinar Contrato", você confirma que leu e concorda com todos os termos e condições descritos no contrato, e que possui autorização para representar a empresa {papelEmpresa === 'contratante' ? 'contratante' : 'contratada'}.
+                           Ao clicar em "Assinar Contrato", você confirma que leu e concorda com todos os termos e condições descritos no contrato, e que possui autorização para representar a empresa contratada.
                          </p>
                        </div>
 
@@ -355,7 +293,7 @@ export default function ContratoAssinatura() {
                 </CardContent>
               </Card>
             </div>
-          )}
+          ) : null}
         </div>
       </div>
     </div>
