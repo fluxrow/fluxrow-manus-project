@@ -15,9 +15,20 @@ Deno.serve(async (req) => {
   }
 
   try {
-    const { contratoId, nomeResponsavel, cpfResponsavel, cargoResponsavel, papel } = await req.json();
+    const requestBody = await req.json();
+    console.log('Requisição recebida:', requestBody);
+    
+    const { contratoId, nomeResponsavel, cpfResponsavel, cargoResponsavel, papel } = requestBody;
+
+    console.log('Validando campos obrigatórios...');
+    console.log('contratoId:', contratoId);
+    console.log('nomeResponsavel:', nomeResponsavel);
+    console.log('cpfResponsavel:', cpfResponsavel);
+    console.log('cargoResponsavel:', cargoResponsavel);
+    console.log('papel:', papel);
 
     if (!contratoId || !nomeResponsavel || !cpfResponsavel || !cargoResponsavel || !papel) {
+      console.error('Campos faltando!');
       return new Response(
         JSON.stringify({ error: 'Todos os campos são obrigatórios, incluindo o papel (contratante ou contratada)' }),
         { 

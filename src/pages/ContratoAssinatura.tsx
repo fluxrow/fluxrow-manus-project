@@ -116,6 +116,14 @@ export default function ContratoAssinatura() {
     }
 
     try {
+      console.log('Invocando edge function assinar-contrato com dados:', {
+        contratoId: contratoData.id,
+        nomeResponsavel,
+        cpfResponsavel,
+        cargoResponsavel,
+        papel: papelEmpresa
+      });
+
       const { data, error } = await supabase.functions.invoke('assinar-contrato', {
         body: {
           contratoId: contratoData.id,
@@ -126,9 +134,16 @@ export default function ContratoAssinatura() {
         }
       });
 
-      if (error) throw error;
+      console.log('Resposta da edge function:', { data, error });
 
-      if (data.error) {
+      if (error) {
+        console.error('Erro retornado pela edge function:', error);
+        toast.error(`Erro: ${error.message || 'Erro ao processar assinatura'}`);
+        return;
+      }
+
+      if (data?.error) {
+        console.error('Erro nos dados retornados:', data.error);
         toast.error(data.error);
         return;
       }
@@ -140,8 +155,9 @@ export default function ContratoAssinatura() {
         navigate('/');
       }, 2000);
     } catch (error: any) {
-      console.error('Erro ao assinar contrato:', error);
-      toast.error("Erro ao processar assinatura. Tente novamente.");
+      console.error('Erro ao assinar contrato (catch):', error);
+      const errorMessage = error?.message || error?.toString() || 'Erro desconhecido';
+      toast.error(`Erro ao processar assinatura: ${errorMessage}`);
     } finally {
       setAssinando(false);
     }
