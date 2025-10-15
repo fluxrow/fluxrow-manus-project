@@ -642,7 +642,7 @@ const ContratoMatchSolutions = () => {
                 : 'Assine digitalmente este contrato de forma segura e jurídica.'}
             </p>
             <Button 
-              onClick={() => window.location.href = '/contrato/match-solutions/assinar'}
+              onClick={() => window.location.href = '/contrato/match-solutions'}
               size="lg"
               className="gap-2 text-lg px-8"
             >
