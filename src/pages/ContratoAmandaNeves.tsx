@@ -1,37 +1,56 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Download } from "lucide-react";
+import { Download, Loader2, CheckCircle, FileText } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
+import { format } from "date-fns";
+import { ptBR } from "date-fns/locale";
 
 interface ContratoData {
-  id?: string;
-  contratante_nome: string;
-  contratante_cnpj: string;
-  contratante_responsavel?: string;
-  contratante_responsavel_cpf?: string;
-  contratante_responsavel_cargo?: string;
-  contratada_nome: string;
-  contratada_cnpj: string;
-  status?: string;
-  created_at?: string;
-  assinado_por?: string;
-  assinado_em?: string;
-  assinante_nome?: string;
-  assinante_cpf?: string;
-  assinante_cargo?: string;
+  id: string;
+  nome_contratante: string;
+  cpf_contratante: string;
+  cnpj_contratante: string;
+  email_contratante: string;
+  nome_contratada: string;
+  cpf_contratada: string;
+  cnpj_contratada: string;
+  status: string;
+  data_assinatura: string;
+  contratante_assinatura_nome: string | null;
+  contratante_assinatura_cpf: string | null;
+  contratante_assinatura_cargo: string | null;
+  contratante_data_assinatura: string | null;
+  contratada_assinatura_nome: string | null;
+  contratada_assinatura_cpf: string | null;
+  contratada_assinatura_cargo: string | null;
+  contratada_data_assinatura: string | null;
+  created_at: string;
 }
 
 const ContratoAmandaNeves = () => {
-  const [contrato] = useState<ContratoData>({
-    contratante_nome: "AMANDAH NEVES STORE COMERCIO VAREJISTA LTDA",
-    contratante_cnpj: "61.153.521/0001-73",
-    contratante_responsavel: "Amanda Neves",
-    contratante_responsavel_cpf: "060.919.397-00",
-    contratante_responsavel_cargo: "Proprietária",
-    contratada_nome: "FLUXROW INTELIGENCIA CRIATIVA LTDA",
-    contratada_cnpj: "61.260.831/0001-97",
-    status: "pendente",
-    created_at: new Date().toISOString(),
-  });
+  const [contrato, setContrato] = useState<ContratoData | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    carregarContrato();
+  }, []);
+
+  const carregarContrato = async () => {
+    try {
+      const { data, error } = await supabase.functions.invoke('validar-contrato', {
+        body: { cnpj: '61.153.521/0001-73' }
+      });
+
+      if (error) throw error;
+      if (data.contrato) {
+        setContrato(data.contrato);
+      }
+    } catch (error) {
+      console.error('Erro ao carregar contrato:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const formatarCNPJ = (cnpj: string) => {
     const numeros = cnpj.replace(/\D/g, "");
@@ -52,9 +71,29 @@ const ContratoAmandaNeves = () => {
     return `${d.getDate()} de ${meses[d.getMonth()]} de ${d.getFullYear()}`;
   };
 
+  const formatarDataHora = (dataISO: string) => {
+    return format(new Date(dataISO), "dd/MM/yyyy 'às' HH:mm", { locale: ptBR });
+  };
+
   const handleDownload = () => {
     window.print();
   };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <Loader2 className="h-8 w-8 animate-spin text-primary" />
+      </div>
+    );
+  }
+
+  if (!contrato) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <p className="text-muted-foreground">Contrato não encontrado</p>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-background">
@@ -92,28 +131,21 @@ const ContratoAmandaNeves = () => {
             <div>
               <h2 className="text-xl font-bold text-foreground mb-3">CONTRATANTE:</h2>
               <div className="bg-muted/50 p-4 rounded-lg space-y-2">
-                <p><strong>Razão Social:</strong> {contrato.contratante_nome}</p>
+                <p><strong>Razão Social:</strong> {contrato.nome_contratante}</p>
                 <p><strong>Nome Fantasia:</strong> AMANDAH NEVES STORE</p>
-                <p><strong>CNPJ:</strong> {formatarCNPJ(contrato.contratante_cnpj)}</p>
+                <p><strong>CNPJ:</strong> {formatarCNPJ(contrato.cnpj_contratante)}</p>
                 <p><strong>Endereço:</strong> R DOUTOR PIO BORGES, 1931, LOJA - PITA - SÃO GONÇALO/RJ - CEP 24.412-001</p>
-                <p><strong>Email:</strong> amanda.am.neves@gmail.com</p>
+                <p><strong>Email:</strong> {contrato.email_contratante}</p>
                 <p><strong>Telefone:</strong> (21) 9646-5594</p>
-                {contrato.contratante_responsavel && (
-                  <>
-                    <p className="pt-2 border-t mt-2"><strong>Representada por:</strong> {contrato.contratante_responsavel}</p>
-                    <p><strong>CPF:</strong> {formatarCPF(contrato.contratante_responsavel_cpf || "")}</p>
-                    <p><strong>Cargo:</strong> {contrato.contratante_responsavel_cargo}</p>
-                  </>
-                )}
               </div>
             </div>
 
             <div>
               <h2 className="text-xl font-bold text-foreground mb-3">CONTRATADA:</h2>
               <div className="bg-muted/50 p-4 rounded-lg space-y-2">
-                <p><strong>Razão Social:</strong> {contrato.contratada_nome}</p>
+                <p><strong>Razão Social:</strong> {contrato.nome_contratada}</p>
                 <p><strong>Nome Fantasia:</strong> FLUXROW</p>
-                <p><strong>CNPJ:</strong> {formatarCNPJ(contrato.contratada_cnpj)}</p>
+                <p><strong>CNPJ:</strong> {formatarCNPJ(contrato.cnpj_contratada)}</p>
                 <p><strong>Endereço:</strong> Curitiba/PR</p>
                 <p><strong>Email:</strong> suporte@fluxrow.com.br</p>
                 <p><strong>Telefone:</strong> (41) 99236-1868</p>
@@ -321,60 +353,69 @@ const ContratoAmandaNeves = () => {
                 E por estarem assim justas e contratadas, as partes assinam o presente instrumento em 2 (duas) vias de igual teor e forma.
               </p>
               <p className="text-muted-foreground font-semibold">
-                São Paulo, {contrato.created_at && formatarDataExtenso(contrato.created_at)}
+                São Gonçalo/RJ, {formatarDataExtenso(contrato.created_at)}
               </p>
             </div>
 
-            {contrato.status === "assinado" && contrato.assinante_nome ? (
-              <div className="bg-green-50 dark:bg-green-900/20 border-2 border-green-500 rounded-lg p-6">
-                <div className="text-center space-y-2">
-                  <p className="text-green-700 dark:text-green-400 font-bold text-lg">✓ Contrato Assinado Digitalmente</p>
-                  <div className="text-sm text-muted-foreground space-y-1">
-                    <p><strong>Assinado por:</strong> {contrato.assinante_nome}</p>
-                    <p><strong>CPF:</strong> {formatarCPF(contrato.assinante_cpf || "")}</p>
-                    <p><strong>Cargo:</strong> {contrato.assinante_cargo}</p>
-                    <p><strong>Data:</strong> {contrato.assinado_em && formatarDataExtenso(contrato.assinado_em)}</p>
+            <div className="bg-card border rounded-lg p-8 shadow-sm">
+              <h3 className="text-xl font-bold text-foreground mb-6">ASSINATURAS</h3>
+              
+              {contrato.status === 'totalmente_assinado' ? (
+                <div className="space-y-6">
+                  {contrato.contratante_assinatura_nome && (
+                    <div className="border-t pt-6">
+                      <div className="flex items-center gap-2 mb-4">
+                        <CheckCircle className="h-5 w-5 text-green-600" />
+                        <p className="font-bold text-green-600">CONTRATANTE - ASSINADO</p>
+                      </div>
+                      <div className="space-y-2 text-muted-foreground">
+                        <p><strong>Nome:</strong> {contrato.contratante_assinatura_nome}</p>
+                        <p><strong>CPF:</strong> {formatarCPF(contrato.contratante_assinatura_cpf || '')}</p>
+                        <p><strong>Cargo:</strong> {contrato.contratante_assinatura_cargo}</p>
+                        <p><strong>Data/Hora:</strong> {formatarDataHora(contrato.contratante_data_assinatura || '')}</p>
+                      </div>
+                    </div>
+                  )}
+                  
+                  {contrato.contratada_assinatura_nome && (
+                    <div className="border-t pt-6">
+                      <div className="flex items-center gap-2 mb-4">
+                        <CheckCircle className="h-5 w-5 text-green-600" />
+                        <p className="font-bold text-green-600">CONTRATADA - ASSINADO</p>
+                      </div>
+                      <div className="space-y-2 text-muted-foreground">
+                        <p><strong>Nome:</strong> {contrato.contratada_assinatura_nome}</p>
+                        <p><strong>CPF:</strong> {formatarCPF(contrato.contratada_assinatura_cpf || '')}</p>
+                        <p><strong>Cargo:</strong> {contrato.contratada_assinatura_cargo}</p>
+                        <p><strong>Data/Hora:</strong> {formatarDataHora(contrato.contratada_data_assinatura || '')}</p>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <div className="space-y-8">
+                  <div className="text-center py-8 bg-muted/30 rounded-lg">
+                    <p className="text-muted-foreground mb-4">
+                      ⏳ Aguardando assinaturas digitais
+                    </p>
+                    <a 
+                      href="/contrato/amanda-neves/assinar"
+                      className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors"
+                    >
+                      <FileText className="h-5 w-5" />
+                      Assinar Digitalmente
+                    </a>
                   </div>
                 </div>
-              </div>
-            ) : (
-              <div className="grid md:grid-cols-2 gap-8">
-                <div className="text-center">
-                  <div className="border-t-2 border-foreground pt-2">
-                    <p className="font-semibold">{contrato.contratante_nome}</p>
-                    <p className="text-sm text-muted-foreground">CNPJ: {formatarCNPJ(contrato.contratante_cnpj)}</p>
-                    <p className="text-sm text-muted-foreground mt-2">CONTRATANTE</p>
-                  </div>
-                </div>
-                <div className="text-center">
-                  <div className="border-t-2 border-foreground pt-2">
-                    <p className="font-semibold">{contrato.contratada_nome}</p>
-                    <p className="text-sm text-muted-foreground">CNPJ: {formatarCNPJ(contrato.contratada_cnpj)}</p>
-                    <p className="text-sm text-muted-foreground mt-2">CONTRATADA</p>
-                  </div>
-                </div>
-              </div>
-            )}
+              )}
+            </div>
           </div>
-
-          {/* CTA para Assinar */}
-          {contrato.status !== "assinado" && (
-            <div className="bg-primary/10 border-2 border-primary rounded-lg p-6 text-center print:hidden">
-              <h3 className="text-xl font-bold text-foreground mb-3">Pronto para Assinar?</h3>
-              <p className="text-muted-foreground mb-4">
-                Utilize o link de assinatura digital enviado por email para formalizar este contrato.
-              </p>
-              <Button size="lg" className="gap-2">
-                Acessar Assinatura Digital
-              </Button>
-            </div>
-          )}
         </div>
 
         {/* Footer */}
         <div className="text-center mt-8 text-sm text-muted-foreground print:hidden">
-          <p>FLUXROW INTELIGÊNCIA CRIATIVA LTDA - CNPJ 58.217.196/0001-13</p>
-          <p>contato@fluxrow.com.br | (11) 99999-9999</p>
+          <p>FLUXROW INTELIGÊNCIA CRIATIVA LTDA - CNPJ 61.260.831/0001-97</p>
+          <p>suporte@fluxrow.com.br | (41) 99236-1868</p>
         </div>
       </div>
     </div>

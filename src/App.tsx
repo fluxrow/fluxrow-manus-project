@@ -57,6 +57,7 @@ const App = () => (
           <Route path="/contrato-match-solutions" element={<ContratoMatchSolutions />} />
           <Route path="/contrato-amanda-neves" element={<ContratoAmandaNeves />} />
           <Route path="/contrato/:cliente" element={<ContratoAssinatura />} />
+          <Route path="/contrato/amanda-neves/assinar" element={<ContratoAssinatura />} />
           <Route path="/admin/reset-contrato" element={<ResetContrato />} />
           <Route path="/conteudos/:slug" element={<div>Página Individual de Conteúdo</div>} />
           <Route path="/contato" element={<Contato />} />
