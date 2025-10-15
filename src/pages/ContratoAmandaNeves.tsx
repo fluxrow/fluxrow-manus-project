@@ -136,7 +136,7 @@ const ContratoAmandaNeves = () => {
                 <p><strong>CNPJ:</strong> {formatarCNPJ(contrato.cnpj_contratante)}</p>
                 <p><strong>Endereço:</strong> R DOUTOR PIO BORGES, 1931, LOJA - PITA - SÃO GONÇALO/RJ - CEP 24.412-001</p>
                 <p><strong>Email:</strong> {contrato.email_contratante}</p>
-                <p><strong>Telefone:</strong> (21) 9646-5594</p>
+                <p><strong>Telefone:</strong> (21) 96465-5941</p>
               </div>
             </div>
 
