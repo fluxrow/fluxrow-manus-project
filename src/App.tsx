@@ -27,6 +27,7 @@ import ContratoMatchSolutions from "./pages/ContratoMatchSolutions";
 import ContratoAmandaNeves from "./pages/ContratoAmandaNeves";
 import ContratoAssinatura from "./pages/ContratoAssinatura";
 import ResetContrato from "./pages/ResetContrato";
+import RelatorioFachini from "./pages/RelatorioFachini";
 
 const queryClient = new QueryClient();
 
@@ -58,6 +59,7 @@ const App = () => (
           <Route path="/contrato-amanda-neves" element={<ContratoAmandaNeves />} />
           <Route path="/contrato/:cliente/assinar" element={<ContratoAssinatura />} />
           <Route path="/admin/reset-contrato" element={<ResetContrato />} />
+          <Route path="/relatorio/fachini-outubro-2025" element={<RelatorioFachini />} />
           <Route path="/conteudos/:slug" element={<div>Página Individual de Conteúdo</div>} />
           <Route path="/contato" element={<Contato />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
