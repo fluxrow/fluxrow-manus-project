@@ -1,5 +1,5 @@
-import { TrendingUp, DollarSign, Users, MessageSquare, Phone, Target } from 'lucide-react';
-import { formatCurrency, formatNumber, formatPercent } from '@/utils/formatters';
+import { DollarSign, Users, MessageSquare, Phone } from 'lucide-react';
+import { formatCurrency, formatNumber } from '@/utils/formatters';
 
 interface RelatorioHeroProps {
   kpis: {
@@ -8,9 +8,6 @@ interface RelatorioHeroProps {
     conversas_meta: number;
     google_conv_primarias_ads: { whatsapp_click: number; form_start: number };
     google_conv_primarias_ga4: { whatsapp_click: number; form_start: number };
-    rd_receita: number;
-    roas_real: number;
-    roi_real_pct: number;
   };
 }
 
@@ -42,19 +39,6 @@ export const RelatorioHero = ({ kpis }: RelatorioHeroProps) => {
       sublabel: `Whats (Ads/GA4) | Form ${kpis.google_conv_primarias_ads.form_start}/${kpis.google_conv_primarias_ga4.form_start}`,
       color: 'text-blue-500',
     },
-    {
-      icon: Target,
-      label: 'Receita (RD)',
-      value: formatCurrency(kpis.rd_receita),
-      color: 'text-emerald-500',
-    },
-    {
-      icon: TrendingUp,
-      label: 'ROAS / ROI',
-      value: `${kpis.roas_real.toFixed(2)}x`,
-      sublabel: formatPercent(kpis.roi_real_pct, 0),
-      color: 'text-yellow-500',
-    },
   ];
 
   return (
@@ -62,9 +46,6 @@ export const RelatorioHero = ({ kpis }: RelatorioHeroProps) => {
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-12 animate-fade-in">
-          <div className="inline-block px-4 py-1 bg-primary/10 border border-primary/20 rounded-full text-sm font-semibold text-primary mb-4">
-            ROI Real baseado em RD Station
-          </div>
           <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary via-purple-500 to-pink-500 bg-clip-text text-transparent">
             Relatório de Mídia Paga
           </h1>
@@ -74,7 +55,7 @@ export const RelatorioHero = ({ kpis }: RelatorioHeroProps) => {
         </div>
 
         {/* KPI Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {kpiCards.map((kpi, index) => {
             const Icon = kpi.icon;
             return (

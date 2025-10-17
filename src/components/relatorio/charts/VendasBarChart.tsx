@@ -1,8 +1,7 @@
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
-import { formatCurrency } from '@/utils/formatters';
 
 interface VendasBarChartProps {
-  data: Array<{ vendedor: string; vendas: number; receita: number }>;
+  data: Array<{ vendedor: string; vendas: number }>;
 }
 
 export const VendasBarChart = ({ data }: VendasBarChartProps) => {
@@ -21,10 +20,7 @@ export const VendasBarChart = ({ data }: VendasBarChartProps) => {
             tick={{ fill: 'hsl(var(--muted-foreground))' }}
           />
           <Tooltip 
-            formatter={(value: number, name: string) => {
-              if (name === 'receita') return formatCurrency(value);
-              return value;
-            }}
+            formatter={(value: number) => [`${value} vendas`, 'Vendas']}
             contentStyle={{
               backgroundColor: '#ffffff',
               border: '1px solid #e5e7eb',

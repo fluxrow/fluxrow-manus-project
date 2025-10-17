@@ -1,11 +1,11 @@
-import { formatCurrency, formatNumber } from '@/utils/formatters';
+import { formatNumber } from '@/utils/formatters';
 import { VendasBarChart } from './charts/VendasBarChart';
 import { SalesFunnelChart } from './charts/SalesFunnelChart';
 import { LossReasonsChart } from './charts/LossReasonsChart';
 
 interface RelatorioRDStationProps {
   data: any;
-  vendasData: Array<{ vendedor: string; vendas: number; receita: number }>;
+  vendasData: Array<{ vendedor: string; vendas: number }>;
 }
 
 export const RelatorioRDStation = ({ data, vendasData }: RelatorioRDStationProps) => {
@@ -17,7 +17,7 @@ export const RelatorioRDStation = ({ data, vendasData }: RelatorioRDStationProps
         </h2>
 
         {/* Cards Principais */}
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
           <div className="bg-card border border-border rounded-xl p-4">
             <p className="text-xs text-muted-foreground mb-1">Oportunidades</p>
             <p className="text-xl font-bold">{formatNumber(data.oportunidades_criadas)}</p>
@@ -25,14 +25,6 @@ export const RelatorioRDStation = ({ data, vendasData }: RelatorioRDStationProps
           <div className="bg-card border border-border rounded-xl p-4">
             <p className="text-xs text-muted-foreground mb-1">Vendas</p>
             <p className="text-xl font-bold text-green-500">{formatNumber(data.vendas)}</p>
-          </div>
-          <div className="bg-card border border-border rounded-xl p-4">
-            <p className="text-xs text-muted-foreground mb-1">Receita</p>
-            <p className="text-xl font-bold">{formatCurrency(data.receita)}</p>
-          </div>
-          <div className="bg-card border border-border rounded-xl p-4">
-            <p className="text-xs text-muted-foreground mb-1">Ticket Médio</p>
-            <p className="text-xl font-bold">{formatCurrency(data.ticket_medio)}</p>
           </div>
           <div className="bg-card border border-border rounded-xl p-4">
             <p className="text-xs text-muted-foreground mb-1">Taxa Conversão</p>
@@ -61,8 +53,6 @@ export const RelatorioRDStation = ({ data, vendasData }: RelatorioRDStationProps
                 <th className="text-left py-3 px-2 text-sm font-semibold">Vendedor</th>
                 <th className="text-right py-3 px-2 text-sm font-semibold">Opor.</th>
                 <th className="text-right py-3 px-2 text-sm font-semibold">Vendas</th>
-                <th className="text-right py-3 px-2 text-sm font-semibold">Receita</th>
-                <th className="text-right py-3 px-2 text-sm font-semibold">Ticket</th>
                 <th className="text-right py-3 px-2 text-sm font-semibold">Perdidas</th>
                 <th className="text-right py-3 px-2 text-sm font-semibold">Taxa Conv.</th>
                 <th className="text-right py-3 px-2 text-sm font-semibold">Taxa Perda</th>
@@ -77,8 +67,6 @@ export const RelatorioRDStation = ({ data, vendasData }: RelatorioRDStationProps
                   </td>
                   <td className="text-right py-3 px-2">{v.opor}</td>
                   <td className="text-right py-3 px-2 font-bold">{v.vendas}</td>
-                  <td className="text-right py-3 px-2">{v.receita > 0 ? formatCurrency(v.receita) : '-'}</td>
-                  <td className="text-right py-3 px-2">{v.ticket > 0 ? formatCurrency(v.ticket) : '-'}</td>
                   <td className="text-right py-3 px-2">{v.perdidas}</td>
                   <td className="text-right py-3 px-2 text-green-600">{v.taxa_conv.toFixed(2)}%</td>
                   <td className="text-right py-3 px-2 text-red-600">{v.taxa_perda.toFixed(2)}%</td>

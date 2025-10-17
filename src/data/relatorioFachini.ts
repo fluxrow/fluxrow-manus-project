@@ -11,11 +11,12 @@ export const reportData = {
     google_conv_primarias_ads: { whatsapp_click: 33, form_start: 22, fonte: "Google Ads" },
     google_conv_primarias_ga4: { whatsapp_click: 44, form_start: 26, fonte: "GA4 (origem google)" },
     rd_vendas: 7,
-    rd_receita: 429260.00,
-    rd_ticket_medio: 61322.86,
-    rd_taxa_conversao: 2.31,
-    roas_real: 186.29,
-    roi_real_pct: 18529.06
+    rd_taxa_conversao: 2.31
+    // Dados financeiros comentados (não confiáveis - vendedores não registram todas as informações no RD)
+    // rd_receita: 429260.00,
+    // rd_ticket_medio: 61322.86,
+    // roas_real: 186.29,
+    // roi_real_pct: 18529.06
   },
   ga4: {
     usuarios_ativos: 2155,
@@ -231,9 +232,10 @@ export const reportData = {
     tarefas_criadas: 63,
     tarefas_finalizadas: 77,
     vendas: 7,
-    receita: 429260.0,
-    ticket_medio: 61322.86,
     taxa_conversao: 2.31,
+    // Dados financeiros comentados (não confiáveis)
+    // receita: 429260.0,
+    // ticket_medio: 61322.86,
     funil: [
       { etapa: "Oportunidades criadas", qtd: 303, perc: 100 },
       { etapa: "Sem contato", qtd: 221, perc: 72.9 },
@@ -242,11 +244,11 @@ export const reportData = {
       { etapa: "Vendas", qtd: 7, perc: 2.31 }
     ],
     vendedores: [
-      { nome: "Ruan Gabriel", opor: 47, vendas: 5, receita: 229260.0, ticket: 45852, perdidas: 0, taxa_conv: 10.64, taxa_perda: 0 },
-      { nome: "Caio Rocha", opor: 48, vendas: 1, receita: 200000.0, ticket: 200000, perdidas: 7, taxa_conv: 2.08, taxa_perda: 14.58 },
-      { nome: "Romulo", opor: 11, vendas: 3, receita: 0, ticket: 0, perdidas: 6, taxa_conv: 27.27, taxa_perda: 54.55 },
-      { nome: "Aldair", opor: 61, vendas: 1, receita: 0, ticket: 0, perdidas: 0, taxa_conv: 1.64, taxa_perda: 0 },
-      { nome: "Diego", opor: 44, vendas: 0, receita: 0, ticket: 0, perdidas: 5, taxa_conv: 0, taxa_perda: 11.36 }
+      { nome: "Ruan Gabriel", opor: 47, vendas: 5, perdidas: 0, taxa_conv: 10.64, taxa_perda: 0 },
+      { nome: "Caio Rocha", opor: 48, vendas: 1, perdidas: 7, taxa_conv: 2.08, taxa_perda: 14.58 },
+      { nome: "Romulo", opor: 11, vendas: 3, perdidas: 6, taxa_conv: 27.27, taxa_perda: 54.55 },
+      { nome: "Aldair", opor: 61, vendas: 1, perdidas: 0, taxa_conv: 1.64, taxa_perda: 0 },
+      { nome: "Diego", opor: 44, vendas: 0, perdidas: 5, taxa_conv: 0, taxa_perda: 11.36 }
     ],
     motivos_perda: [
       { motivo: "Preço", qtd: 5, perc: 27.78 },
@@ -273,13 +275,14 @@ export const reportData = {
       { fonte: "GA4", whats: 44, form: 26 }
     ],
     vendas_por_vendedor: [
-      { vendedor: "Ruan", vendas: 5, receita: 229260 },
-      { vendedor: "Caio", vendas: 1, receita: 200000 }
+      { vendedor: "Ruan", vendas: 5 },
+      { vendedor: "Caio", vendas: 1 },
+      { vendedor: "Romulo", vendas: 3 },
+      { vendedor: "Aldair", vendas: 1 }
     ]
   },
   insights: [
     "Meta Ads gerou 172 leads com CPL de R$ 6,73 - 72% abaixo da média do mercado B2B industrial (R$ 24). Perfiladeiras dominaram: 63% dos leads.",
-    "Cada R$ 1 investido gerou R$ 186,29 de receita. ROI real de 18.529% demonstra eficiência excepcional do mix Meta + Google + RD.",
     "Facebook orgânico (34k alcance) supera Instagram orgânico (3,8k) em 8,8x - FB ainda é forte para B2B industrial. Considerar aumentar frequência de posts.",
     "Google Ads: URL 'dobradeira-de-regua-lisa' trouxe 146 conversões com custo de R$ 0,79/conv - página campeã de conversão. Asset Group 'Dobradeira' gerou 111 conversões.",
     "RD Station: Ruan Gabriel tem 10,64% de conversão e 0% de perda vs Caio com 2,08% e 14,58% de perda. Analisar abordagem para replicar sucesso.",
