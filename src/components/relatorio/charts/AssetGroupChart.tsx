@@ -31,12 +31,15 @@ export const AssetGroupChart = ({ data }: AssetGroupChartProps) => {
           <Tooltip 
             formatter={(value: number) => formatNumber(value)}
             contentStyle={{
-              backgroundColor: 'hsl(var(--card))',
-              border: '1px solid hsl(var(--border))',
+              backgroundColor: 'hsl(222.2, 84%, 12%)',
+              border: '1px solid hsl(217, 91%, 60%)',
               borderRadius: '8px',
-              color: 'hsl(var(--foreground))'
+              color: '#ffffff'
             }}
-            labelStyle={{ color: 'hsl(var(--foreground))' }}
+            labelStyle={{
+              color: '#ffffff',
+              fontWeight: 'bold'
+            }}
           />
           <Bar dataKey="conversoes" radius={[8, 8, 0, 0]}>
             {data.map((entry, index) => (

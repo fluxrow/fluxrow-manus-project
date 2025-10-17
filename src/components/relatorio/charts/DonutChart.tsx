@@ -57,10 +57,14 @@ export const DonutChart = ({ data }: DonutChartProps) => {
           <Tooltip 
             formatter={(value: number) => formatCurrency(value)}
             contentStyle={{
-              backgroundColor: 'hsl(var(--card))',
-              border: '1px solid hsl(var(--border))',
+              backgroundColor: 'hsl(222.2, 84%, 12%)',
+              border: '1px solid hsl(217, 91%, 60%)',
               borderRadius: '8px',
-              color: 'hsl(var(--foreground))'
+              color: '#ffffff'
+            }}
+            labelStyle={{
+              color: '#ffffff',
+              fontWeight: 'bold'
             }}
           />
           <Legend 

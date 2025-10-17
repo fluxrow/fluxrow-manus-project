@@ -23,7 +23,6 @@ export const LossReasonsChart = ({ data }: LossReasonsChartProps) => {
             cx="50%"
             cy="50%"
             labelLine={false}
-            label={(entry) => `${entry.motivo}: ${entry.perc.toFixed(1)}%`}
             outerRadius={80}
             fill="#8884d8"
             dataKey="qtd"
@@ -38,15 +37,21 @@ export const LossReasonsChart = ({ data }: LossReasonsChartProps) => {
               props.payload.motivo
             ]}
             contentStyle={{
-              backgroundColor: 'hsl(var(--card))',
-              border: '1px solid hsl(var(--border))',
+              backgroundColor: 'hsl(222.2, 84%, 12%)',
+              border: '1px solid hsl(217, 91%, 60%)',
               borderRadius: '8px',
-              color: 'hsl(var(--foreground))'
+              color: '#ffffff'
+            }}
+            labelStyle={{
+              color: '#ffffff',
+              fontWeight: 'bold'
             }}
           />
           <Legend 
-            wrapperStyle={{ color: 'hsl(var(--foreground))' }}
-            formatter={(value, entry: any) => `${entry.payload.motivo}`}
+            wrapperStyle={{ paddingTop: '20px' }}
+            formatter={(value, entry: any) => (
+              <span style={{ color: '#ffffff' }}>{entry.payload.motivo}</span>
+            )}
           />
         </PieChart>
       </ResponsiveContainer>
