@@ -1,10 +1,10 @@
-import { TrendingUp, Settings, Target, Phone } from 'lucide-react';
+import { TrendingUp, Settings, Target, Phone, Lightbulb, AlertTriangle } from 'lucide-react';
 
 interface RelatorioInsightsProps {
   insights: string[];
 }
 
-const icons = [TrendingUp, Settings, Target, Phone];
+const icons = [TrendingUp, Settings, Target, Phone, Lightbulb, AlertTriangle];
 
 export const RelatorioInsights = ({ insights }: RelatorioInsightsProps) => {
   return (
@@ -16,7 +16,7 @@ export const RelatorioInsights = ({ insights }: RelatorioInsightsProps) => {
 
         <div className="grid md:grid-cols-2 gap-6">
           {insights.map((insight, index) => {
-            const Icon = icons[index];
+            const Icon = icons[index % icons.length];
             return (
               <div
                 key={index}
