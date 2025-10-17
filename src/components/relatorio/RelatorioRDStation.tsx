@@ -1,5 +1,7 @@
-import { formatCurrency, formatNumber, formatPercent } from '@/utils/formatters';
+import { formatCurrency, formatNumber } from '@/utils/formatters';
 import { VendasBarChart } from './charts/VendasBarChart';
+import { SalesFunnelChart } from './charts/SalesFunnelChart';
+import { LossReasonsChart } from './charts/LossReasonsChart';
 
 interface RelatorioRDStationProps {
   data: any;
@@ -38,38 +40,64 @@ export const RelatorioRDStation = ({ data, vendasData }: RelatorioRDStationProps
           </div>
         </div>
 
+        {/* Funil Comercial */}
+        <div className="bg-card border border-border rounded-2xl p-6 mb-8">
+          <h3 className="text-xl font-bold mb-4">Funil Comercial Completo</h3>
+          <SalesFunnelChart data={data.funil} />
+        </div>
+
         {/* Gráfico de Vendas por Vendedor */}
         <div className="bg-card border border-border rounded-2xl p-6 mb-8">
           <h3 className="text-xl font-bold mb-6">Vendas por Vendedor</h3>
           <VendasBarChart data={vendasData} />
         </div>
 
-        {/* Tabela de Vendedores */}
-        <div className="bg-card border border-border rounded-2xl p-6 overflow-x-auto">
-          <h3 className="text-xl font-bold mb-6">Desempenho Individual</h3>
+        {/* Tabela de Vendedores Expandida */}
+        <div className="bg-card border border-border rounded-2xl p-6 mb-8 overflow-x-auto">
+          <h3 className="text-xl font-bold mb-6">Desempenho Individual Completo</h3>
           <table className="w-full">
             <thead>
               <tr className="border-b border-border">
-                <th className="text-left py-3 px-4 text-sm font-semibold text-muted-foreground">Vendedor</th>
-                <th className="text-right py-3 px-4 text-sm font-semibold text-muted-foreground">Vendas</th>
-                <th className="text-right py-3 px-4 text-sm font-semibold text-muted-foreground">Receita</th>
-                <th className="text-right py-3 px-4 text-sm font-semibold text-muted-foreground">Ticket Médio</th>
+                <th className="text-left py-3 px-2 text-sm font-semibold">Vendedor</th>
+                <th className="text-right py-3 px-2 text-sm font-semibold">Opor.</th>
+                <th className="text-right py-3 px-2 text-sm font-semibold">Vendas</th>
+                <th className="text-right py-3 px-2 text-sm font-semibold">Receita</th>
+                <th className="text-right py-3 px-2 text-sm font-semibold">Ticket</th>
+                <th className="text-right py-3 px-2 text-sm font-semibold">Perdidas</th>
+                <th className="text-right py-3 px-2 text-sm font-semibold">Taxa Conv.</th>
+                <th className="text-right py-3 px-2 text-sm font-semibold">Taxa Perda</th>
               </tr>
             </thead>
             <tbody>
-              {data.vendedores.map((vendedor: any, index: number) => (
-                <tr key={index} className="border-b border-border hover:bg-accent/50 transition-colors">
-                  <td className="py-3 px-4">
-                    {vendedor.nome}
-                    {index === 0 && <span className="ml-2 text-xs bg-green-500 text-black px-2 py-1 rounded font-bold">🏆 TOP</span>}
+              {data.vendedores.map((v: any, index: number) => (
+                <tr key={index} className="border-b border-border/50 hover:bg-accent/50 transition-colors">
+                  <td className="py-3 px-2 font-medium">
+                    {v.nome}
+                    {v.taxa_perda === 0 && v.vendas > 0 && <span className="ml-2 text-xs bg-green-500 text-white px-2 py-1 rounded">🏆</span>}
                   </td>
-                  <td className="py-3 px-4 text-right font-semibold">{formatNumber(vendedor.vendas)}</td>
-                  <td className="py-3 px-4 text-right font-bold">{formatCurrency(vendedor.receita)}</td>
-                  <td className="py-3 px-4 text-right">{formatCurrency(vendedor.receita / vendedor.vendas)}</td>
+                  <td className="text-right py-3 px-2">{v.opor}</td>
+                  <td className="text-right py-3 px-2 font-bold">{v.vendas}</td>
+                  <td className="text-right py-3 px-2">{v.receita > 0 ? formatCurrency(v.receita) : '-'}</td>
+                  <td className="text-right py-3 px-2">{v.ticket > 0 ? formatCurrency(v.ticket) : '-'}</td>
+                  <td className="text-right py-3 px-2">{v.perdidas}</td>
+                  <td className="text-right py-3 px-2 text-green-600">{v.taxa_conv.toFixed(2)}%</td>
+                  <td className="text-right py-3 px-2 text-red-600">{v.taxa_perda.toFixed(2)}%</td>
                 </tr>
               ))}
             </tbody>
           </table>
+        </div>
+
+        {/* Motivos de Perda */}
+        <div className="bg-card border border-border rounded-2xl p-6">
+          <h3 className="text-xl font-bold mb-4">Análise de Perdas</h3>
+          <LossReasonsChart data={data.motivos_perda} />
+          <div className="mt-6 bg-orange-500/10 border border-orange-500/20 rounded-lg p-4">
+            <p className="text-sm">
+              💡 <strong>Insight:</strong> 50% das perdas foram por Preço ou Fornecedor concorrente. 
+              Considerar estratégia de diferenciação técnica e comparativos de valor.
+            </p>
+          </div>
         </div>
       </div>
     </div>

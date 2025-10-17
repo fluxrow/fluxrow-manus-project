@@ -5,8 +5,11 @@ import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
 import { reportData } from '@/data/relatorioFachini';
 import { RelatorioHero } from '@/components/relatorio/RelatorioHero';
+import { RelatorioGA4 } from '@/components/relatorio/RelatorioGA4';
 import { RelatorioMetaAds } from '@/components/relatorio/RelatorioMetaAds';
 import { RelatorioGoogleAds } from '@/components/relatorio/RelatorioGoogleAds';
+import { RelatorioInstagram } from '@/components/relatorio/RelatorioInstagram';
+import { RelatorioFacebook } from '@/components/relatorio/RelatorioFacebook';
 import { RelatorioRDStation } from '@/components/relatorio/RelatorioRDStation';
 import { RelatorioInsights } from '@/components/relatorio/RelatorioInsights';
 import { RelatorioPlanoAcao } from '@/components/relatorio/RelatorioPlanoAcao';
@@ -32,12 +35,17 @@ const RelatorioFachini = () => {
       {/* Header */}
       <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <Link to="/">
-            <Button variant="ghost" size="sm" className="gap-2">
-              <ArrowLeft className="w-4 h-4" />
-              Voltar
-            </Button>
-          </Link>
+          <div className="flex items-center gap-4">
+            <span className="bg-gradient-to-r from-purple-400 via-pink-500 to-cyan-400 bg-clip-text text-transparent font-bold text-xl">
+              Fluxrow
+            </span>
+            <Link to="/">
+              <Button variant="ghost" size="sm" className="gap-2">
+                <ArrowLeft className="w-4 h-4" />
+                Voltar
+              </Button>
+            </Link>
+          </div>
           <div className="flex items-center gap-2">
             <Button variant="outline" size="sm" onClick={handleDownloadPDF} className="gap-2">
               <Download className="w-4 h-4" />
@@ -66,6 +74,9 @@ const RelatorioFachini = () => {
         </div>
       </div>
 
+      {/* Google Analytics 4 */}
+      <RelatorioGA4 data={reportData.ga4} />
+
       {/* Meta Ads */}
       <RelatorioMetaAds data={reportData.meta} />
 
@@ -74,6 +85,12 @@ const RelatorioFachini = () => {
         data={reportData.google} 
         convPrimarias={reportData.series.conv_primarias_google}
       />
+
+      {/* Instagram Orgânico */}
+      <RelatorioInstagram data={reportData.instagram_organico} />
+
+      {/* Facebook Orgânico */}
+      <RelatorioFacebook data={reportData.facebook_organico} />
 
       {/* RD Station */}
       <RelatorioRDStation 

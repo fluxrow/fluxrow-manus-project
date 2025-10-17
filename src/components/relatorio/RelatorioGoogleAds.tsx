@@ -1,6 +1,7 @@
-import { AlertCircle, ExternalLink } from 'lucide-react';
+import { AlertCircle, ExternalLink, Trophy } from 'lucide-react';
 import { formatCurrency, formatNumber } from '@/utils/formatters';
 import { ConversionCompareChart } from './charts/ConversionCompareChart';
+import { AssetGroupChart } from './charts/AssetGroupChart';
 
 interface RelatorioGoogleAdsProps {
   data: any;
@@ -8,7 +9,7 @@ interface RelatorioGoogleAdsProps {
 }
 
 export const RelatorioGoogleAds = ({ data, convPrimarias }: RelatorioGoogleAdsProps) => {
-  const { visao_geral, campanhas, urls_destino_top, pesquisa } = data;
+  const { visao_geral, campanhas, urls_destino_top, pesquisa, asset_groups } = data;
 
   return (
     <div className="py-16 bg-accent/20">
@@ -34,6 +35,37 @@ export const RelatorioGoogleAds = ({ data, convPrimarias }: RelatorioGoogleAdsPr
           <div className="bg-card border border-border rounded-xl p-4">
             <p className="text-xs text-muted-foreground mb-1">CTR</p>
             <p className="text-xl font-bold">{visao_geral.ctr.toFixed(2)}%</p>
+          </div>
+        </div>
+
+        {/* Asset Groups Performance Max */}
+        <div className="bg-card border border-border rounded-2xl p-6 mb-8">
+          <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
+            <Trophy className="w-6 h-6 text-yellow-500" />
+            Top Asset Groups Performance Max
+          </h3>
+          <AssetGroupChart data={asset_groups} />
+          <div className="mt-6 overflow-x-auto">
+            <table className="w-full">
+              <thead>
+                <tr className="border-b border-border">
+                  <th className="text-left py-3 px-2 text-sm font-semibold">Grupo</th>
+                  <th className="text-left py-3 px-2 text-sm font-semibold">Tipo</th>
+                  <th className="text-left py-3 px-2 text-sm font-semibold">Texto</th>
+                  <th className="text-right py-3 px-2 text-sm font-semibold">Conversões</th>
+                </tr>
+              </thead>
+              <tbody>
+                {asset_groups.map((asset: any, index: number) => (
+                  <tr key={index} className="border-b border-border/50">
+                    <td className="py-3 px-2 text-sm">{asset.grupo.split(' - ')[1]}</td>
+                    <td className="py-3 px-2 text-xs"><span className="bg-accent px-2 py-1 rounded">{asset.tipo}</span></td>
+                    <td className="py-3 px-2 text-sm max-w-xs truncate">{asset.texto}</td>
+                    <td className="text-right py-3 px-2 font-bold">{asset.conversoes}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
 

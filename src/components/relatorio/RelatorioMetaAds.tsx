@@ -1,20 +1,26 @@
-import { Trophy } from 'lucide-react';
+import { Trophy, Facebook, Instagram } from 'lucide-react';
 import { formatCurrency, formatNumber } from '@/utils/formatters';
 import { LeadsBarChart } from './charts/LeadsBarChart';
+import { FBvsIGCompareChart } from './charts/FBvsIGCompareChart';
 
 interface RelatorioMetaAdsProps {
   data: any;
 }
 
 export const RelatorioMetaAds = ({ data }: RelatorioMetaAdsProps) => {
-  const { visao_geral, campanha_cm05 } = data;
+  const { visao_geral, campanha_cm05, plataformas, conversoes_acoes } = data;
 
   return (
-    <div className="py-16">
+    <div className="py-16 bg-accent/20">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">
-          Meta Ads - Análise Completa
-        </h2>
+        <div className="mb-8">
+          <div className="inline-block bg-primary/10 px-4 py-2 rounded-full mb-4">
+            <span className="text-primary font-semibold text-sm">📱 Meta Ads</span>
+          </div>
+          <h2 className="text-3xl md:text-4xl font-bold">
+            Meta Ads - Análise Completa
+          </h2>
+        </div>
 
         {/* Cards Resumo */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-12">
@@ -42,6 +48,38 @@ export const RelatorioMetaAds = ({ data }: RelatorioMetaAdsProps) => {
             <p className="text-xs text-muted-foreground mb-1">CTR</p>
             <p className="text-xl font-bold">{visao_geral.ctr_link.toFixed(2)}%</p>
           </div>
+        </div>
+
+        {/* Facebook vs Instagram */}
+        <div className="bg-card border border-border rounded-2xl p-6 mb-8">
+          <h3 className="text-xl font-bold mb-4">Performance: Facebook vs Instagram</h3>
+          <div className="grid md:grid-cols-2 gap-4 mb-6">
+            <div className="bg-blue-500/10 border border-blue-500/20 rounded-lg p-4">
+              <div className="flex items-center gap-2 mb-3">
+                <Facebook className="w-5 h-5 text-blue-600" />
+                <span className="font-bold text-blue-600">Facebook</span>
+              </div>
+              <div className="space-y-2 text-sm">
+                <div className="flex justify-between"><span>Alcance:</span><strong>{formatNumber(plataformas.facebook.alcance)}</strong></div>
+                <div className="flex justify-between"><span>CPC:</span><strong>{formatCurrency(plataformas.facebook.cpc)}</strong></div>
+                <div className="flex justify-between"><span>Cliques Link:</span><strong>{formatNumber(plataformas.facebook.cliques_link)}</strong></div>
+                <div className="flex justify-between"><span>Conversas:</span><strong>{formatNumber(plataformas.facebook.conversas)}</strong></div>
+              </div>
+            </div>
+            <div className="bg-pink-500/10 border border-pink-500/20 rounded-lg p-4">
+              <div className="flex items-center gap-2 mb-3">
+                <Instagram className="w-5 h-5 text-pink-600" />
+                <span className="font-bold text-pink-600">Instagram</span>
+              </div>
+              <div className="space-y-2 text-sm">
+                <div className="flex justify-between"><span>Alcance:</span><strong>{formatNumber(plataformas.instagram.alcance)}</strong></div>
+                <div className="flex justify-between"><span>CPC:</span><strong>{formatCurrency(plataformas.instagram.cpc)}</strong></div>
+                <div className="flex justify-between"><span>Cliques Link:</span><strong>{formatNumber(plataformas.instagram.cliques_link)}</strong></div>
+                <div className="flex justify-between"><span>Conversas:</span><strong>{formatNumber(plataformas.instagram.conversas)}</strong></div>
+              </div>
+            </div>
+          </div>
+          <FBvsIGCompareChart facebook={plataformas.facebook} instagram={plataformas.instagram} />
         </div>
 
         {/* Gráfico de Leads por Conjunto */}
