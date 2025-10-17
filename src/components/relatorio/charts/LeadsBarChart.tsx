@@ -28,12 +28,16 @@ export const LeadsBarChart = ({ data }: LeadsBarChartProps) => {
           />
           <Tooltip 
             contentStyle={{
-              backgroundColor: 'hsl(var(--card))',
-              border: '1px solid hsl(var(--border))',
+              backgroundColor: '#ffffff',
+              border: '1px solid #e5e7eb',
               borderRadius: '8px',
-              color: 'hsl(var(--foreground))'
+              color: '#000000',
+              boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
             }}
-            labelStyle={{ color: 'hsl(var(--foreground))' }}
+            labelStyle={{ 
+              color: '#000000',
+              fontWeight: 'bold'
+            }}
           />
           <Bar dataKey="leads" radius={[8, 8, 0, 0]}>
             {data.map((entry, index) => (

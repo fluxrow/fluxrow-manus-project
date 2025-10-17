@@ -23,13 +23,14 @@ export const SessionsBySourceChart = ({ data }: SessionsBySourceChartProps) => {
           <Tooltip 
             formatter={(value: number) => formatNumber(value)}
             contentStyle={{
-              backgroundColor: 'hsl(222.2, 84%, 12%)',
-              border: '1px solid hsl(217, 91%, 60%)',
+              backgroundColor: '#ffffff',
+              border: '1px solid #e5e7eb',
               borderRadius: '8px',
-              color: '#ffffff'
+              color: '#000000',
+              boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
             }}
             labelStyle={{
-              color: '#ffffff',
+              color: '#000000',
               fontWeight: 'bold'
             }}
           />
