@@ -28,7 +28,7 @@ export const SalesFunnelChart = ({ data }: SalesFunnelChartProps) => {
                   <span className="font-semibold text-sm">{item.etapa}</span>
                   <div className="text-right">
                     <span className="font-bold text-lg">{formatNumber(item.qtd)}</span>
-                    {index > 0 && (
+                    {index > 0 && item.perc !== undefined && (
                       <span className="block text-xs opacity-90">
                         {item.perc.toFixed(2)}%
                       </span>
