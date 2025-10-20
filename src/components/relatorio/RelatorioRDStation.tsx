@@ -38,43 +38,6 @@ export const RelatorioRDStation = ({ data, vendasData }: RelatorioRDStationProps
           <SalesFunnelChart data={data.funil} />
         </div>
 
-        {/* Gráfico de Vendas por Vendedor */}
-        <div className="bg-card border border-border rounded-2xl p-6 mb-8">
-          <h3 className="text-xl font-bold mb-6">Vendas por Vendedor</h3>
-          <VendasBarChart data={vendasData} />
-        </div>
-
-        {/* Tabela de Vendedores Expandida */}
-        <div className="bg-card border border-border rounded-2xl p-6 mb-8 overflow-x-auto">
-          <h3 className="text-xl font-bold mb-6">Desempenho Individual Completo</h3>
-          <table className="w-full">
-            <thead>
-              <tr className="border-b border-border">
-                <th className="text-left py-3 px-2 text-sm font-semibold">Vendedor</th>
-                <th className="text-right py-3 px-2 text-sm font-semibold">Opor.</th>
-                <th className="text-right py-3 px-2 text-sm font-semibold">Vendas</th>
-                <th className="text-right py-3 px-2 text-sm font-semibold">Perdidas</th>
-                <th className="text-right py-3 px-2 text-sm font-semibold">Taxa Conv.</th>
-                <th className="text-right py-3 px-2 text-sm font-semibold">Taxa Perda</th>
-              </tr>
-            </thead>
-            <tbody>
-              {data.vendedores.map((v: any, index: number) => (
-                <tr key={index} className="border-b border-border/50 hover:bg-accent/50 transition-colors">
-                  <td className="py-3 px-2 font-medium">
-                    {v.nome}
-                    {v.taxa_perda === 0 && v.vendas > 0 && <span className="ml-2 text-xs bg-green-500 text-white px-2 py-1 rounded">🏆</span>}
-                  </td>
-                  <td className="text-right py-3 px-2">{v.opor}</td>
-                  <td className="text-right py-3 px-2 font-bold">{v.vendas}</td>
-                  <td className="text-right py-3 px-2">{v.perdidas}</td>
-                  <td className="text-right py-3 px-2 text-green-600">{v.taxa_conv.toFixed(2)}%</td>
-                  <td className="text-right py-3 px-2 text-red-600">{v.taxa_perda.toFixed(2)}%</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
 
         {/* Motivos de Perda */}
         <div className="bg-card border border-border rounded-2xl p-6">
