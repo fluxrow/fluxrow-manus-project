@@ -19,7 +19,7 @@ export const RelatorioPlanoAcao = ({ plano }: RelatorioPlanoAcaoProps) => {
           Próximos passos para otimizar os resultados
         </p>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {/* Meta Ads */}
           <div className="bg-card border border-border rounded-2xl p-6">
             <div className="mb-6">
@@ -50,24 +50,6 @@ export const RelatorioPlanoAcao = ({ plano }: RelatorioPlanoAcaoProps) => {
               {plano.google.map((acao, index) => (
                 <li key={index} className="flex items-start gap-3">
                   <CheckCircle2 className="w-5 h-5 text-blue-500 flex-shrink-0 mt-0.5" />
-                  <span className="text-sm leading-relaxed">{acao}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* RD Station */}
-          <div className="bg-card border border-border rounded-2xl p-6">
-            <div className="mb-6">
-              <div className="w-12 h-12 bg-green-500/10 rounded-lg flex items-center justify-center mb-3">
-                <span className="text-2xl">📊</span>
-              </div>
-              <h3 className="text-xl font-bold">RD Station</h3>
-            </div>
-            <ul className="space-y-4">
-              {plano.rd.map((acao, index) => (
-                <li key={index} className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
                   <span className="text-sm leading-relaxed">{acao}</span>
                 </li>
               ))}
