@@ -1,4 +1,4 @@
-import { AlertCircle, ExternalLink, Trophy } from 'lucide-react';
+import { AlertCircle, ExternalLink, Trophy, Target, TrendingDown } from 'lucide-react';
 import { formatCurrency, formatNumber } from '@/utils/formatters';
 import { ConversionCompareChart } from './charts/ConversionCompareChart';
 import { AssetGroupChart } from './charts/AssetGroupChart';
@@ -9,7 +9,7 @@ interface RelatorioGoogleAdsProps {
 }
 
 export const RelatorioGoogleAds = ({ data, convPrimarias }: RelatorioGoogleAdsProps) => {
-  const { visao_geral, campanhas, urls_destino_top, pesquisa, asset_groups } = data;
+  const { visao_geral, campanhas, urls_destino_top, pesquisa, asset_groups, termos_pesquisa } = data;
 
   return (
     <div className="py-16 bg-accent/20">
@@ -110,6 +110,90 @@ export const RelatorioGoogleAds = ({ data, convPrimarias }: RelatorioGoogleAdsPr
             </tbody>
           </table>
         </div>
+
+        {/* Termos de Pesquisa - Visão de Eficiência (CPC) */}
+        {termos_pesquisa && (
+          <div className="bg-card border border-border rounded-2xl p-6 mb-8">
+            <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
+              <Target className="w-6 h-6 text-blue-500" />
+              Termos de Pesquisa - Visão de Eficiência (CPC)
+            </h3>
+            
+            <div className="mb-6 p-4 bg-blue-500/10 border border-blue-500/20 rounded-lg">
+              <p className="text-sm text-muted-foreground mb-3">
+                {termos_pesquisa.descricao}
+              </p>
+              <p className="text-sm text-muted-foreground font-semibold">
+                💡 <strong>Recomendação:</strong> {termos_pesquisa.recomendacao}
+              </p>
+            </div>
+
+            {/* Grid com Top Termos por Custo e CPC Barato */}
+            <div className="grid md:grid-cols-2 gap-6">
+              {/* Top 10 Termos por Custo */}
+              <div>
+                <h4 className="font-bold mb-4 flex items-center gap-2">
+                  <Trophy className="w-5 h-5 text-yellow-500" />
+                  Top 10 Termos por Custo
+                </h4>
+                <div className="overflow-x-auto">
+                  <table className="w-full text-sm">
+                    <thead>
+                      <tr className="border-b border-border">
+                        <th className="text-left py-2 px-2 font-semibold text-muted-foreground">Termo</th>
+                        <th className="text-right py-2 px-2 font-semibold text-muted-foreground">Cliques</th>
+                        <th className="text-right py-2 px-2 font-semibold text-muted-foreground">Custo</th>
+                        <th className="text-right py-2 px-2 font-semibold text-muted-foreground">CPC</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {termos_pesquisa.top_por_custo.map((termo: any, index: number) => (
+                        <tr key={index} className="border-b border-border/50 hover:bg-accent/50 transition-colors">
+                          <td className="py-2 px-2 max-w-[150px] truncate" title={termo.termo}>
+                            {termo.termo}
+                          </td>
+                          <td className="text-right py-2 px-2">{termo.cliques}</td>
+                          <td className="text-right py-2 px-2">{formatCurrency(termo.custo)}</td>
+                          <td className="text-right py-2 px-2 font-semibold">{formatCurrency(termo.cpc)}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              {/* Termos com Melhor CPC */}
+              <div>
+                <h4 className="font-bold mb-4 flex items-center gap-2">
+                  <TrendingDown className="w-5 h-5 text-green-500" />
+                  Termos com Melhor CPC (≥10 cliques)
+                </h4>
+                <div className="space-y-3">
+                  {termos_pesquisa.top_cpc_barato.map((termo: any, index: number) => (
+                    <div key={index} className="p-4 bg-green-500/10 border border-green-500/20 rounded-lg hover:bg-green-500/20 transition-colors">
+                      <div className="flex justify-between items-center mb-2">
+                        <p className="font-semibold text-sm">{termo.termo}</p>
+                        <span className="text-xs bg-green-500 text-white px-2 py-1 rounded-full">
+                          CPC: {formatCurrency(termo.cpc)}
+                        </span>
+                      </div>
+                      <div className="flex justify-between text-xs text-muted-foreground">
+                        <span>{termo.cliques} cliques</span>
+                        <span>Custo: {formatCurrency(termo.custo)}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                
+                <div className="mt-4 p-3 bg-accent/50 rounded-lg">
+                  <p className="text-xs text-muted-foreground">
+                    ⚡ <strong>Oportunidade:</strong> Estes termos têm CPC excelente e volume suficiente para escalar com segurança.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
 
         <div className="grid md:grid-cols-2 gap-8">
           {/* URLs que mais converteram */}
