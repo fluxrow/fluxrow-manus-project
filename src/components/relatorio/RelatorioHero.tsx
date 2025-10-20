@@ -50,7 +50,7 @@ export const RelatorioHero = ({ kpis }: RelatorioHeroProps) => {
             Relatório de Mídia Paga
           </h1>
           <p className="text-xl text-muted-foreground">
-            Fachini Máquinas • Período: 01–17 de Outubro de 2025
+            Fachini Máquinas - Período: 01-20 de Outubro de 2025
           </p>
         </div>
 
