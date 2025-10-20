@@ -105,45 +105,24 @@ export const RelatorioGA4 = ({ data }: RelatorioGA4Props) => {
           </div>
         </div>
 
-        {/* Top Cidades e Principais Eventos */}
-        <div className="grid md:grid-cols-2 gap-6">
-          {/* Top Cidades */}
-          <div className="bg-card border border-border rounded-2xl p-6">
-            <h3 className="text-xl font-bold mb-4">Top 5 Cidades</h3>
-            <div className="space-y-3">
-              {data.top_cidades.map((cidade: any, index: number) => (
-                <div key={index} className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <span className="text-2xl">📍</span>
-                    <span className="font-medium">{cidade.cidade}</span>
-                  </div>
-                  <span className="text-lg font-bold text-primary">
-                    {formatNumber(cidade.sessoes)}
-                  </span>
+        {/* Principais Eventos de Conversão */}
+        <div className="bg-card border border-border rounded-2xl p-6 max-w-2xl mx-auto">
+          <h3 className="text-xl font-bold mb-4">Eventos de Conversão (Origem: Google)</h3>
+          <div className="space-y-3">
+            {data.principais_eventos.slice(0, 2).map((evento: any, index: number) => (
+              <div key={index} className="bg-accent/20 rounded-lg p-4">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="font-semibold text-sm">{evento.evento}</span>
+                  <span className="text-2xl font-bold text-primary">{formatNumber(evento.total)}</span>
                 </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Principais Eventos de Conversão */}
-          <div className="bg-card border border-border rounded-2xl p-6">
-            <h3 className="text-xl font-bold mb-4">Eventos de Conversão (Origem: Google)</h3>
-            <div className="space-y-3">
-              {data.principais_eventos.slice(0, 2).map((evento: any, index: number) => (
-                <div key={index} className="bg-accent/20 rounded-lg p-4">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="font-semibold text-sm">{evento.evento}</span>
-                    <span className="text-2xl font-bold text-primary">{formatNumber(evento.total)}</span>
-                  </div>
-                  <p className="text-xs text-muted-foreground">Origem: {evento.origem}</p>
-                </div>
-              ))}
-              <div className="bg-blue-500/10 border border-blue-500/20 rounded-lg p-4">
-                <p className="text-sm text-blue-700 dark:text-blue-300">
-                  💡 <strong>Insight:</strong> GA4 registrou 44 cliques no WhatsApp vs 33 no Google Ads - 
-                  diferença pode indicar conversões fora do rastreamento de campanhas.
-                </p>
+                <p className="text-xs text-muted-foreground">Origem: {evento.origem}</p>
               </div>
+            ))}
+            <div className="bg-blue-500/10 border border-blue-500/20 rounded-lg p-4">
+              <p className="text-sm text-blue-700 dark:text-blue-300">
+                💡 <strong>Insight:</strong> GA4 registrou 44 cliques no WhatsApp vs 33 no Google Ads - 
+                diferença pode indicar conversões fora do rastreamento de campanhas.
+              </p>
             </div>
           </div>
         </div>
