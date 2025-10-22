@@ -18,6 +18,19 @@ import { DonutChart } from '@/components/relatorio/charts/DonutChart';
 const RelatorioFachini = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
+    
+    // Adicionar chat widget GPTMaker
+    const script = document.createElement('script');
+    script.src = 'https://app.gptmaker.ai/widget/3E883208A19452B72D690E1F2DC7513F/float.js';
+    script.async = true;
+    document.body.appendChild(script);
+    
+    // Cleanup: remover o script quando sair da página
+    return () => {
+      if (document.body.contains(script)) {
+        document.body.removeChild(script);
+      }
+    };
   }, []);
 
   const handleDownloadPDF = () => {
