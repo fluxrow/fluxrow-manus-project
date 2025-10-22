@@ -23,7 +23,17 @@ const RelatorioFachini = () => {
     const script = document.createElement('script');
     script.src = 'https://app.gptmaker.ai/widget/3E883208A19452B72D690E1F2DC7513F/float.js';
     script.async = true;
+    
+    script.onload = () => {
+      console.log('✅ GPTMaker chat script carregado com sucesso');
+    };
+    
+    script.onerror = (error) => {
+      console.error('❌ Erro ao carregar GPTMaker chat script:', error);
+    };
+    
     document.body.appendChild(script);
+    console.log('🔄 Script GPTMaker adicionado ao DOM');
     
     // Ocultar o chat Sof.IA (3E4ED4087FD7D2A17F192E611473A9E0) apenas nesta página
     const hideOldChat = () => {
