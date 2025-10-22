@@ -19,6 +19,22 @@ const RelatorioFachini = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
     
+    // Remover widget Sof.IA global para evitar conflitos e deixar só o novo neste relatório
+    const oldScript = document.querySelector('script[src*="3E4ED4087FD7D2A17F192E611473A9E0/float.js"]') as HTMLScriptElement | null;
+    const oldIframes = document.querySelectorAll('iframe[src*="3E4ED4087FD7D2A17F192E611473A9E0"]');
+    let removedOldScript = false;
+    if (oldScript) {
+      oldScript.parentNode?.removeChild(oldScript);
+      removedOldScript = true;
+      console.log('🧹 Sof.IA script removido temporariamente nesta página');
+    }
+    oldIframes.forEach((el) => el.parentNode?.removeChild(el));
+    try {
+      // Alguns widgets usam esse global; removemos para evitar conflito entre IDs
+      // @ts-ignore
+      delete (window as any).gptmaker;
+    } catch {}
+    
     // Adicionar chat widget GPTMaker
     const script = document.createElement('script');
     script.src = 'https://app.gptmaker.ai/widget/3E883208A19452B72D690E1F2DC7513F/float.js';
@@ -56,6 +72,18 @@ const RelatorioFachini = () => {
       }
       
       clearTimeout(timeoutId);
+
+      // Remover iframe do widget novo
+      document.querySelectorAll('iframe[src*="3E883208A19452B72D690E1F2DC7513F"]').forEach((el) => el.parentNode?.removeChild(el));
+
+      // Restaurar o script antigo se o removemos
+      if (removedOldScript) {
+        const restoreScript = document.createElement('script');
+        restoreScript.src = 'https://app.gptmaker.ai/widget/3E4ED4087FD7D2A17F192E611473A9E0/float.js';
+        restoreScript.async = true;
+        document.body.appendChild(restoreScript);
+        console.log('↩️ Sof.IA script restaurado após sair da página');
+      }
       
       // Restaurar a visibilidade do chat Sof.IA
       const oldChatIframe = document.querySelector('iframe[src*="3E4ED4087FD7D2A17F192E611473A9E0"]');
