@@ -25,10 +25,32 @@ const RelatorioFachini = () => {
     script.async = true;
     document.body.appendChild(script);
     
-    // Cleanup: remover o script quando sair da página
+    // Ocultar o chat Sof.IA (3E4ED4087FD7D2A17F192E611473A9E0) apenas nesta página
+    const hideOldChat = () => {
+      const oldChatIframe = document.querySelector('iframe[src*="3E4ED4087FD7D2A17F192E611473A9E0"]');
+      if (oldChatIframe) {
+        (oldChatIframe as HTMLElement).style.display = 'none';
+      }
+    };
+    
+    // Tentar ocultar imediatamente
+    hideOldChat();
+    
+    // Tentar novamente após um delay (caso o iframe demore para carregar)
+    const timeoutId = setTimeout(hideOldChat, 1000);
+    
+    // Cleanup: remover o script e restaurar o chat antigo quando sair da página
     return () => {
       if (document.body.contains(script)) {
         document.body.removeChild(script);
+      }
+      
+      clearTimeout(timeoutId);
+      
+      // Restaurar a visibilidade do chat Sof.IA
+      const oldChatIframe = document.querySelector('iframe[src*="3E4ED4087FD7D2A17F192E611473A9E0"]');
+      if (oldChatIframe) {
+        (oldChatIframe as HTMLElement).style.display = '';
       }
     };
   }, []);
