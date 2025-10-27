@@ -22,12 +22,14 @@ export const relatorioSemanalFachini = {
   },
   
   vendedores: [
-    { nome: "Jean", leads: 13 },
-    { nome: "Silvana", leads: 13 },
-    { nome: "Caio Rocha", leads: 15 },
-    { nome: "Aldair", leads: 15 },
-    { nome: "Diego", leads: 14 },
-    { nome: "Ruan", leads: 13 }
+    { nome: "Jean", leads: 25 },
+    { nome: "Aldair", leads: 22 },
+    { nome: "Caio Rocha", leads: 23 },
+    { nome: "Silvana", leads: 17 },
+    { nome: "Jhonny", leads: 15 },
+    { nome: "Ruan", leads: 12 },
+    { nome: "Romulo", leads: 8 },
+    { nome: "Fachini Maquinas", leads: 4 }
   ],
   
   categorias: [
