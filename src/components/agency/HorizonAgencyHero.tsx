@@ -494,16 +494,6 @@ const HorizonAgencyHero = () => {
       </div>
 
 
-      {/* Additional sections for scrolling */}
-      <div className="scroll-sections">
-        {[...Array(2)].map((_, i) => (
-          <section key={i} className="min-h-screen flex items-center justify-center">
-            <div className="text-center text-white/20">
-              <div className="text-4xl font-bold mb-4">Section {i + 2}</div>
-            </div>
-          </section>
-        ))}
-      </div>
     </div>
   );
 };
