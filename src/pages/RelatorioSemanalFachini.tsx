@@ -1,9 +1,10 @@
 import { useEffect } from 'react';
-import { ArrowLeft, Download, Share2, TrendingUp, Users, DollarSign, MousePointerClick, MessageCircle } from 'lucide-react';
+import { ArrowLeft, Download, Share2, TrendingUp, Users, DollarSign } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { LeadsBarChart } from '@/components/relatorio/charts/LeadsBarChart';
 import { CategoriasTable } from '@/components/relatorio/CategoriasTable';
+import { VendedoresTable } from '@/components/relatorio/VendedoresTable';
+import { PlataformasTable } from '@/components/relatorio/PlataformasTable';
 import { relatorioSemanalFachini } from '@/data/relatorioSemanalFachini';
 import { formatCurrency, formatNumber } from '@/utils/formatters';
 import { toast } from 'sonner';
@@ -164,96 +165,41 @@ export default function RelatorioSemanalFachini() {
           </div>
         </section>
 
-        {/* Performance de Campanhas */}
+        {/* Resumo de Plataformas */}
         <section className="mb-12">
-          <h2 className="text-3xl font-bold mb-6">Performance de Campanhas</h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-            {/* Google Ads */}
+          <Card>
+            <CardHeader>
+              <CardTitle>Resumo por Plataforma</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <PlataformasTable google={google} instagram={instagram} />
+            </CardContent>
+          </Card>
+        </section>
+
+        {/* Layout de duas colunas: Vendedores e Categorias */}
+        <section className="mb-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {/* Leads por Vendedor */}
             <Card>
               <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <MousePointerClick className="h-5 w-5" />
-                  Google Ads
-                </CardTitle>
+                <CardTitle>Leads por Vendedor</CardTitle>
               </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="flex justify-between items-center">
-                  <span className="text-muted-foreground">Cliques</span>
-                  <span className="font-bold text-lg">{formatNumber(google.cliques)}</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-muted-foreground">Investimento</span>
-                  <span className="font-bold text-lg">{formatCurrency(google.investimento)}</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-muted-foreground">Custo/Clique</span>
-                  <span className="font-bold text-lg">{formatCurrency(google.custo_clique)}</span>
-                </div>
-                <div className="flex justify-between items-center pt-2 border-t">
-                  <span className="text-muted-foreground">Leads Gerados</span>
-                  <span className="font-bold text-xl text-primary">{formatNumber(google.leads)}</span>
-                </div>
+              <CardContent>
+                <VendedoresTable data={vendedores} />
               </CardContent>
             </Card>
 
-            {/* Instagram Ads */}
+            {/* Conversões por Categoria */}
             <Card>
               <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <MessageCircle className="h-5 w-5" />
-                  Instagram Ads
-                </CardTitle>
+                <CardTitle>Conversões por Categoria</CardTitle>
               </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="flex justify-between items-center">
-                  <span className="text-muted-foreground">Conversas Iniciadas</span>
-                  <span className="font-bold text-lg">{formatNumber(instagram.conversas)}</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-muted-foreground">Investimento</span>
-                  <span className="font-bold text-lg">{formatCurrency(instagram.investimento)}</span>
-                </div>
-                <div className="flex justify-between items-center pt-2 border-t">
-                  <span className="text-muted-foreground">Custo/Lead</span>
-                  <span className="font-bold text-xl text-primary">{formatCurrency(instagram.custo_lead)}</span>
-                </div>
+              <CardContent>
+                <CategoriasTable data={categorias} />
               </CardContent>
             </Card>
           </div>
-        </section>
-
-        {/* Leads por Vendedor */}
-        <section className="mb-12">
-          <Card>
-            <CardHeader>
-              <CardTitle>Leads por Vendedor</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <LeadsBarChart data={vendedores} />
-              
-              <div className="mt-6 grid grid-cols-2 md:grid-cols-4 gap-4">
-                {vendedores.map((vendedor, index) => (
-                  <div key={index} className="text-center p-3 bg-muted/50 rounded-lg">
-                    <div className="font-semibold">{vendedor.nome}</div>
-                    <div className="text-2xl font-bold text-primary">{vendedor.leads}</div>
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-        </section>
-
-        {/* Conversões por Categoria */}
-        <section className="mb-12">
-          <Card>
-            <CardHeader>
-              <CardTitle>Conversões por Categoria de Produto</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <CategoriasTable data={categorias} />
-            </CardContent>
-          </Card>
         </section>
 
         {/* Footer CTA */}
