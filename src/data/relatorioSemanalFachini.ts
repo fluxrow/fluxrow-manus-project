@@ -42,17 +42,17 @@ export const relatorioSemanalFachini = {
   urls: [
     {
       url: "fachinimaquinas.com.br",
-      conversoes: 191,
+      cliques: 191,
       gasto: 42.74,
-      cliques: 3131,
+      impressoes: 3131,
       ctr: "6,1%",
       cpc: 0.22
     },
     {
       url: "maquinas.fachinimaquinas.com.br",
-      conversoes: 81,
+      cliques: 81,
       gasto: 47.92,
-      cliques: 1655,
+      impressoes: 1655,
       ctr: "4,89%",
       cpc: 0.59
     }
