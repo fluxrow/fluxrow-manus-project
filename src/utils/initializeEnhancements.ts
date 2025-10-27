@@ -20,14 +20,18 @@ export const initializeEnhancements = () => {
 };
 
 const initAll = () => {
-  // Initialize mobile optimizations first for better performance
+  // Critical optimizations first
   MobileOptimizer.getInstance();
   
+  // Core animations (now lighter)
   new ScrollAnimations();
-  new UrgencyTimer();
+  new CinematicAnimations();
+  
+  // Secondary features
   new PerformanceOptimizer();
   new ABTesting();
   new IntegrationManager();
-  new CinematicAnimations();
-  console.log('All enhancements initialized with mobile optimizations');
+  new UrgencyTimer();
+  
+  console.log('All enhancements initialized (optimized)');
 };

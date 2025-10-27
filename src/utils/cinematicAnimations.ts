@@ -27,19 +27,14 @@ class CinematicAnimations {
 
     const updateParallax = () => {
       const scrolled = window.pageYOffset;
-      const rate = scrolled * -0.5;
 
-      layers.forEach((layer, index) => {
+      layers.forEach((layer) => {
         const element = layer as HTMLElement;
         const speed = parseFloat(element.getAttribute('data-scroll-speed') || '0.5');
-        const rotation = Math.sin(scrolled * 0.001) * 2;
         const yPos = -(scrolled * speed);
         
-        element.style.transform = `
-          translateY(${yPos}px) 
-          rotate(${rotation}deg) 
-          scale(${1 + Math.sin(scrolled * 0.002) * 0.05})
-        `;
+        // Simplified - only translateY for better performance
+        element.style.transform = `translateY(${yPos}px)`;
       });
 
       ticking = false;
@@ -106,24 +101,15 @@ class CinematicAnimations {
   }
 
   setupMagneticInteractions() {
-    // Cursor follower
-    const cursor = document.createElement('div');
-    cursor.className = 'cinematic-cursor';
-    document.body.appendChild(cursor);
-
-    document.addEventListener('mousemove', (e) => {
-      cursor.style.left = e.clientX + 'px';
-      cursor.style.top = e.clientY + 'px';
-    });
-
-    // Hover states
+    // Removed cursor follower - SplashCursor handles this
+    // Keep only hover states for interactive elements
     document.querySelectorAll('button, a, .interactive').forEach(element => {
       element.addEventListener('mouseenter', () => {
-        cursor.classList.add('cursor-hover');
+        element.classList.add('hover-active');
       });
       
       element.addEventListener('mouseleave', () => {
-        cursor.classList.remove('cursor-hover');
+        element.classList.remove('hover-active');
       });
     });
   }
