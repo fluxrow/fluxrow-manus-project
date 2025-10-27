@@ -36,7 +36,7 @@ export const PlataformasTable = ({ google, instagram }: PlataformasTableProps) =
             <TableCell className="text-right">{formatCurrency(custoLeadGoogle)}</TableCell>
           </TableRow>
           <TableRow>
-            <TableCell className="font-medium">INSTAGRAM</TableCell>
+            <TableCell className="font-medium">META</TableCell>
             <TableCell className="text-right">{formatCurrency(instagram.investimento)}</TableCell>
             <TableCell className="text-right">{formatNumber(instagram.leads)}</TableCell>
             <TableCell className="text-right">{formatCurrency(instagram.custo_lead)}</TableCell>
