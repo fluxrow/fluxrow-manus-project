@@ -43,18 +43,18 @@ export const relatorioSemanalFachini = {
     {
       url: "fachinimaquinas.com.br",
       cliques: 191,
-      gasto: 42.74,
+      gasto: 419.09,
       impressoes: 3131,
       ctr: "6,1%",
-      cpc: 0.22
+      cpc: 2.19
     },
     {
       url: "maquinas.fachinimaquinas.com.br",
       cliques: 81,
-      gasto: 47.92,
+      gasto: 177.91,
       impressoes: 1655,
       ctr: "4,89%",
-      cpc: 0.59
+      cpc: 2.20
     }
   ]
 };
