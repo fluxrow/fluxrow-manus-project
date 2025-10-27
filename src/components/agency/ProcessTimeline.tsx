@@ -66,14 +66,6 @@ const ProcessTimeline = () => {
         
         {/* Desktop Timeline */}
         <div className="hidden md:block relative">
-          {/* Progress Line */}
-          <div className="absolute top-1/2 left-0 right-0 h-1 bg-gray-800 transform -translate-y-1/2">
-            <div 
-              className="h-full bg-gradient-to-r from-cyan-500 to-purple-500 transition-all duration-1000 ease-out"
-              style={{ width: `${((activeStep + 1) / steps.length) * 100}%` }}
-            ></div>
-          </div>
-          
           {/* Steps */}
           <div className="grid grid-cols-4 gap-8">
             {steps.map((step, index) => {
