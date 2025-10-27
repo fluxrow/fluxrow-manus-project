@@ -21,6 +21,11 @@ export const relatorioSemanalFachini = {
     leads: 152
   },
   
+  conversas_mensagem: {
+    facebook: 66,
+    instagram: 3
+  },
+  
   vendedores: [
     { nome: "Jean", leads: 25 },
     { nome: "Aldair", leads: 22 },

@@ -6,6 +6,7 @@ import { CategoriasTable } from '@/components/relatorio/CategoriasTable';
 import { VendedoresTable } from '@/components/relatorio/VendedoresTable';
 import { PlataformasTable } from '@/components/relatorio/PlataformasTable';
 import { URLsTable } from '@/components/relatorio/URLsTable';
+import { ConversasMensagemTable } from '@/components/relatorio/ConversasMensagemTable';
 import { relatorioSemanalFachini } from '@/data/relatorioSemanalFachini';
 import { formatCurrency, formatNumber } from '@/utils/formatters';
 import { toast } from 'sonner';
@@ -81,7 +82,7 @@ export default function RelatorioSemanalFachini() {
     }
   };
 
-  const { periodo, kpis, google, instagram, vendedores, categorias, urls } = relatorioSemanalFachini;
+  const { periodo, kpis, google, instagram, vendedores, categorias, urls, conversas_mensagem } = relatorioSemanalFachini;
 
   return (
     <div className="min-h-screen bg-background">
@@ -178,21 +179,9 @@ export default function RelatorioSemanalFachini() {
           </Card>
         </section>
 
-        {/* Desempenho por URL */}
+        {/* Layout de três colunas: Vendedores, Conversas e Categorias */}
         <section className="mb-12">
-          <Card>
-            <CardHeader>
-              <CardTitle>Desempenho por URL de Destino</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <URLsTable data={urls} />
-            </CardContent>
-          </Card>
-        </section>
-
-        {/* Layout de duas colunas: Vendedores e Categorias */}
-        <section className="mb-12">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* Leads por Vendedor */}
             <Card>
               <CardHeader>
@@ -203,10 +192,23 @@ export default function RelatorioSemanalFachini() {
               </CardContent>
             </Card>
 
-            {/* Conversões por Categoria */}
+            {/* Conversas Iniciadas por Mensagem */}
             <Card>
               <CardHeader>
-                <CardTitle>Conversões por Categoria</CardTitle>
+                <CardTitle>Conversas Iniciadas por Mensagem</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ConversasMensagemTable 
+                  facebook={conversas_mensagem.facebook} 
+                  instagram={conversas_mensagem.instagram} 
+                />
+              </CardContent>
+            </Card>
+
+            {/* Leads Meta via Formulário por Categoria */}
+            <Card>
+              <CardHeader>
+                <CardTitle>Leads Meta - Formulário por Categoria</CardTitle>
               </CardHeader>
               <CardContent>
                 <CategoriasTable data={categorias} />
