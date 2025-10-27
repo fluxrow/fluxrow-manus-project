@@ -1,23 +1,23 @@
 export const relatorioSemanalFachini = {
-  periodo: "06/10 a 12/10/2025",
+  periodo: "21/10 a 26/10/2025",
   
   kpis: {
-    investimento_total: 874.56,
-    leads_totais: 84,
-    custo_lead_medio: 10.41
+    investimento_total: 1129.04,
+    leads_totais: 176,
+    custo_lead_medio: 6.41
   },
   
   google: {
-    cliques: 251,
-    investimento: 374.56,
-    custo_clique: 2.50,
-    leads: 84
+    cliques: 290,
+    investimento: 100.16,
+    custo_clique: 0.35,
+    leads: 24
   },
   
   instagram: {
-    conversas: 71,
-    investimento: 500.00,
-    custo_lead: 19.05
+    conversas: 69,
+    investimento: 1028.88,
+    custo_lead: 14.91
   },
   
   vendedores: [
