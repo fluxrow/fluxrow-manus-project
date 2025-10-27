@@ -16,7 +16,7 @@ const CasesPortfolio = () => {
       challenge: "6-7 mil leads qualificados represados sem follow-up estruturado e vendedores sobrecarregados",
       solution: "Implementamos ecossistema completo com 6 Agentes IA especializados (clones digitais dos vendedores), sistema de backup duplo (WhatsApp + Email via Prometheus), Email Marketing quinzenal segmentado e automação inteligente de follow-up.",
       result: "Projeção de 35% de aumento em conversões, economia de 12h/dia de trabalho manual e qualificação paralela de milhares de leads",
-      image: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=500&h=300&fit=crop",
+      image: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=500&h=300&fit=crop",
       tags: ["IA", "Distribuição", "Email Marketing"],
       color: "blue"
     },
