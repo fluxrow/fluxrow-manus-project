@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { CategoriasTable } from '@/components/relatorio/CategoriasTable';
 import { VendedoresTable } from '@/components/relatorio/VendedoresTable';
 import { PlataformasTable } from '@/components/relatorio/PlataformasTable';
+import { URLsTable } from '@/components/relatorio/URLsTable';
 import { relatorioSemanalFachini } from '@/data/relatorioSemanalFachini';
 import { formatCurrency, formatNumber } from '@/utils/formatters';
 import { toast } from 'sonner';
@@ -80,7 +81,7 @@ export default function RelatorioSemanalFachini() {
     }
   };
 
-  const { periodo, kpis, google, instagram, vendedores, categorias } = relatorioSemanalFachini;
+  const { periodo, kpis, google, instagram, vendedores, categorias, urls } = relatorioSemanalFachini;
 
   return (
     <div className="min-h-screen bg-background">
@@ -173,6 +174,18 @@ export default function RelatorioSemanalFachini() {
             </CardHeader>
             <CardContent>
               <PlataformasTable google={google} instagram={instagram} />
+            </CardContent>
+          </Card>
+        </section>
+
+        {/* Desempenho por URL */}
+        <section className="mb-12">
+          <Card>
+            <CardHeader>
+              <CardTitle>Desempenho por URL de Destino</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <URLsTable data={urls} />
             </CardContent>
           </Card>
         </section>

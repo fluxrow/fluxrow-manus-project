@@ -37,5 +37,24 @@ export const relatorioSemanalFachini = {
     { categoria: "CONJ CORTE/DOBRA", qtd: 9, custo: 15.65 },
     { categoria: "LASER", qtd: 3, custo: 51.92 },
     { categoria: "PERFILADEIRAS", qtd: 35, custo: 2.88 }
+  ],
+  
+  urls: [
+    {
+      url: "fachinimaquinas.com.br",
+      conversoes: 191,
+      gasto: 42.74,
+      cliques: 3131,
+      ctr: "6,1%",
+      cpc: 0.22
+    },
+    {
+      url: "maquinas.fachinimaquinas.com.br",
+      conversoes: 81,
+      gasto: 47.92,
+      cliques: 1655,
+      ctr: "4,89%",
+      cpc: 0.59
+    }
   ]
 };
