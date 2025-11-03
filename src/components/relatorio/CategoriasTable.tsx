@@ -11,9 +11,9 @@ export const CategoriasTable = ({ data }: CategoriasTableProps) => {
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead>Categoria de Produto</TableHead>
-            <TableHead className="text-right">Quantidade</TableHead>
-            <TableHead className="text-right">Custo de Conversão</TableHead>
+            <TableHead className="w-[45%]">Categoria de Produto</TableHead>
+            <TableHead className="text-right w-[25%]">Quantidade</TableHead>
+            <TableHead className="text-right w-[30%] whitespace-nowrap">Custo de Conversão</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -21,7 +21,7 @@ export const CategoriasTable = ({ data }: CategoriasTableProps) => {
             <TableRow key={index}>
               <TableCell className="font-medium">{item.categoria}</TableCell>
               <TableCell className="text-right">{item.qtd}</TableCell>
-              <TableCell className="text-right">{formatCurrency(item.custo)}</TableCell>
+              <TableCell className="text-right whitespace-nowrap">{formatCurrency(item.custo)}</TableCell>
             </TableRow>
           ))}
         </TableBody>
