@@ -5,7 +5,7 @@ import { AssetGroupChart } from './charts/AssetGroupChart';
 
 interface RelatorioGoogleAdsProps {
   data: any;
-  convPrimarias: Array<{ fonte: string; whats: number; form: number }>;
+  convPrimarias: Array<{ fonte: string; whats: number; form?: number; clique?: number }>;
 }
 
 export const RelatorioGoogleAds = ({ data, convPrimarias }: RelatorioGoogleAdsProps) => {

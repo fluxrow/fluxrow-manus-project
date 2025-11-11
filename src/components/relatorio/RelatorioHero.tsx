@@ -7,7 +7,7 @@ interface RelatorioHeroProps {
     leads_meta: number;
     conversas_meta: number;
     google_conv_primarias_ads: { whatsapp_click: number; form_start: number };
-    google_conv_primarias_ga4: { whatsapp_click: number; form_start: number };
+    google_conv_primarias_ga4: { whatsapp_click: number; clique?: number; form_start?: number };
   };
 }
 
@@ -23,7 +23,7 @@ export const RelatorioHero = ({ kpis }: RelatorioHeroProps) => {
       icon: Users,
       label: 'Leads (Meta)',
       value: formatNumber(kpis.leads_meta),
-      sublabel: `CPL ${formatCurrency(1157.64 / kpis.leads_meta)}`,
+      sublabel: `CPL ${formatCurrency(3710.44 / kpis.leads_meta)}`,
       color: 'text-purple-500',
     },
     {
@@ -36,7 +36,9 @@ export const RelatorioHero = ({ kpis }: RelatorioHeroProps) => {
       icon: Phone,
       label: 'Conversões Google',
       value: `${kpis.google_conv_primarias_ads.whatsapp_click}/${kpis.google_conv_primarias_ga4.whatsapp_click}`,
-      sublabel: `Whats (Ads/GA4) | Form ${kpis.google_conv_primarias_ads.form_start}/${kpis.google_conv_primarias_ga4.form_start}`,
+      sublabel: kpis.google_conv_primarias_ga4.clique 
+        ? `Whats (Ads/GA4) | Clique: ${kpis.google_conv_primarias_ga4.clique} | Form: ${kpis.google_conv_primarias_ads.form_start}`
+        : `Whats (Ads/GA4) | Form ${kpis.google_conv_primarias_ads.form_start}/${kpis.google_conv_primarias_ga4.form_start || 0}`,
       color: 'text-blue-500',
     },
   ];
@@ -50,7 +52,7 @@ export const RelatorioHero = ({ kpis }: RelatorioHeroProps) => {
             Relatório de Mídia Paga
           </h1>
           <p className="text-xl text-muted-foreground">
-            Fachini Máquinas - Período: 01-20 de Outubro de 2025
+            Fachini Máquinas - Período: 01-31 de Outubro de 2025
           </p>
         </div>
 

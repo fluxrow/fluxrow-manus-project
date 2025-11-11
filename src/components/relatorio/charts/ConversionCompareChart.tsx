@@ -1,7 +1,7 @@
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 interface ConversionCompareChartProps {
-  data: Array<{ fonte: string; whats: number; form: number }>;
+  data: Array<{ fonte: string; whats: number; form?: number; clique?: number }>;
 }
 
 export const ConversionCompareChart = ({ data }: ConversionCompareChartProps) => {
@@ -36,12 +36,18 @@ export const ConversionCompareChart = ({ data }: ConversionCompareChartProps) =>
             formatter={(value) => {
               if (value === 'whats') return 'WhatsApp';
               if (value === 'form') return 'Formulário';
+              if (value === 'clique') return 'Clique';
               return value;
             }}
             wrapperStyle={{ color: 'hsl(var(--foreground))' }}
           />
           <Bar dataKey="whats" fill="hsl(142, 76%, 36%)" radius={[8, 8, 0, 0]} />
-          <Bar dataKey="form" fill="hsl(217, 91%, 60%)" radius={[8, 8, 0, 0]} />
+          {data.some(item => item.form !== undefined) && (
+            <Bar dataKey="form" fill="hsl(217, 91%, 60%)" radius={[8, 8, 0, 0]} />
+          )}
+          {data.some(item => item.clique !== undefined) && (
+            <Bar dataKey="clique" fill="hsl(262, 83%, 58%)" radius={[8, 8, 0, 0]} />
+          )}
         </BarChart>
       </ResponsiveContainer>
     </div>
