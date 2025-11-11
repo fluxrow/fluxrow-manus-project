@@ -6,14 +6,17 @@ interface RelatorioInstagramProps {
 }
 
 export const RelatorioInstagram = ({ data }: RelatorioInstagramProps) => {
-  if (data?.disponivel === false) {
+  // Check if data is unavailable or missing required properties
+  if (!data || data?.disponivel === false || !data.seguidores) {
     return (
       <div className="py-16 bg-accent/20">
         <div className="container mx-auto px-4">
           <div className="bg-card border border-border rounded-2xl p-8 text-center">
             <Instagram className="w-12 h-12 mx-auto mb-4 text-muted-foreground" />
             <h3 className="text-xl font-bold mb-2">Instagram Orgânico - Dados Indisponíveis</h3>
-            <p className="text-muted-foreground">{data.motivo}</p>
+            <p className="text-muted-foreground">
+              {data?.motivo || "Dados não disponíveis devido a instabilidade do sistema Meta Business Suite durante o período analisado"}
+            </p>
           </div>
         </div>
       </div>
