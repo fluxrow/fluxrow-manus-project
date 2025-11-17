@@ -1,90 +1,96 @@
 export const relatorioSemanalFachini = {
-  periodo: "03/11 a 09/11/2025",
+  periodo: "10/11 a 16/11/2025",
   
   kpis: {
-    investimento_total: 7119.02,
-    leads_totais: 847,
-    custo_lead_medio: 6.31
+    investimento_total: 1623.01,
+    leads_totais: 205,
+    custo_lead_medio: 6.38
   },
   
   google: {
-    cliques: 4531,
-    investimento: 1772.30,
-    custo_clique: 0.39,
-    leads: 148
+    cliques: 1091,
+    investimento: 315.78,
+    custo_clique: 0.29,
+    leads: 51
   },
   
   instagram: {
-    conversas: 214,
-    investimento: 5346.72,
-    custo_lead: 6.31,
-    leads: 847
+    conversas: 62,
+    investimento: 1307.23,
+    custo_lead: 6.38,
+    leads: 205
   },
   
   conversas_mensagem: {
-    facebook: 361,
-    instagram: 214
+    facebook: 101,
+    instagram: 62
   },
   
   vendedores: [
-    { nome: "Aldair", leads: 219 },
-    { nome: "Caio", leads: 204 },
-    { nome: "Jean Lucas", leads: 190 },
-    { nome: "Ruan", leads: 170 },
-    { nome: "Silvana", leads: 159 },
-    { nome: "Jhony", leads: 132 },
-    { nome: "Diego", leads: 52 },
-    { nome: "Romulo", leads: 46 },
-    { nome: "Fachini Maquinas", leads: 16 }
+    { nome: "Ruan", leads: 52 },
+    { nome: "Aldair", leads: 42 },
+    { nome: "Jean Lucas", leads: 41 },
+    { nome: "Silvana", leads: 39 },
+    { nome: "Jhony", leads: 35 },
+    { nome: "Rafael", leads: 29 },
+    { nome: "Caio", leads: 19 },
+    { nome: "Romulo", leads: 5 },
+    { nome: "Diego", leads: 4 },
+    { nome: "Fachini Maquinas", leads: 1 }
   ],
   
   categorias: [
-    { categoria: "PERFILADEIRAS", qtd: 370, custo: 3.31 },
-    { categoria: "CONJ CORTE/DOBRA", qtd: 273, custo: 4.38 },
-    { categoria: "DOBRADEIRA LISA E DENTADA", qtd: 150, custo: 5.79 },
-    { categoria: "LASER", qtd: 54, custo: 28.42 }
+    { categoria: "CONJ CORTE/DOBRA", qtd: 80, custo: 3.96 },
+    { categoria: "PERFILADEIRAS", qtd: 67, custo: 4.86 },
+    { categoria: "DOBRADEIRA LISA E DENTADA", qtd: 33, custo: 5.01 },
+    { categoria: "LASER", qtd: 25, custo: 19.96 }
   ],
   
   urls: [
     {
       url: "maquinas.fachinimaquinas.com.br",
-      cliques: 3282,
-      gasto: 1091.19,
-      impressoes: 66234,
-      ctr: "4,96%",
-      cpc: 0.33
+      cliques: 641,
+      gasto: 135.81,
+      impressoes: 15397,
+      conversoes: 2,
+      ctr: "4,16%",
+      cpc: 0.21
     },
     {
       url: "fachinimaquinas.com.br/site/home",
-      cliques: 803,
-      gasto: 361.96,
-      impressoes: 14100,
-      ctr: "5,7%",
-      cpc: 0.45
+      cliques: 103,
+      gasto: 21.45,
+      impressoes: 3938,
+      conversoes: 5,
+      ctr: "2,62%",
+      cpc: 0.21
     },
     {
       url: "fachinimaquinas.com.br/site/maquinas/dobradeira-de-regua-lisa-fachini",
-      cliques: 136,
-      gasto: 116.13,
-      impressoes: 2155,
-      ctr: "6,31%",
-      cpc: 0.85
-    },
-    {
-      url: "fachinimaquinas.com.br/site/categorias/perfiladeiras",
-      cliques: 129,
-      gasto: 103.95,
-      impressoes: 1300,
-      ctr: "9,92%",
-      cpc: 0.81
+      cliques: 100,
+      gasto: 65.35,
+      impressoes: 1858,
+      conversoes: 22,
+      ctr: "5,38%",
+      cpc: 0.65
     },
     {
       url: "fachinimaquinas.com.br/site/maquinas/dobradeira-cn",
-      cliques: 106,
-      gasto: 76.72,
-      impressoes: 946,
-      ctr: "11,21%",
-      cpc: 0.72
+      cliques: 90,
+      gasto: 44.74,
+      impressoes: 898,
+      conversoes: 13,
+      ctr: "10,02%",
+      cpc: 0.50
+    },
+    {
+      url: "fachinimaquinas.com.br/site/categorias/perfiladeiras",
+      cliques: 84,
+      gasto: 42.83,
+      impressoes: 1304,
+      conversoes: 8,
+      ctr: "6,44%",
+      cpc: 0.51
     }
   ]
 };
