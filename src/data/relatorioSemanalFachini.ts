@@ -3,8 +3,8 @@ export const relatorioSemanalFachini = {
   
   kpis: {
     investimento_total: 1623.01,
-    leads_totais: 205,
-    custo_lead_medio: 6.38
+    leads_totais: 222,
+    custo_lead_medio: 5.89
   },
   
   google: {
@@ -17,8 +17,8 @@ export const relatorioSemanalFachini = {
   instagram: {
     conversas: 62,
     investimento: 1307.23,
-    custo_lead: 6.38,
-    leads: 205
+    custo_lead: 5.89,
+    leads: 222
   },
   
   conversas_mensagem: {
@@ -40,10 +40,10 @@ export const relatorioSemanalFachini = {
   ],
   
   categorias: [
-    { categoria: "CONJ CORTE/DOBRA", qtd: 80, custo: 3.96 },
-    { categoria: "PERFILADEIRAS", qtd: 67, custo: 4.86 },
-    { categoria: "DOBRADEIRA LISA E DENTADA", qtd: 33, custo: 5.01 },
-    { categoria: "LASER", qtd: 25, custo: 19.96 }
+    { categoria: "PERFILADEIRAS", qtd: 88, custo: 5.89 },
+    { categoria: "DOBRADEIRA LISA E DENTADA", qtd: 57, custo: 5.89 },
+    { categoria: "CONJ CORTE/DOBRA", qtd: 56, custo: 5.89 },
+    { categoria: "LASER", qtd: 21, custo: 5.89 }
   ],
   
   urls: [
