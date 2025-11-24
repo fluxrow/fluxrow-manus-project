@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { ArrowLeft, Download, Share2, TrendingUp, Users, DollarSign } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -11,9 +11,92 @@ import { AnaliseComparativa } from '@/components/relatorio/AnaliseComparativa';
 import { relatorioSemanalFachini } from '@/data/relatorioSemanalFachini';
 import { formatCurrency, formatNumber } from '@/utils/formatters';
 import { toast } from 'sonner';
+import { supabase } from '@/integrations/supabase/client';
+import { format } from 'date-fns';
+import { ptBR } from 'date-fns/locale';
+import { useSearchParams } from 'react-router-dom';
 
 export default function RelatorioSemanalFachini() {
+  const [searchParams] = useSearchParams();
+  const [loading, setLoading] = useState(true);
+  const [dadosRelatorio, setDadosRelatorio] = useState(relatorioSemanalFachini);
+  const [isDadosReais, setIsDadosReais] = useState(false);
+  const [dataGeracao, setDataGeracao] = useState<string | null>(null);
+
   useEffect(() => {
+    const loadRelatorio = async () => {
+      const relatorioId = searchParams.get('id');
+      
+      if (relatorioId) {
+        try {
+          const { data, error } = await supabase
+            .from('relatorios_semanais')
+            .select('*')
+            .eq('id', relatorioId)
+            .maybeSingle();
+
+          if (error) throw error;
+
+          if (data) {
+            // Transformar dados do banco para o formato esperado
+            setDadosRelatorio({
+              periodo: data.periodo,
+              kpis: {
+                investimento_total: data.investimento_total,
+                leads_totais: data.leads_totais,
+                custo_lead_medio: data.custo_lead_medio
+              },
+              google: (data.dados_google as any) || relatorioSemanalFachini.google,
+              instagram: (data.dados_instagram as any) || relatorioSemanalFachini.instagram,
+              conversas_mensagem: (data.conversas_mensagem as any) || relatorioSemanalFachini.conversas_mensagem,
+              vendedores: (data.dados_vendedores as any) || relatorioSemanalFachini.vendedores,
+              categorias: (data.dados_categorias as any) || relatorioSemanalFachini.categorias,
+              urls: (data.dados_urls as any) || relatorioSemanalFachini.urls
+            });
+            setIsDadosReais(true);
+            setDataGeracao(data.created_at);
+          }
+        } catch (error) {
+          console.error('Erro ao carregar relatório:', error);
+          toast.error('Erro ao carregar relatório do banco');
+        }
+      } else {
+        // Buscar último relatório gerado se não houver ID específico
+        try {
+          const { data, error } = await supabase
+            .from('relatorios_semanais')
+            .select('*')
+            .order('data_inicio', { ascending: false })
+            .limit(1)
+            .maybeSingle();
+
+          if (data && !error) {
+            setDadosRelatorio({
+              periodo: data.periodo,
+              kpis: {
+                investimento_total: data.investimento_total,
+                leads_totais: data.leads_totais,
+                custo_lead_medio: data.custo_lead_medio
+              },
+              google: (data.dados_google as any) || relatorioSemanalFachini.google,
+              instagram: (data.dados_instagram as any) || relatorioSemanalFachini.instagram,
+              conversas_mensagem: (data.conversas_mensagem as any) || relatorioSemanalFachini.conversas_mensagem,
+              vendedores: (data.dados_vendedores as any) || relatorioSemanalFachini.vendedores,
+              categorias: (data.dados_categorias as any) || relatorioSemanalFachini.categorias,
+              urls: (data.dados_urls as any) || relatorioSemanalFachini.urls
+            });
+            setIsDadosReais(true);
+            setDataGeracao(data.created_at);
+          }
+        } catch (error) {
+          console.error('Erro ao buscar último relatório:', error);
+        }
+      }
+      
+      setLoading(false);
+    };
+
+    loadRelatorio();
     window.scrollTo(0, 0);
     
     // Remover widget Sof.IA global para evitar conflitos
@@ -68,7 +151,7 @@ export default function RelatorioSemanalFachini() {
         (oldChatIframe as HTMLElement).style.display = '';
       }
     };
-  }, []);
+  }, [searchParams]);
 
   const handleDownloadPDF = () => {
     window.print();
@@ -83,7 +166,18 @@ export default function RelatorioSemanalFachini() {
     }
   };
 
-  const { periodo, kpis, google, instagram, vendedores, categorias, urls, conversas_mensagem } = relatorioSemanalFachini;
+  const { periodo, kpis, google, instagram, vendedores, categorias, urls, conversas_mensagem } = dadosRelatorio;
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+          <p className="text-muted-foreground">Carregando relatório...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-background">
@@ -131,6 +225,26 @@ export default function RelatorioSemanalFachini() {
         <section className="mb-12 text-center">
           <h1 className="text-4xl font-bold mb-2">Relatório Semanal - Fachini Industrial</h1>
           <p className="text-muted-foreground text-lg">{periodo}</p>
+          
+          {/* Badge indicando origem dos dados */}
+          <div className="flex items-center justify-center gap-3 mt-4">
+            {isDadosReais ? (
+              <>
+                <span className="px-3 py-1 bg-green-500/10 text-green-700 dark:text-green-400 text-sm rounded-full font-medium border border-green-500/20">
+                  ✅ DADOS REAIS
+                </span>
+                {dataGeracao && (
+                  <span className="text-sm text-muted-foreground">
+                    Gerado em {format(new Date(dataGeracao), "dd/MM/yyyy 'às' HH:mm", { locale: ptBR })}
+                  </span>
+                )}
+              </>
+            ) : (
+              <span className="px-3 py-1 bg-orange-500/10 text-orange-700 dark:text-orange-400 text-sm rounded-full font-medium border border-orange-500/20">
+                📊 DADOS DE EXEMPLO
+              </span>
+            )}
+          </div>
         </section>
 
         {/* KPIs Principais */}

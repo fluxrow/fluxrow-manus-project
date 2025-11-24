@@ -30,6 +30,7 @@ import ResetContrato from "./pages/ResetContrato";
 import RelatorioFachini from "./pages/RelatorioFachini";
 import RelatorioSemanalFachini from "./pages/RelatorioSemanalFachini";
 import AdminTestReportei from "./pages/AdminTestReportei";
+import AdminRelatorios from "./pages/AdminRelatorios";
 
 const queryClient = new QueryClient();
 
@@ -62,6 +63,7 @@ const App = () => (
           <Route path="/contrato/:cliente/assinar" element={<ContratoAssinatura />} />
           <Route path="/admin/reset-contrato" element={<ResetContrato />} />
           <Route path="/admin/test-reportei" element={<AdminTestReportei />} />
+          <Route path="/admin/relatorios" element={<AdminRelatorios />} />
           <Route path="/relatorio/fachini-outubro-2025" element={<RelatorioFachini />} />
           <Route path="/relatorio/fachini-semanal" element={<RelatorioSemanalFachini />} />
           <Route path="/conteudos/:slug" element={<div>Página Individual de Conteúdo</div>} />
