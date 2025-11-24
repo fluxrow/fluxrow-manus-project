@@ -34,9 +34,9 @@ const getLastWeek = () => {
 };
 
 // Função para buscar valor de um widget
-const fetchWidgetValue = async (integrationId: string, widgetSlug: string, dateStart: string, dateEnd: string, headers: any, baseUrl: string) => {
+const fetchWidgetValue = async (integrationId: string, widgetKey: string, dateStart: string, dateEnd: string, headers: any, baseUrl: string) => {
   try {
-    console.log(`    🔄 Buscando valor do widget: ${widgetSlug}`);
+    console.log(`    🔄 Buscando valor do widget: ${widgetKey}`);
     
     const response = await fetch(
       `${baseUrl}/integrations/${integrationId}/widgets/value`,
@@ -44,25 +44,25 @@ const fetchWidgetValue = async (integrationId: string, widgetSlug: string, dateS
         method: 'POST',
         headers,
         body: JSON.stringify({
-          date_start: dateStart,
-          date_end: dateEnd,
-          widget: widgetSlug
+          start: dateStart,
+          end: dateEnd,
+          widgets: [widgetKey]
         })
       }
     );
 
     if (response.ok) {
       const data = await response.json();
-      console.log(`    ✅ Valor recebido:`, data.value);
+      console.log(`    ✅ Valor recebido:`, data.value || data);
       return data;
     } else {
-      console.log(`    ⚠️ Widget ${widgetSlug} retornou status ${response.status}`);
+      console.log(`    ⚠️ Widget ${widgetKey} retornou status ${response.status}`);
       const errorText = await response.text();
       console.log(`    ❌ Erro: ${errorText}`);
       return null;
     }
   } catch (error) {
-    console.error(`    ❌ Erro ao buscar widget ${widgetSlug}:`, error.message);
+    console.error(`    ❌ Erro ao buscar widget ${widgetKey}:`, error.message);
     return null;
   }
 };
@@ -158,17 +158,31 @@ serve(async (req) => {
         const widgetsData = await widgetsResponse.json();
         const widgets = Array.isArray(widgetsData) ? widgetsData : (widgetsData.data || []);
         console.log(`  📋 Widgets disponíveis: ${widgets.length}`);
-        console.log(`  📋 Lista de widgets:`, widgets.map((w: any) => ({ slug: w.slug, name: w.name })));
+        
+        // Debug: mostrar estrutura completa do primeiro widget
+        if (widgets.length > 0) {
+          console.log(`  🔍 Estrutura do primeiro widget:`, JSON.stringify(widgets[0], null, 2));
+          console.log(`  🔍 Campos disponíveis:`, Object.keys(widgets[0]));
+        }
+        
+        console.log(`  📋 Lista de widgets:`, widgets.map((w: any) => ({ 
+          slug: w.slug, 
+          name: w.name,
+          key: w.key,
+          title: w.title,
+          type: w.type,
+          id: w.id
+        })));
         
         // Buscar leads
         const leadsWidget = widgets.find((w: any) => {
-          const slug = w.slug?.toLowerCase() || '';
-          const name = w.name?.toLowerCase() || '';
-          return slug.includes('lead') || slug.includes('form') || name.includes('lead') || name.includes('formulário');
+          const refKey = w.reference_key?.toLowerCase() || '';
+          const title = w.references?.title?.toLowerCase() || '';
+          return refKey.includes('lead') || refKey.includes('form') || title.includes('lead') || title.includes('formulário');
         });
         if (leadsWidget) {
-          console.log(`  🎯 Widget de leads encontrado: ${leadsWidget.slug}`);
-          const leadsData = await fetchWidgetValue(metaId, leadsWidget.slug, periodo.dataInicio, periodo.dataFim, headers, BASE_URL);
+          console.log(`  🎯 Widget de leads encontrado: ${leadsWidget.reference_key}`);
+          const leadsData = await fetchWidgetValue(metaId, leadsWidget.reference_key, periodo.dataInicio, periodo.dataFim, headers, BASE_URL);
           if (leadsData?.value) {
             leadsMeta = Number(leadsData.value) || 0;
             console.log(`  ✅ Leads: ${leadsMeta}`);
@@ -183,18 +197,18 @@ serve(async (req) => {
             }
           }
         } else {
-          console.log(`  ⚠️ Widget de leads NÃO encontrado. Widgets disponíveis:`, widgets.map((w: any) => w.slug).join(', '));
+          console.log(`  ⚠️ Widget de leads NÃO encontrado. Widgets disponíveis:`, widgets.map((w: any) => w.reference_key).join(', '));
         }
         
         // Buscar investimento (spend)
         const spendWidget = widgets.find((w: any) => {
-          const slug = w.slug?.toLowerCase() || '';
-          const name = w.name?.toLowerCase() || '';
-          return slug.includes('spend') || slug.includes('cost') || name.includes('gasto') || name.includes('investimento');
+          const refKey = w.reference_key?.toLowerCase() || '';
+          const title = w.references?.title?.toLowerCase() || '';
+          return refKey.includes('spend') || refKey.includes('cost') || title.includes('gasto') || title.includes('investimento');
         });
         if (spendWidget) {
-          console.log(`  🎯 Widget de investimento encontrado: ${spendWidget.slug}`);
-          const spendData = await fetchWidgetValue(metaId, spendWidget.slug, periodo.dataInicio, periodo.dataFim, headers, BASE_URL);
+          console.log(`  🎯 Widget de investimento encontrado: ${spendWidget.reference_key}`);
+          const spendData = await fetchWidgetValue(metaId, spendWidget.reference_key, periodo.dataInicio, periodo.dataFim, headers, BASE_URL);
           if (spendData?.value) {
             investimentoMeta = Number(spendData.value) || 0;
             console.log(`  ✅ Investimento: R$ ${investimentoMeta}`);
@@ -205,13 +219,13 @@ serve(async (req) => {
         
         // Buscar conversas iniciadas
         const conversasWidget = widgets.find((w: any) => {
-          const slug = w.slug?.toLowerCase() || '';
-          const name = w.name?.toLowerCase() || '';
-          return slug.includes('messaging') || slug.includes('conversation') || name.includes('conversa') || name.includes('mensagem');
+          const refKey = w.reference_key?.toLowerCase() || '';
+          const title = w.references?.title?.toLowerCase() || '';
+          return refKey.includes('messaging') || refKey.includes('conversation') || title.includes('conversa') || title.includes('mensagem');
         });
         if (conversasWidget) {
-          console.log(`  🎯 Widget de conversas encontrado: ${conversasWidget.slug}`);
-          const conversasData = await fetchWidgetValue(metaId, conversasWidget.slug, periodo.dataInicio, periodo.dataFim, headers, BASE_URL);
+          console.log(`  🎯 Widget de conversas encontrado: ${conversasWidget.reference_key}`);
+          const conversasData = await fetchWidgetValue(metaId, conversasWidget.reference_key, periodo.dataInicio, periodo.dataFim, headers, BASE_URL);
           if (conversasData?.value) {
             conversasMeta = Number(conversasData.value) || 0;
             console.log(`  ✅ Conversas: ${conversasMeta}`);
@@ -239,17 +253,22 @@ serve(async (req) => {
         const widgetsData = await widgetsResponse.json();
         const widgets = Array.isArray(widgetsData) ? widgetsData : (widgetsData.data || []);
         console.log(`  📋 Widgets disponíveis: ${widgets.length}`);
+        
+        // Debug: mostrar estrutura completa do primeiro widget
+        if (widgets.length > 0) {
+          console.log(`  🔍 Estrutura do primeiro widget Google:`, JSON.stringify(widgets[0], null, 2));
+        }
         console.log(`  📋 Lista de widgets:`, widgets.map((w: any) => ({ slug: w.slug, name: w.name })));
         
         // Buscar cliques
         const clicksWidget = widgets.find((w: any) => {
-          const slug = w.slug?.toLowerCase() || '';
-          const name = w.name?.toLowerCase() || '';
-          return slug.includes('click') || name.includes('clique');
+          const refKey = w.reference_key?.toLowerCase() || '';
+          const title = w.references?.title?.toLowerCase() || '';
+          return refKey.includes('click') || title.includes('clique');
         });
         if (clicksWidget) {
-          console.log(`  🎯 Widget de cliques encontrado: ${clicksWidget.slug}`);
-          const clicksData = await fetchWidgetValue(googleId, clicksWidget.slug, periodo.dataInicio, periodo.dataFim, headers, BASE_URL);
+          console.log(`  🎯 Widget de cliques encontrado: ${clicksWidget.reference_key}`);
+          const clicksData = await fetchWidgetValue(googleId, clicksWidget.reference_key, periodo.dataInicio, periodo.dataFim, headers, BASE_URL);
           if (clicksData?.value) {
             cliquesGoogle = Number(clicksData.value) || 0;
             console.log(`  ✅ Cliques: ${cliquesGoogle}`);
@@ -260,13 +279,13 @@ serve(async (req) => {
         
         // Buscar investimento
         const spendWidget = widgets.find((w: any) => {
-          const slug = w.slug?.toLowerCase() || '';
-          const name = w.name?.toLowerCase() || '';
-          return slug.includes('cost') || slug.includes('spend') || name.includes('gasto') || name.includes('investimento');
+          const refKey = w.reference_key?.toLowerCase() || '';
+          const title = w.references?.title?.toLowerCase() || '';
+          return refKey.includes('cost') || refKey.includes('spend') || title.includes('gasto') || title.includes('investimento') || title.includes('custo');
         });
         if (spendWidget) {
-          console.log(`  🎯 Widget de investimento encontrado: ${spendWidget.slug}`);
-          const spendData = await fetchWidgetValue(googleId, spendWidget.slug, periodo.dataInicio, periodo.dataFim, headers, BASE_URL);
+          console.log(`  🎯 Widget de investimento encontrado: ${spendWidget.reference_key}`);
+          const spendData = await fetchWidgetValue(googleId, spendWidget.reference_key, periodo.dataInicio, periodo.dataFim, headers, BASE_URL);
           if (spendData?.value) {
             investimentoGoogle = Number(spendData.value) || 0;
             console.log(`  ✅ Investimento: R$ ${investimentoGoogle}`);
@@ -277,13 +296,13 @@ serve(async (req) => {
         
         // Buscar impressões
         const impressionsWidget = widgets.find((w: any) => {
-          const slug = w.slug?.toLowerCase() || '';
-          const name = w.name?.toLowerCase() || '';
-          return slug.includes('impression') || name.includes('impressão') || name.includes('impressao');
+          const refKey = w.reference_key?.toLowerCase() || '';
+          const title = w.references?.title?.toLowerCase() || '';
+          return refKey.includes('impression') || title.includes('impressão') || title.includes('impressao') || title.includes('impression');
         });
         if (impressionsWidget) {
-          console.log(`  🎯 Widget de impressões encontrado: ${impressionsWidget.slug}`);
-          const impressionsData = await fetchWidgetValue(googleId, impressionsWidget.slug, periodo.dataInicio, periodo.dataFim, headers, BASE_URL);
+          console.log(`  🎯 Widget de impressões encontrado: ${impressionsWidget.reference_key}`);
+          const impressionsData = await fetchWidgetValue(googleId, impressionsWidget.reference_key, periodo.dataInicio, periodo.dataFim, headers, BASE_URL);
           if (impressionsData?.value) {
             impressoesGoogle = Number(impressionsData.value) || 0;
             console.log(`  ✅ Impressões: ${impressoesGoogle}`);
@@ -294,13 +313,13 @@ serve(async (req) => {
         
         // Buscar conversões
         const conversionsWidget = widgets.find((w: any) => {
-          const slug = w.slug?.toLowerCase() || '';
-          const name = w.name?.toLowerCase() || '';
-          return slug.includes('conversion') || name.includes('conversão') || name.includes('conversao');
+          const refKey = w.reference_key?.toLowerCase() || '';
+          const title = w.references?.title?.toLowerCase() || '';
+          return refKey.includes('conversion') || title.includes('conversão') || title.includes('conversao') || title.includes('conversion');
         });
         if (conversionsWidget) {
-          console.log(`  🎯 Widget de conversões encontrado: ${conversionsWidget.slug}`);
-          const conversionsData = await fetchWidgetValue(googleId, conversionsWidget.slug, periodo.dataInicio, periodo.dataFim, headers, BASE_URL);
+          console.log(`  🎯 Widget de conversões encontrado: ${conversionsWidget.reference_key}`);
+          const conversionsData = await fetchWidgetValue(googleId, conversionsWidget.reference_key, periodo.dataInicio, periodo.dataFim, headers, BASE_URL);
           if (conversionsData?.value) {
             conversoesGoogle = Number(conversionsData.value) || 0;
             console.log(`  ✅ Conversões: ${conversoesGoogle}`);
@@ -315,11 +334,13 @@ serve(async (req) => {
         }
         
         // Buscar URLs de destino (se disponível)
-        const urlsWidget = widgets.find((w: any) => 
-          w.slug?.includes('final_url') || w.slug?.includes('landing') || w.name?.toLowerCase().includes('url')
-        );
+        const urlsWidget = widgets.find((w: any) => {
+          const refKey = w.reference_key?.toLowerCase() || '';
+          const title = w.references?.title?.toLowerCase() || '';
+          return refKey.includes('final_url') || refKey.includes('landing') || title.includes('url');
+        });
         if (urlsWidget) {
-          const urlsData = await fetchWidgetValue(googleId, urlsWidget.slug, periodo.dataInicio, periodo.dataFim, headers, BASE_URL);
+          const urlsData = await fetchWidgetValue(googleId, urlsWidget.reference_key, periodo.dataInicio, periodo.dataFim, headers, BASE_URL);
           if (urlsData?.breakdown && Array.isArray(urlsData.breakdown)) {
             dadosUrls = urlsData.breakdown
               .map((item: any) => ({
@@ -350,16 +371,21 @@ serve(async (req) => {
         const widgetsData = await widgetsResponse.json();
         const widgets = Array.isArray(widgetsData) ? widgetsData : (widgetsData.data || []);
         console.log(`  📋 Widgets disponíveis: ${widgets.length}`);
+        
+        // Debug: mostrar estrutura completa do primeiro widget
+        if (widgets.length > 0) {
+          console.log(`  🔍 Estrutura do primeiro widget Instagram:`, JSON.stringify(widgets[0], null, 2));
+        }
         console.log(`  📋 Lista de widgets:`, widgets.map((w: any) => ({ slug: w.slug, name: w.name })));
         
         const conversasWidget = widgets.find((w: any) => {
-          const slug = w.slug?.toLowerCase() || '';
-          const name = w.name?.toLowerCase() || '';
-          return slug.includes('messaging') || slug.includes('conversation') || name.includes('conversa') || name.includes('mensagem');
+          const refKey = w.reference_key?.toLowerCase() || '';
+          const title = w.references?.title?.toLowerCase() || '';
+          return refKey.includes('messaging') || refKey.includes('conversation') || title.includes('conversa') || title.includes('mensagem');
         });
         if (conversasWidget) {
-          console.log(`  🎯 Widget de conversas encontrado: ${conversasWidget.slug}`);
-          const conversasData = await fetchWidgetValue(instagramId, conversasWidget.slug, periodo.dataInicio, periodo.dataFim, headers, BASE_URL);
+          console.log(`  🎯 Widget de conversas encontrado: ${conversasWidget.reference_key}`);
+          const conversasData = await fetchWidgetValue(instagramId, conversasWidget.reference_key, periodo.dataInicio, periodo.dataFim, headers, BASE_URL);
           if (conversasData?.value) {
             conversasInstagram = Number(conversasData.value) || 0;
             console.log(`  ✅ Conversas: ${conversasInstagram}`);
@@ -382,16 +408,21 @@ serve(async (req) => {
         const widgetsData = await widgetsResponse.json();
         const widgets = Array.isArray(widgetsData) ? widgetsData : (widgetsData.data || []);
         console.log(`  📋 Widgets disponíveis: ${widgets.length}`);
+        
+        // Debug: mostrar estrutura completa do primeiro widget
+        if (widgets.length > 0) {
+          console.log(`  🔍 Estrutura do primeiro widget RD Station:`, JSON.stringify(widgets[0], null, 2));
+        }
         console.log(`  📋 Lista de widgets:`, widgets.map((w: any) => ({ slug: w.slug, name: w.name })));
         
         const vendedoresWidget = widgets.find((w: any) => {
-          const slug = w.slug?.toLowerCase() || '';
-          const name = w.name?.toLowerCase() || '';
-          return slug.includes('owner') || slug.includes('user') || name.includes('vendedor') || name.includes('responsavel');
+          const refKey = w.reference_key?.toLowerCase() || '';
+          const title = w.references?.title?.toLowerCase() || '';
+          return refKey.includes('owner') || refKey.includes('user') || title.includes('vendedor') || title.includes('responsavel') || title.includes('responsável');
         });
         if (vendedoresWidget) {
-          console.log(`  🎯 Widget de vendedores encontrado: ${vendedoresWidget.slug}`);
-          const vendedoresData = await fetchWidgetValue(rdId, vendedoresWidget.slug, periodo.dataInicio, periodo.dataFim, headers, BASE_URL);
+          console.log(`  🎯 Widget de vendedores encontrado: ${vendedoresWidget.reference_key}`);
+          const vendedoresData = await fetchWidgetValue(rdId, vendedoresWidget.reference_key, periodo.dataInicio, periodo.dataFim, headers, BASE_URL);
           if (vendedoresData?.breakdown && Array.isArray(vendedoresData.breakdown)) {
             dadosVendedores = vendedoresData.breakdown
               .map((item: any) => ({
