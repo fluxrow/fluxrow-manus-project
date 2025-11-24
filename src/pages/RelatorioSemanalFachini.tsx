@@ -10,6 +10,7 @@ import { PlataformasTable } from '@/components/relatorio/PlataformasTable';
 import { URLsTable } from '@/components/relatorio/URLsTable';
 import { ConversasMensagemTable } from '@/components/relatorio/ConversasMensagemTable';
 import { AnaliseComparativa } from '@/components/relatorio/AnaliseComparativa';
+import { LeadsBarChart } from '@/components/relatorio/charts/LeadsBarChart';
 import { relatorioSemanalFachini } from '@/data/relatorioSemanalFachini';
 import { formatCurrency, formatNumber } from '@/utils/formatters';
 import { toast } from 'sonner';
@@ -410,13 +411,25 @@ export default function RelatorioSemanalFachini() {
           </Card>
         </section>
 
+        {/* Leads por Vendedor - Gráfico */}
+        <section className="mb-12">
+          <Card>
+            <CardHeader>
+              <CardTitle>Leads por Vendedor</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <LeadsBarChart data={vendedores} />
+            </CardContent>
+          </Card>
+        </section>
+
         {/* Layout de três colunas: Vendedores, Conversas e Categorias */}
         <section className="mb-12">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            {/* Leads por Vendedor */}
+            {/* Tabela de Vendedores */}
             <Card>
               <CardHeader>
-                <CardTitle>Leads por Vendedor</CardTitle>
+                <CardTitle>Detalhamento por Vendedor</CardTitle>
               </CardHeader>
               <CardContent>
                 <VendedoresTable data={vendedores} />
