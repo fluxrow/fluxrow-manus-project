@@ -436,6 +436,7 @@ serve(async (req) => {
       JSON.stringify({
         success: true,
         relatorio: relatorioSalvo,
+        reportId: relatorioSalvo.id,
         message: `Relatório gerado com sucesso para o período ${periodo.periodo}`
       }),
       {
