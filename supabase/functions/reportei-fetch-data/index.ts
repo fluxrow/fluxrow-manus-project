@@ -36,6 +36,8 @@ const getLastWeek = () => {
 // Função para buscar valor de um widget
 const fetchWidgetValue = async (integrationId: string, widgetSlug: string, dateStart: string, dateEnd: string, headers: any, baseUrl: string) => {
   try {
+    console.log(`    🔄 Buscando valor do widget: ${widgetSlug}`);
+    
     const response = await fetch(
       `${baseUrl}/integrations/${integrationId}/widgets/value`,
       {
@@ -51,13 +53,16 @@ const fetchWidgetValue = async (integrationId: string, widgetSlug: string, dateS
 
     if (response.ok) {
       const data = await response.json();
+      console.log(`    ✅ Valor recebido:`, data.value);
       return data;
     } else {
-      console.log(`⚠️ Widget ${widgetSlug} retornou status ${response.status}`);
+      console.log(`    ⚠️ Widget ${widgetSlug} retornou status ${response.status}`);
+      const errorText = await response.text();
+      console.log(`    ❌ Erro: ${errorText}`);
       return null;
     }
   } catch (error) {
-    console.error(`❌ Erro ao buscar widget ${widgetSlug}:`, error.message);
+    console.error(`    ❌ Erro ao buscar widget ${widgetSlug}:`, error.message);
     return null;
   }
 };
@@ -111,8 +116,16 @@ serve(async (req) => {
     const integrationMap: any = {};
     
     for (const integration of integrations) {
+      console.log(`\n🔍 Analisando integração:`, {
+        id: integration.id,
+        platform: integration.platform,
+        name: integration.name,
+        integration_name: integration.integration_name,
+        source_name: integration.source_name
+      });
+      
       const platform = integration.platform?.toLowerCase() || '';
-      const name = integration.name?.toLowerCase() || '';
+      const name = (integration.name || integration.integration_name || integration.source_name || '').toLowerCase();
       
       if (platform.includes('facebook') || platform.includes('meta') || name.includes('meta') || name.includes('facebook')) {
         integrationMap.meta = integration;
@@ -142,14 +155,19 @@ serve(async (req) => {
       // Buscar widgets disponíveis
       const widgetsResponse = await fetch(`${BASE_URL}/integrations/${metaId}/widgets`, { headers });
       if (widgetsResponse.ok) {
-        const widgets = await widgetsResponse.json();
-        console.log(`  Widgets disponíveis: ${widgets.length || 0}`);
+        const widgetsData = await widgetsResponse.json();
+        const widgets = Array.isArray(widgetsData) ? widgetsData : (widgetsData.data || []);
+        console.log(`  📋 Widgets disponíveis: ${widgets.length}`);
+        console.log(`  📋 Lista de widgets:`, widgets.map((w: any) => ({ slug: w.slug, name: w.name })));
         
         // Buscar leads
-        const leadsWidget = widgets.find((w: any) => 
-          w.slug?.includes('lead') || w.name?.toLowerCase().includes('lead')
-        );
+        const leadsWidget = widgets.find((w: any) => {
+          const slug = w.slug?.toLowerCase() || '';
+          const name = w.name?.toLowerCase() || '';
+          return slug.includes('lead') || slug.includes('form') || name.includes('lead') || name.includes('formulário');
+        });
         if (leadsWidget) {
+          console.log(`  🎯 Widget de leads encontrado: ${leadsWidget.slug}`);
           const leadsData = await fetchWidgetValue(metaId, leadsWidget.slug, periodo.dataInicio, periodo.dataFim, headers, BASE_URL);
           if (leadsData?.value) {
             leadsMeta = Number(leadsData.value) || 0;
@@ -164,30 +182,42 @@ serve(async (req) => {
               }));
             }
           }
+        } else {
+          console.log(`  ⚠️ Widget de leads NÃO encontrado. Widgets disponíveis:`, widgets.map((w: any) => w.slug).join(', '));
         }
         
         // Buscar investimento (spend)
-        const spendWidget = widgets.find((w: any) => 
-          w.slug?.includes('spend') || w.slug?.includes('cost') || w.name?.toLowerCase().includes('gasto')
-        );
+        const spendWidget = widgets.find((w: any) => {
+          const slug = w.slug?.toLowerCase() || '';
+          const name = w.name?.toLowerCase() || '';
+          return slug.includes('spend') || slug.includes('cost') || name.includes('gasto') || name.includes('investimento');
+        });
         if (spendWidget) {
+          console.log(`  🎯 Widget de investimento encontrado: ${spendWidget.slug}`);
           const spendData = await fetchWidgetValue(metaId, spendWidget.slug, periodo.dataInicio, periodo.dataFim, headers, BASE_URL);
           if (spendData?.value) {
             investimentoMeta = Number(spendData.value) || 0;
             console.log(`  ✅ Investimento: R$ ${investimentoMeta}`);
           }
+        } else {
+          console.log(`  ⚠️ Widget de investimento NÃO encontrado`);
         }
         
         // Buscar conversas iniciadas
-        const conversasWidget = widgets.find((w: any) => 
-          w.slug?.includes('messaging') || w.slug?.includes('conversation') || w.name?.toLowerCase().includes('conversa')
-        );
+        const conversasWidget = widgets.find((w: any) => {
+          const slug = w.slug?.toLowerCase() || '';
+          const name = w.name?.toLowerCase() || '';
+          return slug.includes('messaging') || slug.includes('conversation') || name.includes('conversa') || name.includes('mensagem');
+        });
         if (conversasWidget) {
+          console.log(`  🎯 Widget de conversas encontrado: ${conversasWidget.slug}`);
           const conversasData = await fetchWidgetValue(metaId, conversasWidget.slug, periodo.dataInicio, periodo.dataFim, headers, BASE_URL);
           if (conversasData?.value) {
             conversasMeta = Number(conversasData.value) || 0;
             console.log(`  ✅ Conversas: ${conversasMeta}`);
           }
+        } else {
+          console.log(`  ⚠️ Widget de conversas NÃO encontrado`);
         }
       }
     }
@@ -206,55 +236,77 @@ serve(async (req) => {
       
       const widgetsResponse = await fetch(`${BASE_URL}/integrations/${googleId}/widgets`, { headers });
       if (widgetsResponse.ok) {
-        const widgets = await widgetsResponse.json();
-        console.log(`  Widgets disponíveis: ${widgets.length || 0}`);
+        const widgetsData = await widgetsResponse.json();
+        const widgets = Array.isArray(widgetsData) ? widgetsData : (widgetsData.data || []);
+        console.log(`  📋 Widgets disponíveis: ${widgets.length}`);
+        console.log(`  📋 Lista de widgets:`, widgets.map((w: any) => ({ slug: w.slug, name: w.name })));
         
         // Buscar cliques
-        const clicksWidget = widgets.find((w: any) => 
-          w.slug?.includes('click') || w.name?.toLowerCase().includes('clique')
-        );
+        const clicksWidget = widgets.find((w: any) => {
+          const slug = w.slug?.toLowerCase() || '';
+          const name = w.name?.toLowerCase() || '';
+          return slug.includes('click') || name.includes('clique');
+        });
         if (clicksWidget) {
+          console.log(`  🎯 Widget de cliques encontrado: ${clicksWidget.slug}`);
           const clicksData = await fetchWidgetValue(googleId, clicksWidget.slug, periodo.dataInicio, periodo.dataFim, headers, BASE_URL);
           if (clicksData?.value) {
             cliquesGoogle = Number(clicksData.value) || 0;
             console.log(`  ✅ Cliques: ${cliquesGoogle}`);
           }
+        } else {
+          console.log(`  ⚠️ Widget de cliques NÃO encontrado`);
         }
         
         // Buscar investimento
-        const spendWidget = widgets.find((w: any) => 
-          w.slug?.includes('cost') || w.slug?.includes('spend') || w.name?.toLowerCase().includes('gasto')
-        );
+        const spendWidget = widgets.find((w: any) => {
+          const slug = w.slug?.toLowerCase() || '';
+          const name = w.name?.toLowerCase() || '';
+          return slug.includes('cost') || slug.includes('spend') || name.includes('gasto') || name.includes('investimento');
+        });
         if (spendWidget) {
+          console.log(`  🎯 Widget de investimento encontrado: ${spendWidget.slug}`);
           const spendData = await fetchWidgetValue(googleId, spendWidget.slug, periodo.dataInicio, periodo.dataFim, headers, BASE_URL);
           if (spendData?.value) {
             investimentoGoogle = Number(spendData.value) || 0;
             console.log(`  ✅ Investimento: R$ ${investimentoGoogle}`);
           }
+        } else {
+          console.log(`  ⚠️ Widget de investimento NÃO encontrado`);
         }
         
         // Buscar impressões
-        const impressionsWidget = widgets.find((w: any) => 
-          w.slug?.includes('impression') || w.name?.toLowerCase().includes('impressão')
-        );
+        const impressionsWidget = widgets.find((w: any) => {
+          const slug = w.slug?.toLowerCase() || '';
+          const name = w.name?.toLowerCase() || '';
+          return slug.includes('impression') || name.includes('impressão') || name.includes('impressao');
+        });
         if (impressionsWidget) {
+          console.log(`  🎯 Widget de impressões encontrado: ${impressionsWidget.slug}`);
           const impressionsData = await fetchWidgetValue(googleId, impressionsWidget.slug, periodo.dataInicio, periodo.dataFim, headers, BASE_URL);
           if (impressionsData?.value) {
             impressoesGoogle = Number(impressionsData.value) || 0;
             console.log(`  ✅ Impressões: ${impressoesGoogle}`);
           }
+        } else {
+          console.log(`  ⚠️ Widget de impressões NÃO encontrado`);
         }
         
         // Buscar conversões
-        const conversionsWidget = widgets.find((w: any) => 
-          w.slug?.includes('conversion') || w.name?.toLowerCase().includes('conversão')
-        );
+        const conversionsWidget = widgets.find((w: any) => {
+          const slug = w.slug?.toLowerCase() || '';
+          const name = w.name?.toLowerCase() || '';
+          return slug.includes('conversion') || name.includes('conversão') || name.includes('conversao');
+        });
         if (conversionsWidget) {
+          console.log(`  🎯 Widget de conversões encontrado: ${conversionsWidget.slug}`);
           const conversionsData = await fetchWidgetValue(googleId, conversionsWidget.slug, periodo.dataInicio, periodo.dataFim, headers, BASE_URL);
           if (conversionsData?.value) {
             conversoesGoogle = Number(conversionsData.value) || 0;
             console.log(`  ✅ Conversões: ${conversoesGoogle}`);
           }
+        } else {
+          console.log(`  ⚠️ Widget de conversões NÃO encontrado`);
         }
         
         // Calcular CPC
@@ -295,18 +347,25 @@ serve(async (req) => {
       
       const widgetsResponse = await fetch(`${BASE_URL}/integrations/${instagramId}/widgets`, { headers });
       if (widgetsResponse.ok) {
-        const widgets = await widgetsResponse.json();
-        console.log(`  Widgets disponíveis: ${widgets.length || 0}`);
+        const widgetsData = await widgetsResponse.json();
+        const widgets = Array.isArray(widgetsData) ? widgetsData : (widgetsData.data || []);
+        console.log(`  📋 Widgets disponíveis: ${widgets.length}`);
+        console.log(`  📋 Lista de widgets:`, widgets.map((w: any) => ({ slug: w.slug, name: w.name })));
         
-        const conversasWidget = widgets.find((w: any) => 
-          w.slug?.includes('messaging') || w.slug?.includes('conversation') || w.name?.toLowerCase().includes('conversa')
-        );
+        const conversasWidget = widgets.find((w: any) => {
+          const slug = w.slug?.toLowerCase() || '';
+          const name = w.name?.toLowerCase() || '';
+          return slug.includes('messaging') || slug.includes('conversation') || name.includes('conversa') || name.includes('mensagem');
+        });
         if (conversasWidget) {
+          console.log(`  🎯 Widget de conversas encontrado: ${conversasWidget.slug}`);
           const conversasData = await fetchWidgetValue(instagramId, conversasWidget.slug, periodo.dataInicio, periodo.dataFim, headers, BASE_URL);
           if (conversasData?.value) {
             conversasInstagram = Number(conversasData.value) || 0;
             console.log(`  ✅ Conversas: ${conversasInstagram}`);
           }
+        } else {
+          console.log(`  ⚠️ Widget de conversas NÃO encontrado`);
         }
       }
     }
@@ -320,13 +379,18 @@ serve(async (req) => {
       
       const widgetsResponse = await fetch(`${BASE_URL}/integrations/${rdId}/widgets`, { headers });
       if (widgetsResponse.ok) {
-        const widgets = await widgetsResponse.json();
-        console.log(`  Widgets disponíveis: ${widgets.length || 0}`);
+        const widgetsData = await widgetsResponse.json();
+        const widgets = Array.isArray(widgetsData) ? widgetsData : (widgetsData.data || []);
+        console.log(`  📋 Widgets disponíveis: ${widgets.length}`);
+        console.log(`  📋 Lista de widgets:`, widgets.map((w: any) => ({ slug: w.slug, name: w.name })));
         
-        const vendedoresWidget = widgets.find((w: any) => 
-          w.slug?.includes('owner') || w.slug?.includes('user') || w.name?.toLowerCase().includes('vendedor')
-        );
+        const vendedoresWidget = widgets.find((w: any) => {
+          const slug = w.slug?.toLowerCase() || '';
+          const name = w.name?.toLowerCase() || '';
+          return slug.includes('owner') || slug.includes('user') || name.includes('vendedor') || name.includes('responsavel');
+        });
         if (vendedoresWidget) {
+          console.log(`  🎯 Widget de vendedores encontrado: ${vendedoresWidget.slug}`);
           const vendedoresData = await fetchWidgetValue(rdId, vendedoresWidget.slug, periodo.dataInicio, periodo.dataFim, headers, BASE_URL);
           if (vendedoresData?.breakdown && Array.isArray(vendedoresData.breakdown)) {
             dadosVendedores = vendedoresData.breakdown
@@ -337,6 +401,8 @@ serve(async (req) => {
               .sort((a: any, b: any) => b.leads - a.leads);
             console.log(`  ✅ Vendedores: ${dadosVendedores.length}`);
           }
+        } else {
+          console.log(`  ⚠️ Widget de vendedores NÃO encontrado`);
         }
       }
     }
@@ -364,9 +430,28 @@ serve(async (req) => {
       ];
     }
 
+    console.log('\n📊 RESUMO DOS DADOS COLETADOS:');
+    console.log('━'.repeat(50));
+    console.log(`Meta Ads:`);
+    console.log(`  - Leads: ${leadsMeta}`);
+    console.log(`  - Investimento: R$ ${investimentoMeta}`);
+    console.log(`  - Conversas: ${conversasMeta}`);
+    console.log(`\nGoogle Ads:`);
+    console.log(`  - Cliques: ${cliquesGoogle}`);
+    console.log(`  - Investimento: R$ ${investimentoGoogle}`);
+    console.log(`  - Conversões: ${conversoesGoogle}`);
+    console.log(`\nInstagram:`);
+    console.log(`  - Conversas: ${conversasInstagram}`);
+    console.log(`\nRD Station:`);
+    console.log(`  - Vendedores: ${dadosVendedores.length}`);
+    console.log('━'.repeat(50));
     console.log(`💰 Investimento Total: R$ ${investimentoTotal.toFixed(2)}`);
     console.log(`📈 Leads Totais: ${leadsTotais}`);
     console.log(`💵 CPL Médio: R$ ${custoLeadMedio}`);
+    
+    if (leadsTotais === 0 && investimentoTotal === 0) {
+      console.log('⚠️ ATENÇÃO: Nenhum dado foi coletado! Salvando relatório vazio.');
+    }
 
     // 8. ESTRUTURAR DADOS PARA O BANCO
     const relatorioProcessado = {
