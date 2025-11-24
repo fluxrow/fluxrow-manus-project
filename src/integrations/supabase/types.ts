@@ -95,6 +95,66 @@ export type Database = {
         }
         Relationships: []
       }
+      relatorios_semanais: {
+        Row: {
+          conversas_mensagem: Json | null
+          created_at: string
+          custo_lead_medio: number
+          dados_categorias: Json | null
+          dados_google: Json | null
+          dados_instagram: Json | null
+          dados_meta: Json | null
+          dados_urls: Json | null
+          dados_vendedores: Json | null
+          data_fim: string
+          data_inicio: string
+          gerado_automaticamente: boolean
+          id: string
+          investimento_total: number
+          leads_totais: number
+          periodo: string
+          updated_at: string
+        }
+        Insert: {
+          conversas_mensagem?: Json | null
+          created_at?: string
+          custo_lead_medio: number
+          dados_categorias?: Json | null
+          dados_google?: Json | null
+          dados_instagram?: Json | null
+          dados_meta?: Json | null
+          dados_urls?: Json | null
+          dados_vendedores?: Json | null
+          data_fim: string
+          data_inicio: string
+          gerado_automaticamente?: boolean
+          id?: string
+          investimento_total: number
+          leads_totais: number
+          periodo: string
+          updated_at?: string
+        }
+        Update: {
+          conversas_mensagem?: Json | null
+          created_at?: string
+          custo_lead_medio?: number
+          dados_categorias?: Json | null
+          dados_google?: Json | null
+          dados_instagram?: Json | null
+          dados_meta?: Json | null
+          dados_urls?: Json | null
+          dados_vendedores?: Json | null
+          data_fim?: string
+          data_inicio?: string
+          gerado_automaticamente?: boolean
+          id?: string
+          investimento_total?: number
+          leads_totais?: number
+          periodo?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
