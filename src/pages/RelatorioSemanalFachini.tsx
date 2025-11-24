@@ -11,6 +11,9 @@ import { URLsTable } from '@/components/relatorio/URLsTable';
 import { ConversasMensagemTable } from '@/components/relatorio/ConversasMensagemTable';
 import { AnaliseComparativa } from '@/components/relatorio/AnaliseComparativa';
 import { LeadsBarChart } from '@/components/relatorio/charts/LeadsBarChart';
+import { RDStationTable } from '@/components/relatorio/RDStationTable';
+import { AnalyticsTable } from '@/components/relatorio/AnalyticsTable';
+import { AssetGroupChart } from '@/components/relatorio/charts/AssetGroupChart';
 import { relatorioSemanalFachini } from '@/data/relatorioSemanalFachini';
 import { formatCurrency, formatNumber } from '@/utils/formatters';
 import { toast } from 'sonner';
@@ -53,11 +56,15 @@ export default function RelatorioSemanalFachini() {
                 custo_lead_medio: data.custo_lead_medio
               },
               google: (data.dados_google as any) || relatorioSemanalFachini.google,
+              meta: (data.dados_meta as any) || relatorioSemanalFachini.instagram,
               instagram: (data.dados_instagram as any) || relatorioSemanalFachini.instagram,
               conversas_mensagem: (data.conversas_mensagem as any) || relatorioSemanalFachini.conversas_mensagem,
               vendedores: (data.dados_vendedores as any) || relatorioSemanalFachini.vendedores,
               categorias: (data.dados_categorias as any) || relatorioSemanalFachini.categorias,
-              urls: (data.dados_urls as any) || relatorioSemanalFachini.urls
+              urls: (data.dados_urls as any) || relatorioSemanalFachini.urls,
+              rd_station: (data.dados_rd_station as any) || null,
+              asset_groups: (data.dados_asset_groups as any) || null,
+              analytics: (data.dados_analytics as any) || null
             });
             setIsDadosReais(true);
             setDataGeracao(data.created_at);
@@ -102,11 +109,15 @@ export default function RelatorioSemanalFachini() {
                 custo_lead_medio: data.custo_lead_medio
               },
               google: (data.dados_google as any) || relatorioSemanalFachini.google,
+              meta: (data.dados_meta as any) || relatorioSemanalFachini.instagram,
               instagram: (data.dados_instagram as any) || relatorioSemanalFachini.instagram,
               conversas_mensagem: (data.conversas_mensagem as any) || relatorioSemanalFachini.conversas_mensagem,
               vendedores: (data.dados_vendedores as any) || relatorioSemanalFachini.vendedores,
               categorias: (data.dados_categorias as any) || relatorioSemanalFachini.categorias,
-              urls: (data.dados_urls as any) || relatorioSemanalFachini.urls
+              urls: (data.dados_urls as any) || relatorioSemanalFachini.urls,
+              rd_station: (data.dados_rd_station as any) || null,
+              asset_groups: (data.dados_asset_groups as any) || null,
+              analytics: (data.dados_analytics as any) || null
             });
             setIsDadosReais(true);
             setDataGeracao(data.created_at);
@@ -225,7 +236,7 @@ export default function RelatorioSemanalFachini() {
     }
   };
 
-  const { periodo, kpis, google, instagram, vendedores, categorias, urls, conversas_mensagem } = dadosRelatorio;
+  const { periodo, kpis, google, meta, instagram, vendedores, categorias, urls, conversas_mensagem, rd_station, asset_groups, analytics } = dadosRelatorio;
 
   if (loading) {
     return (
@@ -406,7 +417,7 @@ export default function RelatorioSemanalFachini() {
               <CardTitle>Resumo por Plataforma</CardTitle>
             </CardHeader>
             <CardContent>
-              <PlataformasTable google={google} instagram={instagram} />
+              <PlataformasTable google={google} meta={meta} />
             </CardContent>
           </Card>
         </section>
@@ -472,6 +483,36 @@ export default function RelatorioSemanalFachini() {
             </CardContent>
           </Card>
         </section>
+
+        {/* RD Station CRM */}
+        {rd_station && (
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold mb-6">Resultados Comerciais - RD Station</h2>
+            <RDStationTable data={rd_station} />
+          </section>
+        )}
+
+        {/* Google Asset Groups */}
+        {asset_groups && asset_groups.length > 0 && (
+          <section className="mb-12">
+            <Card>
+              <CardHeader>
+                <CardTitle>Performance por Grupo de Recursos - Google Performance Max</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <AssetGroupChart data={asset_groups} />
+              </CardContent>
+            </Card>
+          </section>
+        )}
+
+        {/* Google Analytics */}
+        {analytics && (
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold mb-6">Comportamento do Usuário - Google Analytics 4</h2>
+            <AnalyticsTable data={analytics} />
+          </section>
+        )}
 
         {/* Análise Comparativa */}
         <AnaliseComparativa 
