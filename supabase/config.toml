@@ -11,3 +11,6 @@ verify_jwt = false
 
 [functions.reportei-test]
 verify_jwt = false
+
+[functions.reportei-fetch-data]
+verify_jwt = false
