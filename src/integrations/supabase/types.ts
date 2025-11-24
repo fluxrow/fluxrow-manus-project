@@ -100,10 +100,13 @@ export type Database = {
           conversas_mensagem: Json | null
           created_at: string
           custo_lead_medio: number
+          dados_analytics: Json | null
+          dados_asset_groups: Json | null
           dados_categorias: Json | null
           dados_google: Json | null
           dados_instagram: Json | null
           dados_meta: Json | null
+          dados_rd_station: Json | null
           dados_urls: Json | null
           dados_vendedores: Json | null
           data_fim: string
@@ -119,10 +122,13 @@ export type Database = {
           conversas_mensagem?: Json | null
           created_at?: string
           custo_lead_medio: number
+          dados_analytics?: Json | null
+          dados_asset_groups?: Json | null
           dados_categorias?: Json | null
           dados_google?: Json | null
           dados_instagram?: Json | null
           dados_meta?: Json | null
+          dados_rd_station?: Json | null
           dados_urls?: Json | null
           dados_vendedores?: Json | null
           data_fim: string
@@ -138,10 +144,13 @@ export type Database = {
           conversas_mensagem?: Json | null
           created_at?: string
           custo_lead_medio?: number
+          dados_analytics?: Json | null
+          dados_asset_groups?: Json | null
           dados_categorias?: Json | null
           dados_google?: Json | null
           dados_instagram?: Json | null
           dados_meta?: Json | null
+          dados_rd_station?: Json | null
           dados_urls?: Json | null
           dados_vendedores?: Json | null
           data_fim?: string
