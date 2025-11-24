@@ -82,7 +82,7 @@ serve(async (req) => {
     // 3. Buscar integrações do cliente
     console.log(`\n3️⃣ Testando GET /api/v1/clients/${CLIENT_ID}/integrations`);
     try {
-      const integrationsResponse = await fetch(`${BASE_URL}/clients/${CLIENT_ID}/integrations`, { headers });
+    const integrationsResponse = await fetch(`${BASE_URL}/clients/${CLIENT_ID}/integrations`, { headers });
       const integrationsStatus = integrationsResponse.status;
       console.log(`Status: ${integrationsStatus}`);
       
@@ -92,10 +92,11 @@ serve(async (req) => {
         console.log('✅ Integrações encontradas:', integrationsData);
 
         // 4. Para cada integração, buscar widgets disponíveis
-        if (Array.isArray(integrationsData)) {
-          for (const integration of integrationsData) {
+        const integrationsList = integrationsData.data || integrationsData;
+        if (Array.isArray(integrationsList)) {
+          for (const integration of integrationsList) {
             const integrationId = integration.id;
-            const integrationName = integration.name || integration.platform || integrationId;
+            const integrationName = integration.integration_name || integration.source_name || integrationId;
             
             console.log(`\n4️⃣ Buscando widgets da integração: ${integrationName} (ID: ${integrationId})`);
             
@@ -188,7 +189,7 @@ serve(async (req) => {
 
     console.log('\n📊 RESUMO DO TESTE:');
     console.log(`Token válido: ${results.token_valido ? '✅' : '❌'}`);
-    console.log(`Integrações encontradas: ${results.integracoes.length || 0}`);
+    console.log(`Integrações encontradas: ${results.integracoes.data?.length || 0}`);
     console.log(`Widgets mapeados: ${Object.keys(results.widgets_por_integracao).length}`);
     console.log(`Exemplos de valores: ${Object.keys(results.exemplo_valores).length}`);
     console.log(`Erros encontrados: ${results.erros.length}`);
