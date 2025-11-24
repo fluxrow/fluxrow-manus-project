@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
-import { ArrowLeft, Download, Share2, TrendingUp, Users, DollarSign } from 'lucide-react';
+import { ArrowLeft, Download, Share2, TrendingUp, Users, DollarSign, AlertCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 import { CategoriasTable } from '@/components/relatorio/CategoriasTable';
 import { VendedoresTable } from '@/components/relatorio/VendedoresTable';
 import { PlataformasTable } from '@/components/relatorio/PlataformasTable';
@@ -22,6 +24,9 @@ export default function RelatorioSemanalFachini() {
   const [dadosRelatorio, setDadosRelatorio] = useState(relatorioSemanalFachini);
   const [isDadosReais, setIsDadosReais] = useState(false);
   const [dataGeracao, setDataGeracao] = useState<string | null>(null);
+  const [gerando, setGerando] = useState(false);
+  const [dataInicio, setDataInicio] = useState('2025-11-17');
+  const [dataFim, setDataFim] = useState('2025-11-23');
 
   useEffect(() => {
     const loadRelatorio = async () => {
@@ -166,6 +171,42 @@ export default function RelatorioSemanalFachini() {
     }
   };
 
+  const handleGerarRelatorio = async () => {
+    if (!dataInicio || !dataFim) {
+      toast.error('Por favor, preencha as datas de início e fim');
+      return;
+    }
+
+    setGerando(true);
+    
+    try {
+      const { data, error } = await supabase.functions.invoke('reportei-fetch-data', {
+        body: { 
+          data_inicio: dataInicio, 
+          data_fim: dataFim,
+          auto: false
+        }
+      });
+
+      if (error) throw error;
+
+      if (data?.success && data?.relatorio?.id) {
+        toast.success('Relatório gerado com sucesso!');
+        
+        // Redirecionar para o relatório gerado
+        window.location.href = `/relatorio/fachini-semanal?id=${data.relatorio.id}`;
+      } else {
+        throw new Error('Resposta inválida do servidor');
+      }
+      
+    } catch (error) {
+      console.error('Erro ao gerar relatório:', error);
+      toast.error('Erro ao gerar relatório. Verifique as datas e tente novamente.');
+    } finally {
+      setGerando(false);
+    }
+  };
+
   const { periodo, kpis, google, instagram, vendedores, categorias, urls, conversas_mensagem } = dadosRelatorio;
 
   if (loading) {
@@ -246,6 +287,64 @@ export default function RelatorioSemanalFachini() {
             )}
           </div>
         </section>
+
+        {/* Seção de Geração de Relatório (só aparece com dados de exemplo) */}
+        {!isDadosReais && (
+          <section className="mb-12">
+            <Card className="border-orange-500/50 bg-orange-500/5">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <AlertCircle className="h-5 w-5 text-orange-600" />
+                  Gerar Relatório com Dados Reais
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground mb-6">
+                  Este relatório está usando dados de exemplo. Gere um relatório com dados reais da API Reportei:
+                </p>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="data-inicio">Data Início</Label>
+                    <Input
+                      id="data-inicio"
+                      type="date"
+                      value={dataInicio}
+                      onChange={(e) => setDataInicio(e.target.value)}
+                      disabled={gerando}
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="data-fim">Data Fim</Label>
+                    <Input
+                      id="data-fim"
+                      type="date"
+                      value={dataFim}
+                      onChange={(e) => setDataFim(e.target.value)}
+                      disabled={gerando}
+                    />
+                  </div>
+                </div>
+                
+                <Button 
+                  onClick={handleGerarRelatorio}
+                  disabled={gerando}
+                  className="w-full md:w-auto"
+                  size="lg"
+                >
+                  {gerando ? (
+                    <>
+                      <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                      Gerando Relatório...
+                    </>
+                  ) : (
+                    'Gerar Relatório Real'
+                  )}
+                </Button>
+              </CardContent>
+            </Card>
+          </section>
+        )}
 
         {/* KPIs Principais */}
         <section className="mb-12">
