@@ -110,5 +110,29 @@ export const relatorioSemanalFachini = {
   
   rd_station: null as any,
   asset_groups: null as any,
-  analytics: null as any
+  analytics: null as any,
+  
+  plano_de_acao: {
+    meta: [
+      "🎯 Conversas Instagram cresceram 3733% (3 → 115). Aumentar budget em IG mantendo criativos atuais e expandir públicos similares.",
+      "Facebook mantém volume alto (101 conversas). Testar novos formatos de criativos (vídeos curtos, carrossel de produtos) para melhorar engajamento.",
+      "Custo/lead de R$ 5,89 está competitivo. Testar campanhas de remarketing para leads que não converteram nas últimas semanas.",
+      "Criar campanhas específicas para cada categoria (Perfiladeiras, Dobradeira, Laser) com criativos personalizados e públicos segmentados.",
+      "Implementar testes A/B de copy nos anúncios focando em benefícios técnicos e diferenciais competitivos."
+    ],
+    google: [
+      "URL 'maquinas.fachinimaquinas.com.br' gerou 641 cliques com CPC de R$ 0,21 - excelente performance. Replicar estrutura para outras campanhas.",
+      "Dobradeira CN com CTR de 10,02% e 13 conversões - aumentar budget em +30% mantendo mesma estrutura.",
+      "Campanhas Search com bom CTR mas baixa conversão - otimizar landing pages e reduzir atrito nos formulários.",
+      "Testar Google Performance Max com todas as categorias de produtos, usando assets de alta qualidade e audience signals baseados em conversores anteriores.",
+      "Negativar termos informativos que geram cliques sem conversão e focar budget em termos comerciais com intenção de compra."
+    ],
+    rd: [
+      "🏆 Ruan lidera com 52 leads - compartilhar metodologia de abordagem com time através de playbook e treinamento.",
+      "Implementar SLA de 15min para primeiro contato em leads quentes e cadência automatizada D+1/D+3/D+7 via RD Station.",
+      "Criar automações de nutrição específicas por categoria de produto (Perfiladeiras, Dobradeiras, Laser) com conteúdo educativo.",
+      "Configurar lead scoring para priorizar leads mais qualificados e melhorar taxa de conversão do funil comercial.",
+      "Integrar WhatsApp Business API com RD Station para resposta automática e distribuição inteligente de leads entre vendedores."
+    ]
+  }
 };
