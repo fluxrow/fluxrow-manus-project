@@ -9,7 +9,6 @@ import { VendedoresTable } from '@/components/relatorio/VendedoresTable';
 import { PlataformasTable } from '@/components/relatorio/PlataformasTable';
 import { URLsTable } from '@/components/relatorio/URLsTable';
 import { ConversasMensagemTable } from '@/components/relatorio/ConversasMensagemTable';
-import { AnaliseComparativa } from '@/components/relatorio/AnaliseComparativa';
 import { LeadsBarChart } from '@/components/relatorio/charts/LeadsBarChart';
 import { RDStationTable } from '@/components/relatorio/RDStationTable';
 import { AnalyticsTable } from '@/components/relatorio/AnalyticsTable';
@@ -513,30 +512,6 @@ export default function RelatorioSemanalFachini() {
             <AnalyticsTable data={analytics} />
           </section>
         )}
-
-        {/* Análise Comparativa */}
-        <AnaliseComparativa 
-          semanaAtual={{
-            periodo: periodo,
-            investimento_total: kpis.investimento_total,
-            leads_totais: kpis.leads_totais,
-            custo_lead_medio: kpis.custo_lead_medio,
-            google_cpc: google.custo_clique,
-            meta_cpl: instagram.custo_lead,
-            conversas_instagram: instagram.conversas,
-            conversas_facebook: conversas_mensagem.facebook
-          }}
-          semanaAnterior={{
-            periodo: "21/10 a 26/10/2025",
-            investimento_total: 1625.88,
-            leads_totais: 295,
-            custo_lead_medio: 5.51,
-            google_cpc: 2.06,
-            meta_cpl: 6.77,
-            conversas_instagram: 3,
-            conversas_facebook: 66
-          }}
-        />
 
         {/* Footer CTA */}
         <section className="text-center py-12 print:hidden">
