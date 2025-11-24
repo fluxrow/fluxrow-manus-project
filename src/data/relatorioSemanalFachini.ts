@@ -14,6 +14,20 @@ export const relatorioSemanalFachini = {
     leads: 51
   },
   
+  meta: {
+    investimento: 1307.23,
+    leads: 222,
+    custo_lead: 5.89,
+    conversas: 163,
+    impressoes: 0,
+    alcance: 0,
+    cliques: 0,
+    cpm: 0,
+    cpc: 0,
+    frequencia: 0,
+    ctr: "0%"
+  },
+  
   instagram: {
     conversas: 62,
     investimento: 1307.23,
@@ -92,5 +106,9 @@ export const relatorioSemanalFachini = {
       ctr: "6,44%",
       cpc: 0.51
     }
-  ]
+  ],
+  
+  rd_station: null as any,
+  asset_groups: null as any,
+  analytics: null as any
 };

@@ -7,14 +7,14 @@ interface PlataformasTableProps {
     leads: number;
     custo_clique: number;
   };
-  instagram: {
+  meta: {
     investimento: number;
     leads: number;
     custo_lead: number;
   };
 }
 
-export const PlataformasTable = ({ google, instagram }: PlataformasTableProps) => {
+export const PlataformasTable = ({ google, meta }: PlataformasTableProps) => {
   const custoLeadGoogle = google.investimento / google.leads;
   
   return (
@@ -37,9 +37,9 @@ export const PlataformasTable = ({ google, instagram }: PlataformasTableProps) =
           </TableRow>
           <TableRow>
             <TableCell className="font-medium">META</TableCell>
-            <TableCell className="text-right">{formatCurrency(instagram.investimento)}</TableCell>
-            <TableCell className="text-right">{formatNumber(instagram.leads)}</TableCell>
-            <TableCell className="text-right">{formatCurrency(instagram.custo_lead)}</TableCell>
+            <TableCell className="text-right">{formatCurrency(meta.investimento)}</TableCell>
+            <TableCell className="text-right">{formatNumber(meta.leads)}</TableCell>
+            <TableCell className="text-right">{formatCurrency(meta.custo_lead)}</TableCell>
           </TableRow>
         </TableBody>
       </Table>
