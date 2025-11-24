@@ -10,6 +10,7 @@ import { PlataformasTable } from '@/components/relatorio/PlataformasTable';
 import { URLsTable } from '@/components/relatorio/URLsTable';
 import { ConversasMensagemTable } from '@/components/relatorio/ConversasMensagemTable';
 import { LeadsBarChart } from '@/components/relatorio/charts/LeadsBarChart';
+import { RelatorioPlanoAcao } from '@/components/relatorio/RelatorioPlanoAcao';
 import { RDStationTable } from '@/components/relatorio/RDStationTable';
 import { AnalyticsTable } from '@/components/relatorio/AnalyticsTable';
 import { AssetGroupChart } from '@/components/relatorio/charts/AssetGroupChart';
@@ -63,7 +64,8 @@ export default function RelatorioSemanalFachini() {
               urls: (data.dados_urls as any) || relatorioSemanalFachini.urls,
               rd_station: (data.dados_rd_station as any) || null,
               asset_groups: (data.dados_asset_groups as any) || null,
-              analytics: (data.dados_analytics as any) || null
+              analytics: (data.dados_analytics as any) || null,
+              plano_de_acao: relatorioSemanalFachini.plano_de_acao
             });
             setIsDadosReais(true);
             setDataGeracao(data.created_at);
@@ -116,7 +118,8 @@ export default function RelatorioSemanalFachini() {
               urls: (data.dados_urls as any) || relatorioSemanalFachini.urls,
               rd_station: (data.dados_rd_station as any) || null,
               asset_groups: (data.dados_asset_groups as any) || null,
-              analytics: (data.dados_analytics as any) || null
+              analytics: (data.dados_analytics as any) || null,
+              plano_de_acao: relatorioSemanalFachini.plano_de_acao
             });
             setIsDadosReais(true);
             setDataGeracao(data.created_at);
@@ -235,7 +238,7 @@ export default function RelatorioSemanalFachini() {
     }
   };
 
-  const { periodo, kpis, google, meta, instagram, vendedores, categorias, urls, conversas_mensagem, rd_station, asset_groups, analytics } = dadosRelatorio;
+  const { periodo, kpis, google, meta, instagram, vendedores, categorias, urls, conversas_mensagem, rd_station, asset_groups, analytics, plano_de_acao } = dadosRelatorio;
 
   if (loading) {
     return (
@@ -511,6 +514,11 @@ export default function RelatorioSemanalFachini() {
             <h2 className="text-2xl font-bold mb-6">Comportamento do Usuário - Google Analytics 4</h2>
             <AnalyticsTable data={analytics} />
           </section>
+        )}
+
+        {/* Plano de Ação */}
+        {plano_de_acao && (
+          <RelatorioPlanoAcao plano={plano_de_acao} />
         )}
 
         {/* Footer CTA */}
