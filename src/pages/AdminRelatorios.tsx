@@ -3,9 +3,11 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
-import { Loader2, FileText, Download, Plus, Calendar, TrendingUp, DollarSign, Users } from "lucide-react";
+import { Loader2, FileText, Plus, Calendar, TrendingUp, DollarSign, Users } from "lucide-react";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 interface Relatorio {
   id: string;
@@ -23,6 +25,8 @@ const AdminRelatorios = () => {
   const [loading, setLoading] = useState(true);
   const [generating, setGenerating] = useState(false);
   const [relatorios, setRelatorios] = useState<Relatorio[]>([]);
+  const [dataInicio, setDataInicio] = useState("");
+  const [dataFim, setDataFim] = useState("");
   const { toast } = useToast();
 
   const loadRelatorios = async () => {
@@ -53,8 +57,16 @@ const AdminRelatorios = () => {
     try {
       console.log("🚀 Gerando relatório manual...");
       
+      // Preparar body com período customizado se fornecido
+      const requestBody: any = { auto: false };
+      if (dataInicio && dataFim) {
+        requestBody.data_inicio = dataInicio;
+        requestBody.data_fim = dataFim;
+        console.log(`📅 Período customizado: ${dataInicio} a ${dataFim}`);
+      }
+      
       const { data, error } = await supabase.functions.invoke("reportei-fetch-data", {
-        body: { auto: false }
+        body: requestBody
       });
 
       if (error) {
@@ -64,13 +76,25 @@ const AdminRelatorios = () => {
 
       console.log("✅ Relatório gerado:", data);
       
-      toast({
-        title: "✅ Relatório gerado!",
-        description: `Período: ${data.relatorio.periodo}`,
-      });
-
-      // Recarregar lista
-      await loadRelatorios();
+      if (data.success) {
+        toast({
+          title: "✅ Relatório gerado!",
+          description: `Período: ${data.relatorio.periodo} | Leads: ${data.relatorio.leads_totais}`,
+        });
+        
+        // Limpar campos de data
+        setDataInicio("");
+        setDataFim("");
+        
+        // Recarregar lista
+        await loadRelatorios();
+      } else {
+        toast({
+          title: "⚠️ Atenção",
+          description: data.message || "Erro ao gerar relatório",
+          variant: "destructive",
+        });
+      }
     } catch (error) {
       console.error("💥 Erro ao gerar relatório:", error);
       toast({
@@ -89,6 +113,10 @@ const AdminRelatorios = () => {
 
   useEffect(() => {
     loadRelatorios();
+    
+    // Definir datas padrão: 17/11/2025 a 23/11/2025
+    setDataInicio("2025-11-17");
+    setDataFim("2025-11-23");
 
     // Configurar realtime para atualizar automaticamente quando novo relatório for gerado
     const channel = supabase
@@ -135,26 +163,72 @@ const AdminRelatorios = () => {
               Geração automática toda segunda-feira às 8h (Brasília)
             </p>
           </div>
-          
-          <Button 
-            onClick={handleGerarRelatorio} 
-            disabled={generating}
-            size="lg"
-            className="gap-2"
-          >
-            {generating ? (
-              <>
-                <Loader2 className="h-4 w-4 animate-spin" />
-                Gerando...
-              </>
-            ) : (
-              <>
-                <Plus className="h-4 w-4" />
-                Gerar Relatório Manual
-              </>
-            )}
-          </Button>
         </div>
+
+        {/* Formulário de Geração */}
+        <Card className="p-6">
+          <div className="space-y-4">
+            <div>
+              <h2 className="text-xl font-bold mb-4">Gerar Novo Relatório</h2>
+              <p className="text-sm text-muted-foreground mb-4">
+                Deixe as datas em branco para gerar o relatório da semana anterior (seg-dom)
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="dataInicio">Data Início</Label>
+                <Input
+                  id="dataInicio"
+                  type="date"
+                  value={dataInicio}
+                  onChange={(e) => setDataInicio(e.target.value)}
+                  disabled={generating}
+                />
+              </div>
+              
+              <div className="space-y-2">
+                <Label htmlFor="dataFim">Data Fim</Label>
+                <Input
+                  id="dataFim"
+                  type="date"
+                  value={dataFim}
+                  onChange={(e) => setDataFim(e.target.value)}
+                  disabled={generating}
+                />
+              </div>
+              
+              <div className="flex items-end">
+                <Button 
+                  onClick={handleGerarRelatorio} 
+                  disabled={generating || (!!dataInicio && !dataFim) || (!dataInicio && !!dataFim)}
+                  className="w-full gap-2"
+                >
+                  {generating ? (
+                    <>
+                      <Loader2 className="h-4 w-4 animate-spin" />
+                      Gerando...
+                    </>
+                  ) : (
+                    <>
+                      <Plus className="h-4 w-4" />
+                      Gerar Relatório
+                    </>
+                  )}
+                </Button>
+              </div>
+            </div>
+            
+            {(dataInicio || dataFim) && (
+              <p className="text-xs text-muted-foreground">
+                {dataInicio && dataFim 
+                  ? `Será gerado relatório para o período de ${format(new Date(dataInicio), "dd/MM/yyyy", { locale: ptBR })} a ${format(new Date(dataFim), "dd/MM/yyyy", { locale: ptBR })}`
+                  : "Preencha ambas as datas para período customizado"
+                }
+              </p>
+            )}
+          </div>
+        </Card>
 
         {/* Stats Cards */}
         {relatorios.length > 0 && (
