@@ -103,8 +103,9 @@ serve(async (req) => {
       throw new Error(`Erro ao buscar integrações: ${integrationsResponse.status}`);
     }
 
-    const integrations = await integrationsResponse.json();
-    console.log(`✅ ${integrations.length || 0} integrações encontradas`);
+    const integrationsData = await integrationsResponse.json();
+    const integrations = integrationsData.data || [];
+    console.log(`✅ ${integrations.length} integrações encontradas`);
 
     // 2. MAPEAR INTEGRAÇÕES POR PLATAFORMA
     const integrationMap: any = {};
