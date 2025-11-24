@@ -56,7 +56,7 @@ export default function RelatorioSemanalFachini() {
                 custo_lead_medio: data.custo_lead_medio
               },
               google: (data.dados_google as any) || relatorioSemanalFachini.google,
-              meta: (data.dados_meta as any) || relatorioSemanalFachini.instagram,
+              meta: (data.dados_meta as any) || relatorioSemanalFachini.meta,
               instagram: (data.dados_instagram as any) || relatorioSemanalFachini.instagram,
               conversas_mensagem: (data.conversas_mensagem as any) || relatorioSemanalFachini.conversas_mensagem,
               vendedores: (data.dados_vendedores as any) || relatorioSemanalFachini.vendedores,
@@ -109,7 +109,7 @@ export default function RelatorioSemanalFachini() {
                 custo_lead_medio: data.custo_lead_medio
               },
               google: (data.dados_google as any) || relatorioSemanalFachini.google,
-              meta: (data.dados_meta as any) || relatorioSemanalFachini.instagram,
+              meta: (data.dados_meta as any) || relatorioSemanalFachini.meta,
               instagram: (data.dados_instagram as any) || relatorioSemanalFachini.instagram,
               conversas_mensagem: (data.conversas_mensagem as any) || relatorioSemanalFachini.conversas_mensagem,
               vendedores: (data.dados_vendedores as any) || relatorioSemanalFachini.vendedores,
