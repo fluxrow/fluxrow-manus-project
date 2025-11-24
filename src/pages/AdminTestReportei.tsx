@@ -77,7 +77,7 @@ const AdminTestReportei = () => {
             {/* Status Geral */}
             <Card className="p-6">
               <h2 className="text-2xl font-bold mb-4">📊 Status Geral</h2>
-              <div className="grid grid-cols-3 gap-4">
+              <div className="grid grid-cols-4 gap-4">
                 <div className="space-y-1">
                   <p className="text-sm text-muted-foreground">Token</p>
                   <p className="text-2xl font-bold">
@@ -85,63 +85,148 @@ const AdminTestReportei = () => {
                   </p>
                 </div>
                 <div className="space-y-1">
-                  <p className="text-sm text-muted-foreground">Endpoints Testados</p>
+                  <p className="text-sm text-muted-foreground">Integrações</p>
                   <p className="text-2xl font-bold">
-                    {Object.keys(results.endpoints_testados).length}
+                    {results.integracoes?.length || 0}
+                  </p>
+                </div>
+                <div className="space-y-1">
+                  <p className="text-sm text-muted-foreground">Widgets Mapeados</p>
+                  <p className="text-2xl font-bold">
+                    {Object.keys(results.widgets_por_integracao || {}).length}
                   </p>
                 </div>
                 <div className="space-y-1">
                   <p className="text-sm text-muted-foreground">Erros</p>
                   <p className="text-2xl font-bold text-destructive">
-                    {results.erros.length}
+                    {results.erros?.length || 0}
                   </p>
                 </div>
               </div>
             </Card>
 
-            {/* Endpoints Testados */}
-            <Card className="p-6">
-              <h2 className="text-2xl font-bold mb-4">🔗 Endpoints Testados</h2>
-              <div className="space-y-4">
-                {Object.entries(results.endpoints_testados).map(([endpoint, data]: [string, any]) => (
-                  <div key={endpoint} className="border rounded-lg p-4 space-y-2">
-                    <div className="flex items-center justify-between">
-                      <code className="text-sm font-mono bg-muted px-2 py-1 rounded">
-                        {endpoint}
-                      </code>
-                      <div className="flex items-center gap-2">
-                        <span className={`px-2 py-1 rounded text-xs font-medium ${
-                          data.sucesso 
-                            ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-100' 
-                            : 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-100'
-                        }`}>
-                          Status {data.status}
+            {/* Account Info */}
+            {results.account_info && (
+              <Card className="p-6">
+                <h2 className="text-2xl font-bold mb-4">👤 Informações da Conta</h2>
+                <pre className="p-4 bg-muted rounded overflow-x-auto text-xs">
+                  {JSON.stringify(results.account_info, null, 2)}
+                </pre>
+              </Card>
+            )}
+
+            {/* Client Info */}
+            {results.client_info && (
+              <Card className="p-6">
+                <h2 className="text-2xl font-bold mb-4">🏢 Informações do Cliente</h2>
+                <pre className="p-4 bg-muted rounded overflow-x-auto text-xs">
+                  {JSON.stringify(results.client_info, null, 2)}
+                </pre>
+              </Card>
+            )}
+
+            {/* Integrações */}
+            {results.integracoes && results.integracoes.length > 0 && (
+              <Card className="p-6">
+                <h2 className="text-2xl font-bold mb-4">🔗 Integrações Encontradas</h2>
+                <div className="space-y-4">
+                  {results.integracoes.map((integration: any, idx: number) => (
+                    <div key={idx} className="border rounded-lg p-4 space-y-2">
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <h3 className="font-bold text-lg">
+                            {integration.name || integration.platform || `Integração ${idx + 1}`}
+                          </h3>
+                          <code className="text-xs text-muted-foreground">
+                            ID: {integration.id}
+                          </code>
+                        </div>
+                        <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium">
+                          {integration.platform || 'N/A'}
                         </span>
-                        {data.sucesso ? "✅" : "❌"}
+                      </div>
+                      
+                      <details className="text-sm">
+                        <summary className="cursor-pointer text-muted-foreground hover:text-foreground">
+                          Ver detalhes completos
+                        </summary>
+                        <pre className="mt-2 p-3 bg-muted rounded overflow-x-auto text-xs">
+                          {JSON.stringify(integration, null, 2)}
+                        </pre>
+                      </details>
+                    </div>
+                  ))}
+                </div>
+              </Card>
+            )}
+
+            {/* Widgets por Integração */}
+            {Object.keys(results.widgets_por_integracao || {}).length > 0 && (
+              <Card className="p-6">
+                <h2 className="text-2xl font-bold mb-4">📊 Widgets Disponíveis por Integração</h2>
+                <div className="space-y-6">
+                  {Object.entries(results.widgets_por_integracao).map(([integrationName, data]: [string, any]) => (
+                    <div key={integrationName} className="border rounded-lg p-4 space-y-3">
+                      <div className="flex items-center justify-between">
+                        <h3 className="font-bold text-lg">{integrationName}</h3>
+                        <code className="text-xs text-muted-foreground">
+                          ID: {data.integration_id}
+                        </code>
+                      </div>
+                      
+                      <div className="space-y-2">
+                        <p className="text-sm text-muted-foreground">
+                          Total de widgets: {Array.isArray(data.widgets) ? data.widgets.length : 'N/A'}
+                        </p>
+                        
+                        <details className="text-sm">
+                          <summary className="cursor-pointer text-muted-foreground hover:text-foreground">
+                            Ver lista completa de widgets
+                          </summary>
+                          <pre className="mt-2 p-3 bg-muted rounded overflow-x-auto text-xs max-h-64">
+                            {JSON.stringify(data.widgets, null, 2)}
+                          </pre>
+                        </details>
                       </div>
                     </div>
-                    
-                    {data.periodo && (
-                      <p className="text-sm text-muted-foreground">
-                        Período: {data.periodo}
-                      </p>
-                    )}
-                    
-                    <details className="text-sm">
-                      <summary className="cursor-pointer text-muted-foreground hover:text-foreground">
-                        Ver resposta completa
-                      </summary>
-                      <pre className="mt-2 p-3 bg-muted rounded overflow-x-auto text-xs">
-                        {JSON.stringify(data.data || data.erro, null, 2)}
-                      </pre>
-                    </details>
-                  </div>
-                ))}
-              </div>
-            </Card>
+                  ))}
+                </div>
+              </Card>
+            )}
+
+            {/* Exemplos de Valores */}
+            {Object.keys(results.exemplo_valores || {}).length > 0 && (
+              <Card className="p-6">
+                <h2 className="text-2xl font-bold mb-4">🎯 Exemplos de Valores (Widgets Testados)</h2>
+                <div className="space-y-4">
+                  {Object.entries(results.exemplo_valores).map(([integrationName, data]: [string, any]) => (
+                    <div key={integrationName} className="border rounded-lg p-4 space-y-2">
+                      <div>
+                        <h3 className="font-bold text-lg">{integrationName}</h3>
+                        <p className="text-sm text-muted-foreground">
+                          Widget: <code className="bg-muted px-1 py-0.5 rounded">{data.widget}</code>
+                        </p>
+                        <p className="text-sm text-muted-foreground">
+                          Período: {data.periodo}
+                        </p>
+                      </div>
+                      
+                      <details className="text-sm">
+                        <summary className="cursor-pointer text-muted-foreground hover:text-foreground">
+                          Ver dados retornados
+                        </summary>
+                        <pre className="mt-2 p-3 bg-muted rounded overflow-x-auto text-xs">
+                          {JSON.stringify(data.data, null, 2)}
+                        </pre>
+                      </details>
+                    </div>
+                  ))}
+                </div>
+              </Card>
+            )}
 
             {/* Erros */}
-            {results.erros.length > 0 && (
+            {results.erros && results.erros.length > 0 && (
               <Card className="p-6 border-destructive">
                 <h2 className="text-2xl font-bold mb-4 text-destructive">⚠️ Erros</h2>
                 <ul className="space-y-2">

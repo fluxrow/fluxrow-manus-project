@@ -12,15 +12,19 @@ serve(async (req) => {
 
   try {
     const REPORTEI_API_KEY = Deno.env.get('REPORTEI_API_KEY');
-    const COMPANY_ID = '948243';
-    const BASE_URL = 'https://app.reportei.com/api';
+    const CLIENT_ID = '948243'; // ID do cliente Fachini
+    const BASE_URL = 'https://app.reportei.com/api/v1'; // URL correta da API v1
 
-    console.log('🔍 Testando API do Reportei...');
-    console.log(`📊 Company ID: ${COMPANY_ID}`);
+    console.log('🔍 Testando API do Reportei v1...');
+    console.log(`📊 Client ID: ${CLIENT_ID}`);
 
     const results = {
       token_valido: false,
-      endpoints_testados: {},
+      account_info: null,
+      client_info: null,
+      integracoes: [],
+      widgets_por_integracao: {},
+      exemplo_valores: {},
       erros: [],
       timestamp: new Date().toISOString()
     };
@@ -32,58 +36,149 @@ serve(async (req) => {
       'Accept': 'application/json'
     };
 
-    // 1. Testar autenticação básica - Info da empresa
-    console.log('\n1️⃣ Testando GET /api/companies/' + COMPANY_ID);
+    // 1. Validar token e obter info da conta
+    console.log('\n1️⃣ Testando GET /api/v1/me');
     try {
-      const companyResponse = await fetch(`${BASE_URL}/companies/${COMPANY_ID}`, { headers });
-      const companyStatus = companyResponse.status;
-      console.log(`Status: ${companyStatus}`);
+      const meResponse = await fetch(`${BASE_URL}/me`, { headers });
+      const meStatus = meResponse.status;
+      console.log(`Status: ${meStatus}`);
       
-      if (companyStatus === 200) {
-        const companyData = await companyResponse.json();
+      if (meStatus === 200) {
+        const meData = await meResponse.json();
         results.token_valido = true;
-        results.endpoints_testados['/companies/:id'] = {
-          status: companyStatus,
-          sucesso: true,
-          data: companyData
-        };
-        console.log('✅ Token válido! Empresa encontrada:', companyData.name || 'N/A');
+        results.account_info = meData;
+        console.log('✅ Token válido! Conta:', meData);
       } else {
-        const errorText = await companyResponse.text();
-        results.endpoints_testados['/companies/:id'] = {
-          status: companyStatus,
-          sucesso: false,
-          erro: errorText
-        };
-        console.log('❌ Erro ao buscar empresa:', errorText);
+        const errorText = await meResponse.text();
+        results.erros.push(`/me retornou ${meStatus}: ${errorText}`);
+        console.log('❌ Erro ao validar token:', errorText);
       }
     } catch (error) {
-      results.erros.push(`Erro em /companies: ${error.message}`);
+      results.erros.push(`Erro em /me: ${error.message}`);
       console.error('❌ Erro:', error.message);
     }
 
-    // 2. Testar endpoint de integrações
-    console.log('\n2️⃣ Testando GET /api/companies/' + COMPANY_ID + '/integrations');
+    // 2. Buscar informações do cliente específico
+    console.log(`\n2️⃣ Testando GET /api/v1/clients/${CLIENT_ID}`);
     try {
-      const integrationsResponse = await fetch(`${BASE_URL}/companies/${COMPANY_ID}/integrations`, { headers });
+      const clientResponse = await fetch(`${BASE_URL}/clients/${CLIENT_ID}`, { headers });
+      const clientStatus = clientResponse.status;
+      console.log(`Status: ${clientStatus}`);
+      
+      if (clientStatus === 200) {
+        const clientData = await clientResponse.json();
+        results.client_info = clientData;
+        console.log('✅ Cliente encontrado:', clientData);
+      } else {
+        const errorText = await clientResponse.text();
+        results.erros.push(`/clients/${CLIENT_ID} retornou ${clientStatus}: ${errorText}`);
+        console.log('⚠️ Resposta:', errorText);
+      }
+    } catch (error) {
+      results.erros.push(`Erro em /clients: ${error.message}`);
+      console.error('❌ Erro:', error.message);
+    }
+
+    // 3. Buscar integrações do cliente
+    console.log(`\n3️⃣ Testando GET /api/v1/clients/${CLIENT_ID}/integrations`);
+    try {
+      const integrationsResponse = await fetch(`${BASE_URL}/clients/${CLIENT_ID}/integrations`, { headers });
       const integrationsStatus = integrationsResponse.status;
       console.log(`Status: ${integrationsStatus}`);
       
       if (integrationsStatus === 200) {
         const integrationsData = await integrationsResponse.json();
-        results.endpoints_testados['/companies/:id/integrations'] = {
-          status: integrationsStatus,
-          sucesso: true,
-          data: integrationsData
-        };
-        console.log('✅ Integrações encontradas:', integrationsData.length || 0);
+        results.integracoes = integrationsData;
+        console.log('✅ Integrações encontradas:', integrationsData);
+
+        // 4. Para cada integração, buscar widgets disponíveis
+        if (Array.isArray(integrationsData)) {
+          for (const integration of integrationsData) {
+            const integrationId = integration.id;
+            const integrationName = integration.name || integration.platform || integrationId;
+            
+            console.log(`\n4️⃣ Buscando widgets da integração: ${integrationName} (ID: ${integrationId})`);
+            
+            try {
+              const widgetsResponse = await fetch(
+                `${BASE_URL}/integrations/${integrationId}/widgets`, 
+                { headers }
+              );
+              const widgetsStatus = widgetsResponse.status;
+              console.log(`  Status: ${widgetsStatus}`);
+              
+              if (widgetsStatus === 200) {
+                const widgetsData = await widgetsResponse.json();
+                results.widgets_por_integracao[integrationName] = {
+                  integration_id: integrationId,
+                  widgets: widgetsData
+                };
+                console.log(`  ✅ Widgets disponíveis (${Array.isArray(widgetsData) ? widgetsData.length : 'N/A'}):`, widgetsData);
+
+                // 5. Testar busca de valores para alguns widgets importantes
+                if (Array.isArray(widgetsData) && widgetsData.length > 0) {
+                  // Pegar o primeiro widget como exemplo
+                  const exampleWidget = widgetsData[0];
+                  const widgetSlug = exampleWidget.slug || exampleWidget.id || exampleWidget.name;
+                  
+                  if (widgetSlug) {
+                    console.log(`\n5️⃣ Testando POST /api/v1/integrations/${integrationId}/widgets/value`);
+                    console.log(`   Widget de exemplo: ${widgetSlug}`);
+                    
+                    // Período: última semana
+                    const hoje = new Date();
+                    const umaSemanaAtras = new Date(hoje);
+                    umaSemanaAtras.setDate(hoje.getDate() - 7);
+                    
+                    const dataInicio = umaSemanaAtras.toISOString().split('T')[0];
+                    const dataFim = hoje.toISOString().split('T')[0];
+
+                    try {
+                      const valueResponse = await fetch(
+                        `${BASE_URL}/integrations/${integrationId}/widgets/value`,
+                        {
+                          method: 'POST',
+                          headers,
+                          body: JSON.stringify({
+                            date_start: dataInicio,
+                            date_end: dataFim,
+                            widget: widgetSlug
+                          })
+                        }
+                      );
+                      
+                      const valueStatus = valueResponse.status;
+                      console.log(`   Status: ${valueStatus}`);
+                      
+                      if (valueStatus === 200) {
+                        const valueData = await valueResponse.json();
+                        results.exemplo_valores[integrationName] = {
+                          widget: widgetSlug,
+                          periodo: `${dataInicio} a ${dataFim}`,
+                          data: valueData
+                        };
+                        console.log(`   ✅ Valores obtidos:`, valueData);
+                      } else {
+                        const errorText = await valueResponse.text();
+                        console.log(`   ⚠️ Erro ao buscar valores (${valueStatus}):`, errorText);
+                      }
+                    } catch (error) {
+                      console.error(`   ❌ Erro ao buscar valores:`, error.message);
+                    }
+                  }
+                }
+              } else {
+                const errorText = await widgetsResponse.text();
+                console.log(`  ⚠️ Erro ao buscar widgets (${widgetsStatus}):`, errorText);
+              }
+            } catch (error) {
+              console.error(`  ❌ Erro ao buscar widgets:`, error.message);
+            }
+          }
+        }
       } else {
         const errorText = await integrationsResponse.text();
-        results.endpoints_testados['/companies/:id/integrations'] = {
-          status: integrationsStatus,
-          sucesso: false,
-          erro: errorText
-        };
+        results.erros.push(`/integrations retornou ${integrationsStatus}: ${errorText}`);
         console.log('⚠️ Resposta:', errorText);
       }
     } catch (error) {
@@ -91,107 +186,11 @@ serve(async (req) => {
       console.error('❌ Erro:', error.message);
     }
 
-    // 3. Testar endpoint de relatórios
-    console.log('\n3️⃣ Testando GET /api/companies/' + COMPANY_ID + '/reports');
-    try {
-      const reportsResponse = await fetch(`${BASE_URL}/companies/${COMPANY_ID}/reports`, { headers });
-      const reportsStatus = reportsResponse.status;
-      console.log(`Status: ${reportsStatus}`);
-      
-      if (reportsStatus === 200) {
-        const reportsData = await reportsResponse.json();
-        results.endpoints_testados['/companies/:id/reports'] = {
-          status: reportsStatus,
-          sucesso: true,
-          data: reportsData
-        };
-        console.log('✅ Relatórios encontrados:', reportsData.length || 0);
-      } else {
-        const errorText = await reportsResponse.text();
-        results.endpoints_testados['/companies/:id/reports'] = {
-          status: reportsStatus,
-          sucesso: false,
-          erro: errorText
-        };
-        console.log('⚠️ Resposta:', errorText);
-      }
-    } catch (error) {
-      results.erros.push(`Erro em /reports: ${error.message}`);
-      console.error('❌ Erro:', error.message);
-    }
-
-    // 4. Testar endpoint de templates
-    console.log('\n4️⃣ Testando GET /api/companies/' + COMPANY_ID + '/templates');
-    try {
-      const templatesResponse = await fetch(`${BASE_URL}/companies/${COMPANY_ID}/templates`, { headers });
-      const templatesStatus = templatesResponse.status;
-      console.log(`Status: ${templatesStatus}`);
-      
-      if (templatesStatus === 200) {
-        const templatesData = await templatesResponse.json();
-        results.endpoints_testados['/companies/:id/templates'] = {
-          status: templatesStatus,
-          sucesso: true,
-          data: templatesData
-        };
-        console.log('✅ Templates encontrados:', templatesData.length || 0);
-      } else {
-        const errorText = await templatesResponse.text();
-        results.endpoints_testados['/companies/:id/templates'] = {
-          status: templatesStatus,
-          sucesso: false,
-          erro: errorText
-        };
-        console.log('⚠️ Resposta:', errorText);
-      }
-    } catch (error) {
-      results.erros.push(`Erro em /templates: ${error.message}`);
-      console.error('❌ Erro:', error.message);
-    }
-
-    // 5. Testar endpoint de dados com período (semana passada)
-    const hoje = new Date();
-    const umaSemanaAtras = new Date(hoje);
-    umaSemanaAtras.setDate(hoje.getDate() - 7);
-    
-    const dataInicio = umaSemanaAtras.toISOString().split('T')[0];
-    const dataFim = hoje.toISOString().split('T')[0];
-
-    console.log(`\n5️⃣ Testando GET /api/companies/${COMPANY_ID}/reports?date_start=${dataInicio}&date_end=${dataFim}`);
-    try {
-      const dataResponse = await fetch(
-        `${BASE_URL}/companies/${COMPANY_ID}/reports?date_start=${dataInicio}&date_end=${dataFim}`, 
-        { headers }
-      );
-      const dataStatus = dataResponse.status;
-      console.log(`Status: ${dataStatus}`);
-      
-      if (dataStatus === 200) {
-        const data = await dataResponse.json();
-        results.endpoints_testados['/companies/:id/reports?date_start&date_end'] = {
-          status: dataStatus,
-          sucesso: true,
-          data: data,
-          periodo: `${dataInicio} a ${dataFim}`
-        };
-        console.log('✅ Dados do período encontrados');
-      } else {
-        const errorText = await dataResponse.text();
-        results.endpoints_testados['/companies/:id/reports?date_start&date_end'] = {
-          status: dataStatus,
-          sucesso: false,
-          erro: errorText
-        };
-        console.log('⚠️ Resposta:', errorText);
-      }
-    } catch (error) {
-      results.erros.push(`Erro em /reports com período: ${error.message}`);
-      console.error('❌ Erro:', error.message);
-    }
-
     console.log('\n📊 RESUMO DO TESTE:');
     console.log(`Token válido: ${results.token_valido ? '✅' : '❌'}`);
-    console.log(`Endpoints testados: ${Object.keys(results.endpoints_testados).length}`);
+    console.log(`Integrações encontradas: ${results.integracoes.length || 0}`);
+    console.log(`Widgets mapeados: ${Object.keys(results.widgets_por_integracao).length}`);
+    console.log(`Exemplos de valores: ${Object.keys(results.exemplo_valores).length}`);
     console.log(`Erros encontrados: ${results.erros.length}`);
 
     return new Response(JSON.stringify(results, null, 2), {
