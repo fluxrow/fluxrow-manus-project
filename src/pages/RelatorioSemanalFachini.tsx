@@ -12,7 +12,7 @@ import { ConversasMensagemTable } from '@/components/relatorio/ConversasMensagem
 import { LeadsBarChart } from '@/components/relatorio/charts/LeadsBarChart';
 import { RelatorioPlanoAcao } from '@/components/relatorio/RelatorioPlanoAcao';
 import { RDStationTable } from '@/components/relatorio/RDStationTable';
-import { AnalyticsTable } from '@/components/relatorio/AnalyticsTable';
+import { RelatorioGA4Completo } from '@/components/relatorio/RelatorioGA4Completo';
 import { AssetGroupChart } from '@/components/relatorio/charts/AssetGroupChart';
 import { relatorioSemanalFachini } from '@/data/relatorioSemanalFachini';
 import { formatCurrency, formatNumber } from '@/utils/formatters';
@@ -511,8 +511,7 @@ export default function RelatorioSemanalFachini() {
         {/* Google Analytics */}
         {analytics && (
           <section className="mb-12">
-            <h2 className="text-2xl font-bold mb-6">Comportamento do Usuário - Google Analytics 4</h2>
-            <AnalyticsTable data={analytics} />
+            <RelatorioGA4Completo data={analytics} />
           </section>
         )}
 
