@@ -57,9 +57,11 @@ export const AnalyticsTable = ({ data }: AnalyticsTableProps) => {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="text-2xl font-bold">{data.taxa_engajamento.toFixed(2)}%</div>
+          <div className="text-2xl font-bold">
+            {typeof data.taxa_engajamento === 'number' ? data.taxa_engajamento.toFixed(2) : '0.00'}%
+          </div>
           <p className="text-xs text-muted-foreground mt-1">
-            {data.visualizacoes_sessao.toFixed(2)} views/sessão
+            {typeof data.visualizacoes_sessao === 'number' ? data.visualizacoes_sessao.toFixed(2) : '0.00'} views/sessão
           </p>
         </CardContent>
       </Card>
