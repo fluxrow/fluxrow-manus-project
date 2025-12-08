@@ -75,32 +75,17 @@ export default function RelatorioSemanalFachini() {
           toast.error('Erro ao carregar relatório do banco');
         }
       } else {
-        // Buscar último relatório gerado se não houver ID específico
+        // Buscar último relatório com dados reais (ordenado por data_fim para pegar o mais recente)
         try {
           const { data, error } = await supabase
             .from('relatorios_semanais')
             .select('*')
-            .order('created_at', { ascending: false })
+            .gt('investimento_total', 0)
+            .order('data_fim', { ascending: false })
             .limit(1)
             .maybeSingle();
 
           if (data && !error) {
-            // Se encontrou dados mas o investimento é 0, buscar o último com dados reais
-            if (data.investimento_total === 0 || data.leads_totais === 0) {
-              const { data: relatorioComDados, error: erro2 } = await supabase
-                .from('relatorios_semanais')
-                .select('*')
-                .gt('investimento_total', 0)
-                .order('created_at', { ascending: false })
-                .limit(1)
-                .maybeSingle();
-              
-              if (relatorioComDados && !erro2) {
-                // Redirecionar para o relatório com dados
-                window.location.href = `/relatorio/fachini-semanal?id=${relatorioComDados.id}`;
-                return;
-              }
-            }
             
             setDadosRelatorio({
               periodo: data.periodo,
