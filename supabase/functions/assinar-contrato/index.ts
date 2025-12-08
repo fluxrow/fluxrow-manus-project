@@ -6,6 +6,53 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
 
+// Simple in-memory rate limiting (resets on function cold start)
+const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
+const RATE_LIMIT_WINDOW_MS = 60000; // 1 minute
+const MAX_REQUESTS_PER_WINDOW = 10;
+
+function isRateLimited(identifier: string): boolean {
+  const now = Date.now();
+  const record = rateLimitMap.get(identifier);
+  
+  if (!record || now > record.resetTime) {
+    rateLimitMap.set(identifier, { count: 1, resetTime: now + RATE_LIMIT_WINDOW_MS });
+    return false;
+  }
+  
+  if (record.count >= MAX_REQUESTS_PER_WINDOW) {
+    return true;
+  }
+  
+  record.count++;
+  return false;
+}
+
+function validateCPF(cpf: string): boolean {
+  const cleanCPF = cpf.replace(/\D/g, '');
+  if (cleanCPF.length !== 11) return false;
+  if (/^(\d)\1+$/.test(cleanCPF)) return false;
+  
+  // CPF validation algorithm
+  let sum = 0;
+  for (let i = 0; i < 9; i++) {
+    sum += parseInt(cleanCPF[i]) * (10 - i);
+  }
+  let digit = (sum * 10) % 11;
+  if (digit === 10) digit = 0;
+  if (digit !== parseInt(cleanCPF[9])) return false;
+  
+  sum = 0;
+  for (let i = 0; i < 10; i++) {
+    sum += parseInt(cleanCPF[i]) * (11 - i);
+  }
+  digit = (sum * 10) % 11;
+  if (digit === 10) digit = 0;
+  if (digit !== parseInt(cleanCPF[10])) return false;
+  
+  return true;
+}
+
 const resend = new Resend(Deno.env.get('RESEND_API_KEY'));
 
 Deno.serve(async (req) => {
@@ -15,20 +62,30 @@ Deno.serve(async (req) => {
   }
 
   try {
+    // Get client IP for rate limiting
+    const clientIP = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 
+                     req.headers.get('cf-connecting-ip') || 
+                     'unknown';
+    
+    // Check rate limit
+    if (isRateLimited(clientIP)) {
+      console.log(`Rate limit exceeded for IP: ${clientIP}`);
+      return new Response(
+        JSON.stringify({ error: 'Muitas tentativas. Aguarde um minuto e tente novamente.' }),
+        { 
+          status: 429, 
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
+        }
+      );
+    }
+
     const requestBody = await req.json();
-    console.log('Requisição recebida:', requestBody);
+    console.log('Contract signing request from IP:', clientIP);
     
     const { contratoId, nomeResponsavel, cpfResponsavel, cargoResponsavel, papel } = requestBody;
 
-    console.log('Validando campos obrigatórios...');
-    console.log('contratoId:', contratoId);
-    console.log('nomeResponsavel:', nomeResponsavel);
-    console.log('cpfResponsavel:', cpfResponsavel);
-    console.log('cargoResponsavel:', cargoResponsavel);
-    console.log('papel:', papel);
-
     if (!contratoId || !nomeResponsavel || !cpfResponsavel || !cargoResponsavel || !papel) {
-      console.error('Campos faltando!');
+      console.error('Missing required fields');
       return new Response(
         JSON.stringify({ error: 'Todos os campos são obrigatórios, incluindo o papel (contratante ou contratada)' }),
         { 
@@ -48,7 +105,59 @@ Deno.serve(async (req) => {
       );
     }
 
-    console.log('Processando assinatura do contrato:', contratoId);
+    // Validate UUID format for contratoId
+    const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+    if (!uuidRegex.test(contratoId)) {
+      console.log('Invalid contract ID format');
+      return new Response(
+        JSON.stringify({ error: 'ID do contrato inválido' }),
+        { 
+          status: 400, 
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
+        }
+      );
+    }
+
+    // Validate CPF
+    const cpfLimpo = cpfResponsavel.replace(/[^\d]/g, '');
+    if (!validateCPF(cpfLimpo)) {
+      console.log('Invalid CPF:', cpfLimpo);
+      return new Response(
+        JSON.stringify({ error: 'CPF inválido' }),
+        { 
+          status: 400, 
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
+        }
+      );
+    }
+
+    // Validate name (no scripts or special characters)
+    const nameRegex = /^[a-zA-ZÀ-ÿ\s'-]{2,100}$/;
+    if (!nameRegex.test(nomeResponsavel)) {
+      console.log('Invalid name format');
+      return new Response(
+        JSON.stringify({ error: 'Nome contém caracteres inválidos' }),
+        { 
+          status: 400, 
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
+        }
+      );
+    }
+
+    // Validate cargo (no scripts or special characters)
+    const cargoRegex = /^[a-zA-ZÀ-ÿ\s'-]{2,50}$/;
+    if (!cargoRegex.test(cargoResponsavel)) {
+      console.log('Invalid cargo format');
+      return new Response(
+        JSON.stringify({ error: 'Cargo contém caracteres inválidos' }),
+        { 
+          status: 400, 
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
+        }
+      );
+    }
+
+    console.log('Processing signature for contract:', contratoId);
 
     // Criar cliente Supabase com service_role
     const supabaseAdmin = createClient(
@@ -107,7 +216,6 @@ Deno.serve(async (req) => {
     }
 
     // Preparar dados de atualização baseado no papel
-    const cpfLimpo = cpfResponsavel.replace(/[^\d]/g, '');
     const dataAssinatura = new Date().toISOString();
     
     let updateData: any = {

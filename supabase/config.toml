@@ -7,7 +7,7 @@ verify_jwt = false
 verify_jwt = false
 
 [functions.resetar-contrato]
-verify_jwt = false
+verify_jwt = true
 
 [functions.reportei-test]
 verify_jwt = false
