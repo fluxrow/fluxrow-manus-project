@@ -341,7 +341,7 @@ const PropostaPromotrip = () => {
                   <h3 className="text-xl font-bold text-white mb-1">{frente.title}</h3>
                   <p className="text-sm text-cyan-400 mb-4">Responsável: {frente.responsavel}</p>
                   
-                  <ul className="space-y-2 mb-6">
+                  <ul className="space-y-2">
                     {frente.features.map((feature, i) => (
                       <li key={i} className="flex items-start gap-2 text-sm text-gray-300">
                         <CheckCircle2 className="w-4 h-4 text-cyan-400 flex-shrink-0 mt-0.5" />
@@ -350,9 +350,9 @@ const PropostaPromotrip = () => {
                     ))}
                   </ul>
 
-                  <div className={`${frente.bgColor} rounded-lg p-4 text-center border ${frente.borderColor}`}>
-                    <p className="text-xs text-gray-400 mb-1">Custo proporcional</p>
-                    <p className="text-2xl font-bold text-white">~R$ 1.067<span className="text-sm font-normal text-gray-400">/mês</span></p>
+                  <div className="mt-4 pt-4 border-t border-slate-700/50 flex items-center justify-between">
+                    <span className="text-xs text-gray-500">Investimento por frente</span>
+                    <span className="text-sm text-gray-400">~R$ 1.067/mês</span>
                   </div>
                 </CardContent>
               </Card>
