@@ -8,7 +8,7 @@ import {
   Award, Users, TrendingUp, Target, BarChart3, Zap, PieChart, 
   Shield, Car, ClipboardList, Kanban, Bell, Bot, Calculator,
   FileSearch, FileSignature, Search, Sparkles, Rocket, ArrowRight,
-  Megaphone, Share2, Mail, Workflow
+  Megaphone, Share2, Mail, Workflow, Settings, Brain, X, Crown
 } from 'lucide-react';
 
 export default function PropostaBaboraSeguros() {
@@ -399,11 +399,170 @@ export default function PropostaBaboraSeguros() {
             </CardContent>
           </Card>
 
+          {/* Comparativo: Seu Sistema vs Agger */}
+          <Card className="shadow-2xl border-2 border-amber-500/30 bg-gradient-to-br from-amber-900/20 to-orange-900/10 backdrop-blur-sm animate-scale-in">
+            <CardHeader className="text-center relative">
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-amber-500 via-orange-500 to-red-500"></div>
+              <CardTitle className="text-3xl flex items-center justify-center gap-3 mt-4">
+                <BarChart3 className="w-8 h-8 text-amber-400" />
+                <span className="bg-gradient-to-r from-amber-300 to-orange-300 bg-clip-text text-transparent">
+                  Comparativo: Seu Sistema vs Agger
+                </span>
+              </CardTitle>
+              <p className="text-gray-400 mt-2">Por que escolher uma solução personalizada?</p>
+            </CardHeader>
+            <CardContent>
+              <div className="grid md:grid-cols-2 gap-6">
+                {/* Seu Sistema */}
+                <div className="space-y-4">
+                  <div className="text-center mb-4">
+                    <Badge className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white border-0 px-6 py-2 text-lg">
+                      Seu Sistema
+                    </Badge>
+                  </div>
+                  {[
+                    { label: "Modelo", value: "Personalizado e evolutivo", positive: true },
+                    { label: "Preço por Usuário", value: "Não cobra!", positive: true },
+                    { label: "Evolução Contínua", value: "Inclusa no Plano 2", positive: true },
+                    { label: "IA Integrada", value: "Avançada", positive: true },
+                    { label: "WhatsApp", value: "CRM completo", positive: true },
+                    { label: "Personalização", value: "Total", positive: true },
+                    { label: "Desenvolvimento Sob Demanda", value: "Sim (Plano 2)", positive: true },
+                  ].map((item, i) => (
+                    <div key={i} className="flex items-center justify-between p-3 bg-gradient-to-r from-cyan-900/30 to-blue-900/20 rounded-lg border border-cyan-500/20">
+                      <span className="text-gray-300 text-sm">{item.label}</span>
+                      <div className="flex items-center gap-2">
+                        <CheckCircle className="w-4 h-4 text-green-400" />
+                        <span className="text-cyan-300 font-medium text-sm">{item.value}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Agger */}
+                <div className="space-y-4">
+                  <div className="text-center mb-4">
+                    <Badge className="bg-slate-600 text-slate-300 border-0 px-6 py-2 text-lg">
+                      Agger
+                    </Badge>
+                  </div>
+                  {[
+                    { label: "Modelo", value: "Sistema padrão, igual pra todos", positive: false },
+                    { label: "Preço por Usuário", value: "R$ 179,80/usuário", positive: false },
+                    { label: "Evolução Contínua", value: "Cobrança extra", positive: false },
+                    { label: "IA Integrada", value: "Básica/Inexistente", positive: false },
+                    { label: "WhatsApp", value: "Envio simples", positive: false },
+                    { label: "Personalização", value: "Limitada", positive: false },
+                    { label: "Desenvolvimento Sob Demanda", value: "Não disponível", positive: false },
+                  ].map((item, i) => (
+                    <div key={i} className="flex items-center justify-between p-3 bg-slate-800/50 rounded-lg border border-slate-600/30">
+                      <span className="text-gray-400 text-sm">{item.label}</span>
+                      <div className="flex items-center gap-2">
+                        {item.positive ? (
+                          <CheckCircle className="w-4 h-4 text-green-400" />
+                        ) : (
+                          <X className="w-4 h-4 text-red-400" />
+                        )}
+                        <span className="text-slate-400 text-sm">{item.value}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Destaque de Preço */}
+              <div className="mt-8 bg-gradient-to-r from-green-900/40 to-emerald-900/30 p-6 rounded-xl border-2 border-green-500/30">
+                <div className="text-center space-y-3">
+                  <h4 className="text-xl font-bold text-green-300">💰 Faça as Contas:</h4>
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div className="bg-slate-800/50 p-4 rounded-lg">
+                      <p className="text-gray-400 text-sm">Agger com 6 usuários</p>
+                      <p className="text-2xl font-bold text-red-400">R$ 1.078,80/mês</p>
+                    </div>
+                    <div className="bg-gradient-to-r from-cyan-900/50 to-blue-900/40 p-4 rounded-lg border border-cyan-500/30">
+                      <p className="text-cyan-400 text-sm">Seu Sistema com usuários ILIMITADOS</p>
+                      <p className="text-2xl font-bold text-cyan-300">R$ 997/mês</p>
+                    </div>
+                  </div>
+                  <p className="text-green-400 font-semibold">Mais barato e entrega MUITO mais!</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Diferenciais que Fazem a Diferença */}
+          <Card className="shadow-2xl border-2 border-rose-500/30 bg-gradient-to-br from-rose-900/20 to-pink-900/10 backdrop-blur-sm animate-scale-in">
+            <CardHeader className="text-center relative">
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-rose-500 via-pink-500 to-purple-500"></div>
+              <CardTitle className="text-3xl flex items-center justify-center gap-3 mt-4">
+                <Sparkles className="w-8 h-8 text-rose-400" />
+                <span className="bg-gradient-to-r from-rose-300 to-pink-300 bg-clip-text text-transparent">
+                  Diferenciais que Fazem a Diferença
+                </span>
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="grid md:grid-cols-3 gap-4">
+                {[
+                  { 
+                    icon: Settings, 
+                    title: "Personalização Real", 
+                    desc: "Seu sistema se molda à Babora. O Agger exige que a Babora se molde ao sistema.",
+                    color: "blue"
+                  },
+                  { 
+                    icon: Rocket, 
+                    title: "Evolução Sem Custo", 
+                    desc: "O cliente vira dono do roadmap. Nenhum concorrente oferece isso.",
+                    color: "purple"
+                  },
+                  { 
+                    icon: Brain, 
+                    title: "IA que Trabalha", 
+                    desc: "Responde clientes, gera insights, evita perda de negócios, aprende com o uso.",
+                    color: "pink"
+                  },
+                  { 
+                    icon: MessageCircle, 
+                    title: "WhatsApp como CRM", 
+                    desc: "Conversas integradas no processo inteiro. Não só envio de mensagens.",
+                    color: "emerald"
+                  },
+                  { 
+                    icon: DollarSign, 
+                    title: "Preço Competitivo", 
+                    desc: "Mesmo no Premium, mais barato que o Agger com 6 usuários.",
+                    color: "green"
+                  },
+                  { 
+                    icon: TrendingUp, 
+                    title: "Foco em Crescimento", 
+                    desc: "Agger organiza. Seu sistema FAZ A CORRETORA CRESCER: mais renovações, mais conversão.",
+                    color: "cyan"
+                  },
+                ].map((item, index) => {
+                  const colors = getColorClasses(item.color);
+                  const Icon = item.icon;
+                  return (
+                    <div key={index} className={`bg-gradient-to-br ${colors.bg} to-transparent p-5 rounded-xl border ${colors.border} backdrop-blur-sm transition-all duration-300 hover:transform hover:scale-105`}>
+                      <Icon className={`w-8 h-8 ${colors.icon} mb-3`} />
+                      <h4 className={`font-semibold mb-2 ${colors.text}`}>{item.title}</h4>
+                      <p className="text-sm text-gray-400">{item.desc}</p>
+                    </div>
+                  );
+                })}
+              </div>
+            </CardContent>
+          </Card>
+
           {/* Investimento - Planos */}
-          <div className="grid md:grid-cols-2 gap-6">
-            {/* Plano 1 */}
+          <div className="grid md:grid-cols-3 gap-6">
+            {/* Plano 1 - Essencial */}
             <Card className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 border-slate-600/30 backdrop-blur-sm hover:border-slate-500/50 transition-all duration-300">
               <CardHeader className="text-center pb-4">
+                <Badge className="w-fit mx-auto bg-slate-600/50 text-slate-300 border-slate-500/30 mb-2">
+                  Para começar organizado
+                </Badge>
                 <CardTitle className="text-xl text-slate-300">Plano 1</CardTitle>
                 <p className="text-2xl font-bold text-white">Sistema Essencial</p>
               </CardHeader>
@@ -416,7 +575,7 @@ export default function PropostaBaboraSeguros() {
                   <Separator className="bg-slate-600/50" />
                   <div>
                     <p className="text-sm text-gray-400">Mensalidade</p>
-                    <p className="text-4xl font-bold bg-gradient-to-r from-slate-200 to-slate-400 bg-clip-text text-transparent">R$ 800</p>
+                    <p className="text-4xl font-bold bg-gradient-to-r from-slate-200 to-slate-400 bg-clip-text text-transparent">R$ 297</p>
                     <p className="text-sm text-gray-500">/mês</p>
                   </div>
                 </div>
@@ -426,9 +585,10 @@ export default function PropostaBaboraSeguros() {
                     { text: "Todos os 9 módulos principais", included: true },
                     { text: "Suporte via WhatsApp", included: true },
                     { text: "Treinamento inicial", included: true },
+                    { text: "Usuários ilimitados", included: true },
                     { text: "Novos recursos e atualizações", included: false },
                     { text: "Desenvolvimento sob demanda", included: false },
-                    { text: "Prioridade em suporte", included: false },
+                    { text: "IA avançada", included: false },
                   ].map((item, i) => (
                     <div key={i} className="flex items-center gap-2">
                       {item.included ? (
@@ -445,34 +605,37 @@ export default function PropostaBaboraSeguros() {
 
                 <div className="bg-slate-800/50 p-4 rounded-lg text-center">
                   <p className="text-xs text-gray-400">Ideal para</p>
-                  <p className="text-sm text-gray-300">Corretoras que querem organização e eficiência imediata</p>
+                  <p className="text-sm text-gray-300">Corretoras que querem organização imediata</p>
                 </div>
               </CardContent>
             </Card>
 
             {/* Plano 2 - Recomendado */}
-            <Card className="bg-gradient-to-br from-cyan-900/30 to-blue-900/20 border-2 border-cyan-500/50 backdrop-blur-sm relative overflow-hidden shadow-2xl shadow-cyan-500/20 hover:shadow-cyan-500/30 transition-all duration-300">
+            <Card className="bg-gradient-to-br from-cyan-900/30 to-blue-900/20 border-2 border-cyan-500/50 backdrop-blur-sm relative overflow-hidden shadow-2xl shadow-cyan-500/20 hover:shadow-cyan-500/30 transition-all duration-300 transform scale-105">
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-cyan-400 via-blue-400 to-green-400"></div>
               <div className="absolute -top-1 right-4">
                 <Badge className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white border-0 px-4 py-1">
-                  RECOMENDADO
+                  🔥 MAIS VENDIDO
                 </Badge>
               </div>
               <CardHeader className="text-center pb-4 pt-8">
+                <Badge className="w-fit mx-auto bg-cyan-600/50 text-cyan-200 border-cyan-500/30 mb-2">
+                  Carro-chefe | Setup GRÁTIS
+                </Badge>
                 <CardTitle className="text-xl text-cyan-300">Plano 2</CardTitle>
-                <p className="text-2xl font-bold text-white">Sistema Completo + Evolução</p>
+                <p className="text-2xl font-bold text-white">Completo + Evolução</p>
               </CardHeader>
               <CardContent className="space-y-6">
                 <div className="text-center space-y-2">
                   <div>
                     <p className="text-sm text-cyan-400">Setup</p>
-                    <p className="text-xl text-gray-400 line-through">R$ 1.500</p>
-                    <p className="text-lg text-green-400 font-semibold">Incluso!</p>
+                    <p className="text-lg text-gray-400 line-through">R$ 1.500</p>
+                    <p className="text-lg text-green-400 font-bold">GRÁTIS!</p>
                   </div>
                   <Separator className="bg-cyan-600/50" />
                   <div>
                     <p className="text-sm text-gray-400">Mensalidade</p>
-                    <p className="text-4xl font-bold bg-gradient-to-r from-cyan-300 to-blue-300 bg-clip-text text-transparent">R$ 2.000</p>
+                    <p className="text-4xl font-bold bg-gradient-to-r from-cyan-300 to-blue-300 bg-clip-text text-transparent">R$ 997</p>
                     <p className="text-sm text-gray-500">/mês</p>
                   </div>
                 </div>
@@ -481,9 +644,11 @@ export default function PropostaBaboraSeguros() {
                   {[
                     { text: "Todos os 9 módulos principais", included: true },
                     { text: "Suporte via WhatsApp", included: true },
-                    { text: "Treinamento inicial", included: true },
+                    { text: "Treinamento completo", included: true },
+                    { text: "Usuários ilimitados", included: true },
                     { text: "Novos recursos e atualizações", included: true },
                     { text: "Desenvolvimento sob demanda", included: true },
+                    { text: "IA avançada integrada", included: true },
                     { text: "Prioridade em suporte", included: true },
                   ].map((item, i) => (
                     <div key={i} className="flex items-center gap-2">
@@ -494,8 +659,62 @@ export default function PropostaBaboraSeguros() {
                 </div>
 
                 <div className="bg-cyan-900/30 p-4 rounded-lg text-center border border-cyan-500/20">
-                  <p className="text-xs text-cyan-400">Ideal para</p>
-                  <p className="text-sm text-gray-300">Corretoras que querem crescer e inovar continuamente</p>
+                  <p className="text-xs text-cyan-400">Você vira dono do roadmap</p>
+                  <p className="text-sm text-gray-300">Sistema evolui com seu negócio</p>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Plano 3 - Premium/Enterprise */}
+            <Card className="bg-gradient-to-br from-purple-900/30 to-indigo-900/20 border-2 border-purple-500/40 backdrop-blur-sm hover:border-purple-400/60 transition-all duration-300 relative overflow-hidden">
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-purple-400 via-pink-400 to-indigo-400"></div>
+              <div className="absolute -top-1 right-4">
+                <Badge className="bg-gradient-to-r from-purple-500 to-indigo-500 text-white border-0 px-3 py-1">
+                  <Crown className="w-3 h-3 mr-1 inline" />
+                  ENTERPRISE
+                </Badge>
+              </div>
+              <CardHeader className="text-center pb-4 pt-8">
+                <Badge className="w-fit mx-auto bg-purple-600/50 text-purple-200 border-purple-500/30 mb-2">
+                  Operações robustas
+                </Badge>
+                <CardTitle className="text-xl text-purple-300">Plano 3</CardTitle>
+                <p className="text-2xl font-bold text-white">Premium/Enterprise</p>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                <div className="text-center space-y-2">
+                  <div>
+                    <p className="text-sm text-purple-400">Setup sob medida</p>
+                    <p className="text-lg text-gray-300">A partir de R$ 2.500</p>
+                  </div>
+                  <Separator className="bg-purple-600/50" />
+                  <div>
+                    <p className="text-sm text-gray-400">Mensalidade</p>
+                    <p className="text-3xl font-bold bg-gradient-to-r from-purple-300 to-pink-300 bg-clip-text text-transparent">R$ 1.497</p>
+                    <p className="text-sm text-gray-500">a R$ 1.997/mês</p>
+                  </div>
+                </div>
+
+                <div className="space-y-3">
+                  {[
+                    { text: "TUDO do Plano 2", included: true },
+                    { text: "Integrações avançadas", included: true },
+                    { text: "Multicálculo externo", included: true },
+                    { text: "Dashboards customizados", included: true },
+                    { text: "Automações complexas", included: true },
+                    { text: "API dedicada", included: true },
+                    { text: "Gerente de sucesso dedicado", included: true },
+                  ].map((item, i) => (
+                    <div key={i} className="flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-purple-400 flex-shrink-0" />
+                      <span className="text-gray-300 text-sm">{item.text}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="bg-purple-900/30 p-4 rounded-lg text-center border border-purple-500/20">
+                  <p className="text-xs text-purple-400">Para corretoras</p>
+                  <p className="text-sm text-gray-300">Com operações complexas e alto volume</p>
                 </div>
               </CardContent>
             </Card>
@@ -512,12 +731,12 @@ export default function PropostaBaboraSeguros() {
             <CardContent>
               <div className="grid md:grid-cols-3 gap-4">
                 {[
-                  { icon: Clock, title: "Economia de Tempo", desc: "Automatize tarefas repetitivas e ganhe horas por semana para focar no que importa: vender.", color: "blue" },
-                  { icon: DollarSign, title: "Aumento de Receita", desc: "Nunca mais perca uma renovação. Mais contratos ativos = mais comissões recorrentes.", color: "green" },
-                  { icon: PieChart, title: "Visão Completa", desc: "Dashboard inteligente com todos os indicadores do negócio em tempo real.", color: "purple" },
-                  { icon: Bot, title: "Tecnologia de Ponta", desc: "IA trabalhando 24/7 para você e seus clientes. Atendimento automatizado e inteligente.", color: "cyan" },
-                  { icon: MessageCircle, title: "Atendimento Integrado", desc: "WhatsApp centralizado = clientes mais satisfeitos e histórico completo de conversas.", color: "emerald" },
-                  { icon: Shield, title: "Dados Seguros", desc: "Infraestrutura em nuvem com backup automático. Seus dados protegidos 24/7.", color: "orange" },
+                  { icon: Bell, title: "Aumente Renovações", desc: "Alertas automáticos garantem que você nunca perca uma renovação. Mais contratos = mais receita.", color: "green" },
+                  { icon: Clock, title: "Zero Prazos Perdidos", desc: "Sistema avisa antes de vencer. Sua equipe sempre um passo à frente.", color: "blue" },
+                  { icon: Bot, title: "Atendimento com IA", desc: "IA trabalhando 24/7: respostas instantâneas, sugestões inteligentes, clientes satisfeitos.", color: "cyan" },
+                  { icon: Target, title: "Melhore Conversão", desc: "Funil visual + histórico completo = fechamento mais rápido e assertivo.", color: "purple" },
+                  { icon: TrendingUp, title: "Impulsione Faturamento", desc: "Cresça sem aumentar equipe. Automação inteligente multiplica sua capacidade.", color: "emerald" },
+                  { icon: Shield, title: "Dados Seguros 24/7", desc: "Infraestrutura em nuvem com backup automático. Proteção total dos seus dados.", color: "orange" },
                 ].map((item, index) => {
                   const colors = getColorClasses(item.color);
                   const Icon = item.icon;
