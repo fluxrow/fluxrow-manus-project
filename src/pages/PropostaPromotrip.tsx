@@ -35,7 +35,15 @@ import {
   AlertCircle,
   XCircle,
   Timer,
-  Puzzle
+  Puzzle,
+  Bell,
+  Brain,
+  CalendarClock,
+  Phone,
+  Snowflake,
+  Gift,
+  Star,
+  RefreshCw
 } from "lucide-react";
 
 const PropostaPromotrip = () => {
@@ -217,6 +225,11 @@ const PropostaPromotrip = () => {
       icon: BarChart3,
       title: "Dashboard de Controle",
       description: "Visualize o que cada agente está fazendo, quantas conversas, taxas de conversão por frente em tempo real."
+    },
+    {
+      icon: Bell,
+      title: "Avisos Inteligentes de Follow-up",
+      description: "O sistema avisa automaticamente quando é hora de entrar em contato com um lead. Sugere a mensagem ideal baseada no histórico da conversa."
     }
   ];
 
@@ -519,6 +532,133 @@ const PropostaPromotrip = () => {
                     <span className="text-sm text-white font-medium">{platform.label}</span>
                   </div>
                 ))}
+              </div>
+            </CardContent>
+          </Card>
+        </section>
+
+        {/* Avisos Inteligentes para Follow-up - Seção de Destaque */}
+        <section className="mb-20">
+          <div className="text-center mb-10">
+            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-indigo-500/20 to-violet-500/20 text-indigo-300 px-4 py-2 rounded-full text-sm font-medium mb-4 border border-indigo-500/30">
+              <Bell className="w-4 h-4 animate-pulse" />
+              Nunca Mais Perca um Follow-up
+            </div>
+            <h2 className="text-3xl font-bold mb-3">Avisos Inteligentes para Follow-up</h2>
+            <p className="text-gray-400">O sistema lembra você na hora certa e sugere a mensagem perfeita</p>
+          </div>
+
+          <Card className="bg-gradient-to-br from-indigo-900/30 via-violet-900/20 to-slate-900/50 border-indigo-500/30 border-2 overflow-hidden">
+            <div className="h-1 bg-gradient-to-r from-indigo-500 via-violet-500 to-purple-500" />
+            <CardContent className="p-8">
+              <div className="grid md:grid-cols-2 gap-6 mb-8">
+                {/* Card de Notificação */}
+                <div className="bg-slate-900/70 rounded-2xl p-6 border border-indigo-500/30 shadow-lg shadow-indigo-500/10">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-12 h-12 rounded-full bg-indigo-500/20 flex items-center justify-center relative">
+                      <Bell className="w-6 h-6 text-indigo-400" />
+                      <div className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full flex items-center justify-center">
+                        <span className="text-[10px] text-white font-bold">3</span>
+                      </div>
+                    </div>
+                    <div>
+                      <p className="text-xs text-indigo-400 font-medium">Hoje às 14:00</p>
+                      <h4 className="text-lg font-bold text-white">Aviso de Follow-up</h4>
+                    </div>
+                  </div>
+                  
+                  <div className="bg-indigo-950/50 rounded-xl p-4 border border-indigo-500/20 mb-4">
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center">
+                        <span className="text-white font-bold text-sm">MS</span>
+                      </div>
+                      <div>
+                        <p className="font-semibold text-white">Maria Silva</p>
+                        <p className="text-sm text-indigo-300">Gramado • Família</p>
+                      </div>
+                    </div>
+                    <div className="space-y-2 text-sm">
+                      <div className="flex items-center gap-2 text-gray-400">
+                        <Clock className="w-4 h-4 text-amber-400" />
+                        Último contato: <span className="text-amber-300 font-medium">3 dias atrás</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-gray-400">
+                        <Users className="w-4 h-4 text-cyan-400" />
+                        Interesse: <span className="text-white">4 pessoas, Janeiro</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-gray-400">
+                        <Target className="w-4 h-4 text-emerald-400" />
+                        Orçamento: <span className="text-emerald-300 font-medium">R$ 8.000</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="flex gap-3">
+                    <Button size="sm" className="flex-1 bg-green-600 hover:bg-green-700 text-white gap-2">
+                      <Phone className="w-4 h-4" />
+                      Ligar
+                    </Button>
+                    <Button size="sm" className="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white gap-2">
+                      <MessageSquare className="w-4 h-4" />
+                      WhatsApp
+                    </Button>
+                  </div>
+                </div>
+
+                {/* Card de Sugestão de Mensagem */}
+                <div className="bg-slate-900/70 rounded-2xl p-6 border border-violet-500/30 shadow-lg shadow-violet-500/10">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-violet-500/30 to-purple-500/30 flex items-center justify-center">
+                      <Brain className="w-6 h-6 text-violet-400" />
+                    </div>
+                    <div>
+                      <p className="text-xs text-violet-400 font-medium">IA Analisou o Contexto</p>
+                      <h4 className="text-lg font-bold text-white">Sugestão de Mensagem</h4>
+                    </div>
+                  </div>
+
+                  <div className="bg-violet-950/50 rounded-xl p-4 border border-violet-500/20 mb-4">
+                    <div className="flex items-start gap-2 mb-3">
+                      <Sparkles className="w-4 h-4 text-violet-400 mt-1 flex-shrink-0" />
+                      <p className="text-xs text-violet-300">Baseado em: destino, datas, orçamento, número de pessoas</p>
+                    </div>
+                    <div className="bg-slate-800/80 rounded-lg p-4 border-l-4 border-violet-500">
+                      <p className="text-sm text-gray-200 italic leading-relaxed">
+                        "Oi Maria! 👋 Lembra do pacote para <strong className="text-white">Gramado em janeiro</strong> que conversamos? 
+                        Ainda temos disponibilidade para <strong className="text-white">4 pessoas</strong> com ótimas condições. 
+                        O hotel que você gostou está com uma promoção especial. Posso te enviar os detalhes atualizados?"
+                      </p>
+                    </div>
+                  </div>
+
+                  <Button size="sm" className="w-full bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-700 hover:to-purple-700 text-white gap-2">
+                    <Send className="w-4 h-4" />
+                    Usar Esta Mensagem
+                  </Button>
+                </div>
+              </div>
+
+              {/* Tipos de Avisos Automáticos */}
+              <div className="bg-slate-900/50 rounded-xl p-6 border border-slate-700/50">
+                <div className="flex items-center gap-2 mb-5">
+                  <Bell className="w-5 h-5 text-indigo-400" />
+                  <h4 className="font-semibold text-white">Tipos de Avisos Automáticos</h4>
+                </div>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                  {[
+                    { icon: Clock, label: "Lead não contatado há 3+ dias", color: "text-amber-400", bg: "bg-amber-500/10", border: "border-amber-500/20" },
+                    { icon: Snowflake, label: "Negociação esfriando", color: "text-blue-400", bg: "bg-blue-500/10", border: "border-blue-500/20" },
+                    { icon: CalendarClock, label: "Data da viagem próxima", color: "text-cyan-400", bg: "bg-cyan-500/10", border: "border-cyan-500/20" },
+                    { icon: Gift, label: "Cliente aniversariante", color: "text-pink-400", bg: "bg-pink-500/10", border: "border-pink-500/20" },
+                    { icon: Star, label: "Follow-up pós-venda", color: "text-emerald-400", bg: "bg-emerald-500/10", border: "border-emerald-500/20" },
+                    { icon: RefreshCw, label: "Renovação de pacote anual", color: "text-purple-400", bg: "bg-purple-500/10", border: "border-purple-500/20" }
+                  ].map((item, i) => (
+                    <div key={i} className={`${item.bg} rounded-lg p-3 border ${item.border} flex items-center gap-2`}>
+                      <item.icon className={`w-4 h-4 ${item.color} flex-shrink-0`} />
+                      <p className="text-xs text-gray-300">{item.label}</p>
+                    </div>
+                  ))}
+                </div>
               </div>
             </CardContent>
           </Card>
