@@ -29,7 +29,12 @@ import {
   Code,
   Link,
   Settings,
-  Headphones
+  Headphones,
+  Instagram,
+  Facebook,
+  AlertCircle,
+  XCircle,
+  Timer
 } from "lucide-react";
 
 const PropostaPromotrip = () => {
@@ -407,6 +412,118 @@ const PropostaPromotrip = () => {
               </Card>
             ))}
           </div>
+        </section>
+
+        {/* Agentes de IA nas Redes Sociais */}
+        <section className="mb-20">
+          <div className="text-center mb-10">
+            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-pink-500/20 to-purple-500/20 text-pink-300 px-4 py-2 rounded-full text-sm font-medium mb-4 border border-pink-500/30">
+              <Instagram className="w-4 h-4" />
+              Automação de Redes Sociais
+            </div>
+            <h2 className="text-3xl font-bold mb-3">Agentes de IA nas Redes Sociais</h2>
+            <p className="text-gray-400">Nunca mais perca uma venda por demora no atendimento</p>
+          </div>
+
+          <Card className="bg-gradient-to-br from-pink-900/20 via-purple-900/20 to-slate-900/50 border-pink-500/30 border-2 overflow-hidden">
+            <div className="h-1 bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500" />
+            <CardContent className="p-8">
+              <div className="grid md:grid-cols-2 gap-8">
+                {/* O Problema */}
+                <div className="bg-red-950/30 rounded-2xl p-6 border border-red-500/20">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 rounded-full bg-red-500/20 flex items-center justify-center">
+                      <AlertCircle className="w-5 h-5 text-red-400" />
+                    </div>
+                    <h3 className="text-xl font-bold text-red-300">O Problema</h3>
+                  </div>
+                  
+                  <div className="space-y-4">
+                    <div className="flex items-start gap-3 p-3 bg-slate-900/50 rounded-lg">
+                      <Instagram className="w-5 h-5 text-pink-400 mt-0.5 flex-shrink-0" />
+                      <p className="text-sm text-gray-300">Postou um pacote para <strong className="text-white">Gramado</strong>...</p>
+                    </div>
+                    <div className="flex items-start gap-3 p-3 bg-slate-900/50 rounded-lg">
+                      <MessageSquare className="w-5 h-5 text-blue-400 mt-0.5 flex-shrink-0" />
+                      <p className="text-sm text-gray-300"><strong className="text-white">50 mensagens</strong> chegam: "quanto custa?"</p>
+                    </div>
+                    <div className="flex items-start gap-3 p-3 bg-slate-900/50 rounded-lg">
+                      <Timer className="w-5 h-5 text-amber-400 mt-0.5 flex-shrink-0" />
+                      <p className="text-sm text-gray-300"><strong className="text-white">3 horas</strong> para conseguir responder...</p>
+                    </div>
+                    <div className="flex items-start gap-3 p-3 bg-red-900/30 rounded-lg border border-red-500/30">
+                      <XCircle className="w-5 h-5 text-red-400 mt-0.5 flex-shrink-0" />
+                      <p className="text-sm text-red-300">Lead já <strong className="text-white">comprou na concorrência</strong></p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* A Solução */}
+                <div className="bg-emerald-950/30 rounded-2xl p-6 border border-emerald-500/20">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center">
+                      <Bot className="w-5 h-5 text-emerald-400" />
+                    </div>
+                    <h3 className="text-xl font-bold text-emerald-300">Com Agentes de IA</h3>
+                  </div>
+                  
+                  <div className="space-y-3">
+                    {[
+                      { icon: Zap, text: "Resposta instantânea 24/7", highlight: "Em segundos, não horas" },
+                      { icon: Target, text: "Qualificação automática", highlight: "Data, pessoas, orçamento" },
+                      { icon: Users, text: "Lead qualificado para o vendedor", highlight: "Pronto para fechar" },
+                      { icon: Eye, text: "Tudo registrado no dashboard", highlight: "Por frente, em tempo real" }
+                    ].map((item, i) => (
+                      <div key={i} className="flex items-start gap-3 p-3 bg-emerald-900/20 rounded-lg border border-emerald-500/20">
+                        <item.icon className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" />
+                        <div>
+                          <p className="text-sm text-white font-medium">{item.text}</p>
+                          <p className="text-xs text-emerald-400">{item.highlight}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Controle por Frente */}
+              <div className="mt-8 p-6 bg-slate-900/50 rounded-xl border border-slate-700/50">
+                <div className="flex items-center gap-2 mb-4">
+                  <BarChart3 className="w-5 h-5 text-cyan-400" />
+                  <h4 className="font-semibold text-white">Controle Centralizado por Frente</h4>
+                </div>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                  {[
+                    { label: "Conversas Abertas", color: "text-blue-400", bg: "bg-blue-500/10" },
+                    { label: "Leads Qualificados", color: "text-emerald-400", bg: "bg-emerald-500/10" },
+                    { label: "Status por Canal", color: "text-amber-400", bg: "bg-amber-500/10" },
+                    { label: "Métricas de Conversão", color: "text-pink-400", bg: "bg-pink-500/10" }
+                  ].map((item, i) => (
+                    <div key={i} className={`${item.bg} rounded-lg p-3 text-center border border-slate-700/50`}>
+                      <p className={`text-xs font-medium ${item.color}`}>{item.label}</p>
+                    </div>
+                  ))}
+                </div>
+                <p className="text-xs text-gray-500 text-center mt-4">
+                  Corporate, Lazer e Goiânia - cada um com seu painel independente
+                </p>
+              </div>
+
+              {/* Plataformas */}
+              <div className="mt-6 flex flex-wrap justify-center gap-3">
+                {[
+                  { icon: Instagram, label: "Instagram Direct", color: "from-pink-500 to-purple-500" },
+                  { icon: Facebook, label: "Messenger", color: "from-blue-500 to-blue-600" },
+                  { icon: MessageSquare, label: "Comentários", color: "from-cyan-500 to-teal-500" }
+                ].map((platform, i) => (
+                  <div key={i} className={`flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r ${platform.color} bg-opacity-20 border border-white/10`}>
+                    <platform.icon className="w-4 h-4 text-white" />
+                    <span className="text-sm text-white font-medium">{platform.label}</span>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
         </section>
 
         {/* Módulo Exclusivo: Criador de Propostas */}
