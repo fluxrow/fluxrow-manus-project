@@ -25,7 +25,11 @@ import {
   Sparkles,
   Send,
   PenTool,
-  Layers
+  Layers,
+  Code,
+  Link,
+  Settings,
+  Headphones
 } from "lucide-react";
 
 const PropostaPromotrip = () => {
@@ -38,34 +42,94 @@ const PropostaPromotrip = () => {
 
   const services = [
     {
-      icon: Bot,
-      title: "Automação com IA",
-      description: "Agentes inteligentes que trabalham 24/7 vendendo pacotes e qualificando leads."
+      icon: Code,
+      title: "Desenvolvimento de Software",
+      description: "Sistemas personalizados e plataformas web desenvolvidas sob medida para seu negócio.",
+      gradient: "from-purple-900/30 to-purple-800/20",
+      borderColor: "border-purple-500/20 hover:border-purple-400/40",
+      textColor: "text-purple-400",
+      titleColor: "text-purple-300"
     },
     {
-      icon: Share2,
-      title: "Social Media",
-      description: "Gestão estratégica de redes sociais com conteúdo que converte viajantes."
+      icon: Bot,
+      title: "Inteligência Artificial",
+      description: "Agentes inteligentes, chatbots e automações com IA que trabalham 24/7 para você.",
+      gradient: "from-pink-900/30 to-pink-800/20",
+      borderColor: "border-pink-500/20 hover:border-pink-400/40",
+      textColor: "text-pink-400",
+      titleColor: "text-pink-300"
+    },
+    {
+      icon: Link,
+      title: "Integrações & APIs",
+      description: "Conexão entre sistemas, CRMs, planilhas e plataformas para um fluxo de dados perfeito.",
+      gradient: "from-cyan-900/30 to-cyan-800/20",
+      borderColor: "border-cyan-500/20 hover:border-cyan-400/40",
+      textColor: "text-cyan-400",
+      titleColor: "text-cyan-300"
+    },
+    {
+      icon: Settings,
+      title: "Gestão de Processos",
+      description: "Mapeamento e otimização de processos para máxima eficiência operacional.",
+      gradient: "from-emerald-900/30 to-emerald-800/20",
+      borderColor: "border-emerald-500/20 hover:border-emerald-400/40",
+      textColor: "text-emerald-400",
+      titleColor: "text-emerald-300"
+    },
+    {
+      icon: BarChart3,
+      title: "Analytics & Relatórios",
+      description: "Dashboards e relatórios em tempo real para tomada de decisão baseada em dados.",
+      gradient: "from-orange-900/30 to-orange-800/20",
+      borderColor: "border-orange-500/20 hover:border-orange-400/40",
+      textColor: "text-orange-400",
+      titleColor: "text-orange-300"
+    },
+    {
+      icon: Headphones,
+      title: "Suporte & Atendimento",
+      description: "Acompanhamento contínuo e suporte dedicado para garantir o sucesso da operação.",
+      gradient: "from-indigo-900/30 to-indigo-800/20",
+      borderColor: "border-indigo-500/20 hover:border-indigo-400/40",
+      textColor: "text-indigo-400",
+      titleColor: "text-indigo-300"
     },
     {
       icon: Megaphone,
       title: "Tráfego Pago",
-      description: "Campanhas otimizadas para captar viajantes qualificados em todas as plataformas."
+      description: "Campanhas otimizadas em Google, Meta e outras plataformas para captação de leads.",
+      gradient: "from-blue-900/30 to-blue-800/20",
+      borderColor: "border-blue-500/20 hover:border-blue-400/40",
+      textColor: "text-blue-400",
+      titleColor: "text-blue-300"
+    },
+    {
+      icon: Share2,
+      title: "Social Media",
+      description: "Gestão estratégica de redes sociais com conteúdo que engaja e converte.",
+      gradient: "from-rose-900/30 to-rose-800/20",
+      borderColor: "border-rose-500/20 hover:border-rose-400/40",
+      textColor: "text-rose-400",
+      titleColor: "text-rose-300"
     },
     {
       icon: Mail,
       title: "Marketing Digital",
-      description: "Estratégias completas de email marketing e nutrição de leads."
+      description: "Estratégias completas de email marketing, nutrição de leads e funis de vendas.",
+      gradient: "from-teal-900/30 to-teal-800/20",
+      borderColor: "border-teal-500/20 hover:border-teal-400/40",
+      textColor: "text-teal-400",
+      titleColor: "text-teal-300"
     },
     {
       icon: Workflow,
-      title: "Automações",
-      description: "Fluxos automatizados que transformam interessados em clientes."
-    },
-    {
-      icon: BarChart3,
-      title: "Analytics",
-      description: "Dados em tempo real para decisões estratégicas baseadas em performance."
+      title: "Automações de Marketing",
+      description: "Fluxos automatizados que nutrem leads e transformam interessados em clientes.",
+      gradient: "from-amber-900/30 to-amber-800/20",
+      borderColor: "border-amber-500/20 hover:border-amber-400/40",
+      textColor: "text-amber-400",
+      titleColor: "text-amber-300"
     }
   ];
 
@@ -205,19 +269,18 @@ const PropostaPromotrip = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
             {services.map((service, index) => (
-              <Card key={index} className="bg-slate-800/50 border-slate-700/50 hover:border-cyan-500/30 transition-all duration-300">
-                <CardContent className="p-5">
-                  <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center flex-shrink-0">
-                      <service.icon className="w-5 h-5 text-white" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-white mb-1">{service.title}</h3>
-                      <p className="text-sm text-gray-400">{service.description}</p>
-                    </div>
+              <div 
+                key={index} 
+                className={`bg-gradient-to-br ${service.gradient} p-6 rounded-xl border ${service.borderColor} backdrop-blur-sm transition-all duration-300 hover:transform hover:scale-105`}
+              >
+                <div className="flex items-start gap-3">
+                  <service.icon className={`w-7 h-7 ${service.textColor} mt-1 flex-shrink-0`} />
+                  <div>
+                    <h4 className={`font-semibold mb-2 ${service.titleColor} text-lg`}>{service.title}</h4>
+                    <p className="text-sm text-gray-400 leading-relaxed">{service.description}</p>
                   </div>
-                </CardContent>
-              </Card>
+                </div>
+              </div>
             ))}
           </div>
 
