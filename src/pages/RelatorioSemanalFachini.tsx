@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Calendar, RefreshCw } from 'lucide-react';
 import { ArrowLeft, Download, Share2, TrendingUp, Users, DollarSign, AlertCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -302,65 +303,46 @@ export default function RelatorioSemanalFachini() {
               </span>
             )}
           </div>
-        </section>
 
-        {/* Seção de Geração de Relatório (só aparece com dados de exemplo) */}
-        {!isDadosReais && (
-          <section className="mb-12">
-            <Card className="border-orange-500/50 bg-orange-500/5">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <AlertCircle className="h-5 w-5 text-orange-600" />
-                  Gerar Relatório com Dados Reais
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground mb-6">
-                  Este relatório está usando dados de exemplo. Gere um relatório com dados reais da API Reportei:
-                </p>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="data-inicio">Data Início</Label>
-                    <Input
-                      id="data-inicio"
-                      type="date"
-                      value={dataInicio}
-                      onChange={(e) => setDataInicio(e.target.value)}
-                      disabled={gerando}
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="data-fim">Data Fim</Label>
-                    <Input
-                      id="data-fim"
-                      type="date"
-                      value={dataFim}
-                      onChange={(e) => setDataFim(e.target.value)}
-                      disabled={gerando}
-                    />
-                  </div>
-                </div>
-                
-                <Button 
-                  onClick={handleGerarRelatorio}
-                  disabled={gerando}
-                  className="w-full md:w-auto"
-                  size="lg"
-                >
-                  {gerando ? (
-                    <>
-                      <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                      Gerando Relatório...
-                    </>
-                  ) : (
-                    'Gerar Relatório Real'
-                  )}
-                </Button>
-              </CardContent>
-            </Card>
-          </section>
-        )}
+          {/* Campo de Ajuste de Período - Sempre visível */}
+          <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3 print:hidden">
+            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+              <Calendar className="h-4 w-4" />
+              <span>Ajustar período:</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Input
+                type="date"
+                value={dataInicio}
+                onChange={(e) => setDataInicio(e.target.value)}
+                className="w-36 h-9 text-sm"
+                disabled={gerando}
+              />
+              <span className="text-muted-foreground">a</span>
+              <Input
+                type="date"
+                value={dataFim}
+                onChange={(e) => setDataFim(e.target.value)}
+                className="w-36 h-9 text-sm"
+                disabled={gerando}
+              />
+              <Button 
+                onClick={handleGerarRelatorio}
+                disabled={gerando}
+                size="sm"
+                variant="outline"
+                className="gap-1"
+              >
+                {gerando ? (
+                  <div className="animate-spin rounded-full h-3 w-3 border-b-2 border-primary" />
+                ) : (
+                  <RefreshCw className="h-3 w-3" />
+                )}
+                Atualizar
+              </Button>
+            </div>
+          </div>
+        </section>
 
         {/* KPIs Principais */}
         <section className="mb-12">
