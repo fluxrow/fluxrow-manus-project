@@ -6,6 +6,9 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
 
+// Delay helper to avoid rate limiting (429)
+const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+
 // Função auxiliar para formatar data no formato dd/mm
 const formatDate = (date: Date): string => {
   const day = String(date.getDate()).padStart(2, '0');
@@ -52,36 +55,50 @@ const findWidget = (widgets: any[], ...searchTerms: string[]) => {
   });
 };
 
-// Função para buscar valor de um widget
-const fetchWidgetValue = async (integrationId: string, widgetKey: string, dateStart: string, dateEnd: string, headers: any, baseUrl: string) => {
+// Função para buscar valor de um widget com payload correto
+const fetchWidgetValue = async (
+  integrationId: number, 
+  widget: any, 
+  dateStart: string, 
+  dateEnd: string, 
+  headers: any, 
+  baseUrl: string
+) => {
   try {
-    console.log(`    🔄 Buscando valor do widget: ${widgetKey}`);
+    console.log(`    🔄 Buscando widget: ${widget.reference_key}`);
+    
+    // Payload correto para a API Reportei
+    const payload = {
+      start: dateStart,
+      end: dateEnd,
+      widgets: [{
+        id: widget.id,
+        reference_key: widget.reference_key,
+        component: widget.component || 'number_v1',
+        metrics: widget.metrics || []
+      }]
+    };
     
     const response = await fetch(
       `${baseUrl}/integrations/${integrationId}/widgets/value`,
       {
         method: 'POST',
         headers,
-        body: JSON.stringify({
-          start: dateStart,
-          end: dateEnd,
-          widgets: [widgetKey]
-        })
+        body: JSON.stringify(payload)
       }
     );
 
     if (response.ok) {
       const data = await response.json();
-      console.log(`    ✅ Valor recebido:`, data.value || data);
+      console.log(`    ✅ Resposta recebida:`, JSON.stringify(data).substring(0, 200));
       return data;
     } else {
-      console.log(`    ⚠️ Widget ${widgetKey} retornou status ${response.status}`);
       const errorText = await response.text();
-      console.log(`    ❌ Erro: ${errorText}`);
+      console.log(`    ⚠️ Widget ${widget.reference_key} status ${response.status}: ${errorText.substring(0, 100)}`);
       return null;
     }
   } catch (error) {
-    console.error(`    ❌ Erro ao buscar widget ${widgetKey}:`, error.message);
+    console.error(`    ❌ Erro widget ${widget.reference_key}:`, error.message);
     return null;
   }
 };
@@ -91,9 +108,15 @@ const extractNumber = (value: any): number => {
   if (value === null || value === undefined) return 0;
   if (typeof value === 'number') return value;
   if (typeof value === 'string') {
-    // Remove caracteres não numéricos exceto ponto e vírgula
     const cleaned = value.replace(/[^\d.,\-]/g, '').replace(',', '.');
     return Number(cleaned) || 0;
+  }
+  if (typeof value === 'object') {
+    // Tentar extrair de formatos comuns de resposta
+    if (value.value !== undefined) return extractNumber(value.value);
+    if (value.data && Array.isArray(value.data) && value.data[0]?.value !== undefined) {
+      return extractNumber(value.data[0].value);
+    }
   }
   return 0;
 };
@@ -104,6 +127,28 @@ const extractPercentage = (value: any): string => {
   if (typeof value === 'string' && value.includes('%')) return value;
   const num = extractNumber(value);
   return `${num.toFixed(2)}%`;
+};
+
+// Extrair valor de resposta da API (que pode vir em diferentes formatos)
+const extractValueFromResponse = (response: any): number => {
+  if (!response) return 0;
+  
+  // Formato: { data: [{ value: X }] }
+  if (response.data && Array.isArray(response.data) && response.data[0]) {
+    return extractNumber(response.data[0].value);
+  }
+  
+  // Formato: { value: X }
+  if (response.value !== undefined) {
+    return extractNumber(response.value);
+  }
+  
+  // Formato: [{ value: X }]
+  if (Array.isArray(response) && response[0]?.value !== undefined) {
+    return extractNumber(response[0].value);
+  }
+  
+  return extractNumber(response);
 };
 
 serve(async (req) => {
@@ -128,9 +173,12 @@ serve(async (req) => {
       ? { dataInicio: data_inicio, dataFim: data_fim, periodo: `${data_inicio} a ${data_fim}` }
       : getLastWeek();
 
-    console.log(`🔄 Gerando relatório para período: ${periodo.periodo}`);
+    console.log(`\n${'='.repeat(60)}`);
+    console.log(`📊 INICIANDO COLETA DE DADOS REPORTEI`);
+    console.log(`📅 Período: ${periodo.periodo}`);
     console.log(`📅 Data início: ${periodo.dataInicio} | Data fim: ${periodo.dataFim}`);
     console.log(`🤖 Automático: ${auto || false}`);
+    console.log(`${'='.repeat(60)}\n`);
 
     // Headers padrão para API do Reportei
     const headers = {
@@ -140,7 +188,7 @@ serve(async (req) => {
     };
 
     // 1. BUSCAR INTEGRAÇÕES DO CLIENTE
-    console.log('\n🔗 Buscando integrações do cliente...');
+    console.log('1️⃣ Buscando integrações do cliente...');
     const integrationsResponse = await fetch(`${BASE_URL}/clients/${CLIENT_ID}/integrations`, { headers });
     
     if (!integrationsResponse.ok) {
@@ -149,567 +197,392 @@ serve(async (req) => {
 
     const integrationsData = await integrationsResponse.json();
     const integrations = integrationsData.data || [];
-    console.log(`✅ ${integrations.length} integrações encontradas`);
+    console.log(`✅ ${integrations.length} integrações encontradas:`);
+    
+    integrations.forEach((i: any) => {
+      console.log(`   - ${i.integration_name} (ID: ${i.id}) - ${i.source_name}`);
+    });
 
-    // 2. MAPEAR INTEGRAÇÕES POR PLATAFORMA
-    const integrationMap: any = {};
+    // 2. MAPEAR INTEGRAÇÕES POR NOME EXATO (integration_name)
+    // Isso é CRÍTICO! Usar integration_name, não platform
+    const integrationMap: {
+      metaAds?: any;
+      googleAds?: any;
+      instagram?: any;
+      rdStation?: any;
+      facebookPage?: any;
+      analytics?: any;
+    } = {};
     
     for (const integration of integrations) {
-      console.log(`\n🔍 Analisando integração:`, {
-        id: integration.id,
-        platform: integration.platform,
-        name: integration.name,
-        integration_name: integration.integration_name,
-        source_name: integration.source_name
-      });
+      const integrationName = integration.integration_name;
       
-      const platform = integration.platform?.toLowerCase() || '';
-      const name = (integration.name || integration.integration_name || integration.source_name || '').toLowerCase();
-      
-      if (platform.includes('facebook') || platform.includes('meta') || name.includes('meta') || name.includes('facebook')) {
-        integrationMap.meta = integration;
-        console.log(`📱 Meta Ads encontrado: ID ${integration.id}`);
-      } else if (platform.includes('google_ads') || name.includes('google ads')) {
-        integrationMap.google = integration;
-        console.log(`🔍 Google Ads encontrado: ID ${integration.id}`);
-      } else if (platform.includes('instagram') || name.includes('instagram')) {
+      if (integrationName === 'Meta Ads') {
+        integrationMap.metaAds = integration;
+        console.log(`📱 Meta Ads mapeado: ID ${integration.id}`);
+      } else if (integrationName === 'Google Ads') {
+        integrationMap.googleAds = integration;
+        console.log(`🔍 Google Ads mapeado: ID ${integration.id}`);
+      } else if (integrationName === 'Instagram Business') {
         integrationMap.instagram = integration;
-        console.log(`📸 Instagram encontrado: ID ${integration.id}`);
-      } else if (platform.includes('rd_station') || name.includes('rd station')) {
-        integrationMap.rd = integration;
-        console.log(`📊 RD Station encontrado: ID ${integration.id}`);
+        console.log(`📸 Instagram mapeado: ID ${integration.id}`);
+      } else if (integrationName === 'RD Station CRM') {
+        integrationMap.rdStation = integration;
+        console.log(`📊 RD Station mapeado: ID ${integration.id}`);
+      } else if (integrationName === 'Facebook') {
+        integrationMap.facebookPage = integration;
+        console.log(`📘 Facebook Page mapeado: ID ${integration.id}`);
+      } else if (integrationName === 'Google Analytics 4') {
+        if (!integrationMap.analytics) {
+          integrationMap.analytics = integration;
+          console.log(`📈 Google Analytics mapeado: ID ${integration.id}`);
+        }
       }
     }
 
-    // 3. BUSCAR DADOS DO META ADS (COMPLETO)
-    console.log('\n📱 Buscando dados COMPLETOS do Meta Ads...');
-    let leadsMeta = 0;
-    let investimentoMeta = 0;
-    let conversasMeta = 0;
-    let alcanceMeta = 0;
-    let impressoesMeta = 0;
-    let cliquesMeta = 0;
-    let cpmMeta = 0;
-    let cpcMeta = 0;
-    let ctrMeta = '0%';
-    let frequenciaMeta = 0;
+    console.log(`\n📌 Resumo das integrações mapeadas:`);
+    console.log(`   Meta Ads: ${integrationMap.metaAds?.id || 'N/A'}`);
+    console.log(`   Google Ads: ${integrationMap.googleAds?.id || 'N/A'}`);
+    console.log(`   Instagram: ${integrationMap.instagram?.id || 'N/A'}`);
+    console.log(`   RD Station: ${integrationMap.rdStation?.id || 'N/A'}`);
+    console.log(`   Facebook Page: ${integrationMap.facebookPage?.id || 'N/A'}`);
+    console.log(`   Analytics: ${integrationMap.analytics?.id || 'N/A'}`);
+
+    // Inicializar variáveis de coleta
+    let leadsMeta = 0, investimentoMeta = 0, conversasMeta = 0;
+    let alcanceMeta = 0, impressoesMeta = 0, cliquesMeta = 0;
+    let cpmMeta = 0, cpcMeta = 0, ctrMeta = '0%', frequenciaMeta = 0;
+    
+    let cliquesGoogle = 0, investimentoGoogle = 0, impressoesGoogle = 0;
+    let conversoesGoogle = 0, cpcGoogle = 0, cpmGoogle = 0, ctrGoogle = '0%', custoConversaoGoogle = 0;
+    
+    let conversasInstagram = 0, seguidoresInstagram = 0, novosSeguidoresInstagram = 0, alcanceInstagram = 0;
+    let conversasFacebook = 0;
+    
+    let oportunidadesRD = 0, vendasRD = 0, taxaConversaoRD = 0;
+    let dadosVendedores: any[] = [];
     let dadosCategorias: any[] = [];
-
-    if (integrationMap.meta) {
-      const metaId = integrationMap.meta.id;
-      
-      // Buscar widgets disponíveis
-      const widgetsResponse = await fetch(`${BASE_URL}/integrations/${metaId}/widgets`, { headers });
-      if (widgetsResponse.ok) {
-        const widgetsData = await widgetsResponse.json();
-        const widgets = Array.isArray(widgetsData) ? widgetsData : (widgetsData.data || []);
-        console.log(`  📋 Total de widgets Meta Ads: ${widgets.length}`);
-        
-        // Log detalhado de todos os widgets disponíveis
-        console.log(`  📋 LISTA COMPLETA DE WIDGETS META:`);
-        widgets.forEach((w: any, i: number) => {
-          console.log(`    [${i}] slug: "${w.slug}", name: "${w.name}", key: "${w.key}", ref_key: "${w.reference_key}"`);
-        });
-        
-        // Buscar LEADS
-        const leadsWidget = findWidget(widgets, 'lead', 'form', 'formulario', 'formulário', 'conversion');
-        if (leadsWidget) {
-          const widgetId = leadsWidget.reference_key || leadsWidget.slug || leadsWidget.key;
-          console.log(`  🎯 Widget LEADS encontrado: ${widgetId}`);
-          const leadsData = await fetchWidgetValue(metaId, widgetId, periodo.dataInicio, periodo.dataFim, headers, BASE_URL);
-          if (leadsData?.value) {
-            leadsMeta = extractNumber(leadsData.value);
-            console.log(`  ✅ Leads: ${leadsMeta}`);
-            
-            // Se houver breakdown por categoria/campanha
-            if (leadsData.breakdown && Array.isArray(leadsData.breakdown)) {
-              dadosCategorias = leadsData.breakdown.map((item: any) => ({
-                categoria: item.dimension || item.name || 'Outros',
-                qtd: extractNumber(item.value),
-                custo: 0 // será calculado depois individualmente
-              }));
-            }
-          }
-        } else {
-          console.log(`  ⚠️ Widget LEADS não encontrado`);
-        }
-        
-        // Buscar INVESTIMENTO (spend)
-        const spendWidget = findWidget(widgets, 'spend', 'cost', 'gasto', 'investimento', 'valor');
-        if (spendWidget) {
-          const widgetId = spendWidget.reference_key || spendWidget.slug || spendWidget.key;
-          console.log(`  🎯 Widget INVESTIMENTO encontrado: ${widgetId}`);
-          const spendData = await fetchWidgetValue(metaId, widgetId, periodo.dataInicio, periodo.dataFim, headers, BASE_URL);
-          if (spendData?.value) {
-            investimentoMeta = extractNumber(spendData.value);
-            console.log(`  ✅ Investimento: R$ ${investimentoMeta}`);
-          }
-        } else {
-          console.log(`  ⚠️ Widget INVESTIMENTO não encontrado`);
-        }
-        
-        // Buscar CONVERSAS INICIADAS
-        const conversasWidget = findWidget(widgets, 'messaging', 'conversation', 'conversa', 'mensagem', 'message');
-        if (conversasWidget) {
-          const widgetId = conversasWidget.reference_key || conversasWidget.slug || conversasWidget.key;
-          console.log(`  🎯 Widget CONVERSAS encontrado: ${widgetId}`);
-          const conversasData = await fetchWidgetValue(metaId, widgetId, periodo.dataInicio, periodo.dataFim, headers, BASE_URL);
-          if (conversasData?.value) {
-            conversasMeta = extractNumber(conversasData.value);
-            console.log(`  ✅ Conversas: ${conversasMeta}`);
-          }
-        } else {
-          console.log(`  ⚠️ Widget CONVERSAS não encontrado`);
-        }
-
-        // Buscar ALCANCE (reach)
-        const alcanceWidget = findWidget(widgets, 'reach', 'alcance', 'people_reached');
-        if (alcanceWidget) {
-          const widgetId = alcanceWidget.reference_key || alcanceWidget.slug || alcanceWidget.key;
-          console.log(`  🎯 Widget ALCANCE encontrado: ${widgetId}`);
-          const alcanceData = await fetchWidgetValue(metaId, widgetId, periodo.dataInicio, periodo.dataFim, headers, BASE_URL);
-          if (alcanceData?.value) {
-            alcanceMeta = extractNumber(alcanceData.value);
-            console.log(`  ✅ Alcance: ${alcanceMeta}`);
-          }
-        } else {
-          console.log(`  ⚠️ Widget ALCANCE não encontrado`);
-        }
-
-        // Buscar IMPRESSÕES
-        const impressoesWidget = findWidget(widgets, 'impression', 'impressao', 'impressão', 'impressoes', 'impressões');
-        if (impressoesWidget) {
-          const widgetId = impressoesWidget.reference_key || impressoesWidget.slug || impressoesWidget.key;
-          console.log(`  🎯 Widget IMPRESSÕES encontrado: ${widgetId}`);
-          const impressoesData = await fetchWidgetValue(metaId, widgetId, periodo.dataInicio, periodo.dataFim, headers, BASE_URL);
-          if (impressoesData?.value) {
-            impressoesMeta = extractNumber(impressoesData.value);
-            console.log(`  ✅ Impressões: ${impressoesMeta}`);
-          }
-        } else {
-          console.log(`  ⚠️ Widget IMPRESSÕES não encontrado`);
-        }
-
-        // Buscar CLIQUES
-        const cliquesWidget = findWidget(widgets, 'click', 'clique', 'clicks', 'link_click');
-        if (cliquesWidget) {
-          const widgetId = cliquesWidget.reference_key || cliquesWidget.slug || cliquesWidget.key;
-          console.log(`  🎯 Widget CLIQUES encontrado: ${widgetId}`);
-          const cliquesData = await fetchWidgetValue(metaId, widgetId, periodo.dataInicio, periodo.dataFim, headers, BASE_URL);
-          if (cliquesData?.value) {
-            cliquesMeta = extractNumber(cliquesData.value);
-            console.log(`  ✅ Cliques: ${cliquesMeta}`);
-          }
-        } else {
-          console.log(`  ⚠️ Widget CLIQUES não encontrado`);
-        }
-
-        // Buscar CPM
-        const cpmWidget = findWidget(widgets, 'cpm', 'cost_per_mille', 'custo_por_mil');
-        if (cpmWidget) {
-          const widgetId = cpmWidget.reference_key || cpmWidget.slug || cpmWidget.key;
-          console.log(`  🎯 Widget CPM encontrado: ${widgetId}`);
-          const cpmData = await fetchWidgetValue(metaId, widgetId, periodo.dataInicio, periodo.dataFim, headers, BASE_URL);
-          if (cpmData?.value) {
-            cpmMeta = extractNumber(cpmData.value);
-            console.log(`  ✅ CPM: R$ ${cpmMeta}`);
-          }
-        } else {
-          // Calcular CPM se não encontrar widget
-          if (impressoesMeta > 0 && investimentoMeta > 0) {
-            cpmMeta = Number(((investimentoMeta / impressoesMeta) * 1000).toFixed(2));
-            console.log(`  📊 CPM calculado: R$ ${cpmMeta}`);
-          }
-        }
-
-        // Buscar CPC
-        const cpcWidget = findWidget(widgets, 'cpc', 'cost_per_click', 'custo_por_clique', 'cost_per_link_click');
-        if (cpcWidget) {
-          const widgetId = cpcWidget.reference_key || cpcWidget.slug || cpcWidget.key;
-          console.log(`  🎯 Widget CPC encontrado: ${widgetId}`);
-          const cpcData = await fetchWidgetValue(metaId, widgetId, periodo.dataInicio, periodo.dataFim, headers, BASE_URL);
-          if (cpcData?.value) {
-            cpcMeta = extractNumber(cpcData.value);
-            console.log(`  ✅ CPC: R$ ${cpcMeta}`);
-          }
-        } else {
-          // Calcular CPC se não encontrar widget
-          if (cliquesMeta > 0 && investimentoMeta > 0) {
-            cpcMeta = Number((investimentoMeta / cliquesMeta).toFixed(2));
-            console.log(`  📊 CPC calculado: R$ ${cpcMeta}`);
-          }
-        }
-
-        // Buscar CTR
-        const ctrWidget = findWidget(widgets, 'ctr', 'click_through_rate', 'taxa_clique');
-        if (ctrWidget) {
-          const widgetId = ctrWidget.reference_key || ctrWidget.slug || ctrWidget.key;
-          console.log(`  🎯 Widget CTR encontrado: ${widgetId}`);
-          const ctrData = await fetchWidgetValue(metaId, widgetId, periodo.dataInicio, periodo.dataFim, headers, BASE_URL);
-          if (ctrData?.value) {
-            ctrMeta = extractPercentage(ctrData.value);
-            console.log(`  ✅ CTR: ${ctrMeta}`);
-          }
-        } else {
-          // Calcular CTR se não encontrar widget
-          if (impressoesMeta > 0 && cliquesMeta > 0) {
-            const ctrValue = (cliquesMeta / impressoesMeta) * 100;
-            ctrMeta = `${ctrValue.toFixed(2)}%`;
-            console.log(`  📊 CTR calculado: ${ctrMeta}`);
-          }
-        }
-
-        // Buscar FREQUÊNCIA
-        const frequenciaWidget = findWidget(widgets, 'frequency', 'frequencia', 'frequência', 'freq');
-        if (frequenciaWidget) {
-          const widgetId = frequenciaWidget.reference_key || frequenciaWidget.slug || frequenciaWidget.key;
-          console.log(`  🎯 Widget FREQUÊNCIA encontrado: ${widgetId}`);
-          const frequenciaData = await fetchWidgetValue(metaId, widgetId, periodo.dataInicio, periodo.dataFim, headers, BASE_URL);
-          if (frequenciaData?.value) {
-            frequenciaMeta = extractNumber(frequenciaData.value);
-            console.log(`  ✅ Frequência: ${frequenciaMeta}`);
-          }
-        } else {
-          // Calcular frequência se não encontrar widget
-          if (alcanceMeta > 0 && impressoesMeta > 0) {
-            frequenciaMeta = Number((impressoesMeta / alcanceMeta).toFixed(2));
-            console.log(`  📊 Frequência calculada: ${frequenciaMeta}`);
-          }
-        }
-      }
-    }
-
-    // 4. BUSCAR DADOS DO GOOGLE ADS (COMPLETO)
-    console.log('\n🔍 Buscando dados COMPLETOS do Google Ads...');
-    let cliquesGoogle = 0;
-    let investimentoGoogle = 0;
-    let impressoesGoogle = 0;
-    let conversoesGoogle = 0;
-    let cpcGoogle = 0;
-    let cpmGoogle = 0;
-    let ctrGoogle = '0%';
-    let custoConversaoGoogle = 0;
     let dadosUrls: any[] = [];
 
-    if (integrationMap.google) {
-      const googleId = integrationMap.google.id;
+    // 3. BUSCAR DADOS DO META ADS
+    if (integrationMap.metaAds) {
+      console.log(`\n2️⃣ COLETANDO DADOS META ADS (ID: ${integrationMap.metaAds.id})...`);
       
-      const widgetsResponse = await fetch(`${BASE_URL}/integrations/${googleId}/widgets`, { headers });
+      await delay(500);
+      const widgetsResponse = await fetch(`${BASE_URL}/integrations/${integrationMap.metaAds.id}/widgets`, { headers });
+      
       if (widgetsResponse.ok) {
         const widgetsData = await widgetsResponse.json();
-        const widgets = Array.isArray(widgetsData) ? widgetsData : (widgetsData.data || []);
-        console.log(`  📋 Total de widgets Google Ads: ${widgets.length}`);
+        const widgets = widgetsData.data || widgetsData || [];
+        console.log(`   📋 Widgets disponíveis: ${widgets.length}`);
         
-        // Log detalhado de todos os widgets disponíveis
-        console.log(`  📋 LISTA COMPLETA DE WIDGETS GOOGLE:`);
-        widgets.forEach((w: any, i: number) => {
-          console.log(`    [${i}] slug: "${w.slug}", name: "${w.name}", key: "${w.key}", ref_key: "${w.reference_key}"`);
-        });
+        // Log todos os reference_key para debug
+        const refKeys = widgets.map((w: any) => w.reference_key).filter(Boolean);
+        console.log(`   🔑 Reference keys: ${refKeys.slice(0, 10).join(', ')}...`);
         
-        // Buscar CLIQUES
-        const clicksWidget = findWidget(widgets, 'click', 'clique', 'clicks');
-        if (clicksWidget) {
-          const widgetId = clicksWidget.reference_key || clicksWidget.slug || clicksWidget.key;
-          console.log(`  🎯 Widget CLIQUES encontrado: ${widgetId}`);
-          const clicksData = await fetchWidgetValue(googleId, widgetId, periodo.dataInicio, periodo.dataFim, headers, BASE_URL);
-          if (clicksData?.value) {
-            cliquesGoogle = extractNumber(clicksData.value);
-            console.log(`  ✅ Cliques: ${cliquesGoogle}`);
-          }
-        } else {
-          console.log(`  ⚠️ Widget CLIQUES não encontrado`);
-        }
-        
-        // Buscar INVESTIMENTO
-        const spendWidget = findWidget(widgets, 'cost', 'spend', 'gasto', 'investimento', 'custo');
+        // INVESTIMENTO (spend)
+        const spendWidget = findWidget(widgets, 'spend', 'amount_spent', 'cost', 'custo');
         if (spendWidget) {
-          const widgetId = spendWidget.reference_key || spendWidget.slug || spendWidget.key;
-          console.log(`  🎯 Widget INVESTIMENTO encontrado: ${widgetId}`);
-          const spendData = await fetchWidgetValue(googleId, widgetId, periodo.dataInicio, periodo.dataFim, headers, BASE_URL);
-          if (spendData?.value) {
-            investimentoGoogle = extractNumber(spendData.value);
-            console.log(`  ✅ Investimento: R$ ${investimentoGoogle}`);
-          }
-        } else {
-          console.log(`  ⚠️ Widget INVESTIMENTO não encontrado`);
+          await delay(400);
+          const data = await fetchWidgetValue(integrationMap.metaAds.id, spendWidget, periodo.dataInicio, periodo.dataFim, headers, BASE_URL);
+          investimentoMeta = extractValueFromResponse(data);
+          console.log(`   ✅ Investimento: R$ ${investimentoMeta}`);
         }
         
-        // Buscar IMPRESSÕES
-        const impressionsWidget = findWidget(widgets, 'impression', 'impressao', 'impressão', 'impressoes', 'impressões');
+        // LEADS/RESULTADOS
+        const leadsWidget = findWidget(widgets, 'leads', 'results', 'onsite_conversion', 'conversions', 'onsiteconversion');
+        if (leadsWidget) {
+          await delay(400);
+          const data = await fetchWidgetValue(integrationMap.metaAds.id, leadsWidget, periodo.dataInicio, periodo.dataFim, headers, BASE_URL);
+          leadsMeta = extractValueFromResponse(data);
+          console.log(`   ✅ Leads: ${leadsMeta}`);
+        }
+        
+        // CONVERSAS INICIADAS
+        const conversasWidget = findWidget(widgets, 'messaging_conversation', 'messaging', 'message', 'conversa');
+        if (conversasWidget) {
+          await delay(400);
+          const data = await fetchWidgetValue(integrationMap.metaAds.id, conversasWidget, periodo.dataInicio, periodo.dataFim, headers, BASE_URL);
+          conversasMeta = extractValueFromResponse(data);
+          console.log(`   ✅ Conversas: ${conversasMeta}`);
+        }
+        
+        // ALCANCE
+        const reachWidget = findWidget(widgets, 'reach', 'alcance');
+        if (reachWidget) {
+          await delay(400);
+          const data = await fetchWidgetValue(integrationMap.metaAds.id, reachWidget, periodo.dataInicio, periodo.dataFim, headers, BASE_URL);
+          alcanceMeta = extractValueFromResponse(data);
+          console.log(`   ✅ Alcance: ${alcanceMeta}`);
+        }
+        
+        // IMPRESSÕES
+        const impressionsWidget = findWidget(widgets, 'impressions', 'impressoes');
         if (impressionsWidget) {
-          const widgetId = impressionsWidget.reference_key || impressionsWidget.slug || impressionsWidget.key;
-          console.log(`  🎯 Widget IMPRESSÕES encontrado: ${widgetId}`);
-          const impressionsData = await fetchWidgetValue(googleId, widgetId, periodo.dataInicio, periodo.dataFim, headers, BASE_URL);
-          if (impressionsData?.value) {
-            impressoesGoogle = extractNumber(impressionsData.value);
-            console.log(`  ✅ Impressões: ${impressoesGoogle}`);
-          }
-        } else {
-          console.log(`  ⚠️ Widget IMPRESSÕES não encontrado`);
+          await delay(400);
+          const data = await fetchWidgetValue(integrationMap.metaAds.id, impressionsWidget, periodo.dataInicio, periodo.dataFim, headers, BASE_URL);
+          impressoesMeta = extractValueFromResponse(data);
+          console.log(`   ✅ Impressões: ${impressoesMeta}`);
         }
         
-        // Buscar CONVERSÕES
-        const conversionsWidget = findWidget(widgets, 'conversion', 'conversao', 'conversão', 'conversoes', 'conversões');
-        if (conversionsWidget) {
-          const widgetId = conversionsWidget.reference_key || conversionsWidget.slug || conversionsWidget.key;
-          console.log(`  🎯 Widget CONVERSÕES encontrado: ${widgetId}`);
-          const conversionsData = await fetchWidgetValue(googleId, widgetId, periodo.dataInicio, periodo.dataFim, headers, BASE_URL);
-          if (conversionsData?.value) {
-            conversoesGoogle = extractNumber(conversionsData.value);
-            console.log(`  ✅ Conversões: ${conversoesGoogle}`);
-          }
-        } else {
-          console.log(`  ⚠️ Widget CONVERSÕES não encontrado`);
+        // CLIQUES
+        const clicksWidget = findWidget(widgets, 'clicks', 'link_click', 'cliques');
+        if (clicksWidget) {
+          await delay(400);
+          const data = await fetchWidgetValue(integrationMap.metaAds.id, clicksWidget, periodo.dataInicio, periodo.dataFim, headers, BASE_URL);
+          cliquesMeta = extractValueFromResponse(data);
+          console.log(`   ✅ Cliques: ${cliquesMeta}`);
         }
-
-        // Buscar CPC
-        const cpcWidget = findWidget(widgets, 'cpc', 'cost_per_click', 'avg_cpc', 'custo_por_clique');
-        if (cpcWidget) {
-          const widgetId = cpcWidget.reference_key || cpcWidget.slug || cpcWidget.key;
-          console.log(`  🎯 Widget CPC encontrado: ${widgetId}`);
-          const cpcData = await fetchWidgetValue(googleId, widgetId, periodo.dataInicio, periodo.dataFim, headers, BASE_URL);
-          if (cpcData?.value) {
-            cpcGoogle = extractNumber(cpcData.value);
-            console.log(`  ✅ CPC: R$ ${cpcGoogle}`);
-          }
-        } else {
-          // Calcular CPC
-          if (cliquesGoogle > 0 && investimentoGoogle > 0) {
-            cpcGoogle = Number((investimentoGoogle / cliquesGoogle).toFixed(2));
-            console.log(`  📊 CPC calculado: R$ ${cpcGoogle}`);
-          }
-        }
-
-        // Buscar CPM
-        const cpmWidget = findWidget(widgets, 'cpm', 'cost_per_mille', 'custo_por_mil');
+        
+        // CPM
+        const cpmWidget = findWidget(widgets, 'cpm');
         if (cpmWidget) {
-          const widgetId = cpmWidget.reference_key || cpmWidget.slug || cpmWidget.key;
-          console.log(`  🎯 Widget CPM encontrado: ${widgetId}`);
-          const cpmData = await fetchWidgetValue(googleId, widgetId, periodo.dataInicio, periodo.dataFim, headers, BASE_URL);
-          if (cpmData?.value) {
-            cpmGoogle = extractNumber(cpmData.value);
-            console.log(`  ✅ CPM: R$ ${cpmGoogle}`);
-          }
-        } else {
-          // Calcular CPM
-          if (impressoesGoogle > 0 && investimentoGoogle > 0) {
-            cpmGoogle = Number(((investimentoGoogle / impressoesGoogle) * 1000).toFixed(2));
-            console.log(`  📊 CPM calculado: R$ ${cpmGoogle}`);
-          }
-        }
-
-        // Buscar CTR
-        const ctrWidget = findWidget(widgets, 'ctr', 'click_through_rate', 'taxa_clique');
-        if (ctrWidget) {
-          const widgetId = ctrWidget.reference_key || ctrWidget.slug || ctrWidget.key;
-          console.log(`  🎯 Widget CTR encontrado: ${widgetId}`);
-          const ctrData = await fetchWidgetValue(googleId, widgetId, periodo.dataInicio, periodo.dataFim, headers, BASE_URL);
-          if (ctrData?.value) {
-            ctrGoogle = extractPercentage(ctrData.value);
-            console.log(`  ✅ CTR: ${ctrGoogle}`);
-          }
-        } else {
-          // Calcular CTR
-          if (impressoesGoogle > 0 && cliquesGoogle > 0) {
-            const ctrValue = (cliquesGoogle / impressoesGoogle) * 100;
-            ctrGoogle = `${ctrValue.toFixed(2)}%`;
-            console.log(`  📊 CTR calculado: ${ctrGoogle}`);
-          }
-        }
-
-        // Buscar CUSTO POR CONVERSÃO
-        const costConvWidget = findWidget(widgets, 'cost_per_conversion', 'cost_conversion', 'custo_conversao', 'custo_por_conversao');
-        if (costConvWidget) {
-          const widgetId = costConvWidget.reference_key || costConvWidget.slug || costConvWidget.key;
-          console.log(`  🎯 Widget CUSTO/CONVERSÃO encontrado: ${widgetId}`);
-          const costConvData = await fetchWidgetValue(googleId, widgetId, periodo.dataInicio, periodo.dataFim, headers, BASE_URL);
-          if (costConvData?.value) {
-            custoConversaoGoogle = extractNumber(costConvData.value);
-            console.log(`  ✅ Custo/Conversão: R$ ${custoConversaoGoogle}`);
-          }
-        } else {
-          // Calcular custo por conversão
-          if (conversoesGoogle > 0 && investimentoGoogle > 0) {
-            custoConversaoGoogle = Number((investimentoGoogle / conversoesGoogle).toFixed(2));
-            console.log(`  📊 Custo/Conversão calculado: R$ ${custoConversaoGoogle}`);
-          }
+          await delay(400);
+          const data = await fetchWidgetValue(integrationMap.metaAds.id, cpmWidget, periodo.dataInicio, periodo.dataFim, headers, BASE_URL);
+          cpmMeta = extractValueFromResponse(data);
+          console.log(`   ✅ CPM: R$ ${cpmMeta}`);
+        } else if (impressoesMeta > 0 && investimentoMeta > 0) {
+          cpmMeta = Number(((investimentoMeta / impressoesMeta) * 1000).toFixed(2));
+          console.log(`   📊 CPM calculado: R$ ${cpmMeta}`);
         }
         
-        // Buscar URLs de destino (se disponível)
-        const urlsWidget = findWidget(widgets, 'final_url', 'landing', 'url', 'destination', 'destino');
-        if (urlsWidget) {
-          const widgetId = urlsWidget.reference_key || urlsWidget.slug || urlsWidget.key;
-          console.log(`  🎯 Widget URLs encontrado: ${widgetId}`);
-          const urlsData = await fetchWidgetValue(googleId, widgetId, periodo.dataInicio, periodo.dataFim, headers, BASE_URL);
-          if (urlsData?.breakdown && Array.isArray(urlsData.breakdown)) {
-            dadosUrls = urlsData.breakdown
-              .map((item: any) => ({
-                url: item.dimension || item.url || 'N/A',
-                cliques: extractNumber(item.clicks || item.cliques),
-                gasto: extractNumber(item.cost || item.gasto || item.spend),
-                impressoes: extractNumber(item.impressions || item.impressoes),
-                conversoes: extractNumber(item.conversions || item.conversoes),
-                ctr: extractPercentage(item.ctr),
-                cpc: extractNumber(item.cpc)
-              }))
-              .sort((a: any, b: any) => b.cliques - a.cliques)
-              .slice(0, 5);
-            console.log(`  ✅ URLs: ${dadosUrls.length} encontradas`);
-          }
+        // CPC
+        const cpcWidget = findWidget(widgets, 'cpc', 'cost_per_click');
+        if (cpcWidget) {
+          await delay(400);
+          const data = await fetchWidgetValue(integrationMap.metaAds.id, cpcWidget, periodo.dataInicio, periodo.dataFim, headers, BASE_URL);
+          cpcMeta = extractValueFromResponse(data);
+          console.log(`   ✅ CPC: R$ ${cpcMeta}`);
+        } else if (cliquesMeta > 0 && investimentoMeta > 0) {
+          cpcMeta = Number((investimentoMeta / cliquesMeta).toFixed(2));
+          console.log(`   📊 CPC calculado: R$ ${cpcMeta}`);
         }
+        
+        // CTR
+        const ctrWidget = findWidget(widgets, 'ctr', 'click_through');
+        if (ctrWidget) {
+          await delay(400);
+          const data = await fetchWidgetValue(integrationMap.metaAds.id, ctrWidget, periodo.dataInicio, periodo.dataFim, headers, BASE_URL);
+          ctrMeta = extractPercentage(extractValueFromResponse(data));
+          console.log(`   ✅ CTR: ${ctrMeta}`);
+        } else if (impressoesMeta > 0 && cliquesMeta > 0) {
+          ctrMeta = `${((cliquesMeta / impressoesMeta) * 100).toFixed(2)}%`;
+          console.log(`   📊 CTR calculado: ${ctrMeta}`);
+        }
+        
+        // FREQUÊNCIA
+        const freqWidget = findWidget(widgets, 'frequency', 'frequencia');
+        if (freqWidget) {
+          await delay(400);
+          const data = await fetchWidgetValue(integrationMap.metaAds.id, freqWidget, periodo.dataInicio, periodo.dataFim, headers, BASE_URL);
+          frequenciaMeta = extractValueFromResponse(data);
+          console.log(`   ✅ Frequência: ${frequenciaMeta}`);
+        } else if (alcanceMeta > 0 && impressoesMeta > 0) {
+          frequenciaMeta = Number((impressoesMeta / alcanceMeta).toFixed(2));
+          console.log(`   📊 Frequência calculada: ${frequenciaMeta}`);
+        }
+      }
+    }
+
+    // 4. BUSCAR DADOS DO GOOGLE ADS
+    if (integrationMap.googleAds) {
+      console.log(`\n3️⃣ COLETANDO DADOS GOOGLE ADS (ID: ${integrationMap.googleAds.id})...`);
+      
+      await delay(500);
+      const widgetsResponse = await fetch(`${BASE_URL}/integrations/${integrationMap.googleAds.id}/widgets`, { headers });
+      
+      if (widgetsResponse.ok) {
+        const widgetsData = await widgetsResponse.json();
+        const widgets = widgetsData.data || widgetsData || [];
+        console.log(`   📋 Widgets disponíveis: ${widgets.length}`);
+        
+        // Log reference keys
+        const refKeys = widgets.map((w: any) => w.reference_key).filter(Boolean);
+        console.log(`   🔑 Reference keys: ${refKeys.slice(0, 10).join(', ')}...`);
+        
+        // INVESTIMENTO
+        const costWidget = findWidget(widgets, 'cost', 'spend', 'custo');
+        if (costWidget) {
+          await delay(400);
+          const data = await fetchWidgetValue(integrationMap.googleAds.id, costWidget, periodo.dataInicio, periodo.dataFim, headers, BASE_URL);
+          investimentoGoogle = extractValueFromResponse(data);
+          console.log(`   ✅ Investimento: R$ ${investimentoGoogle}`);
+        }
+        
+        // CLIQUES
+        const clicksWidget = findWidget(widgets, 'clicks', 'cliques');
+        if (clicksWidget) {
+          await delay(400);
+          const data = await fetchWidgetValue(integrationMap.googleAds.id, clicksWidget, periodo.dataInicio, periodo.dataFim, headers, BASE_URL);
+          cliquesGoogle = extractValueFromResponse(data);
+          console.log(`   ✅ Cliques: ${cliquesGoogle}`);
+        }
+        
+        // IMPRESSÕES
+        const impressionsWidget = findWidget(widgets, 'impressions', 'impressoes');
+        if (impressionsWidget) {
+          await delay(400);
+          const data = await fetchWidgetValue(integrationMap.googleAds.id, impressionsWidget, periodo.dataInicio, periodo.dataFim, headers, BASE_URL);
+          impressoesGoogle = extractValueFromResponse(data);
+          console.log(`   ✅ Impressões: ${impressoesGoogle}`);
+        }
+        
+        // CONVERSÕES
+        const conversionsWidget = findWidget(widgets, 'conversions', 'conversoes', 'all_conv');
+        if (conversionsWidget) {
+          await delay(400);
+          const data = await fetchWidgetValue(integrationMap.googleAds.id, conversionsWidget, periodo.dataInicio, periodo.dataFim, headers, BASE_URL);
+          conversoesGoogle = extractValueFromResponse(data);
+          console.log(`   ✅ Conversões: ${conversoesGoogle}`);
+        }
+        
+        // Calcular métricas derivadas
+        if (cliquesGoogle > 0 && investimentoGoogle > 0) {
+          cpcGoogle = Number((investimentoGoogle / cliquesGoogle).toFixed(2));
+        }
+        if (impressoesGoogle > 0 && investimentoGoogle > 0) {
+          cpmGoogle = Number(((investimentoGoogle / impressoesGoogle) * 1000).toFixed(2));
+        }
+        if (impressoesGoogle > 0 && cliquesGoogle > 0) {
+          ctrGoogle = `${((cliquesGoogle / impressoesGoogle) * 100).toFixed(2)}%`;
+        }
+        if (conversoesGoogle > 0 && investimentoGoogle > 0) {
+          custoConversaoGoogle = Number((investimentoGoogle / conversoesGoogle).toFixed(2));
+        }
+        
+        console.log(`   📊 CPC: R$ ${cpcGoogle}`);
+        console.log(`   📊 CPM: R$ ${cpmGoogle}`);
+        console.log(`   📊 CTR: ${ctrGoogle}`);
+        console.log(`   📊 Custo/Conversão: R$ ${custoConversaoGoogle}`);
       }
     }
 
     // 5. BUSCAR DADOS DO INSTAGRAM
-    console.log('\n📸 Buscando dados do Instagram...');
-    let conversasInstagram = 0;
-    let seguidoresInstagram = 0;
-    let novosSeguidoresInstagram = 0;
-
     if (integrationMap.instagram) {
-      const instagramId = integrationMap.instagram.id;
+      console.log(`\n4️⃣ COLETANDO DADOS INSTAGRAM (ID: ${integrationMap.instagram.id})...`);
       
-      const widgetsResponse = await fetch(`${BASE_URL}/integrations/${instagramId}/widgets`, { headers });
+      await delay(500);
+      const widgetsResponse = await fetch(`${BASE_URL}/integrations/${integrationMap.instagram.id}/widgets`, { headers });
+      
       if (widgetsResponse.ok) {
         const widgetsData = await widgetsResponse.json();
-        const widgets = Array.isArray(widgetsData) ? widgetsData : (widgetsData.data || []);
-        console.log(`  📋 Total de widgets Instagram: ${widgets.length}`);
+        const widgets = widgetsData.data || widgetsData || [];
+        console.log(`   📋 Widgets disponíveis: ${widgets.length}`);
         
-        // Log detalhado
-        console.log(`  📋 LISTA COMPLETA DE WIDGETS INSTAGRAM:`);
-        widgets.forEach((w: any, i: number) => {
-          console.log(`    [${i}] slug: "${w.slug}", name: "${w.name}", key: "${w.key}", ref_key: "${w.reference_key}"`);
-        });
+        // SEGUIDORES
+        const followersWidget = findWidget(widgets, 'followers', 'seguidores', 'followers_count');
+        if (followersWidget) {
+          await delay(400);
+          const data = await fetchWidgetValue(integrationMap.instagram.id, followersWidget, periodo.dataInicio, periodo.dataFim, headers, BASE_URL);
+          seguidoresInstagram = extractValueFromResponse(data);
+          console.log(`   ✅ Seguidores: ${seguidoresInstagram}`);
+        }
         
-        // Buscar CONVERSAS
-        const conversasWidget = findWidget(widgets, 'messaging', 'conversation', 'conversa', 'mensagem', 'message', 'dm');
-        if (conversasWidget) {
-          const widgetId = conversasWidget.reference_key || conversasWidget.slug || conversasWidget.key;
-          console.log(`  🎯 Widget CONVERSAS encontrado: ${widgetId}`);
-          const conversasData = await fetchWidgetValue(instagramId, widgetId, periodo.dataInicio, periodo.dataFim, headers, BASE_URL);
-          if (conversasData?.value) {
-            conversasInstagram = extractNumber(conversasData.value);
-            console.log(`  ✅ Conversas: ${conversasInstagram}`);
-          }
-        } else {
-          console.log(`  ⚠️ Widget CONVERSAS não encontrado`);
+        // NOVOS SEGUIDORES
+        const newFollowersWidget = findWidget(widgets, 'new_followers', 'gained', 'novos');
+        if (newFollowersWidget) {
+          await delay(400);
+          const data = await fetchWidgetValue(integrationMap.instagram.id, newFollowersWidget, periodo.dataInicio, periodo.dataFim, headers, BASE_URL);
+          novosSeguidoresInstagram = extractValueFromResponse(data);
+          console.log(`   ✅ Novos Seguidores: ${novosSeguidoresInstagram}`);
         }
-
-        // Buscar SEGUIDORES
-        const seguidoresWidget = findWidget(widgets, 'follower', 'seguidor', 'seguidores', 'followers');
-        if (seguidoresWidget) {
-          const widgetId = seguidoresWidget.reference_key || seguidoresWidget.slug || seguidoresWidget.key;
-          console.log(`  🎯 Widget SEGUIDORES encontrado: ${widgetId}`);
-          const seguidoresData = await fetchWidgetValue(instagramId, widgetId, periodo.dataInicio, periodo.dataFim, headers, BASE_URL);
-          if (seguidoresData?.value) {
-            seguidoresInstagram = extractNumber(seguidoresData.value);
-            console.log(`  ✅ Seguidores: ${seguidoresInstagram}`);
-          }
-        }
-
-        // Buscar NOVOS SEGUIDORES
-        const novosSeguidoresWidget = findWidget(widgets, 'new_follower', 'novo_seguidor', 'novos_seguidores', 'gained');
-        if (novosSeguidoresWidget) {
-          const widgetId = novosSeguidoresWidget.reference_key || novosSeguidoresWidget.slug || novosSeguidoresWidget.key;
-          console.log(`  🎯 Widget NOVOS SEGUIDORES encontrado: ${widgetId}`);
-          const novosData = await fetchWidgetValue(instagramId, widgetId, periodo.dataInicio, periodo.dataFim, headers, BASE_URL);
-          if (novosData?.value) {
-            novosSeguidoresInstagram = extractNumber(novosData.value);
-            console.log(`  ✅ Novos Seguidores: ${novosSeguidoresInstagram}`);
-          }
+        
+        // ALCANCE
+        const reachWidget = findWidget(widgets, 'reach', 'alcance');
+        if (reachWidget) {
+          await delay(400);
+          const data = await fetchWidgetValue(integrationMap.instagram.id, reachWidget, periodo.dataInicio, periodo.dataFim, headers, BASE_URL);
+          alcanceInstagram = extractValueFromResponse(data);
+          console.log(`   ✅ Alcance: ${alcanceInstagram}`);
         }
       }
     }
 
-    // 6. BUSCAR DADOS DO RD STATION
-    console.log('\n📊 Buscando dados do RD Station...');
-    let dadosVendedores: any[] = [];
-    let oportunidadesRD = 0;
-    let vendasRD = 0;
-    let taxaConversaoRD = '0%';
-
-    if (integrationMap.rd) {
-      const rdId = integrationMap.rd.id;
+    // 6. BUSCAR CONVERSAS DO FACEBOOK PAGE
+    if (integrationMap.facebookPage) {
+      console.log(`\n5️⃣ COLETANDO DADOS FACEBOOK PAGE (ID: ${integrationMap.facebookPage.id})...`);
       
-      const widgetsResponse = await fetch(`${BASE_URL}/integrations/${rdId}/widgets`, { headers });
+      await delay(500);
+      const widgetsResponse = await fetch(`${BASE_URL}/integrations/${integrationMap.facebookPage.id}/widgets`, { headers });
+      
       if (widgetsResponse.ok) {
         const widgetsData = await widgetsResponse.json();
-        const widgets = Array.isArray(widgetsData) ? widgetsData : (widgetsData.data || []);
-        console.log(`  📋 Total de widgets RD Station: ${widgets.length}`);
+        const widgets = widgetsData.data || widgetsData || [];
+        console.log(`   📋 Widgets disponíveis: ${widgets.length}`);
         
-        // Log detalhado
-        console.log(`  📋 LISTA COMPLETA DE WIDGETS RD STATION:`);
-        widgets.forEach((w: any, i: number) => {
-          console.log(`    [${i}] slug: "${w.slug}", name: "${w.name}", key: "${w.key}", ref_key: "${w.reference_key}"`);
-        });
+        // MENSAGENS INICIADAS
+        const messagesWidget = findWidget(widgets, 'messages_new', 'page_messages', 'conversations');
+        if (messagesWidget) {
+          await delay(400);
+          const data = await fetchWidgetValue(integrationMap.facebookPage.id, messagesWidget, periodo.dataInicio, periodo.dataFim, headers, BASE_URL);
+          conversasFacebook = extractValueFromResponse(data);
+          console.log(`   ✅ Mensagens: ${conversasFacebook}`);
+        }
+      }
+    }
+
+    // 7. BUSCAR DADOS DO RD STATION
+    if (integrationMap.rdStation) {
+      console.log(`\n6️⃣ COLETANDO DADOS RD STATION (ID: ${integrationMap.rdStation.id})...`);
+      
+      await delay(500);
+      const widgetsResponse = await fetch(`${BASE_URL}/integrations/${integrationMap.rdStation.id}/widgets`, { headers });
+      
+      if (widgetsResponse.ok) {
+        const widgetsData = await widgetsResponse.json();
+        const widgets = widgetsData.data || widgetsData || [];
+        console.log(`   📋 Widgets disponíveis: ${widgets.length}`);
         
-        // Buscar VENDEDORES/RESPONSÁVEIS
-        const vendedoresWidget = findWidget(widgets, 'owner', 'user', 'vendedor', 'responsavel', 'responsável', 'seller');
-        if (vendedoresWidget) {
-          const widgetId = vendedoresWidget.reference_key || vendedoresWidget.slug || vendedoresWidget.key;
-          console.log(`  🎯 Widget VENDEDORES encontrado: ${widgetId}`);
-          const vendedoresData = await fetchWidgetValue(rdId, widgetId, periodo.dataInicio, periodo.dataFim, headers, BASE_URL);
-          if (vendedoresData?.breakdown && Array.isArray(vendedoresData.breakdown)) {
-            dadosVendedores = vendedoresData.breakdown
-              .map((item: any) => ({
-                nome: (item.dimension || item.name || 'Sem nome').replace('Juan', 'Jean Lucas'), // Correção nome
-                leads: extractNumber(item.value)
-              }))
-              .sort((a: any, b: any) => b.leads - a.leads);
-            console.log(`  ✅ Vendedores: ${dadosVendedores.length}`);
-          }
-        } else {
-          console.log(`  ⚠️ Widget VENDEDORES não encontrado`);
+        // OPORTUNIDADES
+        const oppsWidget = findWidget(widgets, 'opportunities', 'deals', 'oportunidades');
+        if (oppsWidget) {
+          await delay(400);
+          const data = await fetchWidgetValue(integrationMap.rdStation.id, oppsWidget, periodo.dataInicio, periodo.dataFim, headers, BASE_URL);
+          oportunidadesRD = extractValueFromResponse(data);
+          console.log(`   ✅ Oportunidades: ${oportunidadesRD}`);
         }
-
-        // Buscar OPORTUNIDADES
-        const opWidget = findWidget(widgets, 'opportunity', 'oportunidade', 'oportunidades', 'deal');
-        if (opWidget) {
-          const widgetId = opWidget.reference_key || opWidget.slug || opWidget.key;
-          console.log(`  🎯 Widget OPORTUNIDADES encontrado: ${widgetId}`);
-          const opData = await fetchWidgetValue(rdId, widgetId, periodo.dataInicio, periodo.dataFim, headers, BASE_URL);
-          if (opData?.value) {
-            oportunidadesRD = extractNumber(opData.value);
-            console.log(`  ✅ Oportunidades: ${oportunidadesRD}`);
-          }
+        
+        // VENDAS (WON)
+        const wonWidget = findWidget(widgets, 'won', 'vendas', 'ganhos', 'closed_won');
+        if (wonWidget) {
+          await delay(400);
+          const data = await fetchWidgetValue(integrationMap.rdStation.id, wonWidget, periodo.dataInicio, periodo.dataFim, headers, BASE_URL);
+          vendasRD = extractValueFromResponse(data);
+          console.log(`   ✅ Vendas: ${vendasRD}`);
         }
-
-        // Buscar VENDAS
-        const vendasWidget = findWidget(widgets, 'sale', 'venda', 'vendas', 'won', 'ganho');
-        if (vendasWidget) {
-          const widgetId = vendasWidget.reference_key || vendasWidget.slug || vendasWidget.key;
-          console.log(`  🎯 Widget VENDAS encontrado: ${widgetId}`);
-          const vendasData = await fetchWidgetValue(rdId, widgetId, periodo.dataInicio, periodo.dataFim, headers, BASE_URL);
-          if (vendasData?.value) {
-            vendasRD = extractNumber(vendasData.value);
-            console.log(`  ✅ Vendas: ${vendasRD}`);
+        
+        // VENDEDORES (breakdown)
+        const usersWidget = findWidget(widgets, 'by_user', 'deals_by_user', 'vendedor', 'responsavel');
+        if (usersWidget) {
+          await delay(400);
+          const data = await fetchWidgetValue(integrationMap.rdStation.id, usersWidget, periodo.dataInicio, periodo.dataFim, headers, BASE_URL);
+          if (data?.data && Array.isArray(data.data)) {
+            dadosVendedores = data.data.map((item: any) => ({
+              nome: (item.name || item.user || item.dimension || 'Desconhecido').replace('Juan', 'Jean Lucas'),
+              leads: extractNumber(item.value || item.count || item.deals)
+            })).filter((v: any) => v.leads > 0).sort((a: any, b: any) => b.leads - a.leads);
+            console.log(`   ✅ Vendedores: ${dadosVendedores.length}`);
           }
         }
-
-        // Calcular taxa de conversão
+        
+        // Taxa de conversão
         if (oportunidadesRD > 0 && vendasRD > 0) {
-          const taxa = (vendasRD / oportunidadesRD) * 100;
-          taxaConversaoRD = `${taxa.toFixed(1)}%`;
+          taxaConversaoRD = Number(((vendasRD / oportunidadesRD) * 100).toFixed(2));
         }
       }
     }
 
-    // 7. CALCULAR KPIs FINAIS
-    console.log('\n🧮 Calculando KPIs...');
+    // 8. CALCULAR KPIs FINAIS
+    console.log(`\n${'='.repeat(60)}`);
+    console.log(`📊 RESUMO DOS DADOS COLETADOS:`);
+    console.log(`${'='.repeat(60)}`);
     
-    const investimentoTotal = investimentoGoogle + investimentoMeta;
-    const leadsTotais = leadsMeta;
+    const investimentoTotal = investimentoMeta + investimentoGoogle;
+    const leadsTotais = leadsMeta + conversoesGoogle;
     const custoLeadMedio = leadsTotais > 0 ? Number((investimentoTotal / leadsTotais).toFixed(2)) : 0;
     const custoLeadMeta = leadsMeta > 0 ? Number((investimentoMeta / leadsMeta).toFixed(2)) : 0;
 
-    // Manter categorias vazias se não encontrou via API (permite preenchimento manual)
-    if (dadosCategorias.length === 0) {
-      console.log('  ⚠️ Sem dados de categorias via API - mantendo vazio para preenchimento manual');
-    }
-
-    console.log('\n📊 RESUMO DOS DADOS COLETADOS:');
-    console.log('━'.repeat(60));
-    console.log(`META ADS:`);
+    console.log(`\nMETA ADS:`);
     console.log(`  - Leads: ${leadsMeta}`);
     console.log(`  - Investimento: R$ ${investimentoMeta}`);
     console.log(`  - Conversas: ${conversasMeta}`);
@@ -720,34 +593,42 @@ serve(async (req) => {
     console.log(`  - CPC: R$ ${cpcMeta}`);
     console.log(`  - CTR: ${ctrMeta}`);
     console.log(`  - Frequência: ${frequenciaMeta}`);
+    
     console.log(`\nGOOGLE ADS:`);
-    console.log(`  - Cliques: ${cliquesGoogle}`);
     console.log(`  - Investimento: R$ ${investimentoGoogle}`);
+    console.log(`  - Cliques: ${cliquesGoogle}`);
     console.log(`  - Impressões: ${impressoesGoogle}`);
     console.log(`  - Conversões: ${conversoesGoogle}`);
     console.log(`  - CPC: R$ ${cpcGoogle}`);
     console.log(`  - CPM: R$ ${cpmGoogle}`);
     console.log(`  - CTR: ${ctrGoogle}`);
     console.log(`  - Custo/Conversão: R$ ${custoConversaoGoogle}`);
+    
     console.log(`\nINSTAGRAM:`);
-    console.log(`  - Conversas: ${conversasInstagram}`);
     console.log(`  - Seguidores: ${seguidoresInstagram}`);
     console.log(`  - Novos Seguidores: ${novosSeguidoresInstagram}`);
+    console.log(`  - Alcance: ${alcanceInstagram}`);
+    
+    console.log(`\nFACEBOOK PAGE:`);
+    console.log(`  - Mensagens: ${conversasFacebook}`);
+    
     console.log(`\nRD STATION:`);
-    console.log(`  - Vendedores: ${dadosVendedores.length}`);
     console.log(`  - Oportunidades: ${oportunidadesRD}`);
     console.log(`  - Vendas: ${vendasRD}`);
-    console.log(`  - Taxa Conversão: ${taxaConversaoRD}`);
-    console.log('━'.repeat(60));
-    console.log(`💰 Investimento Total: R$ ${investimentoTotal.toFixed(2)}`);
-    console.log(`📈 Leads Totais: ${leadsTotais}`);
-    console.log(`💵 CPL Médio: R$ ${custoLeadMedio}`);
+    console.log(`  - Taxa Conversão: ${taxaConversaoRD}%`);
+    console.log(`  - Vendedores: ${dadosVendedores.length}`);
     
-    if (leadsTotais === 0 && investimentoTotal === 0) {
-      console.log('⚠️ ATENÇÃO: Nenhum dado significativo coletado! Verifique widgets disponíveis.');
+    console.log(`\n${'='.repeat(60)}`);
+    console.log(`💰 INVESTIMENTO TOTAL: R$ ${investimentoTotal.toFixed(2)}`);
+    console.log(`📈 LEADS TOTAIS: ${leadsTotais}`);
+    console.log(`💵 CPL MÉDIO: R$ ${custoLeadMedio}`);
+    console.log(`${'='.repeat(60)}\n`);
+
+    if (investimentoTotal === 0 && leadsTotais === 0) {
+      console.log(`⚠️ ATENÇÃO: Nenhum dado significativo coletado! Verifique se as integrações estão configuradas corretamente.`);
     }
 
-    // 8. ESTRUTURAR DADOS PARA O BANCO
+    // 9. ESTRUTURAR E SALVAR NO BANCO
     const relatorioProcessado = {
       periodo: periodo.periodo,
       data_inicio: periodo.dataInicio,
@@ -756,105 +637,107 @@ serve(async (req) => {
       leads_totais: leadsTotais,
       custo_lead_medio: custoLeadMedio,
       
-      dados_google: {
-        cliques: cliquesGoogle,
-        investimento: investimentoGoogle,
-        custo_clique: cpcGoogle,
-        impressoes: impressoesGoogle,
-        conversoes: conversoesGoogle,
-        leads: conversoesGoogle,
-        cpm: cpmGoogle,
-        ctr: ctrGoogle,
-        custo_conversao: custoConversaoGoogle
-      },
-      
       dados_meta: {
-        conversas: conversasMeta,
-        investimento: investimentoMeta,
-        custo_lead: custoLeadMeta,
         leads: leadsMeta,
+        investimento: investimentoMeta,
+        conversas: conversasMeta,
         alcance: alcanceMeta,
         impressoes: impressoesMeta,
         cliques: cliquesMeta,
         cpm: cpmMeta,
         cpc: cpcMeta,
         ctr: ctrMeta,
-        frequencia: frequenciaMeta
+        frequencia: frequenciaMeta,
+        custo_lead: custoLeadMeta
+      },
+      
+      dados_google: {
+        investimento: investimentoGoogle,
+        cliques: cliquesGoogle,
+        impressoes: impressoesGoogle,
+        conversoes: conversoesGoogle,
+        leads: conversoesGoogle,
+        cpc: cpcGoogle,
+        cpm: cpmGoogle,
+        ctr: ctrGoogle,
+        custo_conversao: custoConversaoGoogle
       },
       
       dados_instagram: {
-        conversas: conversasInstagram,
         seguidores: seguidoresInstagram,
-        novos_seguidores: novosSeguidoresInstagram
+        novos_seguidores: novosSeguidoresInstagram,
+        alcance: alcanceInstagram,
+        conversas: conversasInstagram,
+        visualizacoes: 0
       },
-      
-      conversas_mensagem: {
-        facebook: conversasMeta,
-        instagram: conversasInstagram
-      },
-      
-      dados_vendedores: dadosVendedores.length > 0 ? dadosVendedores : null,
-      
-      dados_categorias: dadosCategorias.length > 0 ? dadosCategorias : null,
-      
-      dados_urls: dadosUrls.length > 0 ? dadosUrls : null,
       
       dados_rd_station: {
         oportunidades: oportunidadesRD,
         vendas: vendasRD,
-        taxa_conversao: taxaConversaoRD
+        taxa_conversao: taxaConversaoRD,
+        valor_vendas: 0,
+        ticket_medio: 0
       },
       
-      gerado_automaticamente: auto || false
+      dados_vendedores: dadosVendedores,
+      dados_categorias: dadosCategorias, // Mantido vazio para preenchimento manual
+      dados_urls: dadosUrls, // Mantido vazio para preenchimento manual
+      dados_asset_groups: [], // Mantido vazio para preenchimento manual
+      dados_analytics: {},
+      conversas_mensagem: {
+        facebook: conversasFacebook || conversasMeta,
+        instagram: conversasInstagram
+      },
+      gerado_automaticamente: true
     };
 
-    // 9. SALVAR NO BANCO
-    console.log('\n💾 Salvando relatório no banco...');
+    console.log(`\n💾 Salvando relatório no banco...`);
     
-    const { data: relatorioSalvo, error: erroSalvar } = await supabase
+    const { data: savedData, error: saveError } = await supabase
       .from('relatorios_semanais')
       .insert(relatorioProcessado)
       .select()
       .single();
 
-    if (erroSalvar) {
-      console.error('❌ Erro ao salvar:', erroSalvar);
-      throw new Error(`Erro ao salvar no banco: ${erroSalvar.message}`);
+    if (saveError) {
+      console.error(`❌ Erro ao salvar:`, saveError);
+      throw saveError;
     }
 
-    console.log('✅ Relatório salvo com sucesso!');
-    console.log(`📊 ID: ${relatorioSalvo.id}`);
+    console.log(`✅ Relatório salvo com sucesso!`);
+    console.log(`📊 ID: ${savedData.id}`);
 
-    return new Response(
-      JSON.stringify({
-        success: true,
-        relatorio: relatorioSalvo,
-        reportId: relatorioSalvo.id,
-        message: `Relatório gerado com sucesso para o período ${periodo.periodo}`,
-        metricas_coletadas: {
-          meta: { leads: leadsMeta, investimento: investimentoMeta, alcance: alcanceMeta, impressoes: impressoesMeta, cpm: cpmMeta, cpc: cpcMeta, ctr: ctrMeta },
-          google: { cliques: cliquesGoogle, investimento: investimentoGoogle, impressoes: impressoesGoogle, conversoes: conversoesGoogle, cpm: cpmGoogle, ctr: ctrGoogle },
-          instagram: { conversas: conversasInstagram, seguidores: seguidoresInstagram },
-          rd_station: { vendedores: dadosVendedores.length, oportunidades: oportunidadesRD, vendas: vendasRD }
+    return new Response(JSON.stringify({
+      success: true,
+      message: 'Relatório gerado com sucesso',
+      id: savedData.id,
+      periodo: periodo.periodo,
+      resumo: {
+        investimento_total: investimentoTotal,
+        leads_totais: leadsTotais,
+        custo_lead_medio: custoLeadMedio,
+        meta_ads: {
+          leads: leadsMeta,
+          investimento: investimentoMeta,
+          conversas: conversasMeta
+        },
+        google_ads: {
+          conversoes: conversoesGoogle,
+          investimento: investimentoGoogle
         }
-      }),
-      {
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       }
-    );
+    }), {
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+    });
 
   } catch (error) {
-    console.error('💥 Erro geral na função:', error);
-    return new Response(
-      JSON.stringify({ 
-        error: error.message,
-        stack: error.stack,
-        timestamp: new Date().toISOString()
-      }), 
-      {
-        status: 500,
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-      }
-    );
+    console.error('❌ Erro geral:', error);
+    return new Response(JSON.stringify({
+      success: false,
+      error: error.message
+    }), {
+      status: 500,
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+    });
   }
 });
