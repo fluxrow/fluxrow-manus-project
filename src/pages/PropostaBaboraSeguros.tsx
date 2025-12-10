@@ -7,7 +7,8 @@ import {
   CheckCircle, Clock, DollarSign, FileText, MessageCircle, 
   Award, Users, TrendingUp, Target, BarChart3, Zap, PieChart, 
   Shield, Car, ClipboardList, Kanban, Bell, Bot, Calculator,
-  FileSearch, FileSignature, Search, Sparkles, Rocket, ArrowRight
+  FileSearch, FileSignature, Search, Sparkles, Rocket, ArrowRight,
+  Megaphone, Share2, Mail, Workflow
 } from 'lucide-react';
 
 export default function PropostaBaboraSeguros() {
@@ -163,12 +164,13 @@ export default function PropostaBaboraSeguros() {
                 <p className="text-gray-400">
                   Nossa expertise abrange todo o espectro de desenvolvimento de soluções empresariais:
                 </p>
-                <div className="grid md:grid-cols-3 gap-6">
-                  <div className="bg-gradient-to-br from-blue-900/30 to-transparent p-6 rounded-xl border border-blue-500/20 backdrop-blur-sm hover:border-blue-400/40 transition-all duration-300 hover:transform hover:scale-105">
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+                  {/* Desenvolvimento de Software */}
+                  <div className="bg-gradient-to-br from-blue-900/30 to-transparent p-5 rounded-xl border border-blue-500/20 backdrop-blur-sm hover:border-blue-400/40 transition-all duration-300 hover:transform hover:scale-105">
                     <div className="flex items-start gap-3">
-                      <Zap className="w-7 h-7 text-blue-400 mt-1" />
+                      <Zap className="w-6 h-6 text-blue-400 mt-1 flex-shrink-0" />
                       <div>
-                        <h4 className="font-semibold mb-2 text-blue-300 text-lg">Desenvolvimento de Software</h4>
+                        <h4 className="font-semibold mb-2 text-blue-300">Desenvolvimento de Software</h4>
                         <p className="text-sm text-gray-400 leading-relaxed">
                           Sistemas personalizados que atendem exatamente às necessidades do seu negócio, 
                           com escalabilidade e performance.
@@ -176,11 +178,13 @@ export default function PropostaBaboraSeguros() {
                       </div>
                     </div>
                   </div>
-                  <div className="bg-gradient-to-br from-cyan-900/30 to-transparent p-6 rounded-xl border border-cyan-500/20 backdrop-blur-sm hover:border-cyan-400/40 transition-all duration-300 hover:transform hover:scale-105">
+                  
+                  {/* Inteligência Artificial */}
+                  <div className="bg-gradient-to-br from-cyan-900/30 to-transparent p-5 rounded-xl border border-cyan-500/20 backdrop-blur-sm hover:border-cyan-400/40 transition-all duration-300 hover:transform hover:scale-105">
                     <div className="flex items-start gap-3">
-                      <Bot className="w-7 h-7 text-cyan-400 mt-1" />
+                      <Bot className="w-6 h-6 text-cyan-400 mt-1 flex-shrink-0" />
                       <div>
-                        <h4 className="font-semibold mb-2 text-cyan-300 text-lg">Inteligência Artificial</h4>
+                        <h4 className="font-semibold mb-2 text-cyan-300">Inteligência Artificial</h4>
                         <p className="text-sm text-gray-400 leading-relaxed">
                           IA aplicada ao seu negócio: assistentes virtuais, automações inteligentes 
                           e análise preditiva de dados.
@@ -188,11 +192,13 @@ export default function PropostaBaboraSeguros() {
                       </div>
                     </div>
                   </div>
-                  <div className="bg-gradient-to-br from-green-900/30 to-transparent p-6 rounded-xl border border-green-500/20 backdrop-blur-sm hover:border-green-400/40 transition-all duration-300 hover:transform hover:scale-105">
+                  
+                  {/* Integrações & APIs */}
+                  <div className="bg-gradient-to-br from-green-900/30 to-transparent p-5 rounded-xl border border-green-500/20 backdrop-blur-sm hover:border-green-400/40 transition-all duration-300 hover:transform hover:scale-105">
                     <div className="flex items-start gap-3">
-                      <TrendingUp className="w-7 h-7 text-green-400 mt-1" />
+                      <TrendingUp className="w-6 h-6 text-green-400 mt-1 flex-shrink-0" />
                       <div>
-                        <h4 className="font-semibold mb-2 text-green-300 text-lg">Integrações & APIs</h4>
+                        <h4 className="font-semibold mb-2 text-green-300">Integrações & APIs</h4>
                         <p className="text-sm text-gray-400 leading-relaxed">
                           Conectamos seu sistema a qualquer plataforma: WhatsApp, seguradoras, 
                           bancos e outros sistemas.
@@ -200,11 +206,13 @@ export default function PropostaBaboraSeguros() {
                       </div>
                     </div>
                   </div>
-                  <div className="bg-gradient-to-br from-purple-900/30 to-transparent p-6 rounded-xl border border-purple-500/20 backdrop-blur-sm hover:border-purple-400/40 transition-all duration-300 hover:transform hover:scale-105">
+                  
+                  {/* Gestão de Processos */}
+                  <div className="bg-gradient-to-br from-purple-900/30 to-transparent p-5 rounded-xl border border-purple-500/20 backdrop-blur-sm hover:border-purple-400/40 transition-all duration-300 hover:transform hover:scale-105">
                     <div className="flex items-start gap-3">
-                      <ClipboardList className="w-7 h-7 text-purple-400 mt-1" />
+                      <ClipboardList className="w-6 h-6 text-purple-400 mt-1 flex-shrink-0" />
                       <div>
-                        <h4 className="font-semibold mb-2 text-purple-300 text-lg">Gestão de Processos</h4>
+                        <h4 className="font-semibold mb-2 text-purple-300">Gestão de Processos</h4>
                         <p className="text-sm text-gray-400 leading-relaxed">
                           Mapeamento e automação de workflows, eliminando gargalos 
                           e aumentando a produtividade da equipe.
@@ -212,11 +220,13 @@ export default function PropostaBaboraSeguros() {
                       </div>
                     </div>
                   </div>
-                  <div className="bg-gradient-to-br from-orange-900/30 to-transparent p-6 rounded-xl border border-orange-500/20 backdrop-blur-sm hover:border-orange-400/40 transition-all duration-300 hover:transform hover:scale-105">
+                  
+                  {/* Analytics & Relatórios */}
+                  <div className="bg-gradient-to-br from-orange-900/30 to-transparent p-5 rounded-xl border border-orange-500/20 backdrop-blur-sm hover:border-orange-400/40 transition-all duration-300 hover:transform hover:scale-105">
                     <div className="flex items-start gap-3">
-                      <BarChart3 className="w-7 h-7 text-orange-400 mt-1" />
+                      <BarChart3 className="w-6 h-6 text-orange-400 mt-1 flex-shrink-0" />
                       <div>
-                        <h4 className="font-semibold mb-2 text-orange-300 text-lg">Analytics & Relatórios</h4>
+                        <h4 className="font-semibold mb-2 text-orange-300">Analytics & Relatórios</h4>
                         <p className="text-sm text-gray-400 leading-relaxed">
                           Dashboards inteligentes com métricas em tempo real 
                           para tomada de decisão estratégica.
@@ -224,11 +234,13 @@ export default function PropostaBaboraSeguros() {
                       </div>
                     </div>
                   </div>
-                  <div className="bg-gradient-to-br from-emerald-900/30 to-transparent p-6 rounded-xl border border-emerald-500/20 backdrop-blur-sm hover:border-emerald-400/40 transition-all duration-300 hover:transform hover:scale-105">
+                  
+                  {/* Suporte & Atendimento */}
+                  <div className="bg-gradient-to-br from-emerald-900/30 to-transparent p-5 rounded-xl border border-emerald-500/20 backdrop-blur-sm hover:border-emerald-400/40 transition-all duration-300 hover:transform hover:scale-105">
                     <div className="flex items-start gap-3">
-                      <Users className="w-7 h-7 text-emerald-400 mt-1" />
+                      <Users className="w-6 h-6 text-emerald-400 mt-1 flex-shrink-0" />
                       <div>
-                        <h4 className="font-semibold mb-2 text-emerald-300 text-lg">Suporte & Atendimento</h4>
+                        <h4 className="font-semibold mb-2 text-emerald-300">Suporte & Atendimento</h4>
                         <p className="text-sm text-gray-400 leading-relaxed">
                           Acompanhamento contínuo, treinamento da equipe e 
                           suporte técnico dedicado.
@@ -236,10 +248,67 @@ export default function PropostaBaboraSeguros() {
                       </div>
                     </div>
                   </div>
+                  
+                  {/* Tráfego Pago */}
+                  <div className="bg-gradient-to-br from-rose-900/30 to-transparent p-5 rounded-xl border border-rose-500/20 backdrop-blur-sm hover:border-rose-400/40 transition-all duration-300 hover:transform hover:scale-105">
+                    <div className="flex items-start gap-3">
+                      <Megaphone className="w-6 h-6 text-rose-400 mt-1 flex-shrink-0" />
+                      <div>
+                        <h4 className="font-semibold mb-2 text-rose-300">Tráfego Pago</h4>
+                        <p className="text-sm text-gray-400 leading-relaxed">
+                          Google Ads, Meta Ads, LinkedIn Ads, YouTube Ads e TikTok Ads 
+                          com otimização contínua e ROI garantido.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Social Media */}
+                  <div className="bg-gradient-to-br from-pink-900/30 to-transparent p-5 rounded-xl border border-pink-500/20 backdrop-blur-sm hover:border-pink-400/40 transition-all duration-300 hover:transform hover:scale-105">
+                    <div className="flex items-start gap-3">
+                      <Share2 className="w-6 h-6 text-pink-400 mt-1 flex-shrink-0" />
+                      <div>
+                        <h4 className="font-semibold mb-2 text-pink-300">Social Media</h4>
+                        <p className="text-sm text-gray-400 leading-relaxed">
+                          Gestão completa de redes sociais com estratégias automatizadas, 
+                          conteúdo personalizado e engajamento inteligente.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Marketing Digital */}
+                  <div className="bg-gradient-to-br from-indigo-900/30 to-transparent p-5 rounded-xl border border-indigo-500/20 backdrop-blur-sm hover:border-indigo-400/40 transition-all duration-300 hover:transform hover:scale-105">
+                    <div className="flex items-start gap-3">
+                      <Mail className="w-6 h-6 text-indigo-400 mt-1 flex-shrink-0" />
+                      <div>
+                        <h4 className="font-semibold mb-2 text-indigo-300">Marketing Digital</h4>
+                        <p className="text-sm text-gray-400 leading-relaxed">
+                          SEO, Email Marketing, Content Marketing e estratégias omnichannel 
+                          para presença digital completa.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Automações de Marketing */}
+                  <div className="bg-gradient-to-br from-amber-900/30 to-transparent p-5 rounded-xl border border-amber-500/20 backdrop-blur-sm hover:border-amber-400/40 transition-all duration-300 hover:transform hover:scale-105">
+                    <div className="flex items-start gap-3">
+                      <Workflow className="w-6 h-6 text-amber-400 mt-1 flex-shrink-0" />
+                      <div>
+                        <h4 className="font-semibold mb-2 text-amber-300">Automações de Marketing</h4>
+                        <p className="text-sm text-gray-400 leading-relaxed">
+                          Nutrição de leads, CRM integrado, workflows automatizados 
+                          e jornadas personalizadas do cliente.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+                
                 <div className="bg-gradient-to-r from-blue-900/30 to-cyan-900/30 p-6 rounded-xl border-l-4 border-blue-400 backdrop-blur-sm">
                   <p className="text-sm text-gray-300 italic leading-relaxed">
-                    "Entendemos que cada corretora tem suas particularidades. Por isso, nossa abordagem é sempre 
+                    "Entendemos que cada negócio tem suas particularidades. Por isso, nossa abordagem é sempre 
                     consultiva: primeiro entendemos seu desafio, depois criamos a solução perfeita para resolvê-lo."
                   </p>
                 </div>
