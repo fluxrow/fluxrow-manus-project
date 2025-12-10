@@ -34,7 +34,8 @@ import {
   Facebook,
   AlertCircle,
   XCircle,
-  Timer
+  Timer,
+  Puzzle
 } from "lucide-react";
 
 const PropostaPromotrip = () => {
@@ -625,6 +626,61 @@ const PropostaPromotrip = () => {
               </p>
             </CardContent>
           </Card>
+        </section>
+
+        {/* Escale Sem Limites */}
+        <section className="mb-20">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl font-bold mb-3">Escale Sem Limites</h2>
+            <p className="text-gray-400">Um sistema que cresce junto com a Promotrip</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* Card 1 - Multiplicação */}
+            <Card className="bg-gradient-to-br from-emerald-900/30 to-cyan-900/30 border-emerald-500/30 hover:border-emerald-400/50 transition-all duration-300 hover:scale-105">
+              <CardContent className="p-6 text-center">
+                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-500/30 to-cyan-500/30 flex items-center justify-center mx-auto mb-4">
+                  <TrendingUp className="w-8 h-8 text-emerald-400" />
+                </div>
+                <div className="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400 mb-2">10x</div>
+                <h3 className="text-xl font-bold text-white mb-3">Multiplique seu Faturamento</h3>
+                <p className="text-gray-400 text-sm leading-relaxed">
+                  Com agentes trabalhando 24/7 e controle centralizado, você atende 10x mais clientes sem aumentar equipe. Cada frente pode escalar independentemente.
+                </p>
+              </CardContent>
+            </Card>
+
+            {/* Card 2 - Soluções Personalizadas */}
+            <Card className="bg-gradient-to-br from-purple-900/30 to-pink-900/30 border-purple-500/30 hover:border-purple-400/50 transition-all duration-300 hover:scale-105">
+              <CardContent className="p-6 text-center">
+                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-purple-500/30 to-pink-500/30 flex items-center justify-center mx-auto mb-4">
+                  <Puzzle className="w-8 h-8 text-purple-400" />
+                </div>
+                <div className="text-xs font-semibold text-purple-400 tracking-wider uppercase mb-2">Funcionalidades Ilimitadas</div>
+                <h3 className="text-xl font-bold text-white mb-3">Soluções Sob Medida</h3>
+                <p className="text-gray-400 text-sm leading-relaxed">
+                  Surgiu uma necessidade nova? Criamos funcionalidades personalizadas conforme sua operação evolui. O sistema se adapta ao seu negócio, não o contrário.
+                </p>
+              </CardContent>
+            </Card>
+
+            {/* Card 3 - Suporte Direto */}
+            <Card className="bg-gradient-to-br from-amber-900/30 to-orange-900/30 border-amber-500/30 hover:border-amber-400/50 transition-all duration-300 hover:scale-105">
+              <CardContent className="p-6 text-center">
+                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-500/30 to-orange-500/30 flex items-center justify-center mx-auto mb-4">
+                  <Headphones className="w-8 h-8 text-amber-400" />
+                </div>
+                <div className="flex items-center justify-center gap-2 mb-2">
+                  <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+                  <span className="text-xs font-semibold text-amber-400">Disponível no WhatsApp</span>
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3">Suporte Direto Comigo</h3>
+                <p className="text-gray-400 text-sm leading-relaxed">
+                  Nada de tickets intermináveis. Suporte direto via WhatsApp, respostas rápidas e ajustes sempre que precisar. Parceria de verdade.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
         </section>
 
         {/* Por Que Investir Agora */}
