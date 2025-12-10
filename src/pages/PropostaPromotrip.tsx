@@ -355,10 +355,6 @@ const PropostaPromotrip = () => {
                     ))}
                   </ul>
 
-                  <div className="mt-4 pt-4 border-t border-slate-700/50 flex items-center justify-between">
-                    <span className="text-xs text-gray-500">Investimento por frente</span>
-                    <span className="text-sm text-gray-400">~R$ 1.067/mês</span>
-                  </div>
                 </CardContent>
               </Card>
             ))}
@@ -514,6 +510,7 @@ const PropostaPromotrip = () => {
                 {[
                   { icon: Instagram, label: "Instagram Direct", color: "from-pink-500 to-purple-500" },
                   { icon: Facebook, label: "Messenger", color: "from-blue-500 to-blue-600" },
+                  { icon: MessageSquare, label: "WhatsApp Business", color: "from-green-500 to-emerald-500" },
                   { icon: MessageSquare, label: "Comentários", color: "from-cyan-500 to-teal-500" }
                 ].map((platform, i) => (
                   <div key={i} className={`flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r ${platform.color} bg-opacity-20 border border-white/10`}>
