@@ -53,12 +53,20 @@ export const relatorioSemanalFachini = {
     { nome: "Fachini Maquinas", leads: 1 }
   ],
   
-  categorias: [
-    { categoria: "PERFILADEIRAS", qtd: 88, custo: 5.89 },
-    { categoria: "DOBRADEIRA LISA E DENTADA", qtd: 57, custo: 5.89 },
-    { categoria: "CONJ CORTE/DOBRA", qtd: 56, custo: 5.89 },
-    { categoria: "LASER", qtd: 21, custo: 5.89 }
-  ],
+  categorias: {
+    whatsapp: [
+      { categoria: "PERFILADEIRAS", qtd: 44, custo: 5.89 },
+      { categoria: "DOBRADEIRA LISA E DENTADA", qtd: 28, custo: 5.89 },
+      { categoria: "CONJ CORTE/DOBRA", qtd: 28, custo: 5.89 },
+      { categoria: "LASER", qtd: 10, custo: 5.89 }
+    ],
+    forms: [
+      { categoria: "PERFILADEIRAS", qtd: 44, custo: 5.89 },
+      { categoria: "DOBRADEIRA LISA E DENTADA", qtd: 29, custo: 5.89 },
+      { categoria: "CONJ CORTE/DOBRA", qtd: 28, custo: 5.89 },
+      { categoria: "LASER", qtd: 11, custo: 5.89 }
+    ]
+  },
   
   urls: [
     {

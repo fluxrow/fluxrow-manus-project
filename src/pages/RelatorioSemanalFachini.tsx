@@ -403,9 +403,9 @@ export default function RelatorioSemanalFachini() {
           </Card>
         </section>
 
-        {/* Layout de três colunas: Vendedores, Conversas e Categorias */}
+        {/* Layout: Vendedores e Conversas */}
         <section className="mb-12">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {/* Tabela de Vendedores */}
             <Card>
               <CardHeader>
@@ -428,14 +428,37 @@ export default function RelatorioSemanalFachini() {
                 />
               </CardContent>
             </Card>
+          </div>
+        </section>
 
-            {/* Leads Meta via Formulário por Categoria */}
+        {/* Leads Meta por Categoria - WhatsApp vs Forms */}
+        <section className="mb-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {/* Leads via WhatsApp */}
             <Card>
               <CardHeader>
-                <CardTitle>Leads Meta - Formulário por Categoria</CardTitle>
+                <CardTitle className="flex items-center gap-2">
+                  <span className="text-green-600">💬</span> Leads WhatsApp por Categoria
+                </CardTitle>
               </CardHeader>
               <CardContent>
-                <CategoriasTable data={categorias} />
+                <CategoriasTable 
+                  data={(categorias as any)?.whatsapp || (Array.isArray(categorias) ? categorias : [])} 
+                />
+              </CardContent>
+            </Card>
+
+            {/* Leads via Formulário */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <span className="text-blue-600">📝</span> Leads Formulário por Categoria
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <CategoriasTable 
+                  data={(categorias as any)?.forms || (Array.isArray(categorias) ? categorias : [])} 
+                />
               </CardContent>
             </Card>
           </div>
