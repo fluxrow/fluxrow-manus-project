@@ -109,6 +109,7 @@ export type Database = {
           dados_rd_station: Json | null
           dados_urls: Json | null
           dados_vendedores: Json | null
+          dados_whatsapp_conversoes: Json | null
           data_fim: string
           data_inicio: string
           gerado_automaticamente: boolean
@@ -131,6 +132,7 @@ export type Database = {
           dados_rd_station?: Json | null
           dados_urls?: Json | null
           dados_vendedores?: Json | null
+          dados_whatsapp_conversoes?: Json | null
           data_fim: string
           data_inicio: string
           gerado_automaticamente?: boolean
@@ -153,6 +155,7 @@ export type Database = {
           dados_rd_station?: Json | null
           dados_urls?: Json | null
           dados_vendedores?: Json | null
+          dados_whatsapp_conversoes?: Json | null
           data_fim?: string
           data_inicio?: string
           gerado_automaticamente?: boolean
