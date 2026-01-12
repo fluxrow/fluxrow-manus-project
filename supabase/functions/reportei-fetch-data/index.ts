@@ -319,153 +319,127 @@ serve(async (req) => {
     let dadosCategorias: { whatsapp: any[], forms: any[] } = { whatsapp: [], forms: [] };
     let dadosUrls: any[] = [];
 
-    // ============ COLETA PARALELA ============
-    const collectionPromises: Promise<void>[] = [];
+    // ============ COLETA SEQUENCIAL PARA EVITAR RATE LIMIT ============
+    // Meta Ads -> delay -> Google Ads -> delay -> demais em paralelo
 
-    // 3. META ADS (em paralelo)
+    // === META ADS ===
     if (integrationMap.metaAds) {
-      collectionPromises.push((async () => {
-        console.log(`\n2️⃣ META ADS (ID: ${integrationMap.metaAds.id})...`);
+      console.log(`\n2️⃣ META ADS (ID: ${integrationMap.metaAds.id})...`);
+      try {
+        const widgetsResponse = await fetchWithRetry(`${BASE_URL}/integrations/${integrationMap.metaAds.id}/widgets`, { headers }, 10000, 3);
         
-        try {
-          const widgetsResponse = await fetchWithTimeout(`${BASE_URL}/integrations/${integrationMap.metaAds.id}/widgets`, { headers }, 10000);
+        if (widgetsResponse.ok) {
+          const widgetsData = await widgetsResponse.json();
+          const widgets = widgetsData.data || widgetsData || [];
+          console.log(`   📋 Meta Ads: ${widgets.length} widgets disponíveis`);
           
-          if (widgetsResponse.ok) {
-            const widgetsData = await widgetsResponse.json();
-            const widgets = widgetsData.data || widgetsData || [];
-            console.log(`   📋 ${widgets.length} widgets disponíveis`);
+          // Buscar widgets
+          const spendWidget = widgets.find((w: any) => (w.reference_key || '').toLowerCase().includes('spend'));
+          const leadsWidget = widgets.find((w: any) => (w.reference_key || '').toLowerCase().includes('actions_lead'));
+          const messagingWidget = widgets.find((w: any) => (w.reference_key || '').toLowerCase().includes('conversation'));
+          const reachWidget = widgets.find((w: any) => (w.reference_key || '').toLowerCase() === 'fb_ads:reach');
+          const impressionsWidget = widgets.find((w: any) => (w.reference_key || '').toLowerCase() === 'fb_ads:impressions');
+          const clicksWidget = widgets.find((w: any) => (w.reference_key || '').toLowerCase() === 'fb_ads:clicks');
+          
+          const targetWidgets = [spendWidget, leadsWidget, messagingWidget, reachWidget, impressionsWidget, clicksWidget].filter(Boolean);
+          
+          if (targetWidgets.length > 0) {
+            console.log(`   📦 Buscando ${targetWidgets.length} widgets...`);
             
-            // Encontrar widgets necessários
-            const targetWidgets = [
-              findWidget(widgets, 'fb_ads:spend', 'spend', 'amount_spent'),
-              findWidget(widgets, 'fb_ads:leads', 'results', 'onsite_conversion', 'conversions'),
-              findWidget(widgets, 'fb_ads:messaging', 'messaging_conversation'),
-              findWidget(widgets, 'fb_ads:reach', 'reach'),
-              findWidget(widgets, 'fb_ads:impressions', 'impressions'),
-              findWidget(widgets, 'fb_ads:clicks', 'clicks', 'link_click'),
-              findWidget(widgets, 'fb_ads:cpm', 'cpm'),
-              findWidget(widgets, 'fb_ads:cpc', 'cpc'),
-              findWidget(widgets, 'fb_ads:ctr', 'ctr'),
-              findWidget(widgets, 'fb_ads:frequency', 'frequency'),
-            ].filter(Boolean);
+            const results = await fetchWidgetsBatch(
+              integrationMap.metaAds.id, targetWidgets, periodo.dataInicio, periodo.dataFim, headers, BASE_URL
+            );
             
-            if (targetWidgets.length > 0) {
-              const results = await fetchWidgetsBatch(
-                integrationMap.metaAds.id,
-                targetWidgets,
-                periodo.dataInicio,
-                periodo.dataFim,
-                headers,
-                BASE_URL
-              );
-              
-              // Processar resultados
-              for (const [refKey, data] of results) {
-                const value = extractValueFromWidget(data);
-                if (refKey.includes('spend')) investimentoMeta = value;
-                else if (refKey.includes('leads') || refKey.includes('results')) leadsMeta = value;
-                else if (refKey.includes('messaging')) conversasMeta = value;
-                else if (refKey.includes('reach')) alcanceMeta = value;
-                else if (refKey.includes('impressions')) impressoesMeta = value;
-                else if (refKey.includes('clicks')) cliquesMeta = value;
-                else if (refKey.includes('cpm')) cpmMeta = value;
-                else if (refKey.includes('cpc')) cpcMeta = value;
-                else if (refKey.includes('ctr')) ctrMeta = extractPercentage(value);
-                else if (refKey.includes('frequency')) frequenciaMeta = value;
-              }
-              
-              // Calcular métricas derivadas se não vieram
-              if (cpmMeta === 0 && impressoesMeta > 0 && investimentoMeta > 0) {
-                cpmMeta = Number(((investimentoMeta / impressoesMeta) * 1000).toFixed(2));
-              }
-              if (cpcMeta === 0 && cliquesMeta > 0 && investimentoMeta > 0) {
-                cpcMeta = Number((investimentoMeta / cliquesMeta).toFixed(2));
-              }
-              if (ctrMeta === '0%' && impressoesMeta > 0 && cliquesMeta > 0) {
-                ctrMeta = `${((cliquesMeta / impressoesMeta) * 100).toFixed(2)}%`;
-              }
-              if (frequenciaMeta === 0 && alcanceMeta > 0 && impressoesMeta > 0) {
-                frequenciaMeta = Number((impressoesMeta / alcanceMeta).toFixed(2));
-              }
+            let leadsFormulario = 0;
+            for (const [refKey, data] of results) {
+              const value = extractValueFromWidget(data);
+              const refLower = refKey.toLowerCase();
+              if (refLower.includes('spend')) investimentoMeta = value;
+              else if (refLower.includes('conversation')) conversasMeta = value;
+              else if (refLower.includes('actions_lead')) leadsFormulario = value;
+              else if (refLower === 'fb_ads:reach') alcanceMeta = value;
+              else if (refLower === 'fb_ads:impressions') impressoesMeta = value;
+              else if (refLower === 'fb_ads:clicks') cliquesMeta = value;
             }
             
-            console.log(`   ✅ Meta: R$${investimentoMeta}, ${leadsMeta} leads, ${conversasMeta} conversas`);
+            leadsMeta = conversasMeta + leadsFormulario;
+            console.log(`   📊 Meta: ${conversasMeta} conversas WA + ${leadsFormulario} forms = ${leadsMeta} leads`);
+            
+            // Métricas derivadas
+            if (impressoesMeta > 0 && investimentoMeta > 0) cpmMeta = Number(((investimentoMeta / impressoesMeta) * 1000).toFixed(2));
+            if (cliquesMeta > 0 && investimentoMeta > 0) cpcMeta = Number((investimentoMeta / cliquesMeta).toFixed(2));
+            if (impressoesMeta > 0 && cliquesMeta > 0) ctrMeta = `${((cliquesMeta / impressoesMeta) * 100).toFixed(2)}%`;
+            if (alcanceMeta > 0 && impressoesMeta > 0) frequenciaMeta = Number((impressoesMeta / alcanceMeta).toFixed(2));
           }
-        } catch (error) {
-          console.error(`   ❌ Erro Meta Ads:`, error.message);
+          
+          console.log(`   ✅ Meta: R$${investimentoMeta}, ${leadsMeta} leads`);
         }
-      })());
+      } catch (error) {
+        console.error(`   ❌ Erro Meta Ads:`, error.message);
+      }
     }
 
-    // 4. GOOGLE ADS (em paralelo)
+    // Delay entre Meta e Google para evitar rate limit
+    await delay(300);
+
+    // === GOOGLE ADS ===
     if (integrationMap.googleAds) {
-      collectionPromises.push((async () => {
-        console.log(`\n3️⃣ GOOGLE ADS (ID: ${integrationMap.googleAds.id})...`);
+      console.log(`\n3️⃣ GOOGLE ADS (ID: ${integrationMap.googleAds.id})...`);
+      try {
+        const widgetsResponse = await fetchWithRetry(`${BASE_URL}/integrations/${integrationMap.googleAds.id}/widgets`, { headers }, 10000, 3);
         
-        try {
-          const widgetsResponse = await fetchWithTimeout(`${BASE_URL}/integrations/${integrationMap.googleAds.id}/widgets`, { headers }, 10000);
+        if (widgetsResponse.ok) {
+          const widgetsData = await widgetsResponse.json();
+          const widgets = widgetsData.data || widgetsData || [];
+          console.log(`   📋 Google Ads: ${widgets.length} widgets disponíveis`);
           
-          if (widgetsResponse.ok) {
-            const widgetsData = await widgetsResponse.json();
-            const widgets = widgetsData.data || widgetsData || [];
-            console.log(`   📋 ${widgets.length} widgets disponíveis`);
+          const targetWidgets = [
+            findWidget(widgets, 'gads:cost', 'cost_micros', 'spend'),
+            findWidget(widgets, 'gads:clicks', 'clicks'),
+            findWidget(widgets, 'gads:impressions', 'impressions'),
+            findWidget(widgets, 'gads:all_conversions', 'conversions'),
+          ].filter(Boolean);
+          
+          if (targetWidgets.length > 0) {
+            const results = await fetchWidgetsBatch(
+              integrationMap.googleAds.id, targetWidgets, periodo.dataInicio, periodo.dataFim, headers, BASE_URL
+            );
             
-            const targetWidgets = [
-              findWidget(widgets, 'gads:cost', 'cost_micros', 'spend'),
-              findWidget(widgets, 'gads:clicks', 'clicks'),
-              findWidget(widgets, 'gads:impressions', 'impressions'),
-              findWidget(widgets, 'gads:all_conversions', 'conversions'),
-            ].filter(Boolean);
-            
-            if (targetWidgets.length > 0) {
-              const results = await fetchWidgetsBatch(
-                integrationMap.googleAds.id,
-                targetWidgets,
-                periodo.dataInicio,
-                periodo.dataFim,
-                headers,
-                BASE_URL
-              );
-              
-              for (const [refKey, data] of results) {
-                const value = extractValueFromWidget(data);
-                if (refKey.includes('cost')) investimentoGoogle = value;
-                else if (refKey.includes('clicks')) cliquesGoogle = value;
-                else if (refKey.includes('impressions')) impressoesGoogle = value;
-                else if (refKey.includes('conversions')) conversoesGoogle = value;
-              }
-              
-              // Calcular métricas derivadas
-              if (cliquesGoogle > 0 && investimentoGoogle > 0) {
-                cpcGoogle = Number((investimentoGoogle / cliquesGoogle).toFixed(2));
-              }
-              if (impressoesGoogle > 0 && investimentoGoogle > 0) {
-                cpmGoogle = Number(((investimentoGoogle / impressoesGoogle) * 1000).toFixed(2));
-              }
-              if (impressoesGoogle > 0 && cliquesGoogle > 0) {
-                ctrGoogle = `${((cliquesGoogle / impressoesGoogle) * 100).toFixed(2)}%`;
-              }
-              if (conversoesGoogle > 0 && investimentoGoogle > 0) {
-                custoConversaoGoogle = Number((investimentoGoogle / conversoesGoogle).toFixed(2));
-              }
+            for (const [refKey, data] of results) {
+              const value = extractValueFromWidget(data);
+              if (refKey.includes('cost')) investimentoGoogle = value;
+              else if (refKey.includes('clicks')) cliquesGoogle = value;
+              else if (refKey.includes('impressions')) impressoesGoogle = value;
+              else if (refKey.includes('conversions')) conversoesGoogle = value;
             }
             
-            console.log(`   ✅ Google: R$${investimentoGoogle}, ${conversoesGoogle} conv, ${cliquesGoogle} cliques`);
+            // Métricas derivadas
+            if (cliquesGoogle > 0 && investimentoGoogle > 0) cpcGoogle = Number((investimentoGoogle / cliquesGoogle).toFixed(2));
+            if (impressoesGoogle > 0 && investimentoGoogle > 0) cpmGoogle = Number(((investimentoGoogle / impressoesGoogle) * 1000).toFixed(2));
+            if (impressoesGoogle > 0 && cliquesGoogle > 0) ctrGoogle = `${((cliquesGoogle / impressoesGoogle) * 100).toFixed(2)}%`;
+            if (conversoesGoogle > 0 && investimentoGoogle > 0) custoConversaoGoogle = Number((investimentoGoogle / conversoesGoogle).toFixed(2));
           }
-        } catch (error) {
-          console.error(`   ❌ Erro Google Ads:`, error.message);
+          
+          console.log(`   ✅ Google: R$${investimentoGoogle}, ${conversoesGoogle} conv`);
         }
-      })());
+      } catch (error) {
+        console.error(`   ❌ Erro Google Ads:`, error.message);
+      }
     }
 
-    // 5. INSTAGRAM (em paralelo)
+    // Delay antes das coletas secundárias
+    await delay(300);
+
+    // === COLETAS SECUNDÁRIAS EM PARALELO ===
+    console.log(`\n⏳ Coletando Instagram, Facebook e RD Station...`);
+    
+    const secondaryPromises: Promise<void>[] = [];
+
+    // Instagram
     if (integrationMap.instagram) {
-      collectionPromises.push((async () => {
-        console.log(`\n4️⃣ INSTAGRAM (ID: ${integrationMap.instagram.id})...`);
-        
+      secondaryPromises.push((async () => {
         try {
-          const widgetsResponse = await fetchWithTimeout(`${BASE_URL}/integrations/${integrationMap.instagram.id}/widgets`, { headers }, 10000);
-          
+          const widgetsResponse = await fetchWithRetry(`${BASE_URL}/integrations/${integrationMap.instagram.id}/widgets`, { headers }, 10000, 3);
           if (widgetsResponse.ok) {
             const widgetsData = await widgetsResponse.json();
             const widgets = widgetsData.data || widgetsData || [];
@@ -478,12 +452,7 @@ serve(async (req) => {
             
             if (targetWidgets.length > 0) {
               const results = await fetchWidgetsBatch(
-                integrationMap.instagram.id,
-                targetWidgets,
-                periodo.dataInicio,
-                periodo.dataFim,
-                headers,
-                BASE_URL
+                integrationMap.instagram.id, targetWidgets, periodo.dataInicio, periodo.dataFim, headers, BASE_URL
               );
               
               for (const [refKey, data] of results) {
@@ -493,8 +462,7 @@ serve(async (req) => {
                 else if (refKey.includes('reach')) alcanceInstagram = value;
               }
             }
-            
-            console.log(`   ✅ Instagram: ${seguidoresInstagram} seg, +${novosSeguidoresInstagram}, alcance ${alcanceInstagram}`);
+            console.log(`   ✅ Instagram: ${seguidoresInstagram} seg, alcance ${alcanceInstagram}`);
           }
         } catch (error) {
           console.error(`   ❌ Erro Instagram:`, error.message);
@@ -502,14 +470,11 @@ serve(async (req) => {
       })());
     }
 
-    // 6. FACEBOOK PAGE (em paralelo)
+    // Facebook Page
     if (integrationMap.facebookPage) {
-      collectionPromises.push((async () => {
-        console.log(`\n5️⃣ FACEBOOK PAGE (ID: ${integrationMap.facebookPage.id})...`);
-        
+      secondaryPromises.push((async () => {
         try {
-          const widgetsResponse = await fetchWithTimeout(`${BASE_URL}/integrations/${integrationMap.facebookPage.id}/widgets`, { headers }, 10000);
-          
+          const widgetsResponse = await fetchWithRetry(`${BASE_URL}/integrations/${integrationMap.facebookPage.id}/widgets`, { headers }, 10000, 3);
           if (widgetsResponse.ok) {
             const widgetsData = await widgetsResponse.json();
             const widgets = widgetsData.data || widgetsData || [];
@@ -517,19 +482,12 @@ serve(async (req) => {
             const messagesWidget = findWidget(widgets, 'fb:page_messages_new', 'messages_new', 'conversations');
             if (messagesWidget) {
               const results = await fetchWidgetsBatch(
-                integrationMap.facebookPage.id,
-                [messagesWidget],
-                periodo.dataInicio,
-                periodo.dataFim,
-                headers,
-                BASE_URL
+                integrationMap.facebookPage.id, [messagesWidget], periodo.dataInicio, periodo.dataFim, headers, BASE_URL
               );
-              
               for (const [, data] of results) {
                 conversasFacebook = extractValueFromWidget(data);
               }
             }
-            
             console.log(`   ✅ Facebook: ${conversasFacebook} mensagens`);
           }
         } catch (error) {
@@ -538,18 +496,14 @@ serve(async (req) => {
       })());
     }
 
-    // 7. RD STATION (em paralelo)
+    // RD Station
     if (integrationMap.rdStation) {
-      collectionPromises.push((async () => {
-        console.log(`\n6️⃣ RD STATION (ID: ${integrationMap.rdStation.id})...`);
-        
+      secondaryPromises.push((async () => {
         try {
-          const widgetsResponse = await fetchWithTimeout(`${BASE_URL}/integrations/${integrationMap.rdStation.id}/widgets`, { headers }, 10000);
-          
+          const widgetsResponse = await fetchWithRetry(`${BASE_URL}/integrations/${integrationMap.rdStation.id}/widgets`, { headers }, 10000, 3);
           if (widgetsResponse.ok) {
             const widgetsData = await widgetsResponse.json();
             const widgets = widgetsData.data || widgetsData || [];
-            console.log(`   📋 ${widgets.length} widgets disponíveis`);
             
             const targetWidgets = [
               findWidget(widgets, 'rd_crm:created_deals', 'opportunities', 'deals'),
@@ -560,12 +514,7 @@ serve(async (req) => {
             
             if (targetWidgets.length > 0) {
               const results = await fetchWidgetsBatch(
-                integrationMap.rdStation.id,
-                targetWidgets,
-                periodo.dataInicio,
-                periodo.dataFim,
-                headers,
-                BASE_URL
+                integrationMap.rdStation.id, targetWidgets, periodo.dataInicio, periodo.dataFim, headers, BASE_URL
               );
               
               for (const [refKey, data] of results) {
@@ -576,22 +525,19 @@ serve(async (req) => {
                 } else if (refKey.includes('won_value') || refKey.includes('total_value')) {
                   valorVendasRD = extractValueFromWidget(data);
                 } else if (refKey.includes('by_user') || refKey.includes('deals_by_user')) {
-                  // Processar vendedores
                   if (data?.data && Array.isArray(data.data)) {
                     dadosVendedores = data.data.map((item: any) => ({
-                      nome: (item.name || item.user || item.dimension || 'Desconhecido').replace('Juan', 'Jean Lucas'),
+                      nome: (item.name || item.user || 'Desconhecido').replace('Juan', 'Jean Lucas'),
                       leads: extractNumber(item.value || item.count || item.deals)
                     })).filter((v: any) => v.leads > 0).sort((a: any, b: any) => b.leads - a.leads);
                   }
                 }
               }
               
-              // Taxa de conversão
               if (oportunidadesRD > 0 && vendasRD > 0) {
                 taxaConversaoRD = Number(((vendasRD / oportunidadesRD) * 100).toFixed(2));
               }
             }
-            
             console.log(`   ✅ RD: ${oportunidadesRD} opp, ${vendasRD} vendas, R$${valorVendasRD}`);
           }
         } catch (error) {
@@ -600,9 +546,8 @@ serve(async (req) => {
       })());
     }
 
-    // Aguardar todas as coletas em paralelo
-    console.log(`\n⏳ Aguardando coletas paralelas...`);
-    await Promise.all(collectionPromises);
+    await Promise.all(secondaryPromises);
+
 
     // 8. CALCULAR KPIs FINAIS
     const elapsedTime = ((Date.now() - startTime) / 1000).toFixed(1);
