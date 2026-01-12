@@ -10,6 +10,7 @@ import { VendedoresTable } from '@/components/relatorio/VendedoresTable';
 import { PlataformasTable } from '@/components/relatorio/PlataformasTable';
 import { URLsTable } from '@/components/relatorio/URLsTable';
 import { ConversasMensagemTable } from '@/components/relatorio/ConversasMensagemTable';
+import { WhatsAppConversionsTable } from '@/components/relatorio/WhatsAppConversionsTable';
 import { LeadsBarChart } from '@/components/relatorio/charts/LeadsBarChart';
 import { RelatorioPlanoAcao } from '@/components/relatorio/RelatorioPlanoAcao';
 import { RDStationTable } from '@/components/relatorio/RDStationTable';
@@ -84,6 +85,7 @@ export default function RelatorioSemanalFachini() {
               rd_station: (data.dados_rd_station as any) || null,
               asset_groups: (data.dados_asset_groups as any) || null,
               analytics: (data.dados_analytics as any) || null,
+              whatsapp_conversoes: (data.dados_whatsapp_conversoes as any) || null,
               plano_de_acao: relatorioSemanalFachini.plano_de_acao
             });
             setIsDadosReais(true);
@@ -123,6 +125,7 @@ export default function RelatorioSemanalFachini() {
               rd_station: (data.dados_rd_station as any) || null,
               asset_groups: (data.dados_asset_groups as any) || null,
               analytics: (data.dados_analytics as any) || null,
+              whatsapp_conversoes: (data.dados_whatsapp_conversoes as any) || null,
               plano_de_acao: relatorioSemanalFachini.plano_de_acao
             });
             setIsDadosReais(true);
@@ -269,7 +272,7 @@ export default function RelatorioSemanalFachini() {
     }
   };
 
-  const { periodo, kpis, google, meta, instagram, vendedores, categorias, urls, conversas_mensagem, rd_station, asset_groups, analytics, plano_de_acao } = dadosRelatorio;
+  const { periodo, kpis, google, meta, instagram, vendedores, categorias, urls, conversas_mensagem, rd_station, asset_groups, analytics, whatsapp_conversoes, plano_de_acao } = dadosRelatorio;
 
   if (loading) {
     return (
@@ -435,6 +438,13 @@ export default function RelatorioSemanalFachini() {
             </CardContent>
           </Card>
         </section>
+
+        {/* Conversões WhatsApp por Plataforma */}
+        {whatsapp_conversoes && (
+          <section className="mb-12">
+            <WhatsAppConversionsTable data={whatsapp_conversoes} />
+          </section>
+        )}
 
         {/* Leads por Vendedor - Gráfico */}
         <section className="mb-12">

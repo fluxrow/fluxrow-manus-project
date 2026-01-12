@@ -119,6 +119,7 @@ export const relatorioSemanalFachini = {
   rd_station: null as any,
   asset_groups: null as any,
   analytics: null as any,
+  whatsapp_conversoes: null as any,
   
   plano_de_acao: {
     meta: [
