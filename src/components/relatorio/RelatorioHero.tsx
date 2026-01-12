@@ -4,26 +4,36 @@ import { formatCurrency, formatNumber } from '@/utils/formatters';
 interface RelatorioHeroProps {
   kpis: {
     investimento_total: number;
+    investimento_google?: number;
+    investimento_meta?: number;
     leads_meta: number;
     conversas_meta: number;
-    google_conv_primarias_ads: { whatsapp_click: number; form_start: number };
-    google_conv_primarias_ga4: { whatsapp_click: number; clique?: number; form_start?: number };
+    google_conv_primarias_ads: { whatsapp_click: number; clique?: number; form_start?: number; fonte?: string };
+    google_conv_primarias_ga4: { whatsapp_click: number; clique?: number; form_start?: number; fonte?: string };
+    rd_vendas?: number;
+    rd_taxa_conversao?: number;
+    rd_receita?: number;
+    rd_ticket_medio?: number;
   };
+  periodo?: string;
 }
 
-export const RelatorioHero = ({ kpis }: RelatorioHeroProps) => {
+export const RelatorioHero = ({ kpis, periodo }: RelatorioHeroProps) => {
+  const investimentoMeta = kpis.investimento_meta || (kpis.investimento_total - (kpis.investimento_google || 0));
+  
   const kpiCards = [
     {
       icon: DollarSign,
       label: 'Investimento Total',
       value: formatCurrency(kpis.investimento_total),
+      sublabel: kpis.investimento_google ? `Google: ${formatCurrency(kpis.investimento_google)} | Meta: ${formatCurrency(investimentoMeta)}` : undefined,
       color: 'text-blue-500',
     },
     {
       icon: Users,
       label: 'Leads (Meta)',
       value: formatNumber(kpis.leads_meta),
-      sublabel: `CPL ${formatCurrency(3710.44 / kpis.leads_meta)}`,
+      sublabel: `CPL ${formatCurrency(investimentoMeta / kpis.leads_meta)}`,
       color: 'text-purple-500',
     },
     {
@@ -37,11 +47,25 @@ export const RelatorioHero = ({ kpis }: RelatorioHeroProps) => {
       label: 'Conversões Google',
       value: `${kpis.google_conv_primarias_ads.whatsapp_click}/${kpis.google_conv_primarias_ga4.whatsapp_click}`,
       sublabel: kpis.google_conv_primarias_ga4.clique 
-        ? `Whats (Ads/GA4) | Clique: ${kpis.google_conv_primarias_ga4.clique} | Form: ${kpis.google_conv_primarias_ads.form_start}`
-        : `Whats (Ads/GA4) | Form ${kpis.google_conv_primarias_ads.form_start}/${kpis.google_conv_primarias_ga4.form_start || 0}`,
+        ? `Whats (Ads/GA4) | Clique: ${kpis.google_conv_primarias_ga4.clique}${kpis.google_conv_primarias_ads.form_start ? ` | Form: ${kpis.google_conv_primarias_ads.form_start}` : ''}`
+        : kpis.google_conv_primarias_ads.form_start 
+          ? `Whats (Ads/GA4) | Form ${kpis.google_conv_primarias_ads.form_start}/${kpis.google_conv_primarias_ga4.form_start || 0}`
+          : 'Whats (Ads/GA4)',
       color: 'text-blue-500',
     },
   ];
+
+  // Extrair período formatado
+  const getPeriodoFormatado = () => {
+    if (periodo) {
+      const [inicio, fim] = periodo.split('/');
+      const dataInicio = new Date(inicio);
+      const dataFim = new Date(fim);
+      const meses = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+      return `${dataInicio.getDate().toString().padStart(2, '0')}-${dataFim.getDate().toString().padStart(2, '0')} de ${meses[dataFim.getMonth()]} de ${dataFim.getFullYear()}`;
+    }
+    return '01-31 de Dezembro de 2025';
+  };
 
   return (
     <div className="relative py-16 md:py-24">
@@ -52,7 +76,7 @@ export const RelatorioHero = ({ kpis }: RelatorioHeroProps) => {
             Relatório de Mídia Paga
           </h1>
           <p className="text-xl text-muted-foreground">
-            Fachini Máquinas - Período: 01-31 de Outubro de 2025
+            Fachini Máquinas - Período: {getPeriodoFormatado()}
           </p>
         </div>
 
