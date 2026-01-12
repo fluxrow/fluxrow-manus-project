@@ -30,8 +30,26 @@ export default function RelatorioSemanalFachini() {
   const [isDadosReais, setIsDadosReais] = useState(false);
   const [dataGeracao, setDataGeracao] = useState<string | null>(null);
   const [gerando, setGerando] = useState(false);
-  const [dataInicio, setDataInicio] = useState('2025-11-17');
-  const [dataFim, setDataFim] = useState('2025-11-23');
+  
+  // Calcular semana anterior automaticamente
+  const getLastWeekDates = () => {
+    const today = new Date();
+    const dayOfWeek = today.getDay();
+    const daysToLastSunday = dayOfWeek === 0 ? 7 : dayOfWeek;
+    const lastSunday = new Date(today);
+    lastSunday.setDate(today.getDate() - daysToLastSunday);
+    const lastMonday = new Date(lastSunday);
+    lastMonday.setDate(lastSunday.getDate() - 6);
+    
+    return {
+      inicio: lastMonday.toISOString().split('T')[0],
+      fim: lastSunday.toISOString().split('T')[0]
+    };
+  };
+  
+  const defaultDates = getLastWeekDates();
+  const [dataInicio, setDataInicio] = useState(defaultDates.inicio);
+  const [dataFim, setDataFim] = useState(defaultDates.fim);
 
   useEffect(() => {
     const loadRelatorio = async () => {
@@ -194,7 +212,14 @@ export default function RelatorioSemanalFachini() {
       return;
     }
 
+    // Validar que data início é antes de data fim
+    if (new Date(dataInicio) > new Date(dataFim)) {
+      toast.error('Data de início deve ser anterior à data de fim');
+      return;
+    }
+
     setGerando(true);
+    toast.loading('Gerando relatório... isso pode levar alguns segundos', { id: 'gerando' });
     
     try {
       const { data, error } = await supabase.functions.invoke('reportei-fetch-data', {
@@ -205,20 +230,40 @@ export default function RelatorioSemanalFachini() {
         }
       });
 
-      if (error) throw error;
+      toast.dismiss('gerando');
+
+      if (error) {
+        console.error('Erro da função:', error);
+        throw new Error(error.message || 'Erro ao conectar com o servidor');
+      }
 
       if (data?.success && data?.relatorio?.id) {
-        toast.success('Relatório gerado com sucesso!');
+        const tempo = data?.resumo?.tempo_execucao || '';
+        toast.success(`Relatório gerado com sucesso! ${tempo ? `(${tempo})` : ''}`);
         
         // Redirecionar para o relatório gerado
         window.location.href = `/relatorio/fachini-semanal?id=${data.relatorio.id}`;
+      } else if (data?.error) {
+        throw new Error(data.error);
       } else {
         throw new Error('Resposta inválida do servidor');
       }
       
-    } catch (error) {
+    } catch (error: any) {
+      toast.dismiss('gerando');
       console.error('Erro ao gerar relatório:', error);
-      toast.error('Erro ao gerar relatório. Verifique as datas e tente novamente.');
+      
+      // Mensagens de erro mais descritivas
+      let errorMessage = 'Erro ao gerar relatório.';
+      if (error.message?.includes('timeout') || error.message?.includes('aborted')) {
+        errorMessage = 'A requisição demorou muito. Tente um período menor.';
+      } else if (error.message?.includes('Failed to fetch')) {
+        errorMessage = 'Erro de conexão. Verifique sua internet e tente novamente.';
+      } else if (error.message) {
+        errorMessage = `Erro: ${error.message}`;
+      }
+      
+      toast.error(errorMessage);
     } finally {
       setGerando(false);
     }
