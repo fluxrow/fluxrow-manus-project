@@ -40,18 +40,16 @@ export const relatorioSemanalFachini = {
     instagram: 244
   },
   
-  // Mantendo vendedores atuais - aguardando dados específicos do usuário
+  // Vendedores atualizados - 01/01/2026 a 09/01/2026
   vendedores: [
-    { nome: "Ruan", leads: 52 },
-    { nome: "Aldair", leads: 42 },
-    { nome: "Jean Lucas", leads: 41 },
-    { nome: "Silvana", leads: 39 },
-    { nome: "Jhony", leads: 35 },
-    { nome: "Rafael", leads: 29 },
-    { nome: "Caio", leads: 19 },
-    { nome: "Romulo", leads: 5 },
-    { nome: "Diego", leads: 4 },
-    { nome: "Fachini Maquinas", leads: 1 }
+    { nome: "Aldair", leads: 141 },
+    { nome: "Jean", leads: 130 },
+    { nome: "Rafaell", leads: 127 },
+    { nome: "Caio Rocha", leads: 106 },
+    { nome: "Ruan", leads: 103 },
+    { nome: "Silvan", leads: 87 },
+    { nome: "Edilson", leads: 52 },
+    { nome: "Fachini", leads: 12 }
   ],
   
   categorias: {
