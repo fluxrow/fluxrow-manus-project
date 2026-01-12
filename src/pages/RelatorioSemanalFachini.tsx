@@ -53,133 +53,11 @@ export default function RelatorioSemanalFachini() {
   const [dataFim, setDataFim] = useState(defaultDates.fim);
 
   useEffect(() => {
-    const loadRelatorio = async () => {
-      const relatorioId = searchParams.get('id');
-      
-      if (relatorioId) {
-        try {
-          const { data, error } = await supabase
-            .from('relatorios_semanais')
-            .select('*')
-            .eq('id', relatorioId)
-            .maybeSingle();
-
-          if (error) throw error;
-
-          if (data) {
-            // Transformar dados do banco para o formato esperado pelos componentes
-            const dadosGoogle = data.dados_google as any;
-            const dadosMeta = data.dados_meta as any;
-            
-            setDadosRelatorio({
-              periodo: data.periodo,
-              kpis: {
-                investimento_total: data.investimento_total,
-                leads_totais: data.leads_totais,
-                custo_lead_medio: data.custo_lead_medio
-              },
-              google: dadosGoogle ? {
-                investimento: dadosGoogle.custo || dadosGoogle.investimento || 0,
-                leads: dadosGoogle.conversoes || dadosGoogle.leads || 0,
-                custo_clique: dadosGoogle.cpc || dadosGoogle.custo_clique || 0,
-                cliques: dadosGoogle.cliques || 0
-              } : relatorioSemanalFachini.google,
-              meta: dadosMeta ? {
-                investimento: dadosMeta.investimento || 0,
-                leads: dadosMeta.leads || 0,
-                custo_lead: dadosMeta.custo_lead || 0,
-                conversas: dadosMeta.conversas || 0,
-                impressoes: dadosMeta.impressoes || 0,
-                alcance: dadosMeta.alcance || 0,
-                cliques: dadosMeta.cliques || 0,
-                cpm: dadosMeta.cpm || 0,
-                cpc: dadosMeta.cpc || 0,
-                ctr: dadosMeta.ctr || "0%",
-                frequencia: dadosMeta.frequencia || 0
-              } : relatorioSemanalFachini.meta,
-              instagram: (data.dados_instagram as any) || relatorioSemanalFachini.instagram,
-              conversas_mensagem: (data.conversas_mensagem as any) || relatorioSemanalFachini.conversas_mensagem,
-              vendedores: (data.dados_vendedores as any) || relatorioSemanalFachini.vendedores,
-              categorias: (data.dados_categorias as any) || relatorioSemanalFachini.categorias,
-              urls: (data.dados_urls as any) || relatorioSemanalFachini.urls,
-              rd_station: (data.dados_rd_station as any) || null,
-              asset_groups: (data.dados_asset_groups as any) || null,
-              analytics: (data.dados_analytics as any) || null,
-              whatsapp_conversoes: (data.dados_whatsapp_conversoes as any) || null,
-              plano_de_acao: relatorioSemanalFachini.plano_de_acao
-            });
-            setIsDadosReais(true);
-            setDataGeracao(data.created_at);
-          }
-        } catch (error) {
-          console.error('Erro ao carregar relatório:', error);
-          toast.error('Erro ao carregar relatório do banco');
-        }
-      } else {
-        // Buscar último relatório com dados reais (ordenado por data_fim para pegar o mais recente)
-        try {
-          const { data, error } = await supabase
-            .from('relatorios_semanais')
-            .select('*')
-            .gt('investimento_total', 0)
-            .order('data_fim', { ascending: false })
-            .limit(1)
-            .maybeSingle();
-
-          if (data && !error) {
-            // Transformar dados do banco para o formato esperado pelos componentes
-            const dadosGoogle = data.dados_google as any;
-            const dadosMeta = data.dados_meta as any;
-            
-            setDadosRelatorio({
-              periodo: data.periodo,
-              kpis: {
-                investimento_total: data.investimento_total,
-                leads_totais: data.leads_totais,
-                custo_lead_medio: data.custo_lead_medio
-              },
-              google: dadosGoogle ? {
-                investimento: dadosGoogle.custo || dadosGoogle.investimento || 0,
-                leads: dadosGoogle.conversoes || dadosGoogle.leads || 0,
-                custo_clique: dadosGoogle.cpc || dadosGoogle.custo_clique || 0,
-                cliques: dadosGoogle.cliques || 0
-              } : relatorioSemanalFachini.google,
-              meta: dadosMeta ? {
-                investimento: dadosMeta.investimento || 0,
-                leads: dadosMeta.leads || 0,
-                custo_lead: dadosMeta.custo_lead || 0,
-                conversas: dadosMeta.conversas || 0,
-                impressoes: dadosMeta.impressoes || 0,
-                alcance: dadosMeta.alcance || 0,
-                cliques: dadosMeta.cliques || 0,
-                cpm: dadosMeta.cpm || 0,
-                cpc: dadosMeta.cpc || 0,
-                ctr: dadosMeta.ctr || "0%",
-                frequencia: dadosMeta.frequencia || 0
-              } : relatorioSemanalFachini.meta,
-              instagram: (data.dados_instagram as any) || relatorioSemanalFachini.instagram,
-              conversas_mensagem: (data.conversas_mensagem as any) || relatorioSemanalFachini.conversas_mensagem,
-              vendedores: (data.dados_vendedores as any) || relatorioSemanalFachini.vendedores,
-              categorias: (data.dados_categorias as any) || relatorioSemanalFachini.categorias,
-              urls: (data.dados_urls as any) || relatorioSemanalFachini.urls,
-              rd_station: (data.dados_rd_station as any) || null,
-              asset_groups: (data.dados_asset_groups as any) || null,
-              analytics: (data.dados_analytics as any) || null,
-              whatsapp_conversoes: (data.dados_whatsapp_conversoes as any) || null,
-              plano_de_acao: relatorioSemanalFachini.plano_de_acao
-            });
-            setIsDadosReais(true);
-            setDataGeracao(data.created_at);
-          }
-        } catch (error) {
-          console.error('Erro ao buscar último relatório:', error);
-        }
-      }
-      
-      setLoading(false);
-    };
-
-    loadRelatorio();
+    // Usar dados diretamente do arquivo estático
+    setDadosRelatorio(relatorioSemanalFachini);
+    setIsDadosReais(true);
+    setLoading(false);
+    
     window.scrollTo(0, 0);
     
     // Remover widget Sof.IA global para evitar conflitos
@@ -234,7 +112,7 @@ export default function RelatorioSemanalFachini() {
         (oldChatIframe as HTMLElement).style.display = '';
       }
     };
-  }, [searchParams]);
+  }, []);
 
   const handleDownloadPDF = () => {
     window.print();
