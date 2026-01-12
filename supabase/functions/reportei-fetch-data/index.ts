@@ -54,7 +54,10 @@ const findWidget = (widgets: any[], ...searchTerms: string[]) => {
   });
 };
 
-// Fetch com timeout e retry
+// Delay com promise
+const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+
+// Fetch com timeout
 const fetchWithTimeout = async (url: string, options: RequestInit, timeoutMs = 15000): Promise<Response> => {
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), timeoutMs);
@@ -67,7 +70,51 @@ const fetchWithTimeout = async (url: string, options: RequestInit, timeoutMs = 1
   }
 };
 
-// Batch fetch múltiplos widgets de uma vez
+// Fetch com retry e backoff exponencial para rate limiting
+const fetchWithRetry = async (
+  url: string, 
+  options: RequestInit, 
+  timeoutMs = 15000,
+  maxRetries = 3
+): Promise<Response> => {
+  let lastError: Error | null = null;
+  
+  for (let attempt = 0; attempt < maxRetries; attempt++) {
+    try {
+      const response = await fetchWithTimeout(url, options, timeoutMs);
+      
+      // Se receber 429, esperar e tentar novamente
+      if (response.status === 429) {
+        const retryAfter = response.headers.get('Retry-After');
+        const waitTime = retryAfter ? parseInt(retryAfter) * 1000 : Math.min(1000 * Math.pow(2, attempt), 5000);
+        console.log(`    ⏳ Rate limit (429), aguardando ${waitTime}ms antes do retry ${attempt + 1}/${maxRetries}...`);
+        await delay(waitTime);
+        continue;
+      }
+      
+      // Se receber 5xx, retry com backoff
+      if (response.status >= 500) {
+        const waitTime = Math.min(500 * Math.pow(2, attempt), 4000);
+        console.log(`    ⏳ Erro ${response.status}, aguardando ${waitTime}ms...`);
+        await delay(waitTime);
+        continue;
+      }
+      
+      return response;
+    } catch (error) {
+      lastError = error;
+      if (attempt < maxRetries - 1) {
+        const waitTime = Math.min(500 * Math.pow(2, attempt), 3000);
+        console.log(`    ⏳ Erro de rede, retry em ${waitTime}ms...`);
+        await delay(waitTime);
+      }
+    }
+  }
+  
+  throw lastError || new Error('Max retries exceeded');
+};
+
+// Batch fetch múltiplos widgets de uma vez COM retry
 const fetchWidgetsBatch = async (
   integrationId: number,
   widgets: any[],
@@ -94,14 +141,15 @@ const fetchWidgetsBatch = async (
   try {
     console.log(`    📦 Batch request: ${widgets.length} widgets`);
     
-    const response = await fetchWithTimeout(
+    const response = await fetchWithRetry(
       `${baseUrl}/integrations/${integrationId}/widgets/value`,
       {
         method: 'POST',
         headers,
         body: JSON.stringify(payload)
       },
-      20000 // 20s timeout para batch
+      20000, // 20s timeout para batch
+      3 // 3 retries
     );
 
     if (response.ok) {
@@ -118,10 +166,10 @@ const fetchWidgetsBatch = async (
       }
       console.log(`    ✅ Batch recebido: ${results.size} respostas`);
     } else {
-      console.log(`    ⚠️ Batch falhou: ${response.status}`);
+      console.log(`    ⚠️ Batch falhou após retries: ${response.status}`);
     }
   } catch (error) {
-    console.error(`    ❌ Erro batch:`, error.message);
+    console.error(`    ❌ Erro batch após retries:`, error.message);
   }
 
   return results;
