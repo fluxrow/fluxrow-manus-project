@@ -67,7 +67,10 @@ export default function RelatorioSemanalFachini() {
           if (error) throw error;
 
           if (data) {
-            // Transformar dados do banco para o formato esperado
+            // Transformar dados do banco para o formato esperado pelos componentes
+            const dadosGoogle = data.dados_google as any;
+            const dadosMeta = data.dados_meta as any;
+            
             setDadosRelatorio({
               periodo: data.periodo,
               kpis: {
@@ -75,8 +78,25 @@ export default function RelatorioSemanalFachini() {
                 leads_totais: data.leads_totais,
                 custo_lead_medio: data.custo_lead_medio
               },
-              google: (data.dados_google as any) || relatorioSemanalFachini.google,
-              meta: (data.dados_meta as any) || relatorioSemanalFachini.meta,
+              google: dadosGoogle ? {
+                investimento: dadosGoogle.custo || dadosGoogle.investimento || 0,
+                leads: dadosGoogle.conversoes || dadosGoogle.leads || 0,
+                custo_clique: dadosGoogle.cpc || dadosGoogle.custo_clique || 0,
+                cliques: dadosGoogle.cliques || 0
+              } : relatorioSemanalFachini.google,
+              meta: dadosMeta ? {
+                investimento: dadosMeta.investimento || 0,
+                leads: dadosMeta.leads || 0,
+                custo_lead: dadosMeta.custo_lead || 0,
+                conversas: dadosMeta.conversas || 0,
+                impressoes: dadosMeta.impressoes || 0,
+                alcance: dadosMeta.alcance || 0,
+                cliques: dadosMeta.cliques || 0,
+                cpm: dadosMeta.cpm || 0,
+                cpc: dadosMeta.cpc || 0,
+                ctr: dadosMeta.ctr || "0%",
+                frequencia: dadosMeta.frequencia || 0
+              } : relatorioSemanalFachini.meta,
               instagram: (data.dados_instagram as any) || relatorioSemanalFachini.instagram,
               conversas_mensagem: (data.conversas_mensagem as any) || relatorioSemanalFachini.conversas_mensagem,
               vendedores: (data.dados_vendedores as any) || relatorioSemanalFachini.vendedores,
@@ -107,6 +127,9 @@ export default function RelatorioSemanalFachini() {
             .maybeSingle();
 
           if (data && !error) {
+            // Transformar dados do banco para o formato esperado pelos componentes
+            const dadosGoogle = data.dados_google as any;
+            const dadosMeta = data.dados_meta as any;
             
             setDadosRelatorio({
               periodo: data.periodo,
@@ -115,8 +138,25 @@ export default function RelatorioSemanalFachini() {
                 leads_totais: data.leads_totais,
                 custo_lead_medio: data.custo_lead_medio
               },
-              google: (data.dados_google as any) || relatorioSemanalFachini.google,
-              meta: (data.dados_meta as any) || relatorioSemanalFachini.meta,
+              google: dadosGoogle ? {
+                investimento: dadosGoogle.custo || dadosGoogle.investimento || 0,
+                leads: dadosGoogle.conversoes || dadosGoogle.leads || 0,
+                custo_clique: dadosGoogle.cpc || dadosGoogle.custo_clique || 0,
+                cliques: dadosGoogle.cliques || 0
+              } : relatorioSemanalFachini.google,
+              meta: dadosMeta ? {
+                investimento: dadosMeta.investimento || 0,
+                leads: dadosMeta.leads || 0,
+                custo_lead: dadosMeta.custo_lead || 0,
+                conversas: dadosMeta.conversas || 0,
+                impressoes: dadosMeta.impressoes || 0,
+                alcance: dadosMeta.alcance || 0,
+                cliques: dadosMeta.cliques || 0,
+                cpm: dadosMeta.cpm || 0,
+                cpc: dadosMeta.cpc || 0,
+                ctr: dadosMeta.ctr || "0%",
+                frequencia: dadosMeta.frequencia || 0
+              } : relatorioSemanalFachini.meta,
               instagram: (data.dados_instagram as any) || relatorioSemanalFachini.instagram,
               conversas_mensagem: (data.conversas_mensagem as any) || relatorioSemanalFachini.conversas_mensagem,
               vendedores: (data.dados_vendedores as any) || relatorioSemanalFachini.vendedores,
