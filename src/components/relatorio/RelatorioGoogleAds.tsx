@@ -152,6 +152,15 @@ export const RelatorioGoogleAds = ({ data, convPrimarias }: RelatorioGoogleAdsPr
                       backgroundColor: 'hsl(var(--card))',
                       border: '1px solid hsl(var(--border))',
                       borderRadius: '8px',
+                      color: 'hsl(var(--foreground))',
+                    }}
+                    labelStyle={{
+                      color: 'hsl(var(--foreground))',
+                      fontWeight: 'bold',
+                      marginBottom: '4px',
+                    }}
+                    itemStyle={{
+                      color: 'hsl(var(--foreground))',
                     }}
                     formatter={(value: number, name: string) => [
                       name === 'clicks' ? `${value} cliques` : formatCurrency(value),
