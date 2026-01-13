@@ -1,4 +1,4 @@
-import { AlertCircle, ExternalLink, Trophy, Target, TrendingDown } from 'lucide-react';
+import { AlertCircle, ExternalLink, Trophy, Target, TrendingDown, MessageCircle } from 'lucide-react';
 import { formatCurrency, formatNumber } from '@/utils/formatters';
 import { ConversionCompareChart } from './charts/ConversionCompareChart';
 import { AssetGroupChart } from './charts/AssetGroupChart';
@@ -119,19 +119,67 @@ export const RelatorioGoogleAds = ({ data, convPrimarias }: RelatorioGoogleAdsPr
         {urls_destino_top && urls_destino_top.length > 0 && (
           <div className="bg-card border border-border rounded-2xl p-6">
             <h3 className="text-xl font-bold mb-6">URLs que Mais Converteram</h3>
-            <div className="space-y-3">
-              {urls_destino_top.map((url: any, index: number) => (
-                <div key={index} className="p-4 bg-accent/50 rounded-lg hover:bg-accent transition-colors">
-                  <div className="flex items-start gap-2 mb-2">
-                    <ExternalLink className="w-4 h-4 text-muted-foreground mt-1 flex-shrink-0" />
-                    <p className="text-sm break-all">{url.url}</p>
-                  </div>
-                  <div className="flex justify-between text-sm">
-                    <span className="text-muted-foreground">Conversões: <strong>{url.conversoes}</strong></span>
-                    <span className="text-muted-foreground">Custo/Conv: <strong>{formatCurrency(url.custo_conv)}</strong></span>
-                  </div>
-                </div>
-              ))}
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="border-b border-border">
+                    <th className="py-3 px-4 text-left font-semibold">URL</th>
+                    <th className="py-3 px-4 text-right font-semibold">Cliques</th>
+                    <th className="py-3 px-4 text-right font-semibold">Conversões</th>
+                    <th className="py-3 px-4 text-right font-semibold">Custo/Conv</th>
+                    <th className="py-3 px-4 text-right font-semibold">
+                      <div className="flex items-center justify-end gap-1">
+                        <MessageCircle className="w-4 h-4 text-green-500" />
+                        WhatsApp
+                      </div>
+                    </th>
+                    <th className="py-3 px-4 text-right font-semibold">Valor WhatsApp</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {urls_destino_top.map((url: any, index: number) => (
+                    <tr key={index} className="border-b border-border hover:bg-accent/50 transition-colors">
+                      <td className="py-3 px-4 max-w-xs">
+                        <div className="flex items-start gap-2">
+                          <ExternalLink className="w-4 h-4 text-muted-foreground mt-0.5 flex-shrink-0" />
+                          <span className="truncate text-xs">{url.url.replace('https://', '')}</span>
+                        </div>
+                      </td>
+                      <td className="py-3 px-4 text-right">{formatNumber(url.cliques)}</td>
+                      <td className="py-3 px-4 text-right font-semibold">{url.conversoes}</td>
+                      <td className="py-3 px-4 text-right">{formatCurrency(url.custo_conv)}</td>
+                      <td className="py-3 px-4 text-right">
+                        <span className="inline-flex items-center gap-1 bg-green-500/10 text-green-500 px-2 py-1 rounded-full text-xs font-bold">
+                          {url.whatsapp_clicks || 0}
+                        </span>
+                      </td>
+                      <td className="py-3 px-4 text-right font-semibold text-green-500">
+                        {formatCurrency(url.whatsapp_valor || 0)}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+                <tfoot>
+                  <tr className="bg-accent/50 font-semibold">
+                    <td className="py-3 px-4">Total</td>
+                    <td className="py-3 px-4 text-right">
+                      {formatNumber(urls_destino_top.reduce((acc: number, url: any) => acc + (url.cliques || 0), 0))}
+                    </td>
+                    <td className="py-3 px-4 text-right">
+                      {urls_destino_top.reduce((acc: number, url: any) => acc + (url.conversoes || 0), 0).toFixed(2)}
+                    </td>
+                    <td className="py-3 px-4 text-right">-</td>
+                    <td className="py-3 px-4 text-right">
+                      <span className="inline-flex items-center gap-1 bg-green-500/20 text-green-500 px-2 py-1 rounded-full text-xs font-bold">
+                        {urls_destino_top.reduce((acc: number, url: any) => acc + (url.whatsapp_clicks || 0), 0)}
+                      </span>
+                    </td>
+                    <td className="py-3 px-4 text-right text-green-500">
+                      {formatCurrency(urls_destino_top.reduce((acc: number, url: any) => acc + (url.whatsapp_valor || 0), 0))}
+                    </td>
+                  </tr>
+                </tfoot>
+              </table>
             </div>
           </div>
         )}

@@ -362,11 +362,11 @@ export const reportData = {
       { recurso: "Imagem melhorada do site - 2025-07-15 12:46:05_ 1.413", grupo: "Grupo de recursos 1", tipo: "SQUARE_MARKETING_IMAGE", conversoes: 15, valor: 15.00 }
     ],
     urls_destino_top: [
-      { url: "https://maquinas.fachinimaquinas.com.br", cliques: 4633, custo: 657.20, impressoes: 104029, conversoes: 31.03, ctr: 4.45, cpc: 0.14, custo_conv: 21.18 },
-      { url: "https://fachinimaquinas.com.br/site/home", cliques: 765, custo: 139.36, impressoes: 15387, conversoes: 23, ctr: 4.97, cpc: 0.18, custo_conv: 6.06 },
-      { url: "https://fachinimaquinas.com.br/site/maquinas/dobradeira-de-regua-lisa-fachini", cliques: 672, custo: 570.28, impressoes: 10242, conversoes: 127.5, ctr: 6.56, cpc: 0.85, custo_conv: 4.47 },
-      { url: "https://fachinimaquinas.com.br/site/maquinas/dobradeira-cn", cliques: 518, custo: 328.52, impressoes: 9215, conversoes: 50, ctr: 5.62, cpc: 0.63, custo_conv: 6.57 },
-      { url: "https://fachinimaquinas.com.br/site/categorias/perfiladeiras", cliques: 195, custo: 158.17, impressoes: 4735, conversoes: 31.97, ctr: 4.12, cpc: 0.81, custo_conv: 4.95 }
+      { url: "https://maquinas.fachinimaquinas.com.br", cliques: 4633, custo: 657.20, impressoes: 104029, conversoes: 31.03, ctr: 4.45, cpc: 0.14, custo_conv: 21.18, whatsapp_clicks: 18, whatsapp_valor: 380.52 },
+      { url: "https://fachinimaquinas.com.br/site/home", cliques: 765, custo: 139.36, impressoes: 15387, conversoes: 23, ctr: 4.97, cpc: 0.18, custo_conv: 6.06, whatsapp_clicks: 14, whatsapp_valor: 87.12 },
+      { url: "https://fachinimaquinas.com.br/site/maquinas/dobradeira-de-regua-lisa-fachini", cliques: 672, custo: 570.28, impressoes: 10242, conversoes: 127.5, ctr: 6.56, cpc: 0.85, custo_conv: 4.47, whatsapp_clicks: 85, whatsapp_valor: 379.84 },
+      { url: "https://fachinimaquinas.com.br/site/maquinas/dobradeira-cn", cliques: 518, custo: 328.52, impressoes: 9215, conversoes: 50, ctr: 5.62, cpc: 0.63, custo_conv: 6.57, whatsapp_clicks: 32, whatsapp_valor: 210.24 },
+      { url: "https://fachinimaquinas.com.br/site/categorias/perfiladeiras", cliques: 195, custo: 158.17, impressoes: 4735, conversoes: 31.97, ctr: 4.12, cpc: 0.81, custo_conv: 4.95, whatsapp_clicks: 21, whatsapp_valor: 104.16 }
     ]
   },
   instagram_organico: {
