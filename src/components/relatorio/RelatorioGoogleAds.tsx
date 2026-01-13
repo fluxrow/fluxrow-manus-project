@@ -2,7 +2,7 @@ import { AlertCircle, ExternalLink, Trophy, Target, TrendingDown, MessageCircle 
 import { formatCurrency, formatNumber } from '@/utils/formatters';
 import { ConversionCompareChart } from './charts/ConversionCompareChart';
 import { AssetGroupChart } from './charts/AssetGroupChart';
-
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell } from 'recharts';
 interface RelatorioGoogleAdsProps {
   data: any;
   convPrimarias: Array<{ fonte: string; whats: number; form?: number; clique?: number }>;
@@ -112,6 +112,76 @@ export const RelatorioGoogleAds = ({ data, convPrimarias }: RelatorioGoogleAdsPr
                 ))}
               </tbody>
             </table>
+          </div>
+        )}
+
+        {/* Gráfico de Cliques WhatsApp por URL */}
+        {urls_destino_top && urls_destino_top.length > 0 && (
+          <div className="bg-card border border-border rounded-2xl p-6 mb-8">
+            <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
+              <MessageCircle className="w-6 h-6 text-green-500" />
+              Cliques WhatsApp por URL
+            </h3>
+            <div className="h-80">
+              <ResponsiveContainer width="100%" height="100%">
+                <BarChart
+                  data={urls_destino_top
+                    .filter((url: any) => (url.whatsapp_clicks || 0) > 0)
+                    .sort((a: any, b: any) => (b.whatsapp_clicks || 0) - (a.whatsapp_clicks || 0))
+                    .map((url: any) => ({
+                      name: url.url.replace('https://', '').replace('www.', '').split('/')[0],
+                      fullUrl: url.url,
+                      clicks: url.whatsapp_clicks || 0,
+                      valor: url.whatsapp_valor || 0
+                    }))}
+                  layout="vertical"
+                  margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+                >
+                  <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+                  <XAxis type="number" stroke="hsl(var(--muted-foreground))" fontSize={12} />
+                  <YAxis 
+                    type="category" 
+                    dataKey="name" 
+                    stroke="hsl(var(--muted-foreground))" 
+                    fontSize={10}
+                    width={150}
+                    tickFormatter={(value) => value.length > 20 ? value.substring(0, 20) + '...' : value}
+                  />
+                  <Tooltip
+                    contentStyle={{
+                      backgroundColor: 'hsl(var(--card))',
+                      border: '1px solid hsl(var(--border))',
+                      borderRadius: '8px',
+                    }}
+                    formatter={(value: number, name: string) => [
+                      name === 'clicks' ? `${value} cliques` : formatCurrency(value),
+                      name === 'clicks' ? 'WhatsApp Clicks' : 'Valor'
+                    ]}
+                    labelFormatter={(label) => label}
+                  />
+                  <Bar dataKey="clicks" radius={[0, 4, 4, 0]}>
+                    {urls_destino_top
+                      .filter((url: any) => (url.whatsapp_clicks || 0) > 0)
+                      .sort((a: any, b: any) => (b.whatsapp_clicks || 0) - (a.whatsapp_clicks || 0))
+                      .map((_: any, index: number) => (
+                        <Cell key={`cell-${index}`} fill={`hsl(142, 76%, ${45 - index * 5}%)`} />
+                      ))}
+                  </Bar>
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
+            <div className="mt-4 flex items-center justify-center gap-4 text-sm text-muted-foreground">
+              <span className="flex items-center gap-2">
+                <div className="w-3 h-3 rounded bg-green-500"></div>
+                Total de Cliques: {urls_destino_top.reduce((acc: number, url: any) => acc + (url.whatsapp_clicks || 0), 0)}
+              </span>
+              <span className="flex items-center gap-2">
+                <span className="font-semibold text-green-500">
+                  {formatCurrency(urls_destino_top.reduce((acc: number, url: any) => acc + (url.whatsapp_valor || 0), 0))}
+                </span>
+                Valor Total
+              </span>
+            </div>
           </div>
         )}
 
