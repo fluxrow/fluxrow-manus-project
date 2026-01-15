@@ -306,9 +306,12 @@ export default function ApresentacaoEvoluaDigital() {
                 </tbody>
               </table>
             </div>
-            <div className="mt-4 bg-gradient-to-r from-green-500/20 to-emerald-500/20 p-4 rounded-lg border border-green-400/30 text-center">
-              <p className="text-green-300 font-semibold text-lg">
-                💡 Menos de R$ 7 por dia por vendedor para ter IA + disparos + dashboard!
+            <div className="mt-6 bg-gradient-to-r from-green-500/30 to-emerald-500/30 p-6 rounded-2xl border-2 border-green-400/50 text-center shadow-lg shadow-green-500/20 animate-pulse-slow">
+              <p className="text-green-300 font-bold text-2xl md:text-3xl mb-2">
+                💡 Menos de R$ 7 por dia por vendedor
+              </p>
+              <p className="text-green-200 text-lg">
+                para ter IA + disparos + dashboard completo!
               </p>
             </div>
           </div>
