@@ -614,7 +614,7 @@ const ApresentacaoEvoluaDigital = () => {
                 variant="outline"
                 size="lg"
                 className="border-purple-400 text-purple-300 hover:bg-purple-500/10 px-8 py-6 text-lg"
-                onClick={() => window.location.href = '/proposta-evolua-digital'}
+                onClick={() => window.location.href = '/evolua-digital'}
               >
                 <FileText className="w-5 h-5 mr-2" />
                 Ver Proposta Comercial
