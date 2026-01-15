@@ -26,6 +26,7 @@ import PropostaMatchSolutions from "./pages/PropostaMatchSolutions";
 import PropostaAmandaNeves from "./pages/PropostaAmandaNeves";
 import PropostaBaboraSeguros from "./pages/PropostaBaboraSeguros";
 import PropostaEvoluaDigital from "./pages/PropostaEvoluaDigital";
+import ApresentacaoEvoluaDigital from "./pages/ApresentacaoEvoluaDigital";
 import ContratoMatchSolutions from "./pages/ContratoMatchSolutions";
 import ContratoAmandaNeves from "./pages/ContratoAmandaNeves";
 import ContratoAssinatura from "./pages/ContratoAssinatura";
@@ -64,6 +65,7 @@ const App = () => (
           <Route path="/babora-seguros" element={<PropostaBaboraSeguros />} />
           <Route path="/promotrip" element={<PropostaPromotrip />} />
           <Route path="/evolua-digital" element={<PropostaEvoluaDigital />} />
+          <Route path="/apresentacao-evolua-digital" element={<ApresentacaoEvoluaDigital />} />
           <Route path="/contrato-match-solutions" element={<ContratoMatchSolutions />} />
           <Route path="/contrato-amanda-neves" element={<ContratoAmandaNeves />} />
           <Route path="/contrato/:cliente/assinar" element={<ContratoAssinatura />} />

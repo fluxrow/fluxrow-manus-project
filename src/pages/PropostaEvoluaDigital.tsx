@@ -545,10 +545,161 @@ export default function PropostaEvoluaDigital() {
               </div>
 
               {/* Taxa de Setup */}
-              <div className="bg-gradient-to-r from-yellow-900/30 to-amber-900/30 p-6 rounded-xl border border-yellow-400/30 text-center">
+              <div className="bg-gradient-to-r from-yellow-900/30 to-amber-900/30 p-6 rounded-xl border border-yellow-400/30 text-center mb-8">
                 <h4 className="text-xl font-semibold text-yellow-300 mb-2">Taxa de Setup (Única)</h4>
                 <p className="text-4xl font-bold text-yellow-400">R$ 5.000</p>
                 <p className="text-sm text-gray-400 mt-2">Válida para todos os pacotes</p>
+              </div>
+
+              {/* Transparência de Custos */}
+              <div className="bg-gradient-to-r from-slate-800/50 to-slate-700/30 p-6 rounded-xl border border-slate-500/30 mb-8">
+                <h4 className="text-lg font-semibold text-slate-200 mb-4 flex items-center gap-2">
+                  <Shield className="w-5 h-5 text-slate-400" />
+                  Transparência de Custos
+                </h4>
+                <div className="grid md:grid-cols-3 gap-4 text-center">
+                  <div className="bg-black/20 p-4 rounded-lg">
+                    <p className="text-2xl font-bold text-slate-300">R$ 1.000 - R$ 1.200</p>
+                    <p className="text-sm text-gray-400">por instância/mês</p>
+                  </div>
+                  <div className="bg-black/20 p-4 rounded-lg">
+                    <p className="text-2xl font-bold text-slate-300">250 msg</p>
+                    <p className="text-sm text-gray-400">por dia/instância (limite seguro)</p>
+                  </div>
+                  <div className="bg-black/20 p-4 rounded-lg">
+                    <p className="text-2xl font-bold text-slate-300">7.500 msg</p>
+                    <p className="text-sm text-gray-400">por mês/instância</p>
+                  </div>
+                </div>
+                <p className="text-gray-400 text-sm mt-4 text-center italic">
+                  Limite conservador de 250 msg/dia garante melhor relacionamento com o Meta e evita bloqueios constantes.
+                </p>
+              </div>
+
+              {/* Comparativo de Valor por Vendedor */}
+              <div className="bg-gradient-to-r from-indigo-900/40 to-violet-900/30 p-6 rounded-xl border border-indigo-400/30 mb-8">
+                <h4 className="text-lg font-semibold text-indigo-200 mb-4 flex items-center gap-2">
+                  <Users className="w-5 h-5 text-indigo-400" />
+                  Valor Real por Vendedor
+                </h4>
+                <div className="overflow-x-auto">
+                  <table className="w-full text-sm">
+                    <thead>
+                      <tr className="border-b border-indigo-500/30">
+                        <th className="text-left py-3 px-4 text-gray-400">Métrica</th>
+                        <th className="text-center py-3 px-4 text-blue-300">Starter</th>
+                        <th className="text-center py-3 px-4 text-purple-300">Professional</th>
+                        <th className="text-center py-3 px-4 text-emerald-300">Enterprise</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr className="border-b border-indigo-500/20">
+                        <td className="py-3 px-4 text-gray-300">Custo por vendedor</td>
+                        <td className="py-3 px-4 text-center text-blue-200 font-semibold">R$ 200/mês</td>
+                        <td className="py-3 px-4 text-center text-purple-200 font-semibold">R$ 194/mês</td>
+                        <td className="py-3 px-4 text-center text-emerald-200 font-semibold">R$ 204/mês</td>
+                      </tr>
+                      <tr className="border-b border-indigo-500/20">
+                        <td className="py-3 px-4 text-gray-300">Mensagens por vendedor</td>
+                        <td className="py-3 px-4 text-center text-blue-200">~1.250/mês</td>
+                        <td className="py-3 px-4 text-center text-purple-200">~1.458/mês</td>
+                        <td className="py-3 px-4 text-center text-emerald-200">~1.528/mês</td>
+                      </tr>
+                      <tr>
+                        <td className="py-3 px-4 text-gray-300">Custo por mensagem</td>
+                        <td className="py-3 px-4 text-center text-blue-200">R$ 0,16</td>
+                        <td className="py-3 px-4 text-center text-purple-200">R$ 0,13</td>
+                        <td className="py-3 px-4 text-center text-emerald-200">R$ 0,13</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div className="mt-4 bg-gradient-to-r from-green-500/20 to-emerald-500/20 p-4 rounded-lg border border-green-400/30 text-center">
+                  <p className="text-green-300 font-semibold text-lg">
+                    💡 Menos de R$ 7 por dia por vendedor para ter IA + disparos + dashboard!
+                  </p>
+                </div>
+              </div>
+
+              {/* Comparativo Manual vs IA */}
+              <div className="bg-gradient-to-r from-red-900/30 to-green-900/30 p-6 rounded-xl border border-gray-500/30">
+                <h4 className="text-lg font-semibold text-gray-200 mb-6 text-center">
+                  Comparativo: Processo Manual vs Nossa Solução IA
+                </h4>
+                <div className="grid md:grid-cols-2 gap-6">
+                  {/* Processo Manual */}
+                  <div className="bg-red-900/30 p-6 rounded-xl border border-red-500/30">
+                    <h5 className="text-red-300 font-semibold mb-4 flex items-center gap-2">
+                      <AlertTriangle className="w-5 h-5" />
+                      Processo Manual Atual
+                    </h5>
+                    <ul className="space-y-3 text-sm">
+                      <li className="flex items-start gap-2 text-gray-300">
+                        <span className="text-red-400">✗</span>
+                        <span>2-3 minutos por contato (digitando manualmente)</span>
+                      </li>
+                      <li className="flex items-start gap-2 text-gray-300">
+                        <span className="text-red-400">✗</span>
+                        <span>~50-80 contatos/dia por vendedor</span>
+                      </li>
+                      <li className="flex items-start gap-2 text-gray-300">
+                        <span className="text-red-400">✗</span>
+                        <span>Vendedor ocupado prospectando em vez de vender</span>
+                      </li>
+                      <li className="flex items-start gap-2 text-gray-300">
+                        <span className="text-red-400">✗</span>
+                        <span>Sem métricas centralizadas para diretoria</span>
+                      </li>
+                      <li className="flex items-start gap-2 text-gray-300">
+                        <span className="text-red-400">✗</span>
+                        <span>Apenas horário comercial</span>
+                      </li>
+                      <li className="flex items-start gap-2 text-gray-300">
+                        <span className="text-red-400">✗</span>
+                        <span>Custo oculto: tempo de venda perdido</span>
+                      </li>
+                    </ul>
+                  </div>
+
+                  {/* Nossa Solução */}
+                  <div className="bg-green-900/30 p-6 rounded-xl border border-green-500/30">
+                    <h5 className="text-green-300 font-semibold mb-4 flex items-center gap-2">
+                      <Bot className="w-5 h-5" />
+                      Nossa Solução IA
+                    </h5>
+                    <ul className="space-y-3 text-sm">
+                      <li className="flex items-start gap-2 text-gray-300">
+                        <span className="text-green-400">✓</span>
+                        <span>Disparo instantâneo e automático</span>
+                      </li>
+                      <li className="flex items-start gap-2 text-gray-300">
+                        <span className="text-green-400">✓</span>
+                        <span>250 mensagens/dia por instância (escalável)</span>
+                      </li>
+                      <li className="flex items-start gap-2 text-gray-300">
+                        <span className="text-green-400">✓</span>
+                        <span>Vendedor foca apenas em fechar vendas</span>
+                      </li>
+                      <li className="flex items-start gap-2 text-gray-300">
+                        <span className="text-green-400">✓</span>
+                        <span>Dashboard completo para diretoria</span>
+                      </li>
+                      <li className="flex items-start gap-2 text-gray-300">
+                        <span className="text-green-400">✓</span>
+                        <span>IA atende 24/7</span>
+                      </li>
+                      <li className="flex items-start gap-2 text-gray-300">
+                        <span className="text-green-400">✓</span>
+                        <span>+1.500 contatos/mês por vendedor</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div className="mt-6 bg-gradient-to-r from-purple-500/20 to-fuchsia-500/20 p-4 rounded-lg border border-purple-400/30 text-center">
+                  <p className="text-purple-300 font-bold text-xl">
+                    🚀 Vendedor livre para vender, IA cuida da prospecção!
+                  </p>
+                </div>
               </div>
             </CardContent>
           </Card>
