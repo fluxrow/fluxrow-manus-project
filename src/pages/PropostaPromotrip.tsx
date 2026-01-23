@@ -10,6 +10,7 @@ import {
   MessageSquare,
   Building2,
   Users,
+  User,
   FileSpreadsheet,
   Zap,
   Plane,
@@ -848,11 +849,11 @@ const PropostaPromotrip = () => {
                 {/* Ícone comparativo */}
                 <div className="flex items-center justify-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-full bg-slate-700/50 flex items-center justify-center">
-                    <span className="text-xl">👤</span>
+                    <User className="w-5 h-5 text-gray-400" />
                   </div>
                   <span className="text-emerald-400 font-bold text-lg">vs</span>
                   <div className="w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center border border-emerald-500/30">
-                    <span className="text-xl">🤖</span>
+                    <Bot className="w-5 h-5 text-emerald-400" />
                   </div>
                 </div>
                 
