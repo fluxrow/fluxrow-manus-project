@@ -9,8 +9,6 @@ import {
   BarChart3,
   MessageSquare,
   Building2,
-  Palmtree,
-  MapPin,
   Users,
   FileSpreadsheet,
   Zap,
@@ -43,7 +41,12 @@ import {
   Snowflake,
   Gift,
   Star,
-  RefreshCw
+  RefreshCw,
+  Radar,
+  Search,
+  Briefcase,
+  Building,
+  Filter
 } from "lucide-react";
 
 const PropostaPromotrip = () => {
@@ -147,53 +150,7 @@ const PropostaPromotrip = () => {
     }
   ];
 
-  const frentes = [
-    {
-      icon: Building2,
-      title: "Promotrip Corporate",
-      responsavel: "Alexandre",
-      color: "from-blue-500 to-cyan-500",
-      borderColor: "border-blue-500/30",
-      bgColor: "bg-blue-500/10",
-      features: [
-        "Prospecção B2B para empresas",
-        "Integração direta com planilhas de contatos",
-        "Disparos em massa: WhatsApp + Email",
-        "Agente de IA para qualificação inicial",
-        "Dashboard exclusivo da operação"
-      ]
-    },
-    {
-      icon: Palmtree,
-      title: "Promotrip Lazer",
-      responsavel: "Equipe Lazer",
-      color: "from-emerald-500 to-teal-500",
-      borderColor: "border-emerald-500/30",
-      bgColor: "bg-emerald-500/10",
-      features: [
-        "Disparos para base de clientes PF",
-        "Fluxo de tráfego integrado (leads pagos)",
-        "Agente de IA vendedor de pacotes 24/7",
-        "Automação completa de follow-up",
-        "Atendimento intensivo automatizado"
-      ]
-    },
-    {
-      icon: MapPin,
-      title: "Promotrip Goiânia",
-      responsavel: "Lorena & Adrianne",
-      color: "from-amber-500 to-orange-500",
-      borderColor: "border-amber-500/30",
-      bgColor: "bg-amber-500/10",
-      features: [
-        "Operação regional com demanda específica",
-        "Agente de IA adaptado ao mercado local",
-        "Disparos e automação personalizados",
-        "Controle independente da filial",
-        "Relatórios dedicados"
-      ]
-    }
-  ];
+  // Seção Corporate removida - agora é seção única focada
 
   const modulos = [
     {
@@ -204,27 +161,27 @@ const PropostaPromotrip = () => {
     {
       icon: Mail,
       title: "Email Marketing Integrado",
-      description: "Campanhas segmentadas para cada frente, com automação de follow-up e rastreamento de aberturas e cliques."
+      description: "Campanhas segmentadas por setor empresarial, com automação de follow-up e rastreamento de aberturas e cliques."
     },
     {
       icon: FileSpreadsheet,
-      title: "Integração com Planilhas",
-      description: "Conecte suas planilhas de contatos diretamente ao sistema. Sem necessidade de sistemas externos ou APIs complexas."
+      title: "Integração com Base CSV",
+      description: "Conecte sua base de ~3.000 contatos diretamente ao sistema. Importação simples, organização por setor e atualização automática."
+    },
+    {
+      icon: Filter,
+      title: "Personalização por Setor",
+      description: "Mensagens customizadas para cada segmento empresarial. Comunicação relevante que gera mais engajamento e respostas."
     },
     {
       icon: Bot,
-      title: "3 Agentes de IA Especializados",
-      description: "Cada frente com seu próprio agente treinado para seu público específico. Atendimento 24/7 sem pausas."
-    },
-    {
-      icon: Target,
-      title: "Fluxo de Tráfego Pago",
-      description: "Leads de campanhas pagas integrados direto no sistema para atendimento imediato pelo agente."
+      title: "Agente de IA Especializado",
+      description: "Um agente treinado para qualificar leads B2B e fazer o primeiro contato. Atendimento 24/7 sem pausas."
     },
     {
       icon: BarChart3,
       title: "Dashboard de Controle",
-      description: "Visualize o que cada agente está fazendo, quantas conversas, taxas de conversão por frente em tempo real."
+      description: "Visualize o que o agente está fazendo, quantas conversas abertas, taxas de conversão e métricas em tempo real."
     },
     {
       icon: Bell,
@@ -234,18 +191,18 @@ const PropostaPromotrip = () => {
   ];
 
   const beneficios = [
-    { icon: Clock, title: "3 Agentes = 3 Vendedores 24/7", description: "Trabalhando sem parar, sem férias, sem pausas" },
-    { icon: TrendingUp, title: "R$ 1.067/frente", description: "Menos que um estagiário, muito mais resultado" },
-    { icon: Eye, title: "Controle Total", description: "Dashboard mostra tudo que cada agente faz" },
+    { icon: Clock, title: "Agente IA = Vendedor 24/7", description: "Trabalhando sem parar, qualificando leads B2B" },
+    { icon: TrendingUp, title: "Base de 3.000 Contatos", description: "Toda sua base ativada com disparos inteligentes" },
+    { icon: Eye, title: "Controle Total", description: "Dashboard mostra tudo que o agente faz" },
     { icon: Sparkles, title: "Propostas que Impressionam", description: "Diferencial visual que fecha mais vendas" },
-    { icon: FileSpreadsheet, title: "Integração Simples", description: "Use as planilhas que você já tem" },
+    { icon: Filter, title: "Segmentação por Setor", description: "Mensagens personalizadas que geram resultado" },
     { icon: Zap, title: "Z-API = Liberdade", description: "Sem restrições da API oficial" }
   ];
 
   const proximosPassos = [
-    { step: 1, title: "Alinhamento", description: "Conversa com Augusto para definir detalhes específicos de cada frente" },
-    { step: 2, title: "Configuração", description: "Setup das 3 frentes e treinamento dos 3 agentes de IA" },
-    { step: 3, title: "Treinamento", description: "Capacitação das equipes: Alexandre, Lazer, Lorena e Adrianne" },
+    { step: 1, title: "Alinhamento", description: "Conversa com Augusto para definir segmentos e prioridades da base" },
+    { step: 2, title: "Configuração", description: "Import da base CSV e treinamento do agente de IA" },
+    { step: 3, title: "Treinamento", description: "Capacitação do Alexandre e equipe Corporate" },
     { step: 4, title: "Go-Live", description: "Sistema no ar com suporte contínuo e otimizações" }
   ];
 
@@ -271,11 +228,11 @@ const PropostaPromotrip = () => {
           </h1>
           
           <p className="text-xl text-gray-300 mb-2">
-            Proposta exclusiva para <span className="text-cyan-400 font-semibold">Promotrip</span>
+            Proposta exclusiva para <span className="text-cyan-400 font-semibold">Promotrip Corporate</span>
           </p>
           
           <p className="text-gray-400 max-w-2xl mx-auto">
-            Sistema completo de automação de vendas e prospecção com agentes de IA especializados para cada frente do seu negócio
+            Sistema de prospecção B2B com base própria de contatos, disparos inteligentes e agente de IA especializado
           </p>
         </header>
 
@@ -341,62 +298,160 @@ const PropostaPromotrip = () => {
           </div>
         </section>
 
-        {/* As 3 Frentes */}
+        {/* Foco Inicial: Promotrip Corporate */}
         <section className="mb-20">
           <div className="text-center mb-10">
-            <h2 className="text-3xl font-bold mb-3">As 3 Frentes da Promotrip</h2>
-            <p className="text-gray-400">Cada operação com seu próprio agente de IA e controle independente</p>
+            <div className="inline-flex items-center gap-2 bg-blue-500/20 text-blue-300 px-4 py-2 rounded-full text-sm font-medium mb-4 border border-blue-500/30">
+              <Building2 className="w-4 h-4" />
+              Foco Inicial
+            </div>
+            <h2 className="text-3xl font-bold mb-3">Promotrip Corporate</h2>
+            <p className="text-gray-400">Operação B2B com base própria de contatos</p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-            {frentes.map((frente, index) => (
-              <Card key={index} className={`bg-slate-800/50 ${frente.borderColor} border-2 hover:scale-[1.02] transition-all duration-300 overflow-hidden`}>
-                <div className={`h-2 bg-gradient-to-r ${frente.color}`} />
-                <CardContent className="p-6">
-                  <div className={`w-14 h-14 rounded-xl ${frente.bgColor} flex items-center justify-center mb-4`}>
-                    <frente.icon className={`w-7 h-7 bg-gradient-to-r ${frente.color} bg-clip-text`} style={{ color: 'transparent', backgroundClip: 'text', WebkitBackgroundClip: 'text' }} />
+          <Card className="bg-gradient-to-br from-blue-900/30 to-cyan-900/30 border-blue-500/30 border-2 overflow-hidden">
+            <div className="h-2 bg-gradient-to-r from-blue-500 to-cyan-500" />
+            <CardContent className="p-8">
+              <div className="grid md:grid-cols-2 gap-8">
+                {/* Info Principal */}
+                <div>
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="w-16 h-16 rounded-xl bg-blue-500/20 flex items-center justify-center">
+                      <Building2 className="w-8 h-8 text-blue-400" />
+                    </div>
+                    <div>
+                      <h3 className="text-2xl font-bold text-white">Prospecção B2B</h3>
+                      <p className="text-cyan-400">Responsável: Alexandre</p>
+                    </div>
                   </div>
                   
-                  <h3 className="text-xl font-bold text-white mb-1">{frente.title}</h3>
-                  <p className="text-sm text-cyan-400 mb-4">Responsável: {frente.responsavel}</p>
-                  
-                  <ul className="space-y-2">
-                    {frente.features.map((feature, i) => (
-                      <li key={i} className="flex items-start gap-2 text-sm text-gray-300">
-                        <CheckCircle2 className="w-4 h-4 text-cyan-400 flex-shrink-0 mt-0.5" />
+                  <p className="text-gray-300 mb-6">
+                    Usaremos sua <strong className="text-white">base de ~3.000 contatos em CSV</strong> para criar campanhas de 
+                    prospecção inteligentes, com disparos segmentados por setor empresarial.
+                  </p>
+
+                  <ul className="space-y-3">
+                    {[
+                      "Base de ~3.000 contatos importada automaticamente",
+                      "Segmentação inteligente por setor empresarial",
+                      "Disparos personalizados WhatsApp + Email",
+                      "Agente de IA para qualificação inicial",
+                      "Dashboard exclusivo da operação Corporate"
+                    ].map((feature, i) => (
+                      <li key={i} className="flex items-start gap-2 text-gray-300">
+                        <CheckCircle2 className="w-5 h-5 text-cyan-400 flex-shrink-0 mt-0.5" />
                         {feature}
                       </li>
                     ))}
                   </ul>
-
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-
-          {/* Evandro Special Section */}
-          <Card className="bg-gradient-to-br from-purple-900/30 to-indigo-900/30 border-purple-500/30 border-2">
-            <CardContent className="p-6">
-              <div className="flex flex-col md:flex-row items-start gap-6">
-                <div className="w-16 h-16 rounded-xl bg-purple-500/20 flex items-center justify-center flex-shrink-0">
-                  <Users className="w-8 h-8 text-purple-400" />
                 </div>
+
+                {/* Visual Base CSV */}
+                <div className="bg-slate-900/70 rounded-2xl p-6 border border-blue-500/30">
+                  <div className="flex items-center gap-3 mb-4">
+                    <FileSpreadsheet className="w-6 h-6 text-cyan-400" />
+                    <h4 className="font-semibold text-white">Sua Base de Contatos</h4>
+                  </div>
+                  
+                  <div className="bg-slate-800/80 rounded-lg p-4 mb-4">
+                    <div className="grid grid-cols-3 gap-2 text-xs text-gray-400 mb-2 border-b border-slate-700 pb-2">
+                      <span>Empresa</span>
+                      <span>Setor</span>
+                      <span>Status</span>
+                    </div>
+                    {[
+                      { empresa: "Tech Solutions", setor: "Tecnologia", status: "Novo" },
+                      { empresa: "Construtora ABC", setor: "Construção", status: "Contatado" },
+                      { empresa: "Pharma Plus", setor: "Farmacêutico", status: "Qualificado" },
+                    ].map((row, i) => (
+                      <div key={i} className="grid grid-cols-3 gap-2 text-sm py-2 border-b border-slate-700/50">
+                        <span className="text-white">{row.empresa}</span>
+                        <span className="text-gray-400">{row.setor}</span>
+                        <span className={`${i === 2 ? 'text-emerald-400' : i === 1 ? 'text-amber-400' : 'text-blue-400'}`}>{row.status}</span>
+                      </div>
+                    ))}
+                    <div className="text-center text-gray-500 text-xs mt-3">
+                      + ~3.000 contatos
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-3">
+                    <div className="bg-blue-500/10 rounded-lg p-3 text-center border border-blue-500/20">
+                      <p className="text-2xl font-bold text-blue-400">3.000+</p>
+                      <p className="text-xs text-gray-400">Contatos</p>
+                    </div>
+                    <div className="bg-cyan-500/10 rounded-lg p-3 text-center border border-cyan-500/20">
+                      <p className="text-2xl font-bold text-cyan-400">N</p>
+                      <p className="text-xs text-gray-400">Setores</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </section>
+
+        {/* Módulo Extra: Orbit */}
+        <section className="mb-20">
+          <Card className="bg-gradient-to-br from-violet-900/40 to-purple-900/30 border-violet-500/40 border-2 overflow-hidden relative">
+            <div className="absolute top-4 right-4">
+              <span className="px-3 py-1 bg-violet-500/30 text-violet-300 rounded-full text-xs font-semibold border border-violet-500/40">
+                Módulo Extra • Ative Quando Quiser
+              </span>
+            </div>
+            <div className="h-1 bg-gradient-to-r from-violet-500 via-purple-500 to-fuchsia-500" />
+            <CardContent className="p-8">
+              <div className="flex flex-col md:flex-row items-center gap-8">
                 <div className="flex-1">
-                  <div className="inline-flex items-center gap-2 bg-purple-500/20 text-purple-300 px-3 py-1 rounded-full text-xs font-medium mb-3">
-                    <Sparkles className="w-3 h-3" />
-                    Funcionalidade Especial
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-violet-500/30 to-purple-500/30 flex items-center justify-center">
+                      <Radar className="w-7 h-7 text-violet-400" />
+                    </div>
+                    <div>
+                      <h2 className="text-2xl font-bold text-white">Orbit</h2>
+                      <p className="text-violet-400 text-sm">Captura de Novos Leads</p>
+                    </div>
                   </div>
-                  <h3 className="text-xl font-bold text-white mb-2">Evandro & Arquitetura</h3>
-                  <p className="text-gray-300 mb-4">
-                    O Evandro tem um relacionamento excepcional com profissionais da arquitetura e fecha muitos pacotes de grupos. 
-                    Teremos um <strong className="text-purple-300">agente de IA especializado</strong> para fazer o primeiro contato e qualificar leads de grupos.
+                  
+                  <p className="text-gray-300 mb-6">
+                    Sistema de <strong className="text-white">prospecção ativa</strong> para capturar leads qualificados fora da sua base atual. 
+                    Expanda suas oportunidades com filtros inteligentes.
                   </p>
-                  <div className="flex flex-wrap gap-3">
-                    <span className="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-xs">Qualificação automática</span>
-                    <span className="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-xs">Handoff para Evandro</span>
-                    <span className="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-xs">Foco em grupos</span>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
+                    {[
+                      { icon: Search, label: "Filtros por CNAE" },
+                      { icon: Building, label: "Tamanho da empresa" },
+                      { icon: Briefcase, label: "Setor de atuação" },
+                      { icon: Users, label: "Nome e cargo do decisor" },
+                      { icon: Phone, label: "Telefone e email" },
+                      { icon: Link, label: "LinkedIn do contato" },
+                    ].map((item, i) => (
+                      <div key={i} className="flex items-center gap-2 text-sm text-gray-300">
+                        <item.icon className="w-4 h-4 text-violet-400" />
+                        {item.label}
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="bg-violet-950/50 rounded-xl p-4 border border-violet-500/20">
+                    <p className="text-sm text-violet-200">
+                      <strong className="text-white">💡 Integração automática:</strong> Os leads capturados pelo Orbit 
+                      entram direto na sua base de disparos do sistema.
+                    </p>
                   </div>
                 </div>
+                
+                <div className="w-48 h-48 rounded-2xl bg-gradient-to-br from-violet-500/20 to-purple-600/20 flex items-center justify-center border border-violet-500/30 relative">
+                  <Radar className="w-20 h-20 text-violet-400 animate-pulse" />
+                  <div className="absolute inset-0 rounded-2xl border-4 border-violet-400/20 animate-ping" style={{ animationDuration: '3s' }} />
+                </div>
+              </div>
+
+              <div className="mt-6 pt-6 border-t border-violet-500/20 text-center">
+                <p className="text-gray-400 text-sm">
+                  ✨ Disponível para ativação posterior mediante negociação
+                </p>
               </div>
             </CardContent>
           </Card>
@@ -515,7 +570,7 @@ const PropostaPromotrip = () => {
                   ))}
                 </div>
                 <p className="text-xs text-gray-500 text-center mt-4">
-                  Corporate, Lazer e Goiânia - cada um com seu painel independente
+                  Dashboard centralizado para acompanhar todas as conversas e métricas
                 </p>
               </div>
 
@@ -716,9 +771,9 @@ const PropostaPromotrip = () => {
             <div className="h-1 bg-gradient-to-r from-cyan-400 to-blue-500" />
             <CardContent className="p-8">
               <div className="text-center mb-8">
-                <p className="text-gray-400 mb-2">Investimento mensal total</p>
+                <p className="text-gray-400 mb-2">Investimento mensal</p>
                 <p className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
-                  R$ 3.200<span className="text-2xl text-gray-400">/mês</span>
+                  R$ 2.200<span className="text-2xl text-gray-400">/mês</span>
                 </p>
                 <div className="flex flex-wrap justify-center gap-4 mt-4">
                   <span className="px-4 py-2 bg-green-500/20 text-green-400 rounded-full text-sm font-medium flex items-center gap-2">
@@ -736,33 +791,27 @@ const PropostaPromotrip = () => {
                 </div>
               </div>
 
-              {/* Division Visual */}
+              {/* O que está incluso */}
               <div className="bg-slate-900/50 rounded-xl p-6 mb-6">
-                <p className="text-center text-gray-400 mb-4">Divisão por frente</p>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <div className="bg-blue-500/10 border border-blue-500/30 rounded-xl p-4 text-center">
-                    <Building2 className="w-8 h-8 text-blue-400 mx-auto mb-2" />
-                    <p className="text-sm text-gray-400">Corporate</p>
-                    <p className="text-xs text-blue-400 mb-2">(Alexandre)</p>
-                    <p className="text-xl font-bold text-white">R$ 1.067<span className="text-xs text-gray-400">/mês</span></p>
-                  </div>
-                  <div className="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-4 text-center">
-                    <Palmtree className="w-8 h-8 text-emerald-400 mx-auto mb-2" />
-                    <p className="text-sm text-gray-400">Lazer</p>
-                    <p className="text-xs text-emerald-400 mb-2">(Equipe)</p>
-                    <p className="text-xl font-bold text-white">R$ 1.067<span className="text-xs text-gray-400">/mês</span></p>
-                  </div>
-                  <div className="bg-amber-500/10 border border-amber-500/30 rounded-xl p-4 text-center">
-                    <MapPin className="w-8 h-8 text-amber-400 mx-auto mb-2" />
-                    <p className="text-sm text-gray-400">Goiânia</p>
-                    <p className="text-xs text-amber-400 mb-2">(Lorena & Adrianne)</p>
-                    <p className="text-xl font-bold text-white">R$ 1.067<span className="text-xs text-gray-400">/mês</span></p>
-                  </div>
+                <p className="text-center text-cyan-400 font-semibold mb-4">O que está incluso</p>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  {[
+                    { icon: Building2, label: "Foco Corporate", desc: "Operação B2B" },
+                    { icon: FileSpreadsheet, label: "Base CSV", desc: "~3.000 contatos" },
+                    { icon: Bot, label: "Agente IA", desc: "24/7 ativo" },
+                    { icon: Filter, label: "Segmentação", desc: "Por setor" },
+                  ].map((item, i) => (
+                    <div key={i} className="bg-cyan-500/10 border border-cyan-500/30 rounded-xl p-4 text-center">
+                      <item.icon className="w-8 h-8 text-cyan-400 mx-auto mb-2" />
+                      <p className="text-sm font-medium text-white">{item.label}</p>
+                      <p className="text-xs text-gray-400">{item.desc}</p>
+                    </div>
+                  ))}
                 </div>
               </div>
 
               <p className="text-center text-gray-400 text-sm italic">
-                "Cada frente investe menos de R$ 1.100/mês para ter um agente de IA trabalhando 24/7, disparos automáticos e controle total da operação."
+                "Operação B2B completa com agente de IA trabalhando 24/7, disparos automáticos para sua base de contatos e controle total no dashboard."
               </p>
             </CardContent>
           </Card>
@@ -883,8 +932,8 @@ const PropostaPromotrip = () => {
                 Pronto para transformar a Promotrip? 🚀
               </h2>
               <p className="text-gray-300 max-w-2xl mx-auto mb-8">
-                Augusto, essa é a oportunidade de escalar as vendas da Promotrip com tecnologia de ponta. 
-                3 agentes trabalhando 24/7, propostas que impressionam e controle total de cada frente.
+                Augusto, essa é a oportunidade de escalar as vendas da Promotrip Corporate com tecnologia de ponta. 
+                Sua base de 3.000 contatos trabalhada por um agente de IA 24/7, com disparos inteligentes e controle total.
               </p>
               <Button
                 size="lg"
