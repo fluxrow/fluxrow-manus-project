@@ -1,128 +1,205 @@
 
+# Plano de Consistência Visual - Cards de Benefícios
 
-# Plano de Ajuste - Bloco "10x" para Produtividade
+## Situação Atual
 
-## Objetivo
-Trocar a abordagem apelativa "10x multiplique seu faturamento" por uma mais tangível e real: **comparação de produtividade entre agente IA vs trabalho manual**.
+Temos 3 seções com cards diferentes, cada um com estilos distintos:
 
----
+### 1. Seção "Escale Sem Limites" (linhas 842-917)
+- **Card 1 (Produtividade)**: ✅ Novo estilo com comparativo visual 👤 vs 🤖
+- **Card 2 (Soluções Personalizadas)**: Estilo antigo com ícone grande + texto
+- **Card 3 (Suporte Direto)**: Estilo antigo com ícone grande + texto
 
-## Situação Atual (linhas 846-857)
-
-```
-- Número: "10x"
-- Título: "Multiplique seu Faturamento"
-- Texto: "Com agentes trabalhando 24/7..."
-```
+### 2. Seção "Por Que Investir Agora" (linhas 920-940)
+- Cards simples do array `beneficios` - estilo padrão básico
 
 ---
 
-## Nova Abordagem
+## Proposta de Padronização
 
-### Conceito: Mostrar a Realidade
+### Opção A: Aplicar mini-comparativos em TODOS os cards "Escale Sem Limites"
 
-Em vez de prometer "10x faturamento", vamos mostrar **dados reais de produtividade**:
-
-**Trabalho Manual (uma pessoa):**
-- Envia ~50 mensagens personalizadas/dia
-- Disponível 8h comerciais
-- Responde quando consegue
-- 1 pessoa = custo fixo de salário
-
-**Agente IA:**
-- Envia 3.000+ mensagens/dia (a base inteira)
-- Disponível 24/7, inclusive feriados
-- Responde em segundos, qualquer horário
-- Custo fixo de R$ 2.200/mês
-
----
-
-## Mudanças no Card
-
-### Número/Destaque
-**Antes:** "10x"
-**Depois:** Visual comparativo ou ícone de "⚡ vs 🐢"
-
-### Título
-**Antes:** "Multiplique seu Faturamento"
-**Depois:** "Produtividade Real: IA vs Manual"
-
-### Texto
-**Antes:** 
-"Com agentes trabalhando 24/7 e controle centralizado, você atende 10x mais clientes sem aumentar equipe..."
-
-**Depois:**
-"Um atendente envia ~50 mensagens personalizadas por dia. O agente IA envia para sua base inteira de 3.000 contatos em horas. Funciona 24/7, responde em segundos e nunca tira férias."
-
----
-
-## Opção: Mini-comparativo Visual
-
-Podemos transformar em um mini-comparativo lado a lado:
+Transformar os 3 cards em comparativos visuais:
 
 ```text
-+---------------------------+---------------------------+
-|      👤 MANUAL            |      🤖 AGENTE IA         |
-+---------------------------+---------------------------+
-| ~50 mensagens/dia         | 3.000+ mensagens/dia      |
-| 8h comerciais             | 24/7                      |
-| Resposta em minutos/horas | Resposta em segundos      |
-| Custo: CLT + encargos     | Custo fixo: R$ 2.200      |
-+---------------------------+---------------------------+
+CARD 1 (atual)          CARD 2 (novo)              CARD 3 (novo)
++-------------------+   +-------------------+      +-------------------+
+| 👤 vs 🤖          |   | 🔧 vs 📦          |      | 🎫 vs 💬          |
+| Produtividade     |   | Personalização    |      | Suporte           |
+|                   |   |                   |      |                   |
+| Manual: ~50/dia   |   | Software pronto:  |      | Ticket:           |
+| IA: 3.000+/dia    |   | Você se adapta    |      | Resposta em dias  |
+|                   |   |                   |      |                   |
+| Manual: 8h        |   | Sob medida:       |      | WhatsApp:         |
+| IA: 24/7          |   | Sistema se adapta |      | Resposta imediata |
++-------------------+   +-------------------+      +-------------------+
 ```
+
+### Detalhes das Mudanças
+
+**Card 2 - Soluções Personalizadas**
+- Ícone comparativo: 📦 (software pronto) vs 🔧 (sob medida)
+- Título: "Personalização Real"
+- Comparativo:
+  - Software pronto: "Você se adapta ao sistema"
+  - Sob Medida: "Sistema se adapta a você"
+- Segundo comparativo:
+  - Software pronto: "Funcionalidades limitadas"
+  - Sob Medida: "Funcionalidades sob demanda"
+- Texto final: "Surgiu necessidade nova? Criamos."
+
+**Card 3 - Suporte Direto**
+- Ícone comparativo: 🎫 (ticket) vs 💬 (WhatsApp)
+- Título: "Suporte Real"
+- Comparativo:
+  - Ticket: "Resposta em dias"
+  - WhatsApp: "Resposta imediata"
+- Segundo comparativo:
+  - Ticket: "Atendente genérico"
+  - WhatsApp: "Direto comigo"
+- Texto final: "Parceria de verdade, não ticket."
+- Manter indicador verde de "Disponível no WhatsApp"
 
 ---
 
-## Detalhes Técnicos
+## Arquivos a Modificar
 
-### Arquivo
 `src/pages/PropostaPromotrip.tsx`
 
-### Linhas a modificar
-846-857
+### Linhas 887-899 (Card 2 - Soluções Personalizadas)
 
-### Estrutura proposta
-
+Trocar de:
 ```tsx
-<Card className="bg-gradient-to-br from-emerald-900/30 to-cyan-900/30 border-emerald-500/30 ...">
-  <CardContent className="p-6">
-    {/* Ícone comparativo */}
-    <div className="flex items-center justify-center gap-3 mb-4">
-      <span className="text-2xl">👤</span>
-      <span className="text-emerald-400 font-bold">vs</span>
-      <span className="text-2xl">🤖</span>
+<CardContent className="p-6 text-center">
+  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-purple-500/30 to-pink-500/30 ...">
+    <Puzzle className="w-8 h-8 text-purple-400" />
+  </div>
+  <div className="text-xs ...">Funcionalidades Ilimitadas</div>
+  <h3>Soluções Sob Medida</h3>
+  <p>Surgiu uma necessidade nova? Criamos funcionalidades personalizadas...</p>
+</CardContent>
+```
+
+Para:
+```tsx
+<CardContent className="p-6">
+  {/* Ícone comparativo */}
+  <div className="flex items-center justify-center gap-3 mb-4">
+    <div className="w-10 h-10 rounded-full bg-slate-700/50 flex items-center justify-center">
+      <span className="text-xl">📦</span>
     </div>
-    
-    <h3 className="text-xl font-bold text-white mb-3 text-center">
-      Produtividade Real
-    </h3>
-    
-    {/* Mini comparativo */}
-    <div className="grid grid-cols-2 gap-3 text-sm">
-      <div className="bg-slate-800/50 p-3 rounded-lg">
-        <p className="text-gray-500 text-xs mb-1">Manual</p>
-        <p className="text-white font-medium">~50 msg/dia</p>
-      </div>
-      <div className="bg-emerald-500/10 p-3 rounded-lg border border-emerald-500/30">
-        <p className="text-emerald-400 text-xs mb-1">Agente IA</p>
-        <p className="text-white font-medium">3.000+/dia</p>
-      </div>
+    <span className="text-purple-400 font-bold text-lg">vs</span>
+    <div className="w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center border border-purple-500/30">
+      <span className="text-xl">🔧</span>
     </div>
-    
-    <p className="text-gray-400 text-sm mt-4 text-center">
-      O agente trabalha 24/7, responde em segundos e nunca tira férias.
-    </p>
-  </CardContent>
-</Card>
+  </div>
+  
+  <h3 className="text-lg font-bold text-white mb-4 text-center">Personalização Real</h3>
+  
+  {/* Mini comparativo */}
+  <div className="grid grid-cols-2 gap-2 text-sm mb-4">
+    <div className="bg-slate-800/50 p-3 rounded-lg text-center">
+      <p className="text-gray-500 text-xs mb-1">Software Pronto</p>
+      <p className="text-white font-semibold text-xs">Você se adapta</p>
+    </div>
+    <div className="bg-purple-500/10 p-3 rounded-lg border border-purple-500/30 text-center">
+      <p className="text-purple-400 text-xs mb-1">Sob Medida</p>
+      <p className="text-white font-semibold text-xs">Sistema se adapta</p>
+    </div>
+    <div className="bg-slate-800/50 p-3 rounded-lg text-center">
+      <p className="text-gray-500 text-xs mb-1">Limite</p>
+      <p className="text-white font-semibold text-xs">Funções fixas</p>
+    </div>
+    <div className="bg-purple-500/10 p-3 rounded-lg border border-purple-500/30 text-center">
+      <p className="text-purple-400 text-xs mb-1">Flexibilidade</p>
+      <p className="text-white font-semibold text-xs">Sob demanda</p>
+    </div>
+  </div>
+  
+  <p className="text-gray-400 text-xs text-center leading-relaxed">
+    Surgiu necessidade nova? Criamos a funcionalidade para você.
+  </p>
+</CardContent>
+```
+
+### Linhas 901-916 (Card 3 - Suporte Direto)
+
+Trocar de:
+```tsx
+<CardContent className="p-6 text-center">
+  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-500/30 ...">
+    <Headphones className="w-8 h-8 text-amber-400" />
+  </div>
+  <div className="flex items-center justify-center gap-2 mb-2">
+    <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+    <span>Disponível no WhatsApp</span>
+  </div>
+  <h3>Suporte Direto Comigo</h3>
+  <p>Nada de tickets intermináveis...</p>
+</CardContent>
+```
+
+Para:
+```tsx
+<CardContent className="p-6">
+  {/* Ícone comparativo */}
+  <div className="flex items-center justify-center gap-3 mb-4">
+    <div className="w-10 h-10 rounded-full bg-slate-700/50 flex items-center justify-center">
+      <span className="text-xl">🎫</span>
+    </div>
+    <span className="text-amber-400 font-bold text-lg">vs</span>
+    <div className="w-10 h-10 rounded-full bg-amber-500/20 flex items-center justify-center border border-amber-500/30">
+      <span className="text-xl">💬</span>
+    </div>
+  </div>
+  
+  <h3 className="text-lg font-bold text-white mb-4 text-center">Suporte Real</h3>
+  
+  {/* Mini comparativo */}
+  <div className="grid grid-cols-2 gap-2 text-sm mb-4">
+    <div className="bg-slate-800/50 p-3 rounded-lg text-center">
+      <p className="text-gray-500 text-xs mb-1">Ticket</p>
+      <p className="text-white font-semibold text-xs">Dias de espera</p>
+    </div>
+    <div className="bg-amber-500/10 p-3 rounded-lg border border-amber-500/30 text-center">
+      <p className="text-amber-400 text-xs mb-1">WhatsApp</p>
+      <p className="text-white font-semibold text-xs">Resposta rápida</p>
+    </div>
+    <div className="bg-slate-800/50 p-3 rounded-lg text-center">
+      <p className="text-gray-500 text-xs mb-1">Atendente</p>
+      <p className="text-white font-semibold text-xs">Genérico</p>
+    </div>
+    <div className="bg-amber-500/10 p-3 rounded-lg border border-amber-500/30 text-center">
+      <p className="text-amber-400 text-xs mb-1">Contato</p>
+      <p className="text-white font-semibold text-xs">Direto comigo</p>
+    </div>
+  </div>
+  
+  {/* Status online */}
+  <div className="flex items-center justify-center gap-2">
+    <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+    <span className="text-amber-400 text-xs font-medium">Disponível no WhatsApp</span>
+  </div>
+</CardContent>
 ```
 
 ---
 
 ## Resultado Esperado
 
-- Mensagem mais **honesta e tangível**
-- Foco em **dados reais** de produtividade
-- Conecta com a realidade deles (base de 3.000 contatos)
-- Menos "promessa de vendedor", mais "proposta de parceiro"
-- Pega no coração mostrando o trabalho que eles **não vão ter que fazer manualmente**
+Todos os 3 cards da seção "Escale Sem Limites" terão:
 
+1. **Estrutura visual idêntica**: Ícone comparativo no topo (emoji vs emoji)
+2. **Grid 2x2** com comparativos claros
+3. **Cores temáticas** mantidas (emerald, purple, amber)
+4. **Mesmo padding e espaçamento**
+5. **Tipografia consistente**
+
+---
+
+## Benefício
+
+- Consistência visual forte
+- Mensagem clara de "antes vs depois" em cada card
+- Fácil de escanear e entender rapidamente
+- Conecta com o cliente mostrando problemas reais que ele conhece
