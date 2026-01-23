@@ -862,24 +862,26 @@ const PropostaPromotrip = () => {
                 <div className="grid grid-cols-2 gap-2 text-sm mb-4">
                   <div className="bg-slate-800/50 p-3 rounded-lg text-center">
                     <p className="text-gray-500 text-xs mb-1">Manual</p>
-                    <p className="text-white font-semibold">~50 msg/dia</p>
+                    <p className="text-white font-semibold">~320/mês</p>
+                    <p className="text-gray-500 text-[10px]">(~16/dia real)</p>
                   </div>
                   <div className="bg-emerald-500/10 p-3 rounded-lg border border-emerald-500/30 text-center">
                     <p className="text-emerald-400 text-xs mb-1">Agente IA</p>
-                    <p className="text-white font-semibold">3.000+/dia</p>
+                    <p className="text-white font-semibold">3.000+/mês</p>
+                    <p className="text-emerald-300 text-[10px]">(seguro p/ Meta)</p>
                   </div>
                   <div className="bg-slate-800/50 p-3 rounded-lg text-center">
-                    <p className="text-gray-500 text-xs mb-1">Horário</p>
-                    <p className="text-white font-semibold">8h comerciais</p>
+                    <p className="text-gray-500 text-xs mb-1">Cada msg</p>
+                    <p className="text-white font-semibold text-xs">Pesquisa + Escrita</p>
                   </div>
                   <div className="bg-emerald-500/10 p-3 rounded-lg border border-emerald-500/30 text-center">
-                    <p className="text-emerald-400 text-xs mb-1">Disponibilidade</p>
-                    <p className="text-white font-semibold">24/7</p>
+                    <p className="text-emerald-400 text-xs mb-1">Templates</p>
+                    <p className="text-white font-semibold text-xs">Criar 1x, usar sempre</p>
                   </div>
                 </div>
                 
                 <p className="text-gray-400 text-xs text-center leading-relaxed">
-                  Funciona 24/7, responde em segundos e nunca tira férias.
+                  Templates por setor prontos para reutilizar. Volume distribuído que protege seu número.
                 </p>
               </CardContent>
             </Card>
