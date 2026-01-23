@@ -1,123 +1,74 @@
 
 
-# Plano de Ajuste - Produtividade Real (Dado Validado)
+# Ajuste do Ícone - Bloco Produtividade
 
-## Contexto
+## Problema Identificado
 
-Dado real da reunião com Augusto e Alexandre:
-- Uma pessoa consegue enviar **~16 mensagens personalizadas por dia**
-- Mensagem personalizada = pesquisa + adaptação + contexto da empresa
-- Não é "copiar e colar" - é abordagem estratégica
+O emoji 🤖 (robô) tem um fundo branco nativo que aparece como um "quadrado branco" dentro do círculo. Isso acontece porque alguns emojis têm backgrounds sólidos no design original.
 
-## Cálculo Real
+## Solução
 
-| Métrica | Manual | Agente IA |
-|---------|--------|-----------|
-| Por dia | ~16 | distribuído |
-| Por mês (20 dias) | ~320 | 3.000+ |
-| Diferença | - | **~10x mais** |
+Trocar os emojis por ícones do Lucide React (que já são usados em outras partes do projeto) para garantir consistência visual. Isso elimina o problema do fundo branco e mantém o estilo limpo.
 
-## Mudanças no Card (linhas 862-883)
+---
 
-### Grid Comparativo
+## Mudança Proposta
 
-**Antes:**
-```
-Manual: ~50 msg/dia
-Agente IA: 3.000+/dia
-```
-
-**Depois:**
-```
-Manual: ~320/mês (~16/dia)
-Agente IA: 3.000+/mês (Templates!)
-```
-
-### Segunda linha do grid
-
-**Antes:**
-```
-Horário: 8h comerciais
-Disponibilidade: 24/7
-```
-
-**Depois:**
-```
-Cada msg: Pesquisa + Escrita
-Templates: Criar 1x, usar sempre
-```
-
-### Texto final
-
-**Antes:**
-```
-"Funciona 24/7, responde em segundos e nunca tira férias."
-```
-
-**Depois:**
-```
-"Templates personalizados por setor. Cria uma vez, usa sempre. Volume distribuído que protege seu número."
-```
-
-## Arquivo a Modificar
-
+### Arquivo
 `src/pages/PropostaPromotrip.tsx`
 
-### Linhas 862-883
+### Linhas 849-856
 
+**Antes (com emojis):**
 ```tsx
-<div className="grid grid-cols-2 gap-2 text-sm mb-4">
-  <div className="bg-slate-800/50 p-3 rounded-lg text-center">
-    <p className="text-gray-500 text-xs mb-1">Manual</p>
-    <p className="text-white font-semibold">~320/mês</p>
-    <p className="text-gray-500 text-[10px]">(~16/dia real)</p>
+<div className="flex items-center justify-center gap-3 mb-4">
+  <div className="w-10 h-10 rounded-full bg-slate-700/50 flex items-center justify-center">
+    <span className="text-xl">👤</span>
   </div>
-  <div className="bg-emerald-500/10 p-3 rounded-lg border border-emerald-500/30 text-center">
-    <p className="text-emerald-400 text-xs mb-1">Agente IA</p>
-    <p className="text-white font-semibold">3.000+/mês</p>
-    <p className="text-emerald-300 text-[10px]">(seguro p/ Meta)</p>
-  </div>
-  <div className="bg-slate-800/50 p-3 rounded-lg text-center">
-    <p className="text-gray-500 text-xs mb-1">Cada msg</p>
-    <p className="text-white font-semibold text-xs">Pesquisa + Escrita</p>
-  </div>
-  <div className="bg-emerald-500/10 p-3 rounded-lg border border-emerald-500/30 text-center">
-    <p className="text-emerald-400 text-xs mb-1">Templates</p>
-    <p className="text-white font-semibold text-xs">Criar 1x, usar sempre</p>
+  <span className="text-emerald-400 font-bold text-lg">vs</span>
+  <div className="w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center border border-emerald-500/30">
+    <span className="text-xl">🤖</span>
   </div>
 </div>
-
-<p className="text-gray-400 text-xs text-center leading-relaxed">
-  Templates por setor prontos para reutilizar. Volume distribuído que protege seu número.
-</p>
 ```
 
-## Por Que Isso é Mais Poderoso
+**Depois (com ícones Lucide):**
+```tsx
+<div className="flex items-center justify-center gap-3 mb-4">
+  <div className="w-10 h-10 rounded-full bg-slate-700/50 flex items-center justify-center">
+    <User className="w-5 h-5 text-gray-400" />
+  </div>
+  <span className="text-emerald-400 font-bold text-lg">vs</span>
+  <div className="w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center border border-emerald-500/30">
+    <Bot className="w-5 h-5 text-emerald-400" />
+  </div>
+</div>
+```
 
-1. **Dado real** - Veio da própria conversa com eles
-2. **Diferença de 10x** - Muito mais impactante que "3.000 vs 50"
-3. **Honestidade** - Reconhece que personalização leva tempo
-4. **Templates** - Mostra o valor de criar uma vez e reutilizar
-5. **Empatia** - "Sabemos que você faz direito, não na loucura"
+---
+
+## Ícones a Importar
+
+Adicionar `User` e `Bot` na importação do Lucide (linha ~1-10):
+
+```tsx
+import { User, Bot, /* outros já existentes */ } from "lucide-react";
+```
+
+---
 
 ## Resultado Visual
 
-```text
-+--------------------------------+
-|        👤  vs  🤖              |
-|     Produtividade Real         |
-+--------------------------------+
-| Manual          | Agente IA    |
-| ~320/mês        | 3.000+/mês   |
-| (~16/dia real)  | (seguro Meta)|
-+--------------------------------+
-| Cada msg        | Templates    |
-| Pesquisa+Escrita| Criar 1x,    |
-|                 | usar sempre  |
-+--------------------------------+
-| Templates por setor prontos    |
-| para reutilizar. Volume        |
-| distribuído que protege número.|
-+--------------------------------+
-```
+- Ícone de pessoa: `User` (silhueta limpa, sem fundo)
+- Ícone de IA: `Bot` (robô estilizado, sem fundo branco)
+- Cores consistentes com o tema emerald do card
+- Mesmo estilo visual dos outros blocos
+
+---
+
+## Benefício
+
+- Remove o quadrado branco problemático
+- Ícones vetoriais = mais nítidos em qualquer resolução
+- Consistência com o design system do Lucide usado no projeto
 
