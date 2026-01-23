@@ -1,230 +1,138 @@
 
-# Plano de Ajuste - Proposta Promotrip
+# Plano de Ajuste - Propostas e Exemplos Corporativos
 
 ## Objetivo
-Reformular a proposta para focar exclusivamente na **Promotrip Corporate** com valor de **R$ 2.200/mês**, removendo a divisão entre 3 agências e adicionando o módulo Orbit como funcionalidade extra futura.
+1. Marcar o módulo "Criador de Propostas" como em finalização
+2. Atualizar todos os exemplos para focar em viagens corporativas
 
 ---
 
-## Mudanças Estruturais
+## Mudanças
 
-### 1. Header e Introdução
-- Manter saudação ao Augusto
-- Atualizar descrição para focar em "prospecção B2B com base própria de contatos"
+### 1. Seção "Criador de Propostas" (linhas 722-761)
 
-### 2. Seção "As 3 Frentes" - REMOVER/SUBSTITUIR
-**Remover completamente:**
-- Card Promotrip Lazer
-- Card Promotrip Goiânia
-- Seção especial do Evandro & Arquitetura
+**Situação atual:**
+- Badge: "Exclusivo Fluxrow.Pro"
+- Apresentado como funcionalidade completa e disponível
 
-**Substituir por:** Seção "Foco Inicial: Promotrip Corporate"
-- Destacar operação B2B do Alexandre
-- Enfatizar base de ~3.000 contatos em CSV
-- Personalização de mensagens por setor
-- Disparos segmentados WhatsApp + Email
+**Mudanças:**
+- Adicionar badge: "Em Finalização"
+- Manter a descrição do módulo (ele é valioso)
+- Adicionar nota explicando que:
+  - Estará disponível no plano contratado
+  - Módulo será especialmente útil para a frente de Lazer futuramente
+- Ajustar visual para indicar que está "em desenvolvimento"
 
-### 3. Seção "Módulos do Sistema" - ATUALIZAR
-**Remover:**
-- "3 Agentes de IA Especializados" → mudar para "1 Agente de IA Especializado"
-- Referências a múltiplas frentes
+### 2. Exemplos de Follow-up (linhas 625-649)
 
-**Manter:**
-- Disparos WhatsApp (Z-API)
-- Email Marketing Integrado
-- Integração com Planilhas (DESTACAR CSV de 3.000 contatos)
-- Dashboard de Controle
-- Avisos Inteligentes de Follow-up
-
-**Adicionar novo módulo:**
-- "Personalização por Setor" - mensagens customizadas por segmento da empresa
-
-### 4. Seção "Agentes de IA nas Redes Sociais"
-- Manter mas simplificar
-- Remover referência "Corporate, Lazer e Goiânia - cada um com seu painel"
-
-### 5. Seção "Investimento" - ATUALIZAR
-**Alterar valor:**
-- De R$ 3.200/mês para **R$ 2.200/mês**
-
-**Remover:**
-- Grid de divisão por frente (Corporate, Lazer, Goiânia com R$ 1.067 cada)
-
-**Manter:**
-- Sem custo de implementação
-- Setup completo incluso
-- Treinamento incluso
-
-### 6. NOVA SEÇÃO: Módulo Extra - Orbit
-Adicionar após "Módulos do Sistema":
-
-**Conteúdo:**
-- Nome: "Orbit - Captura de Novos Leads"
-- Descrição: Sistema de prospecção ativa para capturar leads qualificados
-- Funcionalidades:
-  - Filtros por CNAE
-  - Filtro por tamanho da empresa
-  - Captura de: nome, setor, telefone, email, LinkedIn
-  - Integração automática com base de disparos
-
-**Destaque:**
-- Badge: "Módulo Extra - Ative Quando Quiser"
-- Nota: "Disponível para ativação posterior mediante negociação"
-- Não mostrar valor específico
-
-### 7. Seção "Benefícios" - ATUALIZAR
-**Remover/Atualizar:**
-- "3 Agentes = 3 Vendedores 24/7" → "1 Agente IA = Vendedor 24/7"
-- "R$ 1.067/frente" → Remover ou mudar para destacar valor único
-
-### 8. Seção "Próximos Passos" - ATUALIZAR
-- Ajustar descrições para focar na operação Corporate apenas
-- Remover referências a múltiplas equipes
-
-### 9. CTA Final - ATUALIZAR
-- Manter estrutura mas ajustar texto
-- Remover "3 agentes trabalhando 24/7"
-- Focar em "operação B2B automatizada com sua base de contatos"
-
----
-
-## Seções Técnicas
-
-### Arquivo a modificar
-`src/pages/PropostaPromotrip.tsx`
-
-### Estrutura de dados a atualizar
-
-```typescript
-// REMOVER array frentes ou reduzir para apenas Corporate
-const frentes = [
-  // Manter apenas Corporate com foco em CSV
-];
-
-// ATUALIZAR modulos
-const modulos = [
-  // Atualizar "3 Agentes" para "1 Agente"
-  // Adicionar módulo de personalização por setor
-];
-
-// ATUALIZAR beneficios
-const beneficios = [
-  // Remover referências a múltiplas frentes
-  // Ajustar métricas para operação única
-];
-
-// ATUALIZAR proximosPassos
-const proximosPassos = [
-  // Simplificar para foco Corporate
-];
+**Situação atual:**
+```
+Maria Silva
+Gramado • Família
+4 pessoas, Janeiro
+Orçamento: R$ 8.000
 ```
 
-### Nova seção Orbit (estrutura)
-```typescript
-// Card destacado com gradiente diferenciado
-// Badge "Módulo Extra"
-// Lista de funcionalidades
-// Nota sobre ativação posterior
+**Mudar para (exemplo corporativo):**
+```
+Carlos Mendes
+Diretor Financeiro • Tech Solutions
+Evento corporativo, Março
+Orçamento: R$ 25.000 (10 executivos)
 ```
 
+### 3. Sugestão de Mensagem IA (linhas 680-686)
+
+**Situação atual:**
+```
+"Oi Maria! 👋 Lembra do pacote para Gramado em janeiro que conversamos? 
+Ainda temos disponibilidade para 4 pessoas..."
+```
+
+**Mudar para (contexto corporativo):**
+```
+"Olá Carlos! 👋 Sobre a convenção em São Paulo para março que conversamos, 
+conseguimos condições especiais no hotel para os 10 executivos da Tech Solutions. 
+O pacote inclui transfer executivo e sala de reunião. Posso enviar a proposta atualizada?"
+```
+
+### 4. Card de Notificação - Contexto (linhas 631-649)
+
+**Situação atual:**
+- Interesse: "4 pessoas, Janeiro"
+- Lead de lazer/família
+
+**Mudar para:**
+- Interesse: "10 executivos, Março"
+- Viagem corporativa com contexto B2B
+
+### 5. Label do destino
+
+**Situação atual:** 
+- "Gramado • Família"
+
+**Mudar para:**
+- "Convenção SP • Corporate"
+
 ---
 
-## Resultado Final Esperado
-
-A proposta ficará focada em:
-
-1. **Operação única:** Promotrip Corporate (Alexandre)
-2. **Base própria:** ~3.000 contatos em CSV
-3. **Disparos inteligentes:** WhatsApp + Email segmentados por setor
-4. **Valor claro:** R$ 2.200/mês sem divisões
-5. **Upsell preparado:** Módulo Orbit para expansão futura
-6. **Funcionalidades mantidas:** Funil, relatórios, dashboard, agente IA
-
----
-
-## Fluxo Visual da Nova Proposta
+## Resumo Visual das Mudanças
 
 ```text
-+------------------------------------------+
-|  HEADER - Proposta Promotrip Corporate   |
-+------------------------------------------+
-           |
-           v
-+------------------------------------------+
-|  QUEM SOMOS (manter como está)           |
-+------------------------------------------+
-           |
-           v
-+------------------------------------------+
-|  SISTEMA FLUXROW.PRO (manter/simplificar)|
-+------------------------------------------+
-           |
-           v
-+------------------------------------------+
-|  FOCO INICIAL: PROMOTRIP CORPORATE       |
-|  - Alexandre líder                       |
-|  - Base CSV 3.000 contatos               |
-|  - Segmentação por setor                 |
-+------------------------------------------+
-           |
-           v
-+------------------------------------------+
-|  MÓDULOS DO SISTEMA                      |
-|  - WhatsApp Z-API                        |
-|  - Email Marketing                       |
-|  - Integração CSV                        |
-|  - Personalização por Setor              |
-|  - Dashboard                             |
-|  - Agente IA (1)                         |
-+------------------------------------------+
-           |
-           v
-+------------------------------------------+
-|  MÓDULO ORBIT (EXTRA)                    |
-|  "Ative quando quiser"                   |
-|  - Captura leads: CNAE, tamanho, etc     |
-|  - Negociação posterior                  |
-+------------------------------------------+
-           |
-           v
-+------------------------------------------+
-|  AGENTES IA REDES SOCIAIS (simplificar)  |
-+------------------------------------------+
-           |
-           v
-+------------------------------------------+
-|  AVISOS FOLLOW-UP (manter)               |
-+------------------------------------------+
-           |
-           v
-+------------------------------------------+
-|  CRIADOR PROPOSTAS (manter)              |
-+------------------------------------------+
-           |
-           v
-+------------------------------------------+
-|  INVESTIMENTO                            |
-|  R$ 2.200/mês (valor único)              |
-|  Sem custo implementação                 |
-+------------------------------------------+
-           |
-           v
-+------------------------------------------+
-|  ESCALE SEM LIMITES (manter/ajustar)     |
-+------------------------------------------+
-           |
-           v
-+------------------------------------------+
-|  POR QUE INVESTIR (ajustar benefícios)   |
-+------------------------------------------+
-           |
-           v
-+------------------------------------------+
-|  PRÓXIMOS PASSOS (simplificar)           |
-+------------------------------------------+
-           |
-           v
-+------------------------------------------+
-|  CTA FINAL                               |
-+------------------------------------------+
+ANTES                              DEPOIS
++------------------------------+   +------------------------------+
+| Criador de Propostas         |   | Criador de Propostas         |
+| [Exclusivo Fluxrow.Pro]      |   | [Em Finalização]             |
+| Funcionalidade completa      |   | + Nota: disponível no plano  |
+|                              |   | + Obs: ideal para Lazer      |
++------------------------------+   +------------------------------+
+
++------------------------------+   +------------------------------+
+| Maria Silva                  |   | Carlos Mendes                |
+| Gramado • Família            |   | Diretor • Tech Solutions     |
+| 4 pessoas, Janeiro           |   | 10 executivos, Março         |
+| R$ 8.000                     |   | R$ 25.000                    |
++------------------------------+   +------------------------------+
+
++------------------------------+   +------------------------------+
+| "Oi Maria! Lembra do         |   | "Olá Carlos! Sobre a         |
+| pacote para Gramado em       |   | convenção em São Paulo para  |
+| janeiro que conversamos?     |   | março que conversamos...     |
+| 4 pessoas..."                |   | 10 executivos..."            |
++------------------------------+   +------------------------------+
 ```
+
+---
+
+## Arquivo a Modificar
+`src/pages/PropostaPromotrip.tsx`
+
+---
+
+## Detalhes Técnicos
+
+### Seção Criador de Propostas
+- Trocar badge de "Exclusivo Fluxrow.Pro" para "Em Finalização"
+- Adicionar nota sobre disponibilidade no plano
+- Adicionar observação que o módulo será especialmente útil para a frente de Lazer
+- Manter toda a descrição das funcionalidades (são reais e valiosas)
+
+### Exemplos de Follow-up
+- Trocar "Maria Silva" por "Carlos Mendes" (nome corporativo)
+- Trocar "Gramado • Família" por "Convenção SP • Corporate" ou similar
+- Trocar "4 pessoas, Janeiro" por "10 executivos, Março"
+- Trocar "R$ 8.000" por "R$ 25.000" (orçamento corporativo mais realista)
+
+### Sugestão de Mensagem IA
+- Reescrever para contexto B2B
+- Mencionar: convenção, executivos, transfer executivo, sala de reunião
+- Tom mais formal/profissional
+
+---
+
+## Resultado Esperado
+
+A proposta ficará 100% alinhada com o foco Corporate:
+- Módulo de Propostas marcado como futuro (em finalização)
+- Todos os exemplos refletindo viagens corporativas
+- Nota sobre o módulo ser útil para Lazer prepara o terreno para expansão futura
