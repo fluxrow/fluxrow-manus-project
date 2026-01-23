@@ -624,12 +624,12 @@ const PropostaPromotrip = () => {
                   
                   <div className="bg-indigo-950/50 rounded-xl p-4 border border-indigo-500/20 mb-4">
                     <div className="flex items-center gap-3 mb-3">
-                      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center">
-                        <span className="text-white font-bold text-sm">MS</span>
+                      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center">
+                        <span className="text-white font-bold text-sm">CM</span>
                       </div>
                       <div>
-                        <p className="font-semibold text-white">Maria Silva</p>
-                        <p className="text-sm text-indigo-300">Gramado • Família</p>
+                        <p className="font-semibold text-white">Carlos Mendes</p>
+                        <p className="text-sm text-indigo-300">Diretor Financeiro • Tech Solutions</p>
                       </div>
                     </div>
                     <div className="space-y-2 text-sm">
@@ -639,11 +639,11 @@ const PropostaPromotrip = () => {
                       </div>
                       <div className="flex items-center gap-2 text-gray-400">
                         <Users className="w-4 h-4 text-cyan-400" />
-                        Interesse: <span className="text-white">4 pessoas, Janeiro</span>
+                        Interesse: <span className="text-white">Convenção SP • 10 executivos, Março</span>
                       </div>
                       <div className="flex items-center gap-2 text-gray-400">
                         <Target className="w-4 h-4 text-emerald-400" />
-                        Orçamento: <span className="text-emerald-300 font-medium">R$ 8.000</span>
+                        Orçamento: <span className="text-emerald-300 font-medium">R$ 25.000</span>
                       </div>
                     </div>
                   </div>
@@ -679,9 +679,9 @@ const PropostaPromotrip = () => {
                     </div>
                     <div className="bg-slate-800/80 rounded-lg p-4 border-l-4 border-violet-500">
                       <p className="text-sm text-gray-200 italic leading-relaxed">
-                        "Oi Maria! 👋 Lembra do pacote para <strong className="text-white">Gramado em janeiro</strong> que conversamos? 
-                        Ainda temos disponibilidade para <strong className="text-white">4 pessoas</strong> com ótimas condições. 
-                        O hotel que você gostou está com uma promoção especial. Posso te enviar os detalhes atualizados?"
+                        "Olá Carlos! 👋 Sobre a <strong className="text-white">convenção em São Paulo para março</strong> que conversamos, 
+                        conseguimos condições especiais no hotel para os <strong className="text-white">10 executivos da Tech Solutions</strong>. 
+                        O pacote inclui transfer executivo e sala de reunião. Posso enviar a proposta atualizada?"
                       </p>
                     </div>
                   </div>
@@ -719,16 +719,22 @@ const PropostaPromotrip = () => {
           </Card>
         </section>
 
-        {/* Módulo Exclusivo: Criador de Propostas */}
+        {/* Módulo Exclusivo: Criador de Propostas - Em Finalização */}
         <section className="mb-20">
-          <Card className="bg-gradient-to-br from-amber-900/30 to-orange-900/30 border-amber-500/30 border-2 overflow-hidden">
-            <div className="h-1 bg-gradient-to-r from-amber-400 to-orange-500" />
+          <Card className="bg-gradient-to-br from-amber-900/20 to-orange-900/20 border-amber-500/20 border-2 overflow-hidden relative">
+            <div className="h-1 bg-gradient-to-r from-amber-400/60 to-orange-500/60" />
             <CardContent className="p-8">
               <div className="flex flex-col md:flex-row items-center gap-8">
                 <div className="flex-1">
-                  <div className="inline-flex items-center gap-2 bg-amber-500/20 text-amber-300 px-3 py-1 rounded-full text-xs font-medium mb-4">
-                    <Sparkles className="w-3 h-3" />
-                    Exclusivo Fluxrow.Pro
+                  <div className="flex flex-wrap items-center gap-2 mb-4">
+                    <div className="inline-flex items-center gap-2 bg-amber-500/20 text-amber-300 px-3 py-1 rounded-full text-xs font-medium">
+                      <Clock className="w-3 h-3" />
+                      Em Finalização
+                    </div>
+                    <div className="inline-flex items-center gap-2 bg-green-500/20 text-green-300 px-3 py-1 rounded-full text-xs font-medium">
+                      <CheckCircle2 className="w-3 h-3" />
+                      Incluso no Plano
+                    </div>
                   </div>
                   <h2 className="text-2xl md:text-3xl font-bold mb-4 text-white">
                     Criador de Propostas Visuais
@@ -751,9 +757,20 @@ const PropostaPromotrip = () => {
                       </li>
                     ))}
                   </ul>
+                  <div className="mt-6 p-4 bg-slate-900/50 rounded-xl border border-amber-500/20">
+                    <p className="text-sm text-gray-400">
+                      <strong className="text-amber-300">📌 Nota:</strong> Este módulo está em fase final de desenvolvimento e será 
+                      disponibilizado assim que estiver pronto. Será especialmente útil para a <strong className="text-white">frente de Lazer</strong> futuramente.
+                    </p>
+                  </div>
                 </div>
-                <div className="w-48 h-48 rounded-2xl bg-gradient-to-br from-amber-500/20 to-orange-600/20 flex items-center justify-center border border-amber-500/30">
-                  <PenTool className="w-20 h-20 text-amber-400" />
+                <div className="w-48 h-48 rounded-2xl bg-gradient-to-br from-amber-500/10 to-orange-600/10 flex items-center justify-center border border-amber-500/20 relative">
+                  <PenTool className="w-20 h-20 text-amber-400/60" />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="bg-slate-900/80 px-3 py-1 rounded-full border border-amber-500/30">
+                      <span className="text-xs text-amber-300 font-medium">Em breve</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </CardContent>
