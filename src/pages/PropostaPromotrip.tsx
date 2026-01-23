@@ -842,16 +842,44 @@ const PropostaPromotrip = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {/* Card 1 - Multiplicação */}
+            {/* Card 1 - Comparativo Produtividade */}
             <Card className="bg-gradient-to-br from-emerald-900/30 to-cyan-900/30 border-emerald-500/30 hover:border-emerald-400/50 transition-all duration-300 hover:scale-105">
-              <CardContent className="p-6 text-center">
-                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-500/30 to-cyan-500/30 flex items-center justify-center mx-auto mb-4">
-                  <TrendingUp className="w-8 h-8 text-emerald-400" />
+              <CardContent className="p-6">
+                {/* Ícone comparativo */}
+                <div className="flex items-center justify-center gap-3 mb-4">
+                  <div className="w-10 h-10 rounded-full bg-slate-700/50 flex items-center justify-center">
+                    <span className="text-xl">👤</span>
+                  </div>
+                  <span className="text-emerald-400 font-bold text-lg">vs</span>
+                  <div className="w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center border border-emerald-500/30">
+                    <span className="text-xl">🤖</span>
+                  </div>
                 </div>
-                <div className="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400 mb-2">10x</div>
-                <h3 className="text-xl font-bold text-white mb-3">Multiplique seu Faturamento</h3>
-                <p className="text-gray-400 text-sm leading-relaxed">
-                  Com agentes trabalhando 24/7 e controle centralizado, você atende 10x mais clientes sem aumentar equipe. Cada frente pode escalar independentemente.
+                
+                <h3 className="text-lg font-bold text-white mb-4 text-center">Produtividade Real</h3>
+                
+                {/* Mini comparativo */}
+                <div className="grid grid-cols-2 gap-2 text-sm mb-4">
+                  <div className="bg-slate-800/50 p-3 rounded-lg text-center">
+                    <p className="text-gray-500 text-xs mb-1">Manual</p>
+                    <p className="text-white font-semibold">~50 msg/dia</p>
+                  </div>
+                  <div className="bg-emerald-500/10 p-3 rounded-lg border border-emerald-500/30 text-center">
+                    <p className="text-emerald-400 text-xs mb-1">Agente IA</p>
+                    <p className="text-white font-semibold">3.000+/dia</p>
+                  </div>
+                  <div className="bg-slate-800/50 p-3 rounded-lg text-center">
+                    <p className="text-gray-500 text-xs mb-1">Horário</p>
+                    <p className="text-white font-semibold">8h comerciais</p>
+                  </div>
+                  <div className="bg-emerald-500/10 p-3 rounded-lg border border-emerald-500/30 text-center">
+                    <p className="text-emerald-400 text-xs mb-1">Disponibilidade</p>
+                    <p className="text-white font-semibold">24/7</p>
+                  </div>
+                </div>
+                
+                <p className="text-gray-400 text-xs text-center leading-relaxed">
+                  Funciona 24/7, responde em segundos e nunca tira férias.
                 </p>
               </CardContent>
             </Card>
