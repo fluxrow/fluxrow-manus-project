@@ -1,138 +1,128 @@
 
-# Plano de Ajuste - Propostas e Exemplos Corporativos
+
+# Plano de Ajuste - Bloco "10x" para Produtividade
 
 ## Objetivo
-1. Marcar o módulo "Criador de Propostas" como em finalização
-2. Atualizar todos os exemplos para focar em viagens corporativas
+Trocar a abordagem apelativa "10x multiplique seu faturamento" por uma mais tangível e real: **comparação de produtividade entre agente IA vs trabalho manual**.
 
 ---
 
-## Mudanças
+## Situação Atual (linhas 846-857)
 
-### 1. Seção "Criador de Propostas" (linhas 722-761)
-
-**Situação atual:**
-- Badge: "Exclusivo Fluxrow.Pro"
-- Apresentado como funcionalidade completa e disponível
-
-**Mudanças:**
-- Adicionar badge: "Em Finalização"
-- Manter a descrição do módulo (ele é valioso)
-- Adicionar nota explicando que:
-  - Estará disponível no plano contratado
-  - Módulo será especialmente útil para a frente de Lazer futuramente
-- Ajustar visual para indicar que está "em desenvolvimento"
-
-### 2. Exemplos de Follow-up (linhas 625-649)
-
-**Situação atual:**
 ```
-Maria Silva
-Gramado • Família
-4 pessoas, Janeiro
-Orçamento: R$ 8.000
+- Número: "10x"
+- Título: "Multiplique seu Faturamento"
+- Texto: "Com agentes trabalhando 24/7..."
 ```
-
-**Mudar para (exemplo corporativo):**
-```
-Carlos Mendes
-Diretor Financeiro • Tech Solutions
-Evento corporativo, Março
-Orçamento: R$ 25.000 (10 executivos)
-```
-
-### 3. Sugestão de Mensagem IA (linhas 680-686)
-
-**Situação atual:**
-```
-"Oi Maria! 👋 Lembra do pacote para Gramado em janeiro que conversamos? 
-Ainda temos disponibilidade para 4 pessoas..."
-```
-
-**Mudar para (contexto corporativo):**
-```
-"Olá Carlos! 👋 Sobre a convenção em São Paulo para março que conversamos, 
-conseguimos condições especiais no hotel para os 10 executivos da Tech Solutions. 
-O pacote inclui transfer executivo e sala de reunião. Posso enviar a proposta atualizada?"
-```
-
-### 4. Card de Notificação - Contexto (linhas 631-649)
-
-**Situação atual:**
-- Interesse: "4 pessoas, Janeiro"
-- Lead de lazer/família
-
-**Mudar para:**
-- Interesse: "10 executivos, Março"
-- Viagem corporativa com contexto B2B
-
-### 5. Label do destino
-
-**Situação atual:** 
-- "Gramado • Família"
-
-**Mudar para:**
-- "Convenção SP • Corporate"
 
 ---
 
-## Resumo Visual das Mudanças
+## Nova Abordagem
+
+### Conceito: Mostrar a Realidade
+
+Em vez de prometer "10x faturamento", vamos mostrar **dados reais de produtividade**:
+
+**Trabalho Manual (uma pessoa):**
+- Envia ~50 mensagens personalizadas/dia
+- Disponível 8h comerciais
+- Responde quando consegue
+- 1 pessoa = custo fixo de salário
+
+**Agente IA:**
+- Envia 3.000+ mensagens/dia (a base inteira)
+- Disponível 24/7, inclusive feriados
+- Responde em segundos, qualquer horário
+- Custo fixo de R$ 2.200/mês
+
+---
+
+## Mudanças no Card
+
+### Número/Destaque
+**Antes:** "10x"
+**Depois:** Visual comparativo ou ícone de "⚡ vs 🐢"
+
+### Título
+**Antes:** "Multiplique seu Faturamento"
+**Depois:** "Produtividade Real: IA vs Manual"
+
+### Texto
+**Antes:** 
+"Com agentes trabalhando 24/7 e controle centralizado, você atende 10x mais clientes sem aumentar equipe..."
+
+**Depois:**
+"Um atendente envia ~50 mensagens personalizadas por dia. O agente IA envia para sua base inteira de 3.000 contatos em horas. Funciona 24/7, responde em segundos e nunca tira férias."
+
+---
+
+## Opção: Mini-comparativo Visual
+
+Podemos transformar em um mini-comparativo lado a lado:
 
 ```text
-ANTES                              DEPOIS
-+------------------------------+   +------------------------------+
-| Criador de Propostas         |   | Criador de Propostas         |
-| [Exclusivo Fluxrow.Pro]      |   | [Em Finalização]             |
-| Funcionalidade completa      |   | + Nota: disponível no plano  |
-|                              |   | + Obs: ideal para Lazer      |
-+------------------------------+   +------------------------------+
-
-+------------------------------+   +------------------------------+
-| Maria Silva                  |   | Carlos Mendes                |
-| Gramado • Família            |   | Diretor • Tech Solutions     |
-| 4 pessoas, Janeiro           |   | 10 executivos, Março         |
-| R$ 8.000                     |   | R$ 25.000                    |
-+------------------------------+   +------------------------------+
-
-+------------------------------+   +------------------------------+
-| "Oi Maria! Lembra do         |   | "Olá Carlos! Sobre a         |
-| pacote para Gramado em       |   | convenção em São Paulo para  |
-| janeiro que conversamos?     |   | março que conversamos...     |
-| 4 pessoas..."                |   | 10 executivos..."            |
-+------------------------------+   +------------------------------+
++---------------------------+---------------------------+
+|      👤 MANUAL            |      🤖 AGENTE IA         |
++---------------------------+---------------------------+
+| ~50 mensagens/dia         | 3.000+ mensagens/dia      |
+| 8h comerciais             | 24/7                      |
+| Resposta em minutos/horas | Resposta em segundos      |
+| Custo: CLT + encargos     | Custo fixo: R$ 2.200      |
++---------------------------+---------------------------+
 ```
-
----
-
-## Arquivo a Modificar
-`src/pages/PropostaPromotrip.tsx`
 
 ---
 
 ## Detalhes Técnicos
 
-### Seção Criador de Propostas
-- Trocar badge de "Exclusivo Fluxrow.Pro" para "Em Finalização"
-- Adicionar nota sobre disponibilidade no plano
-- Adicionar observação que o módulo será especialmente útil para a frente de Lazer
-- Manter toda a descrição das funcionalidades (são reais e valiosas)
+### Arquivo
+`src/pages/PropostaPromotrip.tsx`
 
-### Exemplos de Follow-up
-- Trocar "Maria Silva" por "Carlos Mendes" (nome corporativo)
-- Trocar "Gramado • Família" por "Convenção SP • Corporate" ou similar
-- Trocar "4 pessoas, Janeiro" por "10 executivos, Março"
-- Trocar "R$ 8.000" por "R$ 25.000" (orçamento corporativo mais realista)
+### Linhas a modificar
+846-857
 
-### Sugestão de Mensagem IA
-- Reescrever para contexto B2B
-- Mencionar: convenção, executivos, transfer executivo, sala de reunião
-- Tom mais formal/profissional
+### Estrutura proposta
+
+```tsx
+<Card className="bg-gradient-to-br from-emerald-900/30 to-cyan-900/30 border-emerald-500/30 ...">
+  <CardContent className="p-6">
+    {/* Ícone comparativo */}
+    <div className="flex items-center justify-center gap-3 mb-4">
+      <span className="text-2xl">👤</span>
+      <span className="text-emerald-400 font-bold">vs</span>
+      <span className="text-2xl">🤖</span>
+    </div>
+    
+    <h3 className="text-xl font-bold text-white mb-3 text-center">
+      Produtividade Real
+    </h3>
+    
+    {/* Mini comparativo */}
+    <div className="grid grid-cols-2 gap-3 text-sm">
+      <div className="bg-slate-800/50 p-3 rounded-lg">
+        <p className="text-gray-500 text-xs mb-1">Manual</p>
+        <p className="text-white font-medium">~50 msg/dia</p>
+      </div>
+      <div className="bg-emerald-500/10 p-3 rounded-lg border border-emerald-500/30">
+        <p className="text-emerald-400 text-xs mb-1">Agente IA</p>
+        <p className="text-white font-medium">3.000+/dia</p>
+      </div>
+    </div>
+    
+    <p className="text-gray-400 text-sm mt-4 text-center">
+      O agente trabalha 24/7, responde em segundos e nunca tira férias.
+    </p>
+  </CardContent>
+</Card>
+```
 
 ---
 
 ## Resultado Esperado
 
-A proposta ficará 100% alinhada com o foco Corporate:
-- Módulo de Propostas marcado como futuro (em finalização)
-- Todos os exemplos refletindo viagens corporativas
-- Nota sobre o módulo ser útil para Lazer prepara o terreno para expansão futura
+- Mensagem mais **honesta e tangível**
+- Foco em **dados reais** de produtividade
+- Conecta com a realidade deles (base de 3.000 contatos)
+- Menos "promessa de vendedor", mais "proposta de parceiro"
+- Pega no coração mostrando o trabalho que eles **não vão ter que fazer manualmente**
+
