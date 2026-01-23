@@ -886,32 +886,87 @@ const PropostaPromotrip = () => {
 
             {/* Card 2 - Soluções Personalizadas */}
             <Card className="bg-gradient-to-br from-purple-900/30 to-pink-900/30 border-purple-500/30 hover:border-purple-400/50 transition-all duration-300 hover:scale-105">
-              <CardContent className="p-6 text-center">
-                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-purple-500/30 to-pink-500/30 flex items-center justify-center mx-auto mb-4">
-                  <Puzzle className="w-8 h-8 text-purple-400" />
+              <CardContent className="p-6">
+                {/* Ícone comparativo */}
+                <div className="flex items-center justify-center gap-3 mb-4">
+                  <div className="w-10 h-10 rounded-full bg-slate-700/50 flex items-center justify-center">
+                    <span className="text-xl">📦</span>
+                  </div>
+                  <span className="text-purple-400 font-bold text-lg">vs</span>
+                  <div className="w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center border border-purple-500/30">
+                    <span className="text-xl">🔧</span>
+                  </div>
                 </div>
-                <div className="text-xs font-semibold text-purple-400 tracking-wider uppercase mb-2">Funcionalidades Ilimitadas</div>
-                <h3 className="text-xl font-bold text-white mb-3">Soluções Sob Medida</h3>
-                <p className="text-gray-400 text-sm leading-relaxed">
-                  Surgiu uma necessidade nova? Criamos funcionalidades personalizadas conforme sua operação evolui. O sistema se adapta ao seu negócio, não o contrário.
+                
+                <h3 className="text-lg font-bold text-white mb-4 text-center">Personalização Real</h3>
+                
+                {/* Mini comparativo */}
+                <div className="grid grid-cols-2 gap-2 text-sm mb-4">
+                  <div className="bg-slate-800/50 p-3 rounded-lg text-center">
+                    <p className="text-gray-500 text-xs mb-1">Software Pronto</p>
+                    <p className="text-white font-semibold text-xs">Você se adapta</p>
+                  </div>
+                  <div className="bg-purple-500/10 p-3 rounded-lg border border-purple-500/30 text-center">
+                    <p className="text-purple-400 text-xs mb-1">Sob Medida</p>
+                    <p className="text-white font-semibold text-xs">Sistema se adapta</p>
+                  </div>
+                  <div className="bg-slate-800/50 p-3 rounded-lg text-center">
+                    <p className="text-gray-500 text-xs mb-1">Limite</p>
+                    <p className="text-white font-semibold text-xs">Funções fixas</p>
+                  </div>
+                  <div className="bg-purple-500/10 p-3 rounded-lg border border-purple-500/30 text-center">
+                    <p className="text-purple-400 text-xs mb-1">Flexibilidade</p>
+                    <p className="text-white font-semibold text-xs">Sob demanda</p>
+                  </div>
+                </div>
+                
+                <p className="text-gray-400 text-xs text-center leading-relaxed">
+                  Surgiu necessidade nova? Criamos a funcionalidade para você.
                 </p>
               </CardContent>
             </Card>
 
             {/* Card 3 - Suporte Direto */}
             <Card className="bg-gradient-to-br from-amber-900/30 to-orange-900/30 border-amber-500/30 hover:border-amber-400/50 transition-all duration-300 hover:scale-105">
-              <CardContent className="p-6 text-center">
-                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-500/30 to-orange-500/30 flex items-center justify-center mx-auto mb-4">
-                  <Headphones className="w-8 h-8 text-amber-400" />
+              <CardContent className="p-6">
+                {/* Ícone comparativo */}
+                <div className="flex items-center justify-center gap-3 mb-4">
+                  <div className="w-10 h-10 rounded-full bg-slate-700/50 flex items-center justify-center">
+                    <span className="text-xl">🎫</span>
+                  </div>
+                  <span className="text-amber-400 font-bold text-lg">vs</span>
+                  <div className="w-10 h-10 rounded-full bg-amber-500/20 flex items-center justify-center border border-amber-500/30">
+                    <span className="text-xl">💬</span>
+                  </div>
                 </div>
-                <div className="flex items-center justify-center gap-2 mb-2">
+                
+                <h3 className="text-lg font-bold text-white mb-4 text-center">Suporte Real</h3>
+                
+                {/* Mini comparativo */}
+                <div className="grid grid-cols-2 gap-2 text-sm mb-4">
+                  <div className="bg-slate-800/50 p-3 rounded-lg text-center">
+                    <p className="text-gray-500 text-xs mb-1">Ticket</p>
+                    <p className="text-white font-semibold text-xs">Dias de espera</p>
+                  </div>
+                  <div className="bg-amber-500/10 p-3 rounded-lg border border-amber-500/30 text-center">
+                    <p className="text-amber-400 text-xs mb-1">WhatsApp</p>
+                    <p className="text-white font-semibold text-xs">Resposta rápida</p>
+                  </div>
+                  <div className="bg-slate-800/50 p-3 rounded-lg text-center">
+                    <p className="text-gray-500 text-xs mb-1">Atendente</p>
+                    <p className="text-white font-semibold text-xs">Genérico</p>
+                  </div>
+                  <div className="bg-amber-500/10 p-3 rounded-lg border border-amber-500/30 text-center">
+                    <p className="text-amber-400 text-xs mb-1">Contato</p>
+                    <p className="text-white font-semibold text-xs">Direto comigo</p>
+                  </div>
+                </div>
+                
+                {/* Status online */}
+                <div className="flex items-center justify-center gap-2">
                   <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
-                  <span className="text-xs font-semibold text-amber-400">Disponível no WhatsApp</span>
+                  <span className="text-amber-400 text-xs font-medium">Disponível no WhatsApp</span>
                 </div>
-                <h3 className="text-xl font-bold text-white mb-3">Suporte Direto Comigo</h3>
-                <p className="text-gray-400 text-sm leading-relaxed">
-                  Nada de tickets intermináveis. Suporte direto via WhatsApp, respostas rápidas e ajustes sempre que precisar. Parceria de verdade.
-                </p>
               </CardContent>
             </Card>
           </div>
