@@ -85,7 +85,7 @@ export default function PropostaEvoluaDigital() {
             <CardHeader className="pb-4">
               <Badge className="w-fit mb-3 bg-gradient-to-r from-amber-500 to-orange-500 text-white border-0 shadow-lg">
                 <Star className="w-3 h-3 mr-1" />
-                Preferido pela Diretoria
+                Parceria de Resultado
               </Badge>
               <CardTitle className="text-2xl flex items-center gap-3">
                 <DollarSign className="w-7 h-7 text-purple-400" />
@@ -345,29 +345,6 @@ export default function PropostaEvoluaDigital() {
                   </li>
                 </ul>
               </div>
-              <div className="bg-gradient-to-br from-fuchsia-900/40 to-transparent p-5 rounded-xl border border-fuchsia-500/30">
-                <h5 className="font-semibold text-fuchsia-300 mb-4 flex items-center gap-2">
-                  <TrendingUp className="w-5 h-5" />
-                  Projeção de Fee (1.5%)
-                </h5>
-                <div className="space-y-3 text-sm">
-                  <div className="flex justify-between items-center p-2 bg-slate-800/30 rounded-lg">
-                    <span className="text-gray-400">Conservador (100 contratos)</span>
-                    <span className="text-fuchsia-300">+R$ 225/mês</span>
-                  </div>
-                  <div className="flex justify-between items-center p-2 bg-slate-800/30 rounded-lg">
-                    <span className="text-gray-400">Moderado (300 contratos)</span>
-                    <span className="text-fuchsia-300">+R$ 900/mês</span>
-                  </div>
-                  <div className="flex justify-between items-center p-2 bg-slate-800/30 rounded-lg">
-                    <span className="text-gray-400">Otimista (500 contratos)</span>
-                    <span className="text-fuchsia-300">+R$ 1.500/mês</span>
-                  </div>
-                </div>
-                <p className="text-xs text-gray-500 mt-3 italic">
-                  *Considerando ticket médio de R$ 150-200 por contrato
-                </p>
-              </div>
             </div>
 
             {/* Sistema Anti-Bloqueio */}
@@ -491,7 +468,7 @@ export default function PropostaEvoluaDigital() {
                 </div>
                 <div className="flex items-center gap-3 p-3 bg-slate-800/40 rounded-lg">
                   <Mail className="w-5 h-5 text-red-400" />
-                  <span className="text-gray-300 text-sm">Resend (Email Marketing)</span>
+                  <span className="text-gray-300 text-sm">Plataformas de Email Marketing</span>
                 </div>
                 <div className="flex items-center gap-3 p-3 bg-slate-800/40 rounded-lg">
                   <FileSpreadsheet className="w-5 h-5 text-emerald-400" />
@@ -584,7 +561,7 @@ export default function PropostaEvoluaDigital() {
                     <ul className="space-y-1 text-gray-300">
                       <li>• Dashboard React/TypeScript</li>
                       <li>• Gráficos e métricas (Recharts)</li>
-                      <li>• Email marketing com Resend</li>
+                      <li>• Email marketing (integração flexível)</li>
                       <li>• Testes finais e lançamento</li>
                     </ul>
                   </div>
@@ -627,7 +604,7 @@ export default function PropostaEvoluaDigital() {
                   <Headphones className="w-5 h-5" />
                   Suporte Pós-Implementação
                 </h5>
-                <p className="text-sm text-gray-400 mb-3">Opcional: R$ 3.000/mês</p>
+                <p className="text-sm text-gray-400 mb-3">Opcional: R$ 1.500/mês</p>
                 <ul className="space-y-2 text-sm text-gray-300">
                   <li className="flex items-start gap-2">
                     <CheckCircle className="w-4 h-4 text-green-400 mt-0.5" />
