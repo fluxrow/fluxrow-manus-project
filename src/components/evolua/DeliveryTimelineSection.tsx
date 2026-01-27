@@ -11,9 +11,9 @@ import {
   Bot,
   GitBranch,
   CheckCircle,
-  MapPin
+  MapPin,
+  Clock
 } from 'lucide-react';
-
 const timelineData = [
   {
     month: 1,
@@ -173,13 +173,14 @@ export default function DeliveryTimelineSection() {
 
       {/* Destaque Treinamento */}
       <div className="mt-8 p-6 bg-gradient-to-r from-amber-900/30 to-orange-900/20 rounded-2xl border border-amber-500/30 text-center">
-        <div className="flex items-center justify-center gap-2 text-amber-300 font-semibold text-lg mb-2">
+        <div className="flex items-center justify-center gap-3 text-amber-300 font-semibold text-lg mb-2">
+          <Clock className="w-5 h-5" />
+          <span>48 horas de treinamento presencial na Evolua</span>
           <MapPin className="w-5 h-5" />
-          <span>Todos os treinamentos são presenciais na Evolua</span>
         </div>
         <p className="text-gray-300 max-w-2xl mx-auto">
-          Mostramos na prática as ferramentas que usamos para criar e evoluir o sistema. 
-          A equipe aprende fazendo, lado a lado com nossos especialistas.
+          ~8 horas por mês, lado a lado com nossos especialistas.
+          Mostramos na prática as ferramentas que usamos para criar e evoluir o sistema.
         </p>
       </div>
     </section>
