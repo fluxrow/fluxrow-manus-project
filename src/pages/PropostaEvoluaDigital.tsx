@@ -16,7 +16,6 @@ import DeliveryTimelineSection from '@/components/evolua/DeliveryTimelineSection
 import FinalDeliverablesSection from '@/components/evolua/FinalDeliverablesSection';
 import LowRiskSection from '@/components/evolua/LowRiskSection';
 import InvestmentSection from '@/components/evolua/InvestmentSection';
-import ReferralProgramSection from '@/components/evolua/ReferralProgramSection';
 import PostContractSupportSection from '@/components/evolua/PostContractSupportSection';
 import ContractTermsSection from '@/components/evolua/ContractTermsSection';
 
@@ -80,13 +79,10 @@ export default function PropostaEvoluaDigital() {
         {/* 8. Investimento */}
         <InvestmentSection />
 
-        {/* 9. Programa de Indicações */}
-        <ReferralProgramSection />
-
-        {/* 10. Suporte Pós-Contrato */}
+        {/* 9. Suporte Pós-Contrato */}
         <PostContractSupportSection />
 
-        {/* 11. Termos do Contrato */}
+        {/* 10. Termos do Contrato */}
         <ContractTermsSection />
 
         {/* FAQ */}
@@ -117,13 +113,6 @@ export default function PropostaEvoluaDigital() {
               <p className="text-gray-400 text-sm">
                 Oferecemos suporte opcional por R$ 1.200/mês. Mas muitas empresas operam 100% sozinhas após 
                 a transferência — o treinamento é feito justamente para isso.
-              </p>
-            </div>
-            <div className="bg-slate-800/40 p-4 rounded-xl">
-              <p className="font-semibold text-white mb-2">Podemos indicar outras empresas?</p>
-              <p className="text-gray-400 text-sm">
-                Sim! Cada indicação de empresa do mesmo ramo que feche contrato conosco gera 5% de desconto 
-                na mensalidade de vocês. Máximo de 15% com 3 indicações.
               </p>
             </div>
             <div className="bg-slate-800/40 p-4 rounded-xl">
