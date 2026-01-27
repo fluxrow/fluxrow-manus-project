@@ -2,7 +2,6 @@ import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { 
-  DollarSign, 
   CheckCircle,
   Calendar,
   Percent,
@@ -13,29 +12,23 @@ import {
   MessageSquare,
   Users,
   Clock,
-  Star,
-  ArrowUp,
   TrendingUp
 } from 'lucide-react';
 
 const plans = [
   {
     name: "Starter",
-    recommended: true,
     price: "4.200",
     messages: "50.000",
     users: "45",
     training: "48h",
     description: "Ideal para iniciar a operação",
-    borderColor: "border-emerald-500/60",
-    bgColor: "from-emerald-900/30",
-    badgeColor: "bg-emerald-500/30 text-emerald-200 border-emerald-500/50",
+    borderColor: "border-emerald-500/40",
+    bgColor: "from-emerald-900/20",
     iconColor: "text-emerald-400",
-    glowColor: "shadow-emerald-500/20",
   },
   {
     name: "Growth",
-    recommended: false,
     price: "5.800",
     messages: "100.000",
     users: "80",
@@ -43,13 +36,10 @@ const plans = [
     description: "Para escalar os resultados",
     borderColor: "border-blue-500/40",
     bgColor: "from-blue-900/20",
-    badgeColor: "bg-blue-500/30 text-blue-200 border-blue-500/50",
     iconColor: "text-blue-400",
-    glowColor: "shadow-blue-500/10",
   },
   {
     name: "Scale",
-    recommended: false,
     price: "7.400",
     messages: "200.000",
     users: "150",
@@ -57,9 +47,7 @@ const plans = [
     description: "Operação em grande escala",
     borderColor: "border-purple-500/40",
     bgColor: "from-purple-900/20",
-    badgeColor: "bg-purple-500/30 text-purple-200 border-purple-500/50",
     iconColor: "text-purple-400",
-    glowColor: "shadow-purple-500/10",
   }
 ];
 
@@ -89,29 +77,9 @@ export default function InvestmentSection() {
         {plans.map((plan, index) => (
           <Card 
             key={plan.name}
-            className={`border-2 ${plan.borderColor} bg-gradient-to-br ${plan.bgColor} to-transparent backdrop-blur-sm relative overflow-hidden hover:scale-[1.02] transition-all duration-300 shadow-lg ${plan.glowColor} ${plan.recommended ? 'ring-2 ring-emerald-400/50' : ''}`}
+            className={`border-2 ${plan.borderColor} bg-gradient-to-br ${plan.bgColor} to-transparent backdrop-blur-sm relative overflow-hidden hover:scale-[1.02] transition-all duration-300`}
           >
-            {/* Barra superior */}
-            {plan.recommended && (
-              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500"></div>
-            )}
-            
             <CardHeader className="text-center pb-2">
-              {/* Badge */}
-              <Badge className={`mx-auto mb-3 ${plan.badgeColor} border px-3 py-1`}>
-                {plan.recommended ? (
-                  <>
-                    <Star className="w-3 h-3 mr-1" />
-                    RECOMENDADO
-                  </>
-                ) : (
-                  <>
-                    <ArrowUp className="w-3 h-3 mr-1" />
-                    UPGRADE
-                  </>
-                )}
-              </Badge>
-              
               {/* Nome do Plano */}
               <CardTitle className="text-xl text-white">
                 {plan.name}
