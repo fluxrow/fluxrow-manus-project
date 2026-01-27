@@ -3,43 +3,26 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { 
-  CheckCircle, 
-  Clock, 
-  DollarSign, 
   MessageCircle, 
-  Users, 
-  BarChart3, 
-  Zap, 
-  Calendar,
-  Phone,
-  Bot,
-  ArrowRight,
-  Shield,
-  UserCheck,
-  Send,
-  Trophy,
-  GraduationCap,
-  Database,
-  Code,
-  Cpu,
-  Mail,
-  FileSpreadsheet,
-  BookOpen,
-  Video,
-  Headphones,
-  CheckCheck
+  Phone
 } from 'lucide-react';
 
-// Import new section components
+// Import section components
 import ProblemSection from '@/components/evolua/ProblemSection';
 import SolutionSection from '@/components/evolua/SolutionSection';
 import ResultsSection from '@/components/evolua/ResultsSection';
-import PartnershipModelsSection from '@/components/evolua/PartnershipModelsSection';
+import HybridProposalSection from '@/components/evolua/HybridProposalSection';
+import DeliveryTimelineSection from '@/components/evolua/DeliveryTimelineSection';
+import FinalDeliverablesSection from '@/components/evolua/FinalDeliverablesSection';
+import LowRiskSection from '@/components/evolua/LowRiskSection';
 import InvestmentSection from '@/components/evolua/InvestmentSection';
+import ReferralProgramSection from '@/components/evolua/ReferralProgramSection';
+import PostContractSupportSection from '@/components/evolua/PostContractSupportSection';
+import ContractTermsSection from '@/components/evolua/ContractTermsSection';
 
 export default function PropostaEvoluaDigital() {
   const handleWhatsAppContact = () => {
-    const message = `Olá! Vi a nova proposta para Evolua Digital e gostaria de conversar sobre as opções de parceria!`;
+    const message = `Olá! Vi a proposta de parceria híbrida para Evolua Digital e gostaria de conversar sobre os próximos passos!`;
     const whatsappUrl = `https://wa.me/5541992361868?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
   };
@@ -68,7 +51,8 @@ export default function PropostaEvoluaDigital() {
             Proposta para <span className="text-purple-300 font-semibold">Evolua Digital</span> - Distribuidora VIVO
           </p>
           <p className="text-lg text-gray-400 max-w-2xl mx-auto leading-relaxed">
-            Após nossa conversa, entendemos o desafio de escalar a prospecção mantendo qualidade. Veja como podemos resolver isso juntos.
+            Após nossa conversa, desenvolvemos um modelo que combina o melhor dos dois mundos: 
+            resultado rápido <span className="text-emerald-400">e</span> independência total.
           </p>
         </div>
 
@@ -81,403 +65,29 @@ export default function PropostaEvoluaDigital() {
         {/* 3. Os Resultados */}
         <ResultsSection />
 
-        {/* 4. Duas Formas de Parceria (sem preço) */}
-        <PartnershipModelsSection />
+        {/* 4. Nossa Proposta - Modelo Híbrido */}
+        <HybridProposalSection />
 
-        {/* Tabela Comparativa */}
-        <Card className="border-2 border-slate-600/30 bg-gradient-to-br from-slate-900/50 to-slate-800/30 backdrop-blur-sm mb-12">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-3 text-2xl">
-              <BarChart3 className="w-7 h-7 text-slate-400" />
-              <span className="text-white">Comparativo</span>
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="overflow-x-auto">
-              <table className="w-full">
-                <thead>
-                  <tr className="border-b border-slate-600/50">
-                    <th className="text-left py-3 px-4 text-gray-400 font-medium">Aspecto</th>
-                    <th className="text-center py-3 px-4 text-purple-300 font-medium">Success Fee</th>
-                    <th className="text-center py-3 px-4 text-cyan-300 font-medium">Consultoria</th>
-                  </tr>
-                </thead>
-                <tbody className="text-sm">
-                  <tr className="border-b border-slate-700/30">
-                    <td className="py-3 px-4 text-gray-300">Investimento inicial</td>
-                    <td className="py-3 px-4 text-center text-purple-200">R$ 5.000 (setup)</td>
-                    <td className="py-3 px-4 text-center text-cyan-200">R$ 11.288 (40%)</td>
-                  </tr>
-                  <tr className="border-b border-slate-700/30">
-                    <td className="py-3 px-4 text-gray-300">Investimento mensal</td>
-                    <td className="py-3 px-4 text-center text-purple-200">R$ 8k-16k + 1.5% fee</td>
-                    <td className="py-3 px-4 text-center text-cyan-200">Parcelado (3 meses)</td>
-                  </tr>
-                  <tr className="border-b border-slate-700/30">
-                    <td className="py-3 px-4 text-gray-300">Quem opera</td>
-                    <td className="py-3 px-4 text-center text-purple-200">Nós operamos</td>
-                    <td className="py-3 px-4 text-center text-cyan-200">Vocês operam</td>
-                  </tr>
-                  <tr className="border-b border-slate-700/30">
-                    <td className="py-3 px-4 text-gray-300">Dependência técnica</td>
-                    <td className="py-3 px-4 text-center text-purple-200">Alta (nós cuidamos)</td>
-                    <td className="py-3 px-4 text-center text-cyan-200">Zero (vocês sabem)</td>
-                  </tr>
-                  <tr className="border-b border-slate-700/30">
-                    <td className="py-3 px-4 text-gray-300">Tempo para resultado</td>
-                    <td className="py-3 px-4 text-center text-purple-200">4-5 semanas</td>
-                    <td className="py-3 px-4 text-center text-cyan-200">3 meses</td>
-                  </tr>
-                  <tr>
-                    <td className="py-3 px-4 text-gray-300">Ideal para</td>
-                    <td className="py-3 px-4 text-center text-purple-200">Resultado rápido</td>
-                    <td className="py-3 px-4 text-center text-cyan-200">Autonomia total</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </CardContent>
-        </Card>
+        {/* 5. O Que Entregamos - Timeline */}
+        <DeliveryTimelineSection />
 
-        {/* Detalhes Success Fee */}
-        <Card className="border-2 border-purple-500/30 bg-gradient-to-br from-purple-900/20 to-fuchsia-900/10 backdrop-blur-sm mb-8">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-3 text-2xl">
-              <DollarSign className="w-7 h-7 text-purple-400" />
-              <span className="bg-gradient-to-r from-purple-300 to-fuchsia-300 bg-clip-text text-transparent">Detalhes: Success Fee</span>
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-6">
-            {/* O que está incluso */}
-            <div className="grid md:grid-cols-2 gap-4">
-              <div className="bg-gradient-to-br from-purple-900/40 to-transparent p-5 rounded-xl border border-purple-500/30">
-                <h5 className="font-semibold text-purple-300 mb-4 flex items-center gap-2">
-                  <CheckCheck className="w-5 h-5" />
-                  O Que Está Incluso
-                </h5>
-                <ul className="space-y-2 text-sm text-gray-300">
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="w-4 h-4 text-green-400 mt-0.5 flex-shrink-0" />
-                    <span>Operação completa do sistema de disparos</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="w-4 h-4 text-green-400 mt-0.5 flex-shrink-0" />
-                    <span>Manutenção e monitoramento das instâncias</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="w-4 h-4 text-green-400 mt-0.5 flex-shrink-0" />
-                    <span>Agente IA configurado e otimizado</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="w-4 h-4 text-green-400 mt-0.5 flex-shrink-0" />
-                    <span>Dashboard de acompanhamento</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="w-4 h-4 text-green-400 mt-0.5 flex-shrink-0" />
-                    <span>Suporte técnico contínuo</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="w-4 h-4 text-green-400 mt-0.5 flex-shrink-0" />
-                    <span>Relatórios mensais de performance</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="w-4 h-4 text-green-400 mt-0.5 flex-shrink-0" />
-                    <span>Otimizações contínuas</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
+        {/* 6. O Que Vocês Recebem no Final */}
+        <FinalDeliverablesSection />
 
-            {/* Sistema Anti-Bloqueio */}
-            <div className="bg-gradient-to-r from-purple-900/40 to-fuchsia-900/30 p-6 rounded-xl border border-purple-400/30">
-              <h5 className="font-semibold text-purple-300 mb-4 text-lg flex items-center gap-2">
-                <Shield className="w-5 h-5" />
-                Sistema Anti-Bloqueio
-              </h5>
-              <div className="grid md:grid-cols-3 gap-4">
-                <div className="text-center">
-                  <p className="text-3xl font-bold text-purple-300">250</p>
-                  <p className="text-sm text-gray-400">mensagens/dia por instância</p>
-                </div>
-                <div className="text-center">
-                  <p className="text-3xl font-bold text-fuchsia-300">7.500</p>
-                  <p className="text-sm text-gray-400">mensagens/mês por instância</p>
-                </div>
-                <div className="text-center">
-                  <p className="text-3xl font-bold text-violet-300">Rotação</p>
-                  <p className="text-sm text-gray-400">automática de números</p>
-                </div>
-              </div>
-            </div>
+        {/* 7. Por Que o Risco é Baixo */}
+        <LowRiskSection />
 
-            {/* Fluxo Visual */}
-            <div>
-              <h5 className="font-semibold mb-4 text-lg text-gray-200 text-center">📋 Como Funciona:</h5>
-              <div className="flex flex-wrap justify-center items-center gap-3 md:gap-4">
-                <div className="bg-gradient-to-br from-purple-900/50 to-transparent p-4 rounded-xl border border-purple-400/30 text-center min-w-[120px]">
-                  <Send className="w-7 h-7 text-purple-400 mx-auto mb-2" />
-                  <p className="text-xs text-purple-200 font-medium">1. Disparo</p>
-                </div>
-                <ArrowRight className="w-5 h-5 text-purple-400 hidden md:block" />
-                <div className="bg-gradient-to-br from-green-900/50 to-transparent p-4 rounded-xl border border-green-400/30 text-center min-w-[120px]">
-                  <MessageCircle className="w-7 h-7 text-green-400 mx-auto mb-2" />
-                  <p className="text-xs text-green-200 font-medium">2. Resposta</p>
-                </div>
-                <ArrowRight className="w-5 h-5 text-green-400 hidden md:block" />
-                <div className="bg-gradient-to-br from-blue-900/50 to-transparent p-4 rounded-xl border border-blue-400/30 text-center min-w-[120px]">
-                  <Bot className="w-7 h-7 text-blue-400 mx-auto mb-2" />
-                  <p className="text-xs text-blue-200 font-medium">3. IA Qualifica</p>
-                </div>
-                <ArrowRight className="w-5 h-5 text-blue-400 hidden md:block" />
-                <div className="bg-gradient-to-br from-amber-900/50 to-transparent p-4 rounded-xl border border-amber-400/30 text-center min-w-[120px]">
-                  <UserCheck className="w-7 h-7 text-amber-400 mx-auto mb-2" />
-                  <p className="text-xs text-amber-200 font-medium">4. Vendedor</p>
-                </div>
-                <ArrowRight className="w-5 h-5 text-amber-400 hidden md:block" />
-                <div className="bg-gradient-to-br from-emerald-900/50 to-transparent p-4 rounded-xl border border-emerald-400/30 text-center min-w-[120px]">
-                  <Trophy className="w-7 h-7 text-emerald-400 mx-auto mb-2" />
-                  <p className="text-xs text-emerald-200 font-medium">5. Venda!</p>
-                </div>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Detalhes Consultoria */}
-        <Card className="border-2 border-cyan-500/30 bg-gradient-to-br from-cyan-900/20 to-blue-900/10 backdrop-blur-sm mb-8">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-3 text-2xl">
-              <GraduationCap className="w-7 h-7 text-cyan-400" />
-              <span className="bg-gradient-to-r from-cyan-300 to-blue-300 bg-clip-text text-transparent">Detalhes: Consultoria Técnica</span>
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-6">
-            {/* Formato */}
-            <div className="grid md:grid-cols-4 gap-4">
-              <div className="bg-gradient-to-br from-cyan-900/40 to-transparent p-4 rounded-xl border border-cyan-500/30 text-center">
-                <Calendar className="w-8 h-8 text-cyan-400 mx-auto mb-2" />
-                <p className="text-2xl font-bold text-cyan-300">3</p>
-                <p className="text-sm text-gray-400">meses</p>
-              </div>
-              <div className="bg-gradient-to-br from-blue-900/40 to-transparent p-4 rounded-xl border border-blue-500/30 text-center">
-                <Clock className="w-8 h-8 text-blue-400 mx-auto mb-2" />
-                <p className="text-2xl font-bold text-blue-300">2x</p>
-                <p className="text-sm text-gray-400">por semana</p>
-              </div>
-              <div className="bg-gradient-to-br from-teal-900/40 to-transparent p-4 rounded-xl border border-teal-500/30 text-center">
-                <Video className="w-8 h-8 text-teal-400 mx-auto mb-2" />
-                <p className="text-2xl font-bold text-teal-300">2-3h</p>
-                <p className="text-sm text-gray-400">por sessão</p>
-              </div>
-              <div className="bg-gradient-to-br from-indigo-900/40 to-transparent p-4 rounded-xl border border-indigo-500/30 text-center">
-                <Users className="w-8 h-8 text-indigo-400 mx-auto mb-2" />
-                <p className="text-2xl font-bold text-indigo-300">3</p>
-                <p className="text-sm text-gray-400">participantes</p>
-              </div>
-            </div>
-
-            {/* Modalidade */}
-            <div className="bg-gradient-to-r from-cyan-900/30 to-blue-900/20 p-5 rounded-xl border border-cyan-500/30">
-              <p className="text-center text-gray-300">
-                <span className="text-cyan-300 font-semibold">📍 Modalidade flexível:</span> Presencial ou via meeting — você escolhe o que funciona melhor para a equipe.
-              </p>
-            </div>
-
-            {/* Stack Técnica */}
-            <div className="bg-gradient-to-br from-slate-800/50 to-transparent p-5 rounded-xl border border-slate-600/30">
-              <h5 className="font-semibold text-white mb-4 flex items-center gap-2">
-                <Code className="w-5 h-5 text-cyan-400" />
-                Stack Técnica que Será Ensinada
-              </h5>
-              <div className="grid md:grid-cols-2 gap-3">
-                <div className="flex items-center gap-3 p-3 bg-slate-800/40 rounded-lg">
-                  <Database className="w-5 h-5 text-blue-400" />
-                  <span className="text-gray-300 text-sm">PostgreSQL (Banco de Dados)</span>
-                </div>
-                <div className="flex items-center gap-3 p-3 bg-slate-800/40 rounded-lg">
-                  <Cpu className="w-5 h-5 text-purple-400" />
-                  <span className="text-gray-300 text-sm">Edge Functions (TypeScript)</span>
-                </div>
-                <div className="flex items-center gap-3 p-3 bg-slate-800/40 rounded-lg">
-                  <Code className="w-5 h-5 text-cyan-400" />
-                  <span className="text-gray-300 text-sm">React + TypeScript (Frontend)</span>
-                </div>
-                <div className="flex items-center gap-3 p-3 bg-slate-800/40 rounded-lg">
-                  <Zap className="w-5 h-5 text-yellow-400" />
-                  <span className="text-gray-300 text-sm">Low-code + Funções Serverless</span>
-                </div>
-                <div className="flex items-center gap-3 p-3 bg-slate-800/40 rounded-lg">
-                  <MessageCircle className="w-5 h-5 text-green-400" />
-                  <span className="text-gray-300 text-sm">WhatsApp API (Oficial + Não-oficial)</span>
-                </div>
-                <div className="flex items-center gap-3 p-3 bg-slate-800/40 rounded-lg">
-                  <Bot className="w-5 h-5 text-pink-400" />
-                  <span className="text-gray-300 text-sm">OpenAI API (IA para qualificação)</span>
-                </div>
-                <div className="flex items-center gap-3 p-3 bg-slate-800/40 rounded-lg">
-                  <Mail className="w-5 h-5 text-red-400" />
-                  <span className="text-gray-300 text-sm">Plataformas de Email Marketing</span>
-                </div>
-                <div className="flex items-center gap-3 p-3 bg-slate-800/40 rounded-lg">
-                  <FileSpreadsheet className="w-5 h-5 text-emerald-400" />
-                  <span className="text-gray-300 text-sm">CSV, APIs externas, CRMs</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Cronograma */}
-            <div className="space-y-4">
-              <h5 className="font-semibold text-white flex items-center gap-2">
-                <Calendar className="w-5 h-5 text-cyan-400" />
-                Cronograma de 3 Meses
-              </h5>
-              
-              {/* Mês 1 */}
-              <div className="bg-gradient-to-r from-blue-900/40 to-transparent p-5 rounded-xl border border-blue-500/30">
-                <h6 className="font-semibold text-blue-300 mb-3 flex items-center gap-2">
-                  <Badge className="bg-blue-500/30 text-blue-200 border-blue-500/50">Mês 1</Badge>
-                  Fundamentos + Backend
-                </h6>
-                <div className="grid md:grid-cols-2 gap-4 text-sm">
-                  <div>
-                    <p className="text-gray-400 mb-2 font-medium">Semana 1-2: Banco de Dados</p>
-                    <ul className="space-y-1 text-gray-300">
-                      <li>• PostgreSQL/SQL avançado</li>
-                      <li>• Modelagem para CRM e prospecção</li>
-                      <li>• Migrations e versionamento</li>
-                      <li>• Estrutura de leads e campanhas</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <p className="text-gray-400 mb-2 font-medium">Semana 3-4: Backend</p>
-                    <ul className="space-y-1 text-gray-300">
-                      <li>• Edge Functions (TypeScript)</li>
-                      <li>• APIs REST e webhooks</li>
-                      <li>• Autenticação e segurança</li>
-                      <li>• Filas e processamento assíncrono</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-
-              {/* Mês 2 */}
-              <div className="bg-gradient-to-r from-purple-900/40 to-transparent p-5 rounded-xl border border-purple-500/30">
-                <h6 className="font-semibold text-purple-300 mb-3 flex items-center gap-2">
-                  <Badge className="bg-purple-500/30 text-purple-200 border-purple-500/50">Mês 2</Badge>
-                  WhatsApp + Automação
-                </h6>
-                <div className="grid md:grid-cols-2 gap-4 text-sm">
-                  <div>
-                    <p className="text-gray-400 mb-2 font-medium">Semana 5-6: WhatsApp e Meta</p>
-                    <ul className="space-y-1 text-gray-300">
-                      <li>• WhatsApp Business API (oficial)</li>
-                      <li>• Verificação Meta Business</li>
-                      <li>• APIs não-oficiais e contingência</li>
-                      <li>• Rotação e anti-bloqueio</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <p className="text-gray-400 mb-2 font-medium">Semana 7-8: Automação</p>
-                    <ul className="space-y-1 text-gray-300">
-                      <li>• Fluxos low-code + Edge Functions</li>
-                      <li>• Conexão com APIs (CRMs, ERPs)</li>
-                      <li>• Importação e processamento de CSV</li>
-                      <li>• Chaves de API e segurança</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-
-              {/* Mês 3 */}
-              <div className="bg-gradient-to-r from-emerald-900/40 to-transparent p-5 rounded-xl border border-emerald-500/30">
-                <h6 className="font-semibold text-emerald-300 mb-3 flex items-center gap-2">
-                  <Badge className="bg-emerald-500/30 text-emerald-200 border-emerald-500/50">Mês 3</Badge>
-                  IA + Interface + Go-live
-                </h6>
-                <div className="grid md:grid-cols-2 gap-4 text-sm">
-                  <div>
-                    <p className="text-gray-400 mb-2 font-medium">Semana 9-10: Inteligência Artificial</p>
-                    <ul className="space-y-1 text-gray-300">
-                      <li>• OpenAI API (GPT para qualificação)</li>
-                      <li>• Prompt engineering para vendas</li>
-                      <li>• Contexto e memória de conversas</li>
-                      <li>• Otimização de custos</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <p className="text-gray-400 mb-2 font-medium">Semana 11-12: Frontend + Go-live</p>
-                    <ul className="space-y-1 text-gray-300">
-                      <li>• Dashboard React/TypeScript</li>
-                      <li>• Gráficos e métricas (Recharts)</li>
-                      <li>• Email marketing (integração flexível)</li>
-                      <li>• Testes finais e lançamento</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Entregáveis */}
-            <div className="grid md:grid-cols-2 gap-4">
-              <div className="bg-gradient-to-br from-cyan-900/30 to-transparent p-4 rounded-xl border border-cyan-500/30">
-                <h5 className="font-semibold text-cyan-300 mb-3 flex items-center gap-2">
-                  <BookOpen className="w-5 h-5" />
-                  Entregáveis
-                </h5>
-                <ul className="space-y-2 text-sm text-gray-300">
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="w-4 h-4 text-green-400 mt-0.5" />
-                    <span>Documentação técnica completa</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="w-4 h-4 text-green-400 mt-0.5" />
-                    <span>Templates e código base</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="w-4 h-4 text-green-400 mt-0.5" />
-                    <span>Prompts de IA otimizados</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="w-4 h-4 text-green-400 mt-0.5" />
-                    <span>Scripts de importação CSV</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="w-4 h-4 text-green-400 mt-0.5" />
-                    <span>Gravações de todas as sessões</span>
-                  </li>
-                </ul>
-              </div>
-              <div className="bg-gradient-to-br from-blue-900/30 to-transparent p-4 rounded-xl border border-blue-500/30">
-                <h5 className="font-semibold text-blue-300 mb-3 flex items-center gap-2">
-                  <Headphones className="w-5 h-5" />
-                  Suporte Pós-Implementação
-                </h5>
-                <p className="text-sm text-gray-400 mb-3">Opcional: R$ 1.500/mês</p>
-                <ul className="space-y-2 text-sm text-gray-300">
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="w-4 h-4 text-green-400 mt-0.5" />
-                    <span>4h de consultoria/mês</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="w-4 h-4 text-green-400 mt-0.5" />
-                    <span>Respostas em até 24h</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="w-4 h-4 text-green-400 mt-0.5" />
-                    <span>Code review</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="w-4 h-4 text-green-400 mt-0.5" />
-                    <span>Troubleshooting</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* 5. Investimento (com preços) */}
+        {/* 8. Investimento */}
         <InvestmentSection />
+
+        {/* 9. Programa de Indicações */}
+        <ReferralProgramSection />
+
+        {/* 10. Suporte Pós-Contrato */}
+        <PostContractSupportSection />
+
+        {/* 11. Termos do Contrato */}
+        <ContractTermsSection />
 
         {/* FAQ */}
         <Card className="border-2 border-slate-600/30 bg-gradient-to-br from-slate-900/50 to-slate-800/30 backdrop-blur-sm mb-8">
@@ -489,41 +99,51 @@ export default function PropostaEvoluaDigital() {
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="bg-slate-800/40 p-4 rounded-xl">
-              <p className="font-semibold text-white mb-2">Qual modelo é melhor para a Evolua?</p>
+              <p className="font-semibold text-white mb-2">Por que 6 meses?</p>
               <p className="text-gray-400 text-sm">
-                Se o objetivo é resultado rápido sem preocupação técnica, o <span className="text-purple-300">Success Fee</span> é ideal. 
-                Se a empresa quer construir capacidade interna e não depender de terceiros, a <span className="text-cyan-300">Consultoria</span> faz mais sentido.
+                É o tempo ideal para implementar o sistema, gerar resultados consistentes, capacitar a equipe 
+                e fazer a transferência completa. Menos tempo não permitiria uma transferência de conhecimento adequada.
               </p>
             </div>
             <div className="bg-slate-800/40 p-4 rounded-xl">
-              <p className="font-semibold text-white mb-2">Posso começar com um pacote menor e aumentar?</p>
+              <p className="font-semibold text-white mb-2">O fee de 3% é sobre todo contrato que fechamos?</p>
               <p className="text-gray-400 text-sm">
-                Sim! No modelo Success Fee, você pode começar com o Starter (~112k mensagens) e aumentar conforme os resultados aparecerem.
+                Não! Apenas sobre vendas que vieram dos leads gerados pela nossa ferramenta de prospecção. 
+                Vendas de outros canais não entram no cálculo.
               </p>
             </div>
             <div className="bg-slate-800/40 p-4 rounded-xl">
-              <p className="font-semibold text-white mb-2">E se precisar de ambos?</p>
+              <p className="font-semibold text-white mb-2">E se precisarmos de suporte depois dos 6 meses?</p>
               <p className="text-gray-400 text-sm">
-                Podemos combinar! Exemplo: começar com Success Fee para resultado imediato e depois fazer a consultoria para transferir o conhecimento.
+                Oferecemos suporte opcional por R$ 1.200/mês. Mas muitas empresas operam 100% sozinhas após 
+                a transferência — o treinamento é feito justamente para isso.
               </p>
             </div>
             <div className="bg-slate-800/40 p-4 rounded-xl">
-              <p className="font-semibold text-white mb-2">Quantos participantes podem acompanhar a consultoria?</p>
+              <p className="font-semibold text-white mb-2">Podemos indicar outras empresas?</p>
               <p className="text-gray-400 text-sm">
-                Até 3 pessoas da equipe técnica podem participar das sessões ao vivo. Todos terão acesso às gravações.
+                Sim! Cada indicação de empresa do mesmo ramo que feche contrato conosco gera 5% de desconto 
+                na mensalidade de vocês. Máximo de 15% com 3 indicações.
+              </p>
+            </div>
+            <div className="bg-slate-800/40 p-4 rounded-xl">
+              <p className="font-semibold text-white mb-2">O sistema é nosso mesmo?</p>
+              <p className="text-gray-400 text-sm">
+                Sim! Ao final dos 6 meses, o código-fonte é transferido para o GitHub de vocês, com documentação 
+                completa. Vocês podem evoluir, modificar e usar sem pagar mais nada.
               </p>
             </div>
           </CardContent>
         </Card>
 
         {/* CTA Final */}
-        <Card className="border-2 border-purple-500/40 bg-gradient-to-br from-purple-900/30 to-fuchsia-900/20 backdrop-blur-sm shadow-2xl shadow-purple-500/30">
+        <Card className="border-2 border-emerald-500/40 bg-gradient-to-br from-emerald-900/30 to-teal-900/20 backdrop-blur-sm shadow-2xl shadow-emerald-500/30">
           <CardContent className="p-8 text-center">
-            <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-purple-300 to-fuchsia-300 bg-clip-text text-transparent">
-              Vamos Conversar?
+            <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-emerald-300 to-teal-300 bg-clip-text text-transparent">
+              Vamos Começar?
             </h3>
             <p className="text-gray-400 mb-6 max-w-xl mx-auto">
-              Ficou com alguma dúvida ou quer discutir qual modelo faz mais sentido para a Evolua? 
+              Ficou com alguma dúvida ou quer discutir os próximos passos? 
               Estou à disposição para uma conversa rápida.
             </p>
             <Button 
