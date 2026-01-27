@@ -1,51 +1,31 @@
 
 
-# Ajustes na Proposta Evolua Digital
+# Ajuste na Descrição das Sessões - Consultoria
 
-## Alterações Solicitadas
+## Alteração Necessária
 
-### 1. Badge "Preferido pela Diretoria" (Linha 86-89)
-
-**Alterar para algo mais neutro/estratégico:**
-
-| Opção | Texto |
-|-------|-------|
-| A | "Recomendado" |
-| B | "Parceria de Resultado" |
-| C | "Sem Risco Técnico" |
-
-**Sugestão:** Usar "Parceria de Resultado" - transmite a ideia de alinhamento sem mencionar diretoria.
-
-### 2. Remover Bloco de Projeção de Fee (Linhas 348-370)
-
-Você tem razão - mostra claramente que o fee é pequeno (R$ 225 - R$ 1.500) comparado à mensalidade de R$ 8.000. Isso pode gerar questionamento sobre o real benefício do modelo success fee.
-
-**Ação:** Remover completamente o bloco "Projeção de Fee (1.5%)" e manter apenas o bloco "O Que Está Incluso".
-
-### 3. Alterar Menção ao Resend (Linha 492-494 e 587)
-
-Trocar de específico para genérico:
-
-| Local | Antes | Depois |
-|-------|-------|--------|
-| Stack (linha 494) | "Resend (Email Marketing)" | "Plataformas de Email Marketing" |
-| Cronograma (linha 587) | "Email marketing com Resend" | "Email marketing (integração flexível)" |
-
-### 4. Reduzir Suporte Pós-Implementação (Linha 630)
+### Linha 186 - Formato das Sessões
 
 | Antes | Depois |
 |-------|--------|
-| R$ 3.000/mês | R$ 1.500/mês |
+| `48-72h de sessões ao vivo` | `72h de sessões (presencial ou via meeting)` |
+
+Essa alteração deixa claro que:
+1. O cliente pode escolher o formato
+2. Flexibilidade total de modalidade
+3. Mantém a carga horária definida de 72h
 
 ---
 
-## Resumo das Mudanças no Código
+## Resumo das Mudanças Pendentes
 
-| Arquivo | Linhas | Alteração |
-|---------|--------|-----------|
-| `PropostaEvoluaDigital.tsx` | 86-89 | Badge: "Parceria de Resultado" |
-| `PropostaEvoluaDigital.tsx` | 348-370 | Remover bloco de Projeção de Fee |
-| `PropostaEvoluaDigital.tsx` | 494 | "Plataformas de Email Marketing" |
-| `PropostaEvoluaDigital.tsx` | 587 | "Email marketing (integração flexível)" |
-| `PropostaEvoluaDigital.tsx` | 630 | R$ 1.500/mês |
+Combinando com as alterações anteriores do plano aprovado:
+
+| Linha | Campo | Antes | Depois |
+|-------|-------|-------|--------|
+| 184 | Valor | R$ 25.000 | **R$ 28.220** |
+| 186 | Formato | 48-72h de sessões ao vivo | **72h de sessões (presencial ou via meeting)** |
+| 228 | Parcela 1 | R$ 10.000 | **R$ 11.288** |
+| 232 | Parcela 2 | R$ 7.500 | **R$ 8.466** |
+| 236 | Parcela 3 | R$ 7.500 | **R$ 8.466** |
 
