@@ -84,9 +84,6 @@ export default function PropostaEvoluaDigital() {
         {/* 4. Duas Formas de Parceria (sem preço) */}
         <PartnershipModelsSection />
 
-        {/* 5. Investimento (com preços) */}
-        <InvestmentSection />
-
         {/* Tabela Comparativa */}
         <Card className="border-2 border-slate-600/30 bg-gradient-to-br from-slate-900/50 to-slate-800/30 backdrop-blur-sm mb-12">
           <CardHeader>
@@ -478,6 +475,9 @@ export default function PropostaEvoluaDigital() {
             </div>
           </CardContent>
         </Card>
+
+        {/* 5. Investimento (com preços) */}
+        <InvestmentSection />
 
         {/* FAQ */}
         <Card className="border-2 border-slate-600/30 bg-gradient-to-br from-slate-900/50 to-slate-800/30 backdrop-blur-sm mb-8">
