@@ -181,9 +181,9 @@ export default function PropostaEvoluaDigital() {
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="text-center py-4 bg-gradient-to-br from-cyan-900/40 to-transparent rounded-xl border border-cyan-500/30">
-                <p className="text-4xl font-bold text-white mb-1">R$ 25.000</p>
+                <p className="text-4xl font-bold text-white mb-1">R$ 28.220</p>
                 <p className="text-cyan-300 font-semibold">Programa de 3 meses</p>
-                <p className="text-sm text-gray-400 mt-2">48-72h de sessões ao vivo</p>
+                <p className="text-sm text-gray-400 mt-2">72h de sessões (presencial ou via meeting)</p>
               </div>
 
               <ul className="space-y-3">
@@ -225,15 +225,15 @@ export default function PropostaEvoluaDigital() {
                     <div className="space-y-2 text-sm">
                       <div className="flex justify-between text-gray-300">
                         <span>40% na assinatura</span>
-                        <span className="text-cyan-300">R$ 10.000</span>
+                        <span className="text-cyan-300">R$ 11.288</span>
                       </div>
                       <div className="flex justify-between text-gray-300">
                         <span>30% no início do mês 2</span>
-                        <span className="text-cyan-300">R$ 7.500</span>
+                        <span className="text-cyan-300">R$ 8.466</span>
                       </div>
                       <div className="flex justify-between text-gray-300">
                         <span>30% na entrega final</span>
-                        <span className="text-cyan-300">R$ 7.500</span>
+                        <span className="text-cyan-300">R$ 8.466</span>
                       </div>
                     </div>
                   </div>
