@@ -1,6 +1,7 @@
 
 import { Toaster } from "@/components/ui/toaster";
 import PropostaPromotrip from "./pages/PropostaPromotrip";
+import PropostaComunica from "./pages/PropostaComunica";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -65,6 +66,7 @@ const App = () => (
           <Route path="/babora-seguros" element={<PropostaBaboraSeguros />} />
           <Route path="/promotrip" element={<PropostaPromotrip />} />
           <Route path="/evolua-digital" element={<PropostaEvoluaDigital />} />
+          <Route path="/propostas/comunica" element={<PropostaComunica />} />
           <Route path="/apresentacao-evolua-digital" element={<ApresentacaoEvoluaDigital />} />
           <Route path="/contrato-match-solutions" element={<ContratoMatchSolutions />} />
           <Route path="/contrato-amanda-neves" element={<ContratoAmandaNeves />} />
