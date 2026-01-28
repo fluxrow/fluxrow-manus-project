@@ -4,7 +4,8 @@ import { FileText, TrendingUp } from 'lucide-react';
 const plans = [
   {
     name: "Start",
-    price: "450",
+    price: "550",
+    setup: "1.800",
     nfLimit: "250",
     nfRange: "Até 250",
     description: "Ideal para começar a automatizar",
@@ -15,6 +16,7 @@ const plans = [
   {
     name: "Growth",
     price: "650",
+    setup: "1.800",
     nfLimit: "500",
     nfRange: "251 a 500",
     description: "Para volume constante",
@@ -25,6 +27,7 @@ const plans = [
   {
     name: "Pro",
     price: "850",
+    setup: "1.800",
     nfLimit: "750",
     nfRange: "501 a 750",
     description: "Operação crítica",
@@ -35,6 +38,7 @@ const plans = [
   {
     name: "Scale",
     price: "950",
+    setup: "1.800",
     nfLimit: "1000",
     nfRange: "751 a 1000",
     description: "Grande escala",
@@ -69,6 +73,7 @@ export default function PlansSection() {
                 <span className="text-3xl font-bold text-white">{plan.price}</span>
                 <span className="text-gray-400 text-sm">/mês</span>
               </div>
+              <p className="text-gray-400 text-xs mt-2">+ Setup único: R$ {plan.setup}</p>
             </div>
             
             <div className="space-y-3 mb-6">

@@ -1,5 +1,5 @@
 import React from 'react';
-import { FileText, ShieldCheck, GitCompare, Layers, MessageCircle, History, BarChart3, Headphones } from 'lucide-react';
+import { FileText, ShieldCheck, GitCompare, Layers, MessageCircle, History, BarChart3, Headphones, FileCheck, PieChart } from 'lucide-react';
 
 const features = [
   { icon: FileText, label: "Envio de NF (PDF/XML) + boleto" },
@@ -9,6 +9,8 @@ const features = [
   { icon: MessageCircle, label: "WhatsApp + e-mail simultâneos" },
   { icon: History, label: "Histórico e auditoria completa" },
   { icon: BarChart3, label: "Dashboard de acompanhamento" },
+  { icon: FileCheck, label: "Baixa de boletos pagos" },
+  { icon: PieChart, label: "Relatórios gerenciais" },
   { icon: Headphones, label: "Suporte técnico incluso" },
 ];
 
