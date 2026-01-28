@@ -1,5 +1,5 @@
 import React from 'react';
-import { Shield, Users, FileText, Scan, Mail } from 'lucide-react';
+import { Shield, Users, FileText, Scan, Mail, BarChart3 } from 'lucide-react';
 
 const modules = [
   {
@@ -50,6 +50,17 @@ const modules = [
       "WhatsApp + e-mail simultâneos",
       "Status: queued, sent, failed",
       "Retry automático em caso de falha"
+    ]
+  },
+  {
+    number: "06",
+    icon: BarChart3,
+    title: "Relatórios e Baixas",
+    features: [
+      "Dashboard de boletos enviados e pendentes",
+      "Baixa manual ou automática de boletos pagos",
+      "Relatórios por período, cliente e status",
+      "Exportação em Excel/PDF"
     ]
   }
 ];
