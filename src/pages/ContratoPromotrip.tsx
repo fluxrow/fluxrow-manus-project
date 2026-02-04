@@ -60,7 +60,7 @@ const ContratoPromotrip = () => {
                 Endereço: Curitiba/PR<br />
                 E-mail: contato@fluxrow.com<br />
                 Telefone: (41) 99236-1868<br />
-                Chave PIX CNPJ: 61.260.831/0001-97
+                Chave PIX: 7a124eac-3cd8-4f24-aa83-40aa439900a1
               </p>
             </div>
           </div>
@@ -84,7 +84,7 @@ const ContratoPromotrip = () => {
             <li>• <strong>Avisos Inteligentes de Follow-up:</strong> Sistema de alertas para acompanhamento de leads</li>
           </ul>
           <p className="text-muted-foreground mt-4">
-            <strong>Importante:</strong> O sistema tem como objetivo <strong>qualificar e nutrir leads B2B</strong>. A conversão final permanece sob responsabilidade da equipe de vendas da CONTRATANTE (Alexandre).
+            <strong>Importante:</strong> O sistema tem como objetivo <strong>qualificar e nutrir leads B2B</strong>. A conversão final permanece sob responsabilidade da equipe de vendas da CONTRATANTE.
           </p>
         </div>
 
@@ -117,7 +117,7 @@ const ContratoPromotrip = () => {
             <ul className="ml-6 space-y-1">
               <li>• Valor: R$ 1.500,00</li>
               <li>• Forma: PIX</li>
-              <li>• Chave PIX (CNPJ): <strong>61.260.831/0001-97</strong></li>
+              <li>• Chave PIX: <strong>7a124eac-3cd8-4f24-aa83-40aa439900a1</strong></li>
               <li>• Momento: Junto com a assinatura do contrato</li>
             </ul>
 
@@ -149,7 +149,7 @@ const ContratoPromotrip = () => {
             <p><strong>4.2. PRAZO DE IMPLEMENTAÇÃO:</strong></p>
             <ul className="ml-6 space-y-1">
               <li>• Configuração inicial: 1 semana</li>
-              <li>• Treinamento da equipe (Alexandre): 1 sessão</li>
+              <li>• Treinamento da equipe: 1 sessão</li>
               <li>• Go-live: Até 10 dias após assinatura</li>
             </ul>
           </div>
@@ -187,7 +187,7 @@ const ContratoPromotrip = () => {
           </h3>
           <ul className="space-y-2 text-muted-foreground ml-6">
             <li>• Implementar o sistema de prospecção conforme especificações técnicas</li>
-            <li>• Fornecer treinamento para equipe da CONTRATANTE (Alexandre)</li>
+            <li>• Fornecer treinamento para equipe da CONTRATANTE</li>
             <li>• Manter disponibilidade do sistema</li>
             <li>• Gerar relatórios mensais de performance</li>
             <li>• Prestar suporte técnico durante vigência do contrato</li>
