@@ -1,134 +1,205 @@
 
 
-# Ajustes na Proposta Comunica
+# Ajuste Proposta + Contrato Promotrip
 
 ## Resumo das Alterações
 
-1. **Ajustar preço do plano Start** de R$ 450 para R$ 550
-2. **Adicionar taxa de setup** de R$ 1.800,00 para todos os planos
-3. **Incluir módulo de Relatórios e Baixas de Boletos** no sistema
+1. **Ajustar valor na proposta Promotrip** de R$ 2.200 para R$ 1.500/mês
+2. **Criar contrato Promotrip** baseado no modelo Match Solutions, sem assinatura digital - apenas botão de download PDF
 
 ---
 
-## Arquivos a Modificar
+## Dados do Contratante (extraídos do PDF)
 
-### 1. PlansSection.tsx
+| Campo | Valor |
+|-------|-------|
+| **Razão Social** | LINE AGENCIA DE VIAGENS LTDA |
+| **Nome Fantasia** | PROMOTRIP CORPORATE |
+| **CNPJ** | 40.789.152/0001-30 |
+| **Endereço** | Rua Pedro Horokoski, 60, Campo Comprido |
+| **Cidade/UF** | Curitiba/PR |
+| **CEP** | 81.210-130 |
+| **E-mail** | financeiro@promotripcorporate.com |
+| **Telefone** | (41) 8851-8644 |
 
-**Alterações:**
-- Mudar o preço do Start de "450" para "550"
-- Adicionar campo `setup: "1.800"` em todos os planos
-- Exibir a taxa de setup abaixo do preço mensal em cada card
+## Dados do Contratado (Fluxrow - já existente)
 
-**Estrutura atualizada dos planos:**
-```text
-┌──────────────┬──────────────┬──────────────┬──────────────┐
-│    START     │    GROWTH    │     PRO      │    SCALE     │
-├──────────────┼──────────────┼──────────────┼──────────────┤
-│  R$ 550/mês  │  R$ 650/mês  │  R$ 850/mês  │  R$ 950/mês  │
-│ Setup: 1.800 │ Setup: 1.800 │ Setup: 1.800 │ Setup: 1.800 │
-├──────────────┼──────────────┼──────────────┼──────────────┤
-│  Até 250     │  251 a 500   │  501 a 750   │  751 a 1000  │
-│  NF/mês      │  NF/mês      │  NF/mês      │  NF/mês      │
-└──────────────┴──────────────┴──────────────┴──────────────┘
-```
-
-**Visual do setup:**
-- Linha adicional em cada card: "+ Setup único: R$ 1.800"
-- Texto em tom mais discreto (gray-400)
-- Separado do preço mensal para clareza
+| Campo | Valor |
+|-------|-------|
+| **Razão Social** | Fluxrow Inteligência Criativa |
+| **CNPJ** | 61.260.831/0001-97 |
+| **Endereço** | Curitiba/PR |
+| **E-mail** | contato@fluxrow.com |
+| **Telefone** | (41) 99236-1868 |
+| **Chave PIX** | 61.260.831/0001-97 |
 
 ---
 
-### 2. ModulesSection.tsx
+## Arquivos a Modificar/Criar
 
-**Adicionar Módulo 06 - Relatórios e Baixas:**
+### 1. PropostaPromotrip.tsx (Modificar)
 
-```tsx
-{
-  number: "06",
-  icon: BarChart3,  // ou FileCheck
-  title: "Relatórios e Baixas",
-  features: [
-    "Dashboard de boletos enviados e pendentes",
-    "Baixa manual ou automática de boletos pagos",
-    "Relatórios por período, cliente e status",
-    "Exportação em Excel/PDF"
-  ]
-}
-```
+**Alteração simples:**
+- Linha 794: Mudar `R$ 2.200` para `R$ 1.500`
 
-Este novo módulo aparecerá na timeline após "Fila de Envios".
+### 2. ContratoPromotrip.tsx (Criar)
 
----
+Novo contrato baseado no template Match Solutions, com as seguintes diferenças:
 
-### 3. FeaturesSection.tsx
+| Aspecto | Match Solutions | Promotrip |
+|---------|-----------------|-----------|
+| Valor mensal | R$ 5.200/mês | **R$ 1.500/mês** |
+| Prazo | 3 meses | **1 mês (teste)** |
+| Renovação | Automática | **Mediante acordo prévio + nova assinatura** |
+| Assinatura digital | Sim (edge function) | **Não - apenas botão Baixar PDF** |
+| CNPJ contratante | 34.325.200/0001-36 | **40.789.152/0001-30** |
+| Empresa | Match Solutions | **Line Agência de Viagens LTDA** |
+| Nome fantasia | - | **Promotrip Corporate** |
 
-**Adicionar novas features relacionadas:**
+### 3. App.tsx (Modificar)
 
-```tsx
-{ icon: FileCheck, label: "Baixa de boletos pagos" },
-{ icon: PieChart, label: "Relatórios gerenciais" },
-```
-
-Ou ajustar os existentes para incluir:
-- "Relatórios por período e cliente"
-- "Baixa manual e automática de boletos"
+Adicionar rota: `/contrato-promotrip`
 
 ---
 
-## Detalhamento Visual
+## Estrutura do Contrato Promotrip
 
-### Card de Plano (após alteração)
+**CABEÇALHO**
+- Contrato de Prestação de Serviços
+- Sistema de Prospecção B2B com IA para Promotrip Corporate
 
-```text
-┌─────────────────────────────┐
-│         START               │
-│                             │
-│      R$ 550/mês             │
-│   + Setup único: R$ 1.800   │
-│                             │
-├─────────────────────────────┤
-│  📄 Até 250 NF/mês          │
-├─────────────────────────────┤
-│  Ideal para começar         │
-│  a automatizar              │
-└─────────────────────────────┘
+**PARTES**
 ```
+CONTRATANTE:
+LINE AGENCIA DE VIAGENS LTDA
+CNPJ: 40.789.152/0001-30
+Rua Pedro Horokoski, 60 - Campo Comprido
+Curitiba/PR - CEP: 81.210-130
+E-mail: financeiro@promotripcorporate.com
+Tel: (41) 8851-8644
 
-### Novo Módulo na Timeline
-
-```text
-┌─────────────────────────────┐
-│  06  RELATÓRIOS E BAIXAS    │
-├─────────────────────────────┤
-│  • Dashboard de boletos     │
-│    enviados e pendentes     │
-│  • Baixa manual/automática  │
-│    de boletos pagos         │
-│  • Relatórios por período,  │
-│    cliente e status         │
-│  • Exportação Excel/PDF     │
-└─────────────────────────────┘
+CONTRATADA:
+Fluxrow Inteligência Criativa
+CNPJ: 61.260.831/0001-97
+Curitiba/PR
+E-mail: contato@fluxrow.com
+Tel: (41) 99236-1868
+Chave PIX: 61.260.831/0001-97
 ```
 
 ---
 
-## Resumo de Alterações por Arquivo
+## Cláusulas do Contrato
 
-| Arquivo | Alterações |
-|---------|------------|
-| `PlansSection.tsx` | Preço Start → 550, adicionar setup R$ 1.800 em todos |
-| `ModulesSection.tsx` | Adicionar módulo 06 "Relatórios e Baixas" |
-| `FeaturesSection.tsx` | Incluir "Baixa de boletos" e "Relatórios gerenciais" |
+### CLÁUSULA PRIMEIRA - DO OBJETO
+Sistema de Prospecção B2B com IA para Promotrip Corporate:
+- Agente de IA especializado para qualificação de leads B2B
+- Integração com base CSV de ~3.000 contatos
+- Disparos inteligentes WhatsApp (Z-API) + Email
+- Dashboard de controle e métricas
+- Avisos inteligentes de follow-up
+
+### CLÁUSULA SEGUNDA - DO PRAZO
+- **1 (um) mês** inicial para testes
+- Renovação mediante acordo prévio com nova assinatura
+- Pode manter mesmo período ou aumentar conforme necessidade
+- Não há renovação automática
+
+### CLÁUSULA TERCEIRA - DO VALOR E PAGAMENTO
+- **Valor Mensal:** R$ 1.500,00
+- **Forma:** PIX
+- **Chave PIX (CNPJ):** 61.260.831/0001-97
+- **Taxa de implementação:** ISENTA
+
+### CLÁUSULA QUARTA - DO ESCOPO TÉCNICO
+**Inclui:**
+- Disparos WhatsApp via Z-API
+- Email Marketing integrado
+- Integração com base CSV (~3.000 contatos)
+- Personalização por setor empresarial
+- Agente de IA especializado
+- Dashboard de controle
+- Avisos inteligentes de follow-up
+
+### CLÁUSULA QUINTA - DA CAPACIDADE TÉCNICA
+- Operação 24/7 via agente de IA
+- Base de ~3.000 contatos
+- Segmentação por setor empresarial
+- Tempo de resposta < 5 segundos
+
+### CLÁUSULA SEXTA - OBRIGAÇÕES DA CONTRATADA
+- Implementar sistema conforme especificações
+- Fornecer treinamento à equipe (Alexandre)
+- Manter disponibilidade do sistema
+- Gerar relatórios mensais
+- Prestar suporte técnico
+- Garantir sigilo (LGPD)
+
+### CLÁUSULA SÉTIMA - OBRIGAÇÕES DA CONTRATANTE
+- Fornecer base CSV de contatos
+- Definir segmentos e prioridades
+- Disponibilizar equipe para atendimento de leads
+- Efetuar pagamentos nas datas acordadas
+
+### CLÁUSULA OITAVA - DO SLA
+- Uptime: 99%
+- Suporte: resposta em 24h úteis
+- Problemas críticos: 4h
+
+### CLÁUSULA NONA - CONFIDENCIALIDADE E LGPD
+(Mesma estrutura do Match Solutions)
+
+### CLÁUSULA DÉCIMA - DA RESCISÃO
+- Aviso prévio de 30 dias
+- Inadimplência > 15 dias = suspensão
+- Não entrega no prazo = rescisão sem multa
+
+### CLÁUSULA DÉCIMA PRIMEIRA - MEDIAÇÃO E CONFLITOS
+(Mesma estrutura do Match Solutions)
+
+### CLÁUSULA DÉCIMA SEGUNDA - DISPOSIÇÕES GERAIS
+(Mesma estrutura do Match Solutions)
+
+### CLÁUSULA DÉCIMA TERCEIRA - DO FORO
+- Foro da comarca de Curitiba/PR
 
 ---
 
-## Ícones a Usar
+## Diferenças do Match Solutions
 
-| Contexto | Ícone Lucide |
-|----------|--------------|
-| Relatórios | BarChart3 ou PieChart |
-| Baixas | FileCheck ou CheckCircle2 |
-| Exportação | Download |
-| Dashboard | LayoutDashboard |
+**Removido:**
+- Toda a lógica de assinatura digital (useState, useEffect, edge function)
+- Botão "Assinar Digitalmente"
+- Status de assinatura
+- Campos de representante legal
+- Testemunhas
+
+**Mantido:**
+- Botão "Baixar PDF" (window.print())
+- Estrutura visual das cláusulas
+- Layout responsivo
+- Estilo visual do contrato
+
+---
+
+## Seção de Assinaturas (Simplificada)
+
+Apenas campos em branco para assinatura física:
+
+```
+CONTRATANTE                      CONTRATADA
+_________________________       _________________________
+LINE AGENCIA DE VIAGENS LTDA    Fluxrow Inteligência Criativa
+CNPJ: 40.789.152/0001-30        CNPJ: 61.260.831/0001-97
+```
+
+---
+
+## Resumo dos Arquivos
+
+| Ação | Arquivo | Descrição |
+|------|---------|-----------|
+| Modificar | `PropostaPromotrip.tsx` | Valor de R$ 2.200 → R$ 1.500 |
+| Criar | `ContratoPromotrip.tsx` | Contrato completo sem assinatura digital |
+| Modificar | `App.tsx` | Adicionar rota `/contrato-promotrip` |
 
