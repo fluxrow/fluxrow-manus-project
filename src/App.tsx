@@ -31,6 +31,7 @@ import ApresentacaoEvoluaDigital from "./pages/ApresentacaoEvoluaDigital";
 import ContratoMatchSolutions from "./pages/ContratoMatchSolutions";
 import ContratoAmandaNeves from "./pages/ContratoAmandaNeves";
 import ContratoAssinatura from "./pages/ContratoAssinatura";
+import ContratoPromotrip from "./pages/ContratoPromotrip";
 import ResetContrato from "./pages/ResetContrato";
 import RelatorioFachini from "./pages/RelatorioFachini";
 import RelatorioSemanalFachini from "./pages/RelatorioSemanalFachini";
@@ -70,6 +71,7 @@ const App = () => (
           <Route path="/apresentacao-evolua-digital" element={<ApresentacaoEvoluaDigital />} />
           <Route path="/contrato-match-solutions" element={<ContratoMatchSolutions />} />
           <Route path="/contrato-amanda-neves" element={<ContratoAmandaNeves />} />
+          <Route path="/contrato-promotrip" element={<ContratoPromotrip />} />
           <Route path="/contrato/:cliente/assinar" element={<ContratoAssinatura />} />
           <Route path="/admin/reset-contrato" element={<ResetContrato />} />
           <Route path="/admin/test-reportei" element={<AdminTestReportei />} />
