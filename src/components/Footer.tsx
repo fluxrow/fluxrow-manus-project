@@ -7,7 +7,10 @@ const Footer = () => {
       <div className="max-w-6xl mx-auto px-6">
         <div className="footer-content flex flex-col md:flex-row justify-between items-center mb-8">
           <div className="footer-brand text-center md:text-left mb-4 md:mb-0">
-            <h3 className="text-2xl font-bold gradient-text font-space-grotesk mb-2">
+            <h3 
+              className="text-2xl font-bold gradient-text mb-2"
+              style={{ fontFamily: 'Akony, sans-serif' }}
+            >
               Fluxrow
             </h3>
             <p className="text-white/70 font-space-grotesk">

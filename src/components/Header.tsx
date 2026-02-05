@@ -40,7 +40,10 @@ const Header = () => {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
-            <div className="text-2xl font-bold gradient-text font-space-grotesk">
+            <div 
+              className="text-2xl font-bold gradient-text"
+              style={{ fontFamily: 'Akony, sans-serif' }}
+            >
               Fluxrow Start
             </div>
           </Link>
