@@ -1,39 +1,59 @@
 import React from 'react';
 import { Bot, Megaphone, Globe, Palette } from 'lucide-react';
-import { GlowCard } from '../ui/spotlight-card';
+import { ServiceCarousel, ServiceOffer } from '../ui/service-carousel';
+
+const services: ServiceOffer[] = [
+  {
+    id: 1,
+    imageSrc: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&auto=format&fit=crop&q=80",
+    imageAlt: "Automações e Inteligência Artificial",
+    tag: "Tecnologia",
+    title: "Automações e IA",
+    description: "Fluxos inteligentes que trabalham 24h por você: WhatsApp, e-mail, CRM, agentes virtuais e integrações com IA.",
+    icon: Bot,
+    benefit: "Economia de 20h/semana",
+    href: "#contact"
+  },
+  {
+    id: 2,
+    imageSrc: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800&auto=format&fit=crop&q=80",
+    imageAlt: "Marketing e Conteúdo Digital",
+    tag: "Criativo",
+    title: "Marketing e Conteúdo",
+    description: "Criação de posts, campanhas, blogs e social media com consistência e estratégia.",
+    icon: Megaphone,
+    benefit: "Conteúdo que converte",
+    href: "#contact"
+  },
+  {
+    id: 3,
+    imageSrc: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop&q=80",
+    imageAlt: "Desenvolvimento de Websites",
+    tag: "Desenvolvimento",
+    title: "Websites e Landing Pages",
+    description: "Sites modernos em Lovable ou Webflow, com foco em performance e integração total.",
+    icon: Globe,
+    benefit: "Alta conversão",
+    href: "#contact"
+  },
+  {
+    id: 4,
+    imageSrc: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&auto=format&fit=crop&q=80",
+    imageAlt: "Branding e Design Criativo",
+    tag: "Design",
+    title: "Branding e Criativos",
+    description: "Identidade visual, carrosséis, renders 3D e designs prontos para engajar e converter.",
+    icon: Palette,
+    benefit: "Identidade única",
+    href: "#contact"
+  }
+];
 
 const ServicesGrid = () => {
-  const services = [
-    {
-      icon: Bot,
-      title: "Automações e IA",
-      description: "Fluxos inteligentes que trabalham 24h por você: WhatsApp, e-mail, CRM, agentes virtuais e integrações com IA.",
-      gradient: "from-cyan-500 to-blue-600"
-    },
-    {
-      icon: Megaphone,
-      title: "Marketing e Conteúdo",
-      description: "Criação de posts, campanhas, blogs e social media com consistência e estratégia.",
-      gradient: "from-purple-500 to-pink-600"
-    },
-    {
-      icon: Globe,
-      title: "Websites e Landing Pages",
-      description: "Sites modernos em Lovable ou Webflow, com foco em performance e integração total.",
-      gradient: "from-green-500 to-teal-600"
-    },
-    {
-      icon: Palette,
-      title: "Branding e Criativos",
-      description: "Identidade visual, carrosséis, renders 3D e designs prontos para engajar e converter.",
-      gradient: "from-yellow-500 to-orange-600"
-    }
-  ];
-
   return (
-    <section id="services" className="py-20 px-6 relative z-10">
+    <section id="services" className="py-20 relative z-10">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
+        <div className="text-center mb-12 px-6">
           <h2 className="section-title font-space-grotesk gradient-text">
             O que fazemos
           </h2>
@@ -42,34 +62,7 @@ const ServicesGrid = () => {
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {services.map((service, index) => {
-            const Icon = service.icon;
-            return (
-              <GlowCard 
-                key={index}
-                glowColor={index === 0 ? 'blue' : index === 1 ? 'purple' : index === 2 ? 'green' : 'orange'}
-                customSize={true}
-                className="p-8 text-center group hover:scale-105 transition-all duration-500 h-full"
-                data-aos="fade-up"
-                data-aos-delay={index * 100}
-              >
-                <div className={`w-16 h-16 mx-auto mb-6 rounded-full bg-gradient-to-r ${service.gradient} p-4 group-hover:scale-110 transition-transform duration-300`}>
-                  <Icon className="w-full h-full text-white" />
-                </div>
-                
-                <h3 className="text-xl font-bold mb-4 font-space-grotesk text-white group-hover:text-cyan-400 transition-colors">
-                  {service.title}
-                </h3>
-                
-                <p className="text-white/90 leading-relaxed group-hover:text-white transition-colors">
-                  {service.description}
-                </p>
-                
-              </GlowCard>
-            );
-          })}
-        </div>
+        <ServiceCarousel services={services} />
       </div>
     </section>
   );
