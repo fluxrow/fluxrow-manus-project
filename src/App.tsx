@@ -37,6 +37,7 @@ import RelatorioFachini from "./pages/RelatorioFachini";
 import RelatorioSemanalFachini from "./pages/RelatorioSemanalFachini";
 import AdminTestReportei from "./pages/AdminTestReportei";
 import AdminRelatorios from "./pages/AdminRelatorios";
+import PropostaTeresopolis from "./pages/PropostaTeresopolis";
 
 const queryClient = new QueryClient();
 
@@ -78,6 +79,7 @@ const App = () => (
           <Route path="/admin/relatorios" element={<AdminRelatorios />} />
           <Route path="/relatorio/fachini-mensal" element={<RelatorioFachini />} />
           <Route path="/relatorio/fachini-semanal" element={<RelatorioSemanalFachini />} />
+          <Route path="/proposta-teresopolis" element={<PropostaTeresopolis />} />
           <Route path="/conteudos/:slug" element={<div>Página Individual de Conteúdo</div>} />
           <Route path="/contato" element={<Contato />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
