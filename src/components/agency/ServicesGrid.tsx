@@ -187,7 +187,7 @@ const services: ServiceOffer[] = [
   },
   {
     id: 8,
-    imageSrc: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&auto=format&fit=crop&q=80",
+    imageSrc: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop&q=80",
     imageAlt: "Sistemas e Aplicativos Web",
     tag: "Produto",
     title: "Sistemas Web",
