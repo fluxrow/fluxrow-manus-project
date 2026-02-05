@@ -117,7 +117,7 @@ const AgencyCTA = () => {
           {/* Company Signature */}
           <div className="mt-8 pt-6 border-t border-gray-800">
             <p className="text-white/60 text-sm">
-              <span className="gradient-text font-semibold">Fluxrow</span> – Automação, IA e Criatividade que entregam resultados.
+              <span className="gradient-text font-semibold" style={{ fontFamily: 'Akony, sans-serif' }}>Fluxrow</span> – Automação, IA e Criatividade que entregam resultados.
             </p>
           </div>
         </div>

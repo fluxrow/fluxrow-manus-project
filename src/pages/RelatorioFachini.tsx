@@ -109,7 +109,10 @@ const RelatorioFachini = () => {
       <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <span className="bg-gradient-to-r from-purple-400 via-pink-500 to-cyan-400 bg-clip-text text-transparent font-bold text-xl">
+            <span 
+              className="bg-gradient-to-r from-purple-400 via-pink-500 to-cyan-400 bg-clip-text text-transparent font-bold text-xl"
+              style={{ fontFamily: 'Akony, sans-serif' }}
+            >
               Fluxrow
             </span>
             <Link to="/">
