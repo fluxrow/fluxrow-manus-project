@@ -1,275 +1,322 @@
 
+# Upgrade Visual da Proposta Teresópolis Shopping
 
-# Proposta Teresópolis Shopping - Central de IA Multicanal
+## Análise Comparativa
 
-## Visão Geral
+### O que a Apresentação Evolua Digital tem de diferente:
 
-Uma proposta completa e impactante para a **Ingrid Bosi** do **Teresópolis Shopping**, focando em resolver problemas reais e tangíveis, com precificação baseada em **valor entregue** (problemas resolvidos) em vez de quantidade de atendimentos.
-
----
-
-## Sistemas de Integração Identificados
-
-| Sistema | Nome Correto | Função |
-|---------|--------------|--------|
-| Group Shopping | **Group Shopping** (Group Software) | Gestão financeira, contratos, cobrança |
-| BeMall CRM | **BeMall CRM** (Be Sistemas) | CRM para shoppings, marketing, portal lojista |
-| Com21 | **COM21 Online** (Group Software) | App de gestão condominial |
-
----
-
-## Estrutura da Proposta (Componentizada)
-
-### Arquivos a Criar
-
-| Arquivo | Descrição |
-|---------|-----------|
-| `src/pages/PropostaTeresopolis.tsx` | Página principal |
-| `src/components/teresopolis/ProblemSection.tsx` | Problemas destrinchados (8 cards) |
-| `src/components/teresopolis/SolutionSection.tsx` | Soluções destrinchadas (8 cards) |
-| `src/components/teresopolis/ChannelsSection.tsx` | Canais integrados (WhatsApp, Insta, FB, Email) |
-| `src/components/teresopolis/ScopeB2CSection.tsx` | Escopo detalhado para clientes |
-| `src/components/teresopolis/ScopeB2BSection.tsx` | Escopo detalhado para lojistas |
-| `src/components/teresopolis/IntelligenceSection.tsx` | Índices de comportamento e analytics |
-| `src/components/teresopolis/IntegrationsSection.tsx` | Group Shopping + BeMall CRM |
-| `src/components/teresopolis/GamificationSection.tsx` | Sistema de pontos para lojistas |
-| `src/components/teresopolis/PlansSection.tsx` | 3 planos por valor entregue |
-| `src/components/teresopolis/TimelineSection.tsx` | Cronograma 4-5 semanas |
-| `src/components/teresopolis/FAQSection.tsx` | Perguntas frequentes |
-| `src/components/teresopolis/LowRiskSection.tsx` | Por que o risco é baixo |
-| Modificar: `src/App.tsx` | Adicionar rota `/proposta-teresopolis` |
+| Elemento | Evolua Digital | Teresópolis Atual |
+|----------|----------------|-------------------|
+| **Fluxo visual** | Diagrama de etapas com setas animadas | Apenas cards estáticos |
+| **Simulação de Chat** | Conversa real entre cliente e IA | Não tem |
+| **Dashboard mockup** | Cards com métricas + barras de progresso | Apenas lista de métricas |
+| **Ranking visual** | Lista com medalhas e posições | Não tem |
+| **Status em tempo real** | Animações pulse, indicadores de status | Sem animações |
+| **Background effects** | Blur animado e gradientes pulsantes | Gradiente estático |
+| **Exemplos concretos** | Nomes, valores, percentuais simulados | Descrições genéricas |
 
 ---
 
-## Conteúdo Detalhado das Seções
+## Plano de Melhorias
 
-### 1. Header
+### 1. Página Principal (PropostaTeresopolis.tsx)
+
+**Adicionar Background Effects animados:**
 ```
-Olá, Ingrid!
-Proposta para Teresópolis Shopping
-Central de IA Multicanal para Atendimento e Relacionamento
-```
-
-### 2. OS PROBLEMAS (ProblemSection) - 8 Cards Impactantes
-
-| Ícone | Título | Descrição | Impacto |
-|-------|--------|-----------|---------|
-| Clock | Tempo perdido com perguntas repetitivas | "Qual horário?", "Onde fica a loja X?" consomem horas da recepção | -40% produtividade |
-| Users | Atendimento centralizado na recepção | Um único ponto de contato para todo o shopping | Gargalo crítico |
-| MessageSquare | Respostas não padronizadas | Cada pessoa responde de um jeito diferente | Experiência inconsistente |
-| Clock | Demora no tempo de resposta | Clientes aguardando por informações básicas | Perda de satisfação |
-| AlertTriangle | Sem visibilidade sobre demandas | Não sabe quais são as maiores dúvidas | Decisões no escuro |
-| Database | Dados de clientes perdidos | Não captura informações de quem entra em contato | Base zero para campanhas |
-| Shuffle | Canais fragmentados | WhatsApp, Instagram, Facebook separados | Esforço multiplicado |
-| Building | Lojistas sem canal eficiente | Comunicação interna fragmentada | Retrabalho constante |
-
-### 3. AS SOLUÇÕES (SolutionSection) - 8 Cards Destrinchados
-
-| Ícone | Título | Descrição |
-|-------|--------|-----------|
-| Bot | IA responde 24/7 | Atendimento automático para dúvidas comuns, qualquer hora |
-| Zap | Respostas em <5 segundos | Cliente pergunta, IA responde instantaneamente |
-| MessageCircle | Linguagem adaptada | Tom conservador e claro para o público do shopping |
-| GitMerge | Todos os canais unificados | WhatsApp + Instagram + Facebook + Email em uma só tela |
-| Filter | Triagem inteligente | IA identifica casos que precisam de humano e direciona |
-| BarChart3 | Dashboard de insights | Veja as maiores demandas, horários de pico, satisfação |
-| UserPlus | Captura automática de dados | Forma base de clientes para campanhas futuras |
-| Building | Portal do Lojista integrado | Canal exclusivo para comunicação B2B |
-
-### 4. CANAIS INTEGRADOS (ChannelsSection)
-
-Visual com 4 cards mostrando os canais:
-
-```
-[WhatsApp]     [Instagram]     [Facebook]     [Email]
-   |               |               |             |
-   +--------------+---------------+-------------+
-                         |
-              [Central de IA Unificada]
-                         |
-        +----------------+----------------+
-        |                |                |
-  [Dashboard]      [Humano]        [Sistemas]
-   Analytics      Quando preciso    BeMall/Group
-```
-
-**Cada canal com especificações:**
-- **WhatsApp**: Número virtual, respostas automáticas, catálogo de lojas
-- **Instagram Direct**: Respostas a DMs, link para WhatsApp
-- **Facebook Messenger**: Atendimento automatizado, FAQ integrado
-- **Email**: Respostas contextuais, encaminhamento para setores
-
-### 5. ESCOPO B2C - Clientes Finais (ScopeB2CSection)
-
-| Categoria | Exemplos de Perguntas |
-|-----------|----------------------|
-| Horários | "Que horas abre?", "Funciona no feriado?" |
-| Lojas | "Tem loja da X?", "Onde fica a loja Y?" |
-| Serviços | "Tem wifi?", "Onde fica o banheiro?" |
-| Estacionamento | "Quanto custa?", "Aceita cartão?" |
-| Eventos | "Tem cinema?", "Qual filme está passando?" |
-| Promoções | "Tem promoção hoje?", "Como participo?" |
-| Localização | "Como chego aí?", "Qual o endereço?" |
-| Achados e Perdidos | "Perdi minha carteira", "Onde procuro?" |
-
-### 6. ESCOPO B2B - Lojistas (ScopeB2BSection)
-
-| Categoria | Exemplos |
-|-----------|----------|
-| Comunicados | Circulares, avisos importantes |
-| Solicitações | Manutenção, limpeza, segurança |
-| Achados e Perdidos | Registro e consulta |
-| Financeiro | Boletos, datas de pagamento |
-| Eventos | Calendário, participação |
-| Normas | Regras do shopping, horários de carga |
-
-### 7. INTELIGÊNCIA E ANALYTICS (IntelligenceSection)
-
-| Métrica | Descrição | Uso |
-|---------|-----------|-----|
-| Top 10 Perguntas | Quais dúvidas mais aparecem | Identificar gaps de comunicação |
-| Horários de Pico | Quando mais atendimentos acontecem | Dimensionar equipe humana |
-| Taxa de Resolução | % resolvido pela IA vs humano | Medir eficiência |
-| Transferências por Setor | Quais setores recebem mais demandas | Otimizar estrutura |
-| Tempo Médio de Resposta | Velocidade de atendimento | SLA |
-| Satisfação (NPS) | Nota do cliente após atendimento | Qualidade |
-| Canais mais usados | WhatsApp vs Insta vs FB | Foco de investimento |
-
-**"Fishing" de Dados:**
-- Nome e telefone capturados
-- Lojas de interesse identificadas
-- Preferências mapeadas
-- Base para campanhas de marketing
-
-### 8. INTEGRAÇÕES (IntegrationsSection)
-
-| Sistema | Função | Possibilidades |
-|---------|--------|----------------|
-| **Group Shopping** | Gestão financeira | Consulta de boletos, status de contratos |
-| **BeMall CRM** | CRM de marketing | Sincronizar dados de clientes, promoções |
-| **COM21 Online** | App de gestão | Integração com portal do lojista |
-
-### 9. GAMIFICAÇÃO PARA LOJISTAS (GamificationSection)
-
-**Como funciona:**
-- Cada interação gera pontos (responder solicitação, enviar vendas, etc.)
-- Lojistas com mais pontos aparecem em destaque no site/app do shopping
-- Ranking mensal com prêmios ou benefícios
-- "Loja do Mês" escolhida pelo engajamento
-- Indicações inteligentes: "Procurando X? Veja a loja Y que responde rápido!"
-
-### 10. PLANOS DE INVESTIMENTO (PlansSection) - VALORES ATUALIZADOS
-
-**Modelo: Valor por Problemas Resolvidos**
-
-| Plano | Nome | Valor Mensal | Implementação | O Que Resolve |
-|-------|------|--------------|---------------|---------------|
-| **Essencial** | Atendimento Básico | R$ 1.800/mês | R$ 1.500 | Automação B2C (WhatsApp + 1 canal adicional) |
-| **Profissional** | Multicanal Completo | **R$ 3.400/mês** | **R$ 3.000** | B2C + B2B + Todos os canais + Analytics básico |
-| **Enterprise** | Inteligência Total | R$ 4.200/mês | R$ 4.000 | Tudo + Integrações + Gamificação + BI avançado |
-
-**Detalhamento dos Planos:**
-
-**Essencial - R$ 1.800/mês** (Implementação: R$ 1.500)
-- WhatsApp + 1 canal adicional (Insta OU Facebook)
-- IA treinada com FAQ do shopping
-- Respostas automáticas B2C
-- Dashboard básico
-- Suporte por email
-- Ideal para: Começar a automatizar
-
-**Profissional - R$ 3.400/mês** (Implementação: R$ 3.000)
-- Todos os canais (WhatsApp + Insta + FB + Email)
-- IA para B2C + B2B (lojistas)
-- Triagem inteligente para setores
-- Dashboard de analytics
-- Captura de dados de clientes
-- Suporte prioritário
-- Ideal para: Operação completa
-
-**Enterprise - R$ 4.200/mês** (Implementação: R$ 4.000)
-- Tudo do Profissional +
-- Integrações com Group Shopping / BeMall
-- Sistema de gamificação para lojistas
-- BI avançado com insights de comportamento
-- Reuniões mensais de otimização
-- Suporte premium (WhatsApp direto)
-- Ideal para: Transformação digital completa
-
-### 11. TIMELINE DE IMPLEMENTAÇÃO (TimelineSection)
-
-| Semana | Fase | Entregas |
-|--------|------|----------|
-| 1 | Descoberta | Mapeamento de FAQs, coleta de informações, definição de tom de voz |
-| 2 | Configuração | Setup dos canais, treinamento da IA, integração inicial |
-| 3 | Testes | Ambiente de testes com equipe do shopping, ajustes finos |
-| 4 | Go-Live | Lançamento oficial B2C |
-| 5* | B2B | Lançamento do canal para lojistas (se aplicável) |
-
-### 12. POR QUE O RISCO É BAIXO (LowRiskSection)
-
-| Argumento | Descrição |
-|-----------|-----------|
-| V1 Simples | Começamos com atendimento informativo, sem transações complexas |
-| Sem Integração Inicial | Primeira versão não depende de APIs externas |
-| Investimento Acessível | A partir de R$ 60/dia |
-| Escalamento Gradual | Comece no Essencial, migre para Enterprise depois |
-| IA Complementa | Não substitui humanos, libera para tarefas complexas |
-| Prazo Curto | 4 semanas para primeira entrega |
-| Resultados Visíveis | Dashboard mostra economia desde o primeiro dia |
-
-### 13. FAQ (FAQSection)
-
-- "E se a IA não souber responder?"
-- "Preciso mudar meu número de WhatsApp?"
-- "Como atualizo as informações do shopping?"
-- "Posso ver as conversas que a IA teve?"
-- "E se quiser cancelar?"
-- "Como funciona a integração com nossos sistemas?"
-- "O sistema funciona 24h mesmo?"
-- "Como os lojistas acessam a plataforma?"
-
-### 14. CTA FINAL
-
-```
-Vamos Começar?
-[Falar no WhatsApp]
+- Círculos blur pulsantes (como Evolua)
+- Efeito floating suave no hero
 ```
 
 ---
 
-## Tema Visual
+### 2. ProblemSection.tsx - Mostrar o Problema com Exemplos
 
-**Paleta:** Azul + Teal (modernidade, confiança, varejo)
+**Adicionar simulação visual do problema:**
+- Mockup de celular com WhatsApp lotado de mensagens
+- Contador animado mostrando "342 mensagens não lidas"
+- Exemplos de perguntas repetitivas em balões de chat
 
 ```
-Background: from-slate-900 via-blue-950 to-black
-Accent primário: blue-500, blue-400
-Accent secundário: teal-500, emerald-400
-Cards problemas: red-500/20 border
-Cards soluções: emerald-500/20 border
+Exemplo visual:
+┌─────────────────────────┐
+│ 📱 WhatsApp Recepção    │
+│ ────────────────────────│
+│ 🔴 342 não lidas        │
+│ ────────────────────────│
+│ João: "Que horas abre?" │
+│ Maria: "Tem loja X?"    │
+│ Pedro: "Onde estaciono?"│
+│ Ana: "Que horas fecha?" │
+│ Carlos: "Tem cinema?"   │
+│ ...                     │
+└─────────────────────────┘
 ```
 
 ---
 
-## Resumo de Arquivos
+### 3. SolutionSection.tsx - Simulação de Chat com IA
 
-| Ação | Arquivo |
-|------|---------|
-| Criar | `src/pages/PropostaTeresopolis.tsx` |
-| Criar | `src/components/teresopolis/ProblemSection.tsx` |
-| Criar | `src/components/teresopolis/SolutionSection.tsx` |
-| Criar | `src/components/teresopolis/ChannelsSection.tsx` |
-| Criar | `src/components/teresopolis/ScopeB2CSection.tsx` |
-| Criar | `src/components/teresopolis/ScopeB2BSection.tsx` |
-| Criar | `src/components/teresopolis/IntelligenceSection.tsx` |
-| Criar | `src/components/teresopolis/IntegrationsSection.tsx` |
-| Criar | `src/components/teresopolis/GamificationSection.tsx` |
-| Criar | `src/components/teresopolis/PlansSection.tsx` |
-| Criar | `src/components/teresopolis/TimelineSection.tsx` |
-| Criar | `src/components/teresopolis/LowRiskSection.tsx` |
-| Criar | `src/components/teresopolis/FAQSection.tsx` |
-| Modificar | `src/App.tsx` |
+**Adicionar conversa simulada (igual Evolua):**
+- Balões de chat cliente ↔ IA
+- Resposta automática instantânea
+- Indicador de "Resolvido pela IA" ou "Transferido para humano"
 
-**Total: 13 arquivos novos + 1 modificação**
+```
+Exemplo visual:
+┌─────────────────────────────────────────┐
+│ 👤 Cliente                              │
+│    ┌────────────────────────────────┐   │
+│    │ Oi, que horas o shopping abre? │   │
+│    └────────────────────────────────┘   │
+│                                         │
+│                    🤖 Assistente IA     │
+│  ┌────────────────────────────────────┐ │
+│  │ Olá! 😊 O Teresópolis Shopping     │ │
+│  │ funciona de segunda a sábado das   │ │
+│  │ 10h às 22h, e domingos das 14h às  │ │
+│  │ 20h. Posso ajudar com mais algo?   │ │
+│  └────────────────────────────────────┘ │
+│                                         │
+│ 👤 Cliente                              │
+│    ┌─────────────────────────────────┐  │
+│    │ Vocês tem loja da Samsung?      │  │
+│    └─────────────────────────────────┘  │
+│                                         │
+│                    🤖 Assistente IA     │
+│  ┌────────────────────────────────────┐ │
+│  │ Sim! A Samsung fica no 2º piso,   │ │
+│  │ próximo à praça de alimentação.    │ │
+│  │ O telefone é (21) 2742-XXXX.       │ │
+│  └────────────────────────────────────┘ │
+│                                         │
+│  ✅ Atendimento resolvido pela IA      │
+│     Tempo: 8 segundos                   │
+└─────────────────────────────────────────┘
+```
 
+---
+
+### 4. ChannelsSection.tsx - Fluxo Visual Animado
+
+**Adicionar diagrama de fluxo (como Evolua):**
+- Ícones dos 4 canais em linha
+- Setas animadas apontando para baixo
+- Card central "Central de IA"
+- Setas para 3 outputs (Dashboard, Humano, Sistemas)
+
+```
+Exemplo:
+[WhatsApp] [Instagram] [Facebook] [Email]
+    ↓          ↓           ↓         ↓
+         ┌──────────────────────┐
+         │  Central de IA      │
+         │  Unificada          │
+         └──────────────────────┘
+              /     |     \
+             ↓      ↓      ↓
+    [Dashboard] [Humano] [Sistemas]
+```
+
+---
+
+### 5. IntelligenceSection.tsx - Dashboard Mockup Interativo
+
+**Adicionar mockup de dashboard com dados simulados:**
+
+```
+┌────────────────────────────────────────────────────┐
+│ 📊 Dashboard de Atendimentos                       │
+├────────────────────────────────────────────────────┤
+│                                                    │
+│  ┌──────────┐  ┌──────────┐  ┌──────────┐         │
+│  │   847    │  │  92.3%   │  │    5s    │         │
+│  │ Hoje     │  │ Resolv.  │  │ Resposta │         │
+│  │ +23%     │  │ pela IA  │  │ média    │         │
+│  └──────────┘  └──────────┘  └──────────┘         │
+│                                                    │
+│  Top Perguntas do Mês:                            │
+│  ────────────────────────────────────────────     │
+│  1. "Horário de funcionamento" ████████ 234       │
+│  2. "Onde fica loja X?"        ██████   178       │
+│  3. "Tem estacionamento?"      █████    156       │
+│  4. "Aceita cartão?"           ████     132       │
+│                                                    │
+└────────────────────────────────────────────────────┘
+```
+
+---
+
+### 6. ScopeB2CSection.tsx - Exemplos de Conversas
+
+**Adicionar cards com exemplos de perguntas e respostas:**
+- Cada categoria com exemplo real de pergunta
+- Resposta que a IA daria
+
+---
+
+### 7. ScopeB2BSection.tsx - Portal do Lojista Mockup
+
+**Adicionar mockup do portal B2B:**
+
+```
+┌────────────────────────────────────────────────────┐
+│ 🏪 Portal do Lojista - Magazine Luiza             │
+├────────────────────────────────────────────────────┤
+│                                                    │
+│  📢 Comunicados (3 novos)                         │
+│  ────────────────────────────────────────────     │
+│  • Manutenção ar-condicionado - 15/02             │
+│  • Novo horário de carga - 16/02                  │
+│  • Campanha Dia das Mães - Prazo 20/02            │
+│                                                    │
+│  🔧 Minhas Solicitações                           │
+│  ────────────────────────────────────────────     │
+│  • Lâmpada queimada [✓ Resolvido]                 │
+│  • Limpeza urgente [⏳ Em andamento]               │
+│                                                    │
+│  📊 Meu Ranking: 3º lugar (+45 pontos)            │
+│                                                    │
+└────────────────────────────────────────────────────┘
+```
+
+---
+
+### 8. GamificationSection.tsx - Ranking Visual
+
+**Adicionar ranking com medalhas (como Evolua):**
+
+```
+┌────────────────────────────────────────────────────┐
+│ 🏆 Ranking de Lojistas - Janeiro 2025             │
+├────────────────────────────────────────────────────┤
+│                                                    │
+│  🥇 Magazine Luiza        847 pts    "Loja do Mês"│
+│  🥈 Renner                623 pts                  │
+│  🥉 C&A                   512 pts                  │
+│  4  Samsung               489 pts                  │
+│  5  Casas Bahia           456 pts                  │
+│                                                    │
+│  Como ganhar pontos:                              │
+│  ───────────────────                              │
+│  ✓ Responder comunicados      +10 pts             │
+│  ✓ Enviar relatório de vendas +20 pts             │
+│  ✓ Participar de eventos      +50 pts             │
+│                                                    │
+└────────────────────────────────────────────────────┘
+```
+
+---
+
+### 9. IntegrationsSection.tsx - Cards com Status
+
+**Adicionar visual de integração com status:**
+
+```
+┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐
+│ Group Shopping  │  │ BeMall CRM      │  │ COM21 Online    │
+│ ───────────────│  │ ───────────────│  │ ───────────────│
+│ 🟢 Compatível   │  │ 🟢 Compatível   │  │ 🟡 Sob demanda  │
+│                 │  │                 │  │                 │
+│ • Boletos       │  │ • Clientes      │  │ • Portal        │
+│ • Contratos     │  │ • Campanhas     │  │ • Lojistas      │
+│ • Financeiro    │  │ • Promoções     │  │                 │
+└─────────────────┘  └─────────────────┘  └─────────────────┘
+```
+
+---
+
+### 10. TimelineSection.tsx - Timeline Visual Animada
+
+**Adicionar timeline horizontal com checkpoints:**
+
+```
+Semana 1          Semana 2         Semana 3         Semana 4
+   ●────────────────●────────────────●────────────────●
+   │                │                │                │
+Descoberta    Configuração       Testes          Go-Live
+• FAQs        • Setup canais    • Testes com    • Lançamento
+• Tom de voz  • Treinar IA      • Ajustes finos • Monitoramento
+```
+
+---
+
+## Arquivos a Modificar
+
+| Arquivo | Modificação |
+|---------|-------------|
+| `PropostaTeresopolis.tsx` | Adicionar background effects animados |
+| `ProblemSection.tsx` | Adicionar mockup de WhatsApp lotado |
+| `SolutionSection.tsx` | Adicionar simulação de chat IA |
+| `ChannelsSection.tsx` | Melhorar fluxo visual com diagrama |
+| `IntelligenceSection.tsx` | Adicionar dashboard mockup com dados |
+| `ScopeB2CSection.tsx` | Adicionar exemplos de conversas |
+| `ScopeB2BSection.tsx` | Adicionar mockup portal lojista |
+| `GamificationSection.tsx` | Adicionar ranking visual com medalhas |
+| `IntegrationsSection.tsx` | Adicionar cards de status de integração |
+| `TimelineSection.tsx` | Melhorar timeline visual |
+
+---
+
+## Elementos Visuais Chave a Implementar
+
+1. **Background Effects**
+   - Círculos blur pulsantes
+   - Gradientes animados
+
+2. **Simulações de Chat**
+   - Balões estilo WhatsApp
+   - Avatar do cliente vs Avatar do Bot
+   - Indicadores de status (resolvido, transferido)
+
+3. **Mockups de Dashboard**
+   - Cards com números grandes
+   - Barras de progresso animadas
+   - Indicadores de crescimento (+%)
+
+4. **Rankings e Listas**
+   - Medalhas de ouro/prata/bronze
+   - Pontuações numéricas
+   - Posições destacadas
+
+5. **Indicadores de Status**
+   - Pontos verdes (🟢), amarelos (🟡), vermelhos (🔴)
+   - Animações pulse
+   - Badges de status
+
+6. **Dados Simulados Específicos**
+   - Nomes de lojas reais de shopping
+   - Horários do Teresópolis Shopping
+   - Exemplos de perguntas típicas de shopping
+
+---
+
+## Exemplos de Perguntas B2C para Simular
+
+- "Que horas o shopping abre?"
+- "Tem loja da Samsung?"
+- "Quanto custa o estacionamento?"
+- "Onde fica a praça de alimentação?"
+- "Vocês tem cinema?"
+- "A loja X está aberta?"
+- "Como chego de ônibus?"
+
+## Exemplos de Comunicados B2B
+
+- "Manutenção do ar-condicionado dia 15/02"
+- "Novo horário de carga/descarga"
+- "Campanha Dia das Mães - prazo para adesão"
+- "Reunião de lojistas - 20/02 às 9h"
+
+---
+
+## Resultado Esperado
+
+A proposta passará de uma apresentação **estática com cards de texto** para uma experiência **visual e interativa** que:
+
+1. **Mostra o problema** visualmente (WhatsApp lotado)
+2. **Demonstra a solução** com chat simulado
+3. **Apresenta métricas** com dashboard realista
+4. **Engaja lojistas** com ranking gamificado
+5. **Transmite profissionalismo** com animações suaves
+
+Isso aumenta significativamente o impacto na apresentação para a Ingrid e a diretoria do shopping.
