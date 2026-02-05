@@ -1,5 +1,5 @@
 import * as React from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, ArrowRight, LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -21,13 +21,13 @@ interface ServiceCardProps {
   isDragging?: boolean;
 }
 
-const ServiceCard = React.forwardRef<HTMLAnchorElement, ServiceCardProps>(
+const ServiceCard = React.forwardRef<HTMLDivElement, ServiceCardProps>(
   ({ service, isDragging = false }, ref) => {
     const Icon = service.icon;
     const [isExpanded, setIsExpanded] = React.useState(false);
     const isMobile = useIsMobile();
     
-    const handleClick = (e: React.MouseEvent) => {
+    const handleCardClick = (e: React.MouseEvent) => {
       if (isDragging) {
         e.preventDefault();
         return;
@@ -36,6 +36,13 @@ const ServiceCard = React.forwardRef<HTMLAnchorElement, ServiceCardProps>(
         e.preventDefault();
         setIsExpanded(!isExpanded);
       }
+    };
+
+    const handleArrowClick = (e: React.MouseEvent) => {
+      e.preventDefault();
+      e.stopPropagation();
+      // Navigate to the href
+      window.location.href = service.href;
     };
 
     const handleMouseEnter = () => {
@@ -51,10 +58,9 @@ const ServiceCard = React.forwardRef<HTMLAnchorElement, ServiceCardProps>(
     };
     
     return (
-      <motion.a
+      <motion.div
         ref={ref}
-        href={isDragging ? undefined : service.href}
-        onClick={handleClick}
+        onClick={handleCardClick}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         className="group relative flex-shrink-0 w-[320px] h-[420px] rounded-2xl overflow-hidden cursor-pointer block"
@@ -123,12 +129,17 @@ const ServiceCard = React.forwardRef<HTMLAnchorElement, ServiceCardProps>(
               </span>
             </div>
 
-            <div className="w-8 h-8 rounded-full bg-white/10 group-hover:bg-cyan-500/30 flex items-center justify-center transition-all duration-300 group-hover:translate-x-1">
-              <ArrowRight className="w-4 h-4 text-white" />
-            </div>
+            {/* Clickable Arrow Button */}
+            <button
+              onClick={handleArrowClick}
+              className="w-8 h-8 rounded-full bg-white/10 hover:bg-cyan-500/30 flex items-center justify-center transition-all duration-300 hover:translate-x-1 group/arrow"
+              aria-label={`Ver mais sobre ${service.title}`}
+            >
+              <ArrowRight className="w-4 h-4 text-white group-hover/arrow:text-cyan-400" />
+            </button>
           </div>
         </div>
-      </motion.a>
+      </motion.div>
     );
   }
 );
