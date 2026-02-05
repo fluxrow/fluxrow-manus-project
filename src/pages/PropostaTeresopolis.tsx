@@ -1,4 +1,4 @@
-import { MessageCircle, ArrowDown } from "lucide-react";
+import { MessageCircle, ArrowDown, ShoppingBag } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ProblemSection from "@/components/teresopolis/ProblemSection";
 import SolutionSection from "@/components/teresopolis/SolutionSection";
@@ -20,6 +20,22 @@ const PropostaTeresopolis = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-900 via-blue-950 to-black relative overflow-hidden">
+      {/* Fixed Header with Logo */}
+      <header className="fixed top-0 left-0 right-0 z-50 bg-slate-900/80 backdrop-blur-md border-b border-slate-800/50">
+        <div className="container mx-auto px-4 py-3 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <div className="w-10 h-10 md:w-12 md:h-12 rounded-lg bg-gradient-to-br from-blue-500 to-teal-500 flex items-center justify-center">
+              <ShoppingBag className="w-5 h-5 md:w-6 md:h-6 text-white" />
+            </div>
+            <div className="flex flex-col">
+              <span className="text-white font-bold text-sm md:text-base leading-tight">Teresópolis</span>
+              <span className="text-blue-400 text-xs md:text-sm leading-tight">Shopping Center</span>
+            </div>
+          </div>
+          <span className="text-xs md:text-sm text-gray-400">Proposta Comercial</span>
+        </div>
+      </header>
+
       {/* Animated Background Effects */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
         {/* Pulsing blur circles */}
@@ -30,7 +46,7 @@ const PropostaTeresopolis = () => {
       </div>
 
       {/* Hero Section */}
-      <section className="min-h-screen flex flex-col items-center justify-center relative px-4">
+      <section className="min-h-screen flex flex-col items-center justify-center relative px-4 pt-16">
         <div className="text-center max-w-4xl mx-auto relative z-10">
           <div className="inline-block px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-sm font-medium mb-6 animate-fade-in">
             Proposta Comercial
