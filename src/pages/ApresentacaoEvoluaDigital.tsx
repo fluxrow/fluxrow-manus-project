@@ -1,4 +1,5 @@
 import React from 'react';
+import BackToHomeButton from '@/components/ui/BackToHomeButton';
 import { Button } from "@/components/ui/button";
 import { 
   MessageSquare, 
@@ -37,6 +38,7 @@ const ApresentacaoEvoluaDigital = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-purple-950 to-slate-950 text-white">
+      <BackToHomeButton />
       {/* Background Effects */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse" />
