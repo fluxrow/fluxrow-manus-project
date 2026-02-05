@@ -1,5 +1,6 @@
 import React from 'react';
 import { Bot, Megaphone, Globe, Palette, Target, Instagram, Lightbulb, Layers } from 'lucide-react';
+import sistemasWebImage from '../../assets/sistemas-web-dashboard.jpg';
 import { ServiceCarousel, ServiceOffer } from '../ui/service-carousel';
 
 const services: ServiceOffer[] = [
@@ -187,7 +188,7 @@ const services: ServiceOffer[] = [
   },
   {
     id: 8,
-    imageSrc: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop&q=80",
+    imageSrc: sistemasWebImage,
     imageAlt: "Sistemas e Aplicativos Web",
     tag: "Produto",
     title: "Sistemas Web",
