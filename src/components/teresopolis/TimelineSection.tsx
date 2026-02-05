@@ -88,14 +88,12 @@ const TimelineSection = () => {
             Timeline de Implementação
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
-            Em apenas 4-5 semanas, sua central de atendimento multicanal estará funcionando
+            Em apenas 4 a 6 semanas, sua central de atendimento multicanal estará funcionando
           </p>
         </div>
 
         {/* Desktop Timeline - Horizontal */}
         <div className="hidden lg:block relative max-w-6xl mx-auto">
-          {/* Timeline Line */}
-          <div className="absolute top-[88px] left-[10%] right-[10%] h-1 bg-gradient-to-r from-blue-500 via-teal-500 via-purple-500 to-emerald-500 rounded-full" />
 
           <div className="grid grid-cols-5 gap-4">
             {phases.map((phase, index) => {
@@ -190,7 +188,7 @@ const TimelineSection = () => {
           <Card className="inline-block bg-gradient-to-r from-emerald-600/20 to-teal-600/20 border-emerald-500/30">
             <CardContent className="px-8 py-4">
               <p className="text-white font-semibold">
-                ⏱️ Prazo total: <span className="text-emerald-400">4 semanas</span> para operação B2C completa
+                ⏱️ Prazo total: <span className="text-emerald-400">4 a 6 semanas</span> para operação B2C completa
               </p>
             </CardContent>
           </Card>
