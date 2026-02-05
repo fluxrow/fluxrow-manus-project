@@ -1,126 +1,35 @@
 
-# Integrar DisplayCards na Seção "Como Trabalhamos"
+# Ajustar Espaçamento Horizontal dos Cards
 
-## Visão Geral
+## Mudança
 
-Vamos substituir o layout atual de timeline por um design moderno de **cards empilhados com efeito hover**, mantendo todo o conteúdo das 4 etapas do processo visível e interativo.
-
----
-
-## Componente DisplayCards
-
-O componente fornecido cria um efeito de **cards empilhados em grade** onde:
-- Cards ficam sobrepostos com offsets (translate-x, translate-y)
-- Hover revela o card completo (remove grayscale e overlay)
-- Transições suaves de hover
+Reduzir o espaçamento horizontal entre os cards empilhados, mantendo o espaçamento vertical atual.
 
 ---
 
-## Adaptações Necessárias
+## Valores Atuais vs Novos
 
-### 1. Criar Componente Customizado
-
-Criar `src/components/ui/process-cards.tsx` baseado no DisplayCards, mas adaptado para:
-
-| Original | Adaptado |
-|----------|----------|
-| 3 cards empilhados | 4 cards (etapas do processo) |
-| Layout compacto | Layout mais amplo para desktop |
-| Cores azuis | Cores por etapa (cyan, purple, green, yellow) |
-| Ícone Sparkles | Ícones específicos (Search, Lightbulb, Rocket, TrendingUp) |
-
-### 2. Estrutura do Card Adaptado
-
-```
-┌─────────────────────────────────┐
-│  🔍  Briefing Inteligente       │  ← Ícone + Título
-│                                 │
-│  Entendemos seu negócio com um  │  ← Descrição principal
-│  quiz interativo que mapeia     │
-│  oportunidades e desafios.      │
-│                                 │
-│  Nossa IA analisa seu mercado,  │  ← Detalhes (visível no hover)
-│  concorrência e objetivos...    │
-│                                 │
-│  Etapa 1 de 4                   │  ← Indicador de progresso
-└─────────────────────────────────┘
-```
-
-### 3. Layout Desktop
-
-Cards empilhados com offsets diagonais:
-
-```
-Card 1 [Briefing]
-    Card 2 [Estratégia]
-        Card 3 [Criação]
-            Card 4 [Otimização]
-```
-
-Cada card tem:
-- Offset crescente (translate-x e translate-y)
-- Grayscale inicial (exceto o último)
-- Remove grayscale e overlay no hover
-
-### 4. Layout Mobile
-
-Cards em lista vertical (como está hoje) para melhor usabilidade.
+| Card | translate-x Atual | translate-x Novo | translate-y (mantém) |
+|------|-------------------|------------------|----------------------|
+| 1 - Briefing | 0 | 0 | 0 |
+| 2 - Estratégia | translate-x-20 (80px) | translate-x-12 (48px) | translate-y-8 |
+| 3 - Criação | translate-x-40 (160px) | translate-x-24 (96px) | translate-y-16 |
+| 4 - Otimização | translate-x-60 (240px) | translate-x-36 (144px) | translate-y-24 |
 
 ---
 
-## Arquivos a Criar/Modificar
+## Arquivo a Modificar
 
-| Arquivo | Ação |
-|---------|------|
-| `src/components/ui/process-cards.tsx` | **Criar** - Componente DisplayCards adaptado |
-| `src/components/agency/ProcessTimeline.tsx` | **Modificar** - Usar novo componente |
+**`src/components/ui/process-cards.tsx`**
 
----
+Alterar as classes de translate-x nos cards 2, 3 e 4 do array `defaultCards`:
 
-## Detalhes Técnicos
-
-### ProcessCard Interface
-
-```typescript
-interface ProcessCardProps {
-  icon: React.ReactNode;
-  title: string;
-  description: string;
-  details: string;
-  step: number;
-  totalSteps: number;
-  color: "cyan" | "purple" | "green" | "yellow";
-  className?: string;
-}
-```
-
-### Cores por Etapa
-
-| Etapa | Cor | Uso |
-|-------|-----|-----|
-| 1 - Briefing | Cyan | `text-cyan-500`, `from-cyan-500` |
-| 2 - Estratégia | Purple | `text-purple-500`, `from-purple-500` |
-| 3 - Criação | Green | `text-green-500`, `from-green-500` |
-| 4 - Otimização | Yellow | `text-yellow-500`, `from-yellow-500` |
-
-### Efeitos de Hover
-
-1. Remove grayscale (`grayscale-[100%]` → `grayscale-0`)
-2. Remove overlay (`before:opacity-100` → `before:opacity-0`)
-3. Move para cima (`hover:-translate-y-4`)
-4. Expande detalhes adicionais
-
-### Animações
-
-- `transition-all duration-500` para transições suaves
-- Cards com `z-index` crescente para sobreposição correta
-- Último card sempre colorido (sem grayscale inicial)
+- Card 2: `translate-x-20` → `translate-x-12`
+- Card 3: `translate-x-40` → `translate-x-24`
+- Card 4: `translate-x-60` → `translate-x-36`
 
 ---
 
-## Resultado Visual
+## Resultado
 
-**Desktop**: Cards empilhados em diagonal, revelando conteúdo completo no hover
-**Mobile**: Lista vertical mantendo toda informação visível
-
-Todas as informações (título, descrição, detalhes) serão visíveis sem precisar de scroll ou clique adicional - o hover apenas destaca e eleva o card.
+Os cards ficarão mais sobrepostos horizontalmente, criando um efeito visual mais compacto enquanto mantém a separação vertical para legibilidade.
