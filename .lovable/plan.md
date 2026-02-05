@@ -1,73 +1,71 @@
 
 
-# Adicionar Logo do Teresópolis Shopping no Header
+# Integrar Fonte Akony no Logo FLUXROW
 
-## Objetivo
-Incluir o logo oficial do Teresópolis Shopping no topo da página da proposta, criando um header profissional que reforce a identidade visual do cliente.
+## Arquivos de Fonte Recebidos
+- `akony.otf`
+- `akony.ttf`
+- `akony.woff`
 
 ---
 
 ## Implementação
 
-### 1. Baixar o Logo Oficial
+### 1. Copiar Fontes para o Projeto
 
-Vou buscar o logo oficial do Teresópolis Shopping e salvá-lo em:
+Salvar os arquivos em:
 ```
-src/assets/teresopolis-shopping-logo.png
+src/assets/fonts/akony.woff
+src/assets/fonts/akony.ttf
+src/assets/fonts/akony.otf
 ```
-
-**URL do logo oficial:** Disponível no site/Instagram do shopping
 
 ---
 
-### 2. Modificar PropostaTeresopolis.tsx
+### 2. Registrar Fonte no CSS Global
 
-**Adicionar header fixo no topo da página com o logo:**
+Adicionar em `src/index.css`:
+
+```css
+@font-face {
+  font-family: 'Akony';
+  src: url('./assets/fonts/akony.woff') format('woff'),
+       url('./assets/fonts/akony.ttf') format('truetype'),
+       url('./assets/fonts/akony.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+```
+
+---
+
+### 3. Atualizar Logo no Header
+
+Em `src/pages/PropostaTeresopolis.tsx`:
 
 ```tsx
-// Novo header antes do Hero Section
-<header className="fixed top-0 left-0 right-0 z-50 bg-slate-900/80 backdrop-blur-md border-b border-slate-800/50">
-  <div className="container mx-auto px-4 py-3 flex items-center justify-between">
-    <img 
-      src={teresopolisLogo} 
-      alt="Teresópolis Shopping" 
-      className="h-10 md:h-12 object-contain"
-    />
-    <span className="text-sm text-gray-400">Proposta Comercial</span>
-  </div>
-</header>
-```
-
-**Ajustar padding do Hero Section para compensar o header fixo:**
-```tsx
-<section className="min-h-screen flex flex-col items-center justify-center relative px-4 pt-20">
+<span 
+  className="text-xl md:text-2xl font-bold bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent"
+  style={{ fontFamily: 'Akony, sans-serif' }}
+>
+  FLUXROW
+</span>
 ```
 
 ---
 
-## Estrutura Visual do Header
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│  [LOGO TERESÓPOLIS]                    Proposta Comercial   │
-│     SHOPPING                                                │
-└─────────────────────────────────────────────────────────────┘
-```
-
----
-
-## Arquivo a Modificar
+## Arquivos a Modificar
 
 | Arquivo | Alteração |
 |---------|-----------|
-| `src/pages/PropostaTeresopolis.tsx` | Adicionar header com logo + ajustar padding |
+| `src/assets/fonts/` | Criar pasta e copiar 3 arquivos de fonte |
+| `src/index.css` | Adicionar `@font-face` para Akony |
+| `src/pages/PropostaTeresopolis.tsx` | Aplicar `fontFamily: 'Akony'` no logo |
 
 ---
 
-## Detalhes Técnicos
+## Resultado Visual
 
-- **Header fixo** com `position: fixed` e `backdrop-blur` para transparência elegante
-- **Logo responsivo** com altura adaptável (h-10 mobile, h-12 desktop)
-- **Import do asset** como variável para otimização do build
-- **Padding-top** no Hero para evitar sobreposição com o header
+O logo FLUXROW no header manterá o gradiente cyan → purple → pink, mas agora com a tipografia oficial Akony.
 
