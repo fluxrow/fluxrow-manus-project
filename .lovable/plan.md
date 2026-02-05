@@ -1,234 +1,91 @@
 
-# Redesign Completo: Seção "Tecnologia em Ação"
+# Adicionar Novos Cards na Seção "O que fazemos"
 
-## Problema Atual
+## Estrutura Atual
 
-A seção `BehindTheScenes.tsx` mostra apenas:
-- Terminal simulado genérico
-- Barras de progresso animadas sem contexto
-- Código estático de exemplo
-
-Isso não representa o stack real nem os serviços oferecidos pela Fluxrow.
+Existem 4 cards seguindo este padrão:
+- `id`, `imageSrc`, `imageAlt`, `tag`, `title`, `description`
+- `icon` (Lucide), `benefit`, `href`
+- `fullDescription`, `features[]`, `deliverables[]`
 
 ---
 
-## Stack e Serviços Reais Identificados
+## Novos Cards a Adicionar (baseado nas propostas)
 
-Com base nas propostas e apresentações do site:
+### Card 5: Tráfego Pago
+| Campo | Valor |
+|-------|-------|
+| tag | Performance |
+| title | Tráfego Pago |
+| icon | Target (Lucide) |
+| benefit | ROI mensurável |
+| description | Campanhas estratégicas em Meta Ads, Google Ads e LinkedIn para atrair leads qualificados. |
+| features | Campanhas Meta Ads (Facebook/Instagram), Google Ads (Search, Display, YouTube), LinkedIn Ads para B2B, Remarketing inteligente, Testes A/B contínuos, Otimização de conversões |
+| deliverables | Setup completo, Criativos otimizados, Relatório semanal, Calls de performance |
 
-### Categoria 1: Inteligência Artificial
-| Tecnologia | Uso Real |
-|------------|----------|
-| GPT-4 / GPT-4 Turbo | Agentes de vendas, qualificação de leads |
-| Claude | Análise de dados, geração de conteúdo |
-| Vision AI / OCR | Leitura de boletos, documentos, NFs |
-| Embeddings | Busca semântica, RAG |
-| Agentes IA personalizados | Cópias digitais de vendedores |
+### Card 6: Gestão de Redes Sociais
+| Campo | Valor |
+|-------|-------|
+| tag | Social Media |
+| title | Redes Sociais |
+| icon | Instagram (Lucide) |
+| benefit | Engajamento real |
+| description | Gestão completa de Instagram, Facebook e LinkedIn com conteúdo estratégico e crescimento orgânico. |
+| features | Planejamento estratégico mensal, Criação de posts e stories, Gestão de comunidade, Análise de métricas, Calendário editorial, Interação com seguidores |
+| deliverables | Posts mensais, Stories, Relatório mensal, Suporte contínuo |
 
-### Categoria 2: Automação e Integrações
-| Tecnologia | Uso Real |
-|------------|----------|
-| Make (Integromat) | Fluxos complexos multi-step |
-| n8n | Automações self-hosted |
-| Zapier | Integrações rápidas |
-| Z-API | WhatsApp sem limitações da API oficial |
-| Webhooks / APIs REST | Conexões customizadas |
+### Card 7: Consultoria e Estratégia
+| Campo | Valor |
+|-------|-------|
+| tag | Estratégia |
+| title | Consultoria Digital |
+| icon | Lightbulb (Lucide) |
+| benefit | Direção clara |
+| description | Diagnóstico completo e plano estratégico personalizado para acelerar seu crescimento digital. |
+| features | Diagnóstico de maturidade digital, Análise de concorrência, Plano de ação detalhado, Definição de KPIs, Mapeamento de jornada do cliente, Priorização de investimentos |
+| deliverables | Relatório diagnóstico, Plano estratégico, Roadmap 90 dias, Sessão de mentoria |
 
-### Categoria 3: Tráfego Pago e Ads
-| Plataforma | Uso Real |
-|------------|----------|
-| Meta Ads (Facebook/Instagram) | Campanhas de vendas, remarketing |
-| Google Ads | Search, Display, YouTube |
-| LinkedIn Ads | B2B e profissionais |
-| TikTok Ads | Público jovem |
-
-### Categoria 4: CRM e Marketing
-| Plataforma | Uso Real |
-|------------|----------|
-| RD Station | CRM, nutrição de leads |
-| Pipedrive | Gestão de pipeline de vendas |
-| HubSpot | Marketing automation |
-| Email Marketing | Disparos segmentados |
-
-### Categoria 5: Desenvolvimento e Plataformas
-| Tecnologia | Uso Real |
-|------------|----------|
-| React / TypeScript | Aplicações web modernas |
-| Lovable | Sites e landing pages rápidas |
-| Webflow | Sites design-first |
-| Supabase / PostgreSQL | Backend e banco de dados |
-
-### Categoria 6: Canais de Comunicação
-| Canal | Uso Real |
-|-------|----------|
-| WhatsApp Business API | Disparos em massa, atendimento |
-| Instagram DM | Social selling automatizado |
-| Facebook Messenger | Respostas automáticas |
-| Email | Nutrição e follow-up |
+### Card 8: Sistemas e Aplicativos
+| Campo | Valor |
+|-------|-------|
+| tag | Produto |
+| title | Sistemas Web |
+| icon | Layers (Lucide) |
+| benefit | Solução sob medida |
+| description | Aplicações web personalizadas, dashboards e sistemas internos para otimizar operações. |
+| features | Dashboards de BI customizados, Sistemas de gestão interna, Portais de clientes, Integrações com APIs, Painéis administrativos, Relatórios automatizados |
+| deliverables | Sistema publicado, Documentação, Treinamento, Suporte técnico |
 
 ---
 
-## Nova Estrutura da Seção
+## Imagens Sugeridas (Unsplash)
 
-### Layout: 4 Pilares de Serviços + Fluxo Visual
-
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                    TECNOLOGIA EM AÇÃO                           │
-│     "Ferramentas reais que usamos para entregar resultados"     │
-└─────────────────────────────────────────────────────────────────┘
-
-┌──────────────┐ ┌──────────────┐ ┌──────────────┐ ┌──────────────┐
-│  INTELIGÊNCIA│ │   AUTOMAÇÃO  │ │   TRÁFEGO    │ │  CANAIS &    │
-│   ARTIFICIAL │ │  & FLUXOS    │ │     PAGO     │ │    CRM       │
-│              │ │              │ │              │ │              │
-│ GPT-4/Claude │ │ Make / n8n   │ │ Meta Ads     │ │ WhatsApp     │
-│ Vision AI    │ │ Zapier       │ │ Google Ads   │ │ RD Station   │
-│ Agentes IA   │ │ Z-API        │ │ LinkedIn     │ │ Pipedrive    │
-│ Embeddings   │ │ Webhooks     │ │ TikTok       │ │ Email Mkt    │
-└──────────────┘ └──────────────┘ └──────────────┘ └──────────────┘
-
-┌─────────────────────────────────────────────────────────────────┐
-│                   FLUXO DE INTEGRAÇÃO                           │
-│  [Diagrama animado horizontal mostrando a jornada do lead]      │
-│                                                                 │
-│  Ads → Lead → WhatsApp → IA Qualifica → CRM → Venda            │
-└─────────────────────────────────────────────────────────────────┘
-
-┌─────────────────────────────────────────────────────────────────┐
-│                   DESENVOLVIMENTO                               │
-│  React • TypeScript • Lovable • Webflow • Supabase             │
-└─────────────────────────────────────────────────────────────────┘
-```
-
----
-
-## Detalhes dos 4 Cards Principais
-
-### Card 1: Inteligência Artificial (Cyan)
-**Titulo**: "IA que Trabalha por Você"
-**Tecnologias com ícones**:
-- GPT-4 Turbo - Agentes de vendas 24/7
-- Claude - Análise inteligente de dados
-- Vision AI - Leitura de documentos e OCR
-- Embeddings - Busca semântica em bases
-
-### Card 2: Automação e Fluxos (Purple)
-**Titulo**: "Automação sem Limites"
-**Tecnologias com ícones**:
-- Make - Fluxos visuais complexos
-- n8n - Automações avançadas
-- Zapier - Integrações rápidas
-- Z-API - WhatsApp sem restrições
-
-### Card 3: Tráfego Pago (Green)
-**Titulo**: "Ads que Convertem"
-**Tecnologias com ícones**:
-- Meta Ads - Facebook e Instagram
-- Google Ads - Search, Display, YouTube
-- LinkedIn Ads - Profissionais B2B
-- TikTok Ads - Público jovem
-
-### Card 4: Canais e CRM (Orange)
-**Titulo**: "Todos os Canais Conectados"
-**Tecnologias com ícones**:
-- WhatsApp Business - Disparos e atendimento
-- RD Station / Pipedrive - Gestão de leads
-- Instagram/Facebook - DMs automatizadas
-- Email Marketing - Nutrição e follow-up
-
----
-
-## Fluxo Visual Animado
-
-Diagrama horizontal mostrando a jornada real:
-
-```
-[📢 Ads] → [📱 Lead] → [💬 WhatsApp] → [🤖 IA] → [📊 CRM] → [💰 Venda]
-   ↓          ↓           ↓            ↓          ↓          ↓
-Meta/Google  Captação   Atendimento  Qualifica  Pipedrive  Resultado
-```
-
-- Linha animada conectando os elementos
-- Ícones com pulso sutil
-- Labels explicativos abaixo
-
----
-
-## Seção de Desenvolvimento (Barra Inferior)
-
-Logos/badges das tecnologias de desenvolvimento:
-- React • TypeScript • Lovable • Webflow • Supabase • PostgreSQL
+| Card | URL da Imagem |
+|------|---------------|
+| Tráfego Pago | `photo-1551288049-bebda4e38f71` (analytics/charts) |
+| Redes Sociais | `photo-1611162616305-c69b3fa7fbe0` (social media) |
+| Consultoria | `photo-1552664730-d307ca884978` (business meeting) |
+| Sistemas Web | `photo-1551434678-e076c223a692` (coding/dashboard) |
 
 ---
 
 ## Arquivo a Modificar
 
-| Arquivo | Acao |
-|---------|------|
-| `src/components/agency/BehindTheScenes.tsx` | **Substituir completamente** |
+**`src/components/agency/ServicesGrid.tsx`**
+
+- Importar novos ícones: `Target`, `Instagram`, `Lightbulb`, `Layers`
+- Adicionar 4 novos objetos ao array `services`
 
 ---
 
-## Detalhes Tecicos de Implementacao
+## Resultado
 
-### Estrutura do Componente
-
-```typescript
-// Dados das categorias de tecnologia
-const techCategories = [
-  {
-    id: "ai",
-    title: "Inteligencia Artificial",
-    subtitle: "IA que Trabalha por Voce",
-    color: "cyan",
-    techs: [
-      { name: "GPT-4 Turbo", desc: "Agentes de vendas 24/7" },
-      { name: "Claude", desc: "Analise inteligente" },
-      { name: "Vision AI", desc: "Leitura de documentos" },
-      { name: "Embeddings", desc: "Busca semantica" }
-    ]
-  },
-  // ... outras categorias
-];
-
-// Dados do fluxo
-const flowSteps = [
-  { icon: Megaphone, label: "Ads", sublabel: "Meta/Google" },
-  { icon: Users, label: "Lead", sublabel: "Captacao" },
-  // ... outros passos
-];
-```
-
-### Cores por Categoria
-
-| Categoria | Cor Principal | Classes Tailwind |
-|-----------|---------------|------------------|
-| IA | Cyan | `from-cyan-500`, `border-cyan-500/30` |
-| Automacao | Purple | `from-purple-500`, `border-purple-500/30` |
-| Trafego | Green | `from-green-500`, `border-green-500/30` |
-| Canais/CRM | Orange | `from-orange-500`, `border-orange-500/30` |
-
-### Animacoes
-
-1. **Cards**: Hover com `scale-105` e `shadow-glow`
-2. **Fluxo**: Linha com `animate-dash` ou pulso de luz
-3. **Badges de tech**: Aparecem com `stagger` no scroll
-4. **Indicadores live**: `animate-pulse` nos pontos
-
-### Layout Responsivo
-
-- **Desktop**: Grid 4 colunas para cards + fluxo horizontal
-- **Tablet**: Grid 2x2 para cards + fluxo reduzido
-- **Mobile**: Stack vertical + fluxo simplificado em lista
-
----
-
-## Resultado Esperado
-
-Uma secao que:
-1. Mostra credibilidade tecnica com ferramentas reais de mercado
-2. Comunica TODOS os servicos: IA, Automacao, Trafego, CRM, Desenvolvimento
-3. Demonstra a integracao entre sistemas com o fluxo visual
-4. Impressiona tecnicamente sem ser confusa
-5. Funciona bem em todos os dispositivos
+A seção passará de 4 para 8 cards no carousel, cobrindo:
+1. Automações e IA
+2. Marketing e Conteúdo
+3. Websites e Landing Pages
+4. Branding e Criativos
+5. **Tráfego Pago** (novo)
+6. **Redes Sociais** (novo)
+7. **Consultoria Digital** (novo)
+8. **Sistemas Web** (novo)
