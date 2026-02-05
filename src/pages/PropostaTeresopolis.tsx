@@ -1,3 +1,4 @@
+import BackToHomeButton from '@/components/ui/BackToHomeButton';
 import { MessageCircle, ArrowDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import FluxrowLogo from "@/components/ui/FluxrowLogo";
@@ -21,8 +22,10 @@ const PropostaTeresopolis = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-900 via-blue-950 to-black relative overflow-hidden">
+      <BackToHomeButton />
+      
       {/* Fixed Header with Logo */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-slate-900/80 backdrop-blur-md border-b border-slate-800/50">
+      <header className="fixed top-0 left-0 right-0 z-40 bg-slate-900/80 backdrop-blur-md border-b border-slate-800/50">
         <div className="container mx-auto px-4 py-3 flex items-center justify-between">
           <FluxrowLogo size="md" />
           <span className="text-xs md:text-sm text-gray-400">Proposta Comercial</span>

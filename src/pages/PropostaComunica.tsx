@@ -1,4 +1,5 @@
 import React from 'react';
+import BackToHomeButton from '@/components/ui/BackToHomeButton';
 import { MessageCircle, ArrowRight, Shield, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import ProblemSection from '@/components/comunica/ProblemSection';
@@ -17,6 +18,7 @@ export default function PropostaComunica() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-900 via-blue-950 to-black">
+      <BackToHomeButton />
       {/* Background effects */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-cyan-600/20 rounded-full blur-3xl" />
