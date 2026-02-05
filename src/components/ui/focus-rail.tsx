@@ -1,6 +1,6 @@
 import * as React from "react";
 import { motion, AnimatePresence, PanInfo } from "framer-motion";
-import { ChevronLeft, ChevronRight, ArrowUpRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, ArrowUpRight, X } from "lucide-react";
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
 
@@ -41,17 +41,6 @@ const BASE_SPRING = {
   mass: 1,
 };
 
-/**
- * Scale Spring
- * Bouncier spring specifically for the visual "Click/Tap" feedback on the center card
- */
-const TAP_SPRING = {
-  type: "spring" as const,
-  stiffness: 450,
-  damping: 18,
-  mass: 1,
-};
-
 export function FocusRail({
   items,
   initialIndex = 0,
@@ -62,6 +51,8 @@ export function FocusRail({
 }: FocusRailProps) {
   const [active, setActive] = React.useState(initialIndex);
   const [isHovering, setIsHovering] = React.useState(false);
+  const [expandedItem, setExpandedItem] = React.useState<FocusRailItem | null>(null);
+  const [isDragging, setIsDragging] = React.useState(false);
   const lastWheelTime = React.useRef(0);
 
   const count = items.length;
@@ -100,15 +91,19 @@ export function FocusRail({
     [handleNext, handlePrev]
   );
 
-  // Autoplay logic
+  // Autoplay logic - pause when expanded
   React.useEffect(() => {
-    if (!autoPlay || isHovering) return;
+    if (!autoPlay || isHovering || expandedItem) return;
     const timer = setInterval(() => handleNext(), interval);
     return () => clearInterval(timer);
-  }, [autoPlay, isHovering, handleNext, interval]);
+  }, [autoPlay, isHovering, handleNext, interval, expandedItem]);
 
   // Keyboard navigation
   const onKeyDown = (e: React.KeyboardEvent) => {
+    if (expandedItem) {
+      if (e.key === "Escape") setExpandedItem(null);
+      return;
+    }
     if (e.key === "ArrowLeft") handlePrev();
     if (e.key === "ArrowRight") handleNext();
   };
@@ -117,6 +112,10 @@ export function FocusRail({
   const swipeConfidenceThreshold = 10000;
   const swipePower = (offset: number, velocity: number) => {
     return Math.abs(offset) * velocity;
+  };
+
+  const onDragStart = () => {
+    setIsDragging(true);
   };
 
   const onDragEnd = (
@@ -129,6 +128,22 @@ export function FocusRail({
       handleNext();
     } else if (swipe > swipeConfidenceThreshold) {
       handlePrev();
+    }
+    
+    // Reset dragging state after a short delay
+    setTimeout(() => setIsDragging(false), 100);
+  };
+
+  const handleCardClick = (offset: number, item: FocusRailItem) => {
+    // Prevent click if we were dragging
+    if (isDragging) return;
+    
+    if (offset !== 0) {
+      // Navigate to this card
+      setActive((p) => p + offset);
+    } else {
+      // Center card - expand it
+      setExpandedItem(item);
     }
   };
 
@@ -176,6 +191,7 @@ export function FocusRail({
           drag="x"
           dragConstraints={{ left: 0, right: 0 }}
           dragElastic={0.1}
+          onDragStart={onDragStart}
           onDragEnd={onDragEnd}
         >
           {visibleIndices.map((offset) => {
@@ -216,13 +232,15 @@ export function FocusRail({
                   opacity,
                   filter: `blur(${blur}px) brightness(${brightness})`,
                 }}
+                whileHover={isCenter ? { scale: 1.02 } : undefined}
                 whileTap={isCenter ? { scale: 0.97 } : undefined}
                 transition={BASE_SPRING}
                 style={{
                   transformStyle: "preserve-3d",
                 }}
-                onClick={() => {
-                  if (offset !== 0) setActive((p) => p + offset);
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleCardClick(offset, item);
                 }}
               >
                 <img
@@ -250,6 +268,15 @@ export function FocusRail({
                       : "opacity-0"
                   )}
                 />
+
+                {/* Click hint for center card */}
+                {isCenter && (
+                  <div className="absolute bottom-4 left-0 right-0 text-center pointer-events-none">
+                    <span className="text-xs text-cyan-400/70 bg-black/40 px-3 py-1 rounded-full backdrop-blur-sm">
+                      Clique para expandir
+                    </span>
+                  </div>
+                )}
               </motion.div>
             );
           })}
@@ -313,6 +340,76 @@ export function FocusRail({
           </div>
         </div>
       </div>
+
+      {/* Expanded Modal */}
+      <AnimatePresence>
+        {expandedItem && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md"
+            onClick={() => setExpandedItem(null)}
+          >
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              transition={{ type: "spring", damping: 25, stiffness: 300 }}
+              className="relative w-full max-w-2xl bg-gradient-to-br from-gray-900 to-black rounded-3xl border border-cyan-500/30 overflow-hidden shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Close button */}
+              <button
+                onClick={() => setExpandedItem(null)}
+                className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-black/50 border border-white/20 flex items-center justify-center text-white hover:bg-white/10 transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+
+              {/* Image */}
+              <div className="relative h-64 md:h-80">
+                <img
+                  src={expandedItem.imageSrc}
+                  alt={expandedItem.title}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent" />
+              </div>
+
+              {/* Content */}
+              <div className="p-6 md:p-8">
+                {expandedItem.meta && (
+                  <span className="inline-block mb-3 rounded-full border border-cyan-500/40 bg-cyan-500/10 px-3 py-1 text-xs font-medium text-cyan-400">
+                    {expandedItem.meta}
+                  </span>
+                )}
+                
+                <h2 className="text-2xl md:text-3xl font-bold font-space-grotesk bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent mb-4">
+                  {expandedItem.title}
+                </h2>
+                
+                {expandedItem.description && (
+                  <p className="text-white/80 text-base md:text-lg leading-relaxed mb-6">
+                    {expandedItem.description}
+                  </p>
+                )}
+
+                {expandedItem.href && (
+                  <Link
+                    to={expandedItem.href}
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-cyan-500 to-purple-500 text-white font-medium hover:shadow-lg hover:shadow-cyan-500/25 transition-all"
+                    onClick={() => setExpandedItem(null)}
+                  >
+                    Ver case completo
+                    <ArrowUpRight className="w-4 h-4" />
+                  </Link>
+                )}
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
