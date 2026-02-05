@@ -1,18 +1,13 @@
 
 import React from 'react';
-
+import FluxrowLogo from './ui/FluxrowLogo';
 const Footer = () => {
   return (
     <footer className="py-10 bg-[#0f0f0f] border-t border-gray-800">
       <div className="max-w-6xl mx-auto px-6">
         <div className="footer-content flex flex-col md:flex-row justify-between items-center mb-8">
           <div className="footer-brand text-center md:text-left mb-4 md:mb-0">
-            <h3 
-              className="text-2xl font-bold gradient-text mb-2"
-              style={{ fontFamily: 'Akony, sans-serif' }}
-            >
-              Fluxrow
-            </h3>
+            <FluxrowLogo size="lg" variant="light" className="mb-2" />
             <p className="text-white/70 font-space-grotesk">
               Inteligência Criativa
             </p>

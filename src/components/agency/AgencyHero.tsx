@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { ArrowRight, Play } from 'lucide-react';
+import FluxrowLogo from '../ui/FluxrowLogo';
 
 const AgencyHero = () => {
   const [counters, setCounters] = useState({
@@ -92,7 +93,7 @@ const AgencyHero = () => {
         </div>
         
         <h1 className="hero-title font-space-grotesk mb-6">
-          <span className="block gradient-text" style={{ fontFamily: 'Akony, sans-serif' }}>Fluxrow</span>
+          <FluxrowLogo size="hero" variant="light" className="block" />
           <span className="block">Transformamos ideias em</span>
           <span className="block gradient-text">resultados com IA,</span>
           <span className="block">automação e criatividade</span>

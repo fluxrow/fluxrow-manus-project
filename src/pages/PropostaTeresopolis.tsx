@@ -1,5 +1,6 @@
 import { MessageCircle, ArrowDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import FluxrowLogo from "@/components/ui/FluxrowLogo";
 import ProblemSection from "@/components/teresopolis/ProblemSection";
 import SolutionSection from "@/components/teresopolis/SolutionSection";
 import ChannelsSection from "@/components/teresopolis/ChannelsSection";
@@ -23,12 +24,7 @@ const PropostaTeresopolis = () => {
       {/* Fixed Header with Logo */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-slate-900/80 backdrop-blur-md border-b border-slate-800/50">
         <div className="container mx-auto px-4 py-3 flex items-center justify-between">
-          <span 
-            className="text-xl md:text-2xl font-bold bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent"
-            style={{ fontFamily: 'Akony, sans-serif' }}
-          >
-            FLUXROW
-          </span>
+          <FluxrowLogo size="md" />
           <span className="text-xs md:text-sm text-gray-400">Proposta Comercial</span>
         </div>
       </header>

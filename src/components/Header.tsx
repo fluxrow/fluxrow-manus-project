@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
+import FluxrowLogo from './ui/FluxrowLogo';
 
 const Header = () => {
   const location = useLocation();
@@ -40,12 +41,8 @@ const Header = () => {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
-            <div 
-              className="text-2xl font-bold gradient-text"
-              style={{ fontFamily: 'Akony, sans-serif' }}
-            >
-              Fluxrow Start
-            </div>
+            <FluxrowLogo size="md" variant="light" />
+            <span className="text-white/80 font-space-grotesk">Start</span>
           </Link>
 
           {/* Navigation */}
