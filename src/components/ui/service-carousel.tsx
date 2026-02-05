@@ -197,10 +197,11 @@ const ServiceCarousel = React.forwardRef<HTMLDivElement, ServiceCarouselProps>(
       setTimeout(() => setIsDragging(false), 100);
     };
 
-    const handleContactClick = (e: React.MouseEvent) => {
+    const handleContactClick = (e: React.MouseEvent, serviceName: string) => {
       e.stopPropagation();
       setExpandedService(null);
-      window.location.href = "#contact";
+      const message = encodeURIComponent(`Olá! Tenho interesse no serviço de ${serviceName}. Gostaria de solicitar um orçamento.`);
+      window.open(`https://wa.me/5541992361868?text=${message}`, '_blank');
     };
 
     return (
@@ -388,7 +389,7 @@ const ServiceCarousel = React.forwardRef<HTMLDivElement, ServiceCarouselProps>(
 
                   <motion.div variants={itemVariants}>
                     <button
-                      onClick={handleContactClick}
+                      onClick={(e) => handleContactClick(e, expandedService.title)}
                       className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-cyan-500 to-purple-500 text-white font-medium hover:shadow-lg hover:shadow-cyan-500/25 transition-all"
                     >
                       Solicitar orçamento
