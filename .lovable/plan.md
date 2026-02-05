@@ -1,159 +1,151 @@
 
-# Transformar Seção "O que fazemos" em Carousel de Serviços
 
-## Visão Geral
-Substituir a grid atual de serviços por um carousel horizontal interativo baseado no componente `OfferCarousel`, adaptado para mostrar os 4 serviços da Fluxrow com visual premium.
+# Adicionar Swipe Touch e Expansão de Descrição no Carousel
+
+## Problemas Identificados
+
+### 1. Falta de Suporte a Touch Swipe
+O carousel atual usa apenas `overflow-x-auto` para scroll nativo. Não há eventos de drag/swipe com Framer Motion para uma experiência mobile mais fluida.
+
+### 2. Descrição Não Expande
+A descrição tem `line-clamp-2` (limita a 2 linhas) mas não há lógica para:
+- Expandir ao hover (desktop)
+- Expandir ao tap (mobile)
 
 ---
 
-## Adaptações Necessárias
+## Solução
 
-### 1. Estrutura do Card
-O componente original é para "ofertas/promoções". Vamos adaptar para "serviços":
+### 1. Touch Swipe com Framer Motion
 
-| Campo Original | Adaptado para Serviços |
-|----------------|------------------------|
-| `imageSrc` | Imagem de fundo representando o serviço |
-| `tag` | Categoria do serviço (ex: "Tecnologia", "Criativo") |
-| `title` | Nome do serviço |
-| `description` | Descrição completa |
-| `brandLogoSrc` | Ícone Lucide renderizado |
-| `brandName` | Benefício principal |
-| `promoCode` | Remover (não aplicável) |
-| `href` | Link para seção ou página de detalhes |
-
-### 2. Paleta de Cores (adaptar para Fluxrow)
+Usar `motion.div` com `drag="x"` e constraints para swipe nativo:
 
 ```tsx
-// Cores originais genéricas → Cores Fluxrow
-background: "bg-[#0a0a0a]"
-borders: "border-cyan-500/30" 
-tags: "bg-cyan-500/20 text-cyan-400"
-hover effects: "from-purple-500/20 to-cyan-500/20"
-buttons: "bg-gradient-to-r from-cyan-500 to-purple-500"
+<motion.div
+  drag="x"
+  dragConstraints={scrollContainerRef}
+  dragElastic={0.1}
+  onDragEnd={(e, info) => {
+    if (info.offset.x > 100) scroll("left");
+    else if (info.offset.x < -100) scroll("right");
+  }}
+>
 ```
 
-### 3. Dados dos Serviços
+### 2. Expansão de Descrição
+
+Adicionar estado de expansão no card com animação:
 
 ```tsx
-const services: ServiceOffer[] = [
-  {
-    id: 1,
-    imageSrc: "https://images.unsplash.com/photo-1677442136019-21780ecad995", // AI/Automation
-    imageAlt: "Automações e Inteligência Artificial",
-    tag: "Tecnologia",
-    title: "Automações e IA",
-    description: "Fluxos inteligentes que trabalham 24h por você: WhatsApp, e-mail, CRM, agentes virtuais.",
-    icon: Bot,
-    benefit: "Economia de 20h/semana",
-    href: "#services"
-  },
-  {
-    id: 2,
-    imageSrc: "https://images.unsplash.com/photo-1611162617474-5b21e879e113", // Marketing
-    tag: "Criativo",
-    title: "Marketing e Conteúdo",
-    description: "Criação de posts, campanhas, blogs e social media com consistência e estratégia.",
-    icon: Megaphone,
-    benefit: "Conteúdo que converte",
-    href: "#services"
-  },
-  {
-    id: 3,
-    imageSrc: "https://images.unsplash.com/photo-1460925895917-afdab827c52f", // Web Development
-    tag: "Desenvolvimento",
-    title: "Websites e Landing Pages", 
-    description: "Sites modernos em Lovable ou Webflow, com foco em performance e integração total.",
-    icon: Globe,
-    benefit: "Alta conversão",
-    href: "#services"
-  },
-  {
-    id: 4,
-    imageSrc: "https://images.unsplash.com/photo-1561070791-2526d30994b5", // Branding
-    tag: "Design",
-    title: "Branding e Criativos",
-    description: "Identidade visual, carrosséis, renders 3D e designs prontos para engajar e converter.",
-    icon: Palette,
-    benefit: "Identidade única",
-    href: "#services"
-  }
-];
+const [isExpanded, setIsExpanded] = useState(false);
+
+// No mobile: toggle ao click
+// No desktop: expand ao hover via group-hover
 ```
 
 ---
 
-## Arquivos a Criar/Modificar
+## Arquivos a Modificar
 
-| Arquivo | Ação |
-|---------|------|
-| `src/components/ui/service-carousel.tsx` | Criar componente adaptado |
-| `src/components/agency/ServicesGrid.tsx` | Substituir conteúdo pelo novo carousel |
-
----
-
-## Estrutura Visual Final
-
-```
-┌──────────────────────────────────────────────────────────────────┐
-│                      O QUE FAZEMOS                                │
-│        Soluções completas que transformam seu negócio             │
-│                                                                   │
-│  ◀  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐  ▶         │
-│     │   [IMAGEM]  │  │   [IMAGEM]  │  │   [IMAGEM]  │            │
-│     │             │  │             │  │             │            │
-│     │ ┌─────────┐ │  │ ┌─────────┐ │  │ ┌─────────┐ │            │
-│     │ │Tecnologia│ │  │ │Criativo │ │  │ │Desenvol.│ │            │
-│     │ └─────────┘ │  │ └─────────┘ │  │ └─────────┘ │            │
-│     │ Automações  │  │ Marketing   │  │ Websites    │            │
-│     │ e IA        │  │ e Conteúdo  │  │ e LPs       │            │
-│     │             │  │             │  │             │            │
-│     │ 🤖 20h/sem  │  │ 📢 Converte │  │ 🌐 Alta CVR │            │
-│     └─────────────┘  └─────────────┘  └─────────────┘            │
-│                                                                   │
-└──────────────────────────────────────────────────────────────────┘
-```
+| Arquivo | Mudanças |
+|---------|----------|
+| `src/components/ui/service-carousel.tsx` | Adicionar drag events + lógica de expansão |
 
 ---
 
-## Detalhes Técnicos
+## Detalhes da Implementação
 
-### Dependências
-- `framer-motion` - Já instalado (^12.23.21)
-- `lucide-react` - Já instalado (^0.462.0)
-
-### Animações do Card
-```tsx
-// Hover effect com Framer Motion
-whileHover={{ y: -8, scale: 1.02 }}
-transition={{ duration: 0.3, ease: "easeOut" }}
-```
-
-### Cores Adaptadas (CSS Classes)
+### ServiceCard - Expansão de Descrição
 
 ```tsx
-// Tag badge
-"bg-cyan-500/20 text-cyan-400 border border-cyan-500/30"
+const [isExpanded, setIsExpanded] = useState(false);
 
-// Card background
-"bg-gradient-to-br from-gray-900/90 to-black/90 backdrop-blur-xl"
-
-// Card border
-"border border-white/10 hover:border-cyan-500/50"
-
-// Icon container
-"bg-gradient-to-r from-cyan-500 to-purple-500"
-
-// Seta/botão
-"bg-white/10 hover:bg-cyan-500/20 text-white"
+// Descrição com animação
+<motion.p 
+  className="text-sm text-white/80 leading-relaxed"
+  initial={false}
+  animate={{ 
+    height: isExpanded ? "auto" : "2.5rem",
+    opacity: 1 
+  }}
+  transition={{ duration: 0.3 }}
+>
+  {service.description}
+</motion.p>
 ```
 
-### Scroll Behavior
-- Scroll horizontal com botões
-- Suporte a swipe em mobile
-- Scroll suave com `behavior: "smooth"`
+### ServiceCarousel - Touch Swipe
+
+```tsx
+// Refs para controle de drag
+const [isDragging, setIsDragging] = useState(false);
+
+// Container com drag
+<motion.div
+  ref={scrollContainerRef}
+  className="flex gap-6 overflow-x-auto scroll-smooth py-4 px-4 md:px-8"
+  drag="x"
+  dragConstraints={{ left: -((services.length - 1) * 340), right: 0 }}
+  dragElastic={0.1}
+  onDragStart={() => setIsDragging(true)}
+  onDragEnd={() => setIsDragging(false)}
+/>
+```
+
+### Comportamento da Expansão
+
+| Dispositivo | Trigger | Ação |
+|-------------|---------|------|
+| Desktop | Hover | Expande automaticamente via `group-hover` |
+| Mobile | Tap | Toggle estado `isExpanded` |
+
+---
+
+## Estrutura Visual da Expansão
+
+```
+┌─────────────────────────────┐
+│      [IMAGEM DE FUNDO]      │
+│                             │
+│  ┌────────────────────────┐ │
+│  │ Tecnologia             │ │  ← Tag
+│  └────────────────────────┘ │
+│                             │
+│  Automações e IA            │  ← Título
+│                             │
+│  Fluxos inteligentes que    │  ← Descrição (2 linhas)
+│  trabalham 24h por você...  │     
+│                             │
+│  ─────────────────────────  │
+│  🤖 Economia 20h/sem    →   │
+└─────────────────────────────┘
+
+        ↓ HOVER/TAP ↓
+
+┌─────────────────────────────┐
+│      [IMAGEM DE FUNDO]      │
+│                             │
+│  ┌────────────────────────┐ │
+│  │ Tecnologia             │ │
+│  └────────────────────────┘ │
+│                             │
+│  Automações e IA            │
+│                             │
+│  Fluxos inteligentes que    │  ← Descrição COMPLETA
+│  trabalham 24h por você:    │
+│  WhatsApp, e-mail, CRM,     │
+│  agentes virtuais.          │
+│                             │
+│  ─────────────────────────  │
+│  🤖 Economia 20h/sem    →   │
+└─────────────────────────────┘
+```
 
 ---
 
 ## Resultado Esperado
-Um carousel horizontal moderno e interativo que substitui a grid estática, mantendo a identidade visual Fluxrow (cyan/purple/pink) e melhorando a experiência de navegação nos serviços.
+
+1. **Mobile**: Swipe horizontal fluido + tap para expandir descrição
+2. **Desktop**: Hover expande descrição automaticamente
+3. **Animação suave** ao expandir/recolher descrição
+
