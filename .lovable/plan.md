@@ -1,322 +1,159 @@
 
-# Upgrade Visual da Proposta Teresópolis Shopping
+# Personalização da Proposta com Dados Reais do Teresópolis Shopping
 
-## Análise Comparativa
+## Dados Reais Coletados
 
-### O que a Apresentação Evolua Digital tem de diferente:
-
-| Elemento | Evolua Digital | Teresópolis Atual |
-|----------|----------------|-------------------|
-| **Fluxo visual** | Diagrama de etapas com setas animadas | Apenas cards estáticos |
-| **Simulação de Chat** | Conversa real entre cliente e IA | Não tem |
-| **Dashboard mockup** | Cards com métricas + barras de progresso | Apenas lista de métricas |
-| **Ranking visual** | Lista com medalhas e posições | Não tem |
-| **Status em tempo real** | Animações pulse, indicadores de status | Sem animações |
-| **Background effects** | Blur animado e gradientes pulsantes | Gradiente estático |
-| **Exemplos concretos** | Nomes, valores, percentuais simulados | Descrições genéricas |
-
----
-
-## Plano de Melhorias
-
-### 1. Página Principal (PropostaTeresopolis.tsx)
-
-**Adicionar Background Effects animados:**
-```
-- Círculos blur pulsantes (como Evolua)
-- Efeito floating suave no hero
-```
-
----
-
-### 2. ProblemSection.tsx - Mostrar o Problema com Exemplos
-
-**Adicionar simulação visual do problema:**
-- Mockup de celular com WhatsApp lotado de mensagens
-- Contador animado mostrando "342 mensagens não lidas"
-- Exemplos de perguntas repetitivas em balões de chat
-
-```
-Exemplo visual:
-┌─────────────────────────┐
-│ 📱 WhatsApp Recepção    │
-│ ────────────────────────│
-│ 🔴 342 não lidas        │
-│ ────────────────────────│
-│ João: "Que horas abre?" │
-│ Maria: "Tem loja X?"    │
-│ Pedro: "Onde estaciono?"│
-│ Ana: "Que horas fecha?" │
-│ Carlos: "Tem cinema?"   │
-│ ...                     │
-└─────────────────────────┘
-```
-
----
-
-### 3. SolutionSection.tsx - Simulação de Chat com IA
-
-**Adicionar conversa simulada (igual Evolua):**
-- Balões de chat cliente ↔ IA
-- Resposta automática instantânea
-- Indicador de "Resolvido pela IA" ou "Transferido para humano"
-
-```
-Exemplo visual:
-┌─────────────────────────────────────────┐
-│ 👤 Cliente                              │
-│    ┌────────────────────────────────┐   │
-│    │ Oi, que horas o shopping abre? │   │
-│    └────────────────────────────────┘   │
-│                                         │
-│                    🤖 Assistente IA     │
-│  ┌────────────────────────────────────┐ │
-│  │ Olá! 😊 O Teresópolis Shopping     │ │
-│  │ funciona de segunda a sábado das   │ │
-│  │ 10h às 22h, e domingos das 14h às  │ │
-│  │ 20h. Posso ajudar com mais algo?   │ │
-│  └────────────────────────────────────┘ │
-│                                         │
-│ 👤 Cliente                              │
-│    ┌─────────────────────────────────┐  │
-│    │ Vocês tem loja da Samsung?      │  │
-│    └─────────────────────────────────┘  │
-│                                         │
-│                    🤖 Assistente IA     │
-│  ┌────────────────────────────────────┐ │
-│  │ Sim! A Samsung fica no 2º piso,   │ │
-│  │ próximo à praça de alimentação.    │ │
-│  │ O telefone é (21) 2742-XXXX.       │ │
-│  └────────────────────────────────────┘ │
-│                                         │
-│  ✅ Atendimento resolvido pela IA      │
-│     Tempo: 8 segundos                   │
-└─────────────────────────────────────────┘
-```
-
----
-
-### 4. ChannelsSection.tsx - Fluxo Visual Animado
-
-**Adicionar diagrama de fluxo (como Evolua):**
-- Ícones dos 4 canais em linha
-- Setas animadas apontando para baixo
-- Card central "Central de IA"
-- Setas para 3 outputs (Dashboard, Humano, Sistemas)
-
-```
-Exemplo:
-[WhatsApp] [Instagram] [Facebook] [Email]
-    ↓          ↓           ↓         ↓
-         ┌──────────────────────┐
-         │  Central de IA      │
-         │  Unificada          │
-         └──────────────────────┘
-              /     |     \
-             ↓      ↓      ↓
-    [Dashboard] [Humano] [Sistemas]
-```
-
----
-
-### 5. IntelligenceSection.tsx - Dashboard Mockup Interativo
-
-**Adicionar mockup de dashboard com dados simulados:**
-
-```
-┌────────────────────────────────────────────────────┐
-│ 📊 Dashboard de Atendimentos                       │
-├────────────────────────────────────────────────────┤
-│                                                    │
-│  ┌──────────┐  ┌──────────┐  ┌──────────┐         │
-│  │   847    │  │  92.3%   │  │    5s    │         │
-│  │ Hoje     │  │ Resolv.  │  │ Resposta │         │
-│  │ +23%     │  │ pela IA  │  │ média    │         │
-│  └──────────┘  └──────────┘  └──────────┘         │
-│                                                    │
-│  Top Perguntas do Mês:                            │
-│  ────────────────────────────────────────────     │
-│  1. "Horário de funcionamento" ████████ 234       │
-│  2. "Onde fica loja X?"        ██████   178       │
-│  3. "Tem estacionamento?"      █████    156       │
-│  4. "Aceita cartão?"           ████     132       │
-│                                                    │
-└────────────────────────────────────────────────────┘
-```
-
----
-
-### 6. ScopeB2CSection.tsx - Exemplos de Conversas
-
-**Adicionar cards com exemplos de perguntas e respostas:**
-- Cada categoria com exemplo real de pergunta
-- Resposta que a IA daria
-
----
-
-### 7. ScopeB2BSection.tsx - Portal do Lojista Mockup
-
-**Adicionar mockup do portal B2B:**
-
-```
-┌────────────────────────────────────────────────────┐
-│ 🏪 Portal do Lojista - Magazine Luiza             │
-├────────────────────────────────────────────────────┤
-│                                                    │
-│  📢 Comunicados (3 novos)                         │
-│  ────────────────────────────────────────────     │
-│  • Manutenção ar-condicionado - 15/02             │
-│  • Novo horário de carga - 16/02                  │
-│  • Campanha Dia das Mães - Prazo 20/02            │
-│                                                    │
-│  🔧 Minhas Solicitações                           │
-│  ────────────────────────────────────────────     │
-│  • Lâmpada queimada [✓ Resolvido]                 │
-│  • Limpeza urgente [⏳ Em andamento]               │
-│                                                    │
-│  📊 Meu Ranking: 3º lugar (+45 pontos)            │
-│                                                    │
-└────────────────────────────────────────────────────┘
-```
-
----
-
-### 8. GamificationSection.tsx - Ranking Visual
-
-**Adicionar ranking com medalhas (como Evolua):**
-
-```
-┌────────────────────────────────────────────────────┐
-│ 🏆 Ranking de Lojistas - Janeiro 2025             │
-├────────────────────────────────────────────────────┤
-│                                                    │
-│  🥇 Magazine Luiza        847 pts    "Loja do Mês"│
-│  🥈 Renner                623 pts                  │
-│  🥉 C&A                   512 pts                  │
-│  4  Samsung               489 pts                  │
-│  5  Casas Bahia           456 pts                  │
-│                                                    │
-│  Como ganhar pontos:                              │
-│  ───────────────────                              │
-│  ✓ Responder comunicados      +10 pts             │
-│  ✓ Enviar relatório de vendas +20 pts             │
-│  ✓ Participar de eventos      +50 pts             │
-│                                                    │
-└────────────────────────────────────────────────────┘
-```
-
----
-
-### 9. IntegrationsSection.tsx - Cards com Status
-
-**Adicionar visual de integração com status:**
-
-```
-┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐
-│ Group Shopping  │  │ BeMall CRM      │  │ COM21 Online    │
-│ ───────────────│  │ ───────────────│  │ ───────────────│
-│ 🟢 Compatível   │  │ 🟢 Compatível   │  │ 🟡 Sob demanda  │
-│                 │  │                 │  │                 │
-│ • Boletos       │  │ • Clientes      │  │ • Portal        │
-│ • Contratos     │  │ • Campanhas     │  │ • Lojistas      │
-│ • Financeiro    │  │ • Promoções     │  │                 │
-└─────────────────┘  └─────────────────┘  └─────────────────┘
-```
-
----
-
-### 10. TimelineSection.tsx - Timeline Visual Animada
-
-**Adicionar timeline horizontal com checkpoints:**
-
-```
-Semana 1          Semana 2         Semana 3         Semana 4
-   ●────────────────●────────────────●────────────────●
-   │                │                │                │
-Descoberta    Configuração       Testes          Go-Live
-• FAQs        • Setup canais    • Testes com    • Lançamento
-• Tom de voz  • Treinar IA      • Ajustes finos • Monitoramento
-```
+| Informação | Valor Real |
+|------------|------------|
+| **Endereço** | Rua Edmundo Bittencourt, 101 - Várzea, Teresópolis - RJ, CEP 25953-030 |
+| **Telefone** | (21) 2643-3995 |
+| **Inauguração** | 1995 |
+| **ABL** | 9.000 m² |
+| **Operações** | 80 lojas |
+| **Lojas Âncoras** | Lojas Americanas e Renner |
+| **Cinema** | 4 salas de cinema (em breve 1 VIP) |
+| **Fluxo mensal** | 360 mil clientes/mês |
+| **Fluxo veículos** | 19 mil veículos/mês |
+| **Serviços** | Fraldário, Achados e Perdidos, Caixa Eletrônico, Bicicletário, Estacionamento coberto com Valet Parking, Vaga Verde, Vaga Autista, Wi-Fi grátis |
+| **Pet Friendly** | Sim |
+| **Instagram** | @teresopolisshopping (oficial) |
 
 ---
 
 ## Arquivos a Modificar
 
-| Arquivo | Modificação |
-|---------|-------------|
-| `PropostaTeresopolis.tsx` | Adicionar background effects animados |
-| `ProblemSection.tsx` | Adicionar mockup de WhatsApp lotado |
-| `SolutionSection.tsx` | Adicionar simulação de chat IA |
-| `ChannelsSection.tsx` | Melhorar fluxo visual com diagrama |
-| `IntelligenceSection.tsx` | Adicionar dashboard mockup com dados |
-| `ScopeB2CSection.tsx` | Adicionar exemplos de conversas |
-| `ScopeB2BSection.tsx` | Adicionar mockup portal lojista |
-| `GamificationSection.tsx` | Adicionar ranking visual com medalhas |
-| `IntegrationsSection.tsx` | Adicionar cards de status de integração |
-| `TimelineSection.tsx` | Melhorar timeline visual |
+### 1. SolutionSection.tsx - Simulação de Chat
+
+**Atualizar conversa simulada com dados reais:**
+
+```
+Antes: "Vocês tem loja da Samsung?"
+Depois: "Vocês tem Renner?" (loja âncora real)
+
+Antes: "A Samsung fica no 2º piso..."
+Depois: "Sim! A Renner é uma das nossas lojas âncoras e fica no térreo. É a única Renner da cidade! Posso ajudar com mais algo?"
+```
 
 ---
 
-## Elementos Visuais Chave a Implementar
+### 2. ScopeB2CSection.tsx - Exemplos de Perguntas B2C
 
-1. **Background Effects**
-   - Círculos blur pulsantes
-   - Gradientes animados
+**Atualizar todas as respostas com dados reais:**
 
-2. **Simulações de Chat**
-   - Balões estilo WhatsApp
-   - Avatar do cliente vs Avatar do Bot
-   - Indicadores de status (resolvido, transferido)
-
-3. **Mockups de Dashboard**
-   - Cards com números grandes
-   - Barras de progresso animadas
-   - Indicadores de crescimento (+%)
-
-4. **Rankings e Listas**
-   - Medalhas de ouro/prata/bronze
-   - Pontuações numéricas
-   - Posições destacadas
-
-5. **Indicadores de Status**
-   - Pontos verdes (🟢), amarelos (🟡), vermelhos (🔴)
-   - Animações pulse
-   - Badges de status
-
-6. **Dados Simulados Específicos**
-   - Nomes de lojas reais de shopping
-   - Horários do Teresópolis Shopping
-   - Exemplos de perguntas típicas de shopping
+| Campo | Valor Atualizado |
+|-------|------------------|
+| Horários | "O Teresópolis Shopping funciona de segunda a sábado das 10h às 22h, e domingos das 14h às 20h!" (manter, está correto) |
+| Lojas | "Sim! A Renner é uma das nossas lojas âncoras, no térreo. Também temos Lojas Americanas! Tel: (21) 2643-3995" |
+| Wifi | "Sim! Wi-Fi gratuito em todo o shopping. Conecte-se e aproveite!" |
+| Estacionamento | "Estacionamento coberto com Valet Parking disponível. Maior estacionamento da região! Aceitamos cartão e Pix" |
+| Cinema | "Sim! Temos 4 salas de cinema, as únicas da cidade! Em breve, 1 sala VIP. Confira a programação no site!" |
+| Localização | "Estamos na Rua Edmundo Bittencourt, 101 - Várzea. A 90km do Rio de Janeiro, no coração da cidade!" |
+| Achados e Perdidos | "Procure na Central de Atendimento. Também temos Fraldário, Bicicletário e Caixa Eletrônico!" |
 
 ---
 
-## Exemplos de Perguntas B2C para Simular
+### 3. ProblemSection.tsx - Mensagens do WhatsApp
 
-- "Que horas o shopping abre?"
-- "Tem loja da Samsung?"
-- "Quanto custa o estacionamento?"
-- "Onde fica a praça de alimentação?"
-- "Vocês tem cinema?"
-- "A loja X está aberta?"
-- "Como chego de ônibus?"
+**Atualizar perguntas simuladas para refletir dúvidas reais:**
 
-## Exemplos de Comunicados B2B
-
-- "Manutenção do ar-condicionado dia 15/02"
-- "Novo horário de carga/descarga"
-- "Campanha Dia das Mães - prazo para adesão"
-- "Reunião de lojistas - 20/02 às 9h"
+```javascript
+const whatsappMessages = [
+  { name: "João", message: "Que horas abre domingo?", time: "10:23" },
+  { name: "Maria", message: "Tem Renner aí?", time: "10:24" },
+  { name: "Pedro", message: "Tem valet parking?", time: "10:25" },
+  { name: "Ana", message: "Quantas salas de cinema?", time: "10:26" },
+  { name: "Carlos", message: "Posso levar meu pet?", time: "10:27" },
+  { name: "Lucia", message: "Qual o CEP?", time: "10:28" },
+  { name: "Roberto", message: "Tem Americanas?", time: "10:29" },
+  { name: "Fernanda", message: "Tem wifi grátis?", time: "10:30" },
+];
+```
 
 ---
 
-## Resultado Esperado
+### 4. GamificationSection.tsx - Ranking de Lojistas
 
-A proposta passará de uma apresentação **estática com cards de texto** para uma experiência **visual e interativa** que:
+**Atualizar com lojas reais do shopping:**
 
-1. **Mostra o problema** visualmente (WhatsApp lotado)
-2. **Demonstra a solução** com chat simulado
-3. **Apresenta métricas** com dashboard realista
-4. **Engaja lojistas** com ranking gamificado
-5. **Transmite profissionalismo** com animações suaves
+```javascript
+const ranking = [
+  { position: 1, name: "Renner", points: 847, badge: "🥇", highlight: true, label: "Loja do Mês" },
+  { position: 2, name: "Lojas Americanas", points: 623, badge: "🥈", highlight: false },
+  { position: 3, name: "Cine Show", points: 512, badge: "🥉", highlight: false },
+  { position: 4, name: "Praça de Alimentação", points: 489, badge: "4", highlight: false },
+  { position: 5, name: "O Boticário", points: 456, badge: "5", highlight: false },
+];
+```
 
-Isso aumenta significativamente o impacto na apresentação para a Ingrid e a diretoria do shopping.
+---
+
+### 5. ScopeB2BSection.tsx - Portal do Lojista
+
+**Atualizar mockup com loja real:**
+
+```
+Antes: "Magazine Luiza - Loja 42"
+Depois: "Renner - Loja Âncora"
+```
+
+**Atualizar comunicados com contexto real:**
+```javascript
+const mockCommunications = [
+  { title: "Horário especial de Carnaval", date: "28/02", status: "new" },
+  { title: "Vaga Verde - Novos procedimentos", date: "05/03", status: "new" },
+  { title: "Campanha Dia das Mães 2025", date: "10/03", status: "new" },
+];
+```
+
+---
+
+### 6. IntelligenceSection.tsx - Dashboard
+
+**Atualizar métricas com dados reais do shopping:**
+
+```javascript
+// Top Perguntas baseadas no fluxo real
+const topQuestions = [
+  { question: "Horário de funcionamento", count: 234, percentage: 100 },
+  { question: "Onde fica a Renner?", count: 178, percentage: 76 },
+  { question: "Tem estacionamento?", count: 156, percentage: 67 },
+  { question: "Posso levar meu pet?", count: 132, percentage: 56 },
+  { question: "Quantas salas de cinema?", count: 98, percentage: 42 },
+];
+```
+
+---
+
+## Resumo das Alterações
+
+| Arquivo | Alteração |
+|---------|-----------|
+| `SolutionSection.tsx` | Atualizar chat simulado com Renner e dados reais |
+| `ScopeB2CSection.tsx` | Atualizar todas as respostas com informações oficiais |
+| `ProblemSection.tsx` | Atualizar mensagens do WhatsApp com perguntas reais |
+| `GamificationSection.tsx` | Substituir lojas fictícias por lojas reais (Renner, Americanas) |
+| `ScopeB2BSection.tsx` | Atualizar portal com Renner e comunicados contextualizados |
+| `IntelligenceSection.tsx` | Atualizar dashboard com métricas baseadas no fluxo real (360k/mês) |
+
+---
+
+## Dados Específicos a Inserir
+
+**Informações oficiais do Teresópolis Shopping:**
+- Endereço: Rua Edmundo Bittencourt, 101 - Várzea
+- CEP: 25953-030
+- Telefone: (21) 2643-3995
+- 80 operações
+- 360 mil clientes/mês
+- 4 salas de cinema (únicas da cidade)
+- Lojas âncoras: Renner e Lojas Americanas
+- Única Renner da cidade
+- Pet Friendly
+- Wi-Fi gratuito em todo o shopping
+- Valet Parking disponível
+- Vaga Verde e Vaga Autista
+- Fraldário, Bicicletário, Caixa Eletrônico
+- Maior estacionamento da região
+- 90km do Rio de Janeiro
+
+**Total: 6 arquivos modificados**
