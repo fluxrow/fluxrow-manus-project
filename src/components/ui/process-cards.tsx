@@ -60,11 +60,10 @@ function ProcessCard({
   return (
     <div
       className={cn(
-        "relative h-72 w-80 cursor-pointer rounded-xl border bg-[#0a0a0a]/95 backdrop-blur-sm p-6 transition-all duration-500",
+        "relative h-auto min-h-[280px] w-full cursor-pointer rounded-xl border bg-[#0a0a0a]/95 backdrop-blur-sm p-6 transition-all duration-300",
         colors.border,
         "hover:shadow-xl",
         colors.glow,
-        "[&>*]:flex [&>*]:flex-col [&>*]:gap-2",
         className
       )}
     >
@@ -127,7 +126,6 @@ const defaultCards: ProcessCardProps[] = [
     step: 1,
     totalSteps: 4,
     color: "cyan",
-    className: "[grid-area:stack] hover:-translate-y-6 before:absolute before:w-full before:outline-1 before:rounded-xl before:outline-border before:h-full before:content-[''] before:bg-blend-overlay before:bg-background/50 grayscale-[100%] hover:before:opacity-0 before:transition-opacity before:duration-500 hover:grayscale-0 before:left-0 before:top-0 z-10",
   },
   {
     icon: <Lightbulb className="w-5 h-5" />,
@@ -137,7 +135,6 @@ const defaultCards: ProcessCardProps[] = [
     step: 2,
     totalSteps: 4,
     color: "purple",
-    className: "[grid-area:stack] translate-x-12 translate-y-8 hover:-translate-y-2 before:absolute before:w-full before:outline-1 before:rounded-xl before:outline-border before:h-full before:content-[''] before:bg-blend-overlay before:bg-background/50 grayscale-[100%] hover:before:opacity-0 before:transition-opacity before:duration-500 hover:grayscale-0 before:left-0 before:top-0 z-20",
   },
   {
     icon: <Rocket className="w-5 h-5" />,
@@ -147,7 +144,6 @@ const defaultCards: ProcessCardProps[] = [
     step: 3,
     totalSteps: 4,
     color: "green",
-    className: "[grid-area:stack] translate-x-24 translate-y-16 hover:translate-y-6 before:absolute before:w-full before:outline-1 before:rounded-xl before:outline-border before:h-full before:content-[''] before:bg-blend-overlay before:bg-background/50 grayscale-[100%] hover:before:opacity-0 before:transition-opacity before:duration-500 hover:grayscale-0 before:left-0 before:top-0 z-30",
   },
   {
     icon: <TrendingUp className="w-5 h-5" />,
@@ -157,7 +153,6 @@ const defaultCards: ProcessCardProps[] = [
     step: 4,
     totalSteps: 4,
     color: "yellow",
-    className: "[grid-area:stack] translate-x-36 translate-y-24 hover:translate-y-14 z-40",
   },
 ];
 
@@ -165,9 +160,9 @@ export default function ProcessCards({ cards }: ProcessCardsProps) {
   const displayCards = cards || defaultCards;
 
   return (
-    <div className="grid [grid-template-areas:'stack'] place-items-center">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 w-full max-w-7xl mx-auto px-4">
       {displayCards.map((cardProps, index) => (
-        <ProcessCard key={index} {...cardProps} />
+        <ProcessCard key={index} {...cardProps} className="hover:-translate-y-2 hover:shadow-2xl" />
       ))}
     </div>
   );
