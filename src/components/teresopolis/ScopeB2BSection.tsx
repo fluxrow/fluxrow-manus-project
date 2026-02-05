@@ -41,9 +41,9 @@ const categories = [
 ];
 
 const mockCommunications = [
-  { title: "Manutenção ar-condicionado", date: "15/02", status: "new" },
-  { title: "Novo horário de carga", date: "16/02", status: "new" },
-  { title: "Campanha Dia das Mães", date: "20/02", status: "new" },
+  { title: "Horário especial de Carnaval", date: "28/02", status: "new" },
+  { title: "Vaga Verde - Novos procedimentos", date: "05/03", status: "new" },
+  { title: "Campanha Dia das Mães 2025", date: "10/03", status: "new" },
 ];
 
 const mockRequests = [
@@ -79,7 +79,7 @@ const ScopeB2BSection = () => {
                   </div>
                   <div>
                     <p className="text-white font-semibold">Portal do Lojista</p>
-                    <p className="text-teal-300 text-sm">Magazine Luiza - Loja 42</p>
+                    <p className="text-teal-300 text-sm">Renner - Loja Âncora</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-2">

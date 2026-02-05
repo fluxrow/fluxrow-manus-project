@@ -48,8 +48,8 @@ const solutions = [
 const chatSimulation = [
   { type: "user", message: "Oi, que horas o shopping abre?", delay: 0 },
   { type: "bot", message: "Olá! 😊 O Teresópolis Shopping funciona de segunda a sábado das 10h às 22h, e domingos das 14h às 20h. Posso ajudar com mais algo?", delay: 1500 },
-  { type: "user", message: "Vocês tem loja da Samsung?", delay: 3000 },
-  { type: "bot", message: "Sim! A Samsung fica no 2º piso, próximo à praça de alimentação. O telefone é (21) 2742-XXXX. Quer que eu envie a localização no mapa?", delay: 4500 },
+  { type: "user", message: "Vocês tem Renner?", delay: 3000 },
+  { type: "bot", message: "Sim! A Renner é uma das nossas lojas âncoras e fica no térreo. É a única Renner da cidade! 🛍️ O shopping fica na Rua Edmundo Bittencourt, 101. Posso ajudar com mais algo?", delay: 4500 },
 ];
 
 const SolutionSection = () => {

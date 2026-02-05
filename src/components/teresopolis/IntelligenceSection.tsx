@@ -55,9 +55,10 @@ const dataFishing = [
 
 const topQuestions = [
   { question: "Horário de funcionamento", count: 234, percentage: 100 },
-  { question: "Onde fica loja X?", count: 178, percentage: 76 },
+  { question: "Onde fica a Renner?", count: 178, percentage: 76 },
   { question: "Tem estacionamento?", count: 156, percentage: 67 },
-  { question: "Aceita cartão?", count: 132, percentage: 56 },
+  { question: "Posso levar meu pet?", count: 132, percentage: 56 },
+  { question: "Quantas salas de cinema?", count: 98, percentage: 42 },
 ];
 
 const IntelligenceSection = () => {

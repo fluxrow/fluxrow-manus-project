@@ -25,11 +25,11 @@ const howItWorks = [
 ];
 
 const ranking = [
-  { position: 1, name: "Magazine Luiza", points: 847, badge: "🥇", highlight: true, label: "Loja do Mês" },
-  { position: 2, name: "Renner", points: 623, badge: "🥈", highlight: false },
-  { position: 3, name: "C&A", points: 512, badge: "🥉", highlight: false },
-  { position: 4, name: "Samsung", points: 489, badge: "4", highlight: false },
-  { position: 5, name: "Casas Bahia", points: 456, badge: "5", highlight: false },
+  { position: 1, name: "Renner", points: 847, badge: "🥇", highlight: true, label: "Loja do Mês" },
+  { position: 2, name: "Lojas Americanas", points: 623, badge: "🥈", highlight: false },
+  { position: 3, name: "Cine Show", points: 512, badge: "🥉", highlight: false },
+  { position: 4, name: "Praça de Alimentação", points: 489, badge: "4", highlight: false },
+  { position: 5, name: "O Boticário", points: 456, badge: "5", highlight: false },
 ];
 
 const pointsRules = [

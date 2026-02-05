@@ -53,13 +53,13 @@ const problems = [
 ];
 
 const whatsappMessages = [
-  { name: "João", message: "Que horas abre?", time: "10:23" },
-  { name: "Maria", message: "Tem loja da Samsung?", time: "10:24" },
-  { name: "Pedro", message: "Onde estaciono?", time: "10:25" },
-  { name: "Ana", message: "Que horas fecha?", time: "10:26" },
-  { name: "Carlos", message: "Tem cinema?", time: "10:27" },
-  { name: "Lucia", message: "Qual o endereço?", time: "10:28" },
-  { name: "Roberto", message: "Abre domingo?", time: "10:29" },
+  { name: "João", message: "Que horas abre domingo?", time: "10:23" },
+  { name: "Maria", message: "Tem Renner aí?", time: "10:24" },
+  { name: "Pedro", message: "Tem valet parking?", time: "10:25" },
+  { name: "Ana", message: "Quantas salas de cinema?", time: "10:26" },
+  { name: "Carlos", message: "Posso levar meu pet?", time: "10:27" },
+  { name: "Lucia", message: "Qual o CEP?", time: "10:28" },
+  { name: "Roberto", message: "Tem Americanas?", time: "10:29" },
   { name: "Fernanda", message: "Tem wifi grátis?", time: "10:30" },
 ];
 
