@@ -4,6 +4,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 // Removed post-processing imports for better performance
 import { ArrowRight, Play } from 'lucide-react';
+import ProceduralGround from '../ui/procedural-ground';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -437,6 +438,9 @@ const HorizonAgencyHero = () => {
 
   return (
     <div ref={containerRef} className="hero-container min-h-screen relative overflow-hidden">
+      {/* Procedural Ground Background - Bottom layer */}
+      <ProceduralGround />
+      
       <canvas 
         ref={canvasRef} 
         className={`fixed inset-0 z-0 transition-opacity duration-700 ${
