@@ -1,4 +1,4 @@
-import { Building2, Users, Smartphone, ArrowRight, Check } from "lucide-react";
+import { Building2, Users, Smartphone, ArrowRight, Check, Circle } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
 const integrations = [
@@ -8,6 +8,9 @@ const integrations = [
     icon: Building2,
     color: "text-blue-400",
     bgColor: "bg-blue-500/10",
+    status: "compatible",
+    statusText: "Compatível",
+    statusColor: "text-emerald-400",
     description: "Sistema de gestão financeira para shoppings",
     possibilities: [
       "Consulta de boletos em aberto",
@@ -22,6 +25,9 @@ const integrations = [
     icon: Users,
     color: "text-teal-400",
     bgColor: "bg-teal-500/10",
+    status: "compatible",
+    statusText: "Compatível",
+    statusColor: "text-emerald-400",
     description: "CRM especializado para shoppings centers",
     possibilities: [
       "Sincronizar dados de clientes",
@@ -36,6 +42,9 @@ const integrations = [
     icon: Smartphone,
     color: "text-purple-400",
     bgColor: "bg-purple-500/10",
+    status: "on-demand",
+    statusText: "Sob demanda",
+    statusColor: "text-amber-400",
     description: "App de gestão condominial e comunicação",
     possibilities: [
       "Notificações push",
@@ -48,7 +57,7 @@ const integrations = [
 
 const IntegrationsSection = () => {
   return (
-    <section className="py-16 md:py-24">
+    <section className="py-16 md:py-24 relative z-10">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <span className="inline-block px-4 py-2 rounded-full bg-blue-500/10 text-blue-400 text-sm font-medium mb-4">
@@ -66,11 +75,19 @@ const IntegrationsSection = () => {
           {integrations.map((integration, index) => (
             <Card
               key={index}
-              className="bg-slate-900/50 border-slate-700/50 hover:border-blue-500/40 transition-all duration-300 group"
+              className="bg-slate-900/50 border-slate-700/50 hover:border-blue-500/40 transition-all duration-300 group hover:scale-105"
             >
               <CardContent className="p-8">
-                <div className={`w-16 h-16 rounded-2xl ${integration.bgColor} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
-                  <integration.icon className={`w-8 h-8 ${integration.color}`} />
+                <div className="flex items-start justify-between mb-6">
+                  <div className={`w-16 h-16 rounded-2xl ${integration.bgColor} flex items-center justify-center group-hover:scale-110 transition-transform`}>
+                    <integration.icon className={`w-8 h-8 ${integration.color}`} />
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Circle className={`w-3 h-3 ${integration.status === 'compatible' ? 'fill-emerald-400 text-emerald-400' : 'fill-amber-400 text-amber-400'}`} />
+                    <span className={`text-sm font-medium ${integration.statusColor}`}>
+                      {integration.statusText}
+                    </span>
+                  </div>
                 </div>
                 
                 <h3 className="text-2xl font-bold text-white mb-1">
