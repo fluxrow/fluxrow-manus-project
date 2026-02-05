@@ -1,7 +1,8 @@
 import * as React from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, ArrowRight, LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 export interface ServiceOffer {
   id: string | number;
@@ -17,18 +18,47 @@ export interface ServiceOffer {
 
 interface ServiceCardProps {
   service: ServiceOffer;
+  isDragging?: boolean;
 }
 
 const ServiceCard = React.forwardRef<HTMLAnchorElement, ServiceCardProps>(
-  ({ service }, ref) => {
+  ({ service, isDragging = false }, ref) => {
     const Icon = service.icon;
+    const [isExpanded, setIsExpanded] = React.useState(false);
+    const isMobile = useIsMobile();
+    
+    const handleClick = (e: React.MouseEvent) => {
+      if (isDragging) {
+        e.preventDefault();
+        return;
+      }
+      if (isMobile) {
+        e.preventDefault();
+        setIsExpanded(!isExpanded);
+      }
+    };
+
+    const handleMouseEnter = () => {
+      if (!isMobile) {
+        setIsExpanded(true);
+      }
+    };
+
+    const handleMouseLeave = () => {
+      if (!isMobile) {
+        setIsExpanded(false);
+      }
+    };
     
     return (
       <motion.a
         ref={ref}
-        href={service.href}
+        href={isDragging ? undefined : service.href}
+        onClick={handleClick}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
         className="group relative flex-shrink-0 w-[320px] h-[420px] rounded-2xl overflow-hidden cursor-pointer block"
-        whileHover={{ y: -8, scale: 1.02 }}
+        whileHover={!isMobile ? { y: -8, scale: 1.02 } : undefined}
         transition={{ duration: 0.3, ease: "easeOut" }}
       >
         {/* Background Image */}
@@ -57,9 +87,29 @@ const ServiceCard = React.forwardRef<HTMLAnchorElement, ServiceCardProps>(
               {service.title}
             </h3>
 
-            <p className="text-sm text-white/80 leading-relaxed line-clamp-2">
-              {service.description}
-            </p>
+            {/* Animated Description */}
+            <motion.div
+              initial={false}
+              animate={{ 
+                height: isExpanded ? "auto" : "2.5rem"
+              }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+              className="overflow-hidden"
+            >
+              <p className="text-sm text-white/80 leading-relaxed">
+                {service.description}
+              </p>
+            </motion.div>
+
+            {/* Expand indicator for mobile */}
+            {isMobile && (
+              <motion.div 
+                className="flex items-center gap-1 text-xs text-cyan-400/70"
+                animate={{ opacity: isExpanded ? 0 : 1 }}
+              >
+                <span>Toque para ver mais</span>
+              </motion.div>
+            )}
           </div>
 
           {/* Footer */}
@@ -91,6 +141,8 @@ export interface ServiceCarouselProps extends React.HTMLAttributes<HTMLDivElemen
 const ServiceCarousel = React.forwardRef<HTMLDivElement, ServiceCarouselProps>(
   ({ services, className, ...props }, ref) => {
     const scrollContainerRef = React.useRef<HTMLDivElement>(null);
+    const [isDragging, setIsDragging] = React.useState(false);
+    const [dragStartX, setDragStartX] = React.useState(0);
 
     const scroll = (direction: "left" | "right") => {
       if (scrollContainerRef.current) {
@@ -101,6 +153,32 @@ const ServiceCarousel = React.forwardRef<HTMLDivElement, ServiceCarouselProps>(
           behavior: "smooth",
         });
       }
+    };
+
+    // Touch handlers for swipe
+    const handleTouchStart = (e: React.TouchEvent) => {
+      setDragStartX(e.touches[0].clientX);
+    };
+
+    const handleTouchMove = (e: React.TouchEvent) => {
+      if (Math.abs(e.touches[0].clientX - dragStartX) > 10) {
+        setIsDragging(true);
+      }
+    };
+
+    const handleTouchEnd = (e: React.TouchEvent) => {
+      const touchEndX = e.changedTouches[0].clientX;
+      const diff = dragStartX - touchEndX;
+      
+      if (Math.abs(diff) > 50) {
+        if (diff > 0) {
+          scroll("right");
+        } else {
+          scroll("left");
+        }
+      }
+      
+      setTimeout(() => setIsDragging(false), 100);
     };
 
     return (
@@ -118,14 +196,17 @@ const ServiceCarousel = React.forwardRef<HTMLDivElement, ServiceCarouselProps>(
           <ChevronLeft className="w-5 h-5" />
         </button>
 
-        {/* Scrollable Container */}
+        {/* Scrollable Container with Touch Support */}
         <div
           ref={scrollContainerRef}
-          className="flex gap-6 overflow-x-auto scroll-smooth py-4 px-4 md:px-8 scrollbar-hide"
+          className="flex gap-6 overflow-x-auto scroll-smooth py-4 px-4 md:px-8 scrollbar-hide touch-pan-x"
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
         >
           {services.map((service) => (
-            <ServiceCard key={service.id} service={service} />
+            <ServiceCard key={service.id} service={service} isDragging={isDragging} />
           ))}
         </div>
 
