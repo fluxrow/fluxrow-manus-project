@@ -1,5 +1,5 @@
 import React from 'react';
-import { Bot, Megaphone, Globe, Palette } from 'lucide-react';
+import { Bot, Megaphone, Globe, Palette, Target, Instagram, Lightbulb, Layers } from 'lucide-react';
 import { ServiceCarousel, ServiceOffer } from '../ui/service-carousel';
 
 const services: ServiceOffer[] = [
@@ -105,6 +105,110 @@ const services: ServiceOffer[] = [
       "Versões para web e print",
       "Fontes e paleta de cores",
       "Kit de redes sociais"
+    ]
+  },
+  {
+    id: 5,
+    imageSrc: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop&q=80",
+    imageAlt: "Tráfego Pago e Performance",
+    tag: "Performance",
+    title: "Tráfego Pago",
+    description: "Campanhas estratégicas em Meta Ads, Google Ads e LinkedIn para atrair leads qualificados.",
+    icon: Target,
+    benefit: "ROI mensurável",
+    href: "#contact",
+    fullDescription: "Criamos e gerenciamos campanhas de tráfego pago com foco em resultados mensuráveis. Desde a estruturação das campanhas até a otimização contínua, garantimos que cada real investido trabalhe para trazer leads qualificados e aumentar suas vendas.",
+    features: [
+      "Campanhas Meta Ads (Facebook/Instagram)",
+      "Google Ads (Search, Display, YouTube)",
+      "LinkedIn Ads para B2B",
+      "Remarketing inteligente",
+      "Testes A/B contínuos",
+      "Otimização de conversões"
+    ],
+    deliverables: [
+      "Setup completo",
+      "Criativos otimizados",
+      "Relatório semanal",
+      "Calls de performance"
+    ]
+  },
+  {
+    id: 6,
+    imageSrc: "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=800&auto=format&fit=crop&q=80",
+    imageAlt: "Gestão de Redes Sociais",
+    tag: "Social Media",
+    title: "Redes Sociais",
+    description: "Gestão completa de Instagram, Facebook e LinkedIn com conteúdo estratégico e crescimento orgânico.",
+    icon: Instagram,
+    benefit: "Engajamento real",
+    href: "#contact",
+    fullDescription: "Assumimos a gestão completa das suas redes sociais com uma abordagem estratégica. Criamos conteúdo que engaja, construímos comunidade e transformamos seguidores em clientes fiéis através de uma presença digital consistente e autêntica.",
+    features: [
+      "Planejamento estratégico mensal",
+      "Criação de posts e stories",
+      "Gestão de comunidade",
+      "Análise de métricas",
+      "Calendário editorial",
+      "Interação com seguidores"
+    ],
+    deliverables: [
+      "Posts mensais",
+      "Stories",
+      "Relatório mensal",
+      "Suporte contínuo"
+    ]
+  },
+  {
+    id: 7,
+    imageSrc: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&auto=format&fit=crop&q=80",
+    imageAlt: "Consultoria e Estratégia Digital",
+    tag: "Estratégia",
+    title: "Consultoria Digital",
+    description: "Diagnóstico completo e plano estratégico personalizado para acelerar seu crescimento digital.",
+    icon: Lightbulb,
+    benefit: "Direção clara",
+    href: "#contact",
+    fullDescription: "Realizamos um diagnóstico profundo do seu negócio e mercado para criar um plano estratégico sob medida. Identificamos oportunidades, definimos prioridades e traçamos um roadmap claro para você alcançar seus objetivos de forma estruturada.",
+    features: [
+      "Diagnóstico de maturidade digital",
+      "Análise de concorrência",
+      "Plano de ação detalhado",
+      "Definição de KPIs",
+      "Mapeamento de jornada do cliente",
+      "Priorização de investimentos"
+    ],
+    deliverables: [
+      "Relatório diagnóstico",
+      "Plano estratégico",
+      "Roadmap 90 dias",
+      "Sessão de mentoria"
+    ]
+  },
+  {
+    id: 8,
+    imageSrc: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&auto=format&fit=crop&q=80",
+    imageAlt: "Sistemas e Aplicativos Web",
+    tag: "Produto",
+    title: "Sistemas Web",
+    description: "Aplicações web personalizadas, dashboards e sistemas internos para otimizar operações.",
+    icon: Layers,
+    benefit: "Solução sob medida",
+    href: "#contact",
+    fullDescription: "Desenvolvemos aplicações web customizadas que resolvem problemas específicos do seu negócio. De dashboards de BI a sistemas de gestão interna, criamos soluções que automatizam processos e melhoram a tomada de decisão.",
+    features: [
+      "Dashboards de BI customizados",
+      "Sistemas de gestão interna",
+      "Portais de clientes",
+      "Integrações com APIs",
+      "Painéis administrativos",
+      "Relatórios automatizados"
+    ],
+    deliverables: [
+      "Sistema publicado",
+      "Documentação",
+      "Treinamento",
+      "Suporte técnico"
     ]
   }
 ];
