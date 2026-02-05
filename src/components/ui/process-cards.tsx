@@ -137,7 +137,7 @@ const defaultCards: ProcessCardProps[] = [
     step: 2,
     totalSteps: 4,
     color: "purple",
-    className: "[grid-area:stack] translate-x-20 translate-y-8 hover:-translate-y-2 before:absolute before:w-full before:outline-1 before:rounded-xl before:outline-border before:h-full before:content-[''] before:bg-blend-overlay before:bg-background/50 grayscale-[100%] hover:before:opacity-0 before:transition-opacity before:duration-500 hover:grayscale-0 before:left-0 before:top-0 z-20",
+    className: "[grid-area:stack] translate-x-12 translate-y-8 hover:-translate-y-2 before:absolute before:w-full before:outline-1 before:rounded-xl before:outline-border before:h-full before:content-[''] before:bg-blend-overlay before:bg-background/50 grayscale-[100%] hover:before:opacity-0 before:transition-opacity before:duration-500 hover:grayscale-0 before:left-0 before:top-0 z-20",
   },
   {
     icon: <Rocket className="w-5 h-5" />,
@@ -147,7 +147,7 @@ const defaultCards: ProcessCardProps[] = [
     step: 3,
     totalSteps: 4,
     color: "green",
-    className: "[grid-area:stack] translate-x-40 translate-y-16 hover:translate-y-6 before:absolute before:w-full before:outline-1 before:rounded-xl before:outline-border before:h-full before:content-[''] before:bg-blend-overlay before:bg-background/50 grayscale-[100%] hover:before:opacity-0 before:transition-opacity before:duration-500 hover:grayscale-0 before:left-0 before:top-0 z-30",
+    className: "[grid-area:stack] translate-x-24 translate-y-16 hover:translate-y-6 before:absolute before:w-full before:outline-1 before:rounded-xl before:outline-border before:h-full before:content-[''] before:bg-blend-overlay before:bg-background/50 grayscale-[100%] hover:before:opacity-0 before:transition-opacity before:duration-500 hover:grayscale-0 before:left-0 before:top-0 z-30",
   },
   {
     icon: <TrendingUp className="w-5 h-5" />,
@@ -157,7 +157,7 @@ const defaultCards: ProcessCardProps[] = [
     step: 4,
     totalSteps: 4,
     color: "yellow",
-    className: "[grid-area:stack] translate-x-60 translate-y-24 hover:translate-y-14 z-40",
+    className: "[grid-area:stack] translate-x-36 translate-y-24 hover:translate-y-14 z-40",
   },
 ];
 
