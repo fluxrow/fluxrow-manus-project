@@ -19,7 +19,14 @@ import {
   Film,
   Image,
   FileVideo,
-  FileImage
+  FileImage,
+  Store,
+  AlertTriangle,
+  Mic,
+  FileText,
+  Hand,
+  Gift,
+  CircleDot
 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import BackToHomeButton from '@/components/ui/BackToHomeButton';
@@ -322,6 +329,114 @@ const BriefingAlek = () => {
           </CardContent>
         </Card>
 
+        {/* NOVO: Arena 10 - Contexto Estratégico */}
+        <Card className="bg-gradient-to-br from-pink-900/20 to-rose-900/20 border-pink-500/30 backdrop-blur-sm mb-8">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-3 text-white">
+              <div className="p-2 bg-pink-500/20 rounded-lg">
+                <Store className="w-5 h-5 text-pink-400" />
+              </div>
+              Arena 10 — Seara Experience
+              <span className="ml-auto px-3 py-1 bg-pink-500/20 text-pink-300 text-xs rounded-full">
+                Contexto Estratégico
+              </span>
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            {/* O que é */}
+            <div className="p-4 bg-gradient-to-r from-pink-500/10 to-transparent rounded-xl border-l-4 border-pink-500">
+              <p className="text-sm text-pink-300 mb-1">O que é</p>
+              <p className="text-xl font-bold text-white">Um mercado vivo, imersivo e funcional que simula a realidade do varejo.</p>
+              <p className="text-gray-400 mt-2 text-sm">
+                Traduz de forma prática, sensorial e estratégica, o novo modelo de execução no ponto de venda — mostrando como dados, estratégia, tecnologia e execução se transformam em venda, lembrança e fidelidade.
+              </p>
+            </div>
+
+            {/* 8 Categorias */}
+            <div>
+              <h4 className="text-lg font-semibold text-white mb-3 flex items-center gap-2">
+                <CircleDot className="w-5 h-5 text-pink-400" />
+                8 Categorias do Circuito
+              </h4>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                {[
+                  'Congelados',
+                  'Frios',
+                  'Açougue',
+                  'Seara Gourmet',
+                  'Margarina',
+                  'Linha Seca',
+                  'Food Service',
+                  'Loja Mais'
+                ].map((cat, idx) => (
+                  <div key={idx} className="p-3 bg-pink-500/10 rounded-lg border border-pink-500/20 text-center">
+                    <span className="text-pink-200 text-sm font-medium">{cat}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Estrutura e Sensorial */}
+            <div className="grid sm:grid-cols-2 gap-4">
+              <div className="p-4 bg-slate-800/50 rounded-xl">
+                <h5 className="text-white font-semibold mb-2 flex items-center gap-2">
+                  <Eye className="w-4 h-4 text-pink-400" />
+                  Isolamento Sensorial
+                </h5>
+                <p className="text-gray-400 text-sm">
+                  Estande totalmente fechado com cobertura preta, reforçando o impacto visual e controle do ambiente.
+                </p>
+              </div>
+              <div className="p-4 bg-slate-800/50 rounded-xl">
+                <h5 className="text-white font-semibold mb-2 flex items-center gap-2">
+                  <Volume2 className="w-4 h-4 text-pink-400" />
+                  Zonas de Áudio Direcionais
+                </h5>
+                <p className="text-gray-400 text-sm">
+                  Cada categoria possui identidade sonora própria, sem interferência entre ambientes.
+                </p>
+              </div>
+            </div>
+
+            {/* Dinâmica de Engajamento */}
+            <div className="p-4 bg-gradient-to-r from-pink-500/20 to-rose-500/20 rounded-xl border border-pink-500/40">
+              <h5 className="text-white font-bold mb-3 flex items-center gap-2">
+                <Gift className="w-5 h-5 text-pink-400" />
+                Dinâmica de Engajamento
+              </h5>
+              <div className="grid sm:grid-cols-2 gap-3">
+                <div className="flex items-start gap-2">
+                  <Users className="w-4 h-4 text-pink-400 mt-0.5 flex-shrink-0" />
+                  <span className="text-gray-300 text-sm">Mais de 20 promotoras ativas conduzindo a experiência</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <FileText className="w-4 h-4 text-pink-400 mt-0.5 flex-shrink-0" />
+                  <span className="text-gray-300 text-sm">Participantes recebem cartela de jornada</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <Hand className="w-4 h-4 text-pink-400 mt-0.5 flex-shrink-0" />
+                  <span className="text-gray-300 text-sm">Cada categoria visitada = um carimbo</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <Gift className="w-4 h-4 text-pink-400 mt-0.5 flex-shrink-0" />
+                  <span className="text-gray-300 text-sm">Circuito completo = brinde exclusivo</span>
+                </div>
+              </div>
+            </div>
+
+            {/* ALERTA OBRIGATÓRIO */}
+            <div className="p-4 bg-gradient-to-r from-orange-500/20 to-red-500/20 rounded-xl border-2 border-orange-500/50">
+              <div className="flex items-center gap-3 mb-2">
+                <AlertTriangle className="w-6 h-6 text-orange-400" />
+                <span className="text-lg font-bold text-orange-300">Esta mecânica PRECISA ser captada obrigatoriamente!</span>
+              </div>
+              <p className="text-gray-400 text-sm ml-9">
+                A jornada com cartela + carimbos + brinde é essencial para o vídeo final.
+              </p>
+            </div>
+          </CardContent>
+        </Card>
+
         {/* Vídeo 02 - Seara */}
         <Card className="bg-gradient-to-br from-violet-900/20 to-purple-900/20 border-violet-500/30 backdrop-blur-sm mb-8">
           <CardHeader>
@@ -340,6 +455,9 @@ const BriefingAlek = () => {
             <div className="p-4 bg-gradient-to-r from-violet-500/10 to-transparent rounded-xl border-l-4 border-violet-500">
               <p className="text-sm text-violet-300 mb-1">Conceito Criativo</p>
               <p className="text-2xl font-bold text-white">"A experiência vivida."</p>
+              <p className="text-gray-400 mt-2 text-sm">
+                Aftermovie didático e sensorial — deve explicar, de forma clara e envolvente, o que foi criado na Arena 10.
+              </p>
             </div>
 
             {/* Captação */}
@@ -376,6 +494,120 @@ const BriefingAlek = () => {
                   <span key={idx} className="px-3 py-1.5 bg-violet-500/20 text-violet-300 text-sm rounded-full border border-violet-500/30">
                     {tag}
                   </span>
+                ))}
+              </div>
+            </div>
+
+            {/* NOVO: Script Base para Aprovação */}
+            <div className="relative p-6 bg-gradient-to-br from-amber-500/10 via-slate-800/60 to-slate-900/60 rounded-2xl border-2 border-amber-400/50 overflow-hidden">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-amber-500/10 rounded-full blur-2xl" />
+              
+              <div className="relative">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="p-2 bg-gradient-to-r from-amber-500 to-yellow-500 rounded-lg">
+                    <FileText className="w-6 h-6 text-white" />
+                  </div>
+                  <h4 className="text-xl font-bold text-white">Script Base — Narração OFF</h4>
+                  <span className="px-2 py-0.5 bg-amber-500/20 text-amber-300 text-xs rounded-full border border-amber-500/50">
+                    PARA APROVAÇÃO
+                  </span>
+                </div>
+
+                <div className="space-y-4">
+                  {/* Abertura */}
+                  <div className="p-4 bg-slate-900/60 rounded-xl border border-amber-500/20">
+                    <p className="text-amber-400 font-bold text-sm mb-2">ABERTURA</p>
+                    <p className="text-white text-lg italic">
+                      "Na Arena 10 Seara Experience, o varejo deixa de ser conceito e passa a ser prática."
+                    </p>
+                    <p className="text-gray-500 text-xs mt-2">
+                      Imagens: impacto do estande fechado, entrada, fluxo de pessoas
+                    </p>
+                  </div>
+
+                  {/* Desenvolvimento */}
+                  <div className="p-4 bg-slate-900/60 rounded-xl border border-amber-500/20">
+                    <p className="text-amber-400 font-bold text-sm mb-2">DESENVOLVIMENTO</p>
+                    <p className="text-white text-lg italic mb-3">
+                      "Aqui, dados se transformam em experiência. E execução se transforma em resultado."
+                    </p>
+                    <p className="text-gray-400 text-xs mb-2">Cortes mostrando:</p>
+                    <div className="grid grid-cols-2 gap-1">
+                      {[
+                        'Congelados com LED Touch',
+                        'Frios em sala imersiva + planogramas 1:1',
+                        'Açougue com consultoria via tablet',
+                        'Gourmet com apetite appeal',
+                        'Margarinas com navegação touch',
+                        'Linha Seca com gamificação',
+                        'Food Service com soluções B2B',
+                        'Loja Mais com inteligência regional'
+                      ].map((item, idx) => (
+                        <div key={idx} className="flex items-center gap-1 text-xs text-gray-400">
+                          <span className="w-1 h-1 bg-amber-400 rounded-full" />
+                          {item}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Sensorialidade */}
+                  <div className="p-4 bg-slate-900/60 rounded-xl border border-amber-500/20">
+                    <p className="text-amber-400 font-bold text-sm mb-2">SENSORIALIDADE</p>
+                    <p className="text-gray-400 text-sm mb-2">Cada bloco deve mostrar:</p>
+                    <div className="flex flex-wrap gap-2">
+                      {['Pessoas interagindo', 'Reações', 'Toque nas telas', 'Áudio ambiente', 'Promotoras conduzindo'].map((item, idx) => (
+                        <span key={idx} className="px-2 py-1 bg-amber-500/10 text-amber-200 text-xs rounded-full">
+                          {item}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Engajamento */}
+                  <div className="p-4 bg-slate-900/60 rounded-xl border border-amber-500/20">
+                    <p className="text-amber-400 font-bold text-sm mb-2">ENGAJAMENTO</p>
+                    <p className="text-white text-lg italic">
+                      "Mais do que visitar, os participantes vivenciam a execução."
+                    </p>
+                  </div>
+                </div>
+
+                {/* Notas do Script */}
+                <div className="mt-4 p-3 bg-amber-500/10 rounded-lg border border-amber-500/30">
+                  <div className="flex items-start gap-2">
+                    <Mic className="w-4 h-4 text-amber-400 mt-0.5" />
+                    <div className="text-xs text-amber-200">
+                      <p className="font-bold mb-1">Notas importantes:</p>
+                      <ul className="text-amber-200/80 space-y-0.5">
+                        <li>• Este vídeo DEVE TER narração em OFF</li>
+                        <li>• Foco em entendimento, não apenas estética</li>
+                        <li>• Todas as trilhas e áudios do circuito estarão disponíveis para edição</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* NOVO: Captação Obrigatória */}
+            <div className="p-5 bg-gradient-to-r from-orange-500/20 to-red-500/20 rounded-xl border-2 border-orange-500/50">
+              <div className="flex items-center gap-3 mb-4">
+                <AlertTriangle className="w-6 h-6 text-orange-400" />
+                <h4 className="text-lg font-bold text-orange-300">Captação Obrigatória</h4>
+              </div>
+              <div className="grid sm:grid-cols-2 gap-3">
+                {[
+                  { icon: FileText, text: 'Mecânica da cartela de jornada + carimbos' },
+                  { icon: Users, text: 'Promotoras em ação (mais de 20 ativas)' },
+                  { icon: Hand, text: 'Participantes interagindo com as tecnologias' },
+                  { icon: Gift, text: 'Momento do brinde exclusivo' },
+                  { icon: Eye, text: 'Estande fechado com cobertura preta (impacto visual)' }
+                ].map((item, idx) => (
+                  <div key={idx} className="flex items-center gap-2 p-3 bg-slate-800/50 rounded-lg border border-orange-500/20">
+                    <item.icon className="w-4 h-4 text-orange-400 flex-shrink-0" />
+                    <span className="text-gray-300 text-sm">{item.text}</span>
+                  </div>
                 ))}
               </div>
             </div>
@@ -493,6 +725,10 @@ const BriefingAlek = () => {
                   <div className="flex justify-between p-3 bg-cyan-500/10 rounded-lg border border-cyan-500/30">
                     <span className="text-cyan-300 text-sm">Áudio</span>
                     <span className="text-cyan-200 text-sm font-medium">Som ambiente limpo!</span>
+                  </div>
+                  <div className="flex justify-between p-3 bg-violet-500/10 rounded-lg border border-violet-500/30 mt-2">
+                    <span className="text-violet-300 text-sm">Trilhas Arena 10</span>
+                    <span className="text-violet-200 text-sm font-medium">Disponíveis para edição</span>
                   </div>
                 </div>
               </div>
