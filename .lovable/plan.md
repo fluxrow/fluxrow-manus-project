@@ -1,139 +1,221 @@
 
 
-# Atualização do Briefing Alek — Script e Contexto Arena 10
+# Briefing Master Completo — Atualização Final
 
 ## Objetivo
 
-Adicionar ao briefing existente:
-1. **Contexto Estratégico da Arena 10** — para a equipe entender o que é o espaço
-2. **Script de Narração OFF** — texto base para aprovação e execução
-3. **Notas Obrigatórias de Captação** — mecânicas que precisam ser registradas
+Transformar o briefing atual em um **documento de referência completo** para:
+1. **Video Maker (Alek)** — guia de captação e edição
+2. **Rafael** — visão estratégica e aprovação de roteiros
 
 ---
 
-## Novas Seções a Adicionar
+## Novas Seções e Reestruturação
 
-### 1. Card "Arena 10 - Seara Experience" (Contexto Estratégico)
+### 1. Contexto Estratégico Expandido (Reformular seção Arena 10)
 
-Posicionar **antes do card Vídeo 02 - Seara**, com cor rosa/magenta para diferenciar.
+Transformar a seção atual em um bloco mais robusto com:
 
-**Conteúdo:**
-- O que é: Mercado vivo e imersivo simulando PDV real
-- 8 Categorias (Congelados, Frios, Açougue, Gourmet, Margarina, Linha Seca, Food Service, Loja Mais)
-- Estrutura fechada com cobertura preta (isolamento sensorial)
-- Zonas de áudio direcionais
-- Dinâmica de engajamento (cartela de jornada + carimbos + brinde)
+**O Desafio do Mercado**
+- Excesso de dados e pouca aplicação prática
+- Baixa diferenciação na experiência física
+- Dificuldade de fixar aprendizado após eventos
 
-**Destaque visual:**
-- Alerta: "Esta mecânica PRECISA ser captada obrigatoriamente"
+**Premissa Criativa**
+- "Dados só geram valor quando viram experiência"
+- "Experiência só gera resultado quando vira execução"
+- O sabor e a execução são os protagonistas
+- Tecnologia é meio, nunca fim
+
+**Arquitetura da Experiência**
+- Mercado virtual imersivo
+- Circuito contínuo e guiado
+- Cobertura preta total (isolamento sensorial)
+- Controle absoluto de luz e áudio
 
 ---
 
-### 2. Card "Script Base — Vídeo Seara" (Para Aprovação)
+### 2. Grid das 8 Categorias com Tecnologias e Captação
 
-Posicionar **dentro ou logo após o card Vídeo 02**, com destaque especial (borda dourada/amarela) indicando que é para aprovação.
+Criar um grid visual detalhado com cada categoria tendo:
 
-**Estrutura do Script:**
+| Categoria | Tecnologia | Captação Obrigatória |
+|-----------|------------|---------------------|
+| **Congelados** | Painel LED Touch | Toque no LED, close interface, reação, promotora explicando |
+| **Frios** | Sala imersiva 3 telas + mesa touch | Participante cercado, mãos na mesa, expressão |
+| **Açougue** | Tablet + projeção corner | Tablet em uso, projeção, diálogo facilitador |
+| **Seara Gourmet** | Ambiente imersivo premium | Detalhes, texturas, ritmo contemplativo |
+| **Margarina** | Tela touch 80" | Scroll, toque, comparação produtos |
+| **Linha Seca** | Gamificação touchscreen | Pessoa jogando, pontuação, reação ao desafio |
+| **Food Service** | Totem interativo B2B | Uso do totem, conversa técnica, close dados |
+| **Loja Mais** | Múltiplos monitores (inteligência regional) | Múltiplas telas, interação analítica, discussão |
+
+---
+
+### 3. Estratégia Sensorial (Seção Crítica)
+
+Card destacado explicando:
+- Áudio direcional por categoria
+- Identidade sonora exclusiva
+- Sem interferência entre áreas
+
+**Captação obrigatória:**
+- Pessoas ouvindo
+- Close em caixas de som
+- Reação auditiva
+- Imersão completa
+
+---
+
+### 4. Roteiro Completo — Filme 01 (Seara)
+
+Reformular o script atual para o formato completo:
+
+**Tipo:** Filme Institucional Oficial da Convenção
+**Linguagem:** Institucional, cinematográfica, segura
+**Narração:** OFF obrigatória
 
 ```text
 ┌─────────────────────────────────────────────────────────────────┐
 │  ABERTURA                                                        │
-│  ═════════════════════════════════════════════════════════════   │
-│                                                                  │
-│  "Na Arena 10 Seara Experience, o varejo deixa de ser           │
-│   conceito e passa a ser prática."                              │
-│                                                                  │
-│  Imagens: impacto do estande, entrada, fluxo de pessoas         │
-│                                                                  │
+│  "Na Seara, execução não é detalhe. É estratégia."              │
 ├─────────────────────────────────────────────────────────────────┤
-│  DESENVOLVIMENTO                                                 │
-│  ═════════════════════════════════════════════════════════════   │
+│  DESAFIO                                                         │
+│  "O varejo mudou. Dados existem.                                │
+│   O desafio agora é transformar informação em execução real."   │
+├─────────────────────────────────────────────────────────────────┤
+│  SOLUÇÃO                                                         │
+│  "A Arena 10 Seara Experience nasce para transformar            │
+│   estratégia em prática."                                       │
 │                                                                  │
-│  "Aqui, dados se transformam em experiência.                    │
-│   E execução se transforma em resultado."                       │
-│                                                                  │
-│  Cortes mostrando:                                              │
-│  • Congelados com LED Touch                                     │
-│  • Frios em sala imersiva + planogramas 1:1                     │
-│  • Açougue com consultoria em tempo real via tablet             │
-│  • Gourmet com apetite appeal                                   │
-│  • Margarinas com navegação touch                               │
-│  • Linha Seca com gamificação                                   │
-│  • Food Service com soluções B2B                                │
-│  • Loja Mais com inteligência regional                          │
-│                                                                  │
+│  → Mostrar TODAS as categorias, uma a uma, com clareza          │
 ├─────────────────────────────────────────────────────────────────┤
 │  SENSORIALIDADE                                                  │
-│  ═════════════════════════════════════════════════════════════   │
-│                                                                  │
-│  Cada bloco deve mostrar:                                       │
-│  • Pessoas interagindo                                          │
-│  • Reações                                                      │
-│  • Toque nas telas                                              │
-│  • Áudio ambiente                                               │
-│  • Promotoras conduzindo                                        │
-│                                                                  │
+│  "Aqui, o varejista vê, escuta, toca e entende."                │
 ├─────────────────────────────────────────────────────────────────┤
 │  ENGAJAMENTO                                                     │
-│  ═════════════════════════════════════════════════════════════   │
+│  "Mais do que visitar, ele vivencia uma jornada completa."      │
 │                                                                  │
-│  "Mais do que visitar, os participantes vivenciam               │
-│   a execução."                                                  │
+│  → Mostrar cartelas, carimbos, promotoras e brinde              │
+├─────────────────────────────────────────────────────────────────┤
+│  FECHAMENTO                                                      │
+│  "Arena 10 Seara Experience.                                    │
+│   A execução perfeita começa aqui."                             │
 │                                                                  │
+│  LOGO SEARA                                                      │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
-**Notas importantes:**
-- Este vídeo DEVE TER NARRAÇÃO EM OFF
-- Foco em entendimento, não apenas estética
-- Todas as trilhas e áudios do circuito estarão disponíveis para edição
-
 ---
 
-### 3. Card "Captação Obrigatória" (Alerta Visual)
+### 5. Roteiro Completo — Filme 02 (Promova)
 
-Posicionar como um destaque de alerta (cor vermelha/laranja) dentro da seção do Vídeo Seara:
+Atualizar a seção do vídeo Promova com roteiro completo:
 
-**Itens obrigatórios a captar:**
-- Mecânica da cartela de jornada + carimbos
-- Promotoras em ação (mais de 20 ativas)
-- Participantes interagindo com as tecnologias
-- Momento do brinde exclusivo
-- Estande fechado com cobertura preta (impacto visual)
-
----
-
-## Estrutura Visual Atualizada
+**Tipo:** Filme de Posicionamento Estratégico
+**Linguagem:** Manifesto, moderna, editorial
+**Estilo:** Pouca fala, muita imagem
 
 ```text
 ┌─────────────────────────────────────────────────────────────────┐
-│  BRIEFING ALEK - PROJETO SEARA X PROMOVA                        │
+│  ABERTURA (MAKING OF)                                            │
+│  "Estar presente não é suficiente."                             │
 ├─────────────────────────────────────────────────────────────────┤
-│  [Contexto Geral]                                               │
-│  [Cronograma Visual]                                            │
-│  [Vídeo 01 - Promova] (com ASMR)                                │
+│  DESENVOLVIMENTO                                                 │
+│  "O mercado pede experiências que conectem                      │
+│   o físico ao digital. Informação à emoção."                    │
 │                                                                  │
-│  [NOVO] Arena 10 - Contexto Estratégico (Rosa/Magenta)          │
+│  → Mostrar montagem, tecnologia, detalhe, cuidado               │
+├─────────────────────────────────────────────────────────────────┤
+│  PARTICIPAÇÃO COADJUVANTE                                        │
 │                                                                  │
-│  [Vídeo 02 - Seara] (Atualizado)                                │
-│     └── [NOVO] Script Base para Aprovação (Dourado)             │
-│     └── [NOVO] Captação Obrigatória (Alerta Laranja)            │
+│  Aparece pouco, caminhando, observando, nunca posando           │
 │                                                                  │
-│  [Fotografia]                                                   │
-│  [Especificações Técnicas] (atualizar com trilhas disponíveis)  │
-│  [Checklist]                                                    │
+│  Texto base:                                                     │
+│  "Tudo aqui foi pensado para mostrar o que o mercado            │
+│   realmente pede hoje. Não é sobre brinde.                      │
+│   É sobre criar experiências que ficam na memória."             │
+├─────────────────────────────────────────────────────────────────┤
+│  CLÍMAX                                                          │
+│  Espaço cheio, tecnologia rodando, pessoas interagindo          │
+│                                                                  │
+│  "Porque no fim, não é sobre ocupar espaço físico.              │
+│   É sobre ocupar espaço na cabeça das pessoas."                 │
+├─────────────────────────────────────────────────────────────────┤
+│  FECHAMENTO                                                      │
+│  LOGO PROMOVA                                                    │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## Cores das Novas Seções
+### 6. Orientações Finais para o Video Maker
+
+Nova seção no final com guidelines práticos:
+
+- Sempre captar pessoas + tecnologia juntas
+- Priorizar reação humana
+- Captar áudio ambiente sempre que possível
+- Pensar edição desde a captação
+- Não fazer planos longos
+- Ritmo dinâmico
+- Estética premium
+
+---
+
+## Estrutura Final da Página
+
+```text
+┌─────────────────────────────────────────────────────────────────┐
+│  HEADER — Briefing Master Oficial                                │
+│  Projeto Seara x Promova | Alek                                  │
+├─────────────────────────────────────────────────────────────────┤
+│  [Contexto Geral] — Local, cliente, agência                      │
+│  [Cronograma Visual] — Dias 08, 10, 11                           │
+├─────────────────────────────────────────────────────────────────┤
+│  [Arena 10 — Contexto Estratégico Expandido]                     │
+│     ├── O Desafio do Mercado                                     │
+│     ├── Premissa Criativa                                        │
+│     └── Arquitetura da Experiência                               │
+├─────────────────────────────────────────────────────────────────┤
+│  [O Circuito da Execução — 8 Categorias]                         │
+│     └── Grid visual com tecnologia + captação por categoria      │
+├─────────────────────────────────────────────────────────────────┤
+│  [Estratégia Sensorial] — Áudio direcional                       │
+├─────────────────────────────────────────────────────────────────┤
+│  [Filme 01 — Seara] (Violeta)                                    │
+│     ├── Linguagem: Institucional, cinematográfica                │
+│     └── Roteiro Completo (Abertura → Fechamento)                 │
+├─────────────────────────────────────────────────────────────────┤
+│  [Filme 02 — Promova] (Cyan)                                     │
+│     ├── Linguagem: Manifesto, editorial                          │
+│     ├── ASMR + Transição (mantém)                                │
+│     ├── Roteiro Completo                                         │
+│     └── Participação Coadjuvante                                 │
+├─────────────────────────────────────────────────────────────────┤
+│  [Orientações Finais — Video Maker]                              │
+├─────────────────────────────────────────────────────────────────┤
+│  [Fotografia] — Especificações                                   │
+│  [Especificações Técnicas] — Vídeo + Foto                        │
+│  [Checklist por Dia]                                             │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## Cores das Seções
 
 | Seção | Cor Principal |
 |-------|---------------|
-| Arena 10 - Contexto | Pink/Magenta (`pink-500`) |
-| Script Base | Gold/Amber (`amber-400` border, slate bg) |
-| Captação Obrigatória | Orange/Red (`orange-500` border) |
+| Arena 10 / Contexto | Pink/Magenta |
+| 8 Categorias | Gradient cards (uma cor por categoria) |
+| Estratégia Sensorial | Purple com destaque |
+| Filme Seara | Violet/Purple |
+| Filme Promova | Cyan/Blue |
+| Participação Coadjuvante | Slate com borda sutil |
+| Orientações Video Maker | Emerald/Teal |
+| Fotografia | Teal |
+| Specs Técnicas | Slate |
 
 ---
 
@@ -141,14 +223,17 @@ Posicionar como um destaque de alerta (cor vermelha/laranja) dentro da seção d
 
 | Arquivo | Alteração |
 |---------|-----------|
-| `src/pages/BriefingAlek.tsx` | Adicionar 3 novas seções conforme estrutura acima |
+| `src/pages/BriefingAlek.tsx` | Reestruturação completa com todas as novas seções |
 
 ---
 
-## Resumo das Adições
+## Resumo das Mudanças
 
-1. **Seção Arena 10**: Contexto estratégico do espaço imersivo, 8 categorias, dinâmica de engajamento
-2. **Seção Script Base**: Texto completo de narração OFF para aprovação e uso pelo video maker
-3. **Seção Captação Obrigatória**: Checklist visual de cenas que PRECISAM estar no vídeo
-4. **Atualização Specs Técnicas**: Nota sobre trilhas disponíveis para edição
+1. **Contexto Estratégico Expandido** — desafio + premissa + arquitetura
+2. **Grid 8 Categorias** — cada uma com tecnologia e captação obrigatória detalhada
+3. **Estratégia Sensorial** — seção crítica sobre áudio direcional
+4. **Roteiro Completo Filme Seara** — abertura ao fechamento com LOGO
+5. **Roteiro Completo Filme Promova** — manifesto + participação coadjuvante
+6. **Orientações Finais** — guidelines práticos pro video maker
+7. **Ordem lógica** — fluxo que faz sentido tanto pra quem vai gravar quanto pra quem vai aprovar
 
