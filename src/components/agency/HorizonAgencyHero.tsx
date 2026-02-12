@@ -445,38 +445,38 @@ const HorizonAgencyHero = () => {
       />
       
       {/* Main content */}
-      <div className="relative z-10 min-h-screen flex flex-col justify-center items-center text-center px-6">
-        <div className="max-w-6xl hero-content">
+      <div className="relative z-10 min-h-screen flex flex-col justify-center items-center text-center px-4 sm:px-6">
+        <div className="max-w-6xl hero-content w-full">
           {/* Stats */}
-          <div ref={statsRef} className="mb-8 flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-4 md:gap-8 text-xs sm:text-sm px-4" style={{ visibility: 'hidden' }}>
-            <div className="bg-gradient-to-r from-cyan-500/40 to-purple-500/40 border border-cyan-500/30 rounded-full px-3 py-2 whitespace-nowrap backdrop-blur-md">
+          <div ref={statsRef} className="mb-6 md:mb-8 flex flex-row justify-center items-center gap-2 sm:gap-4 md:gap-8 text-[10px] sm:text-sm px-2 flex-wrap" style={{ visibility: 'hidden' }}>
+            <div className="bg-gradient-to-r from-cyan-500/40 to-purple-500/40 border border-cyan-500/30 rounded-full px-2.5 py-1.5 sm:px-3 sm:py-2 whitespace-nowrap backdrop-blur-md">
               <span className="text-cyan-400 font-bold">+{counters.automations}</span>
               <span className="text-white ml-1 drop-shadow-lg">automações</span>
             </div>
-            <div className="bg-gradient-to-r from-purple-500/40 to-pink-500/40 border border-purple-500/30 rounded-full px-3 py-2 whitespace-nowrap backdrop-blur-md">
+            <div className="bg-gradient-to-r from-purple-500/40 to-pink-500/40 border border-purple-500/30 rounded-full px-2.5 py-1.5 sm:px-3 sm:py-2 whitespace-nowrap backdrop-blur-md">
               <span className="text-purple-400 font-bold">+{counters.leads}</span>
               <span className="text-white ml-1 drop-shadow-lg">leads</span>
             </div>
-            <div className="bg-gradient-to-r from-pink-500/40 to-yellow-500/40 border border-pink-500/30 rounded-full px-3 py-2 whitespace-nowrap backdrop-blur-md">
+            <div className="bg-gradient-to-r from-pink-500/40 to-yellow-500/40 border border-pink-500/30 rounded-full px-2.5 py-1.5 sm:px-3 sm:py-2 whitespace-nowrap backdrop-blur-md">
               <span className="text-pink-400 font-bold">+{counters.hours}</span>
               <span className="text-white ml-1 drop-shadow-lg">horas</span>
             </div>
           </div>
           
-          <h1 ref={titleRef} className="hero-title font-space-grotesk mb-6 relative" style={{ visibility: 'hidden' }}>
+          <h1 ref={titleRef} className="hero-title font-space-grotesk mb-4 md:mb-6 relative" style={{ visibility: 'hidden' }}>
             {/* Vidro escurecido de fundo */}
-            <div className="absolute inset-0 bg-black/30 backdrop-blur-sm rounded-3xl border border-white/10 shadow-2xl -m-4 p-4"></div>
-            <span className="relative block text-6xl md:text-8xl font-bold mb-4 drop-shadow-2xl bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent" style={{ fontFamily: content.title === 'FLUXROW' ? 'Akony, sans-serif' : undefined, textShadow: '0 0 30px rgba(6, 182, 212, 0.8), 0 0 60px rgba(139, 92, 246, 0.5)' }}>{content.title}</span>
+            <div className="absolute inset-0 bg-black/30 backdrop-blur-sm rounded-2xl md:rounded-3xl border border-white/10 shadow-2xl -m-2 md:-m-4 p-2 md:p-4"></div>
+            <span className="relative block text-4xl sm:text-5xl md:text-8xl font-bold mb-2 md:mb-4 drop-shadow-2xl bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent" style={{ fontFamily: content.title === 'FLUXROW' ? 'Akony, sans-serif' : undefined, textShadow: '0 0 30px rgba(6, 182, 212, 0.8), 0 0 60px rgba(139, 92, 246, 0.5)' }}>{content.title}</span>
           </h1>
           
-          <p ref={subtitleRef} className="hero-subtitle text-white font-space-grotesk text-xl max-w-4xl mx-auto mb-8 drop-shadow-lg" style={{ visibility: 'hidden', textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 8px rgba(0, 0, 0, 0.6)' }}>
+          <p ref={subtitleRef} className="hero-subtitle text-white font-space-grotesk text-base sm:text-lg md:text-xl max-w-4xl mx-auto mb-6 md:mb-8 drop-shadow-lg px-2" style={{ visibility: 'hidden', textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 8px rgba(0, 0, 0, 0.6)' }}>
             {content.subtitle}
           </p>
           
-          <div ref={ctaRef} className="hero-cta flex flex-col sm:flex-row items-center justify-center gap-6 mb-12" style={{ visibility: 'hidden' }}>
+          <div ref={ctaRef} className="hero-cta flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 mb-8 md:mb-12 px-2" style={{ visibility: 'hidden' }}>
             <button
               onClick={scrollToServices}
-              className="cta-primary font-space-grotesk text-lg px-10 py-5 group"
+              className="cta-primary font-space-grotesk text-base sm:text-lg px-6 sm:px-10 py-4 sm:py-5 group w-full sm:w-auto"
             >
               Quero conhecer a Fluxrow
               <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
@@ -484,7 +484,7 @@ const HorizonAgencyHero = () => {
             
             <button 
               onClick={scrollToCases}
-              className="bg-transparent border-2 border-cyan-500 text-cyan-400 px-10 py-5 rounded-full font-semibold font-space-grotesk hover:bg-cyan-500/10 transition-all duration-300 group flex items-center backdrop-blur-sm"
+              className="bg-transparent border-2 border-cyan-500 text-cyan-400 px-6 sm:px-10 py-4 sm:py-5 rounded-full font-semibold font-space-grotesk hover:bg-cyan-500/10 transition-all duration-300 group flex items-center justify-center backdrop-blur-sm w-full sm:w-auto"
             >
               <Play className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
               Ver Cases
