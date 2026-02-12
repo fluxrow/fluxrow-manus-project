@@ -1,17 +1,31 @@
 
+# Atualizar Open Graph — Titulo e Descricao
 
-# Open Graph — Imagem de Preview nos Links
+## Resumo
 
-## O que sera feito
+Atualizar as meta tags de titulo e descricao no `index.html` para refletir a identidade da marca Fluxrow.
 
-1. Copiar a imagem `OG_logo_fluxrow.png` para a pasta `public/` (necessario para meta tags OG, que precisam de URL publica direta)
+## Alteracoes no `index.html`
 
-2. Atualizar o `index.html` com as seguintes alteracoes nas meta tags:
-   - `og:image` → `https://fluxrow-manus-project.lovable.app/OG_logo_fluxrow.png`
-   - `twitter:image` → mesma URL
-   - Adicionar `og:image:width` (1200) e `og:image:height` (630) para renderizacao otimizada
+| Tag | Valor Atual | Novo Valor |
+|-----|------------|------------|
+| `<title>` | Fluxrow - A Inteligencia por Tras do Crescimento | **Fluxrow - Inteligencia Criativa** |
+| `og:title` | Fluxrow - A Inteligencia por Tras do Crescimento | **Fluxrow - Inteligencia Criativa** |
+| `og:description` | Domine IA generativa, automacoes e estrategias de crescimento. Fluxrow e o laboratorio por tras das marcas que lideram. | **IA generativa, automacoes e growth marketing. A Fluxrow e o laboratorio por tras das marcas que lideram.** |
+| `meta description` | (mesmo texto antigo) | **(mesmo novo texto do og:description)** |
+| `twitter:site` | @lovable_dev | **@fluxrow** (ou remover se nao tiver perfil) |
+| `meta author` | Lovable | **Fluxrow** |
 
-## Observacao importante
+## Detalhes tecnicos
 
-Depois de publicar, as plataformas (WhatsApp, Facebook, LinkedIn) podem demorar um pouco para atualizar o cache. Para forcar a atualizacao no Facebook/WhatsApp, voce pode usar o [Facebook Sharing Debugger](https://developers.facebook.com/tools/debug/) e colar o link do site.
+Serao editadas 6 linhas no arquivo `index.html`:
+- Linha 10: `<title>`
+- Linha 11: `<meta name="description">`
+- Linha 13: `<meta name="author">`
+- Linha 16: `<meta property="og:title">`
+- Linha 17: `<meta property="og:description">`
+- Linha 26: `<meta name="twitter:site">`
 
+Nenhum outro arquivo precisa ser alterado.
+
+Apos publicar, use o [Facebook Sharing Debugger](https://developers.facebook.com/tools/debug/) para limpar o cache e ver a preview atualizada.
