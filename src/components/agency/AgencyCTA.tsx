@@ -115,7 +115,7 @@ const AgencyCTA = () => {
             <span className="text-white/40 text-xs">– Automação, IA e Criatividade que entregam resultados.</span>
           </div>
           <p className="text-white/30 text-xs text-center sm:text-right">
-            CNPJ: 00.000.000/0001-00 · © {new Date().getFullYear()} Fluxrow. Todos os direitos reservados.
+            CNPJ: 61.260.831/0001-97 · © {new Date().getFullYear()} Fluxrow. Todos os direitos reservados.
           </p>
         </div>
       </div>
