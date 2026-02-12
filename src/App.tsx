@@ -42,6 +42,8 @@ const AdminTestReportei = React.lazy(() => import("./pages/AdminTestReportei"));
 const AdminRelatorios = React.lazy(() => import("./pages/AdminRelatorios"));
 const PropostaTeresopolis = React.lazy(() => import("./pages/PropostaTeresopolis"));
 const BriefingAlek = React.lazy(() => import("./pages/BriefingAlek"));
+const PoliticaPrivacidade = React.lazy(() => import("./pages/PoliticaPrivacidade"));
+const TermosDeUso = React.lazy(() => import("./pages/TermosDeUso"));
 
 const queryClient = new QueryClient();
 
@@ -92,6 +94,8 @@ const App = () => (
             <Route path="/relatorio/fachini-semanal" element={<RelatorioSemanalFachini />} />
             <Route path="/proposta-teresopolis" element={<PropostaTeresopolis />} />
             <Route path="/briefing-alek" element={<BriefingAlek />} />
+            <Route path="/politica-de-privacidade" element={<PoliticaPrivacidade />} />
+            <Route path="/termos-de-uso" element={<TermosDeUso />} />
             <Route path="/conteudos/:slug" element={<div>Página Individual de Conteúdo</div>} />
             <Route path="/contato" element={<Contato />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
