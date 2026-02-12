@@ -1,38 +1,18 @@
 
+# Mover botao "Home" para baixo do header
 
-# Atualizar OG Image + Adicionar SEO (Canonical + JSON-LD)
+## Problema
+Na imagem, o botao "Home" (fixed, top-4, left-4, z-50) fica sobreposto ao logo da Fluxrow no header (fixed, top-0, z-40). Isso acontece porque ambos estao posicionados no canto superior esquerdo.
 
-## 1. Nova imagem OG
+## Solucao
+Alterar o posicionamento do `BackToHomeButton` de `top-4` para `top-16` (64px), colocando-o abaixo do header que tem aproximadamente 52px de altura (py-3 + conteudo).
 
-- Copiar `logo_fluxrow_1080_x_1080_px.png` para `public/OG_logo_fluxrow.png` (substituindo a anterior)
-- A imagem e 1080x1080px — atualizar `og:image:width` e `og:image:height` para 1080
-- As URLs das meta tags `og:image` e `twitter:image` permanecem as mesmas (mesmo nome de arquivo)
+## Alteracao
 
-## 2. Meta tag canonica
+**Arquivo:** `src/components/ui/BackToHomeButton.tsx` (linha 25)
 
-Adicionar no `<head>` do `index.html`:
-```html
-<link rel="canonical" href="https://fluxrow.com/" />
-```
+Mudar a classe de posicionamento:
+- De: `fixed top-4 left-4`
+- Para: `fixed top-16 left-4`
 
-## 3. Structured Data (JSON-LD)
-
-Adicionar script JSON-LD no `<head>` com dados da organizacao:
-
-```json
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "Fluxrow",
-  "url": "https://fluxrow.com",
-  "logo": "https://fluxrow-manus-project.lovable.app/OG_logo_fluxrow.png",
-  "description": "IA generativa, automacoes e growth marketing. A Fluxrow e o laboratorio por tras das marcas que lideram.",
-  "sameAs": ["https://twitter.com/fluxrow"]
-}
-```
-
-## Resumo das alteracoes
-
-- **1 arquivo copiado**: nova imagem OG substituindo a anterior
-- **1 arquivo editado**: `index.html` (dimensoes da imagem, canonical, JSON-LD)
-
+Isso posiciona o botao logo abaixo do header em todas as telas, sem sobrepor o logo.
