@@ -72,20 +72,7 @@ class PerformanceOptimizer {
     fontLink.as = 'style';
     document.head.appendChild(fontLink);
 
-    // Preload critical local images (hero backgrounds)
-    const heroImages = [
-      '/src/assets/hero-bg-1.jpg',
-      '/src/assets/hero-bg-2.jpg', 
-      '/src/assets/hero-bg-3.jpg'
-    ];
-
-    heroImages.forEach(src => {
-      const link = document.createElement('link');
-      link.rel = 'preload';
-      link.as = 'image';
-      link.href = src;
-      document.head.appendChild(link);
-    });
+    // Hero background images removed — hero uses Three.js starfield, not images
   }
 
   setupImageOptimization() {
