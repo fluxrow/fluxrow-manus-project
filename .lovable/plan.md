@@ -1,32 +1,17 @@
 
-# Padronização dos Botões de WhatsApp
 
-## Objetivo
-Substituir todos os números de WhatsApp no projeto pelo número padrão **+55 41 99236-1868** (`5541992361868`).
+# Open Graph — Imagem de Preview nos Links
 
-## Arquivos que precisam de alteração
+## O que sera feito
 
-Os seguintes arquivos contêm números **diferentes** do padrão e precisam ser corrigidos:
+1. Copiar a imagem `OG_logo_fluxrow.png` para a pasta `public/` (necessario para meta tags OG, que precisam de URL publica direta)
 
-| Arquivo | Número Atual | Ação |
-|---------|-------------|------|
-| `src/pages/PropostaView.tsx` | `5511999999999` | Corrigir |
-| `src/pages/PropostaTeresopolis.tsx` | `5511999999999` | Corrigir |
-| `src/components/agency/InteractiveBriefing.tsx` | `5547999999999` | Corrigir |
-| `src/components/agency/AgencyCTA.tsx` | `5547999999999` | Corrigir |
-| `src/components/teresopolis/PlansSection.tsx` | `5511999999999` | Corrigir |
-| `src/pages/PropostaPromotrip.tsx` | `5562982181855` | Corrigir |
+2. Atualizar o `index.html` com as seguintes alteracoes nas meta tags:
+   - `og:image` → `https://fluxrow-manus-project.lovable.app/OG_logo_fluxrow.png`
+   - `twitter:image` → mesma URL
+   - Adicionar `og:image:width` (1200) e `og:image:height` (630) para renderizacao otimizada
 
-## Arquivos já com número correto (sem alteração necessária)
+## Observacao importante
 
-- `src/components/agency/EnhancedInteractiveBriefing.tsx` — `5541992361868`
-- `src/components/FAQSection.tsx` — `5541992361868`
-- `src/pages/PropostaBaboraSeguros.tsx` — `5541992361868`
-- `src/pages/PropostaAmandaNeves.tsx` — `5541992361868`
-- `src/pages/Contato.tsx` — `5541992361868`
-- `src/pages/ApresentacaoEvoluaDigital.tsx` — `5541992361868`
-- `src/pages/PropostaEvoluaDigital.tsx` — `5541992361868`
-- `src/pages/PropostaMatchSolutions.tsx` — `5541992361868`
-- `src/pages/PropostaComunica.tsx` — usa variável, verificar valor
+Depois de publicar, as plataformas (WhatsApp, Facebook, LinkedIn) podem demorar um pouco para atualizar o cache. Para forcar a atualizacao no Facebook/WhatsApp, voce pode usar o [Facebook Sharing Debugger](https://developers.facebook.com/tools/debug/) e colar o link do site.
 
-## Total de correções: 6 arquivos
