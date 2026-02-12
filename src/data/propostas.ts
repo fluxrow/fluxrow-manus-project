@@ -25,7 +25,7 @@ export const propostas: PropostaItem[] = [
     rota: '/propostas/match-solutions',
     status: 'aprovada',
     contrato: {
-      rota: '/contrato-match-solutions',
+      rota: '/propostas/contrato-match-solutions',
       status: 'assinado_ambas',
     },
   },
@@ -38,7 +38,7 @@ export const propostas: PropostaItem[] = [
     rota: '/propostas/amanda-neves',
     status: 'aprovada',
     contrato: {
-      rota: '/contrato-amanda-neves',
+      rota: '/propostas/contrato-amanda-neves',
       status: 'assinado_ambas',
     },
   },
@@ -60,7 +60,7 @@ export const propostas: PropostaItem[] = [
     rota: '/propostas/promotrip',
     status: 'aprovada',
     contrato: {
-      rota: '/contrato-promotrip',
+      rota: '/propostas/contrato-promotrip',
       status: 'assinado_ambas',
     },
   },

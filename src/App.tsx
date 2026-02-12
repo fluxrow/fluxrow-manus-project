@@ -86,13 +86,13 @@ const App = () => (
               <Route path="evolua-digital" element={<PropostaEvoluaDigital />} />
               <Route path="comunica" element={<PropostaComunica />} />
               <Route path="teresopolis" element={<PropostaTeresopolis />} />
+              <Route path="contrato-match-solutions" element={<ContratoMatchSolutions />} />
+              <Route path="contrato-amanda-neves" element={<ContratoAmandaNeves />} />
+              <Route path="contrato-promotrip" element={<ContratoPromotrip />} />
+              <Route path="contrato/:cliente/assinar" element={<ContratoAssinatura />} />
               <Route path=":clienteSlug" element={<PropostaView />} />
             </Route>
             <Route path="/apresentacao-evolua-digital" element={<ApresentacaoEvoluaDigital />} />
-            <Route path="/contrato-match-solutions" element={<ContratoMatchSolutions />} />
-            <Route path="/contrato-amanda-neves" element={<ContratoAmandaNeves />} />
-            <Route path="/contrato-promotrip" element={<ContratoPromotrip />} />
-            <Route path="/contrato/:cliente/assinar" element={<ContratoAssinatura />} />
             <Route path="/admin/reset-contrato" element={<ResetContrato />} />
             <Route path="/admin/test-reportei" element={<AdminTestReportei />} />
             <Route path="/admin/relatorios" element={<AdminRelatorios />} />
