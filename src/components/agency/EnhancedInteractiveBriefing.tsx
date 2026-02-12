@@ -309,10 +309,10 @@ const SelectionSummary = ({
     <>
       <button
         onClick={() => setIsDrawerOpen(!isDrawerOpen)}
-        className="fixed bottom-4 right-4 z-50 flex items-center gap-1.5 px-4 py-2.5 rounded-full bg-primary/90 backdrop-blur text-primary-foreground text-xs font-medium shadow-lg"
+        className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-1.5 px-5 py-3 rounded-full bg-primary/90 backdrop-blur text-primary-foreground text-xs font-medium shadow-lg"
       >
         {isDrawerOpen ? <ChevronDown className="w-3.5 h-3.5" /> : <ChevronUp className="w-3.5 h-3.5" />}
-        {entries.length} seleção(ões)
+        {entries.length} {entries.length === 1 ? 'seleção' : 'seleções'}
       </button>
       <AnimatePresence>
         {isDrawerOpen && (
@@ -321,7 +321,7 @@ const SelectionSummary = ({
             animate={{ y: 0 }}
             exit={{ y: '100%' }}
             transition={{ type: 'spring', damping: 25 }}
-            className="fixed bottom-16 right-4 left-4 z-50 p-4 rounded-2xl bg-background/80 backdrop-blur-lg border border-border"
+            className="fixed bottom-20 left-4 right-4 z-50 p-4 rounded-2xl bg-background/80 backdrop-blur-lg border border-border"
           >
             <p className="text-[10px] uppercase tracking-wider text-muted-foreground mb-3">Suas escolhas</p>
             {chipList}
