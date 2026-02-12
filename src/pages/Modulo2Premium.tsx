@@ -7,6 +7,7 @@ import {
   AlertTriangle, CheckCircle, PlayCircle, MessageSquare, Mail, Bot, UserCheck, Repeat
 } from 'lucide-react';
 import ProgressSidebar, { SidebarSection } from '@/components/curso/ProgressSidebar';
+import ModuleNavigation from '@/components/curso/ModuleNavigation';
 import {
   ToolLink, ToolLinksGrid, ActionBox, ComparisonTable, KeyTakeaway, ProTip,
   WarningBox, StepByStep, SectionDivider
@@ -386,7 +387,8 @@ const Modulo2Premium = () => {
   return (
     <div className="min-h-screen bg-[#0f0f0f] text-white">
       <Header />
-      <main className="pt-24 pb-20">
+      <ModuleNavigation currentModuleId={2} />
+      <main className="pt-8 pb-20">
         {/* Premium Header */}
         <section className="py-16 px-6 bg-gradient-to-r from-green-900/20 via-black to-cyan-900/20 border-b border-green-500/20">
           <div className="max-w-6xl mx-auto">
@@ -740,6 +742,7 @@ const Modulo2Premium = () => {
           </div>
         </div>
       </main>
+      <ModuleNavigation currentModuleId={2} />
       <Footer />
     </div>
   );
