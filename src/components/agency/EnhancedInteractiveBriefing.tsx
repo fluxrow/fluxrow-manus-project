@@ -169,21 +169,21 @@ const StepIndicator = ({
           <motion.div
             className={`w-3 h-3 rounded-full transition-colors duration-300 ${
               active
-                ? 'bg-cyan-400'
+                ? 'bg-ring'
                 : completed
-                ? 'bg-purple-500'
-                : 'bg-white/20'
+                ? 'bg-primary'
+                : 'bg-foreground/20'
             }`}
             animate={active ? { scale: 1.5 } : { scale: 1 }}
             transition={{ type: 'spring', stiffness: 400 }}
           />
           {completed && !active && (
-            <Check className="absolute w-2.5 h-2.5 text-white" />
+            <Check className="absolute w-2.5 h-2.5 text-primary-foreground" />
           )}
           {active && (
             <motion.div
               layoutId="step-glow"
-              className="absolute w-6 h-6 rounded-full border-2 border-cyan-400/50"
+              className="absolute w-6 h-6 rounded-full border-2 border-ring/50"
               transition={{ type: 'spring', stiffness: 300 }}
             />
           )}
@@ -221,13 +221,13 @@ const OptionCard = ({
       onBlur={() => setShowDesc(false)}
       className={`relative w-full text-left px-5 py-4 rounded-xl border transition-all duration-200 group ${
         isSelected
-          ? 'border-cyan-400 bg-cyan-400/10 shadow-[0_0_20px_rgba(6,182,212,0.15)]'
-          : 'border-white/10 bg-white/[0.03] hover:border-white/25 hover:bg-white/[0.06]'
+          ? 'border-ring bg-ring/10 shadow-[0_0_20px_hsl(var(--ring)/0.15)]'
+          : 'border-border bg-muted/10 hover:border-border/60 hover:bg-muted/20'
       }`}
     >
       <div className="flex items-center gap-3">
         <span className="text-xl shrink-0">{option.icon}</span>
-        <span className="font-medium text-white text-sm sm:text-base">{option.label}</span>
+        <span className="font-medium text-foreground text-sm sm:text-base">{option.label}</span>
       </div>
       <AnimatePresence>
         {showDesc && (
@@ -236,7 +236,7 @@ const OptionCard = ({
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="text-white/60 text-xs sm:text-sm mt-2 ml-9 overflow-hidden"
+            className="text-muted-foreground text-xs sm:text-sm mt-2 ml-9 overflow-hidden"
           >
             {option.description}
           </motion.p>
@@ -280,7 +280,7 @@ const SelectionSummary = ({
               onEdit(e.index);
               if (isMobile) setIsDrawerOpen(false);
             }}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/[0.06] border border-white/10 hover:border-cyan-400/40 text-xs text-white/80 hover:text-white transition-all"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-muted/20 border border-border hover:border-ring/40 text-xs text-muted-foreground hover:text-foreground transition-all"
           >
             <span>{opt?.icon}</span>
             <span>{opt?.label}</span>
@@ -296,9 +296,9 @@ const SelectionSummary = ({
       <motion.div
         initial={{ opacity: 0, x: 20 }}
         animate={{ opacity: 1, x: 0 }}
-        className="absolute right-4 top-1/2 -translate-y-1/2 w-52 p-4 rounded-2xl bg-black/60 backdrop-blur-md border border-white/10 hidden lg:block"
+        className="absolute right-4 top-1/2 -translate-y-1/2 w-52 p-4 rounded-2xl bg-background/60 backdrop-blur-md border border-border hidden lg:block"
       >
-        <p className="text-[10px] uppercase tracking-wider text-white/40 mb-3">Suas escolhas</p>
+        <p className="text-[10px] uppercase tracking-wider text-muted-foreground mb-3">Suas escolhas</p>
         {chipList}
       </motion.div>
     );
@@ -309,7 +309,7 @@ const SelectionSummary = ({
     <>
       <button
         onClick={() => setIsDrawerOpen(!isDrawerOpen)}
-        className="fixed bottom-4 right-4 z-50 flex items-center gap-1.5 px-4 py-2.5 rounded-full bg-purple-600/90 backdrop-blur text-white text-xs font-medium shadow-lg"
+        className="fixed bottom-4 right-4 z-50 flex items-center gap-1.5 px-4 py-2.5 rounded-full bg-primary/90 backdrop-blur text-primary-foreground text-xs font-medium shadow-lg"
       >
         {isDrawerOpen ? <ChevronDown className="w-3.5 h-3.5" /> : <ChevronUp className="w-3.5 h-3.5" />}
         {entries.length} seleção(ões)
@@ -321,9 +321,9 @@ const SelectionSummary = ({
             animate={{ y: 0 }}
             exit={{ y: '100%' }}
             transition={{ type: 'spring', damping: 25 }}
-            className="fixed bottom-16 right-4 left-4 z-50 p-4 rounded-2xl bg-black/80 backdrop-blur-lg border border-white/10"
+            className="fixed bottom-16 right-4 left-4 z-50 p-4 rounded-2xl bg-background/80 backdrop-blur-lg border border-border"
           >
-            <p className="text-[10px] uppercase tracking-wider text-white/40 mb-3">Suas escolhas</p>
+            <p className="text-[10px] uppercase tracking-wider text-muted-foreground mb-3">Suas escolhas</p>
             {chipList}
           </motion.div>
         )}
@@ -374,15 +374,15 @@ const CompletionScreen = ({
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
         transition={{ type: 'spring', delay: 0.2 }}
-        className="w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-br from-cyan-500 to-purple-600 flex items-center justify-center"
+        className="w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-br from-ring to-primary flex items-center justify-center"
       >
-        <Sparkles className="w-9 h-9 text-white" />
+        <Sparkles className="w-9 h-9 text-primary-foreground" />
       </motion.div>
 
-      <h3 className="text-2xl sm:text-3xl font-bold text-white mb-2">
+      <h3 className="text-2xl sm:text-3xl font-bold text-foreground mb-2">
         {diagnostic.title}
       </h3>
-      <p className="text-white/70 mb-4 text-sm sm:text-base">
+      <p className="text-muted-foreground mb-4 text-sm sm:text-base">
         {diagnostic.description}
       </p>
 
@@ -390,15 +390,15 @@ const CompletionScreen = ({
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.5 }}
-        className="inline-block px-5 py-2 rounded-full bg-gradient-to-r from-cyan-500/20 to-purple-600/20 border border-cyan-400/30 mb-8"
+        className="inline-block px-5 py-2 rounded-full bg-gradient-to-r from-ring/20 to-primary/20 border border-ring/30 mb-8"
       >
-        <p className="text-cyan-300 font-semibold text-sm">{diagnostic.highlight}</p>
+        <p className="text-ring font-semibold text-sm">{diagnostic.highlight}</p>
       </motion.div>
 
       <div className="flex flex-col sm:flex-row gap-3 justify-center">
         <Button
           onClick={() => window.open(whatsappUrl, '_blank')}
-          className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-6 py-3 rounded-xl font-semibold"
+          className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-primary-foreground px-6 py-3 rounded-xl font-semibold"
         >
           <MessageCircle className="w-5 h-5 mr-2" />
           Falar no WhatsApp
@@ -406,14 +406,14 @@ const CompletionScreen = ({
         <Button
           onClick={onActivate}
           variant="outline"
-          className="border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10 px-6 py-3 rounded-xl"
+          className="border-ring/50 text-ring hover:bg-ring/10 px-6 py-3 rounded-xl"
         >
           <Phone className="w-5 h-5 mr-2" />
           Agendar Call
         </Button>
       </div>
 
-      <p className="text-white/30 text-xs mt-6">
+      <p className="text-muted-foreground/50 text-xs mt-6">
         Consultoria gratuita • Sem compromisso • Resposta em 5 min
       </p>
     </motion.div>
@@ -516,9 +516,9 @@ const EnhancedInteractiveBriefing = () => {
   };
 
   return (
-    <section className="relative min-h-[85vh] flex flex-col items-center justify-center py-16 sm:py-20 bg-gradient-to-br from-black via-purple-950/20 to-black overflow-hidden">
+    <section className="relative min-h-[85vh] flex flex-col items-center justify-center py-16 sm:py-20 bg-gradient-to-br from-background via-primary/5 to-background overflow-hidden">
       {/* Background radial */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_40%,rgba(139,69,255,0.12),transparent_70%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_40%,hsl(var(--primary)/0.12),transparent_70%)]" />
 
       <div className="container mx-auto px-4 sm:px-6 relative z-10 w-full">
         {/* Header */}
@@ -527,13 +527,13 @@ const EnhancedInteractiveBriefing = () => {
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-6"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-3">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-3">
             Briefing{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400">
               Inteligente
             </span>
           </h2>
-          <p className="text-white/60 text-sm sm:text-base max-w-lg mx-auto">
+          <p className="text-muted-foreground text-sm sm:text-base max-w-lg mx-auto">
             2 minutos para uma estratégia personalizada com IA
           </p>
         </motion.div>
@@ -564,10 +564,10 @@ const EnhancedInteractiveBriefing = () => {
               >
                 {/* Question title */}
                 <div className="text-center mb-8">
-                  <h3 className="text-xl sm:text-2xl font-bold text-white mb-1.5">
+                  <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-1.5">
                     {currentQ.title}
                   </h3>
-                  <p className="text-white/50 text-sm">{currentQ.subtitle}</p>
+                  <p className="text-muted-foreground text-sm">{currentQ.subtitle}</p>
                 </div>
 
                 {/* Options */}
@@ -593,7 +593,7 @@ const EnhancedInteractiveBriefing = () => {
                   >
                     <button
                       onClick={handleBack}
-                      className="flex items-center gap-1.5 text-white/40 hover:text-white/70 text-sm transition-colors"
+                      className="flex items-center gap-1.5 text-muted-foreground hover:text-foreground/70 text-sm transition-colors"
                     >
                       <ArrowLeft className="w-4 h-4" />
                       Voltar
