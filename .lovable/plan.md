@@ -1,31 +1,38 @@
 
-# Atualizar Open Graph — Titulo e Descricao
 
-## Resumo
+# Atualizar OG Image + Adicionar SEO (Canonical + JSON-LD)
 
-Atualizar as meta tags de titulo e descricao no `index.html` para refletir a identidade da marca Fluxrow.
+## 1. Nova imagem OG
 
-## Alteracoes no `index.html`
+- Copiar `logo_fluxrow_1080_x_1080_px.png` para `public/OG_logo_fluxrow.png` (substituindo a anterior)
+- A imagem e 1080x1080px — atualizar `og:image:width` e `og:image:height` para 1080
+- As URLs das meta tags `og:image` e `twitter:image` permanecem as mesmas (mesmo nome de arquivo)
 
-| Tag | Valor Atual | Novo Valor |
-|-----|------------|------------|
-| `<title>` | Fluxrow - A Inteligencia por Tras do Crescimento | **Fluxrow - Inteligencia Criativa** |
-| `og:title` | Fluxrow - A Inteligencia por Tras do Crescimento | **Fluxrow - Inteligencia Criativa** |
-| `og:description` | Domine IA generativa, automacoes e estrategias de crescimento. Fluxrow e o laboratorio por tras das marcas que lideram. | **IA generativa, automacoes e growth marketing. A Fluxrow e o laboratorio por tras das marcas que lideram.** |
-| `meta description` | (mesmo texto antigo) | **(mesmo novo texto do og:description)** |
-| `twitter:site` | @lovable_dev | **@fluxrow** (ou remover se nao tiver perfil) |
-| `meta author` | Lovable | **Fluxrow** |
+## 2. Meta tag canonica
 
-## Detalhes tecnicos
+Adicionar no `<head>` do `index.html`:
+```html
+<link rel="canonical" href="https://fluxrow.com/" />
+```
 
-Serao editadas 6 linhas no arquivo `index.html`:
-- Linha 10: `<title>`
-- Linha 11: `<meta name="description">`
-- Linha 13: `<meta name="author">`
-- Linha 16: `<meta property="og:title">`
-- Linha 17: `<meta property="og:description">`
-- Linha 26: `<meta name="twitter:site">`
+## 3. Structured Data (JSON-LD)
 
-Nenhum outro arquivo precisa ser alterado.
+Adicionar script JSON-LD no `<head>` com dados da organizacao:
 
-Apos publicar, use o [Facebook Sharing Debugger](https://developers.facebook.com/tools/debug/) para limpar o cache e ver a preview atualizada.
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Fluxrow",
+  "url": "https://fluxrow.com",
+  "logo": "https://fluxrow-manus-project.lovable.app/OG_logo_fluxrow.png",
+  "description": "IA generativa, automacoes e growth marketing. A Fluxrow e o laboratorio por tras das marcas que lideram.",
+  "sameAs": ["https://twitter.com/fluxrow"]
+}
+```
+
+## Resumo das alteracoes
+
+- **1 arquivo copiado**: nova imagem OG substituindo a anterior
+- **1 arquivo editado**: `index.html` (dimensoes da imagem, canonical, JSON-LD)
+
