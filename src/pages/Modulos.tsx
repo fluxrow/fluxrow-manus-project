@@ -208,7 +208,7 @@ const Modulos = () => {
                         </ul>
                       </div>
                       <button 
-                        onClick={() => module.id === 1 ? navigate('/modulos/1-premium') : module.id === 2 ? navigate('/modulos/2-premium') : null}
+                        onClick={() => module.id === 1 ? navigate('/modulos/1-premium') : module.id === 2 ? navigate('/modulos/2-premium') : module.id === 3 ? navigate('/modulos/3-premium') : null}
                         className="flex items-center space-x-2 bg-gradient-to-r from-pink-500 to-cyan-500 text-white px-6 py-3 rounded-full font-semibold font-space-grotesk hover:from-pink-600 hover:to-cyan-600 transition-all duration-300"
                       >
                         <Play className="w-4 h-4" />

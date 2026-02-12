@@ -11,6 +11,7 @@ interface ModuleInfo {
 const allModules: ModuleInfo[] = [
   { id: 1, title: 'Fundamentos da IA para Negócios', route: '/modulos/1-premium' },
   { id: 2, title: 'Automação de Vendas com IA', route: '/modulos/2-premium' },
+  { id: 3, title: 'Criação de Conteúdo Escalável com IA', route: '/modulos/3-premium' },
 ];
 
 interface ModuleNavigationProps {
