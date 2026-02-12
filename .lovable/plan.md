@@ -1,30 +1,24 @@
 
-# Mover Contratos para Dentro da Area Protegida
+
+# Exigir PIN Sempre ao Entrar na Area de Propostas
 
 ## O que sera feito
 
-As rotas de contratos que hoje estao publicas serao movidas para dentro do grupo `/propostas`, ficando protegidas pelo mesmo PIN. A rota de assinatura do cliente (`/contrato/:cliente/assinar`) tambem sera movida para dentro.
+Atualmente o PIN fica salvo no `sessionStorage`, entao se voce sai para o home e volta para `/propostas`, nao precisa digitar de novo. Vou mudar para que o PIN seja exigido toda vez que voce entra na area de propostas, independente de por onde veio.
 
-### Rotas atuais (publicas) que serao removidas:
-- `/contrato-match-solutions`
-- `/contrato-amanda-neves`
-- `/contrato-promotrip`
-- `/contrato/:cliente/assinar`
+## Como funciona
 
-### Novas rotas (protegidas por PIN):
-- `/propostas/contrato-match-solutions`
-- `/propostas/contrato-amanda-neves`
-- `/propostas/contrato-promotrip`
-- `/propostas/contrato/:cliente/assinar`
+- Trocar `sessionStorage` por um estado React (`useState`) dentro do componente `Propostas.tsx`
+- Quando voce navega para qualquer pagina fora de `/propostas/*`, o componente desmonta e o estado e perdido automaticamente
+- Ao voltar para `/propostas`, o componente monta de novo e pede o PIN novamente
+- Enquanto voce navega entre sub-rotas dentro de `/propostas/*` (ex: de uma proposta para outra), o PIN continua valido porque o componente pai nao desmonta
 
-## Alteracoes tecnicas
+## Alteracao tecnica
 
-### `src/App.tsx`
-- Remover as 4 rotas de contrato publicas (linhas 92-95)
-- Adicionar essas mesmas rotas como filhas do grupo `/propostas` (junto com as propostas que ja estao la)
+**`src/pages/Propostas.tsx`**:
+- Remover `sessionStorage.getItem('propostas_auth')` e `sessionStorage.setItem('propostas_auth', ...)`
+- Usar `useState(false)` para controlar se o PIN foi digitado
+- Remover qualquer referencia ao `sessionStorage` relacionada a autenticacao do PIN
 
-### `src/data/propostas.ts`
-- Atualizar as rotas de contrato para o novo caminho (ex: `/contrato-match-solutions` vira `/propostas/contrato-match-solutions`)
+Apenas 1 arquivo alterado, mudanca simples de ~5 linhas.
 
-### `src/pages/Propostas.tsx`
-- Nenhuma alteracao necessaria -- o `<Outlet />` ja renderiza qualquer sub-rota, e a protecao por PIN ja cobre tudo que esta dentro de `/propostas/*`
