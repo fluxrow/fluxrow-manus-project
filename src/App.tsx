@@ -32,6 +32,7 @@ const PropostaBaboraSeguros = React.lazy(() => import("./pages/PropostaBaboraSeg
 const PropostaPromotrip = React.lazy(() => import("./pages/PropostaPromotrip"));
 const PropostaEvoluaDigital = React.lazy(() => import("./pages/PropostaEvoluaDigital"));
 const PropostaComunica = React.lazy(() => import("./pages/PropostaComunica"));
+const PropostaTeresopolis = React.lazy(() => import("./pages/PropostaTeresopolis"));
 const ApresentacaoEvoluaDigital = React.lazy(() => import("./pages/ApresentacaoEvoluaDigital"));
 const ContratoMatchSolutions = React.lazy(() => import("./pages/ContratoMatchSolutions"));
 const ContratoAmandaNeves = React.lazy(() => import("./pages/ContratoAmandaNeves"));
@@ -42,7 +43,6 @@ const RelatorioFachini = React.lazy(() => import("./pages/RelatorioFachini"));
 const RelatorioSemanalFachini = React.lazy(() => import("./pages/RelatorioSemanalFachini"));
 const AdminTestReportei = React.lazy(() => import("./pages/AdminTestReportei"));
 const AdminRelatorios = React.lazy(() => import("./pages/AdminRelatorios"));
-const PropostaTeresopolis = React.lazy(() => import("./pages/PropostaTeresopolis"));
 const BriefingAlek = React.lazy(() => import("./pages/BriefingAlek"));
 const PoliticaPrivacidade = React.lazy(() => import("./pages/PoliticaPrivacidade"));
 const TermosDeUso = React.lazy(() => import("./pages/TermosDeUso"));
@@ -78,14 +78,16 @@ const App = () => (
             <Route path="/modulos/2-premium" element={<Modulo2Premium />} />
             <Route path="/modulos/3-premium" element={<Modulo3Premium />} />
             <Route path="/preview/:slug" element={<ClientPreview />} />
-            <Route path="/propostas" element={<Propostas />} />
-            <Route path="/proposta/:clienteSlug" element={<PropostaView />} />
-            <Route path="/match-solutions" element={<PropostaMatchSolutions />} />
-            <Route path="/amanda-neves-store" element={<PropostaAmandaNeves />} />
-            <Route path="/babora-seguros" element={<PropostaBaboraSeguros />} />
-            <Route path="/promotrip" element={<PropostaPromotrip />} />
-            <Route path="/evolua-digital" element={<PropostaEvoluaDigital />} />
-            <Route path="/propostas/comunica" element={<PropostaComunica />} />
+            <Route path="/propostas" element={<Propostas />}>
+              <Route path="match-solutions" element={<PropostaMatchSolutions />} />
+              <Route path="amanda-neves" element={<PropostaAmandaNeves />} />
+              <Route path="babora-seguros" element={<PropostaBaboraSeguros />} />
+              <Route path="promotrip" element={<PropostaPromotrip />} />
+              <Route path="evolua-digital" element={<PropostaEvoluaDigital />} />
+              <Route path="comunica" element={<PropostaComunica />} />
+              <Route path="teresopolis" element={<PropostaTeresopolis />} />
+              <Route path=":clienteSlug" element={<PropostaView />} />
+            </Route>
             <Route path="/apresentacao-evolua-digital" element={<ApresentacaoEvoluaDigital />} />
             <Route path="/contrato-match-solutions" element={<ContratoMatchSolutions />} />
             <Route path="/contrato-amanda-neves" element={<ContratoAmandaNeves />} />
@@ -96,7 +98,6 @@ const App = () => (
             <Route path="/admin/relatorios" element={<AdminRelatorios />} />
             <Route path="/relatorio/fachini-mensal" element={<RelatorioFachini />} />
             <Route path="/relatorio/fachini-semanal" element={<RelatorioSemanalFachini />} />
-            <Route path="/proposta-teresopolis" element={<PropostaTeresopolis />} />
             <Route path="/briefing-alek" element={<BriefingAlek />} />
             <Route path="/politica-de-privacidade" element={<PoliticaPrivacidade />} />
             <Route path="/termos-de-uso" element={<TermosDeUso />} />

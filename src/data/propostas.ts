@@ -22,7 +22,7 @@ export const propostas: PropostaItem[] = [
     empresa: 'Match Solutions',
     servico: 'Automação IA em Vendas',
     valor: 'R$ 5.200/mês',
-    rota: '/match-solutions',
+    rota: '/propostas/match-solutions',
     status: 'aprovada',
     contrato: {
       rota: '/contrato-match-solutions',
@@ -35,7 +35,7 @@ export const propostas: PropostaItem[] = [
     empresa: 'Amanda Neves Store',
     servico: 'Tráfego Pago Meta Ads',
     valor: 'R$ 2.500/mês',
-    rota: '/amanda-neves-store',
+    rota: '/propostas/amanda-neves',
     status: 'aprovada',
     contrato: {
       rota: '/contrato-amanda-neves',
@@ -48,7 +48,7 @@ export const propostas: PropostaItem[] = [
     empresa: 'Babora Seguros',
     servico: 'Sistema de Gestão',
     valor: 'Sob consulta',
-    rota: '/babora-seguros',
+    rota: '/propostas/babora-seguros',
     status: 'enviada',
   },
   {
@@ -57,7 +57,7 @@ export const propostas: PropostaItem[] = [
     empresa: 'Promotrip',
     servico: 'Marketing Digital',
     valor: 'R$ 3.500/mês',
-    rota: '/promotrip',
+    rota: '/propostas/promotrip',
     status: 'aprovada',
     contrato: {
       rota: '/contrato-promotrip',
@@ -70,7 +70,7 @@ export const propostas: PropostaItem[] = [
     empresa: 'Evolua Digital',
     servico: 'Parceria Híbrida',
     valor: 'R$ 4.000/mês',
-    rota: '/evolua-digital',
+    rota: '/propostas/evolua-digital',
     status: 'enviada',
   },
   {
@@ -88,7 +88,7 @@ export const propostas: PropostaItem[] = [
     empresa: 'Teresópolis Shopping',
     servico: 'IA Multicanal',
     valor: 'R$ 8.000/mês',
-    rota: '/proposta-teresopolis',
+    rota: '/propostas/teresopolis',
     status: 'enviada',
   },
 ];

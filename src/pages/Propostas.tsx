@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Outlet, useLocation } from 'react-router-dom';
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
@@ -84,7 +84,6 @@ function Dashboard() {
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white">
       <div className="max-w-6xl mx-auto px-4 py-8">
-        {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
           <div className="flex items-center gap-3">
             <Button variant="ghost" size="icon" onClick={() => navigate('/')} className="text-white/50 hover:text-white hover:bg-white/10">
@@ -106,7 +105,6 @@ function Dashboard() {
           </div>
         </div>
 
-        {/* Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {filtered.map(p => (
             <Card
@@ -167,9 +165,15 @@ function Dashboard() {
 
 export default function Propostas() {
   const [authenticated, setAuthenticated] = useState(() => sessionStorage.getItem(SESSION_KEY) === 'true');
+  const location = useLocation();
+  const isSubRoute = location.pathname !== '/propostas' && location.pathname !== '/propostas/';
 
   if (!authenticated) {
     return <PinScreen onSuccess={() => setAuthenticated(true)} />;
+  }
+
+  if (isSubRoute) {
+    return <Outlet />;
   }
 
   return <Dashboard />;
