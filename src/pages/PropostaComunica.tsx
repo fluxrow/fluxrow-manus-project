@@ -13,7 +13,7 @@ import TechStackSection from '@/components/comunica/TechStackSection';
 import FAQSection from '@/components/comunica/FAQSection';
 
 export default function PropostaComunica() {
-  const whatsappNumber = "5511999999999"; // Substitua pelo número correto
+  const whatsappNumber = "5541992361868";
   const whatsappMessage = encodeURIComponent("Olá! Vim pela proposta do Sistema de Gestão de Boletos + NF e gostaria de mais informações.");
 
   return (

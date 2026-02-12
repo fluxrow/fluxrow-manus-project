@@ -118,7 +118,7 @@ const PropostaTeresopolis = () => {
           <Button
             size="lg"
             className="bg-green-600 hover:bg-green-700 text-white px-8 py-6 text-lg hover:scale-105 transition-transform"
-            onClick={() => window.open("https://wa.me/5511999999999?text=Olá! Vi a proposta do Teresópolis Shopping e gostaria de conversar.", "_blank")}
+            onClick={() => window.open("https://wa.me/5541992361868?text=Olá! Vi a proposta do Teresópolis Shopping e gostaria de conversar.", "_blank")}
           >
             <MessageCircle className="mr-2 w-5 h-5" />
             Falar no WhatsApp

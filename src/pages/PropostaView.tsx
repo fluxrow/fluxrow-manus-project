@@ -67,7 +67,7 @@ export default function PropostaView() {
 
   const handleWhatsAppContact = () => {
     const message = `Olá! Vi a proposta para ${proposta.servico} e gostaria de conversar mais sobre o projeto. Com ticket médio de R$ 35.000, vejo que o ROI pode chegar a 2.233%!`;
-    const whatsappUrl = `https://wa.me/5511999999999?text=${encodeURIComponent(message)}`;
+    const whatsappUrl = `https://wa.me/5541992361868?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
   };
 
