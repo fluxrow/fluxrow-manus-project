@@ -229,7 +229,7 @@ const AdsMockup = () => (
 );
 
 const LandingPageMockup = () => (
-  <div className="w-full h-[110px] rounded-lg bg-black/40 overflow-hidden border border-white/10">
+  <div className="w-full h-[110px] rounded-lg bg-black/40 overflow-hidden border border-white/10 relative">
     <div className="flex items-center gap-1 px-2 py-1 bg-white/5 border-b border-white/10">
       <div className="flex gap-0.5">
         <div className="w-1.5 h-1.5 rounded-full bg-red-400" />
@@ -239,11 +239,17 @@ const LandingPageMockup = () => (
       <div className="flex-1 h-2.5 bg-white/10 rounded-sm mx-2" />
     </div>
     <div className="p-2 space-y-1.5">
-      <div className="h-5 bg-gradient-to-r from-blue-500/30 to-blue-400/10 rounded-sm" />
-      <div className="h-2 bg-white/10 rounded-sm w-[80%]" />
-      <div className="h-2 bg-white/10 rounded-sm w-[60%]" />
+      <div className="h-5 bg-gradient-to-r from-blue-500/30 to-blue-400/10 rounded-sm relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shimmer" />
+      </div>
+      <div className="h-2 bg-white/10 rounded-sm w-[80%] relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shimmer" style={{ animationDelay: '0.2s' }} />
+      </div>
+      <div className="h-2 bg-white/10 rounded-sm w-[60%] relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shimmer" style={{ animationDelay: '0.4s' }} />
+      </div>
       <div className="flex gap-1 mt-1">
-        <div className="h-4 flex-1 bg-blue-500/40 rounded-sm" />
+        <div className="h-4 flex-1 bg-blue-500/40 rounded-sm animate-[pulse_2s_cubic-bezier(0.4,0,0.6,1)_infinite]" />
         <div className="h-4 w-12 bg-white/10 rounded-sm" />
       </div>
     </div>
@@ -284,15 +290,21 @@ const AutomationMockup = () => (
 const CRMMockup = () => (
   <div className="w-full h-[110px] flex gap-1 p-1">
     {[
-      { title: "Novo", color: "border-blue-400/40", cards: 3 },
-      { title: "Qualif.", color: "border-amber-400/40", cards: 2 },
-      { title: "Fechado", color: "border-green-400/40", cards: 2 }
-    ].map((col) => (
+      { title: "Novo", color: "border-blue-400/40", cards: [0, 1, 2] },
+      { title: "Qualif.", color: "border-amber-400/40", cards: [0, 1] },
+      { title: "Fechado", color: "border-green-400/40", cards: [0, 1] }
+    ].map((col, colIdx) => (
       <div key={col.title} className={`flex-1 rounded-md bg-white/5 border ${col.color} p-1`}>
         <p className="text-[7px] text-white/50 text-center mb-1 font-medium">{col.title}</p>
         <div className="space-y-1">
-          {Array.from({ length: col.cards }).map((_, i) => (
-            <div key={i} className="h-4 bg-white/10 rounded-sm" />
+          {col.cards.map((_, i) => (
+            <motion.div
+              key={i}
+              className="h-4 bg-white/10 rounded-sm cursor-grab active:cursor-grabbing"
+              whileHover={{ scale: 1.08, backgroundColor: "rgba(255,255,255,0.18)" }}
+              whileTap={{ scale: 0.95, rotate: -1 }}
+              animate={colIdx === 0 && i === 0 ? { x: [0, 3, 0], transition: { duration: 2, repeat: Infinity, repeatDelay: 3 } } : {}}
+            />
           ))}
         </div>
       </div>
