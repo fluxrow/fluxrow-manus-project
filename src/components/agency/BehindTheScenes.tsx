@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { 
   Brain, 
   Bot, 
@@ -312,49 +312,103 @@ const CRMMockup = () => (
   </div>
 );
 
-const DashboardMockup = () => (
-  <div className="w-full h-[110px] flex rounded-lg bg-black/40 overflow-hidden border border-white/10">
-    <div className="w-6 bg-purple-500/10 border-r border-white/10 flex flex-col items-center pt-2 gap-1.5">
-      {[1, 2, 3, 4].map((i) => (
-        <div key={i} className="w-2.5 h-2.5 rounded-sm bg-purple-400/30" />
-      ))}
-    </div>
-    <div className="flex-1 p-2">
-      <div className="text-[18px] font-bold text-purple-400 leading-none mb-1.5">847</div>
-      <div className="text-[7px] text-white/40 mb-2">Usuários ativos</div>
-      <div className="flex items-end gap-1 h-8">
-        {[40, 65, 50, 80, 70, 90, 60].map((h, i) => (
-          <motion.div
-            key={i}
-            className="flex-1 bg-purple-500/40 rounded-t-sm"
-            initial={{ height: 0 }}
-            whileInView={{ height: `${h}%` }}
-            transition={{ duration: 0.6, delay: i * 0.08, ease: "easeOut" }}
-            viewport={{ once: true }}
-          />
+const DashboardMockup = () => {
+  const [count, setCount] = useState(0);
+  const ref = useRef<HTMLDivElement>(null);
+  const hasAnimated = useRef(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting && !hasAnimated.current) {
+        hasAnimated.current = true;
+        let start = 0;
+        const end = 847;
+        const duration = 1200;
+        const step = (timestamp: number) => {
+          if (!start) start = timestamp;
+          const progress = Math.min((timestamp - start) / duration, 1);
+          setCount(Math.floor(progress * end));
+          if (progress < 1) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+      }
+    }, { threshold: 0.5 });
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div ref={ref} className="w-full h-[110px] flex rounded-lg bg-black/40 overflow-hidden border border-white/10">
+      <div className="w-6 bg-purple-500/10 border-r border-white/10 flex flex-col items-center pt-2 gap-1.5">
+        {[1, 2, 3, 4].map((i) => (
+          <div key={i} className="w-2.5 h-2.5 rounded-sm bg-purple-400/30" />
         ))}
       </div>
+      <div className="flex-1 p-2">
+        <div className="text-[18px] font-bold text-purple-400 leading-none mb-1.5">{count}</div>
+        <div className="text-[7px] text-white/40 mb-2">Usuários ativos</div>
+        <div className="flex items-end gap-1 h-8">
+          {[40, 65, 50, 80, 70, 90, 60].map((h, i) => (
+            <motion.div
+              key={i}
+              className="flex-1 bg-purple-500/40 rounded-t-sm"
+              initial={{ height: 0 }}
+              whileInView={{ height: `${h}%` }}
+              transition={{ duration: 0.6, delay: i * 0.08, ease: "easeOut" }}
+              viewport={{ once: true }}
+            />
+          ))}
+        </div>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
-const BrandingMockup = () => (
-  <div className="w-full h-[110px] flex items-center justify-center gap-3">
-    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-yellow-400 to-amber-500 flex items-center justify-center">
-      <span className="text-black font-bold text-[10px]">LOGO</span>
-    </div>
-    <div className="space-y-2">
-      <div className="h-5 w-20 bg-gradient-to-r from-yellow-400/30 to-amber-500/20 rounded-sm flex items-center justify-center">
-        <span className="text-[7px] text-white/60">Horizontal</span>
+const BrandingMockup = () => {
+  const text = "FluxRow";
+  const [displayText, setDisplayText] = useState("");
+  const [showCursor, setShowCursor] = useState(true);
+
+  useEffect(() => {
+    let i = 0;
+    const typing = setInterval(() => {
+      setDisplayText(text.slice(0, i + 1));
+      i++;
+      if (i >= text.length) {
+        clearInterval(typing);
+        setTimeout(() => { i = 0; setDisplayText(""); 
+          const restart = setInterval(() => {
+            setDisplayText(text.slice(0, i + 1));
+            i++;
+            if (i >= text.length) clearInterval(restart);
+          }, 120);
+        }, 2000);
+      }
+    }, 120);
+    const cursor = setInterval(() => setShowCursor(p => !p), 530);
+    return () => { clearInterval(typing); clearInterval(cursor); };
+  }, []);
+
+  return (
+    <div className="w-full h-[110px] flex items-center justify-center gap-3">
+      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-yellow-400 to-amber-500 flex items-center justify-center">
+        <span className="text-black font-bold text-[10px]">LOGO</span>
       </div>
-      <div className="h-10 w-20 bg-white/5 rounded-sm border border-yellow-400/20 p-1">
-        <div className="w-3 h-3 rounded-full bg-yellow-400/40 mb-0.5" />
-        <div className="h-1 bg-white/10 rounded-full w-[70%]" />
-        <div className="h-1 bg-white/10 rounded-full w-[50%] mt-0.5" />
+      <div className="space-y-2">
+        <div className="h-5 w-20 bg-gradient-to-r from-yellow-400/30 to-amber-500/20 rounded-sm flex items-center justify-center">
+          <span className="text-[8px] text-white/70 font-medium font-space-grotesk">
+            {displayText}<span className={`${showCursor ? 'opacity-100' : 'opacity-0'} transition-opacity`}>|</span>
+          </span>
+        </div>
+        <div className="h-10 w-20 bg-white/5 rounded-sm border border-yellow-400/20 p-1">
+          <div className="w-3 h-3 rounded-full bg-yellow-400/40 mb-0.5" />
+          <div className="h-1 bg-white/10 rounded-full w-[70%]" />
+          <div className="h-1 bg-white/10 rounded-full w-[50%] mt-0.5" />
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 const showcaseBlocks = [
   { title: "Criativos para Feed e Stories", desc: "Posts, carrosséis e stories que convertem", tag: "Design", borderColor: "border-pink-500/30 hover:border-pink-400/60", tagBg: "bg-pink-500/20", tagText: "text-pink-400", glow: "from-pink-500/10 to-pink-900/5", Mockup: FeedMockup },
