@@ -1,35 +1,30 @@
 
-
-# Proteger Propostas e Definir PIN
+# Mover Contratos para Dentro da Area Protegida
 
 ## O que sera feito
 
-### 1. Trocar o PIN
-O PIN atual esta fixo como `2907` no codigo. Vou trocar para o valor que voce quiser -- me diz qual PIN de 4 digitos voce quer usar, ou posso manter esse mesmo. **Se quiser trocar, e so me dizer o novo PIN.**
+As rotas de contratos que hoje estao publicas serao movidas para dentro do grupo `/propostas`, ficando protegidas pelo mesmo PIN. A rota de assinatura do cliente (`/contrato/:cliente/assinar`) tambem sera movida para dentro.
 
-### 2. Bloquear acesso direto as propostas
-Atualmente qualquer pessoa que digite `/match-solutions`, `/amanda-neves-store`, etc. no navegador consegue ver a proposta sem nenhuma protecao. Vou resolver isso assim:
+### Rotas atuais (publicas) que serao removidas:
+- `/contrato-match-solutions`
+- `/contrato-amanda-neves`
+- `/contrato-promotrip`
+- `/contrato/:cliente/assinar`
 
-- **Remover as rotas publicas** das propostas individuais (`/match-solutions`, `/amanda-neves-store`, `/babora-seguros`, `/promotrip`, `/evolua-digital`, `/propostas/comunica`, `/proposta-teresopolis`)
-- **Mover todas essas rotas para dentro de um grupo protegido** que so funciona se o usuario tiver autenticado com o PIN via `/propostas`
-- As rotas passam a ser algo como `/propostas/match-solutions`, `/propostas/amanda-neves`, etc.
-- Quem tentar acessar diretamente sem ter digitado o PIN sera redirecionado para a tela de PIN
+### Novas rotas (protegidas por PIN):
+- `/propostas/contrato-match-solutions`
+- `/propostas/contrato-amanda-neves`
+- `/propostas/contrato-promotrip`
+- `/propostas/contrato/:cliente/assinar`
 
-**Contratos continuam acessiveis** pelos clientes (para assinar), ja que os links de contrato sao enviados diretamente a eles.
+## Alteracoes tecnicas
 
-### Detalhes tecnicos
+### `src/App.tsx`
+- Remover as 4 rotas de contrato publicas (linhas 92-95)
+- Adicionar essas mesmas rotas como filhas do grupo `/propostas` (junto com as propostas que ja estao la)
 
-**`src/App.tsx`**:
-- Remover as rotas individuais das propostas (linhas 83-89, 99)
-- Criar rotas aninhadas dentro de `/propostas/*` que renderizam os componentes de proposta
-- Manter rotas de contratos publicas (`/contrato-match-solutions`, `/contrato-amanda-neves`, `/contrato-promotrip`, `/contrato/:cliente/assinar`)
+### `src/data/propostas.ts`
+- Atualizar as rotas de contrato para o novo caminho (ex: `/contrato-match-solutions` vira `/propostas/contrato-match-solutions`)
 
-**`src/pages/Propostas.tsx`**:
-- Adicionar suporte a sub-rotas usando `<Outlet />` do react-router
-- Quando autenticado e acessando `/propostas`, mostra o dashboard
-- Quando autenticado e acessando `/propostas/match-solutions`, mostra a proposta correspondente
-- Sem autenticacao, qualquer rota `/propostas/*` mostra a tela de PIN
-
-**`src/data/propostas.ts`**:
-- Atualizar as rotas de cada proposta para o novo padrao (`/propostas/match-solutions` em vez de `/match-solutions`)
-
+### `src/pages/Propostas.tsx`
+- Nenhuma alteracao necessaria -- o `<Outlet />` ja renderiza qualquer sub-rota, e a protecao por PIN ja cobre tudo que esta dentro de `/propostas/*`
