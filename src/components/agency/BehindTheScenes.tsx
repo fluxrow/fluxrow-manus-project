@@ -7,7 +7,6 @@ import {
   Workflow, 
   Zap, 
   MessageSquare, 
-  Webhook,
   Target,
   TrendingUp,
   Linkedin,
@@ -16,8 +15,6 @@ import {
   BarChart3,
   Mail,
   Users,
-  Megaphone,
-  DollarSign,
   Code,
   Database,
   Globe,
@@ -90,15 +87,6 @@ const techCategories = [
       { name: "Email Marketing", desc: "Nutrição e follow-up", icon: Mail }
     ]
   }
-];
-
-const flowSteps = [
-  { icon: Megaphone, label: "Ads", sublabel: "Meta/Google", color: "text-green-400" },
-  { icon: Users, label: "Lead", sublabel: "Captação", color: "text-blue-400" },
-  { icon: MessageSquare, label: "WhatsApp", sublabel: "Atendimento", color: "text-emerald-400" },
-  { icon: Bot, label: "IA", sublabel: "Qualifica", color: "text-cyan-400" },
-  { icon: BarChart3, label: "CRM", sublabel: "Pipedrive", color: "text-purple-400" },
-  { icon: DollarSign, label: "Venda", sublabel: "Resultado", color: "text-yellow-400" }
 ];
 
 const devTechs = [
@@ -176,90 +164,238 @@ const TechCard = ({ category, index }: { category: typeof techCategories[0], ind
   );
 };
 
-const IntegrationFlow = () => {
-  return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      transition={{ duration: 0.6 }}
-      viewport={{ once: true }}
-      className="mt-16 p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm"
-    >
-      <h3 className="text-lg font-bold text-white text-center mb-8 font-space-grotesk">
-        Fluxo de Integração
-      </h3>
-      
-      {/* Desktop Flow */}
-      <div className="hidden md:flex items-center justify-between relative">
-        {/* Connection Line */}
-        <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-gradient-to-r from-green-500/50 via-cyan-500/50 to-yellow-500/50 -translate-y-1/2 z-0">
-          <motion.div 
-            className="h-full w-20 bg-gradient-to-r from-transparent via-white/80 to-transparent"
-            animate={{ x: ["-100%", "500%"] }}
-            transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-          />
+/* ── Mockup Components ── */
+
+const FeedMockup = () => (
+  <div className="grid grid-cols-2 gap-1.5 w-full h-[110px]">
+    {[
+      "from-pink-500 to-rose-400",
+      "from-fuchsia-500 to-pink-400",
+      "from-rose-400 to-orange-400",
+      "from-pink-400 to-fuchsia-500"
+    ].map((g, i) => (
+      <div key={i} className={`rounded-md bg-gradient-to-br ${g} relative overflow-hidden`}>
+        <div className="absolute bottom-1 left-1 flex gap-1">
+          <div className="w-2.5 h-2.5 rounded-full bg-white/30" />
+          <div className="w-2.5 h-2.5 rounded-full bg-white/20" />
         </div>
+      </div>
+    ))}
+  </div>
+);
 
-        {flowSteps.map((step, index) => {
-          const IconComponent = step.icon;
-          return (
-            <motion.div
-              key={step.label}
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.4, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              className="relative z-10 flex flex-col items-center"
-            >
-              <div className={`
-                w-14 h-14 rounded-full bg-black/60 border-2 border-white/20
-                flex items-center justify-center
-                transition-all duration-300 hover:scale-110 hover:border-white/40
-              `}>
-                <IconComponent className={`w-6 h-6 ${step.color}`} />
-              </div>
-              <p className="text-sm font-medium text-white mt-2">{step.label}</p>
-              <p className="text-xs text-white/50">{step.sublabel}</p>
-              
-              {/* Arrow */}
-              {index < flowSteps.length - 1 && (
-                <div className="absolute left-full top-1/2 -translate-y-1/2 w-8 flex items-center justify-center text-white/30 hidden lg:block">
-                  →
-                </div>
-              )}
-            </motion.div>
-          );
-        })}
+const VideoMockup = () => (
+  <div className="w-full h-[110px] bg-black/60 rounded-lg relative flex items-center justify-center">
+    <div className="w-10 h-10 rounded-full bg-red-500/80 flex items-center justify-center">
+      <div className="w-0 h-0 border-t-[6px] border-b-[6px] border-l-[10px] border-transparent border-l-white ml-0.5" />
+    </div>
+    <div className="absolute bottom-2 left-2 right-2">
+      <div className="h-1 bg-white/20 rounded-full relative overflow-hidden">
+        <div className="absolute left-0 top-0 h-full w-[40%] bg-red-500 rounded-full" />
+      </div>
+      <div className="flex gap-1 mt-1">
+        {[15, 35, 60, 80].map((p) => (
+          <div key={p} className="w-1 h-2 bg-yellow-400/60 rounded-sm" style={{ marginLeft: `${p * 0.15}rem` }} />
+        ))}
+      </div>
+    </div>
+  </div>
+);
+
+const AdsMockup = () => (
+  <div className="w-full h-[110px] rounded-lg bg-black/40 p-2 space-y-1.5 text-[9px] font-mono">
+    <div className="flex items-center gap-1 text-white/40 border-b border-white/10 pb-1">
+      <span className="flex-1">Campanha</span>
+      <span className="w-10 text-right">CTR</span>
+      <span className="w-12 text-right">ROAS</span>
+    </div>
+    {[
+      { name: "Brand Awareness", ctr: "3.2%", roas: "4.1x" },
+      { name: "Conversões Lead", ctr: "2.8%", roas: "5.7x" },
+      { name: "Retargeting Hot", ctr: "5.1%", roas: "8.3x" }
+    ].map((c, i) => (
+      <div key={i} className="flex items-center gap-1 text-white/70">
+        <div className="w-1.5 h-1.5 rounded-full bg-green-400 flex-shrink-0" />
+        <span className="flex-1 truncate">{c.name}</span>
+        <span className="w-10 text-right text-green-400">{c.ctr}</span>
+        <span className="w-12 text-right text-emerald-400">{c.roas}</span>
+      </div>
+    ))}
+  </div>
+);
+
+const LandingPageMockup = () => (
+  <div className="w-full h-[110px] rounded-lg bg-black/40 overflow-hidden border border-white/10">
+    <div className="flex items-center gap-1 px-2 py-1 bg-white/5 border-b border-white/10">
+      <div className="flex gap-0.5">
+        <div className="w-1.5 h-1.5 rounded-full bg-red-400" />
+        <div className="w-1.5 h-1.5 rounded-full bg-yellow-400" />
+        <div className="w-1.5 h-1.5 rounded-full bg-green-400" />
+      </div>
+      <div className="flex-1 h-2.5 bg-white/10 rounded-sm mx-2" />
+    </div>
+    <div className="p-2 space-y-1.5">
+      <div className="h-5 bg-gradient-to-r from-blue-500/30 to-blue-400/10 rounded-sm" />
+      <div className="h-2 bg-white/10 rounded-sm w-[80%]" />
+      <div className="h-2 bg-white/10 rounded-sm w-[60%]" />
+      <div className="flex gap-1 mt-1">
+        <div className="h-4 flex-1 bg-blue-500/40 rounded-sm" />
+        <div className="h-4 w-12 bg-white/10 rounded-sm" />
+      </div>
+    </div>
+  </div>
+);
+
+const AutomationMockup = () => (
+  <div className="w-full h-[110px] relative flex items-center justify-center">
+    <svg className="absolute inset-0 w-full h-full" viewBox="0 0 200 100">
+      <line x1="30" y1="50" x2="75" y2="50" stroke="rgba(6,182,212,0.4)" strokeWidth="1.5" strokeDasharray="4 2" />
+      <line x1="125" y1="50" x2="170" y2="50" stroke="rgba(6,182,212,0.4)" strokeWidth="1.5" strokeDasharray="4 2" />
+      <line x1="75" y1="50" x2="125" y2="30" stroke="rgba(6,182,212,0.4)" strokeWidth="1.5" strokeDasharray="4 2" />
+      <line x1="75" y1="50" x2="125" y2="70" stroke="rgba(6,182,212,0.4)" strokeWidth="1.5" strokeDasharray="4 2" />
+    </svg>
+    {[
+      { label: "Trigger", x: "5%", y: "35%", color: "bg-cyan-500/30 border-cyan-400/50" },
+      { label: "AI", x: "30%", y: "35%", color: "bg-purple-500/30 border-purple-400/50" },
+      { label: "Filter", x: "55%", y: "15%", color: "bg-amber-500/30 border-amber-400/50" },
+      { label: "Action", x: "55%", y: "55%", color: "bg-green-500/30 border-green-400/50" },
+      { label: "Output", x: "80%", y: "35%", color: "bg-pink-500/30 border-pink-400/50" }
+    ].map((node) => (
+      <div key={node.label} className={`absolute ${node.color} border rounded-full w-9 h-9 flex items-center justify-center`} style={{ left: node.x, top: node.y }}>
+        <span className="text-[7px] text-white/80 font-medium">{node.label}</span>
+      </div>
+    ))}
+  </div>
+);
+
+const CRMMockup = () => (
+  <div className="w-full h-[110px] flex gap-1 p-1">
+    {[
+      { title: "Novo", color: "border-blue-400/40", cards: 3 },
+      { title: "Qualif.", color: "border-amber-400/40", cards: 2 },
+      { title: "Fechado", color: "border-green-400/40", cards: 2 }
+    ].map((col) => (
+      <div key={col.title} className={`flex-1 rounded-md bg-white/5 border ${col.color} p-1`}>
+        <p className="text-[7px] text-white/50 text-center mb-1 font-medium">{col.title}</p>
+        <div className="space-y-1">
+          {Array.from({ length: col.cards }).map((_, i) => (
+            <div key={i} className="h-4 bg-white/10 rounded-sm" />
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+);
+
+const DashboardMockup = () => (
+  <div className="w-full h-[110px] flex rounded-lg bg-black/40 overflow-hidden border border-white/10">
+    <div className="w-6 bg-purple-500/10 border-r border-white/10 flex flex-col items-center pt-2 gap-1.5">
+      {[1, 2, 3, 4].map((i) => (
+        <div key={i} className="w-2.5 h-2.5 rounded-sm bg-purple-400/30" />
+      ))}
+    </div>
+    <div className="flex-1 p-2">
+      <div className="text-[18px] font-bold text-purple-400 leading-none mb-1.5">847</div>
+      <div className="text-[7px] text-white/40 mb-2">Usuários ativos</div>
+      <div className="flex items-end gap-1 h-8">
+        {[40, 65, 50, 80, 70, 90, 60].map((h, i) => (
+          <div key={i} className="flex-1 bg-purple-500/40 rounded-t-sm" style={{ height: `${h}%` }} />
+        ))}
+      </div>
+    </div>
+  </div>
+);
+
+const BrandingMockup = () => (
+  <div className="w-full h-[110px] flex items-center justify-center gap-3">
+    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-yellow-400 to-amber-500 flex items-center justify-center">
+      <span className="text-black font-bold text-[10px]">LOGO</span>
+    </div>
+    <div className="space-y-2">
+      <div className="h-5 w-20 bg-gradient-to-r from-yellow-400/30 to-amber-500/20 rounded-sm flex items-center justify-center">
+        <span className="text-[7px] text-white/60">Horizontal</span>
+      </div>
+      <div className="h-10 w-20 bg-white/5 rounded-sm border border-yellow-400/20 p-1">
+        <div className="w-3 h-3 rounded-full bg-yellow-400/40 mb-0.5" />
+        <div className="h-1 bg-white/10 rounded-full w-[70%]" />
+        <div className="h-1 bg-white/10 rounded-full w-[50%] mt-0.5" />
+      </div>
+    </div>
+  </div>
+);
+
+const showcaseBlocks = [
+  { title: "Criativos para Feed e Stories", desc: "Posts, carrosséis e stories que convertem", tag: "Design", borderColor: "border-pink-500/30 hover:border-pink-400/60", tagBg: "bg-pink-500/20", tagText: "text-pink-400", glow: "from-pink-500/10 to-pink-900/5", Mockup: FeedMockup },
+  { title: "Vídeos e Reels", desc: "Edição, motion e roteiro criativo", tag: "Produção", borderColor: "border-red-500/30 hover:border-red-400/60", tagBg: "bg-red-500/20", tagText: "text-red-400", glow: "from-red-500/10 to-red-900/5", Mockup: VideoMockup },
+  { title: "Tráfego Pago", desc: "Meta, Google e TikTok Ads gerenciados", tag: "Performance", borderColor: "border-green-500/30 hover:border-green-400/60", tagBg: "bg-green-500/20", tagText: "text-green-400", glow: "from-green-500/10 to-green-900/5", Mockup: AdsMockup },
+  { title: "Landing Pages", desc: "Páginas de alta conversão, design + código", tag: "Web", borderColor: "border-blue-500/30 hover:border-blue-400/60", tagBg: "bg-blue-500/20", tagText: "text-blue-400", glow: "from-blue-500/10 to-blue-900/5", Mockup: LandingPageMockup },
+  { title: "Automações e IA", desc: "Fluxos inteligentes com Make, n8n e GPT", tag: "Tecnologia", borderColor: "border-cyan-500/30 hover:border-cyan-400/60", tagBg: "bg-cyan-500/20", tagText: "text-cyan-400", glow: "from-cyan-500/10 to-cyan-900/5", Mockup: AutomationMockup },
+  { title: "CRM e Pipeline", desc: "Pipedrive, RD Station, funil completo", tag: "Vendas", borderColor: "border-orange-500/30 hover:border-orange-400/60", tagBg: "bg-orange-500/20", tagText: "text-orange-400", glow: "from-orange-500/10 to-orange-900/5", Mockup: CRMMockup },
+  { title: "Sistemas e SaaS", desc: "Dashboards, plataformas e apps sob medida", tag: "Produto", borderColor: "border-purple-500/30 hover:border-purple-400/60", tagBg: "bg-purple-500/20", tagText: "text-purple-400", glow: "from-purple-500/10 to-purple-900/5", Mockup: DashboardMockup },
+  { title: "Branding e Identidade", desc: "Logo, identidade visual e aplicações", tag: "Identidade", borderColor: "border-yellow-500/30 hover:border-yellow-400/60", tagBg: "bg-yellow-500/20", tagText: "text-yellow-400", glow: "from-yellow-500/10 to-yellow-900/5", Mockup: BrandingMockup }
+];
+
+const CreativeShowcase = () => {
+  return (
+    <div className="mt-16">
+      {/* Header */}
+      <div className="text-center mb-10">
+        <motion.h3
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+          viewport={{ once: true }}
+          className="text-2xl md:text-3xl font-bold font-space-grotesk text-white"
+        >
+          <span className="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-500 bg-clip-text text-transparent">
+            Inteligência Criativa
+          </span>
+          {' '}em cada entrega
+        </motion.h3>
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.1 }}
+          viewport={{ once: true }}
+          className="text-white/60 mt-3 max-w-xl mx-auto text-sm md:text-base"
+        >
+          Da ideia ao resultado. Criativos, tráfego, automação, sistemas — tudo sob o mesmo teto, sem precisar de outro fornecedor.
+        </motion.p>
       </div>
 
-      {/* Mobile Flow */}
-      <div className="md:hidden grid grid-cols-2 gap-4">
-        {flowSteps.map((step, index) => {
-          const IconComponent = step.icon;
+      {/* Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        {showcaseBlocks.map((block, index) => {
+          const MockupComponent = block.Mockup;
           return (
             <motion.div
-              key={step.label}
-              initial={{ opacity: 0, y: 10 }}
+              key={block.title}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3, delay: index * 0.05 }}
+              transition={{ duration: 0.4, delay: index * 0.08 }}
               viewport={{ once: true }}
-              className="flex items-center gap-3 p-3 rounded-lg bg-white/5"
+              className={`
+                group relative rounded-2xl p-4
+                bg-white/5 border ${block.borderColor}
+                backdrop-blur-sm
+                transition-all duration-300
+                hover:scale-[1.02] hover:shadow-lg
+              `}
             >
-              <div className={`
-                w-10 h-10 rounded-full bg-black/40 border border-white/20
-                flex items-center justify-center flex-shrink-0
-              `}>
-                <IconComponent className={`w-5 h-5 ${step.color}`} />
+              <div className="mb-3">
+                <MockupComponent />
               </div>
-              <div>
-                <p className="text-sm font-medium text-white">{step.label}</p>
-                <p className="text-xs text-white/50">{step.sublabel}</p>
-              </div>
+              <span className={`inline-block px-2 py-0.5 rounded-full text-[10px] font-medium ${block.tagBg} ${block.tagText} mb-1.5`}>
+                {block.tag}
+              </span>
+              <h4 className="text-sm font-semibold text-white font-space-grotesk">{block.title}</h4>
+              <p className="text-xs text-white/50 mt-0.5">{block.desc}</p>
+              <div className={`absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none bg-gradient-to-br ${block.glow} blur-xl -z-10`} />
             </motion.div>
           );
         })}
       </div>
-    </motion.div>
+    </div>
   );
 };
 
@@ -342,8 +478,8 @@ const BehindTheScenes = () => {
           ))}
         </div>
 
-        {/* Integration Flow */}
-        <IntegrationFlow />
+        {/* Creative Showcase */}
+        <CreativeShowcase />
 
         {/* Dev Stack */}
         <DevStack />
