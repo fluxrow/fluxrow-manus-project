@@ -21,6 +21,7 @@ const ConteudoTDAH = React.lazy(() => import("./pages/ConteudoTDAH"));
 const ConteudoYouTubeMonetizacao = React.lazy(() => import("./pages/ConteudoYouTubeMonetizacao"));
 const ConteudoIAEscalar = React.lazy(() => import("./pages/ConteudoIAEscalar"));
 const Modulo1Premium = React.lazy(() => import("./pages/Modulo1Premium"));
+const Modulo2Premium = React.lazy(() => import("./pages/Modulo2Premium"));
 const ClientPreview = React.lazy(() => import("./pages/ClientPreview"));
 const Propostas = React.lazy(() => import("./pages/Propostas"));
 const PropostaView = React.lazy(() => import("./pages/PropostaView"));
@@ -73,6 +74,7 @@ const App = () => (
             <Route path="/conteudos/youtube-monetizacao-ia" element={<ConteudoYouTubeMonetizacao />} />
             <Route path="/conteudos/ia-escalar-negocio" element={<ConteudoIAEscalar />} />
             <Route path="/modulos/1-premium" element={<Modulo1Premium />} />
+            <Route path="/modulos/2-premium" element={<Modulo2Premium />} />
             <Route path="/preview/:slug" element={<ClientPreview />} />
             <Route path="/propostas" element={<Propostas />} />
             <Route path="/proposta/:clienteSlug" element={<PropostaView />} />
