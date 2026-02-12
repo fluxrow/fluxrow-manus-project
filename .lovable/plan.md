@@ -1,14 +1,32 @@
 
+# Padronização dos Botões de WhatsApp
 
-# Ajuste de Valores — Proposta Teresópolis
+## Objetivo
+Substituir todos os números de WhatsApp no projeto pelo número padrão **+55 41 99236-1868** (`5541992361868`).
 
-## Alterações em `src/components/teresopolis/PlansSection.tsx`
+## Arquivos que precisam de alteração
 
-| Plano | Mensalidade | Implementação |
-|-------|-------------|---------------|
-| Essencial | R$ 1.800,00 | R$ 1.800,00 |
-| Profissional | R$ 2.600,00 | R$ 2.600,00 |
-| Enterprise | R$ 3.500,00 | R$ 3.500,00 |
+Os seguintes arquivos contêm números **diferentes** do padrão e precisam ser corrigidos:
 
-Atualizar os campos `price` e `implementation` no array `plans` para os novos valores.
+| Arquivo | Número Atual | Ação |
+|---------|-------------|------|
+| `src/pages/PropostaView.tsx` | `5511999999999` | Corrigir |
+| `src/pages/PropostaTeresopolis.tsx` | `5511999999999` | Corrigir |
+| `src/components/agency/InteractiveBriefing.tsx` | `5547999999999` | Corrigir |
+| `src/components/agency/AgencyCTA.tsx` | `5547999999999` | Corrigir |
+| `src/components/teresopolis/PlansSection.tsx` | `5511999999999` | Corrigir |
+| `src/pages/PropostaPromotrip.tsx` | `5562982181855` | Corrigir |
 
+## Arquivos já com número correto (sem alteração necessária)
+
+- `src/components/agency/EnhancedInteractiveBriefing.tsx` — `5541992361868`
+- `src/components/FAQSection.tsx` — `5541992361868`
+- `src/pages/PropostaBaboraSeguros.tsx` — `5541992361868`
+- `src/pages/PropostaAmandaNeves.tsx` — `5541992361868`
+- `src/pages/Contato.tsx` — `5541992361868`
+- `src/pages/ApresentacaoEvoluaDigital.tsx` — `5541992361868`
+- `src/pages/PropostaEvoluaDigital.tsx` — `5541992361868`
+- `src/pages/PropostaMatchSolutions.tsx` — `5541992361868`
+- `src/pages/PropostaComunica.tsx` — usa variável, verificar valor
+
+## Total de correções: 6 arquivos
