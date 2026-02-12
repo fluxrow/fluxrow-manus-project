@@ -9,7 +9,6 @@ import { Lock, FileText, ScrollText, Search, ExternalLink, ArrowLeft } from 'luc
 import { Button } from '@/components/ui/button';
 
 const ADMIN_PIN = '2907';
-const SESSION_KEY = 'propostas_auth';
 
 function PinScreen({ onSuccess }: { onSuccess: () => void }) {
   const [pin, setPin] = useState('');
@@ -18,7 +17,6 @@ function PinScreen({ onSuccess }: { onSuccess: () => void }) {
   useEffect(() => {
     if (pin.length === 4) {
       if (pin === ADMIN_PIN) {
-        sessionStorage.setItem(SESSION_KEY, 'true');
         onSuccess();
       } else {
         setError(true);
@@ -164,7 +162,7 @@ function Dashboard() {
 }
 
 export default function Propostas() {
-  const [authenticated, setAuthenticated] = useState(() => sessionStorage.getItem(SESSION_KEY) === 'true');
+  const [authenticated, setAuthenticated] = useState(false);
   const location = useLocation();
   const isSubRoute = location.pathname !== '/propostas' && location.pathname !== '/propostas/';
 
