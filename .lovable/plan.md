@@ -1,18 +1,14 @@
 
 
-# Ajuste de Valores de Implementação — Proposta Teresópolis
+# Ajuste de Valores — Proposta Teresópolis
 
-## Alteração
+## Alterações em `src/components/teresopolis/PlansSection.tsx`
 
-No arquivo `src/components/teresopolis/PlansSection.tsx`, igualar o valor de implementação ao valor da mensalidade em cada plano:
+| Plano | Mensalidade | Implementação |
+|-------|-------------|---------------|
+| Essencial | R$ 1.800,00 | R$ 1.800,00 |
+| Profissional | R$ 2.600,00 | R$ 2.600,00 |
+| Enterprise | R$ 3.500,00 | R$ 3.500,00 |
 
-| Plano | Mensalidade | Implementação Atual | Implementação Nova |
-|-------|-------------|--------------------|--------------------|
-| Essencial | R$ 1.800 | R$ 1.500 | R$ 1.800 |
-| Profissional | R$ 3.400 | R$ 3.000 | R$ 3.400 |
-| Enterprise | R$ 4.200 | R$ 4.000 | R$ 4.200 |
-
-## Arquivo
-
-`src/components/teresopolis/PlansSection.tsx` — alterar os 3 valores de `implementation` no array `plans`.
+Atualizar os campos `price` e `implementation` no array `plans` para os novos valores.
 
