@@ -29,8 +29,8 @@ const plans = [
   {
     name: "Profissional",
     subtitle: "Multicanal Completo",
-    price: "3.400",
-    implementation: "3.400",
+    price: "2.600",
+    implementation: "2.600",
     icon: Zap,
     color: "teal",
     popular: true,
@@ -52,8 +52,8 @@ const plans = [
   {
     name: "Enterprise",
     subtitle: "Inteligência Total",
-    price: "4.200",
-    implementation: "4.200",
+    price: "3.500",
+    implementation: "3.500",
     icon: Crown,
     color: "purple",
     popular: false,
