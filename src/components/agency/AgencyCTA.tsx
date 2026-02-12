@@ -1,5 +1,5 @@
 import React from 'react';
-import { MessageCircle, ArrowRight, Zap } from 'lucide-react';
+import { MessageCircle, ArrowRight, Zap, Phone, MapPin, Mail } from 'lucide-react';
 import FluxrowLogo from '../ui/FluxrowLogo';
 
 const AgencyCTA = () => {
@@ -58,69 +58,65 @@ const AgencyCTA = () => {
           🎯 Atendemos empresas, criadores e startups que querem acelerar resultados
         </p>
         
-        {/* Bottom Links */}
-        <div className="border-t border-gray-800 pt-8">
-          <div className="flex flex-col sm:flex-row justify-center items-center gap-6 text-sm">
-            <a 
-              href="/" 
-              className="text-white/80 hover:text-cyan-400 transition-colors"
-            >
-              Início
-            </a>
-            <a 
-              href="/conteudos" 
-              className="text-white/80 hover:text-cyan-400 transition-colors"
-            >
-              Conteúdos
-            </a>
-            <a 
-              href="#cases" 
-              className="text-white/80 hover:text-cyan-400 transition-colors"
-            >
-              Cases
-            </a>
-            <a 
-              href="/contato" 
-              className="text-white/80 hover:text-cyan-400 transition-colors"
-            >
-              Contato
-            </a>
+        {/* Footer Grid */}
+        <div className="border-t border-white/10 pt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-left max-w-5xl mx-auto">
+          {/* Mapa do Site */}
+          <div>
+            <h3 className="text-white font-semibold text-sm mb-4 uppercase tracking-wider">Navegação</h3>
+            <div className="flex flex-col gap-2.5 text-sm">
+              <a href="/" className="text-white/60 hover:text-cyan-400 transition-colors">Início</a>
+              <a href="#services" className="text-white/60 hover:text-cyan-400 transition-colors">Serviços</a>
+              <a href="#cases" className="text-white/60 hover:text-cyan-400 transition-colors">Cases</a>
+              <a href="/conteudos" className="text-white/60 hover:text-cyan-400 transition-colors">Conteúdos</a>
+              <a href="/contato" className="text-white/60 hover:text-cyan-400 transition-colors">Contato</a>
+            </div>
           </div>
-          
-          {/* Social Links */}
-          <div className="flex justify-center items-center gap-6 mt-6">
-            <a 
-              href="https://instagram.com/fluxrow" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-white/80 hover:text-pink-400 transition-colors"
-            >
-              Instagram
-            </a>
-            <a 
-              href="https://linkedin.com/company/fluxrow" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-white/80 hover:text-blue-400 transition-colors"
-            >
-              LinkedIn
-            </a>
-            <a 
-              href="https://youtube.com/@fluxrow" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-white/80 hover:text-red-400 transition-colors"
-            >
-              YouTube
-            </a>
+
+          {/* Contato */}
+          <div>
+            <h3 className="text-white font-semibold text-sm mb-4 uppercase tracking-wider">Contato</h3>
+            <div className="flex flex-col gap-2.5 text-sm">
+              <a href="https://wa.me/5541992361868" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-cyan-400 transition-colors flex items-center gap-2">
+                <Phone className="w-3.5 h-3.5" /> (41) 99236-1868
+              </a>
+              <a href="mailto:contato@fluxrow.com" className="text-white/60 hover:text-cyan-400 transition-colors flex items-center gap-2">
+                <Mail className="w-3.5 h-3.5" /> contato@fluxrow.com
+              </a>
+              <p className="text-white/60 flex items-start gap-2">
+                <MapPin className="w-3.5 h-3.5 mt-0.5 shrink-0" /> Curitiba, PR – Brasil
+              </p>
+            </div>
           </div>
-          
-          {/* Company Signature */}
-          <div className="mt-8 pt-6 border-t border-gray-800">
-            <p className="text-white/60 text-sm">
-              <FluxrowLogo size="sm" variant="light" /> – Automação, IA e Criatividade que entregam resultados.
-            </p>
+
+          {/* Redes Sociais */}
+          <div>
+            <h3 className="text-white font-semibold text-sm mb-4 uppercase tracking-wider">Social</h3>
+            <div className="flex flex-col gap-2.5 text-sm">
+              <a href="https://instagram.com/fluxrow" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-pink-400 transition-colors">Instagram</a>
+              <a href="https://linkedin.com/company/fluxrow" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-blue-400 transition-colors">LinkedIn</a>
+              <a href="https://youtube.com/@fluxrow" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-red-400 transition-colors">YouTube</a>
+            </div>
           </div>
+
+          {/* Legal */}
+          <div>
+            <h3 className="text-white font-semibold text-sm mb-4 uppercase tracking-wider">Legal</h3>
+            <div className="flex flex-col gap-2.5 text-sm">
+              <a href="/politica-de-privacidade" className="text-white/60 hover:text-cyan-400 transition-colors">Política de Privacidade</a>
+              <a href="/termos-de-uso" className="text-white/60 hover:text-cyan-400 transition-colors">Termos de Uso</a>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom Bar */}
+        <div className="border-t border-white/10 mt-10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 max-w-5xl mx-auto">
+          <div className="flex items-center gap-2">
+            <FluxrowLogo size="sm" variant="light" />
+            <span className="text-white/40 text-xs">– Automação, IA e Criatividade que entregam resultados.</span>
+          </div>
+          <p className="text-white/30 text-xs text-center sm:text-right">
+            CNPJ: 00.000.000/0001-00 · © {new Date().getFullYear()} Fluxrow. Todos os direitos reservados.
+          </p>
         </div>
       </div>
     </section>
