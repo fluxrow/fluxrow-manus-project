@@ -1,57 +1,91 @@
 
+# Briefing Inteligente - Redesign Conversacional
 
-# Redesign: "Inteligencia Criativa em Cada Entrega"
+## Objetivo
+Transformar o briefing de um formulario multi-step tradicional "pesado" em uma experiencia conversacional fluida estilo Typeform, com transicoes suaves, visual limpo e feedback contextual em tempo real.
 
-## Conceito
+## Problemas Identificados
 
-A secao "Fluxo de Integracao" (linhas 179-263 do `BehindTheScenes.tsx`) sera transformada em um showcase visual completo que comunica: **"Inteligencia Criativa aplicada em tudo o que entregamos"**. O tagline da marca se torna o fio condutor — cada bloco mostra um tipo de entrega com um mini-mockup CSS e a mensagem de que o cliente nao precisa de outro fornecedor.
+- **6 etapas com excesso de informacao por card** (label + descricao + 3 tags de problema por opcao)
+- **Zero animacao entre steps** - transicao abrupta sem feedback visual
+- **Progress bar generica** sem indicacao visual dos steps
+- **Cards densos demais** no mobile especialmente
+- **Tela de conclusao fraca** - nao gera urgencia nem mostra valor
+- **Falta de contexto progressivo** - usuario nao ve suas escolhas anteriores
 
-## Titulo e Copy
+## Solucao Proposta: Formato Conversacional com Transicoes
 
-- **Titulo**: "Inteligencia Criativa" (destaque com gradiente cyan-purple-pink da marca)
-- **Subtitulo**: "em cada entrega"
-- **Descricao**: "Da ideia ao resultado. Criativos, trafego, automacao, sistemas — tudo sob o mesmo teto, sem precisar de outro fornecedor."
+### 1. Layout "Uma Pergunta por Vez" (estilo Typeform)
+- Cada step ocupa a tela inteira da secao (fullscreen dentro da section)
+- Pergunta centralizada com tipografia grande e clara
+- Opcoes apresentadas como botoes/pills limpos (sem descricoes longas)
+- A descricao detalhada aparece apenas no hover/tap da opcao selecionada
 
-## 8 Blocos Visuais com Mockups CSS
+### 2. Transicoes Animadas com Framer Motion
+- AnimatePresence com slide vertical entre perguntas (entra de baixo, sai pra cima)
+- Opcoes entram com stagger animation (uma a uma, 80ms delay)
+- Ao selecionar, a opcao faz um pulse/scale antes de transicionar
 
-Cada bloco sera um card com um mini-mockup construido 100% em JSX + Tailwind (sem imagens externas), titulo, descricao curta e tag colorida do pilar.
+### 3. Step Indicators Visuais
+- Substituir a progress bar por step dots interativos (circulos clicaveis)
+- Step ativo tem glow + scale maior
+- Steps completados mostram icone de check com a cor do tema
+- Steps futuros ficam dimmed
 
-| # | Titulo | Mockup Visual (CSS puro) | Cor |
-|---|--------|--------------------------|-----|
-| 1 | **Criativos para Feed e Stories** | Grid 2x2 simulando posts de Instagram com gradientes coloridos, icones de coracao e comentario | Rosa/Pink |
-| 2 | **Videos e Reels** | Retangulo 16:9 escuro com botao de play central, barra de timeline com marcadores de corte coloridos | Vermelho |
-| 3 | **Trafego Pago** | Mini tabela estilo gerenciador de ads: 3 campanhas com status (bolinha verde), metricas CTR/CPC/ROAS | Verde |
-| 4 | **Landing Pages** | Mini browser (3 bolinhas + barra URL) com blocos internos simulando hero, CTA e formulario | Azul |
-| 5 | **Automacoes e IA** | 4 nodes circulares conectados por linhas com setas, estilo Make/n8n, com labels (Trigger, AI, Filter, Action) | Ciano |
-| 6 | **CRM e Pipeline** | Mini kanban com 3 colunas (Novo, Qualificado, Fechado) e 2 mini cards em cada | Laranja |
-| 7 | **Sistemas e SaaS** | Mini dashboard: sidebar fina + area com 3 mini barras de grafico e um numero grande de metrica | Roxo |
-| 8 | **Branding e Identidade** | Logo placeholder em 3 aplicacoes: circular, horizontal e em mockup de cartao de visita | Amarelo |
+### 4. Cards de Opcao Simplificados
+- Mostrar apenas: icone + label (primeira camada)
+- Descricao aparece com animacao ao hover/focus
+- Remover as tags de "problems" da visualizacao principal
+- No mobile: opcoes em lista vertical com icone a esquerda
 
-## Layout
+### 5. Resumo Lateral Progressivo (desktop)
+- Mini sidebar/floating card mostrando as escolhas feitas ate agora
+- Cada escolha anterior aparece como um chip clicavel (para editar)
+- No mobile: resumo aparece como um drawer de baixo pra cima acessivel por um botao
 
-- **Desktop**: `grid lg:grid-cols-4 md:grid-cols-2` — 2 linhas de 4 cards
-- **Mobile**: `grid grid-cols-1` — cards empilhados verticalmente
-- **Cada card**: fundo `bg-white/5`, borda colorida sutil, hover com `scale-[1.02]` e glow
-- **Mockup**: ocupa a parte superior do card (~120px de altura), com o titulo e descricao embaixo
+### 6. Tela de Conclusao Premium
+- Animacao de confetti/particles ao completar
+- Card de resultado com "diagnostico" baseado nas escolhas
+- Recomendacao personalizada (texto diferente por combinacao de respostas)
+- CTA mais forte com contagem regressiva ou vagas limitadas
+- Botoes de acao: WhatsApp + Agendar Call
 
-## Animacoes
-
-- Entrada staggered com Framer Motion (`delay: index * 0.08`)
-- Hover: leve zoom no mockup + intensificacao da borda
-- Linha de conexao animada removida (substituida pelos cards)
+### 7. Reducao de Steps
+- Combinar "Nivel de automacao" + "Maior desafio" em um unico step com sub-selecao
+- Resultado: 5 steps ao inves de 6, fluxo mais rapido
 
 ## Detalhes Tecnicos
 
-**Arquivo editado:** `src/components/agency/BehindTheScenes.tsx`
+### Arquivo a editar
+- `src/components/agency/EnhancedInteractiveBriefing.tsx` (rewrite completo)
 
-Alteracoes:
-1. **Remover** o componente `IntegrationFlow` atual (linhas 179-263) e o array `flowSteps` (linhas 95-102)
-2. **Criar** novo componente `CreativeShowcase` no mesmo arquivo com:
-   - Array de dados `showcaseBlocks` (8 itens com titulo, descricao, cor, pilar)
-   - 8 sub-componentes de mockup inline (funções JSX simples, nao componentes separados)
-   - Grid responsivo com animacao de entrada
-3. **Atualizar** a chamada no `BehindTheScenes` (linha 346): trocar `<IntegrationFlow />` por `<CreativeShowcase />`
-4. O componente tera um header proprio com "Inteligencia Criativa" usando o gradiente `from-cyan-400 via-purple-400 to-pink-500` (consistente com a marca)
+### Dependencias existentes utilizadas
+- `framer-motion` (ja instalado) - AnimatePresence, motion.div para transicoes
+- `lucide-react` (ja instalado) - icones dos steps e opcoes
+- Tailwind CSS para styling
 
-Nenhum arquivo novo sera criado. Tudo dentro de `BehindTheScenes.tsx`.
+### Estrutura do Componente
 
+```text
+EnhancedInteractiveBriefing
++-- Section container (fullscreen-like, min-h-[80vh])
++-- StepIndicator (dots navegaveis no topo)
++-- AnimatePresence (wrapper de transicao)
+|   +-- QuestionStep (uma pergunta por vez)
+|       +-- Titulo animado
+|       +-- OptionGrid (opcoes simplificadas com stagger)
+|       +-- BackButton (sutil, posicao inferior)
++-- SelectionSummary (floating card, desktop only)
++-- CompletionScreen (com diagnostico + CTA)
+```
+
+### Animacoes Principais
+- **Entre steps**: `motion.div` com `initial={{ opacity: 0, y: 40 }}`, `animate={{ opacity: 1, y: 0 }}`, `exit={{ opacity: 0, y: -40 }}`
+- **Opcoes (stagger)**: cada opcao com `transition={{ delay: index * 0.08 }}`
+- **Selecao**: `whileTap={{ scale: 0.95 }}` + flash de cor antes de transicionar
+- **Step dots**: `layoutId` para o indicador ativo se mover suavemente
+
+### Dados Simplificados
+- Manter as mesmas 5 perguntas (combinando steps 3+4)
+- Opcoes: manter value/label/icon, mover description para tooltip/hover
+- Remover array `problems` da renderizacao principal
