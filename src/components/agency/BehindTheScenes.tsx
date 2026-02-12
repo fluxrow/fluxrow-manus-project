@@ -186,12 +186,16 @@ const FeedMockup = () => (
 
 const VideoMockup = () => (
   <div className="w-full h-[110px] bg-black/60 rounded-lg relative flex items-center justify-center">
-    <div className="w-10 h-10 rounded-full bg-red-500/80 flex items-center justify-center">
+    <div className="w-10 h-10 rounded-full bg-red-500/80 flex items-center justify-center animate-[pulse_2s_cubic-bezier(0.4,0,0.6,1)_infinite] shadow-[0_0_15px_rgba(239,68,68,0.4)]">
       <div className="w-0 h-0 border-t-[6px] border-b-[6px] border-l-[10px] border-transparent border-l-white ml-0.5" />
     </div>
     <div className="absolute bottom-2 left-2 right-2">
       <div className="h-1 bg-white/20 rounded-full relative overflow-hidden">
-        <div className="absolute left-0 top-0 h-full w-[40%] bg-red-500 rounded-full" />
+        <motion.div
+          className="absolute left-0 top-0 h-full bg-red-500 rounded-full"
+          animate={{ width: ["30%", "70%", "30%"] }}
+          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+        />
       </div>
       <div className="flex gap-1 mt-1">
         {[15, 35, 60, 80].map((p) => (
@@ -215,7 +219,7 @@ const AdsMockup = () => (
       { name: "Retargeting Hot", ctr: "5.1%", roas: "8.3x" }
     ].map((c, i) => (
       <div key={i} className="flex items-center gap-1 text-white/70">
-        <div className="w-1.5 h-1.5 rounded-full bg-green-400 flex-shrink-0" />
+        <div className="w-1.5 h-1.5 rounded-full bg-green-400 flex-shrink-0 animate-[pulse_1.5s_cubic-bezier(0.4,0,0.6,1)_infinite]" style={{ animationDelay: `${i * 0.3}s` }} />
         <span className="flex-1 truncate">{c.name}</span>
         <span className="w-10 text-right text-green-400">{c.ctr}</span>
         <span className="w-12 text-right text-emerald-400">{c.roas}</span>
@@ -249,10 +253,19 @@ const LandingPageMockup = () => (
 const AutomationMockup = () => (
   <div className="w-full h-[110px] relative flex items-center justify-center">
     <svg className="absolute inset-0 w-full h-full" viewBox="0 0 200 100">
-      <line x1="30" y1="50" x2="75" y2="50" stroke="rgba(6,182,212,0.4)" strokeWidth="1.5" strokeDasharray="4 2" />
-      <line x1="125" y1="50" x2="170" y2="50" stroke="rgba(6,182,212,0.4)" strokeWidth="1.5" strokeDasharray="4 2" />
-      <line x1="75" y1="50" x2="125" y2="30" stroke="rgba(6,182,212,0.4)" strokeWidth="1.5" strokeDasharray="4 2" />
-      <line x1="75" y1="50" x2="125" y2="70" stroke="rgba(6,182,212,0.4)" strokeWidth="1.5" strokeDasharray="4 2" />
+      {[
+        { x1: 30, y1: 50, x2: 75, y2: 50 },
+        { x1: 125, y1: 50, x2: 170, y2: 50 },
+        { x1: 75, y1: 50, x2: 125, y2: 30 },
+        { x1: 75, y1: 50, x2: 125, y2: 70 }
+      ].map((l, i) => (
+        <g key={i}>
+          <line x1={l.x1} y1={l.y1} x2={l.x2} y2={l.y2} stroke="rgba(6,182,212,0.3)" strokeWidth="1.5" strokeDasharray="4 2" />
+          <circle r="2.5" fill="rgba(6,182,212,0.8)">
+            <animateMotion dur={`${1.5 + i * 0.3}s`} repeatCount="indefinite" path={`M${l.x1},${l.y1} L${l.x2},${l.y2}`} />
+          </circle>
+        </g>
+      ))}
     </svg>
     {[
       { label: "Trigger", x: "5%", y: "35%", color: "bg-cyan-500/30 border-cyan-400/50" },
@@ -299,7 +312,14 @@ const DashboardMockup = () => (
       <div className="text-[7px] text-white/40 mb-2">Usuários ativos</div>
       <div className="flex items-end gap-1 h-8">
         {[40, 65, 50, 80, 70, 90, 60].map((h, i) => (
-          <div key={i} className="flex-1 bg-purple-500/40 rounded-t-sm" style={{ height: `${h}%` }} />
+          <motion.div
+            key={i}
+            className="flex-1 bg-purple-500/40 rounded-t-sm"
+            initial={{ height: 0 }}
+            whileInView={{ height: `${h}%` }}
+            transition={{ duration: 0.6, delay: i * 0.08, ease: "easeOut" }}
+            viewport={{ once: true }}
+          />
         ))}
       </div>
     </div>
