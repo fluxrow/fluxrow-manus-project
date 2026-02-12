@@ -5,7 +5,7 @@ import FluxrowLogo from '../ui/FluxrowLogo';
 const AgencyCTA = () => {
   const handleWhatsAppClick = () => {
     const message = `Olá! Vim através do site institucional da Fluxrow e gostaria de saber mais sobre como vocês podem ajudar meu negócio com IA, automação e design estratégico.`;
-    const whatsappUrl = `https://wa.me/5547999999999?text=${encodeURIComponent(message)}`;
+    const whatsappUrl = `https://wa.me/5541992361868?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
   };
 

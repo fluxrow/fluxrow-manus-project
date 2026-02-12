@@ -172,7 +172,7 @@ const PlansSection = () => {
 
                   <Button
                     className={`w-full ${colors.button} text-white`}
-                    onClick={() => window.open("https://wa.me/5511999999999?text=Olá! Tenho interesse no plano " + plan.name + " para o Teresópolis Shopping", "_blank")}
+                    onClick={() => window.open("https://wa.me/5541992361868?text=Olá! Tenho interesse no plano " + plan.name + " para o Teresópolis Shopping", "_blank")}
                   >
                     Escolher {plan.name}
                   </Button>

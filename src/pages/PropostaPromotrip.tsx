@@ -56,7 +56,7 @@ const PropostaPromotrip = () => {
     const message = encodeURIComponent(
       "Olá! Sou o Augusto da Promotrip. Vi a proposta do sistema Fluxrow.Pro e gostaria de conversar sobre a implementação!"
     );
-    window.open(`https://wa.me/5562982181855?text=${message}`, "_blank");
+    window.open(`https://wa.me/5541992361868?text=${message}`, "_blank");
   };
 
   const services = [

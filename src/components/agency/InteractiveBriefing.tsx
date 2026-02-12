@@ -154,7 +154,7 @@ const InteractiveBriefing = () => {
 Olá! Completei o briefing no site da Fluxrow e gostaria de conversar sobre como vocês podem me ajudar.
     `.trim();
 
-    const whatsappUrl = `https://wa.me/5547999999999?text=${encodeURIComponent(summary)}`;
+    const whatsappUrl = `https://wa.me/5541992361868?text=${encodeURIComponent(summary)}`;
     window.open(whatsappUrl, '_blank');
 
     // Send to n8n webhook
