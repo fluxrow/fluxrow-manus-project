@@ -33,7 +33,7 @@ class ABTesting {
     const ctaButtons = document.querySelectorAll('.cta-primary');
     ctaButtons.forEach(button => {
       if (button.textContent?.includes('desbloquear')) {
-        button.innerHTML = button.innerHTML.replace('desbloquear', 'transformar');
+        button.textContent = button.textContent.replace('desbloquear', 'transformar');
       }
     });
 

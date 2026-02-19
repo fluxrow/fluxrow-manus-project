@@ -25,7 +25,7 @@ const ClientPreview = () => {
       // Disable FB Pixel tracking for this page if specified
       if (client.trackingDisabled && (window as any).fbq) {
         // You can add logic here to disable tracking
-        console.log('Tracking disabled for client preview');
+        // Tracking disabled for client preview
       }
 
       return () => {
