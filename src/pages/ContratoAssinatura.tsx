@@ -116,13 +116,12 @@ export default function ContratoAssinatura() {
     }
 
     try {
-      console.log('Invocando edge function assinar-contrato com dados:', {
-        contratoId: contratoData.id,
-        nomeResponsavel,
-        cpfResponsavel,
-        cargoResponsavel,
-        papel: papelEmpresa
-      });
+      if (import.meta.env.DEV) {
+        console.log('Invocando edge function assinar-contrato com dados:', {
+          contratoId: contratoData.id,
+          papel: papelEmpresa
+        });
+      }
 
       const { data, error } = await supabase.functions.invoke('assinar-contrato', {
         body: {
@@ -134,16 +133,18 @@ export default function ContratoAssinatura() {
         }
       });
 
-      console.log('Resposta da edge function:', { data, error });
+      if (import.meta.env.DEV) {
+        console.log('Resposta da edge function:', { data, error });
+      }
 
       if (error) {
-        console.error('Erro retornado pela edge function:', error);
+        if (import.meta.env.DEV) console.error('Erro retornado pela edge function:', error);
         toast.error(`Erro: ${error.message || 'Erro ao processar assinatura'}`);
         return;
       }
 
       if (data?.error) {
-        console.error('Erro nos dados retornados:', data.error);
+        if (import.meta.env.DEV) console.error('Erro nos dados retornados:', data.error);
         toast.error(data.error);
         return;
       }

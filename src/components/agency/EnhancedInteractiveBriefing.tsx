@@ -462,7 +462,7 @@ const EnhancedInteractiveBriefing = () => {
       .map(([k, v]) => `• ${k}: ${v}`)
       .join('\n')}\n\n🎯 Quero uma consultoria estratégica personalizada!`;
 
-    localStorage.setItem(
+    sessionStorage.setItem(
       'briefingContext',
       JSON.stringify({ ...answers, summary, timestamp: new Date().toISOString() }),
     );
