@@ -1,24 +1,41 @@
 
+# Otimizacao de SEO - Correcao de Dominio e Melhorias
 
-# Exigir PIN Sempre ao Entrar na Area de Propostas
+## Problema principal
 
-## O que sera feito
+Todas as URLs de imagem no `index.html` apontam para o dominio de staging (`fluxrow-manus-project.lovable.app`) em vez do dominio de producao (`fluxrow.com`). Isso afeta como o site aparece quando compartilhado no WhatsApp, Facebook, LinkedIn, Twitter e nos resultados do Google.
 
-Atualmente o PIN fica salvo no `sessionStorage`, entao se voce sai para o home e volta para `/propostas`, nao precisa digitar de novo. Vou mudar para que o PIN seja exigido toda vez que voce entra na area de propostas, independente de por onde veio.
+## Alteracoes no `index.html`
 
-## Como funciona
+### 1. Corrigir URLs de imagem (OG, Twitter, JSON-LD)
+- Linha 21: `og:image` de `fluxrow-manus-project.lovable.app` para `fluxrow.com`
+- Linha 37: `logo` no JSON-LD Organization de `fluxrow-manus-project.lovable.app` para `fluxrow.com`
+- Linha 84: `twitter:image` de `fluxrow-manus-project.lovable.app` para `fluxrow.com`
 
-- Trocar `sessionStorage` por um estado React (`useState`) dentro do componente `Propostas.tsx`
-- Quando voce navega para qualquer pagina fora de `/propostas/*`, o componente desmonta e o estado e perdido automaticamente
-- Ao voltar para `/propostas`, o componente monta de novo e pede o PIN novamente
-- Enquanto voce navega entre sub-rotas dentro de `/propostas/*` (ex: de uma proposta para outra), o PIN continua valido porque o componente pai nao desmonta
+### 2. Atualizar titulo e descricao para o padrao da marca
+- Titulo: "Fluxrow - Inteligencia Criativa" (alinhado com o branding atual)
+- Descricao: "IA generativa, automacoes e growth marketing. A Fluxrow e o laboratorio por tras das marcas que lideram."
+- Aplicar nos meta tags: title, description, og:title, og:description, twitter:title, twitter:description
 
-## Alteracao tecnica
+### 3. Adicionar meta robots
+- Adicionar `<meta name="robots" content="index, follow" />` para sinalizar explicitamente aos crawlers
 
-**`src/pages/Propostas.tsx`**:
-- Remover `sessionStorage.getItem('propostas_auth')` e `sessionStorage.setItem('propostas_auth', ...)`
-- Usar `useState(false)` para controlar se o PIN foi digitado
-- Remover qualquer referencia ao `sessionStorage` relacionada a autenticacao do PIN
+### 4. Adicionar BreadcrumbList ao JSON-LD
+- Adicionar schema BreadcrumbList no `@graph` existente para melhorar navegacao nos resultados de busca
 
-Apenas 1 arquivo alterado, mudanca simples de ~5 linhas.
+## Detalhes tecnicos
 
+**Arquivo alterado:** `index.html` (apenas 1 arquivo)
+
+**URLs corrigidas:**
+- `https://fluxrow-manus-project.lovable.app/OG_logo_fluxrow.png` → `https://fluxrow.com/OG_logo_fluxrow.png` (3 ocorrencias)
+
+**JSON-LD adicionado:**
+```text
+BreadcrumbList com:
+  Home → https://fluxrow.com/
+  Contato → https://fluxrow.com/contato
+  Conteudos → https://fluxrow.com/conteudos
+```
+
+Nenhuma dependencia nova. Impacto zero na performance.
