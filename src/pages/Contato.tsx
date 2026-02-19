@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import SEO from '../components/SEO';
 import { MessageCircle, Mail, Phone, MapPin, Send, CheckCircle, Instagram, Facebook, Twitter, Hash } from 'lucide-react';
 
 const Contato = () => {
@@ -82,6 +83,11 @@ const Contato = () => {
 
   return (
     <div className="min-h-screen bg-[#0f0f0f] text-white">
+      <SEO
+        title="Contato - Fluxrow"
+        description="Entre em contato com a Fluxrow. Fale conosco via WhatsApp, e-mail ou redes sociais sobre IA, automações e growth marketing."
+        path="/contato"
+      />
       <Header />
       
       <main className="pt-24 pb-20">

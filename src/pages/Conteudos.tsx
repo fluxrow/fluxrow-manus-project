@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from '../components/Header';
+import SEO from '../components/SEO';
 import { Link } from 'react-router-dom';
 import { Download, FileText, Code, Image, Brain, Video } from 'lucide-react';
 
@@ -82,6 +83,11 @@ const getIcon = (iconType: string) => {
 const Conteudos = () => {
   return (
     <div className="min-h-screen bg-black">
+      <SEO
+        title="Conteúdos Exclusivos - Fluxrow"
+        description="Materiais gratuitos sobre IA generativa, automações e growth marketing. Guias práticos para escalar seus resultados com inteligência artificial."
+        path="/conteudos"
+      />
       <Header />
       
       <main className="pt-24 pb-20 px-6">
