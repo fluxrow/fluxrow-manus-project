@@ -672,7 +672,7 @@ serve(async (req) => {
     console.error(`❌ Erro geral (${totalTime}s):`, error);
     return new Response(JSON.stringify({
       success: false,
-      error: error.message,
+      error: 'Erro ao gerar relatório. Tente novamente.',
       tempo_execucao: `${totalTime}s`
     }), {
       status: 500,

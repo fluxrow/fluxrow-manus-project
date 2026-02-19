@@ -453,7 +453,7 @@ Deno.serve(async (req) => {
   } catch (error) {
     console.error('Erro ao assinar contrato:', error);
     return new Response(
-      JSON.stringify({ error: error.message || 'Erro ao processar assinatura' }),
+      JSON.stringify({ error: 'Erro ao processar assinatura. Tente novamente.' }),
       { 
         status: 500, 
         headers: { ...corsHeaders, 'Content-Type': 'application/json' } 

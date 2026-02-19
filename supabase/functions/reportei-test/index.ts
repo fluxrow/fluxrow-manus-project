@@ -202,8 +202,7 @@ serve(async (req) => {
     console.error('💥 Erro geral na função:', error);
     return new Response(
       JSON.stringify({ 
-        error: error.message,
-        stack: error.stack,
+        error: 'Erro interno ao processar requisição',
         timestamp: new Date().toISOString()
       }), 
       {

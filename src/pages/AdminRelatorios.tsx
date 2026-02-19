@@ -31,19 +31,16 @@ const AdminRelatorios = () => {
 
   const loadRelatorios = async () => {
     try {
-      const { data, error } = await supabase
-        .from('relatorios_semanais')
-        .select('*')
-        .order('data_inicio', { ascending: false });
+      const { data, error } = await supabase.functions.invoke('fetch-relatorios');
 
       if (error) throw error;
 
-      setRelatorios(data || []);
+      setRelatorios(data?.data || []);
     } catch (error) {
       console.error("Erro ao carregar relatórios:", error);
       toast({
         title: "Erro ao carregar relatórios",
-        description: error instanceof Error ? error.message : "Erro desconhecido",
+        description: "Não foi possível carregar os relatórios",
         variant: "destructive",
       });
     } finally {
