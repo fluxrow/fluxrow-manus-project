@@ -7,6 +7,7 @@ import EnhancedInteractiveBriefing from '../components/agency/EnhancedInteractiv
 import AgencyCTA from '../components/agency/AgencyCTA';
 import BehindTheScenes from '../components/agency/BehindTheScenes';
 import AgencyNav from '../components/agency/AgencyNav';
+import SEO from '../components/SEO';
 
 // Lazy load SplashCursor to avoid competing with Hero's Three.js on initial load
 const SplashCursor = lazy(() =>
@@ -43,6 +44,8 @@ const Agencia = () => {
         </Suspense>
       )}
       
+      <SEO />
+
       {/* Navigation */}
       <AgencyNav />
       
