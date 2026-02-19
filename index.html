@@ -84,7 +84,7 @@
       ]
     }
     </script>
-    <meta property="fb:app_id" content="4078995122388870" />
+
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@fluxrow" />
@@ -99,6 +99,20 @@
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'AW-17269496470');
+    </script>
+
+    <!-- OG Dedup: remove tags duplicadas injetadas pelo sistema de build -->
+    <script>
+      (function(){
+        var seen = {};
+        var metas = document.querySelectorAll('meta[property], meta[name="twitter:card"], meta[name="twitter:site"], meta[name="twitter:title"], meta[name="twitter:description"], meta[name="twitter:image"]');
+        metas.forEach(function(m){
+          var key = m.getAttribute('property') || m.getAttribute('name');
+          if(!key) return;
+          if(seen[key]){ m.parentNode.removeChild(m); }
+          else { seen[key] = true; }
+        });
+      })();
     </script>
 
     <!-- Fonts -->
