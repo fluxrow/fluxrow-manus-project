@@ -10,6 +10,15 @@ Deno.serve(async (req) => {
     return new Response(null, { headers: corsHeaders });
   }
 
+  // Validate API key
+  const apikey = req.headers.get('apikey');
+  const expectedKey = Deno.env.get('SUPABASE_ANON_KEY');
+  if (!apikey || apikey !== expectedKey) {
+    return new Response(JSON.stringify({ error: 'Unauthorized' }), {
+      status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+    });
+  }
+
   try {
     const url = new URL(req.url);
     const reportId = url.searchParams.get('id');

@@ -53,7 +53,11 @@ function validateCPF(cpf: string): boolean {
   return true;
 }
 
-const resend = new Resend(Deno.env.get('RESEND_API_KEY'));
+const RESEND_API_KEY = Deno.env.get('RESEND_API_KEY');
+if (!RESEND_API_KEY) {
+  console.error('RESEND_API_KEY not configured');
+}
+const resend = new Resend(RESEND_API_KEY);
 
 Deno.serve(async (req) => {
   // Handle CORS preflight requests
@@ -423,10 +427,10 @@ Deno.serve(async (req) => {
       });
 
       if (emailError) {
-        console.error('Erro ao enviar email:', emailError);
+        console.error('Erro ao enviar email:', emailError?.message || 'Unknown error');
         // Não falha a requisição se o email falhar
       } else {
-        console.log('Email enviado com sucesso:', emailData);
+        console.log('Email enviado com sucesso');
         
         // Marcar email como enviado
         await supabaseAdmin
@@ -435,7 +439,7 @@ Deno.serve(async (req) => {
           .eq('id', contratoId);
       }
     } catch (emailError) {
-      console.error('Erro ao enviar email de confirmação:', emailError);
+      console.error('Erro ao enviar email de confirmação:', emailError?.message || 'Unknown error');
       // Continua mesmo se o email falhar
     }
 
