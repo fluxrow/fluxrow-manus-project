@@ -5,7 +5,8 @@ import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp";
 import { propostas, statusLabels, contratoStatusLabels, type PropostaItem } from '@/data/propostas';
-import { Lock, FileText, ScrollText, Search, ExternalLink, ArrowLeft } from 'lucide-react';
+import { Lock, FileText, ScrollText, Search, ExternalLink, ArrowLeft, Link2, Check } from 'lucide-react';
+import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
 
 const ADMIN_PIN = '2907';
@@ -135,17 +136,33 @@ function Dashboard() {
                   </Badge>
                 </div>
 
-                {p.contrato && (
+                <div className="flex gap-2">
+                  {p.contrato && (
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="flex-1 text-white/40 hover:text-cyan-400 hover:bg-white/5 text-xs"
+                      onClick={(e) => { e.stopPropagation(); navigate(p.contrato!.rota); }}
+                    >
+                      <ScrollText className="w-3 h-3 mr-1" />
+                      Ver Contrato
+                    </Button>
+                  )}
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="w-full text-white/40 hover:text-cyan-400 hover:bg-white/5 text-xs"
-                    onClick={(e) => { e.stopPropagation(); navigate(p.contrato!.rota); }}
+                    className={`${p.contrato ? '' : 'w-full'} text-white/40 hover:text-cyan-400 hover:bg-white/5 text-xs`}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      const url = `${window.location.origin}${p.rotaPublica}`;
+                      navigator.clipboard.writeText(url);
+                      toast.success('Link copiado!', { description: url });
+                    }}
                   >
-                    <ScrollText className="w-3 h-3 mr-1" />
-                    Ver Contrato
+                    <Link2 className="w-3 h-3 mr-1" />
+                    Copiar Link
                   </Button>
-                )}
+                </div>
               </CardContent>
             </Card>
           ))}
