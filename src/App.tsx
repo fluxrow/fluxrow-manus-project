@@ -44,6 +44,7 @@ const RelatorioSemanalFachini = React.lazy(() => import("./pages/RelatorioSemana
 const AdminTestReportei = React.lazy(() => import("./pages/AdminTestReportei"));
 const AdminRelatorios = React.lazy(() => import("./pages/AdminRelatorios"));
 const BriefingAlek = React.lazy(() => import("./pages/BriefingAlek"));
+const PropostaPublica = React.lazy(() => import("./pages/PropostaPublica"));
 const PoliticaPrivacidade = React.lazy(() => import("./pages/PoliticaPrivacidade"));
 const TermosDeUso = React.lazy(() => import("./pages/TermosDeUso"));
 
@@ -103,6 +104,7 @@ const App = () => (
             <Route path="/termos-de-uso" element={<TermosDeUso />} />
             <Route path="/conteudos/:slug" element={<div>Página Individual de Conteúdo</div>} />
             <Route path="/contato" element={<Contato />} />
+            <Route path="/p/:slug" element={<PropostaPublica />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

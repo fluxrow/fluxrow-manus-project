@@ -8,6 +8,7 @@ export interface PropostaItem {
   servico: string;
   valor: string;
   rota: string;
+  rotaPublica: string;
   status: PropostaStatus;
   contrato?: {
     rota: string;
@@ -23,6 +24,7 @@ export const propostas: PropostaItem[] = [
     servico: 'Automação IA em Vendas',
     valor: 'R$ 5.200/mês',
     rota: '/propostas/match-solutions',
+    rotaPublica: '/p/match-solutions',
     status: 'aprovada',
     contrato: {
       rota: '/propostas/contrato-match-solutions',
@@ -36,6 +38,7 @@ export const propostas: PropostaItem[] = [
     servico: 'Tráfego Pago Meta Ads',
     valor: 'R$ 2.500/mês',
     rota: '/propostas/amanda-neves',
+    rotaPublica: '/p/amanda-neves',
     status: 'aprovada',
     contrato: {
       rota: '/propostas/contrato-amanda-neves',
@@ -49,6 +52,7 @@ export const propostas: PropostaItem[] = [
     servico: 'Sistema de Gestão',
     valor: 'Sob consulta',
     rota: '/propostas/babora-seguros',
+    rotaPublica: '/p/babora-seguros',
     status: 'enviada',
   },
   {
@@ -58,6 +62,7 @@ export const propostas: PropostaItem[] = [
     servico: 'Marketing Digital',
     valor: 'R$ 3.500/mês',
     rota: '/propostas/promotrip',
+    rotaPublica: '/p/promotrip',
     status: 'aprovada',
     contrato: {
       rota: '/propostas/contrato-promotrip',
@@ -71,6 +76,7 @@ export const propostas: PropostaItem[] = [
     servico: 'Parceria Híbrida',
     valor: 'R$ 4.000/mês',
     rota: '/propostas/evolua-digital',
+    rotaPublica: '/p/evolua-digital',
     status: 'enviada',
   },
   {
@@ -80,6 +86,7 @@ export const propostas: PropostaItem[] = [
     servico: 'Gestão de Boletos + NF',
     valor: 'Sob consulta',
     rota: '/propostas/comunica',
+    rotaPublica: '/p/comunica',
     status: 'enviada',
   },
   {
@@ -89,6 +96,7 @@ export const propostas: PropostaItem[] = [
     servico: 'IA Multicanal',
     valor: 'R$ 8.000/mês',
     rota: '/propostas/teresopolis',
+    rotaPublica: '/p/teresopolis',
     status: 'enviada',
   },
 ];
