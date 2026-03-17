@@ -44,7 +44,7 @@ const PropostaBatavo = () => {
           </motion.p>
           <motion.a
             variants={fadeUp} custom={4}
-            href="#investimento"
+            href="#sobre"
             className="inline-flex items-center gap-2 bg-[#FFCC80] text-[#3E2723] px-8 py-4 rounded-full font-semibold text-lg hover:bg-[#FFB74D] transition-colors"
           >
             Apresentar Projeto <ArrowRight size={20} />
