@@ -32,6 +32,7 @@ const PropostaBaboraSeguros = React.lazy(() => import("./pages/PropostaBaboraSeg
 const PropostaPromotrip = React.lazy(() => import("./pages/PropostaPromotrip"));
 const PropostaEvoluaDigital = React.lazy(() => import("./pages/PropostaEvoluaDigital"));
 const PropostaComunica = React.lazy(() => import("./pages/PropostaComunica"));
+const PropostaBatavo = React.lazy(() => import("./pages/PropostaBatavo"));
 const PropostaTeresopolis = React.lazy(() => import("./pages/PropostaTeresopolis"));
 const ApresentacaoEvoluaDigital = React.lazy(() => import("./pages/ApresentacaoEvoluaDigital"));
 const ContratoMatchSolutions = React.lazy(() => import("./pages/ContratoMatchSolutions"));
