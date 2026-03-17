@@ -1,48 +1,50 @@
 
 
-## Links Publicos para Propostas de Clientes
+## Criar Proposta "Rota das Tortas Batavo"
 
-Criar rotas publicas `/p/:slug` que permitem clientes acessarem diretamente suas propostas sem PIN e sem ver o dashboard com outras propostas. O painel `/propostas` continua protegido por PIN para uso interno.
+### Resumo
+Criar uma página de proposta premium com paleta gastronômica (creme, marrom, vermelho suave, branco), contendo as 11 seções solicitadas, registrá-la no dashboard e na rota pública.
 
----
+### Arquivos a criar/editar
 
-### O que muda
+**1. `src/pages/PropostaBatavo.tsx`** — Página principal com todas as 11 seções inline (seguindo padrão de PropostaMatchSolutions que tem tudo em um arquivo):
 
-1. **Nova rota publica `/p/:slug`** - Cada cliente recebe um link direto como `fluxrow.com/p/teresopolis` que abre apenas a proposta dele, sem PIN e sem dashboard.
+- **Hero**: Background gradient warm (amber/stone), título "Rota das Tortas Batavo", subtítulo, CTA "Apresentar Projeto"
+- **Sobre o Projeto**: 4 cards com ícones (Experiência, Engajamento, Consumo, Marca)
+- **Como Funciona**: Timeline vertical com 5 passos e ícones
+- **Experiência do Usuário**: Mock visual de card físico com carimbos + mock de interface WhatsApp
+- **Diferenciais**: 4 blocos destacados (híbrido, antifraude, engajamento real, experiência memorável)
+- **Benefícios**: Grid 2 colunas (Batavo vs Lojas)
+- **Tecnologia**: Cards com ícones minimalistas (QR Code, WhatsApp, validação, controle)
+- **Dados e Métricas**: 4 cards com métricas ilustrativas
+- **Investimento**: Card premium destacado com R$ 9.000,00
+- **Expansão**: Seção curta sobre escalabilidade
+- **CTA Final**: "Vamos ativar essa experiência juntos?" + botão WhatsApp
 
-2. **Dashboard interno intacto** - `/propostas` continua protegido pelo PIN 2907 como esta hoje.
+Paleta: `amber-900`, `stone-800`, `red-400/500`, `orange-100`, backgrounds com gradientes warm. Animações `animate-fade-in` com delays escalonados. Cards com `backdrop-blur` e sombras suaves.
 
----
+**2. `src/data/propostas.ts`** — Adicionar entrada para batavo:
+```
+{
+  slug: 'batavo',
+  cliente: 'Batavo',
+  empresa: 'Batavo',
+  servico: 'Rota das Tortas',
+  valor: 'R$ 9.000',
+  rota: '/propostas/batavo',
+  rotaPublica: '/p/batavo',
+  status: 'enviada',
+}
+```
 
-### Detalhes Tecnicos
+**3. `src/App.tsx`** — Adicionar rota lazy `PropostaBatavo` dentro de `/propostas`:
+```
+<Route path="batavo" element={<PropostaBatavo />} />
+```
 
-**1. Criar pagina `src/pages/PropostaPublica.tsx`**
-- Recebe o `:slug` da URL
-- Busca a proposta correspondente no array `propostas` de `src/data/propostas.ts`
-- Se o slug existir, renderiza o componente da proposta (ex: `PropostaTeresopolis`)
-- Se nao existir, mostra pagina 404
-- Sem header, sem dashboard, sem acesso a outras propostas
-- Meta tags noindex/nofollow para nao indexar
+**4. `src/pages/PropostaPublica.tsx`** — Adicionar `'batavo'` ao `slugToComponent` map.
 
-**2. Criar mapeamento slug -> componente**
-- Um objeto simples que mapeia cada slug ao seu componente lazy-loaded (reutilizando os mesmos imports do App.tsx)
-
-**3. Adicionar rotas no `App.tsx`**
-- Adicionar `<Route path="/p/:slug" element={<PropostaPublica />} />` antes do catch-all
-- Cada proposta fica acessivel em `/p/teresopolis`, `/p/match-solutions`, etc.
-
-**4. Atualizar `src/data/propostas.ts`**
-- Adicionar campo `rotaPublica` em cada proposta (ex: `/p/teresopolis`) para facilitar copiar/compartilhar o link no dashboard interno
-
----
-
-### Links de exemplo para compartilhar com clientes
-
-- `fluxrow.com/p/teresopolis` - Teresopolis Shopping
-- `fluxrow.com/p/match-solutions` - Match Solutions
-- `fluxrow.com/p/amanda-neves` - Amanda Neves
-- `fluxrow.com/p/promotrip` - Promotrip
-- `fluxrow.com/p/evolua-digital` - Evolua Digital
-- `fluxrow.com/p/comunica` - Comunica
-- `fluxrow.com/p/babora-seguros` - Babora Seguros
+### Elementos visuais especiais
+- **Card físico com carimbos**: Grid 2x2 com círculos que simulam carimbos (preenchidos/vazios) dentro de um card com borda arredondada e textura de papel
+- **Mock WhatsApp**: Card estilizado com balões de mensagem simulando notificações de check-in
 
