@@ -87,6 +87,7 @@ const App = () => (
               <Route path="promotrip" element={<PropostaPromotrip />} />
               <Route path="evolua-digital" element={<PropostaEvoluaDigital />} />
               <Route path="comunica" element={<PropostaComunica />} />
+              <Route path="batavo" element={<PropostaBatavo />} />
               <Route path="teresopolis" element={<PropostaTeresopolis />} />
               <Route path="contrato-match-solutions" element={<ContratoMatchSolutions />} />
               <Route path="contrato-amanda-neves" element={<ContratoAmandaNeves />} />

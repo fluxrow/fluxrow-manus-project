@@ -90,6 +90,16 @@ export const propostas: PropostaItem[] = [
     status: 'enviada',
   },
   {
+    slug: 'batavo',
+    cliente: 'Batavo',
+    empresa: 'Batavo',
+    servico: 'Rota das Tortas',
+    valor: 'R$ 9.000',
+    rota: '/propostas/batavo',
+    rotaPublica: '/p/batavo',
+    status: 'enviada',
+  },
+  {
     slug: 'teresopolis',
     cliente: 'Teresópolis Shopping',
     empresa: 'Teresópolis Shopping',

@@ -9,6 +9,7 @@ const slugToComponent: Record<string, React.LazyExoticComponent<React.ComponentT
   'evolua-digital': lazy(() => import('./PropostaEvoluaDigital')),
   'comunica': lazy(() => import('./PropostaComunica')),
   'babora-seguros': lazy(() => import('./PropostaBaboraSeguros')),
+  'batavo': lazy(() => import('./PropostaBatavo')),
 };
 
 const PropostaPublica = () => {
