@@ -53,7 +53,7 @@ const PropostaBatavo = () => {
       </section>
 
       {/* ═══ 2. SOBRE O PROJETO ═══ */}
-      <section className="py-24 px-6">
+      <section id="sobre" className="py-24 px-6 scroll-mt-8">
         <div className="max-w-6xl mx-auto">
           <motion.div className="text-center mb-16" initial="hidden" whileInView="visible" viewport={{ once: true }}>
             <motion.h2 variants={fadeUp} custom={0} className="text-4xl md:text-5xl font-bold mb-6">
