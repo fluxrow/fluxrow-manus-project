@@ -32,6 +32,7 @@ const PropostaBaboraSeguros = React.lazy(() => import("./pages/PropostaBaboraSeg
 const PropostaPromotrip = React.lazy(() => import("./pages/PropostaPromotrip"));
 const PropostaEvoluaDigital = React.lazy(() => import("./pages/PropostaEvoluaDigital"));
 const PropostaComunica = React.lazy(() => import("./pages/PropostaComunica"));
+const PropostaBatavo = React.lazy(() => import("./pages/PropostaBatavo"));
 const PropostaTeresopolis = React.lazy(() => import("./pages/PropostaTeresopolis"));
 const ApresentacaoEvoluaDigital = React.lazy(() => import("./pages/ApresentacaoEvoluaDigital"));
 const ContratoMatchSolutions = React.lazy(() => import("./pages/ContratoMatchSolutions"));
@@ -86,6 +87,7 @@ const App = () => (
               <Route path="promotrip" element={<PropostaPromotrip />} />
               <Route path="evolua-digital" element={<PropostaEvoluaDigital />} />
               <Route path="comunica" element={<PropostaComunica />} />
+              <Route path="batavo" element={<PropostaBatavo />} />
               <Route path="teresopolis" element={<PropostaTeresopolis />} />
               <Route path="contrato-match-solutions" element={<ContratoMatchSolutions />} />
               <Route path="contrato-amanda-neves" element={<ContratoAmandaNeves />} />
