@@ -20,6 +20,7 @@ const fadeUp = {
 const PropostaBatavo = () => {
   return (
     <div className="min-h-screen bg-[#FFF8F0] text-[#3E2723] font-sans">
+      <DownloadPdfButton />
       {/* ═══ 1. HERO ═══ */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
