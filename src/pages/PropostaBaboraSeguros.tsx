@@ -120,9 +120,9 @@ export default function PropostaBaboraSeguros() {
   };
 
   return (
-    <div className="min-h-screen py-8 bg-gradient-to-br from-slate-900 via-slate-800 to-black text-white relative overflow-hidden">
+    <div id="proposal-content" className="min-h-screen py-8 bg-gradient-to-br from-slate-900 via-slate-800 to-black text-white relative overflow-hidden">
       <BackToHomeButton />
-      <DownloadPdfButton />
+      <DownloadPdfButton contentId="proposal-content" filename="Proposta-Babora-Seguros.pdf" />
       {/* Background Effects */}
       <div className="absolute inset-0 opacity-20">
         <div className="absolute top-20 left-10 w-72 h-72 bg-gradient-to-r from-blue-600/30 to-cyan-600/30 rounded-full blur-3xl"></div>

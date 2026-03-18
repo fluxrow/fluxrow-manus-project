@@ -18,9 +18,9 @@ export default function PropostaComunica() {
   const whatsappMessage = encodeURIComponent("Olá! Vim pela proposta do Sistema de Gestão de Boletos + NF e gostaria de mais informações.");
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-900 via-blue-950 to-black">
+    <div id="proposal-content" className="min-h-screen bg-gradient-to-b from-slate-900 via-blue-950 to-black">
       <BackToHomeButton />
-      <DownloadPdfButton />
+      <DownloadPdfButton contentId="proposal-content" filename="Proposta-Comunica.pdf" />
       {/* Background effects */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-cyan-600/20 rounded-full blur-3xl" />

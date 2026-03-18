@@ -22,9 +22,9 @@ const PropostaTeresopolis = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-900 via-blue-950 to-black relative overflow-hidden">
+    <div id="proposal-content" className="min-h-screen bg-gradient-to-b from-slate-900 via-blue-950 to-black relative overflow-hidden">
       <BackToHomeButton />
-      <DownloadPdfButton />
+      <DownloadPdfButton contentId="proposal-content" filename="Proposta-Teresopolis.pdf" />
       
       {/* Fixed Header with Logo */}
       <header className="fixed top-0 left-0 right-0 z-40 bg-slate-900/80 backdrop-blur-md border-b border-slate-800/50">
