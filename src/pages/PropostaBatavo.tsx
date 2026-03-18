@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import DownloadPdfButton from '@/components/ui/DownloadPdfButton';
 import {
   MapPin, QrCode, Stamp, Gift, Star, Shield, Users, TrendingUp,
   Smartphone, MessageCircle, CheckCircle, BarChart3, Globe, ArrowRight,
@@ -19,6 +20,7 @@ const fadeUp = {
 const PropostaBatavo = () => {
   return (
     <div className="min-h-screen bg-[#FFF8F0] text-[#3E2723] font-sans">
+      <DownloadPdfButton />
       {/* ═══ 1. HERO ═══ */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">

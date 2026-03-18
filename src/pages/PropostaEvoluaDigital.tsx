@@ -1,5 +1,6 @@
 import React from 'react';
 import BackToHomeButton from '@/components/ui/BackToHomeButton';
+import DownloadPdfButton from '@/components/ui/DownloadPdfButton';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -30,6 +31,7 @@ export default function PropostaEvoluaDigital() {
   return (
     <div className="min-h-screen py-8 bg-gradient-to-br from-slate-900 via-purple-950 to-black text-white relative overflow-hidden">
       <BackToHomeButton />
+      <DownloadPdfButton />
       {/* Background Effects - VIVO Purple Theme */}
       <div className="absolute inset-0 opacity-20">
         <div className="absolute top-20 left-10 w-72 h-72 bg-gradient-to-r from-purple-600/40 to-violet-600/40 rounded-full blur-3xl"></div>

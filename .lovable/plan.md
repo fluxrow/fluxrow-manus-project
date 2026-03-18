@@ -1,33 +1,48 @@
 
 
-## Adicionar botão "Baixar PDF" em todas as propostas
+## Links Publicos para Propostas de Clientes
 
-### Abordagem
-Criar um componente flutuante reutilizável (`DownloadPdfButton`) que usa `window.print()` com CSS `@media print` para gerar o PDF diretamente do navegador — sem dependência de biblioteca externa.
+Criar rotas publicas `/p/:slug` que permitem clientes acessarem diretamente suas propostas sem PIN e sem ver o dashboard com outras propostas. O painel `/propostas` continua protegido por PIN para uso interno.
 
-### Arquivos
+---
 
-**1. Criar `src/components/ui/DownloadPdfButton.tsx`**
-- Botão flutuante fixo (canto inferior direito) com ícone de download
-- Ao clicar, chama `window.print()` (o navegador oferece "Salvar como PDF")
-- Estilo discreto com a paleta neutra (funciona em qualquer proposta)
-- Classe `print:hidden` para não aparecer no próprio PDF
+### O que muda
 
-**2. Criar regras `@media print` em `src/index.css`**
-- Esconder header, footer, botões flutuantes, navegação
-- Remover backgrounds decorativos pesados
-- Garantir que o conteúdo ocupe a largura total
-- Forçar cores de fundo visíveis (`-webkit-print-color-adjust: exact`)
+1. **Nova rota publica `/p/:slug`** - Cada cliente recebe um link direto como `fluxrow.com/p/teresopolis` que abre apenas a proposta dele, sem PIN e sem dashboard.
 
-**3. Adicionar `<DownloadPdfButton />` em cada página de proposta:**
-- `PropostaBatavo.tsx`
-- `PropostaMatchSolutions.tsx`
-- `PropostaAmandaNeves.tsx`
-- `PropostaBaboraSeguros.tsx`
-- `PropostaPromotrip.tsx`
-- `PropostaEvoluaDigital.tsx`
-- `PropostaComunica.tsx`
-- `PropostaTeresopolis.tsx`
+2. **Dashboard interno intacto** - `/propostas` continua protegido pelo PIN 2907 como esta hoje.
 
-Uma linha por arquivo — só importar e renderizar o componente.
+---
+
+### Detalhes Tecnicos
+
+**1. Criar pagina `src/pages/PropostaPublica.tsx`**
+- Recebe o `:slug` da URL
+- Busca a proposta correspondente no array `propostas` de `src/data/propostas.ts`
+- Se o slug existir, renderiza o componente da proposta (ex: `PropostaTeresopolis`)
+- Se nao existir, mostra pagina 404
+- Sem header, sem dashboard, sem acesso a outras propostas
+- Meta tags noindex/nofollow para nao indexar
+
+**2. Criar mapeamento slug -> componente**
+- Um objeto simples que mapeia cada slug ao seu componente lazy-loaded (reutilizando os mesmos imports do App.tsx)
+
+**3. Adicionar rotas no `App.tsx`**
+- Adicionar `<Route path="/p/:slug" element={<PropostaPublica />} />` antes do catch-all
+- Cada proposta fica acessivel em `/p/teresopolis`, `/p/match-solutions`, etc.
+
+**4. Atualizar `src/data/propostas.ts`**
+- Adicionar campo `rotaPublica` em cada proposta (ex: `/p/teresopolis`) para facilitar copiar/compartilhar o link no dashboard interno
+
+---
+
+### Links de exemplo para compartilhar com clientes
+
+- `fluxrow.com/p/teresopolis` - Teresopolis Shopping
+- `fluxrow.com/p/match-solutions` - Match Solutions
+- `fluxrow.com/p/amanda-neves` - Amanda Neves
+- `fluxrow.com/p/promotrip` - Promotrip
+- `fluxrow.com/p/evolua-digital` - Evolua Digital
+- `fluxrow.com/p/comunica` - Comunica
+- `fluxrow.com/p/babora-seguros` - Babora Seguros
 
