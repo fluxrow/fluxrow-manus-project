@@ -1,5 +1,6 @@
 import React from 'react';
 import BackToHomeButton from '@/components/ui/BackToHomeButton';
+import DownloadPdfButton from '@/components/ui/DownloadPdfButton';
 import { MessageCircle, ArrowRight, Shield, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import ProblemSection from '@/components/comunica/ProblemSection';

@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import DownloadPdfButton from '@/components/ui/DownloadPdfButton';
 import {
   MapPin, QrCode, Stamp, Gift, Star, Shield, Users, TrendingUp,
   Smartphone, MessageCircle, CheckCircle, BarChart3, Globe, ArrowRight,

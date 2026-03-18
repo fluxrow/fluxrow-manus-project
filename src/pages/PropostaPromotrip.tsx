@@ -1,4 +1,5 @@
 import BackToHomeButton from '@/components/ui/BackToHomeButton';
+import DownloadPdfButton from '@/components/ui/DownloadPdfButton';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { 

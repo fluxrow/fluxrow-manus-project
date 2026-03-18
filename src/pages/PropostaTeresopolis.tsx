@@ -1,4 +1,5 @@
 import BackToHomeButton from '@/components/ui/BackToHomeButton';
+import DownloadPdfButton from '@/components/ui/DownloadPdfButton';
 import { MessageCircle, ArrowDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import FluxrowLogo from "@/components/ui/FluxrowLogo";
