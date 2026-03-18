@@ -78,7 +78,7 @@ export default function DownloadPdfButton({ contentId = 'proposal-content', file
     <button
       onClick={generatePDF}
       disabled={isGenerating}
-      className="fixed bottom-6 right-6 z-50 print:hidden flex items-center gap-2 px-4 py-3 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 text-white/80 hover:text-white hover:bg-white/20 transition-all shadow-lg cursor-pointer disabled:opacity-50 disabled:cursor-wait"
+      className="fixed bottom-6 right-6 z-50 print:hidden flex items-center gap-2 px-5 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold shadow-xl shadow-emerald-900/40 transition-all cursor-pointer disabled:opacity-50 disabled:cursor-wait"
       aria-label="Baixar como PDF"
     >
       {isGenerating ? (
