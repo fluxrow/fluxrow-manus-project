@@ -19,32 +19,32 @@ const insideBlocks = [
   {
     num: "01",
     title: "The System Architecture",
-    desc: "The full blueprint — how every layer connects and runs without you.",
+    desc: "The 5-layer map — understand the full system before picking a single tool.",
   },
   {
     num: "02",
-    title: "The AI Brain",
-    desc: "Pre-built prompts that think in your voice, your offer, your audience.",
+    title: "3 Execution Paths",
+    desc: "Fast, Stable, or Scale — pick the path that fits your speed and skill level.",
   },
   {
     num: "03",
-    title: "Content Queue",
-    desc: "A repeatable pipeline that turns one idea into a week of content.",
+    title: "AI Brain + Content Queue",
+    desc: "Your voice encoded into prompts, plus a repeatable pipeline for weekly content.",
   },
   {
     num: "04",
-    title: "Hook + Content System",
-    desc: "Frameworks that stop the scroll and move people toward your offer.",
+    title: "Hook + DM Sales Engine",
+    desc: "Frameworks that stop the scroll and conversations that close without pressure.",
   },
   {
     num: "05",
-    title: "DM Sales Engine",
-    desc: "Automated conversations that qualify leads and close without awkwardness.",
+    title: "40+ Copy-Ready Prompts",
+    desc: "Hooks, carousels, captions, DM scripts, objection handlers — paste and run.",
   },
   {
     num: "06",
-    title: "7-Day Launch Checklist",
-    desc: "Step-by-step activation — go from reading to running in one week.",
+    title: "7-Day Launch Playbook",
+    desc: "Step-by-step activation with path-specific instructions for each day.",
   },
 ];
 
@@ -52,11 +52,11 @@ const forList = [
   "Solo operators who sell services or digital products",
   "Creators building an audience with intent to monetize",
   "Freelancers tired of posting without a system behind it",
-  "Small teams who want to do more with fewer people",
+  "Beginners who want a clear starting point — not a 40-hour course",
 ];
 
 const notForList = [
-  "People looking for a \"get rich quick\" shortcut",
+  "People looking for a shortcut with no effort",
   "Anyone who won't implement what they read",
   "Teams that already have a full marketing department",
   "People expecting a done-for-you service",
@@ -64,11 +64,13 @@ const notForList = [
 
 const valueStack = [
   "5-layer system architecture",
-  "40+ pre-built AI prompts",
-  "Content queue templates",
-  "Hook + content frameworks",
-  "DM sales scripts & flows",
-  "7-day launch checklist",
+  "3 execution paths (Fast / Stable / Scale)",
+  "40+ copy-ready AI prompts",
+  "Content queue + hook bank templates",
+  "DM sales scripts + objection handlers",
+  "7-day launch playbook with daily checklists",
+  "Tool comparison matrix by path",
+  "Troubleshooting guide",
 ];
 
 const Divider = () => (
@@ -122,7 +124,7 @@ const AIOperatorKitSales = () => {
             className="text-lg mb-10 max-w-[600px]"
             style={{ color: "#999", fontFamily: "'Inter', sans-serif" }}
           >
-            A practical guide with prompts, templates, and architecture — built for solo operators who want to stop improvising and start running a system.
+            One architecture. Three execution paths — Fast, Stable, or Scale. 40+ prompts, templates, DM scripts, and a 7-day launch playbook. Pick the path that fits you now.
           </motion.p>
           <motion.div variants={fade}>
             <CTAButton />
@@ -195,7 +197,7 @@ const AIOperatorKitSales = () => {
             className="text-3xl md:text-4xl mb-14"
             style={{ fontFamily: "'Instrument Serif', serif" }}
           >
-            Six systems. One kit.
+            One system. Three paths. Your speed.
           </motion.h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12">
