@@ -390,9 +390,11 @@ const showcaseBlocks = [
 ];
 
 const CreativeShowcase = () => {
+  const { t } = useTranslation();
+  const translatedBlocks = t('behind.showcaseBlocks', { returnObjects: true }) as Array<{ title: string; desc: string; tag: string }>;
+
   return (
     <div className="mt-16">
-      {/* Header */}
       <div className="text-center mb-10">
         <motion.h3
           initial={{ opacity: 0, y: 10 }}
@@ -402,9 +404,9 @@ const CreativeShowcase = () => {
           className="text-2xl md:text-3xl font-bold font-space-grotesk text-white"
         >
           <span className="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-500 bg-clip-text text-transparent">
-            Inteligência Criativa
+            {t('behind.showcase.title')}
           </span>
-          {' '}em cada entrega
+          {' '}{t('behind.showcase.titleSuffix')}
         </motion.h3>
         <motion.p
           initial={{ opacity: 0, y: 10 }}
@@ -413,37 +415,31 @@ const CreativeShowcase = () => {
           viewport={{ once: true }}
           className="text-white/60 mt-3 max-w-xl mx-auto text-sm md:text-base"
         >
-          Da ideia ao resultado. Criativos, tráfego, automação, sistemas — tudo sob o mesmo teto, sem precisar de outro fornecedor.
+          {t('behind.showcase.subtitle')}
         </motion.p>
       </div>
 
-      {/* Grid */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
         {showcaseBlocks.map((block, index) => {
           const MockupComponent = block.Mockup;
+          const translated = translatedBlocks[index];
           return (
             <motion.div
-              key={block.title}
+              key={index}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: index * 0.08 }}
               viewport={{ once: true }}
-              className={`
-                group relative rounded-2xl p-4
-                bg-white/5 border ${block.borderColor}
-                backdrop-blur-sm
-                transition-all duration-300
-                hover:scale-[1.02] hover:shadow-lg
-              `}
+              className={`group relative rounded-2xl p-4 bg-white/5 border ${block.borderColor} backdrop-blur-sm transition-all duration-300 hover:scale-[1.02] hover:shadow-lg`}
             >
               <div className="mb-3">
                 <MockupComponent />
               </div>
               <span className={`inline-block px-2 py-0.5 rounded-full text-[10px] font-medium ${block.tagBg} ${block.tagText} mb-1.5`}>
-                {block.tag}
+                {translated?.tag || block.tag}
               </span>
-              <h4 className="text-sm font-semibold text-white font-space-grotesk">{block.title}</h4>
-              <p className="text-xs text-white/50 mt-0.5">{block.desc}</p>
+              <h4 className="text-sm font-semibold text-white font-space-grotesk">{translated?.title || block.title}</h4>
+              <p className="text-xs text-white/50 mt-0.5">{translated?.desc || block.desc}</p>
               <div className={`absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none bg-gradient-to-br ${block.glow} blur-xl -z-10`} />
             </motion.div>
           );
@@ -454,6 +450,7 @@ const CreativeShowcase = () => {
 };
 
 const DevStack = () => {
+  const { t } = useTranslation();
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -463,7 +460,7 @@ const DevStack = () => {
       className="mt-12 text-center"
     >
       <p className="text-xs uppercase tracking-wider text-white/40 mb-4">
-        Desenvolvimento & Plataformas
+        {t('behind.devPlatforms')}
       </p>
       <div className="flex flex-wrap items-center justify-center gap-4">
         {devTechs.map((tech, index) => {
@@ -488,10 +485,12 @@ const DevStack = () => {
 };
 
 const BehindTheScenes = () => {
+  const { t } = useTranslation();
+  const translatedCategories = t('behind.categories', { returnObjects: true }) as Array<any>;
+
   return (
     <section className="py-20 px-6 relative z-10">
       <div className="max-w-7xl mx-auto">
-        {/* Header */}
         <div className="text-center mb-12">
           <motion.span
             initial={{ opacity: 0, y: 10 }}
@@ -500,7 +499,7 @@ const BehindTheScenes = () => {
             viewport={{ once: true }}
             className="inline-block px-4 py-1.5 rounded-full bg-white/10 text-white/80 text-sm font-medium mb-4"
           >
-            Stack Tecnológico
+            {t('behind.badge')}
           </motion.span>
           <motion.h2
             initial={{ opacity: 0, y: 10 }}
@@ -509,9 +508,9 @@ const BehindTheScenes = () => {
             viewport={{ once: true }}
             className="text-3xl md:text-4xl font-bold font-space-grotesk text-white mb-4"
           >
-            Tecnologia em{' '}
+            {t('behind.title')}{' '}
             <span className="bg-gradient-to-r from-cyan-400 via-purple-400 to-orange-400 bg-clip-text text-transparent">
-              Ação
+              {t('behind.titleHighlight')}
             </span>
           </motion.h2>
           <motion.p
@@ -521,21 +520,17 @@ const BehindTheScenes = () => {
             viewport={{ once: true }}
             className="text-white/70 text-lg max-w-2xl mx-auto"
           >
-            Ferramentas reais de mercado que usamos para entregar resultados extraordinários
+            {t('behind.subtitle')}
           </motion.p>
         </div>
 
-        {/* Tech Categories Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {techCategories.map((category, index) => (
-            <TechCard key={category.id} category={category} index={index} />
+          {techCategoryMeta.map((category, index) => (
+            <TechCard key={category.id} category={category} translatedCategory={translatedCategories[index]} index={index} />
           ))}
         </div>
 
-        {/* Creative Showcase */}
         <CreativeShowcase />
-
-        {/* Dev Stack */}
         <DevStack />
       </div>
     </section>
