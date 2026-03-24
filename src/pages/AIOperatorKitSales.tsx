@@ -1,5 +1,6 @@
 import React from "react";
 import { motion, type Easing } from "framer-motion";
+import SEO from "@/components/SEO";
 
 const LEMON_LINK = "[INSERT_LEMON_SQUEEZY_LINK]";
 
@@ -87,6 +88,12 @@ const CTAButton = ({ className = "" }: { className?: string }) => (
 const AIOperatorKitSales = () => {
   return (
     <div className="min-h-screen" style={{ backgroundColor: "#080807", color: "#e5e5e0" }}>
+      <SEO
+        title="AI Operator Starter Kit — Fluxrow"
+        description="The system behind your content, DMs, and sales. Prompts, templates, architecture, and a 7-day launch checklist for solo operators. $27."
+        path="/kit"
+        imageAlt="AI Operator Starter Kit by Fluxrow"
+      />
       {/* ── Hero ── */}
       <motion.section
         className="pt-24 pb-20 px-6"
