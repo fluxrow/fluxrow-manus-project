@@ -9,6 +9,15 @@ export default defineConfig(({ mode }) => ({
     host: "::",
     port: 8080,
   },
+  build: {
+    rollupOptions: {
+      input: {
+        main: path.resolve(__dirname, "index.html"),
+        kit: path.resolve(__dirname, "kit/index.html"),
+        kitContent: path.resolve(__dirname, "kit/content/index.html"),
+      },
+    },
+  },
   plugins: [
     react(),
     mode === 'development' &&
