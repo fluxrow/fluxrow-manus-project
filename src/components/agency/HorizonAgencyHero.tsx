@@ -2,12 +2,13 @@ import React, { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-// Removed post-processing imports for better performance
 import { ArrowRight, Play } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const HorizonAgencyHero = () => {
+  const { t } = useTranslation();
   const containerRef = useRef(null);
   const canvasRef = useRef(null);
   const titleRef = useRef(null);
@@ -415,21 +416,7 @@ const HorizonAgencyHero = () => {
   };
 
   const getSectionContent = () => {
-    const sections = [
-      {
-        title: 'FLUXROW',
-        subtitle: 'Transformamos ideias em resultados com IA, automação e criatividade'
-      },
-      {
-        title: 'AUTOMAÇÃO',
-        subtitle: 'Da estratégia ao entregável, a Fluxrow cuida de tudo para você'
-      },
-      {
-        title: 'RESULTADOS',
-        subtitle: 'Sites, automações, conteúdo e resultados reais para seu negócio'
-      }
-    ];
-
+    const sections = t('hero.sections', { returnObjects: true }) as Array<{ title: string; subtitle: string }>;
     return sections[currentSection] || sections[0];
   };
 
@@ -451,15 +438,15 @@ const HorizonAgencyHero = () => {
           <div ref={statsRef} className="mb-6 md:mb-8 flex flex-row justify-center items-center gap-2 sm:gap-4 md:gap-8 text-[10px] sm:text-sm px-2 flex-wrap" style={{ visibility: 'hidden' }}>
             <div className="bg-gradient-to-r from-cyan-500/40 to-purple-500/40 border border-cyan-500/30 rounded-full px-2.5 py-1.5 sm:px-3 sm:py-2 whitespace-nowrap backdrop-blur-md">
               <span className="text-cyan-400 font-bold">+{counters.automations}</span>
-              <span className="text-white ml-1 drop-shadow-lg">automações</span>
+              <span className="text-white ml-1 drop-shadow-lg">{t('hero.stats.automations')}</span>
             </div>
             <div className="bg-gradient-to-r from-purple-500/40 to-pink-500/40 border border-purple-500/30 rounded-full px-2.5 py-1.5 sm:px-3 sm:py-2 whitespace-nowrap backdrop-blur-md">
               <span className="text-purple-400 font-bold">+{counters.leads}</span>
-              <span className="text-white ml-1 drop-shadow-lg">leads</span>
+              <span className="text-white ml-1 drop-shadow-lg">{t('hero.stats.leads')}</span>
             </div>
             <div className="bg-gradient-to-r from-pink-500/40 to-yellow-500/40 border border-pink-500/30 rounded-full px-2.5 py-1.5 sm:px-3 sm:py-2 whitespace-nowrap backdrop-blur-md">
               <span className="text-pink-400 font-bold">+{counters.hours}</span>
-              <span className="text-white ml-1 drop-shadow-lg">horas</span>
+              <span className="text-white ml-1 drop-shadow-lg">{t('hero.stats.hours')}</span>
             </div>
           </div>
           
@@ -478,7 +465,7 @@ const HorizonAgencyHero = () => {
               onClick={scrollToServices}
               className="cta-primary font-space-grotesk text-base sm:text-lg px-6 sm:px-10 py-4 sm:py-5 group w-full sm:w-auto"
             >
-              Quero conhecer a Fluxrow
+              {t('hero.cta_primary')}
               <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
             </button>
             
@@ -487,7 +474,7 @@ const HorizonAgencyHero = () => {
               className="bg-transparent border-2 border-cyan-500 text-cyan-400 px-6 sm:px-10 py-4 sm:py-5 rounded-full font-semibold font-space-grotesk hover:bg-cyan-500/10 transition-all duration-300 group flex items-center justify-center backdrop-blur-sm w-full sm:w-auto"
             >
               <Play className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
-              Ver Cases
+              {t('hero.cta_secondary')}
             </button>
           </div>
         </div>

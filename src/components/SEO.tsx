@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet-async';
+import { useTranslation } from 'react-i18next';
 
 interface SEOProps {
   title?: string;
@@ -8,41 +9,40 @@ interface SEOProps {
   imageAlt?: string;
 }
 
-const defaults = {
-  title: 'Fluxrow - Inteligência Criativa',
-  description: 'IA generativa, automações e growth marketing. A Fluxrow é o laboratório por trás das marcas que lideram.',
-  image: 'https://fluxrow.com/OG_logo_fluxrow.png',
-  imageAlt: 'Fluxrow - Agência de IA, Automação e Growth Marketing',
-};
-
 const SEO = ({
-  title = defaults.title,
-  description = defaults.description,
+  title,
+  description,
   path = '/',
-  image = defaults.image,
-  imageAlt = defaults.imageAlt,
+  image = 'https://fluxrow.com/OG_logo_fluxrow.png',
+  imageAlt = 'Fluxrow - Creative Intelligence Agency',
 }: SEOProps) => {
+  const { t, i18n } = useTranslation();
+  
+  const finalTitle = title || t('seo.title');
+  const finalDescription = description || t('seo.description');
   const url = `https://fluxrow.com${path}`;
+  const locale = i18n.language === 'pt' ? 'pt_BR' : 'en_US';
 
   return (
     <Helmet>
-      <title>{title}</title>
-      <meta name="description" content={description} />
+      <html lang={i18n.language} />
+      <title>{finalTitle}</title>
+      <meta name="description" content={finalDescription} />
       <link rel="canonical" href={url} />
 
-      <meta property="og:title" content={title} />
-      <meta property="og:description" content={description} />
+      <meta property="og:title" content={finalTitle} />
+      <meta property="og:description" content={finalDescription} />
       <meta property="og:url" content={url} />
       <meta property="og:image" content={image} />
       <meta property="og:image:alt" content={imageAlt} />
       <meta property="og:type" content="website" />
-      <meta property="og:locale" content="pt_BR" />
+      <meta property="og:locale" content={locale} />
       <meta property="og:site_name" content="Fluxrow" />
 
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:site" content="@fluxrow" />
-      <meta name="twitter:title" content={title} />
-      <meta name="twitter:description" content={description} />
+      <meta name="twitter:title" content={finalTitle} />
+      <meta name="twitter:description" content={finalDescription} />
       <meta name="twitter:image" content={image} />
     </Helmet>
   );

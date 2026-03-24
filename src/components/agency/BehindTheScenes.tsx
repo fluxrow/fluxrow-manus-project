@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { 
+import { useTranslation } from 'react-i18next';
+import {
   Brain, 
   Bot, 
   Eye, 
@@ -22,71 +23,43 @@ import {
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 
-const techCategories = [
+const techCategoryMeta = [
   {
     id: "ai",
-    title: "Inteligência Artificial",
-    subtitle: "IA que Trabalha por Você",
     colorClass: "cyan",
     gradient: "from-cyan-500/20 to-cyan-900/10",
     border: "border-cyan-500/30 hover:border-cyan-400/60",
     iconBg: "bg-cyan-500/20",
     iconColor: "text-cyan-400",
-    techs: [
-      { name: "GPT-4 Turbo", desc: "Agentes de vendas 24/7", icon: Bot },
-      { name: "Claude", desc: "Análise inteligente", icon: Brain },
-      { name: "Vision AI", desc: "Leitura de documentos", icon: Eye },
-      { name: "Embeddings", desc: "Busca semântica", icon: Search }
-    ]
+    icons: [Bot, Brain, Eye, Search],
   },
   {
     id: "automation",
-    title: "Automação & Fluxos",
-    subtitle: "Automação sem Limites",
     colorClass: "purple",
     gradient: "from-purple-500/20 to-purple-900/10",
     border: "border-purple-500/30 hover:border-purple-400/60",
     iconBg: "bg-purple-500/20",
     iconColor: "text-purple-400",
-    techs: [
-      { name: "Make", desc: "Fluxos visuais complexos", icon: Workflow },
-      { name: "n8n", desc: "Automações avançadas", icon: Zap },
-      { name: "Zapier", desc: "Integrações rápidas", icon: Zap },
-      { name: "Z-API", desc: "WhatsApp sem restrições", icon: MessageSquare }
-    ]
+    icons: [Workflow, Zap, Zap, MessageSquare],
   },
   {
     id: "traffic",
-    title: "Tráfego Pago",
-    subtitle: "Ads que Convertem",
     colorClass: "green",
     gradient: "from-green-500/20 to-green-900/10",
     border: "border-green-500/30 hover:border-green-400/60",
     iconBg: "bg-green-500/20",
     iconColor: "text-green-400",
-    techs: [
-      { name: "Meta Ads", desc: "Facebook e Instagram", icon: Target },
-      { name: "Google Ads", desc: "Search, Display, YouTube", icon: TrendingUp },
-      { name: "LinkedIn Ads", desc: "Profissionais B2B", icon: Linkedin },
-      { name: "TikTok Ads", desc: "Público jovem", icon: Video }
-    ]
+    icons: [Target, TrendingUp, Linkedin, Video],
   },
   {
     id: "channels",
-    title: "Canais & CRM",
-    subtitle: "Todos os Canais Conectados",
     colorClass: "orange",
     gradient: "from-orange-500/20 to-orange-900/10",
     border: "border-orange-500/30 hover:border-orange-400/60",
     iconBg: "bg-orange-500/20",
     iconColor: "text-orange-400",
-    techs: [
-      { name: "WhatsApp Business", desc: "Disparos e atendimento", icon: Phone },
-      { name: "RD Station", desc: "Gestão de leads", icon: BarChart3 },
-      { name: "Pipedrive", desc: "Pipeline de vendas", icon: Users },
-      { name: "Email Marketing", desc: "Nutrição e follow-up", icon: Mail }
-    ]
-  }
+    icons: [Phone, BarChart3, Users, Mail],
+  },
 ];
 
 const devTechs = [
@@ -97,7 +70,7 @@ const devTechs = [
   { name: "Lovable", icon: Palette }
 ];
 
-const TechCard = ({ category, index }: { category: typeof techCategories[0], index: number }) => {
+const TechCard = ({ category, translatedCategory, index }: { category: typeof techCategoryMeta[0], translatedCategory: any, index: number }) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -116,17 +89,17 @@ const TechCard = ({ category, index }: { category: typeof techCategories[0], ind
       {/* Header */}
       <div className="mb-4">
         <span className={`text-xs font-medium ${category.iconColor} uppercase tracking-wider`}>
-          {category.title}
+          {translatedCategory.title}
         </span>
         <h3 className="text-xl font-bold text-white mt-1 font-space-grotesk">
-          {category.subtitle}
+          {translatedCategory.subtitle}
         </h3>
       </div>
 
       {/* Tech List */}
       <div className="space-y-3">
-        {category.techs.map((tech, techIndex) => {
-          const IconComponent = tech.icon;
+        {translatedCategory.techs.map((tech: any, techIndex: number) => {
+          const IconComponent = category.icons[techIndex];
           return (
             <motion.div
               key={tech.name}
@@ -136,12 +109,7 @@ const TechCard = ({ category, index }: { category: typeof techCategories[0], ind
               viewport={{ once: true }}
               className="flex items-center gap-3 group/item"
             >
-              <div className={`
-                w-8 h-8 rounded-lg ${category.iconBg} 
-                flex items-center justify-center
-                transition-transform duration-200
-                group-hover/item:scale-110
-              `}>
+              <div className={`w-8 h-8 rounded-lg ${category.iconBg} flex items-center justify-center transition-transform duration-200 group-hover/item:scale-110`}>
                 <IconComponent className={`w-4 h-4 ${category.iconColor}`} />
               </div>
               <div className="flex-1 min-w-0">
@@ -422,9 +390,11 @@ const showcaseBlocks = [
 ];
 
 const CreativeShowcase = () => {
+  const { t } = useTranslation();
+  const translatedBlocks = t('behind.showcaseBlocks', { returnObjects: true }) as Array<{ title: string; desc: string; tag: string }>;
+
   return (
     <div className="mt-16">
-      {/* Header */}
       <div className="text-center mb-10">
         <motion.h3
           initial={{ opacity: 0, y: 10 }}
@@ -434,9 +404,9 @@ const CreativeShowcase = () => {
           className="text-2xl md:text-3xl font-bold font-space-grotesk text-white"
         >
           <span className="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-500 bg-clip-text text-transparent">
-            Inteligência Criativa
+            {t('behind.showcase.title')}
           </span>
-          {' '}em cada entrega
+          {' '}{t('behind.showcase.titleSuffix')}
         </motion.h3>
         <motion.p
           initial={{ opacity: 0, y: 10 }}
@@ -445,37 +415,31 @@ const CreativeShowcase = () => {
           viewport={{ once: true }}
           className="text-white/60 mt-3 max-w-xl mx-auto text-sm md:text-base"
         >
-          Da ideia ao resultado. Criativos, tráfego, automação, sistemas — tudo sob o mesmo teto, sem precisar de outro fornecedor.
+          {t('behind.showcase.subtitle')}
         </motion.p>
       </div>
 
-      {/* Grid */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
         {showcaseBlocks.map((block, index) => {
           const MockupComponent = block.Mockup;
+          const translated = translatedBlocks[index];
           return (
             <motion.div
-              key={block.title}
+              key={index}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: index * 0.08 }}
               viewport={{ once: true }}
-              className={`
-                group relative rounded-2xl p-4
-                bg-white/5 border ${block.borderColor}
-                backdrop-blur-sm
-                transition-all duration-300
-                hover:scale-[1.02] hover:shadow-lg
-              `}
+              className={`group relative rounded-2xl p-4 bg-white/5 border ${block.borderColor} backdrop-blur-sm transition-all duration-300 hover:scale-[1.02] hover:shadow-lg`}
             >
               <div className="mb-3">
                 <MockupComponent />
               </div>
               <span className={`inline-block px-2 py-0.5 rounded-full text-[10px] font-medium ${block.tagBg} ${block.tagText} mb-1.5`}>
-                {block.tag}
+                {translated?.tag || block.tag}
               </span>
-              <h4 className="text-sm font-semibold text-white font-space-grotesk">{block.title}</h4>
-              <p className="text-xs text-white/50 mt-0.5">{block.desc}</p>
+              <h4 className="text-sm font-semibold text-white font-space-grotesk">{translated?.title || block.title}</h4>
+              <p className="text-xs text-white/50 mt-0.5">{translated?.desc || block.desc}</p>
               <div className={`absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none bg-gradient-to-br ${block.glow} blur-xl -z-10`} />
             </motion.div>
           );
@@ -486,6 +450,7 @@ const CreativeShowcase = () => {
 };
 
 const DevStack = () => {
+  const { t } = useTranslation();
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -495,7 +460,7 @@ const DevStack = () => {
       className="mt-12 text-center"
     >
       <p className="text-xs uppercase tracking-wider text-white/40 mb-4">
-        Desenvolvimento & Plataformas
+        {t('behind.devPlatforms')}
       </p>
       <div className="flex flex-wrap items-center justify-center gap-4">
         {devTechs.map((tech, index) => {
@@ -520,10 +485,12 @@ const DevStack = () => {
 };
 
 const BehindTheScenes = () => {
+  const { t } = useTranslation();
+  const translatedCategories = t('behind.categories', { returnObjects: true }) as Array<any>;
+
   return (
     <section className="py-20 px-6 relative z-10">
       <div className="max-w-7xl mx-auto">
-        {/* Header */}
         <div className="text-center mb-12">
           <motion.span
             initial={{ opacity: 0, y: 10 }}
@@ -532,7 +499,7 @@ const BehindTheScenes = () => {
             viewport={{ once: true }}
             className="inline-block px-4 py-1.5 rounded-full bg-white/10 text-white/80 text-sm font-medium mb-4"
           >
-            Stack Tecnológico
+            {t('behind.badge')}
           </motion.span>
           <motion.h2
             initial={{ opacity: 0, y: 10 }}
@@ -541,9 +508,9 @@ const BehindTheScenes = () => {
             viewport={{ once: true }}
             className="text-3xl md:text-4xl font-bold font-space-grotesk text-white mb-4"
           >
-            Tecnologia em{' '}
+            {t('behind.title')}{' '}
             <span className="bg-gradient-to-r from-cyan-400 via-purple-400 to-orange-400 bg-clip-text text-transparent">
-              Ação
+              {t('behind.titleHighlight')}
             </span>
           </motion.h2>
           <motion.p
@@ -553,21 +520,17 @@ const BehindTheScenes = () => {
             viewport={{ once: true }}
             className="text-white/70 text-lg max-w-2xl mx-auto"
           >
-            Ferramentas reais de mercado que usamos para entregar resultados extraordinários
+            {t('behind.subtitle')}
           </motion.p>
         </div>
 
-        {/* Tech Categories Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {techCategories.map((category, index) => (
-            <TechCard key={category.id} category={category} index={index} />
+          {techCategoryMeta.map((category, index) => (
+            <TechCard key={category.id} category={category} translatedCategory={translatedCategories[index]} index={index} />
           ))}
         </div>
 
-        {/* Creative Showcase */}
         <CreativeShowcase />
-
-        {/* Dev Stack */}
         <DevStack />
       </div>
     </section>
