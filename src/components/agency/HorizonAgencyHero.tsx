@@ -416,21 +416,7 @@ const HorizonAgencyHero = () => {
   };
 
   const getSectionContent = () => {
-    const sections = [
-      {
-        title: 'FLUXROW',
-        subtitle: 'Transformamos ideias em resultados com IA, automação e criatividade'
-      },
-      {
-        title: 'AUTOMAÇÃO',
-        subtitle: 'Da estratégia ao entregável, a Fluxrow cuida de tudo para você'
-      },
-      {
-        title: 'RESULTADOS',
-        subtitle: 'Sites, automações, conteúdo e resultados reais para seu negócio'
-      }
-    ];
-
+    const sections = t('hero.sections', { returnObjects: true }) as Array<{ title: string; subtitle: string }>;
     return sections[currentSection] || sections[0];
   };
 
