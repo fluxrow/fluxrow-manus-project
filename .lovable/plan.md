@@ -1,59 +1,50 @@
 
 
-## Internacionalização completa do site — página por página
+## AI Operator Kit — Sales Funnel Implementation
 
-### Infraestrutura (primeiro)
+### What changes
 
-**1. Instalar dependências**: `react-i18next`, `i18next`, `i18next-browser-languagedetector`
+| File | Action |
+|------|--------|
+| `src/pages/AIOperatorKitSales.tsx` | **Create** — Short-form sales page |
+| `src/App.tsx` | **Update** — `/kit` → Sales page, `/kit/content` → Product page |
 
-**2. Criar `src/i18n/index.ts`** — configuração do i18next com detecção automática via `navigator.language` + fallback para inglês
+### Sales Page (`AIOperatorKitSales.tsx`)
 
-**3. Criar `src/i18n/locales/en.json`** — todas as strings em inglês
-**4. Criar `src/i18n/locales/pt.json`** — todas as strings em português (cópia do que já existe)
+Same design system as the product page — dark `#080807`, `Instrument Serif` headings, `DM Mono` labels, `Inter` body, `#c8f000` accent. Restrained `framer-motion` fade/slide-up on scroll (no bouncy or flashy effects).
 
-**5. Criar Edge Function `supabase/functions/detect-language/index.ts`** — lê IP via headers e retorna país/idioma. Chamada uma vez no load, resultado salvo em `localStorage`
+**Design guardrails to keep it premium Fluxrow:**
+- Max-width `860px` centered, same as product page
+- Generous whitespace between sections (64-80px padding)
+- Subtle `1px solid #222220` dividers between sections
+- No gradients, no cards with shadows, no generic SaaS patterns
+- Typography-driven hierarchy: large serif headlines, mono labels, light sans body
+- CTA buttons: `#c8f000` background, dark text, no rounded-full pills — squared-off with slight radius
 
-**6. Atualizar `src/main.tsx`** — importar i18n antes do render
+**7 sections:**
 
-### Componentes a traduzir (em ordem, um por vez)
+1. **Hero** — Mono tag "AI OPERATOR STARTER KIT" + serif headline "Build the AI system that runs your content, DMs, and sales." + 1-line subheadline + "Get the Kit — $27" CTA button → `[INSERT_LEMON_SQUEEZY_LINK]`
 
-| # | Arquivo | Strings principais |
-|---|---------|-------------------|
-| 1 | `AgencyNav.tsx` | Links de navegação, "Fale Conosco" |
-| 2 | `HorizonAgencyHero.tsx` | Títulos das seções, subtítulos, CTAs, stats labels |
-| 3 | `ServicesGrid.tsx` | 8 serviços (título, descrição, features, deliverables) |
-| 4 | `CasesPortfolio.tsx` | 10 cases (título, descrição, métricas, depoimentos) |
-| 5 | `ProcessTimeline.tsx` | 4 steps do processo |
-| 6 | `BehindTheScenes.tsx` | Tech categories, showcase blocks, headers |
-| 7 | `EnhancedInteractiveBriefing.tsx` | 5 perguntas do briefing, opções, diagnósticos |
-| 8 | `AgencyCTA.tsx` | CTA final, footer, links legais |
-| 9 | `SEO.tsx` | Meta tags (title, description, og:locale) |
-| 10 | `Contato.tsx` | Formulário de contato |
+2. **Problem** — 2-3 short paragraphs. Tools without a system, random prompts, inconsistent output, DMs that don't convert. Direct practitioner tone.
 
-### Como funciona a tradução em cada componente
+3. **What's Inside** — 6 benefit blocks in a 2-column grid (1-col on mobile). Each block: mono number/label + serif title + 1-line benefit. Blocks: System Architecture, AI Brain, Content Queue, Hook+Content System, DM Sales Engine, 7-Day Launch Checklist.
 
-- Importar `useTranslation` do react-i18next
-- Substituir strings hardcoded por `t('chave.do.texto')`
-- Manter a mesma estrutura visual — só muda o texto
+4. **Social Proof** — Stats row (120+, 850+, $0) with numbers slightly smaller than product page. Below: "Built from real implementation work." as a prominent line in accent-adjacent color, visually elevated (larger font, not buried).
 
-### Detecção por IP
+5. **Who It's For / Not For** — Two-column layout. Clean ✓/✗ lists. Non-aggressive, non-defensive tone.
 
-- No primeiro load, chama a Edge Function que retorna `{ language: "en" | "pt" }`
-- Se Brasil → pt, senão → en
-- Salva em `localStorage` para não chamar de novo
-- Usuário pode trocar manualmente via seletor no nav
+6. **Price Block** — $27 large serif number. Value stack list (prompts, templates, DM scripts, architecture, checklist). Reinforcing line: "Built to be used this week, not admired later." Two CTAs on mobile (`md:hidden` second instance at bottom). → `[INSERT_LEMON_SQUEEZY_LINK]`
 
-### Seletor de idioma no Header
+7. **Footer** — `FLUXROW · 2026`, mono, muted.
 
-- Botão simples com bandeiras 🇧🇷/🇺🇸 no `AgencyNav`
-- Troca instantânea via `i18n.changeLanguage()`
+### Routing (`App.tsx`)
 
-### Ordem de implementação
+- Add lazy import: `const AIOperatorKitSales = React.lazy(() => import("./pages/AIOperatorKitSales"))`
+- Change line 111: `/kit` → `<AIOperatorKitSales />`
+- Add new route: `/kit/content` → `<AIOperatorKit />`
 
-Vou implementar na seguinte ordem para minimizar erros:
-1. Infraestrutura (i18n config + arquivos de tradução + Edge Function)
-2. AgencyNav (mais simples, valida que tudo funciona)
-3. HeroSection
-4. ServicesGrid
-5. ... até completar todos os 10 componentes
+### Post-implementation
+
+- Replace `[INSERT_LEMON_SQUEEZY_LINK]` in `AIOperatorKitSales.tsx` with real checkout URL
+- Product page at `/kit/content` preserved as-is, to be refined later
 
