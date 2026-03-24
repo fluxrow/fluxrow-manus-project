@@ -791,13 +791,11 @@ const WorkflowTable = ({ nodes }: { nodes: { type: string; name: string; desc: s
 );
 
 const RevenueBox = ({ rows }: { rows: { label: string; value: string; isTotal?: boolean }[] }) => (
-  <div style={{ background: "#111110", border: "1px solid #222220", borderRadius: 10, padding: "28px 32px", margin: "24px 0" }}>
+  <motion.div initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-30px" }} transition={{ duration: 0.5 }} style={{ background: "#111110", border: "1px solid #222220", borderRadius: 10, padding: "28px 32px", margin: "24px 0" }}>
     <div style={{ display: "grid", gap: 12 }}>
       {rows.map((r, i) => (
         <div key={i} style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "baseline",
+          display: "flex", justifyContent: "space-between", alignItems: "baseline",
           padding: r.isTotal ? "16px 0 8px" : "8px 0",
           borderBottom: i < rows.length - 1 ? "1px solid #222220" : "none",
         }}>
@@ -806,7 +804,7 @@ const RevenueBox = ({ rows }: { rows: { label: string; value: string; isTotal?: 
         </div>
       ))}
     </div>
-  </div>
+  </motion.div>
 );
 
 const Checklist = ({ items }: { items: { title: string; desc: string }[] }) => (
