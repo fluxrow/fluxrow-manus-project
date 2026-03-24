@@ -753,6 +753,358 @@ Format: Headline (max 8 words) → 3 paragraphs (problem → solution → inside
         </Chapter>
 
         {/* ═══════════════════════════════════════════════════ */}
+        {/* PART 4 — WHEN TO USE WHAT */}
+        {/* ═══════════════════════════════════════════════════ */}
+        <Chapter num="P4" title={<>The decision <em className="kit-accent" style={{ fontStyle: "italic" }}>layer</em></>}
+          intro="The most common mistake operators make isn't choosing bad tools — it's using the right tool at the wrong time, or using complex tools when simple ones work better. This section is the decision framework.">
+
+          <H3>Use Claude directly when…</H3>
+          <DecisionCard
+            name="Claude.ai"
+            useWhen="Brainstorming, ideation, one-off content, reviewing drafts, live DM responses, testing a new prompt, exploring a new topic. Anything that benefits from back-and-forth conversation."
+            skipWhen="You need the same task done automatically on a schedule, or you need to process 20+ items in sequence. That's what the API + n8n is for."
+          />
+
+          <H3>Use browser agents when…</H3>
+          <DecisionCard
+            name="Browser Agents"
+            subtitle="Claude in Chrome or similar"
+            useWhen="Researching competitors, scraping public data, filling forms, navigating web-based tools that don't have APIs, or performing one-time actions in a browser UI. Great for research tasks you'd otherwise do manually."
+            skipWhen="The platform has a proper API — use the API. Browser agents are slower and less reliable than API integrations. They're the fallback when no API exists."
+          />
+
+          <H3>Use ManyChat + Meta when…</H3>
+          <DecisionCard
+            name="ManyChat"
+            useWhen="You want to convert Instagram comments into DMs automatically. For broadcast campaigns to tagged contacts. For follow-up sequences with non-buyers. Any Instagram-native conversion flow."
+            skipWhen="You're not yet posting consistently — there's nothing to trigger the flow. ManyChat converts traffic. If there's no traffic, there's nothing to convert. Content comes first."
+          />
+
+          <H3>Use an orchestration layer (n8n) when…</H3>
+          <DecisionCard
+            name="n8n"
+            useWhen="You have a multi-step process that repeats on a schedule or trigger. When the same sequence of actions happens 3+ times per week. When you want to connect Claude to other systems (Airtable, Buffer, Slack, email). When timing and sequencing matter."
+            skipWhen="You're still figuring out what the process should be. Automating a process before it's proven wastes your setup time. Validate manually first, then automate."
+          />
+
+          <H3>Use Claude Code + agents when…</H3>
+          <DecisionCard
+            name="Claude Code + Agents"
+            useWhen="Your system is proven and you want to remove humans from the loop. When you need custom behavior that no off-the-shelf tool handles. When you want to build skills that agents reuse across multiple workflows. When you're operating at team or agency scale."
+            skipWhen="You're still building your first system. Agent architectures require a stable underlying process to automate. If the process changes weekly, agents will break weekly."
+          />
+
+          <Callout text="The pattern: Simple tools → proven process → automate. Never the other way around. The best operators aren't using the most complex tools. They're using the minimum complexity required to get a consistent result." />
+
+          <H3>Obsidian as an operator tool</H3>
+          <P>Obsidian is not just a note-taking app — for operators on Scale Path, it becomes a local knowledge base and skill storage system. Your brain prompts, your skill files, your workflow documentation, and your prompt library all live here as markdown files. Claude Code can read from it directly.</P>
+          <P>Why it matters: when your skills and prompts live as versioned markdown files in Obsidian (and synced to GitHub), any agent or workflow can reference them. Your knowledge becomes reusable infrastructure.</P>
+
+          <ToolGrid items={[
+            { name: "Obsidian", desc: "Free local markdown editor. Use for storing brain prompts, skills, SOPs, and operator documentation. Syncs to GitHub via Obsidian Git plugin.", tags: [{ label: "FREE", type: "free" }, { label: "SCALE PATH", type: "scale" }], href: "https://obsidian.md" },
+            { name: "Claude Code", desc: "CLI agent that reads your codebase and files. Can execute multi-step tasks using your skill files as context. The execution engine for Scale Path.", tags: [{ label: "SCALE PATH", type: "scale" }], href: "https://claude.ai/code" },
+            { name: "GitHub", desc: "Version control for your skills, prompts, and system files. Enables collaboration, history, and the Operator Repository access for kit buyers.", tags: [{ label: "FREE", type: "free" }, { label: "SCALE PATH", type: "scale" }], href: "https://github.com" },
+          ]} />
+        </Chapter>
+
+        {/* ═══════════════════════════════════════════════════ */}
+        {/* PART 5 — PROMPT LIBRARY */}
+        {/* ═══════════════════════════════════════════════════ */}
+        <Chapter num="P5" title={<>15 prompts — <em className="kit-accent" style={{ fontStyle: "italic" }}>ready to run</em></>}
+          intro="Each prompt includes context for when to use it and which path it fits. Copy the prompt, replace brackets, run. No modification needed to start.">
+
+          <H3>Content prompts</H3>
+
+          <H3Sub>1. Hook generator</H3Sub>
+          <PathIndicator path="fast" />{" "}<PathIndicator path="stable" />{" "}<PathIndicator path="scale" />
+          <PromptBlock type="Hook Generator · use when: you need topics" content={`Write 10 carousel hook ideas for an Instagram account about AI automation for solo operators.
+
+Rules:
+- Address a real pain or a counterintuitive insight
+- Max 8 words each
+- No emojis, no hype
+- Mix: counterintuitive claims, bold problems, specific results
+- Output: numbered list, hooks only`} />
+
+          <H3Sub>2. Full carousel writer</H3Sub>
+          <PathIndicator path="fast" />{" "}<PathIndicator path="stable" />{" "}<PathIndicator path="scale" />
+          <PromptBlock type="Carousel Writer · use when: writing content" content={`Write a 7-slide carousel about: [TOPIC]
+
+Audience: solo operators who want to use AI to automate their business. Skeptical. Want real steps, not inspiration.
+
+SLIDE 1 — HOOK: [headline max 8 words] + [1 sentence that earns it]
+SLIDES 2–6: [headline max 7 words] + [1–2 sentences, one idea each]
+SLIDE 7: Headline: Want the full system? / Body: Comment SYSTEM below.
+
+Tone: direct, peer-to-peer, practitioner voice. Output slides only.`} />
+
+          <H3Sub>3. Caption writer</H3Sub>
+          <PathIndicator path="fast" />{" "}<PathIndicator path="stable" />{" "}<PathIndicator path="scale" />
+          <PromptBlock type="Caption Writer · use after: carousel is written" content={`Write an Instagram caption for this carousel:
+[PASTE CAROUSEL]
+
+Rules:
+- First line = hook (slide 1 headline, slightly expanded)
+- 3–4 short paragraphs, one idea each
+- End: "Comment SYSTEM below and I'll send you the full breakdown."
+- 6 relevant hashtags at end, lowercase
+- No emoji unless it adds meaning
+- Peer-to-peer tone. Not a brand posting. A practitioner sharing.`} />
+
+          <H3Sub>4. X thread adapter</H3Sub>
+          <PathIndicator path="stable" />{" "}<PathIndicator path="scale" />
+          <PromptBlock type="X Thread Adapter · repurpose from carousel" content={`Convert this carousel into an X thread:
+[PASTE CAROUSEL]
+
+- Tweet 1 = hook (same as slide 1, max 240 chars)
+- Tweets 2–7 = one per slide, slightly expanded
+- Last tweet = "Full breakdown: [link]"
+- No hashtags
+- Max 240 chars per tweet
+- Format: numbered 1/ 2/ 3/`} />
+
+          <H3Sub>5. LinkedIn adapter</H3Sub>
+          <PathIndicator path="stable" />{" "}<PathIndicator path="scale" />
+          <PromptBlock type="LinkedIn Post Adapter · repurpose from carousel" content={`Adapt this carousel for LinkedIn:
+[PASTE CAROUSEL]
+
+Format:
+- First line = hook
+- Line break
+- 4–5 short paragraphs (2–3 sentences each)
+- Bullet points for list items
+- CTA: "DM me SYSTEM and I'll send the full breakdown."
+- Slightly more professional than Instagram, still direct
+- No hashtags`} />
+
+          <H3Sub>6. Weekly content plan</H3Sub>
+          <PathIndicator path="fast" />{" "}<PathIndicator path="stable" />{" "}<PathIndicator path="scale" />
+          <PromptBlock type="Weekly Content Plan · use weekly or bi-weekly" content={`Create a 7-day content plan for an Instagram account about AI automation for solo operators.
+
+Mix:
+- 3 carousel posts (educational, CTA = comment SYSTEM)
+- 2 short posts (quick tips, behind-the-scenes, relatable)
+- 1 social proof post (result, testimonial, case study)
+- 1 direct offer post (product mention, no apology for selling)
+
+For each day: Day | Type | Topic | Hook | One-line brief
+Output as a clean table.`} />
+
+          <H3>Audit & improvement prompts</H3>
+
+          <H3Sub>7. Content quality audit</H3Sub>
+          <PathIndicator path="fast" />{" "}<PathIndicator path="stable" />{" "}<PathIndicator path="scale" />
+          <PromptBlock type="Content Audit · use when: reviewing drafts" content={`Audit this carousel for quality. Be harsh.
+
+[PASTE CAROUSEL]
+
+Score each on 1–10:
+1. Hook strength — would you stop scrolling?
+2. Clarity — does each slide have one idea?
+3. Specificity — does it teach something concrete?
+4. CTA — is the ask clear and low friction?
+
+For every score under 8: explain the problem and rewrite that slide.
+Output: scores first, then rewrites only.`} />
+
+          <H3Sub>8. Brain audit</H3Sub>
+          <PathIndicator path="fast" />{" "}<PathIndicator path="stable" />{" "}<PathIndicator path="scale" />
+          <PromptBlock type="Brain Audit · use monthly" content={`I'm going to show you 5 pieces of content I've published and my current brain prompt. Identify the patterns in what I edited most. Then rewrite the brain prompt to prevent those edits automatically.
+
+Brain prompt:
+[PASTE CURRENT BRAIN]
+
+Published content samples:
+[PASTE 5 EXAMPLES]
+
+Output: list of patterns found, then rewritten brain prompt.`} />
+
+          <H3>Sales & DM prompts</H3>
+
+          <H3Sub>9. DM response handler</H3Sub>
+          <PathIndicator path="fast" />{" "}<PathIndicator path="stable" />{" "}<PathIndicator path="scale" />
+          <PromptBlock type="DM Response Handler · use when: replying live" content={`You're handling DMs for [BRAND], an AI automation brand.
+
+Context: this person commented SYSTEM. They received the 5-DM sequence and are now responding.
+
+Their message: "[MESSAGE]"
+
+Reply:
+- Answer directly and briefly
+- Keep moving toward the product without pressure
+- Sound human, not like a bot
+- Max 4 sentences
+- No emoji`} />
+
+          <H3Sub>10. Objection handler</H3Sub>
+          <PathIndicator path="fast" />{" "}<PathIndicator path="stable" />{" "}<PathIndicator path="scale" />
+          <PromptBlock type="Objection Handler · use in: sales conversations" content={`Write responses to these 5 objections for a $27 AI automation kit:
+
+1. "I'm not technical enough"
+2. "I already have ChatGPT"
+3. "Is this just another prompt pack?"
+4. "I don't have time to set this up"
+5. "Why is it so cheap?"
+
+For each: 2–3 sentences. Direct, honest, no over-promising. Confident practitioner answering, not a salesperson deflecting.`} />
+
+          <H3Sub>11. Short sales page</H3Sub>
+          <PathIndicator path="fast" />
+          <PromptBlock type="Short-Form Sales Page · use when: building checkout page" content={`Write a short-form sales page for:
+
+Product: AI Operator Kit
+Price: $27
+Format: HTML guide / execution kit
+Audience: solo operators and founders who want to build AI systems for content and sales
+
+Structure:
+- Headline (the transformation, not the product)
+- 3-sentence subheadline (who it's for + what they get + why now)
+- The problem (2 short paragraphs)
+- What's inside (specific bullet list)
+- Who it's for and NOT for
+- Price anchor (what this info costs elsewhere)
+- CTA button text
+
+Tone: confident, direct, honest. No hype.`} />
+
+          <H3Sub>12. Testimonial request</H3Sub>
+          <PathIndicator path="fast" />{" "}<PathIndicator path="stable" />{" "}<PathIndicator path="scale" />
+          <PromptBlock type="Testimonial Request DM · use 3–5 days post-purchase" content={`Write a DM to someone who bought the AI Operator Kit 3–5 days ago.
+
+Goal: get one specific, usable testimonial — not "it was great" but something like "I set up the content queue in 2 hours and already have 4 carousels drafted."
+
+Rules:
+- Acknowledge their purchase naturally
+- Ask one specific question: "What's the most useful thing you've applied from the kit so far?"
+- Under 5 sentences
+- No pressure, no incentive
+- Sound like a real person following up`} />
+
+          <H3>Operator / system prompts</H3>
+
+          <H3Sub>13. Process documentation</H3Sub>
+          <PathIndicator path="stable" />{" "}<PathIndicator path="scale" />
+          <PromptBlock type="Process Documentation · use when: documenting workflows" content={`I'm going to describe a process I do manually. Turn it into a clear SOP (Standard Operating Procedure) that someone else — or an AI agent — could follow.
+
+Process description:
+[DESCRIBE WHAT YOU DO]
+
+Output format:
+- Process name
+- Trigger (what starts it)
+- Steps (numbered, specific, actionable)
+- Decision points (if X then Y)
+- Output (what the end result looks like)
+- Common failure points
+
+Keep language clear. Write for execution, not documentation.`} />
+
+          <H3Sub>14. Skill file writer</H3Sub>
+          <PathIndicator path="scale" />
+          <PromptBlock type="Skill File Writer · use when: building Scale Path skills" content={`Write a skill file for Claude agents in SKILL.md format.
+
+Task this skill should handle: [DESCRIBE THE TASK]
+
+The skill file should include:
+- Skill name and description
+- When to use this skill (trigger conditions)
+- Input format expected
+- Step-by-step instructions the agent follows
+- Output format
+- Edge cases and how to handle them
+- Example input → example output
+
+Format as markdown. Write for an AI agent to read and execute, not for a human to understand.`} />
+
+          <H3Sub>15. Weekly operator review</H3Sub>
+          <PathIndicator path="stable" />{" "}<PathIndicator path="scale" />
+          <PromptBlock type="Weekly Operator Review · use every Monday" content={`I'm going to share my content and sales data from last week. Give me a 5-point operator review.
+
+Data:
+- Posts published: [N]
+- Total comments with SYSTEM keyword: [N]
+- DM sequences opened: [N]
+- Link clicks: [N]
+- Sales: [N] at $[PRICE]
+
+Review format:
+1. What's working (1–2 specific observations)
+2. What's leaking (where the funnel drops most)
+3. Content priority for this week
+4. One system change to make
+5. Projected revenue if current rates hold
+
+Be direct. No padding.`} />
+        </Chapter>
+
+        {/* ═══════════════════════════════════════════════════ */}
+        {/* PART 6 — OPERATOR REPOSITORY */}
+        {/* ═══════════════════════════════════════════════════ */}
+        <Chapter num="P6" title={<>The resource <em className="kit-accent" style={{ fontStyle: "italic" }}>vault</em></>}
+          intro="The Operator Repository is where this kit lives beyond the PDF. It's a curated collection of skill files, prompt templates, and workflow references — maintained and updated as the tooling evolves. Built for operators who want resources that don't go stale.">
+
+          <H3>What's in the vault</H3>
+          <div className="kit-path-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 8, margin: "20px 0" }}>
+            {[
+              { icon: "SKILL / 01", name: "content-brain.md", desc: "The core content brain prompt as a versioned skill file. Loadable by Claude agents, Claude Code, or any system that reads markdown instructions." },
+              { icon: "SKILL / 02", name: "carousel-writer.md", desc: "Carousel generation skill with format rules, tone guidelines, and output structure. Designed to be called by n8n or agents with just a topic as input." },
+              { icon: "SKILL / 03", name: "dm-handler.md", desc: "DM response skill for handling replies in the ManyChat sequence. Handles objections, questions, and warm leads with context-aware responses." },
+              { icon: "SKILL / 04", name: "content-audit.md", desc: "Quality evaluation skill. Scores carousel content against four criteria and rewrites underperforming slides. Use before publishing or in automated review steps." },
+              { icon: "SKILL / 05", name: "operator-review.md", desc: "Weekly system review skill. Takes raw metrics and produces a structured 5-point operator report with priorities and projections." },
+              { icon: "VAULT / REF", name: "n8n-workflows/", desc: "Reference workflow files for Stable Path operations — content generator, publisher, buyer welcome, weekly report. Import-ready JSON templates." },
+            ].map((skill, i) => (
+              <motion.div key={i} initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-20px" }} transition={{ duration: 0.4, delay: i * 0.06 }}
+                style={{ background: "#111110", border: "1px solid #222220", borderRadius: 8, padding: "20px" }}>
+                <div className="kit-mono" style={{ fontSize: 9, letterSpacing: "0.1em", color: "#c8f000", marginBottom: 10 }}>{skill.icon}</div>
+                <div style={{ fontSize: 14, fontWeight: 500, color: "#e8e6df", marginBottom: 8 }}>{skill.name}</div>
+                <div style={{ fontSize: 12, color: "#888", lineHeight: 1.6 }}>{skill.desc}</div>
+              </motion.div>
+            ))}
+          </div>
+
+          <H3>How to use the vault</H3>
+          <Steps items={[
+            { title: "Fast Path — read skills as enhanced prompts", body: "Open any .md skill file and paste its contents into Claude.ai. The skill file is a structured prompt — it works exactly like any other prompt, just more precise and reusable." },
+            { title: "Stable Path — reference in n8n API calls", body: "Store skill content as variables in n8n. Pass as system_prompt in Claude API nodes. Your workflows become tool-agnostic — swap models without rewriting your logic." },
+            { title: "Scale Path — mount as Claude Code skills", body: "Store skills in your Obsidian vault or /mnt/skills directory. Claude Code agents read them as context. Your skills become reusable infrastructure — build once, deploy anywhere in your system." },
+          ]} />
+
+          <Callout text="Access: Vault files are included with this kit. Check the /skills folder in your download, or access the latest versions at the resource URL included in your purchase confirmation." />
+
+          <H3>The skill file format</H3>
+          <P>Every skill in the vault follows this structure — so you can read them, modify them, and write new ones:</P>
+          <PromptBlock type="Skill File Format — SKILL.md · Scale Path reference" content={`---
+name: [skill-name]
+description: [one sentence — what this skill does]
+trigger: [when to use it — specific conditions]
+---
+
+## What this skill does
+[2–3 sentences. Plain description. What task does it handle?]
+
+## Input
+[What the agent receives before running this skill]
+Format: [text / JSON / variables]
+
+## Instructions
+[Step-by-step. Written for an AI to execute, not a human to understand.]
+1. [First action]
+2. [Second action]
+...
+
+## Output format
+[Exact structure of what this skill produces]
+
+## Edge cases
+[What to do when inputs are incomplete, ambiguous, or unexpected]
+
+## Example
+Input: [example]
+Output: [example]`} />
+        </Chapter>
+
+        {/* ═══════════════════════════════════════════════════ */}
         {/* BONUS — 20 TOPIC IDEAS */}
         {/* ═══════════════════════════════════════════════════ */}
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.6 }} style={{ padding: "48px 0", borderBottom: "1px solid #222220" }}>
