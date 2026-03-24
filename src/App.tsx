@@ -49,6 +49,7 @@ const PropostaPublica = React.lazy(() => import("./pages/PropostaPublica"));
 const PoliticaPrivacidade = React.lazy(() => import("./pages/PoliticaPrivacidade"));
 const TermosDeUso = React.lazy(() => import("./pages/TermosDeUso"));
 const AIOperatorKit = React.lazy(() => import("./pages/AIOperatorKit"));
+const AIOperatorKitSales = React.lazy(() => import("./pages/AIOperatorKitSales"));
 
 const queryClient = new QueryClient();
 
