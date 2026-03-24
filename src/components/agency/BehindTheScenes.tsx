@@ -89,10 +89,10 @@ const TechCard = ({ category, translatedCategory, index }: { category: typeof te
       {/* Header */}
       <div className="mb-4">
         <span className={`text-xs font-medium ${category.iconColor} uppercase tracking-wider`}>
-          {category.title}
+          {translatedCategory.title}
         </span>
         <h3 className="text-xl font-bold text-white mt-1 font-space-grotesk">
-          {category.subtitle}
+          {translatedCategory.subtitle}
         </h3>
       </div>
 
