@@ -442,7 +442,7 @@ const HorizonAgencyHero = () => {
             </div>
             <div className="bg-gradient-to-r from-purple-500/40 to-pink-500/40 border border-purple-500/30 rounded-full px-2.5 py-1.5 sm:px-3 sm:py-2 whitespace-nowrap backdrop-blur-md">
               <span className="text-purple-400 font-bold">+{counters.leads}</span>
-              <span className="text-white ml-1 drop-shadow-lg">leads</span>
+              <span className="text-white ml-1 drop-shadow-lg">{t('hero.stats.leads')}</span>
             </div>
             <div className="bg-gradient-to-r from-pink-500/40 to-yellow-500/40 border border-pink-500/30 rounded-full px-2.5 py-1.5 sm:px-3 sm:py-2 whitespace-nowrap backdrop-blur-md">
               <span className="text-pink-400 font-bold">+{counters.hours}</span>
