@@ -875,6 +875,40 @@ const H3 = ({ children }: { children: React.ReactNode }) => (
   <h3 style={{ fontSize: 14, fontWeight: 500, letterSpacing: "0.05em", color: "#e8e6df", textTransform: "uppercase", margin: "36px 0 16px" }}>{children}</h3>
 );
 
+const H3Sub = ({ children }: { children: React.ReactNode }) => (
+  <h4 style={{ fontSize: 13, fontWeight: 500, color: "#e8e6df", margin: "28px 0 14px" }}>{children}</h4>
+);
+
+const PathIndicator = ({ path }: { path: "fast" | "stable" | "scale" }) => {
+  const config = { fast: { label: "FAST PATH", color: "#c8f000", bg: "#0d1800", border: "#2a4400" }, stable: { label: "STABLE PATH", color: "#60a0c0", bg: "#0a1520", border: "#1a3040" }, scale: { label: "SCALE PATH", color: "#b080e0", bg: "#120a20", border: "#2a1a40" } };
+  const c = config[path];
+  return <div className="kit-mono" style={{ display: "inline-block", fontSize: 9, letterSpacing: "0.1em", color: c.color, background: c.bg, border: `1px solid ${c.border}`, padding: "3px 10px", borderRadius: 4, margin: "12px 0 6px" }}>{c.label}</div>;
+};
+
+const ToolGrid = ({ items }: { items: { name: string; desc: string; tags: { label: string; type: string }[]; href: string }[] }) => {
+  const tagColors: Record<string, { color: string; border: string }> = { free: { color: "#7acc7a", border: "#1a3a1a" }, paid: { color: "#e0a050", border: "#3a2a10" }, fast: { color: "#c8f000", border: "#2a4400" }, stable: { color: "#60a0c0", border: "#1a3040" }, scale: { color: "#b080e0", border: "#2a1a40" }, key: { color: "#e8e6df", border: "#3a3a36" } };
+  return (
+    <div className="kit-path-grid" style={{ display: "grid", gridTemplateColumns: `repeat(${Math.min(items.length, 3)}, 1fr)`, gap: 8, margin: "20px 0" }}>
+      {items.map((item, i) => (
+        <motion.div key={i} className="kit-tool-card" initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-20px" }} transition={{ duration: 0.4, delay: i * 0.08 }}
+          style={{ background: "#111110", border: "1px solid #222220", borderRadius: 8, padding: "18px 20px", display: "flex", flexDirection: "column", justifyContent: "space-between", gap: 12 }}>
+          <div>
+            <div style={{ fontSize: 14, fontWeight: 500, color: "#e8e6df", marginBottom: 6 }}>{item.name}</div>
+            <div style={{ fontSize: 12, color: "#888", lineHeight: 1.6 }}>{item.desc}</div>
+          </div>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 4, alignItems: "center" }}>
+            {item.tags.map((tag, j) => {
+              const tc = tagColors[tag.type] || tagColors.key;
+              return <span key={j} className="kit-mono" style={{ fontSize: 8, letterSpacing: "0.08em", color: tc.color, border: `1px solid ${tc.border}`, padding: "2px 6px", borderRadius: 3 }}>{tag.label}</span>;
+            })}
+            <a href={item.href} target="_blank" rel="noopener noreferrer" style={{ marginLeft: "auto", fontSize: 16, color: "#6b6960", textDecoration: "none" }}>→</a>
+          </div>
+        </motion.div>
+      ))}
+    </div>
+  );
+};
+
 const P = ({ children }: { children: React.ReactNode }) => (
   <p style={{ color: "#aaa", fontSize: 15, lineHeight: 1.75, marginBottom: 16 }}>{children}</p>
 );
