@@ -624,16 +624,22 @@ const P = ({ children }: { children: React.ReactNode }) => (
 );
 
 const Callout = ({ text, warn = false }: { text: string; warn?: boolean }) => (
-  <div style={{
-    background: warn ? "#140a00" : "#0a1400",
-    border: `1px solid ${warn ? "#332200" : "#1e3300"}`,
-    borderLeft: `3px solid ${warn ? "#ff8800" : "#c8f000"}`,
-    borderRadius: "0 8px 8px 0",
-    padding: "20px 24px",
-    margin: "28px 0",
-  }}>
+  <motion.div
+    initial={{ opacity: 0, x: -15 }}
+    whileInView={{ opacity: 1, x: 0 }}
+    viewport={{ once: true, margin: "-30px" }}
+    transition={{ duration: 0.5 }}
+    style={{
+      background: warn ? "#140a00" : "#0a1400",
+      border: `1px solid ${warn ? "#332200" : "#1e3300"}`,
+      borderLeft: `3px solid ${warn ? "#ff8800" : "#c8f000"}`,
+      borderRadius: "0 8px 8px 0",
+      padding: "20px 24px",
+      margin: "28px 0",
+    }}
+  >
     <p style={{ color: warn ? "#b07030" : "#9aba40", fontSize: 14, margin: 0 }}>{text}</p>
-  </div>
+  </motion.div>
 );
 
 const Steps = ({ items }: { items: { title: string; body: string }[] }) => (
