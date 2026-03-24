@@ -1,7 +1,9 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, type Easing } from "framer-motion";
 
 const LEMON_LINK = "[INSERT_LEMON_SQUEEZY_LINK]";
+
+const ease: Easing = [0.25, 0.1, 0.25, 1];
 
 const fade = {
   hidden: { opacity: 0, y: 20 },
