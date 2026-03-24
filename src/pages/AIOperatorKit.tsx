@@ -677,7 +677,7 @@ const Steps = ({ items }: { items: { title: string; body: string }[] }) => (
 );
 
 const PromptBlock = ({ type, content }: { type: string; content: string }) => (
-  <div style={{ margin: "20px 0" }}>
+  <motion.div initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-30px" }} transition={{ duration: 0.5 }} style={{ margin: "20px 0" }}>
     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", background: "#181816", border: "1px solid #222220", borderBottom: "none", borderRadius: "6px 6px 0 0", padding: "10px 16px" }}>
       <span className="kit-mono" style={{ fontSize: 10, color: "#c8f000", letterSpacing: "0.12em", textTransform: "uppercase" }}>{type}</span>
       <button
@@ -691,7 +691,7 @@ const PromptBlock = ({ type, content }: { type: string; content: string }) => (
     <div className="kit-mono" style={{ background: "#070706", border: "1px solid #222220", borderTop: "none", borderRadius: "0 0 6px 6px", padding: 20, fontSize: 13, color: "#c8c4b8", lineHeight: 1.75, whiteSpace: "pre-wrap" }}>
       {content}
     </div>
-  </div>
+  </motion.div>
 );
 
 const ToolGrid = ({ items }: { items: { name: string; desc: string; tags: { label: string; type: string }[]; link: string }[] }) => (
