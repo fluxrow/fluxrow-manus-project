@@ -52,7 +52,7 @@ const AIOperatorKit = () => {
         </motion.div>
 
         {/* HERO */}
-        <div style={{ padding: "80px 0 72px", borderBottom: "1px solid #222220" }}>
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }} style={{ padding: "80px 0 72px", borderBottom: "1px solid #222220" }}>
           <div className="kit-mono" style={{ fontSize: 10, letterSpacing: "0.2em", color: "#6b6960", textTransform: "uppercase", marginBottom: 32 }}>
             The complete field guide
           </div>
