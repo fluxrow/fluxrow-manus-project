@@ -23,71 +23,43 @@ import {
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 
-const techCategories = [
+const techCategoryMeta = [
   {
     id: "ai",
-    title: "Inteligência Artificial",
-    subtitle: "IA que Trabalha por Você",
     colorClass: "cyan",
     gradient: "from-cyan-500/20 to-cyan-900/10",
     border: "border-cyan-500/30 hover:border-cyan-400/60",
     iconBg: "bg-cyan-500/20",
     iconColor: "text-cyan-400",
-    techs: [
-      { name: "GPT-4 Turbo", desc: "Agentes de vendas 24/7", icon: Bot },
-      { name: "Claude", desc: "Análise inteligente", icon: Brain },
-      { name: "Vision AI", desc: "Leitura de documentos", icon: Eye },
-      { name: "Embeddings", desc: "Busca semântica", icon: Search }
-    ]
+    icons: [Bot, Brain, Eye, Search],
   },
   {
     id: "automation",
-    title: "Automação & Fluxos",
-    subtitle: "Automação sem Limites",
     colorClass: "purple",
     gradient: "from-purple-500/20 to-purple-900/10",
     border: "border-purple-500/30 hover:border-purple-400/60",
     iconBg: "bg-purple-500/20",
     iconColor: "text-purple-400",
-    techs: [
-      { name: "Make", desc: "Fluxos visuais complexos", icon: Workflow },
-      { name: "n8n", desc: "Automações avançadas", icon: Zap },
-      { name: "Zapier", desc: "Integrações rápidas", icon: Zap },
-      { name: "Z-API", desc: "WhatsApp sem restrições", icon: MessageSquare }
-    ]
+    icons: [Workflow, Zap, Zap, MessageSquare],
   },
   {
     id: "traffic",
-    title: "Tráfego Pago",
-    subtitle: "Ads que Convertem",
     colorClass: "green",
     gradient: "from-green-500/20 to-green-900/10",
     border: "border-green-500/30 hover:border-green-400/60",
     iconBg: "bg-green-500/20",
     iconColor: "text-green-400",
-    techs: [
-      { name: "Meta Ads", desc: "Facebook e Instagram", icon: Target },
-      { name: "Google Ads", desc: "Search, Display, YouTube", icon: TrendingUp },
-      { name: "LinkedIn Ads", desc: "Profissionais B2B", icon: Linkedin },
-      { name: "TikTok Ads", desc: "Público jovem", icon: Video }
-    ]
+    icons: [Target, TrendingUp, Linkedin, Video],
   },
   {
     id: "channels",
-    title: "Canais & CRM",
-    subtitle: "Todos os Canais Conectados",
     colorClass: "orange",
     gradient: "from-orange-500/20 to-orange-900/10",
     border: "border-orange-500/30 hover:border-orange-400/60",
     iconBg: "bg-orange-500/20",
     iconColor: "text-orange-400",
-    techs: [
-      { name: "WhatsApp Business", desc: "Disparos e atendimento", icon: Phone },
-      { name: "RD Station", desc: "Gestão de leads", icon: BarChart3 },
-      { name: "Pipedrive", desc: "Pipeline de vendas", icon: Users },
-      { name: "Email Marketing", desc: "Nutrição e follow-up", icon: Mail }
-    ]
-  }
+    icons: [Phone, BarChart3, Users, Mail],
+  },
 ];
 
 const devTechs = [
