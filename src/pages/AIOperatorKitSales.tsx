@@ -209,7 +209,7 @@ const AIOperatorKitSales = () => {
             className="text-3xl md:text-4xl mb-14"
             style={{ fontFamily: "'Instrument Serif', serif" }}
           >
-            One system. Three paths. Your speed.
+            10 chapters. One system. Your speed.
           </motion.h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12">
