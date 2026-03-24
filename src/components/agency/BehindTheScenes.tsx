@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { 
+import { useTranslation } from 'react-i18next';
+import {
   Brain, 
   Bot, 
   Eye, 
