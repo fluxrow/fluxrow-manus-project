@@ -718,7 +718,7 @@ const ToolGrid = ({ items }: { items: { name: string; desc: string; tags: { labe
 );
 
 const TableWrap = ({ headers, rows }: { headers: string[]; rows: string[][] }) => (
-  <div style={{ overflowX: "auto", margin: "20px 0" }}>
+  <motion.div initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-30px" }} transition={{ duration: 0.5 }} style={{ overflowX: "auto", margin: "20px 0" }}>
     <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
       <thead>
         <tr>
@@ -737,7 +737,7 @@ const TableWrap = ({ headers, rows }: { headers: string[]; rows: string[][] }) =
         ))}
       </tbody>
     </table>
-  </div>
+  </motion.div>
 );
 
 const TopicList = ({ topics }: { topics: { title: string; sub: string }[] }) => (
