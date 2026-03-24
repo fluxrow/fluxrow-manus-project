@@ -457,7 +457,7 @@ RULES:
         {/* ═══════════════════════════════════════════════════ */}
         {/* PART 4 — WHEN TO USE WHAT */}
         {/* ═══════════════════════════════════════════════════ */}
-        <Chapter num="P4" title={<>The decision <em className="kit-accent" style={{ fontStyle: "italic" }}>layer</em></>}
+        <Chapter num="05" title={<>The decision <em className="kit-accent" style={{ fontStyle: "italic" }}>layer</em></>}
           intro="The most common mistake operators make isn't choosing bad tools — it's using the right tool at the wrong time, or using complex tools when simple ones work better. This section is the decision framework.">
 
           <H3>Use Claude directly when…</H3>
@@ -512,7 +512,7 @@ RULES:
         {/* ═══════════════════════════════════════════════════ */}
         {/* PART 5 — PROMPT LIBRARY */}
         {/* ═══════════════════════════════════════════════════ */}
-        <Chapter num="P5" title={<>15 prompts — <em className="kit-accent" style={{ fontStyle: "italic" }}>ready to run</em></>}
+        <Chapter num="06" title={<>15 prompts — <em className="kit-accent" style={{ fontStyle: "italic" }}>ready to run</em></>}
           intro="Each prompt includes context for when to use it and which path it fits. Copy the prompt, replace brackets, run. No modification needed to start.">
 
           <H3>Content prompts</H3>
@@ -743,7 +743,7 @@ Be direct. No padding.`} />
         {/* ═══════════════════════════════════════════════════ */}
         {/* PART 6 — OPERATOR REPOSITORY */}
         {/* ═══════════════════════════════════════════════════ */}
-        <Chapter num="P6" title={<>The resource <em className="kit-accent" style={{ fontStyle: "italic" }}>vault</em></>}
+        <Chapter num="07" title={<>The resource <em className="kit-accent" style={{ fontStyle: "italic" }}>vault</em></>}
           intro="The Operator Repository is where this kit lives beyond the PDF. It's a curated collection of skill files, prompt templates, and workflow references — maintained and updated as the tooling evolves. Built for operators who want resources that don't go stale.">
 
           <H3>What's in the vault</H3>
@@ -809,7 +809,7 @@ Output: [example]`} />
         {/* ═══════════════════════════════════════════════════ */}
         {/* PART 7 — LAUNCH PLAN */}
         {/* ═══════════════════════════════════════════════════ */}
-        <Chapter num="07" title={<>Your first version, <em className="kit-accent" style={{ fontStyle: "italic" }}>running</em></>}
+        <Chapter num="08" title={<>Your first version, <em className="kit-accent" style={{ fontStyle: "italic" }}>running</em></>}
           intro="A realistic plan for getting your first system live. Not a course timeline. A sequenced checklist that accounts for the path you chose. Pick yours and follow it.">
 
           <H3><span className="kit-path-tag kit-path-fast">FAST PATH</span> — Days 1 & 2</H3>
@@ -850,7 +850,7 @@ Output: [example]`} />
         {/* ═══════════════════════════════════════════════════ */}
         {/* PART 8 — REVENUE MATH */}
         {/* ═══════════════════════════════════════════════════ */}
-        <Chapter num="08" title={<>What this system <em className="kit-accent" style={{ fontStyle: "italic" }}>produces</em></>}
+        <Chapter num="09" title={<>What this system <em className="kit-accent" style={{ fontStyle: "italic" }}>produces</em></>}
           intro="Real numbers from real content operations. Use these as benchmarks, not guarantees. Your results depend on your content quality, posting consistency, and audience fit — but the conversion mechanics work the same way.">
 
           <H3>The funnel math</H3>
@@ -885,7 +885,7 @@ Output: [example]`} />
         {/* ═══════════════════════════════════════════════════ */}
         {/* PART 9 — WHAT COMES NEXT */}
         {/* ═══════════════════════════════════════════════════ */}
-        <Chapter num="09" title={<>The <em className="kit-accent" style={{ fontStyle: "italic" }}>upgrade path</em></>}
+        <Chapter num="10" title={<>The <em className="kit-accent" style={{ fontStyle: "italic" }}>upgrade path</em></>}
           intro="This kit gets you to your first working system. Here's what to build after that — in the right order.">
 
           <Steps items={[
