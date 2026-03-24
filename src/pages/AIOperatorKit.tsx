@@ -452,343 +452,12 @@ RULES:
           <Callout text="The system pays for itself with 1-2 sales per month. Everything after that is profit. Start on Fast Path at $0, upgrade when revenue covers the costs." />
         </Chapter>
 
-        {/* ═══════════════════════════════════════════════════ */}
-        {/* 8. REVENUE MATH */}
-        {/* ═══════════════════════════════════════════════════ */}
-        <Chapter num="05" title={<>Revenue <em className="kit-accent" style={{ fontStyle: "italic" }}>math</em></>}
-          intro="Conservative numbers. No hype. Real conversion logic based on organic reach, keyword DMs, and low-ticket checkout.">
 
-          <H3>The conversion path</H3>
-          <Steps items={[
-            { title: "Post with CTA keyword", body: "Content ends with \"Comment SYSTEM below.\" This is the trigger that starts the sales sequence." },
-            { title: "Comment triggers DM", body: "Manual or automated — when someone types your keyword, the DM sequence fires." },
-            { title: "DM delivers value + link", body: "4-message framework: acknowledge → frame the problem → show what's inside → present checkout link." },
-            { title: "Click → purchase", body: "Low-ticket removes the \"let me think about it\" reflex. $27 is an impulse-accessible decision." },
-          ]} />
-
-          <H3>Conservative scenario</H3>
-          <RevenueBox rows={[
-            { label: "Posts per week", value: "5" },
-            { label: "Average reach per post", value: "2,000" },
-            { label: "Comment rate", value: "2%" },
-            { label: "Comments triggering DMs/week", value: "200" },
-            { label: "DM → link click rate", value: "35%" },
-            { label: "Click → purchase rate", value: "8%" },
-            { label: "Sales per week", value: "5.6" },
-            { label: "Price per unit", value: "$27" },
-            { label: "Weekly revenue", value: "$151", isTotal: false },
-            { label: "Monthly revenue (month 1)", value: "$604", isTotal: true },
-          ]} />
-
-          <QuickWin text="The one metric that tells you if it's working: DM → link click rate. Above 30% = messaging works. Below 30% = rewrite DM 2 (the value message)." />
-
-          <H3>Low-ticket as trust mechanism</H3>
-          <P>The $27 price isn't about maximizing revenue on the first sale. It's about removing friction and building a buyer list. People who buy once are 5-10x more likely to buy again.</P>
-          <P>Upsell logic comes later: consulting, done-for-you services, premium kits, coaching. The low-ticket product is the door. What's behind it is where the real revenue lives.</P>
-
-          <UseThisIf text="you're validating a new offer" action="Price it at $17-$27. Run the system for 30 days. If the DM-to-purchase rate is above 5%, you have a validated product. Then build the upsell." />
-        </Chapter>
-
-        {/* ═══════════════════════════════════════════════════ */}
-        {/* 9. WHEN TO USE WHAT */}
-        {/* ═══════════════════════════════════════════════════ */}
-        <Chapter num="06" title={<>When to use <em className="kit-accent" style={{ fontStyle: "italic" }}>what</em></>}
-          intro="A decision framework for tools. Not a recommendation list — a logic map. Use this when you're choosing between approaches.">
-
-          <H3>Tool decision matrix</H3>
-          <TableWrap headers={["Scenario", "Best tool", "Why"]} rows={[
-            ["Quick content generation", "Claude / ChatGPT (browser)", "Zero setup, high quality, paste brain and go"],
-            ["Consistent daily content", "Claude Project / Custom GPT", "Brain persists across sessions, no copy-pasting"],
-            ["Batch content at scale", "API + automation platform", "Programmatic, repeatable, hands-off"],
-            ["Browser-based research + writing", "Claude with browser agent", "Can read URLs, analyze competitors, write in context"],
-            ["DM automation on Instagram", "ManyChat + Meta integration", "Native keyword triggers, proven reliability"],
-            ["Multi-step workflow orchestration", "n8n or similar platform", "When you need to chain 3+ tools in sequence"],
-            ["Advanced agents / skills", "Claude Code / custom agents", "When you need AI to make decisions, not just generate"],
-            ["Simple checkout", "Gumroad / Lemon Squeezy", "Free to start, handles delivery automatically"],
-          ]} />
-
-          <Callout text="n8n and orchestration platforms are powerful — but they're not mandatory. Use them when you have repetitive multi-step workflows. Don't add complexity before you have volume." />
-
-          <UseThisIf text="you're doing the same 5-step process more than 3 times per week" action="That's when automation earns its setup cost. Below that threshold, manual is faster and more flexible." />
-
-          <MistakeBlock text="Building a 15-step automation for a workflow you do twice a month. Automation should save time proportional to frequency. If it's rare, keep it manual." />
-        </Chapter>
-
-        {/* ═══════════════════════════════════════════════════ */}
-        {/* 10. PROMPT LIBRARY */}
-        {/* ═══════════════════════════════════════════════════ */}
-        <Chapter num="07" title={<>Prompt <em className="kit-accent" style={{ fontStyle: "italic" }}>library</em></>}
-          intro="Copy-ready prompts organized by function. Replace brackets. Run. Iterate. Every prompt works with ChatGPT, Claude, Gemini, or any capable AI.">
-
-          <H3>Content prompts</H3>
-
-          <PromptBlock type="1. Hook Generator" content={`Write 10 carousel hook ideas for an Instagram account about [YOUR TOPIC].
-
-Rules:
-- Each hook must address a real pain point or counterintuitive insight
-- Max 8 words per hook
-- No emojis, no hype words
-- Mix patterns: counterintuitive, bold claim, specific result, pattern interrupt
-- Format: numbered list, hooks only`} />
-
-          <PromptBlock type="2. Carousel Writer" content={`Write a 7-slide Instagram carousel about: [TOPIC]
-
-Audience: [YOUR AUDIENCE]. Skeptical. Want real steps. Hate hype.
-
-Format:
-SLIDE 1 — HOOK: [max 8 words] + [1 sentence]
-SLIDES 2–6 — CONTENT: [max 7 words] + [1–2 sentences. One idea per slide.]
-SLIDE 7 — CTA: Want the full system? Comment SYSTEM below.
-
-Tone: direct, peer-to-peer, practitioner. Output slides only.`} />
-
-          <PromptBlock type="3. Caption Writer" content={`Write an Instagram caption for this carousel:
-
-[PASTE CAROUSEL CONTENT]
-
-Rules:
-- First line = hook (slide 1 headline, slightly expanded)
-- 3–4 short paragraphs max
-- End with: "Comment SYSTEM below and I'll send you the full breakdown."
-- 6 relevant hashtags (lowercase, no generic ones)
-- Tone: peer-to-peer. A practitioner sharing.`} />
-
-          <PromptBlock type="4. Weekly Content Calendar" content={`Create a 7-day content calendar for [YOUR BRAND].
-
-Audience: [YOUR AUDIENCE]. Platform: Instagram (primary), X (secondary).
-
-For each day:
-- Content type (carousel, single image, reel)
-- Topic (1 line)
-- Hook (max 8 words)
-- Angle (1 sentence)
-
-Mix: 4 carousels, 2 single images, 1 reel.`} />
-
-          <H3>Audit prompts</H3>
-
-          <PromptBlock type="5. Content Audit" content={`Analyze my last 10 posts (descriptions below) and tell me:
-
-1. What patterns are working (most engagement)?
-2. What patterns are failing?
-3. What topics am I missing?
-4. What should I double down on next week?
-
-Posts:
-[PASTE DESCRIPTIONS OR HOOKS OF YOUR LAST 10 POSTS]`} />
-
-          <PromptBlock type="6. Bio Optimizer" content={`Rewrite this Instagram bio:
-
-Current: [PASTE BIO]
-
-Format:
-- Line 1: What you do (max 5 words)
-- Line 2: Who you help + the result
-- Line 3: Social proof or specific number
-- Line 4: CTA`} />
-
-          <H3>Sales / DM prompts</H3>
-
-          <PromptBlock type="7. DM Response Handler" content={`You are handling DMs for [BRAND NAME].
-
-Context: this person commented [KEYWORD] on a post about [TOPIC]. They received the DM sequence and are now replying with questions.
-
-Rules:
-- Be helpful, direct, and honest
-- If they ask what's inside, list 3-4 key inclusions
-- If they say it's too expensive, acknowledge and move on — no discounting
-- If they ask for a preview, share ONE specific insight
-- Never be pushy. If they say no, thank them
-- Keep responses under 3 sentences when possible
-
-Their message: [PASTE DM HERE]`} />
-
-          <PromptBlock type="8. Objection Handler" content={`Write responses to these common objections about [YOUR PRODUCT]:
-
-1. "Is this a course?"
-2. "I'm not technical"
-3. "Will this work for my niche?"
-4. "Seems too cheap"
-5. "I'll think about it"
-
-Rules: honest, max 2 sentences each, no pressure, acknowledge the concern before responding.`} />
-
-          <PromptBlock type="9. Testimonial Request" content={`Write a DM asking a client for a testimonial.
-
-Context: I delivered [PROJECT TYPE]. Results: [RESULTS].
-
-Rules: casual, genuine, ask for specifics, offer to draft something they can edit, max 5 sentences.`} />
-
-          <H3>System / operator prompts</H3>
-
-          <PromptBlock type="10. Topic Research" content={`Find the top questions [YOUR AUDIENCE] are asking about [YOUR TOPIC] right now.
-
-For each question, suggest:
-1. The question as-is
-2. A carousel hook version (max 8 words)
-3. The core insight the carousel should deliver
-
-Return 10 results. Numbered list.`} />
-
-          <PromptBlock type="11. Repurpose → X Thread" content={`Convert this Instagram carousel into an X/Twitter thread:
-
-[PASTE CAROUSEL]
-
-Rules:
-- Tweet 1 = hook (max 280 chars)
-- Tweets 2–7 = one per slide, expanded
-- Last tweet = "Full breakdown: [link]"
-- No hashtags. Max 240 chars per tweet.
-- Format: 1/ 2/ 3/`} />
-
-          <PromptBlock type="12. Product Description" content={`Write a product description for:
-
-Product: [NAME] | Price: [PRICE]
-Includes: [LIST] | For: [AUDIENCE]
-
-Format: Headline (max 8 words) → 3 paragraphs (problem → solution → inside) → bullet list (max 8) → trust line.`} />
-        </Chapter>
-
-        {/* ═══════════════════════════════════════════════════ */}
-        {/* 11. OPERATOR REPOSITORY */}
-        {/* ═══════════════════════════════════════════════════ */}
-        <Chapter num="08" title={<>Operator <em className="kit-accent" style={{ fontStyle: "italic" }}>repository</em></>}
-          intro="Your vault. The collection of reusable assets that compound over time. Not a folder dump — a living resource layer.">
-
-          <P>Every operator accumulates assets: prompts that work, templates that convert, workflows that save time. Most people scatter these across apps and browser tabs. The vault centralizes them.</P>
-
-          <H3>What goes in the vault</H3>
-          <Steps items={[
-            { title: "Skill files", body: "Reusable prompts that do one thing well. Your brain prompt, hook generator, carousel writer — each is a skill file. Name them clearly. Version them." },
-            { title: "Prompt templates", body: "Prompts with placeholders for different contexts. A carousel prompt that works for any topic. A DM handler that works for any product." },
-            { title: "Workflow references", body: "Step-by-step descriptions of your processes. \"How I publish a carousel\" — the exact steps, tools, and time involved." },
-            { title: "Performance notes", body: "What hooks worked best. Which DM message got the most replies. What topics drove sales. This is your institutional memory." },
-          ]} />
-
-          <H3>How to organize it</H3>
-          <TableWrap headers={["Category", "Examples", "Format"]} rows={[
-            ["Brain files", "Content brain, DM brain, sales brain", "Text files with version numbers"],
-            ["Content templates", "Carousel, caption, thread, reel script", "Prompt templates with placeholders"],
-            ["DM scripts", "Trigger sequence, objection handlers, follow-ups", "Copy-ready message templates"],
-            ["Hook bank", "Tested hooks with performance notes", "Spreadsheet with engagement data"],
-            ["Workflow docs", "Publishing flow, DM setup, weekly review", "Step-by-step checklists"],
-            ["Results log", "Weekly metrics, winning posts, revenue data", "Simple spreadsheet"],
-          ]} />
-
-          <PathGrid items={[
-            { path: "fast", icon: "⚡", title: "Fast Path", desc: "One Google Doc with sections. Copy-paste what you need. Simple, searchable, zero overhead.", time: "10 min setup" },
-            { path: "stable", icon: "🔁", title: "Stable Path", desc: "Notion workspace with databases for each category. Linked, tagged, filterable.", time: "30 min setup" },
-            { path: "scale", icon: "📈", title: "Scale Path", desc: "Version-controlled repository. Prompts accessible via API. Workflow definitions as configuration files.", time: "1 hour setup" },
-          ]} />
-
-          <QuickWin text="Start your vault today: create a document, paste your brain prompt, save the 3 prompts you use most, and write down your current publishing workflow in bullet points. 15 minutes." />
-
-          <Callout text="The vault gets more valuable over time. Every week, add what worked and remove what didn't. After 90 days, you'll have a proprietary operating system no one else can replicate." />
-        </Chapter>
-
-        {/* ═══════════════════════════════════════════════════ */}
-        {/* PART 7 — LAUNCH PLAN */}
-        {/* ═══════════════════════════════════════════════════ */}
-        <Chapter num="07" title={<>Your first version, <em className="kit-accent" style={{ fontStyle: "italic" }}>running</em></>}
-          intro="A realistic plan for getting your first system live. Not a course timeline. A sequenced checklist that accounts for the path you chose. Pick yours and follow it.">
-
-          <H3><span className="kit-path-tag kit-path-fast">FAST PATH</span> — Days 1 & 2</H3>
-          <Checklist items={[
-            { title: "Create Claude.ai account → start a Project", desc: "Paste the brain prompt from Part 03 as the Project instruction. Test with one topic." },
-            { title: "Set up Notion queue — 5 columns", desc: "Title, Status, Hook, Content, Publish Date. Add 10 topic ideas manually." },
-            { title: "Build carousel template in Canva", desc: "Dark background, white text, brand logo. 1080x1080. 7 slides. Save as a template." },
-            { title: "Write 3 carousels using the carousel writer prompt", desc: "Pick 3 topics from your queue. Review and approve each before designing." },
-            { title: "Create Lemon Squeezy product — $27", desc: "Upload this file. Copy the checkout URL. This is the link in DM 4." },
-            { title: "Connect ManyChat to Instagram", desc: "Requires Instagram Business or Creator account. Free ManyChat tier is enough." },
-            { title: "Configure SYSTEM keyword trigger + 5 DMs", desc: "Use the sequence from Part 03. Replace [YOUR CHECKOUT LINK] in DM 4." },
-            { title: "Test the full flow from a second account", desc: "Comment SYSTEM. Watch all 5 DMs fire. Click the link. Confirm checkout works." },
-            { title: "Publish your first carousel. Set ManyChat to Live.", desc: 'Caption ends with: "Comment SYSTEM below and I\'ll send you the full breakdown."' },
-          ]} />
-
-          <H3><span className="kit-path-tag kit-path-stable">STABLE PATH</span> — Days 1–7</H3>
-          <Checklist items={[
-            { title: "Complete Fast Path setup first", desc: "Fast Path is the foundation. Stable Path adds automation on top of a working system." },
-            { title: "Create Anthropic API key at console.anthropic.com", desc: "Start with a $10 credit. 100 carousels costs less than $1 at Sonnet rates." },
-            { title: "Create Airtable base — 8 fields as listed in Part 03", desc: "Migrate your Notion topics here. Set up Status as a Single Select with all stages." },
-            { title: "Deploy n8n on Railway or n8n Cloud", desc: "Railway: free tier works. n8n Cloud: $20/mo, no setup. Pick based on technical comfort." },
-            { title: "Build Workflow 1 — Daily Content Generator", desc: "Cron → Airtable read → Claude API (carousel) → Claude API (caption) → Airtable write → Email notify." },
-            { title: "Build Workflow 2 — Approved Post Scheduler", desc: 'Airtable webhook → Buffer API schedule → Status update to "Scheduled".' },
-            { title: "Test both workflows end to end", desc: "Trigger manually first. Confirm Airtable records update correctly. Check Buffer queue." },
-            { title: "Run for 3 days before evaluating", desc: "The first 3 days will surface issues. Fix them before optimizing. Don't optimize a broken system." },
-          ]} />
-
-          <H3><span className="kit-path-tag kit-path-scale">SCALE PATH</span> — Direction</H3>
-          <P>Scale Path doesn't have a 7-day checklist because it depends entirely on what your Stable Path system looks like. The sequence is: proven Stable system → identify the highest-friction manual step → eliminate it with agents or skills → repeat.</P>
-          <Steps items={[
-            { title: "Install Claude Code and explore your codebase", body: "Start with claude in your terminal. Read the Claude Code documentation. Understand what it can and can't access." },
-            { title: "Set up Obsidian vault for operator documentation", body: "Create a vault. Add your brain prompts as .md files. Install the Obsidian Git plugin. Push to a private GitHub repo." },
-            { title: "Write your first skill file using the template from Part 06", body: "Start with the content-brain skill. Store it in /skills. Reference it in a Claude Code session. Confirm it works as expected." },
-            { title: "Identify one manual step in your Stable system to replace", body: "The weekly content review, the DM reply monitoring, the brain update — pick one. Design a skill that handles it. Deploy. Evaluate." },
-          ]} />
-        </Chapter>
-
-        {/* ═══════════════════════════════════════════════════ */}
-        {/* PART 8 — REVENUE MATH */}
-        {/* ═══════════════════════════════════════════════════ */}
-        <Chapter num="08" title={<>What this system <em className="kit-accent" style={{ fontStyle: "italic" }}>produces</em></>}
-          intro="Real numbers from real content operations. Use these as benchmarks, not guarantees. Your results depend on your content quality, posting consistency, and audience fit — but the conversion mechanics work the same way.">
-
-          <H3>The funnel math</H3>
-          <TableWrap headers={["Metric", "Conservative", "Growth", "Notes"]} rows={[
-            ["Posts per week", "3–5", "5–7", "Consistency beats volume"],
-            ["Comments per post (avg)", "20–40", "60–120", "Grows with audience size"],
-            ["DM sequences/week", "60–200", "300–840", "Each comment = one sequence"],
-            ["DM-to-click rate", "8–10%", "10–15%", "Depends on DM copy quality"],
-            ["Click-to-purchase rate", "15–20%", "20–30%", "Depends on product/price fit"],
-            ["Sales per week", "1–4", "6–37", "Wide range — content quality matters most"],
-          ]} />
-
-          <H3>Monthly revenue scenarios</H3>
-          <RevenueBox rows={[
-            { label: "Conservative (new account, early posting)", value: "$108–$432/mo" },
-            { label: "Growth (consistent 60 days, 500–2K followers)", value: "$648–$3,996/mo" },
-            { label: "High-ticket upsell (3–5% of $27 buyers)", value: "+ $500–5,000 per conversion" },
-            { label: "The real ceiling", value: "Unlimited", isTotal: true },
-          ]} />
-
-          <H3>The upsell math</H3>
-          <P>Every $27 buyer is a validated lead. They've proven they'll invest in solutions. After 30 buyers, you have a warm audience for a high-ticket offer — implementation, 1:1 consulting, or a done-with-you engagement.</P>
-          <TableWrap headers={["$27 buyers", "Upsell at $500", "Upsell at $2,000", "Upsell at $5,000"]} rows={[
-            ["30", "$450–750", "$1,800–3,000", "$4,500–7,500"],
-            ["100", "$1,500–2,500", "$6,000–10,000", "$15,000–25,000"],
-            ["300", "$4,500–7,500", "$18,000–30,000", "$45,000–75,000"],
-          ]} />
-
-          <Callout text="The real product is trust. The $27 kit is a trust mechanism. Price it to sell, not to profit. The profit comes from the buyers who trust you enough to invest $500–5,000 in working with you directly. Get 30 buyers first. Then make them an offer." />
-        </Chapter>
-
-        {/* ═══════════════════════════════════════════════════ */}
-        {/* PART 9 — WHAT COMES NEXT */}
-        {/* ═══════════════════════════════════════════════════ */}
-        <Chapter num="09" title={<>The <em className="kit-accent" style={{ fontStyle: "italic" }}>upgrade path</em></>}
-          intro="This kit gets you to your first working system. Here's what to build after that — in the right order.">
-
-          <Steps items={[
-            { title: "After 10 sales — collect testimonials", body: "One specific result from a real buyer changes DM 3 conversion dramatically. Ask every buyer the testimonial request prompt (Prompt 12). Add the best result to the pitch DM." },
-            { title: "After 30 sales — build the high-ticket offer", body: "You now have 30 people who paid you and trust you. Create a consulting or done-with-you offer at $500–2,000. Send one broadcast in ManyChat to all contacts tagged IG_LOW_TICKET_PITCHED. This is your first serious revenue spike." },
-            { title: "After Stable — graduate from Fast to Stable Path", body: "Once you're posting 5x/week consistently and handling 50+ DM sequences per week, the manual steps become the bottleneck. That's when n8n pays for itself in the first week. Don't upgrade before that point." },
-            { title: "After proven — move to Scale Path when the system earns it", body: "Scale Path makes sense when you have a proven system, consistent revenue, and specific manual steps you want to remove. Not before. The complexity cost is real — only worth it when the ROI is clear." },
-            { title: "Always — update your brain monthly", body: "Run the brain audit prompt (Prompt 8) at the start of every month. Every 100 outputs reveal patterns you missed when you wrote the brain. A brain that compounds improvement over time is a moat." },
-          ]} />
-
-          <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, margin: "-30px" }} transition={{ duration: 0.6 }}
-            style={{ padding: "48px 0", textAlign: "center", borderTop: "1px solid #222220", marginTop: 32 }}>
-            <p className="kit-serif" style={{ fontSize: 20, fontStyle: "italic", color: "#777", maxWidth: 600, margin: "0 auto", lineHeight: 1.6 }}>
-              "The meta-lesson of this entire kit: you built it using exactly what it teaches. That's your proof of concept. Every client you pitch can see that you operate what you sell."
-            </p>
-            <div className="kit-mono" style={{ fontSize: 10, color: "#3a3a36", marginTop: 16, letterSpacing: "0.1em" }}>FLUXROW — AI Operator Kit v1.0</div>
-          </motion.div>
-        </Chapter>
 
         {/* ═══════════════════════════════════════════════════ */}
         {/* PART 4 — WHEN TO USE WHAT */}
         {/* ═══════════════════════════════════════════════════ */}
-        <Chapter num="P4" title={<>The decision <em className="kit-accent" style={{ fontStyle: "italic" }}>layer</em></>}
+        <Chapter num="05" title={<>The decision <em className="kit-accent" style={{ fontStyle: "italic" }}>layer</em></>}
           intro="The most common mistake operators make isn't choosing bad tools — it's using the right tool at the wrong time, or using complex tools when simple ones work better. This section is the decision framework.">
 
           <H3>Use Claude directly when…</H3>
@@ -843,7 +512,7 @@ Format: Headline (max 8 words) → 3 paragraphs (problem → solution → inside
         {/* ═══════════════════════════════════════════════════ */}
         {/* PART 5 — PROMPT LIBRARY */}
         {/* ═══════════════════════════════════════════════════ */}
-        <Chapter num="P5" title={<>15 prompts — <em className="kit-accent" style={{ fontStyle: "italic" }}>ready to run</em></>}
+        <Chapter num="06" title={<>15 prompts — <em className="kit-accent" style={{ fontStyle: "italic" }}>ready to run</em></>}
           intro="Each prompt includes context for when to use it and which path it fits. Copy the prompt, replace brackets, run. No modification needed to start.">
 
           <H3>Content prompts</H3>
@@ -1074,7 +743,7 @@ Be direct. No padding.`} />
         {/* ═══════════════════════════════════════════════════ */}
         {/* PART 6 — OPERATOR REPOSITORY */}
         {/* ═══════════════════════════════════════════════════ */}
-        <Chapter num="P6" title={<>The resource <em className="kit-accent" style={{ fontStyle: "italic" }}>vault</em></>}
+        <Chapter num="07" title={<>The resource <em className="kit-accent" style={{ fontStyle: "italic" }}>vault</em></>}
           intro="The Operator Repository is where this kit lives beyond the PDF. It's a curated collection of skill files, prompt templates, and workflow references — maintained and updated as the tooling evolves. Built for operators who want resources that don't go stale.">
 
           <H3>What's in the vault</H3>
@@ -1135,6 +804,105 @@ Format: [text / JSON / variables]
 ## Example
 Input: [example]
 Output: [example]`} />
+        </Chapter>
+
+        {/* ═══════════════════════════════════════════════════ */}
+        {/* PART 7 — LAUNCH PLAN */}
+        {/* ═══════════════════════════════════════════════════ */}
+        <Chapter num="08" title={<>Your first version, <em className="kit-accent" style={{ fontStyle: "italic" }}>running</em></>}
+          intro="A realistic plan for getting your first system live. Not a course timeline. A sequenced checklist that accounts for the path you chose. Pick yours and follow it.">
+
+          <H3><span className="kit-path-tag kit-path-fast">FAST PATH</span> — Days 1 & 2</H3>
+          <Checklist items={[
+            { title: "Create Claude.ai account → start a Project", desc: "Paste the brain prompt from Part 03 as the Project instruction. Test with one topic." },
+            { title: "Set up Notion queue — 5 columns", desc: "Title, Status, Hook, Content, Publish Date. Add 10 topic ideas manually." },
+            { title: "Build carousel template in Canva", desc: "Dark background, white text, brand logo. 1080x1080. 7 slides. Save as a template." },
+            { title: "Write 3 carousels using the carousel writer prompt", desc: "Pick 3 topics from your queue. Review and approve each before designing." },
+            { title: "Create Lemon Squeezy product — $27", desc: "Upload this file. Copy the checkout URL. This is the link in DM 4." },
+            { title: "Connect ManyChat to Instagram", desc: "Requires Instagram Business or Creator account. Free ManyChat tier is enough." },
+            { title: "Configure SYSTEM keyword trigger + 5 DMs", desc: "Use the sequence from Part 03. Replace [YOUR CHECKOUT LINK] in DM 4." },
+            { title: "Test the full flow from a second account", desc: "Comment SYSTEM. Watch all 5 DMs fire. Click the link. Confirm checkout works." },
+            { title: "Publish your first carousel. Set ManyChat to Live.", desc: 'Caption ends with: "Comment SYSTEM below and I\'ll send you the full breakdown."' },
+          ]} />
+
+          <H3><span className="kit-path-tag kit-path-stable">STABLE PATH</span> — Days 1–7</H3>
+          <Checklist items={[
+            { title: "Complete Fast Path setup first", desc: "Fast Path is the foundation. Stable Path adds automation on top of a working system." },
+            { title: "Create Anthropic API key at console.anthropic.com", desc: "Start with a $10 credit. 100 carousels costs less than $1 at Sonnet rates." },
+            { title: "Create Airtable base — 8 fields as listed in Part 03", desc: "Migrate your Notion topics here. Set up Status as a Single Select with all stages." },
+            { title: "Deploy n8n on Railway or n8n Cloud", desc: "Railway: free tier works. n8n Cloud: $20/mo, no setup. Pick based on technical comfort." },
+            { title: "Build Workflow 1 — Daily Content Generator", desc: "Cron → Airtable read → Claude API (carousel) → Claude API (caption) → Airtable write → Email notify." },
+            { title: "Build Workflow 2 — Approved Post Scheduler", desc: 'Airtable webhook → Buffer API schedule → Status update to "Scheduled".' },
+            { title: "Test both workflows end to end", desc: "Trigger manually first. Confirm Airtable records update correctly. Check Buffer queue." },
+            { title: "Run for 3 days before evaluating", desc: "The first 3 days will surface issues. Fix them before optimizing. Don't optimize a broken system." },
+          ]} />
+
+          <H3><span className="kit-path-tag kit-path-scale">SCALE PATH</span> — Direction</H3>
+          <P>Scale Path doesn't have a 7-day checklist because it depends entirely on what your Stable Path system looks like. The sequence is: proven Stable system → identify the highest-friction manual step → eliminate it with agents or skills → repeat.</P>
+          <Steps items={[
+            { title: "Install Claude Code and explore your codebase", body: "Start with claude in your terminal. Read the Claude Code documentation. Understand what it can and can't access." },
+            { title: "Set up Obsidian vault for operator documentation", body: "Create a vault. Add your brain prompts as .md files. Install the Obsidian Git plugin. Push to a private GitHub repo." },
+            { title: "Write your first skill file using the template from Part 06", body: "Start with the content-brain skill. Store it in /skills. Reference it in a Claude Code session. Confirm it works as expected." },
+            { title: "Identify one manual step in your Stable system to replace", body: "The weekly content review, the DM reply monitoring, the brain update — pick one. Design a skill that handles it. Deploy. Evaluate." },
+          ]} />
+        </Chapter>
+
+        {/* ═══════════════════════════════════════════════════ */}
+        {/* PART 8 — REVENUE MATH */}
+        {/* ═══════════════════════════════════════════════════ */}
+        <Chapter num="09" title={<>What this system <em className="kit-accent" style={{ fontStyle: "italic" }}>produces</em></>}
+          intro="Real numbers from real content operations. Use these as benchmarks, not guarantees. Your results depend on your content quality, posting consistency, and audience fit — but the conversion mechanics work the same way.">
+
+          <H3>The funnel math</H3>
+          <TableWrap headers={["Metric", "Conservative", "Growth", "Notes"]} rows={[
+            ["Posts per week", "3–5", "5–7", "Consistency beats volume"],
+            ["Comments per post (avg)", "20–40", "60–120", "Grows with audience size"],
+            ["DM sequences/week", "60–200", "300–840", "Each comment = one sequence"],
+            ["DM-to-click rate", "8–10%", "10–15%", "Depends on DM copy quality"],
+            ["Click-to-purchase rate", "15–20%", "20–30%", "Depends on product/price fit"],
+            ["Sales per week", "1–4", "6–37", "Wide range — content quality matters most"],
+          ]} />
+
+          <H3>Monthly revenue scenarios</H3>
+          <RevenueBox rows={[
+            { label: "Conservative (new account, early posting)", value: "$108–$432/mo" },
+            { label: "Growth (consistent 60 days, 500–2K followers)", value: "$648–$3,996/mo" },
+            { label: "High-ticket upsell (3–5% of $27 buyers)", value: "+ $500–5,000 per conversion" },
+            { label: "The real ceiling", value: "Unlimited", isTotal: true },
+          ]} />
+
+          <H3>The upsell math</H3>
+          <P>Every $27 buyer is a validated lead. They've proven they'll invest in solutions. After 30 buyers, you have a warm audience for a high-ticket offer — implementation, 1:1 consulting, or a done-with-you engagement.</P>
+          <TableWrap headers={["$27 buyers", "Upsell at $500", "Upsell at $2,000", "Upsell at $5,000"]} rows={[
+            ["30", "$450–750", "$1,800–3,000", "$4,500–7,500"],
+            ["100", "$1,500–2,500", "$6,000–10,000", "$15,000–25,000"],
+            ["300", "$4,500–7,500", "$18,000–30,000", "$45,000–75,000"],
+          ]} />
+
+          <Callout text="The real product is trust. The $27 kit is a trust mechanism. Price it to sell, not to profit. The profit comes from the buyers who trust you enough to invest $500–5,000 in working with you directly. Get 30 buyers first. Then make them an offer." />
+        </Chapter>
+
+        {/* ═══════════════════════════════════════════════════ */}
+        {/* PART 9 — WHAT COMES NEXT */}
+        {/* ═══════════════════════════════════════════════════ */}
+        <Chapter num="10" title={<>The <em className="kit-accent" style={{ fontStyle: "italic" }}>upgrade path</em></>}
+          intro="This kit gets you to your first working system. Here's what to build after that — in the right order.">
+
+          <Steps items={[
+            { title: "After 10 sales — collect testimonials", body: "One specific result from a real buyer changes DM 3 conversion dramatically. Ask every buyer the testimonial request prompt (Prompt 12). Add the best result to the pitch DM." },
+            { title: "After 30 sales — build the high-ticket offer", body: "You now have 30 people who paid you and trust you. Create a consulting or done-with-you offer at $500–2,000. Send one broadcast in ManyChat to all contacts tagged IG_LOW_TICKET_PITCHED. This is your first serious revenue spike." },
+            { title: "After Stable — graduate from Fast to Stable Path", body: "Once you're posting 5x/week consistently and handling 50+ DM sequences per week, the manual steps become the bottleneck. That's when n8n pays for itself in the first week. Don't upgrade before that point." },
+            { title: "After proven — move to Scale Path when the system earns it", body: "Scale Path makes sense when you have a proven system, consistent revenue, and specific manual steps you want to remove. Not before. The complexity cost is real — only worth it when the ROI is clear." },
+            { title: "Always — update your brain monthly", body: "Run the brain audit prompt (Prompt 8) at the start of every month. Every 100 outputs reveal patterns you missed when you wrote the brain. A brain that compounds improvement over time is a moat." },
+          ]} />
+
+          <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, margin: "-30px" }} transition={{ duration: 0.6 }}
+            style={{ padding: "48px 0", textAlign: "center", borderTop: "1px solid #222220", marginTop: 32 }}>
+            <p className="kit-serif" style={{ fontSize: 20, fontStyle: "italic", color: "#777", maxWidth: 600, margin: "0 auto", lineHeight: 1.6 }}>
+              "The meta-lesson of this entire kit: you built it using exactly what it teaches. That's your proof of concept. Every client you pitch can see that you operate what you sell."
+            </p>
+            <div className="kit-mono" style={{ fontSize: 10, color: "#3a3a36", marginTop: 16, letterSpacing: "0.1em" }}>FLUXROW — AI Operator Kit v1.0</div>
+          </motion.div>
         </Chapter>
 
         {/* ═══════════════════════════════════════════════════ */}
