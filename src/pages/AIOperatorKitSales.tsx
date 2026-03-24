@@ -64,11 +64,13 @@ const notForList = [
 
 const valueStack = [
   "5-layer system architecture",
-  "40+ pre-built AI prompts",
-  "Content queue templates",
-  "Hook + content frameworks",
-  "DM sales scripts & flows",
-  "7-day launch checklist",
+  "3 execution paths (Fast / Stable / Scale)",
+  "40+ copy-ready AI prompts",
+  "Content queue + hook bank templates",
+  "DM sales scripts + objection handlers",
+  "7-day launch playbook with daily checklists",
+  "Tool comparison matrix by path",
+  "Troubleshooting guide",
 ];
 
 const Divider = () => (
