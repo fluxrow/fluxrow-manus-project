@@ -75,7 +75,7 @@ const AIOperatorKit = () => {
               </div>
             ))}
           </div>
-        </div>
+        </motion.div>
 
         {/* CHAPTER NAV */}
         <div style={{ background: "#111110", border: "1px solid #222220", borderRadius: 10, padding: "24px 28px", margin: "48px 0" }}>
