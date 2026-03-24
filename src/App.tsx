@@ -48,6 +48,7 @@ const BriefingAlek = React.lazy(() => import("./pages/BriefingAlek"));
 const PropostaPublica = React.lazy(() => import("./pages/PropostaPublica"));
 const PoliticaPrivacidade = React.lazy(() => import("./pages/PoliticaPrivacidade"));
 const TermosDeUso = React.lazy(() => import("./pages/TermosDeUso"));
+const AIOperatorKit = React.lazy(() => import("./pages/AIOperatorKit"));
 
 const queryClient = new QueryClient();
 
