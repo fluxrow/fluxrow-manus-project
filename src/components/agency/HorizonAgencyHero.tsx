@@ -474,7 +474,7 @@ const HorizonAgencyHero = () => {
               className="bg-transparent border-2 border-cyan-500 text-cyan-400 px-6 sm:px-10 py-4 sm:py-5 rounded-full font-semibold font-space-grotesk hover:bg-cyan-500/10 transition-all duration-300 group flex items-center justify-center backdrop-blur-sm w-full sm:w-auto"
             >
               <Play className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
-              Ver Cases
+              {t('hero.cta_secondary')}
             </button>
           </div>
         </div>
