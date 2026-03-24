@@ -776,7 +776,7 @@ const DMThread = ({ messages }: { messages: { label: string; timing: string; tex
 );
 
 const WorkflowTable = ({ nodes }: { nodes: { type: string; name: string; desc: string }[] }) => (
-  <div style={{ background: "#111110", border: "1px solid #222220", borderRadius: 10, overflow: "hidden", margin: "24px 0" }}>
+  <motion.div initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-30px" }} transition={{ duration: 0.5 }} style={{ background: "#111110", border: "1px solid #222220", borderRadius: 10, overflow: "hidden", margin: "24px 0" }}>
     {nodes.map((n, i) => (
       <div key={i} className="kit-workflow-node" style={{ padding: "18px 24px", borderBottom: i < nodes.length - 1 ? "1px solid #222220" : "none", display: "grid", gridTemplateColumns: "32px 120px 1fr", gap: 16, alignItems: "start" }}>
         <span className="kit-mono" style={{ fontSize: 10, color: "#c8f000", paddingTop: 2 }}>{String(i + 1).padStart(2, "0")}</span>
@@ -787,7 +787,7 @@ const WorkflowTable = ({ nodes }: { nodes: { type: string; name: string; desc: s
         </div>
       </div>
     ))}
-  </div>
+  </motion.div>
 );
 
 const RevenueBox = ({ rows }: { rows: { label: string; value: string; isTotal?: boolean }[] }) => (
