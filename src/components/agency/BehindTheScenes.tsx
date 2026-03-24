@@ -70,7 +70,7 @@ const devTechs = [
   { name: "Lovable", icon: Palette }
 ];
 
-const TechCard = ({ category, index }: { category: typeof techCategories[0], index: number }) => {
+const TechCard = ({ category, translatedCategory, index }: { category: typeof techCategoryMeta[0], translatedCategory: any, index: number }) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
