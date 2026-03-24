@@ -92,6 +92,7 @@ const AIOperatorKitSales = () => {
         title="AI Operator Starter Kit — Fluxrow"
         description="The system behind your content, DMs, and sales. Prompts, templates, architecture, and a 7-day launch checklist for solo operators. $27."
         path="/kit"
+        image="https://fluxrow.com/og-kit.jpg"
         imageAlt="AI Operator Starter Kit by Fluxrow"
       />
       {/* ── Hero ── */}
