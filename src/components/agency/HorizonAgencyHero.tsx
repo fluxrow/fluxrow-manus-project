@@ -438,7 +438,7 @@ const HorizonAgencyHero = () => {
           <div ref={statsRef} className="mb-6 md:mb-8 flex flex-row justify-center items-center gap-2 sm:gap-4 md:gap-8 text-[10px] sm:text-sm px-2 flex-wrap" style={{ visibility: 'hidden' }}>
             <div className="bg-gradient-to-r from-cyan-500/40 to-purple-500/40 border border-cyan-500/30 rounded-full px-2.5 py-1.5 sm:px-3 sm:py-2 whitespace-nowrap backdrop-blur-md">
               <span className="text-cyan-400 font-bold">+{counters.automations}</span>
-              <span className="text-white ml-1 drop-shadow-lg">automações</span>
+              <span className="text-white ml-1 drop-shadow-lg">{t('hero.stats.automations')}</span>
             </div>
             <div className="bg-gradient-to-r from-purple-500/40 to-pink-500/40 border border-purple-500/30 rounded-full px-2.5 py-1.5 sm:px-3 sm:py-2 whitespace-nowrap backdrop-blur-md">
               <span className="text-purple-400 font-bold">+{counters.leads}</span>
