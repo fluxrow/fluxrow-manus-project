@@ -1470,4 +1470,22 @@ const Quote = ({ text }: { text: string }) => (
   </motion.div>
 );
 
+const DecisionCard = ({ name, subtitle, useWhen, skipWhen }: { name: string; subtitle?: string; useWhen: string; skipWhen: string }) => (
+  <motion.div initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-20px" }} transition={{ duration: 0.4 }}
+    style={{ background: "#111110", border: "1px solid #222220", borderRadius: 8, padding: "24px 28px", margin: "16px 0", display: "grid", gridTemplateColumns: "100px 1fr 1fr", gap: 20 }} className="kit-dm-msg">
+    <div>
+      <div style={{ fontSize: 14, fontWeight: 500, color: "#e8e6df" }}>{name}</div>
+      {subtitle && <div style={{ fontSize: 11, color: "#6b6960", marginTop: 4 }}>{subtitle}</div>}
+    </div>
+    <div>
+      <div className="kit-mono" style={{ fontSize: 9, letterSpacing: "0.1em", color: "#7acc7a", textTransform: "uppercase", marginBottom: 8 }}>Use it when</div>
+      <div style={{ fontSize: 13, color: "#aaa", lineHeight: 1.65 }}>{useWhen}</div>
+    </div>
+    <div>
+      <div className="kit-mono" style={{ fontSize: 9, letterSpacing: "0.1em", color: "#ff8800", textTransform: "uppercase", marginBottom: 8 }}>Skip it when</div>
+      <div style={{ fontSize: 13, color: "#aaa", lineHeight: 1.65 }}>{skipWhen}</div>
+    </div>
+  </motion.div>
+);
+
 export default AIOperatorKit;
