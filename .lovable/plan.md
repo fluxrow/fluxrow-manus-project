@@ -1,48 +1,59 @@
 
 
-## Links Publicos para Propostas de Clientes
+## Internacionalização completa do site — página por página
 
-Criar rotas publicas `/p/:slug` que permitem clientes acessarem diretamente suas propostas sem PIN e sem ver o dashboard com outras propostas. O painel `/propostas` continua protegido por PIN para uso interno.
+### Infraestrutura (primeiro)
 
----
+**1. Instalar dependências**: `react-i18next`, `i18next`, `i18next-browser-languagedetector`
 
-### O que muda
+**2. Criar `src/i18n/index.ts`** — configuração do i18next com detecção automática via `navigator.language` + fallback para inglês
 
-1. **Nova rota publica `/p/:slug`** - Cada cliente recebe um link direto como `fluxrow.com/p/teresopolis` que abre apenas a proposta dele, sem PIN e sem dashboard.
+**3. Criar `src/i18n/locales/en.json`** — todas as strings em inglês
+**4. Criar `src/i18n/locales/pt.json`** — todas as strings em português (cópia do que já existe)
 
-2. **Dashboard interno intacto** - `/propostas` continua protegido pelo PIN 2907 como esta hoje.
+**5. Criar Edge Function `supabase/functions/detect-language/index.ts`** — lê IP via headers e retorna país/idioma. Chamada uma vez no load, resultado salvo em `localStorage`
 
----
+**6. Atualizar `src/main.tsx`** — importar i18n antes do render
 
-### Detalhes Tecnicos
+### Componentes a traduzir (em ordem, um por vez)
 
-**1. Criar pagina `src/pages/PropostaPublica.tsx`**
-- Recebe o `:slug` da URL
-- Busca a proposta correspondente no array `propostas` de `src/data/propostas.ts`
-- Se o slug existir, renderiza o componente da proposta (ex: `PropostaTeresopolis`)
-- Se nao existir, mostra pagina 404
-- Sem header, sem dashboard, sem acesso a outras propostas
-- Meta tags noindex/nofollow para nao indexar
+| # | Arquivo | Strings principais |
+|---|---------|-------------------|
+| 1 | `AgencyNav.tsx` | Links de navegação, "Fale Conosco" |
+| 2 | `HorizonAgencyHero.tsx` | Títulos das seções, subtítulos, CTAs, stats labels |
+| 3 | `ServicesGrid.tsx` | 8 serviços (título, descrição, features, deliverables) |
+| 4 | `CasesPortfolio.tsx` | 10 cases (título, descrição, métricas, depoimentos) |
+| 5 | `ProcessTimeline.tsx` | 4 steps do processo |
+| 6 | `BehindTheScenes.tsx` | Tech categories, showcase blocks, headers |
+| 7 | `EnhancedInteractiveBriefing.tsx` | 5 perguntas do briefing, opções, diagnósticos |
+| 8 | `AgencyCTA.tsx` | CTA final, footer, links legais |
+| 9 | `SEO.tsx` | Meta tags (title, description, og:locale) |
+| 10 | `Contato.tsx` | Formulário de contato |
 
-**2. Criar mapeamento slug -> componente**
-- Um objeto simples que mapeia cada slug ao seu componente lazy-loaded (reutilizando os mesmos imports do App.tsx)
+### Como funciona a tradução em cada componente
 
-**3. Adicionar rotas no `App.tsx`**
-- Adicionar `<Route path="/p/:slug" element={<PropostaPublica />} />` antes do catch-all
-- Cada proposta fica acessivel em `/p/teresopolis`, `/p/match-solutions`, etc.
+- Importar `useTranslation` do react-i18next
+- Substituir strings hardcoded por `t('chave.do.texto')`
+- Manter a mesma estrutura visual — só muda o texto
 
-**4. Atualizar `src/data/propostas.ts`**
-- Adicionar campo `rotaPublica` em cada proposta (ex: `/p/teresopolis`) para facilitar copiar/compartilhar o link no dashboard interno
+### Detecção por IP
 
----
+- No primeiro load, chama a Edge Function que retorna `{ language: "en" | "pt" }`
+- Se Brasil → pt, senão → en
+- Salva em `localStorage` para não chamar de novo
+- Usuário pode trocar manualmente via seletor no nav
 
-### Links de exemplo para compartilhar com clientes
+### Seletor de idioma no Header
 
-- `fluxrow.com/p/teresopolis` - Teresopolis Shopping
-- `fluxrow.com/p/match-solutions` - Match Solutions
-- `fluxrow.com/p/amanda-neves` - Amanda Neves
-- `fluxrow.com/p/promotrip` - Promotrip
-- `fluxrow.com/p/evolua-digital` - Evolua Digital
-- `fluxrow.com/p/comunica` - Comunica
-- `fluxrow.com/p/babora-seguros` - Babora Seguros
+- Botão simples com bandeiras 🇧🇷/🇺🇸 no `AgencyNav`
+- Troca instantânea via `i18n.changeLanguage()`
+
+### Ordem de implementação
+
+Vou implementar na seguinte ordem para minimizar erros:
+1. Infraestrutura (i18n config + arquivos de tradução + Edge Function)
+2. AgencyNav (mais simples, valida que tudo funciona)
+3. HeroSection
+4. ServicesGrid
+5. ... até completar todos os 10 componentes
 
