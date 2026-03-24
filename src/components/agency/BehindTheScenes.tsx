@@ -98,8 +98,8 @@ const TechCard = ({ category, translatedCategory, index }: { category: typeof te
 
       {/* Tech List */}
       <div className="space-y-3">
-        {category.techs.map((tech, techIndex) => {
-          const IconComponent = tech.icon;
+        {translatedCategory.techs.map((tech: any, techIndex: number) => {
+          const IconComponent = category.icons[techIndex];
           return (
             <motion.div
               key={tech.name}
@@ -109,12 +109,7 @@ const TechCard = ({ category, translatedCategory, index }: { category: typeof te
               viewport={{ once: true }}
               className="flex items-center gap-3 group/item"
             >
-              <div className={`
-                w-8 h-8 rounded-lg ${category.iconBg} 
-                flex items-center justify-center
-                transition-transform duration-200
-                group-hover/item:scale-110
-              `}>
+              <div className={`w-8 h-8 rounded-lg ${category.iconBg} flex items-center justify-center transition-transform duration-200 group-hover/item:scale-110`}>
                 <IconComponent className={`w-4 h-4 ${category.iconColor}`} />
               </div>
               <div className="flex-1 min-w-0">
