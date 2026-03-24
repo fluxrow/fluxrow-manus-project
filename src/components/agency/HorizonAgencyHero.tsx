@@ -465,7 +465,7 @@ const HorizonAgencyHero = () => {
               onClick={scrollToServices}
               className="cta-primary font-space-grotesk text-base sm:text-lg px-6 sm:px-10 py-4 sm:py-5 group w-full sm:w-auto"
             >
-              Quero conhecer a Fluxrow
+              {t('hero.cta_primary')}
               <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
             </button>
             
