@@ -757,13 +757,8 @@ const TopicList = ({ topics }: { topics: { title: string; sub: string }[] }) => 
 const DMThread = ({ messages }: { messages: { label: string; timing: string; text: string; tag: string; isBot: boolean }[] }) => (
   <div style={{ display: "flex", flexDirection: "column", gap: 0, margin: "24px 0" }}>
     {messages.map((m, i) => (
-      <div key={i} className="kit-dm-msg" style={{
-        padding: "20px 24px",
-        border: "1px solid #222220",
-        marginBottom: 2,
-        display: "grid",
-        gridTemplateColumns: "80px 1fr",
-        gap: 16,
+      <motion.div key={i} className="kit-dm-msg" initial={{ opacity: 0, x: m.isBot ? -15 : 15 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-20px" }} transition={{ duration: 0.4, delay: i * 0.08 }} style={{
+        padding: "20px 24px", border: "1px solid #222220", marginBottom: 2, display: "grid", gridTemplateColumns: "80px 1fr", gap: 16,
         background: m.isBot ? "#111110" : "transparent",
         borderRadius: i === 0 ? "8px 8px 0 0" : i === messages.length - 1 ? "0 0 8px 8px" : 0,
       }}>
@@ -775,7 +770,7 @@ const DMThread = ({ messages }: { messages: { label: string; timing: string; tex
           <div style={{ fontSize: 14, color: "#bbb", lineHeight: 1.7, whiteSpace: "pre-wrap" }}>{m.text}</div>
           <span className="kit-mono" style={{ display: "inline-block", fontSize: 9, color: "#6b6960", background: "#080807", border: "1px solid #222220", padding: "2px 8px", borderRadius: 3, marginTop: 10, letterSpacing: "0.05em" }}>{m.tag}</span>
         </div>
-      </div>
+      </motion.div>
     ))}
   </div>
 );
