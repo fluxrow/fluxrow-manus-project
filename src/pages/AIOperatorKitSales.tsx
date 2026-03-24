@@ -18,33 +18,43 @@ const stagger = {
 const insideBlocks = [
   {
     num: "01",
-    title: "The System Architecture",
-    desc: "The 5-layer map — understand the full system before picking a single tool.",
+    title: "System Architecture",
+    desc: "The 5-layer map — Brain, Queue, Publisher, DM Engine, Revenue. Understand the full system before picking a single tool.",
   },
   {
     num: "02",
     title: "3 Execution Paths",
-    desc: "Fast, Stable, or Scale — pick the path that fits your speed and skill level.",
+    desc: "Fast (launch this week), Stable (repeatable ops), or Scale (fully automated). Pick the path that fits your speed and skill.",
   },
   {
     num: "03",
-    title: "AI Brain + Content Queue",
-    desc: "Your voice encoded into prompts, plus a repeatable pipeline for weekly content.",
+    title: "Execution Layers",
+    desc: "Tool-agnostic setup for each layer — AI brain deployment, content queue, publishing, ManyChat DM engine, and checkout.",
   },
   {
     num: "04",
-    title: "Hook + DM Sales Engine",
-    desc: "Frameworks that stop the scroll and conversations that close without pressure.",
+    title: "Decision Framework",
+    desc: "When to use Claude vs. n8n vs. ManyChat vs. agents. The logic map that prevents you from using complex tools when simple ones work.",
   },
   {
     num: "05",
-    title: "40+ Copy-Ready Prompts",
-    desc: "Hooks, carousels, captions, DM scripts, objection handlers — paste and run.",
+    title: "15 Copy-Ready Prompts",
+    desc: "Hooks, carousels, captions, X threads, LinkedIn posts, DM handlers, objection scripts, audits — paste and run.",
   },
   {
     num: "06",
-    title: "7-Day Launch Playbook",
-    desc: "Step-by-step activation with path-specific instructions for each day.",
+    title: "Operator Repository",
+    desc: "5 versioned skill files, n8n workflow templates, and the SKILL.md format — reusable infrastructure for your AI system.",
+  },
+  {
+    num: "07",
+    title: "Launch Plan",
+    desc: "Path-specific checklists: Fast Path in 2 days, Stable Path in 7 days, Scale Path direction. Step-by-step activation.",
+  },
+  {
+    num: "08",
+    title: "Revenue Math",
+    desc: "Funnel benchmarks, monthly revenue scenarios, and upsell math from $27 buyers to $500–$5,000 high-ticket conversions.",
   },
 ];
 
@@ -63,14 +73,16 @@ const notForList = [
 ];
 
 const valueStack = [
-  "5-layer system architecture",
-  "3 execution paths (Fast / Stable / Scale)",
-  "40+ copy-ready AI prompts",
-  "Content queue + hook bank templates",
-  "DM sales scripts + objection handlers",
-  "7-day launch playbook with daily checklists",
-  "Tool comparison matrix by path",
-  "Troubleshooting guide",
+  "5-layer system architecture (Brain → Queue → Publisher → DM → Revenue)",
+  "3 execution paths (Fast / Stable / Scale) with tool recommendations",
+  "15 copy-ready AI prompts — carousels, captions, DMs, audits, skill files",
+  "5-message ManyChat DM sequence — ready to deploy",
+  "Operator Repository with 5 skill files + n8n workflow templates",
+  "Decision framework — when to use which tool",
+  "Path-specific launch checklists (2 days → 7 days)",
+  "Revenue math + upsell strategy breakdown",
+  "20 topic ideas + 20 hook templates",
+  "Troubleshooting guide for common issues",
 ];
 
 const Divider = () => (
@@ -124,7 +136,7 @@ const AIOperatorKitSales = () => {
             className="text-lg mb-10 max-w-[600px]"
             style={{ color: "#999", fontFamily: "'Inter', sans-serif" }}
           >
-            One architecture. Three execution paths — Fast, Stable, or Scale. 40+ prompts, templates, DM scripts, and a 7-day launch playbook. Pick the path that fits you now.
+            One architecture. Three execution paths. 15 prompts, DM scripts, skill files, and a launch plan. Not a course — a field kit you open and run this week.
           </motion.p>
           <motion.div variants={fade}>
             <CTAButton />
@@ -197,7 +209,7 @@ const AIOperatorKitSales = () => {
             className="text-3xl md:text-4xl mb-14"
             style={{ fontFamily: "'Instrument Serif', serif" }}
           >
-            One system. Three paths. Your speed.
+            10 chapters. One system. Your speed.
           </motion.h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12">
