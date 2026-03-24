@@ -84,10 +84,10 @@ const valueStack = [
   "5-message ManyChat DM sequence — ready to deploy",
   "Operator Repository with 5 skill files + n8n workflow templates",
   "Decision framework — when to use which tool",
-  "Path-specific launch checklists (2 days → 7 days)",
-  "Revenue math + upsell strategy breakdown",
+  "Fast Path checklist (2 days) + Stable Path checklist (7 days)",
+  "Revenue math — funnel benchmarks + upsell strategy to $5K+",
+  "Upgrade path — what to build after 10, 30, and 100 sales",
   "20 topic ideas + 20 hook templates",
-  "Troubleshooting guide for common issues",
 ];
 
 const Divider = () => (
