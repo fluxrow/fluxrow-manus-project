@@ -7,6 +7,8 @@ interface SEOProps {
   path?: string;
   image?: string;
   imageAlt?: string;
+  lang?: string;
+  locale?: string;
 }
 
 const SEO = ({
@@ -15,17 +17,21 @@ const SEO = ({
   path = '/',
   image = 'https://fluxrow.com/OG_logo_fluxrow.png',
   imageAlt = 'Fluxrow - Creative Intelligence Agency',
+  lang,
+  locale,
 }: SEOProps) => {
   const { t, i18n } = useTranslation();
   
   const finalTitle = title || t('seo.title');
   const finalDescription = description || t('seo.description');
-  const url = `https://fluxrow.com${path}`;
-  const locale = i18n.language === 'pt' ? 'pt_BR' : 'en_US';
+  const normalizedPath = path.startsWith('/') ? path : `/${path}`;
+  const url = `https://fluxrow.com${normalizedPath}`;
+  const finalLang = lang || i18n.language;
+  const finalLocale = locale || (finalLang.startsWith('pt') ? 'pt_BR' : 'en_US');
 
   return (
     <Helmet>
-      <html lang={i18n.language} />
+      <html lang={finalLang} />
       <title>{finalTitle}</title>
       <meta name="description" content={finalDescription} />
       <link rel="canonical" href={url} />
@@ -36,7 +42,7 @@ const SEO = ({
       <meta property="og:image" content={image} />
       <meta property="og:image:alt" content={imageAlt} />
       <meta property="og:type" content="website" />
-      <meta property="og:locale" content={locale} />
+      <meta property="og:locale" content={finalLocale} />
       <meta property="og:site_name" content="Fluxrow" />
 
       <meta name="twitter:card" content="summary_large_image" />

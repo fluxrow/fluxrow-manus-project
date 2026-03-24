@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { motion } from "framer-motion";
 import React from "react";
+import SEO from "@/components/SEO";
 
 const AIOperatorKit = () => {
   useEffect(() => {
@@ -9,6 +10,15 @@ const AIOperatorKit = () => {
 
   return (
     <div className="min-h-screen" style={{ background: "#080807", color: "#e8e6df", fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 300, lineHeight: 1.7 }}>
+      <SEO
+        title="AI Operator Kit — Product Manual v3.0 | Fluxrow"
+        description="The full AI Operator Kit manual: architecture, execution paths, decision framework, prompt library, launch plans, revenue math, and upgrade path."
+        path="/kit/content"
+        image="https://fluxrow.com/og-kit.jpg"
+        imageAlt="AI Operator Kit Product Manual by Fluxrow"
+        lang="en-US"
+        locale="en_US"
+      />
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@400;500&family=Inter:wght@300;400;500;600&display=swap');
         .kit-page * { box-sizing: border-box; margin: 0; padding: 0; }

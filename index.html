@@ -102,17 +102,124 @@
       gtag('config', 'AW-17269496470');
     </script>
 
-    <!-- OG Dedup: remove tags duplicadas injetadas pelo sistema de build -->
+    <!-- Route-aware metadata bootstrap for product routes -->
     <script>
-      (function(){
-        var seen = {};
-        var metas = document.querySelectorAll('meta[property], meta[name="twitter:card"], meta[name="twitter:site"], meta[name="twitter:title"], meta[name="twitter:description"], meta[name="twitter:image"]');
-        metas.forEach(function(m){
-          var key = m.getAttribute('property') || m.getAttribute('name');
-          if(!key) return;
-          if(seen[key]){ m.parentNode.removeChild(m); }
-          else { seen[key] = true; }
+      (function () {
+        var currentPath = window.location.pathname.replace(/\/+$/, '') || '/';
+
+        var routeMeta = {
+          '/kit': {
+            title: 'AI Operator Kit — Sales Page | Fluxrow',
+            description: 'The AI Operator Kit sales page: system architecture, execution paths, prompts, templates, and launch checklists to run your content-to-revenue engine. $27 one-time.',
+            canonical: 'https://fluxrow.com/kit',
+            image: 'https://fluxrow.com/og-kit.jpg',
+            imageAlt: 'AI Operator Kit Sales Page by Fluxrow'
+          },
+          '/kit/content': {
+            title: 'AI Operator Kit — Product Manual v3.0 | Fluxrow',
+            description: 'The full AI Operator Kit manual: architecture, execution paths, decision framework, prompt library, launch plans, revenue math, and upgrade path.',
+            canonical: 'https://fluxrow.com/kit/content',
+            image: 'https://fluxrow.com/og-kit.jpg',
+            imageAlt: 'AI Operator Kit Product Manual by Fluxrow'
+          }
+        };
+
+        var meta = routeMeta[currentPath];
+        if (!meta) return;
+
+        var ensureMeta = function (attr, key, value) {
+          if (!value) return;
+          var selector = 'meta[' + attr + '="' + key + '"]';
+          var el = document.head.querySelector(selector);
+          if (!el) {
+            el = document.createElement('meta');
+            el.setAttribute(attr, key);
+            document.head.appendChild(el);
+          }
+          el.setAttribute('content', value);
+        };
+
+        var canonical = document.head.querySelector('link[rel="canonical"]');
+        if (!canonical) {
+          canonical = document.createElement('link');
+          canonical.setAttribute('rel', 'canonical');
+          document.head.appendChild(canonical);
+        }
+
+        document.documentElement.setAttribute('lang', 'en-US');
+        document.title = meta.title;
+        canonical.setAttribute('href', meta.canonical);
+
+        ensureMeta('name', 'description', meta.description);
+        ensureMeta('property', 'og:title', meta.title);
+        ensureMeta('property', 'og:description', meta.description);
+        ensureMeta('property', 'og:url', meta.canonical);
+        ensureMeta('property', 'og:type', 'website');
+        ensureMeta('property', 'og:image', meta.image);
+        ensureMeta('property', 'og:image:alt', meta.imageAlt);
+        ensureMeta('property', 'og:locale', 'en_US');
+        ensureMeta('name', 'twitter:card', 'summary_large_image');
+        ensureMeta('name', 'twitter:site', '@fluxrow');
+        ensureMeta('name', 'twitter:title', meta.title);
+        ensureMeta('name', 'twitter:description', meta.description);
+        ensureMeta('name', 'twitter:image', meta.image);
+      })();
+    </script>
+
+    <!-- OG Dedup: keep route-specific/runtime tags -->
+    <script>
+      (function () {
+        var META_SELECTOR = 'meta[name="description"], meta[property], meta[name="twitter:card"], meta[name="twitter:site"], meta[name="twitter:title"], meta[name="twitter:description"], meta[name="twitter:image"]';
+
+        function score(el) {
+          var s = 0;
+          if (el.hasAttribute('data-rh')) s += 2;
+          if ((el.getAttribute('content') || '').includes('/kit')) s += 1;
+          return s;
+        }
+
+        function dedupeMetaTags() {
+          var seen = {};
+          var metas = Array.from(document.head.querySelectorAll(META_SELECTOR));
+
+          metas.forEach(function (meta) {
+            var key = meta.getAttribute('property') || meta.getAttribute('name');
+            if (!key) return;
+
+            if (!seen[key]) {
+              seen[key] = meta;
+              return;
+            }
+
+            var current = seen[key];
+            var keepIncoming = score(meta) >= score(current);
+
+            if (keepIncoming) {
+              if (current.parentNode) current.parentNode.removeChild(current);
+              seen[key] = meta;
+            } else if (meta.parentNode) {
+              meta.parentNode.removeChild(meta);
+            }
+          });
+
+          var canonicals = Array.from(document.head.querySelectorAll('link[rel="canonical"]'));
+          if (canonicals.length > 1) {
+            var keepCanonical = canonicals[canonicals.length - 1];
+            canonicals.forEach(function (link) {
+              if (link !== keepCanonical && link.parentNode) {
+                link.parentNode.removeChild(link);
+              }
+            });
+          }
+        }
+
+        dedupeMetaTags();
+
+        var observer = new MutationObserver(function () {
+          dedupeMetaTags();
         });
+
+        observer.observe(document.head, { childList: true });
       })();
     </script>
 
