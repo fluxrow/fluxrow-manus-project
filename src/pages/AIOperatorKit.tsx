@@ -1222,12 +1222,12 @@ Output: [example]`} />
         </motion.div>
 
         {/* FOOTER */}
-        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.6 }} style={{ padding: "48px 0 0", borderTop: "1px solid #222220", marginTop: 80, display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 16 }}>
-          <div className="kit-mono" style={{ fontSize: 11, color: "#6b6960", letterSpacing: "0.1em" }}>
-            FLUXROW<span className="kit-accent">.</span>
+        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.6 }} style={{ padding: "48px 0 0", borderTop: "1px solid #222220", marginTop: 80, textAlign: "center" }}>
+          <div className="kit-mono" style={{ fontSize: 12, color: "#6b6960", letterSpacing: "0.1em", marginBottom: 8 }}>
+            <strong style={{ color: "#e8e6df" }}>FLUXROW</strong> — AI Operator Kit · 2026 Edition
           </div>
           <div className="kit-mono" style={{ fontSize: 10, color: "#3a3a36" }}>
-            AI Operator Kit — v3.0 — 2026
+            fluxrow.com · Built with Claude
           </div>
         </motion.div>
       </div>
