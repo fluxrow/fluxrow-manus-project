@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { motion } from "framer-motion";
 
 const AIOperatorKit = () => {
   useEffect(() => {
@@ -41,17 +42,17 @@ const AIOperatorKit = () => {
 
       <div className="kit-page">
         {/* NAV */}
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "28px 0", borderBottom: "1px solid #222220" }}>
+        <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "28px 0", borderBottom: "1px solid #222220" }}>
           <div className="kit-mono" style={{ fontSize: 11, letterSpacing: "0.15em", color: "#6b6960", textTransform: "uppercase" }}>
             FLUXROW / <span className="kit-accent">AI Operator Starter Kit</span>
           </div>
           <div style={{ background: "#0f1f00", border: "1px solid #2a4400", color: "#c8f000", fontFamily: "'DM Mono', monospace", fontSize: 10, letterSpacing: "0.1em", padding: "4px 12px", borderRadius: 100 }}>
             v1.0 — 2025
           </div>
-        </div>
+        </motion.div>
 
         {/* HERO */}
-        <div style={{ padding: "80px 0 72px", borderBottom: "1px solid #222220" }}>
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }} style={{ padding: "80px 0 72px", borderBottom: "1px solid #222220" }}>
           <div className="kit-mono" style={{ fontSize: 10, letterSpacing: "0.2em", color: "#6b6960", textTransform: "uppercase", marginBottom: 32 }}>
             The complete field guide
           </div>
@@ -74,10 +75,10 @@ const AIOperatorKit = () => {
               </div>
             ))}
           </div>
-        </div>
+        </motion.div>
 
         {/* CHAPTER NAV */}
-        <div style={{ background: "#111110", border: "1px solid #222220", borderRadius: 10, padding: "24px 28px", margin: "48px 0" }}>
+        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.6 }} style={{ background: "#111110", border: "1px solid #222220", borderRadius: 10, padding: "24px 28px", margin: "48px 0" }}>
           <div className="kit-mono" style={{ fontSize: 10, letterSpacing: "0.15em", color: "#6b6960", textTransform: "uppercase", marginBottom: 16 }}>
             What's inside
           </div>
@@ -100,7 +101,7 @@ const AIOperatorKit = () => {
               </a>
             ))}
           </div>
-        </div>
+        </motion.div>
 
         {/* CHAPTER 01 */}
         <Chapter num="01" title={<>The system <em className="kit-accent" style={{ fontStyle: "italic" }}>architecture</em></>}
@@ -580,14 +581,14 @@ Format:
         </Chapter>
 
         {/* FOOTER */}
-        <div style={{ padding: "48px 0 0", borderTop: "1px solid #222220", marginTop: 80, display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 16 }}>
+        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.6 }} style={{ padding: "48px 0 0", borderTop: "1px solid #222220", marginTop: 80, display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 16 }}>
           <div className="kit-mono" style={{ fontSize: 11, color: "#6b6960", letterSpacing: "0.1em" }}>
             FLUXROW<span className="kit-accent">.</span>
           </div>
           <div className="kit-mono" style={{ fontSize: 10, color: "#3a3a36" }}>
             AI Operator Starter Kit — v1.0 — Built from 120+ real projects
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );
@@ -596,15 +597,22 @@ Format:
 /* ─── Sub-components ─── */
 
 const Chapter = ({ num, title, intro, children }: { num: string; title: React.ReactNode; intro: string; children: React.ReactNode }) => (
-  <div id={`chapter-${num}`} style={{ padding: "64px 0", borderBottom: "1px solid #222220" }}>
-    <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 28 }}>
+  <motion.div
+    id={`chapter-${num}`}
+    initial={{ opacity: 0, y: 30 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true, margin: "-80px" }}
+    transition={{ duration: 0.7 }}
+    style={{ padding: "64px 0", borderBottom: "1px solid #222220" }}
+  >
+    <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.1 }} style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 28 }}>
       <span className="kit-mono" style={{ fontSize: 10, color: "#c8f000", letterSpacing: "0.1em" }}>{num}</span>
       <span style={{ flex: 1, height: 1, background: "#222220" }} />
-    </div>
-    <h2 className="kit-serif" style={{ fontSize: "clamp(28px,4vw,44px)", fontWeight: 400, lineHeight: 1.1, letterSpacing: "-0.01em", marginBottom: 20 }}>{title}</h2>
-    <p style={{ fontSize: 16, color: "#999", maxWidth: 620, lineHeight: 1.7, marginBottom: 36 }}>{intro}</p>
+    </motion.div>
+    <motion.h2 initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }} className="kit-serif" style={{ fontSize: "clamp(28px,4vw,44px)", fontWeight: 400, lineHeight: 1.1, letterSpacing: "-0.01em", marginBottom: 20 }}>{title}</motion.h2>
+    <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.3 }} style={{ fontSize: 16, color: "#999", maxWidth: 620, lineHeight: 1.7, marginBottom: 36 }}>{intro}</motion.p>
     {children}
-  </div>
+  </motion.div>
 );
 
 const H3 = ({ children }: { children: React.ReactNode }) => (
@@ -616,31 +624,45 @@ const P = ({ children }: { children: React.ReactNode }) => (
 );
 
 const Callout = ({ text, warn = false }: { text: string; warn?: boolean }) => (
-  <div style={{
-    background: warn ? "#140a00" : "#0a1400",
-    border: `1px solid ${warn ? "#332200" : "#1e3300"}`,
-    borderLeft: `3px solid ${warn ? "#ff8800" : "#c8f000"}`,
-    borderRadius: "0 8px 8px 0",
-    padding: "20px 24px",
-    margin: "28px 0",
-  }}>
+  <motion.div
+    initial={{ opacity: 0, x: -15 }}
+    whileInView={{ opacity: 1, x: 0 }}
+    viewport={{ once: true, margin: "-30px" }}
+    transition={{ duration: 0.5 }}
+    style={{
+      background: warn ? "#140a00" : "#0a1400",
+      border: `1px solid ${warn ? "#332200" : "#1e3300"}`,
+      borderLeft: `3px solid ${warn ? "#ff8800" : "#c8f000"}`,
+      borderRadius: "0 8px 8px 0",
+      padding: "20px 24px",
+      margin: "28px 0",
+    }}
+  >
     <p style={{ color: warn ? "#b07030" : "#9aba40", fontSize: 14, margin: 0 }}>{text}</p>
-  </div>
+  </motion.div>
 );
 
 const Steps = ({ items }: { items: { title: string; body: string }[] }) => (
   <div style={{ display: "grid", gap: 2, margin: "24px 0" }}>
     {items.map((item, i) => (
-      <div key={i} className="kit-step" style={{
-        background: "#111110",
-        border: "1px solid #222220",
-        padding: "24px 28px",
-        display: "grid",
-        gridTemplateColumns: "56px 1fr",
-        gap: 16,
-        transition: "border-color 0.2s",
-        borderRadius: i === 0 ? "8px 8px 0 0" : i === items.length - 1 ? "0 0 8px 8px" : 0,
-      }}>
+      <motion.div
+        key={i}
+        className="kit-step"
+        initial={{ opacity: 0, y: 15 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-20px" }}
+        transition={{ duration: 0.4, delay: i * 0.08 }}
+        style={{
+          background: "#111110",
+          border: "1px solid #222220",
+          padding: "24px 28px",
+          display: "grid",
+          gridTemplateColumns: "56px 1fr",
+          gap: 16,
+          transition: "border-color 0.2s",
+          borderRadius: i === 0 ? "8px 8px 0 0" : i === items.length - 1 ? "0 0 8px 8px" : 0,
+        }}
+      >
         <div style={{ display: "flex", flexDirection: "column", gap: 4, paddingTop: 2 }}>
           <span className="kit-mono" style={{ fontSize: 10, color: "#c8f000", letterSpacing: "0.1em" }}>{String(i + 1).padStart(2, "0")}</span>
           {i < items.length - 1 && <span style={{ width: 1, flex: 1, background: "#222220", margin: "6px auto 0" }} />}
@@ -649,13 +671,13 @@ const Steps = ({ items }: { items: { title: string; body: string }[] }) => (
           <div style={{ fontSize: 15, fontWeight: 500, color: "#e8e6df", marginBottom: 6 }}>{item.title}</div>
           <p style={{ fontSize: 14, color: "#888", lineHeight: 1.65, margin: 0, whiteSpace: "pre-wrap" }}>{item.body}</p>
         </div>
-      </div>
+      </motion.div>
     ))}
   </div>
 );
 
 const PromptBlock = ({ type, content }: { type: string; content: string }) => (
-  <div style={{ margin: "20px 0" }}>
+  <motion.div initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-30px" }} transition={{ duration: 0.5 }} style={{ margin: "20px 0" }}>
     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", background: "#181816", border: "1px solid #222220", borderBottom: "none", borderRadius: "6px 6px 0 0", padding: "10px 16px" }}>
       <span className="kit-mono" style={{ fontSize: 10, color: "#c8f000", letterSpacing: "0.12em", textTransform: "uppercase" }}>{type}</span>
       <button
@@ -669,24 +691,20 @@ const PromptBlock = ({ type, content }: { type: string; content: string }) => (
     <div className="kit-mono" style={{ background: "#070706", border: "1px solid #222220", borderTop: "none", borderRadius: "0 0 6px 6px", padding: 20, fontSize: 13, color: "#c8c4b8", lineHeight: 1.75, whiteSpace: "pre-wrap" }}>
       {content}
     </div>
-  </div>
+  </motion.div>
 );
 
 const ToolGrid = ({ items }: { items: { name: string; desc: string; tags: { label: string; type: string }[]; link: string }[] }) => (
   <div style={{ display: "grid", gap: 8, margin: "20px 0" }}>
     {items.map((item, i) => (
-      <div key={i} className="kit-tool-card" style={{ background: "#111110", border: "1px solid #222220", borderRadius: 8, padding: "18px 22px", display: "grid", gridTemplateColumns: "1fr auto", gap: 12, alignItems: "center", transition: "border-color 0.2s" }}>
+      <motion.div key={i} className="kit-tool-card" initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-20px" }} transition={{ duration: 0.4, delay: i * 0.1 }} style={{ background: "#111110", border: "1px solid #222220", borderRadius: 8, padding: "18px 22px", display: "grid", gridTemplateColumns: "1fr auto", gap: 12, alignItems: "center", transition: "border-color 0.2s" }}>
         <div>
           <div style={{ fontSize: 14, fontWeight: 500, color: "#e8e6df", marginBottom: 4 }}>{item.name}</div>
           <div style={{ fontSize: 12, color: "#6b6960", lineHeight: 1.5 }}>{item.desc}</div>
           <div style={{ display: "flex", gap: 6, marginTop: 8, flexWrap: "wrap" }}>
             {item.tags.map((tag, j) => (
               <span key={j} className="kit-mono" style={{
-                fontSize: 9,
-                letterSpacing: "0.08em",
-                padding: "2px 8px",
-                borderRadius: 3,
-                border: "1px solid",
+                fontSize: 9, letterSpacing: "0.08em", padding: "2px 8px", borderRadius: 3, border: "1px solid",
                 color: tag.type === "free" ? "#6ab840" : tag.type === "key" ? "#c8f000" : "#888",
                 borderColor: tag.type === "free" ? "#1e3a10" : tag.type === "key" ? "#2a4400" : "#222220",
               }}>{tag.label}</span>
@@ -694,13 +712,13 @@ const ToolGrid = ({ items }: { items: { name: string; desc: string; tags: { labe
           </div>
         </div>
         <span style={{ color: "#c8f000", fontFamily: "'DM Mono', monospace", fontSize: 11, whiteSpace: "nowrap", letterSpacing: "0.05em" }}>{item.link}</span>
-      </div>
+      </motion.div>
     ))}
   </div>
 );
 
 const TableWrap = ({ headers, rows }: { headers: string[]; rows: string[][] }) => (
-  <div style={{ overflowX: "auto", margin: "20px 0" }}>
+  <motion.div initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-30px" }} transition={{ duration: 0.5 }} style={{ overflowX: "auto", margin: "20px 0" }}>
     <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
       <thead>
         <tr>
@@ -719,7 +737,7 @@ const TableWrap = ({ headers, rows }: { headers: string[]; rows: string[][] }) =
         ))}
       </tbody>
     </table>
-  </div>
+  </motion.div>
 );
 
 const TopicList = ({ topics }: { topics: { title: string; sub: string }[] }) => (
@@ -739,13 +757,8 @@ const TopicList = ({ topics }: { topics: { title: string; sub: string }[] }) => 
 const DMThread = ({ messages }: { messages: { label: string; timing: string; text: string; tag: string; isBot: boolean }[] }) => (
   <div style={{ display: "flex", flexDirection: "column", gap: 0, margin: "24px 0" }}>
     {messages.map((m, i) => (
-      <div key={i} className="kit-dm-msg" style={{
-        padding: "20px 24px",
-        border: "1px solid #222220",
-        marginBottom: 2,
-        display: "grid",
-        gridTemplateColumns: "80px 1fr",
-        gap: 16,
+      <motion.div key={i} className="kit-dm-msg" initial={{ opacity: 0, x: m.isBot ? -15 : 15 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-20px" }} transition={{ duration: 0.4, delay: i * 0.08 }} style={{
+        padding: "20px 24px", border: "1px solid #222220", marginBottom: 2, display: "grid", gridTemplateColumns: "80px 1fr", gap: 16,
         background: m.isBot ? "#111110" : "transparent",
         borderRadius: i === 0 ? "8px 8px 0 0" : i === messages.length - 1 ? "0 0 8px 8px" : 0,
       }}>
@@ -757,13 +770,13 @@ const DMThread = ({ messages }: { messages: { label: string; timing: string; tex
           <div style={{ fontSize: 14, color: "#bbb", lineHeight: 1.7, whiteSpace: "pre-wrap" }}>{m.text}</div>
           <span className="kit-mono" style={{ display: "inline-block", fontSize: 9, color: "#6b6960", background: "#080807", border: "1px solid #222220", padding: "2px 8px", borderRadius: 3, marginTop: 10, letterSpacing: "0.05em" }}>{m.tag}</span>
         </div>
-      </div>
+      </motion.div>
     ))}
   </div>
 );
 
 const WorkflowTable = ({ nodes }: { nodes: { type: string; name: string; desc: string }[] }) => (
-  <div style={{ background: "#111110", border: "1px solid #222220", borderRadius: 10, overflow: "hidden", margin: "24px 0" }}>
+  <motion.div initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-30px" }} transition={{ duration: 0.5 }} style={{ background: "#111110", border: "1px solid #222220", borderRadius: 10, overflow: "hidden", margin: "24px 0" }}>
     {nodes.map((n, i) => (
       <div key={i} className="kit-workflow-node" style={{ padding: "18px 24px", borderBottom: i < nodes.length - 1 ? "1px solid #222220" : "none", display: "grid", gridTemplateColumns: "32px 120px 1fr", gap: 16, alignItems: "start" }}>
         <span className="kit-mono" style={{ fontSize: 10, color: "#c8f000", paddingTop: 2 }}>{String(i + 1).padStart(2, "0")}</span>
@@ -774,17 +787,15 @@ const WorkflowTable = ({ nodes }: { nodes: { type: string; name: string; desc: s
         </div>
       </div>
     ))}
-  </div>
+  </motion.div>
 );
 
 const RevenueBox = ({ rows }: { rows: { label: string; value: string; isTotal?: boolean }[] }) => (
-  <div style={{ background: "#111110", border: "1px solid #222220", borderRadius: 10, padding: "28px 32px", margin: "24px 0" }}>
+  <motion.div initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-30px" }} transition={{ duration: 0.5 }} style={{ background: "#111110", border: "1px solid #222220", borderRadius: 10, padding: "28px 32px", margin: "24px 0" }}>
     <div style={{ display: "grid", gap: 12 }}>
       {rows.map((r, i) => (
         <div key={i} style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "baseline",
+          display: "flex", justifyContent: "space-between", alignItems: "baseline",
           padding: r.isTotal ? "16px 0 8px" : "8px 0",
           borderBottom: i < rows.length - 1 ? "1px solid #222220" : "none",
         }}>
@@ -793,7 +804,7 @@ const RevenueBox = ({ rows }: { rows: { label: string; value: string; isTotal?: 
         </div>
       ))}
     </div>
-  </div>
+  </motion.div>
 );
 
 const Checklist = ({ items }: { items: { title: string; desc: string }[] }) => (
@@ -811,9 +822,9 @@ const Checklist = ({ items }: { items: { title: string; desc: string }[] }) => (
 );
 
 const Quote = ({ text }: { text: string }) => (
-  <div style={{ borderLeft: "3px solid #c8f000", padding: "20px 24px", margin: "32px 0", background: "#111110" }}>
+  <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-30px" }} transition={{ duration: 0.6 }} style={{ borderLeft: "3px solid #c8f000", padding: "20px 24px", margin: "32px 0", background: "#111110" }}>
     <p className="kit-serif" style={{ fontSize: 22, color: "#e8e6df", lineHeight: 1.4, fontStyle: "italic", marginBottom: 0 }}>{text}</p>
-  </div>
+  </motion.div>
 );
 
 export default AIOperatorKit;
