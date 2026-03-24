@@ -56,6 +56,11 @@ const insideBlocks = [
     title: "Revenue Math",
     desc: "Funnel benchmarks, monthly revenue scenarios, and upsell math from $27 buyers to $500–$5,000 high-ticket conversions.",
   },
+  {
+    num: "09",
+    title: "Upgrade Path",
+    desc: "What to build after your first 10, 30, and 100 sales — testimonials, high-ticket offers, path graduation, and monthly brain audits.",
+  },
 ];
 
 const forList = [
