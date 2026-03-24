@@ -124,7 +124,7 @@ const AIOperatorKitSales = () => {
             className="text-lg mb-10 max-w-[600px]"
             style={{ color: "#999", fontFamily: "'Inter', sans-serif" }}
           >
-            A practical guide with prompts, templates, and architecture — built for solo operators who want to stop improvising and start running a system.
+            One architecture. Three execution paths — Fast, Stable, or Scale. 40+ prompts, templates, DM scripts, and a 7-day launch playbook. Pick the path that fits you now.
           </motion.p>
           <motion.div variants={fade}>
             <CTAButton />
