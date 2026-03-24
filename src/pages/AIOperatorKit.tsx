@@ -269,7 +269,7 @@ const AIOperatorKit = () => {
           intro="Each layer of the system, explained practically. What it is, how it works on each path, and what to do right now.">
 
           {/* Layer 1: Brain */}
-          <H3>Layer 1 — The Brain</H3>
+          <H3>Layer 01 — The Brain</H3>
           <P>Your voice, your rules, your prompts. The brain is a system prompt — the most important asset you'll build. A weak brain produces generic content. A strong brain produces content that sounds exactly like you.</P>
 
           <Steps items={[
@@ -288,109 +288,134 @@ AUDIENCE:
 [Describe your ideal reader in 2-3 specific sentences. What do they struggle with? What have they tried? What are they skeptical about?]
 
 VOICE & TONE:
-- Direct and clear. No fluff, no filler.
-- Write like a practitioner sharing what actually works.
-- Short sentences. Active voice. Specific over general.
-- No emojis unless asked.
-- Never use: "game-changing", "revolutionary", "unleash", "unlock"
-- Treat the reader as a smart adult burned by bad advice before.
+- Direct. Short sentences. No filler.
+- Write like a practitioner sharing what works, not a marketer selling a dream.
+- Active voice. Specific over general. One idea per sentence.
+- Never use: game-changing, revolutionary, unleash, unlock your potential, transform, empower
+- No emojis unless explicitly requested.
+- Treat the reader like an intelligent adult.
 
-CAROUSEL FORMAT (default):
-SLIDE 1 — HOOK: [max 8 words, bold claim or counterintuitive insight]
-Body: [1 sentence that earns the headline]
+OUTPUT FORMAT — CAROUSEL (default unless told otherwise):
+SLIDE 1 — HOOK
+Headline: [max 8 words — bold claim or counterintuitive insight]
+Body: [1 sentence that earns the headline — no fluff]
 
-SLIDE 2–6 — CONTENT (one idea per slide)
+SLIDES 2–6 — CONTENT
 Headline: [max 7 words]
-Body: [1–2 sentences. One practical insight. No padding.]
+Body: [1–2 sentences. One concrete idea. No padding.]
 
 SLIDE 7 — CTA
 Headline: Want the full system?
 Body: Comment SYSTEM below. I'll send you the complete breakdown.
 
 RULES:
-- Never pad content. If you run out of real ideas before slide 6, stop at 5.
-- Each slide must stand alone.
-- Output only the slides. No preamble, no explanation.`} />
+- If you run out of real ideas before slide 6, stop at 5. Never pad.
+- Each slide stands alone.
+- No slide repeats information from another.
+- Output slides only. No preamble.`} />
 
-          <PathGrid items={[
-            { path: "fast", icon: "⚡", title: "Fast Path", desc: "Paste the brain prompt at the start of each ChatGPT/Claude conversation. Save it as a note you copy-paste.", time: "15 min setup" },
-            { path: "stable", icon: "🔁", title: "Stable Path", desc: "Create a Claude Project or Custom GPT with the brain as system instruction. Every conversation inherits your rules automatically.", time: "30 min setup" },
-            { path: "scale", icon: "📈", title: "Scale Path", desc: "Connect via API. Pass brain as system_prompt on every call. Use with automation platforms for hands-off generation.", time: "45 min setup" },
+          <H3Sub>Where to deploy your brain — by path</H3Sub>
+          <ToolGrid items={[
+            { name: "Claude.ai — Projects", desc: "Paste your brain as the Project instruction. Every chat inherits it. Zero setup, zero cost. Best starting point.", tags: [{ label: "FREE", type: "free" }, { label: "FAST PATH", type: "fast" }], href: "https://claude.ai" },
+            { name: "Anthropic API — system_prompt field", desc: "Pass brain as system_prompt on every API call in n8n. claude-sonnet-4 recommended. ~$0.003/1K tokens.", tags: [{ label: "PAY PER USE", type: "paid" }, { label: "STABLE PATH", type: "stable" }], href: "https://console.anthropic.com" },
+            { name: "Obsidian Skills + Claude Code", desc: "Brain stored as a .md skill file, loaded dynamically by agents. Versioned, reusable, composable with other skills.", tags: [{ label: "SCALE PATH", type: "scale" }], href: "https://obsidian.md" },
           ]} />
 
-          <QuickWin text="The 5-minute test: paste the brain prompt, replace the brackets, ask for one carousel. If the tone feels right, you're 80% done." />
+          <MistakeBlock text="Writing a brain once and never updating it. After 10–20 outputs, review what you edited most. Update the brain to prevent those edits. A good brain improves continuously. It's a living document, not a config file you set once." />
 
           {/* Layer 2: Queue */}
-          <H3>Layer 2 — The Queue</H3>
-          <P>From one idea to a week of content, systematically. The queue is your editorial calendar, production tracker, and content database in one.</P>
+          <H3>Layer 02 — Queue</H3>
+          <P>The queue is your editorial calendar, content tracker, and production database in one. It exists to answer one question at any moment: <strong>what's the next piece of content, and what state is it in?</strong></P>
 
-          <TableWrap headers={["Field", "Type", "What goes here"]} rows={[
-            ["Title", "Text", "The topic in one line"],
-            ["Status", "Select", "Idea → Drafting → Review → Approved → Scheduled → Published"],
-            ["Hook", "Text", "Slide 1 headline only — the scroll-stopper"],
-            ["Content", "Long text", "Full AI output — all slides"],
-            ["Caption", "Long text", "Platform caption with CTA and hashtags"],
-            ["Publish Date", "Date", "When it goes live"],
-            ["Platform", "Select", "Instagram / X / LinkedIn / TikTok"],
-            ["Notes", "Text", "Editing notes — what to improve next time"],
+          <H3Sub>Queue setup by path</H3Sub>
+          <PathIndicator path="fast" />
+          <P>A simple Notion database. 5 columns: Title, Status, Hook, Content, Publish Date. No automations. You update it manually. That's fine — the goal is to build the habit, not the system.</P>
+
+          <PathIndicator path="stable" />
+          <P>Airtable with 8 fields (below). n8n reads from and writes to it automatically. Status changes trigger downstream actions. This is the core of the Stable Path operation.</P>
+
+          <PathIndicator path="scale" />
+          <P>Airtable or Supabase (Postgres) depending on volume and team size. Supabase unlocks real-time triggers, row-level security, and custom queries that Airtable can't handle at scale.</P>
+
+          <TableWrap headers={["Field", "Type", "Purpose", "Path"]} rows={[
+            ["Title", "Text", "Topic in one line. The brief for Claude.", "All"],
+            ["Status", "Select", "Idea → Drafting → Review → Approved → Scheduled → Published", "All"],
+            ["Hook", "Text", "Slide 1 only. The scroll-stopper. Claude fills this.", "All"],
+            ["Content", "Long text", "Full Claude output — all slides.", "All"],
+            ["Caption", "Long text", "Instagram caption. Separate Claude call.", "Stable+"],
+            ["Publish Date", "Date", "n8n reads this to trigger scheduling.", "Stable+"],
+            ["Platform", "Select", "Instagram / X / LinkedIn. Enables multi-platform.", "Stable+"],
+            ["Notes", "Text", "Editing notes. What you changed. Improves the brain over time.", "All"],
           ]} />
 
-          <DoThisNow text="Open a spreadsheet. Create 8 columns from the table above. Write 7 topic titles — things your audience asks about. That's your first week, seeded in 15 minutes." />
-
-          <PathGrid items={[
-            { path: "fast", icon: "⚡", title: "Fast Path", desc: "Google Sheets. One tab, 8 columns. Fill manually, check off when done. Zero learning curve.", time: "10 min setup" },
-            { path: "stable", icon: "🔁", title: "Stable Path", desc: "Notion database or Airtable. Use views to filter by status. Repeatable, organized.", time: "25 min setup" },
-            { path: "scale", icon: "📈", title: "Scale Path", desc: "Airtable with API access. Connected to automation for auto-fill, auto-scheduling, status updates.", time: "40 min setup" },
+          <ToolGrid items={[
+            { name: "Notion", desc: "Fastest queue setup. Free tier is enough. No API needed for Fast Path. Best starting queue.", tags: [{ label: "FREE", type: "free" }, { label: "FAST PATH", type: "fast" }], href: "https://notion.so" },
+            { name: "Airtable", desc: "Best n8n integration. Clean API. Free tier handles 1,000 records. The queue for Stable Path operators.", tags: [{ label: "FREE TIER", type: "free" }, { label: "STABLE PATH", type: "stable" }], href: "https://airtable.com" },
+            { name: "Supabase", desc: "Postgres at scale. Real-time triggers, row-level security. For teams or high-volume operations.", tags: [{ label: "FREE TIER", type: "free" }, { label: "SCALE PATH", type: "scale" }], href: "https://supabase.com" },
           ]} />
 
-          {/* Layer 3: Content & Publishing */}
-          <H3>Layer 3 — Content Creation & Publishing</H3>
-          <P>What makes people stop scrolling, read, and move toward your offer. This layer covers hooks, carousels, captions, and getting content live.</P>
+          {/* Layer 2b: Content Creation */}
+          <H3>Layer 02b — Content Creation</H3>
+          <P>The content factory. Claude generates the raw content; you (or automation) formats and schedules it. The three-part formula for every carousel that works:</P>
 
-          <TableWrap headers={["Pattern", "Template", "Example"]} rows={[
-            ["Counterintuitive", "\"The [thing everyone does] is why [bad result]\"", "\"Using ChatGPT for everything is why your content sounds generic\""],
-            ["Bold claim", "\"You don't need [X] to [desired result]\"", "\"You don't need a team to publish 5x per week\""],
-            ["Specific result", "\"How we [result] without [expected cost]\"", "\"How we generated 850 leads with $0 in ads\""],
-            ["Pattern interrupt", "\"Stop [common action]. Do [alt] instead.\"", "\"Stop writing posts from scratch. Build a queue instead.\""],
+          <Steps items={[
+            { title: "HOOK — Stop the scroll", body: "Three patterns that consistently work: counterintuitive claim (\"The reason your AI sounds generic is your prompt, not the model\"), specific result (\"How we generated 850 leads with $0 in ads\"), or bold problem (\"You don't have an AI problem. You have a system problem.\")." },
+            { title: "TEACH — Slides 2–6, one idea per slide", body: "The rule: if you can't explain the slide in a single sentence of body copy, the idea isn't clear enough. Cut it or split it. Density kills carousels. Clarity wins." },
+            { title: "CTA — The ask must feel inevitable", body: "\"Comment SYSTEM below\" works because it's low friction, specific, and triggers the DM engine automatically. The CTA is not a request — it's the obvious next step for someone who just got value from slides 1–6." },
           ]} />
 
-          <PromptBlock type="Copy This — Hook Generator" content={`Write 10 carousel hook ideas for an Instagram account about [YOUR TOPIC].
+          <H3Sub>Execution by path</H3Sub>
+          <PathIndicator path="fast" />
+          <P>Open Claude.ai in your Project. Type: "Write a carousel about: [topic from your queue]." Copy the output. Paste into Canva. Design 7 slides using your template. Export PNG. Post manually or via Buffer.</P>
 
-Rules:
-- Each hook must address a real pain point or a counterintuitive insight
-- Max 8 words per hook
-- No emojis, no hype words
-- Mix patterns: counterintuitive, bold claim, specific result, pattern interrupt
-- Format: numbered list, hooks only, no explanation`} />
+          <PathIndicator path="stable" />
+          <P>n8n runs daily at 8am. Pulls 3 "Idea" records from Airtable. Calls Claude API with your brain prompt + title. Gets carousel + caption back. Writes to Airtable. You get a notification: "3 drafts ready." You review in 20 minutes, approve, set Publish Date. Buffer publishes on schedule.</P>
 
-          <PromptBlock type="Copy This — Carousel Writer" content={`Write a 7-slide Instagram carousel about: [TOPIC]
+          <PathIndicator path="scale" />
+          <P>Claude Code + Skills architecture. The content agent reads from the queue, generates using your skill files, evaluates against quality criteria autonomously, and only surfaces content that passes. Human review becomes exception-based, not default.</P>
 
-Audience: [YOUR AUDIENCE DESCRIPTION]
-
-Format:
-SLIDE 1 — HOOK: [max 8 words] + [1 sentence body]
-SLIDES 2–6 — CONTENT: [max 7 words headline] + [1–2 sentences, one idea per slide]
-SLIDE 7 — CTA: Want the full system? Comment SYSTEM below.
-
-Tone: direct, peer-to-peer, practitioner. No buzzwords. Output slides only.`} />
-
-          <PathGrid items={[
-            { path: "fast", icon: "⚡", title: "Fast Path", desc: "Generate hooks manually. Write carousels one at a time. Design in Canva with one reusable template. Post manually.", time: "20 min/post" },
-            { path: "stable", icon: "🔁", title: "Stable Path", desc: "Hook bank in queue. Templates saved in your brain. Consistent format. Schedule with Buffer or Later.", time: "10 min/post" },
-            { path: "scale", icon: "📈", title: "Scale Path", desc: "Batch generation via API. Design automation. Auto-schedule. Performance feedback loop into brain.", time: "5 min/post" },
+          <ToolGrid items={[
+            { name: "Canva", desc: "Build one carousel template. Duplicate per post. Brand Kit keeps it consistent. Export PNG slides. Free tier is enough for Fast Path.", tags: [{ label: "FREE TIER", type: "free" }, { label: "FAST PATH", type: "fast" }], href: "https://canva.com" },
+            { name: "n8n", desc: "Orchestrates the full content pipeline — trigger, generate, save, notify, schedule. Self-host on Railway (~$5/mo) or n8n Cloud ($20/mo).", tags: [{ label: "$0–20/MO", type: "paid" }, { label: "STABLE PATH", type: "stable" }], href: "https://n8n.io" },
+            { name: "Railway (n8n hosting)", desc: "Deploy self-hosted n8n in 5 minutes. Free tier available. ~$5/mo for always-on. Best cost-control balance.", tags: [{ label: "FREE TIER", type: "free" }, { label: "STABLE PATH", type: "stable" }], href: "https://railway.app" },
           ]} />
 
           <MistakeBlock text="Hooks that get likes but zero DMs. If your hook isn't connected to a pain point your offer solves, it drives engagement without revenue. Always tie the hook back to the CTA." />
 
-          {/* Layer 4: DM Engine */}
-          <H3>Layer 4 — DM Sales Engine</H3>
-          <P>Conversations that qualify, nurture, and close. The comment-to-DM flow is the most reliable organic sales mechanism on social platforms right now. No ad spend. No landing pages. Just conversations that convert.</P>
+          {/* Layer 3: Publisher */}
+          <H3>Layer 03 — Publisher</H3>
 
+          <H3Sub>Publishing by path</H3Sub>
+          <PathIndicator path="fast" />
+          <P>Post manually, or use Buffer's free tier to schedule up to 10 posts. Connect Instagram once. Upload your slides and caption. Schedule. Done. This works fine until you're posting 7+ times per week.</P>
+
+          <PathIndicator path="stable" />
+          <P>n8n sends approved posts to Buffer via API on the publish date in Airtable. Zero manual uploading. Buffer handles the actual Instagram delivery. Update Status to "Scheduled" automatically.</P>
+
+          <PathIndicator path="scale" />
+          <P>Meta Content Publishing API directly — no third-party dependency. Requires Facebook Developer account, Instagram Business, and access token. 100% autonomous once configured.</P>
+
+          <ToolGrid items={[
+            { name: "Buffer", desc: "Free tier: 3 channels, 10 scheduled posts. $6/mo for unlimited. Clean API. Best starting scheduler.", tags: [{ label: "FREE TIER", type: "free" }, { label: "FAST PATH", type: "fast" }, { label: "STABLE PATH", type: "stable" }], href: "https://buffer.com" },
+            { name: "Meta Content Publishing API", desc: "Direct publish to Instagram. Free. Requires Business account + Developer setup. Fully autonomous. No third-party dependency.", tags: [{ label: "FREE", type: "free" }, { label: "SCALE PATH", type: "scale" }], href: "https://developers.facebook.com/docs/instagram-api/guides/content-publishing" },
+          ]} />
+
+          {/* Layer 4: DM Engine */}
+          <H3>Layer 04 — DM Engine</H3>
+          <P>When someone comments your keyword, ManyChat intercepts it, fires a public reply, and starts the DM sequence. This is the highest-leverage automation in this entire stack. Every post becomes a conversion opportunity.</P>
+
+          <ToolGrid items={[
+            { name: "ManyChat", desc: "Official Meta partner. No ban risk. Free tier handles 1,000 contacts — enough to validate the entire funnel before paying. Industry standard.", tags: [{ label: "FREE — 1K CONTACTS", type: "free" }, { label: "$15/MO PRO", type: "paid" }, { label: "ALL PATHS", type: "key" }], href: "https://manychat.com" },
+          ]} />
+
+          <H3Sub>The 5-message sequence — ready to use</H3Sub>
           <DMThread messages={[
-            { label: "DM 1", timing: "Instant", text: "Hey — saw your comment.\n\nI'm sending you the breakdown right now.\nGive me one second.", tag: "TRIGGER: keyword comment", isBot: false },
-            { label: "DM 2", timing: "60 sec later", text: "Most people who try to build [YOUR SYSTEM TYPE] fail at the same point.\n\nThey start with the tool instead of the system.\n\nA real system has three parts: a brain (what your AI knows), a queue (what it needs to do), and an output layer (what gets published).\n\nThat's what [YOUR PRODUCT] fixes.", tag: "VALUE: problem framing", isBot: true },
-            { label: "DM 3", timing: "3 min later", text: "Here's what's inside:\n\n→ The full system architecture\n→ Ready-to-use AI prompts you paste and run\n→ Content queue templates\n→ DM sales scripts\n→ A 7-day launch checklist\n\nNot theory. A field guide you open and execute.", tag: "VALUE: what's inside", isBot: false },
-            { label: "DM 4", timing: "5 min later", text: "It's $27.\n\n→ [YOUR CHECKOUT LINK]\n\nThe price is low on purpose. It has to earn your trust through what it delivers — not through what it costs.", tag: "CTA: checkout", isBot: true },
+            { label: "Public", timing: "Instant\nvisible under post", text: "Sent it to your DMs 👊", tag: "IG_COMMENT_SYSTEM", isBot: false },
+            { label: "DM 1", timing: "Instant", text: "Hey — saw your comment.\n\nI'm sending you the breakdown right now.\nGive me one second.", tag: "IG_DM_OPENED", isBot: false },
+            { label: "DM 2", timing: "60 sec later", text: "Most people who try to build AI systems fail at the same point.\n\nThey start with the tool. They pick something, watch a tutorial, build something that works once — then it breaks, or they can't repeat it, or they don't know what comes next.\n\nThe problem isn't the tool. It's that they built a workflow without a system underneath it.\n\nA real system has three parts: a brain (what the AI knows and how it thinks), a queue (what it needs to do and when), and an output layer (what actually gets published or sent).\n\nMost people only have the output layer. Almost nobody has the brain and the queue.\n\nThe AI Operator Kit fixes that.", tag: "IG_SAMPLE_SENT", isBot: true },
+            { label: "DM 3", timing: "3 min later", text: "Here's what's inside:\n\n→ The full system architecture — 5 layers, tool-agnostic\n→ Three operating paths: Fast, Stable, Scale — you choose your level\n→ A ready-to-use brain prompt you run today\n→ Content queue setup for Notion, Airtable, or Supabase\n→ The complete ManyChat DM sequence (this one you're reading)\n→ 15 prompts — carousels, captions, hooks, DM replies, audits\n→ The \"When to use what\" decision layer — Claude vs agents vs automation\n→ Skills for the Operator Repository — reusable, versioned, ready\n→ Launch plan and revenue math\n\nThis is what we built from 120+ real automation projects.\nNot theory. A field kit you open and execute.", tag: "IG_LOW_TICKET_PITCHED", isBot: false },
+            { label: "DM 4", timing: "5 min later", text: "It's $27.\n\n→ [YOUR CHECKOUT LINK]\n\nThe price is low on purpose. The kit earns your trust through what it delivers — not what it costs.", tag: "IG_PURCHASE_CLICK", isBot: true },
+            { label: "DM 5", timing: "24h later\nif no click", text: "Hey — just checking if you had any questions before deciding.\n\nHappy to clarify anything. No pressure.", tag: "IG_FOLLOWUP_SENT", isBot: false },
           ]} />
 
           <H3>Objection handling — copy-ready</H3>
@@ -402,16 +427,10 @@ Tone: direct, peer-to-peer, practitioner. No buzzwords. Output slides only.`} />
             ["\"I'll think about it\"", "\"Take your time. No pressure.\""],
           ]} />
 
-          <PathGrid items={[
-            { path: "fast", icon: "⚡", title: "Fast Path", desc: "Manual DMs using saved reply templates. Copy-paste the scripts. Handle responses yourself.", time: "15 min/day" },
-            { path: "stable", icon: "🔁", title: "Stable Path", desc: "Semi-automated with ManyChat. Keyword triggers fire the sequence. You only handle replies.", time: "5 min/day" },
-            { path: "scale", icon: "📈", title: "Scale Path", desc: "Full automation with qualification flows, CRM tagging, and follow-up sequences.", time: "1 min/day" },
-          ]} />
-
           <MistakeBlock text="Automating before you know what converts. Run the first 20 conversations manually. See which messages get replies, which get ignored. Then automate what works." />
 
           {/* Layer 5: Revenue */}
-          <H3>Layer 5 — Revenue</H3>
+          <H3>Layer 05 — Revenue</H3>
           <P>Where the system becomes money. This layer connects your DM engine to actual transactions.</P>
 
           <Steps items={[
