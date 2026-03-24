@@ -108,11 +108,13 @@ const AIOperatorKitSales = () => {
   return (
     <div className="min-h-screen" style={{ backgroundColor: "#080807", color: "#e5e5e0" }}>
       <SEO
-        title="AI Operator Starter Kit — Fluxrow"
-        description="The system behind your content, DMs, and sales. Prompts, templates, architecture, and a 7-day launch checklist for solo operators. $27."
+        title="AI Operator Kit — Sales Page | Fluxrow"
+        description="The AI Operator Kit sales page: system architecture, execution paths, prompts, templates, and launch checklists to run your content-to-revenue engine. $27 one-time."
         path="/kit"
         image="https://fluxrow.com/og-kit.jpg"
         imageAlt="AI Operator Starter Kit by Fluxrow"
+        lang="en-US"
+        locale="en_US"
       />
       {/* ── Hero ── */}
       <motion.section
