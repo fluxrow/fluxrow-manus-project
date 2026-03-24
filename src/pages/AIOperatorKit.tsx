@@ -581,14 +581,14 @@ Format:
         </Chapter>
 
         {/* FOOTER */}
-        <div style={{ padding: "48px 0 0", borderTop: "1px solid #222220", marginTop: 80, display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 16 }}>
+        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.6 }} style={{ padding: "48px 0 0", borderTop: "1px solid #222220", marginTop: 80, display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 16 }}>
           <div className="kit-mono" style={{ fontSize: 11, color: "#6b6960", letterSpacing: "0.1em" }}>
             FLUXROW<span className="kit-accent">.</span>
           </div>
           <div className="kit-mono" style={{ fontSize: 10, color: "#3a3a36" }}>
             AI Operator Starter Kit — v1.0 — Built from 120+ real projects
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );
