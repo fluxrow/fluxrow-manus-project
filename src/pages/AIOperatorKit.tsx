@@ -697,18 +697,14 @@ const PromptBlock = ({ type, content }: { type: string; content: string }) => (
 const ToolGrid = ({ items }: { items: { name: string; desc: string; tags: { label: string; type: string }[]; link: string }[] }) => (
   <div style={{ display: "grid", gap: 8, margin: "20px 0" }}>
     {items.map((item, i) => (
-      <div key={i} className="kit-tool-card" style={{ background: "#111110", border: "1px solid #222220", borderRadius: 8, padding: "18px 22px", display: "grid", gridTemplateColumns: "1fr auto", gap: 12, alignItems: "center", transition: "border-color 0.2s" }}>
+      <motion.div key={i} className="kit-tool-card" initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-20px" }} transition={{ duration: 0.4, delay: i * 0.1 }} style={{ background: "#111110", border: "1px solid #222220", borderRadius: 8, padding: "18px 22px", display: "grid", gridTemplateColumns: "1fr auto", gap: 12, alignItems: "center", transition: "border-color 0.2s" }}>
         <div>
           <div style={{ fontSize: 14, fontWeight: 500, color: "#e8e6df", marginBottom: 4 }}>{item.name}</div>
           <div style={{ fontSize: 12, color: "#6b6960", lineHeight: 1.5 }}>{item.desc}</div>
           <div style={{ display: "flex", gap: 6, marginTop: 8, flexWrap: "wrap" }}>
             {item.tags.map((tag, j) => (
               <span key={j} className="kit-mono" style={{
-                fontSize: 9,
-                letterSpacing: "0.08em",
-                padding: "2px 8px",
-                borderRadius: 3,
-                border: "1px solid",
+                fontSize: 9, letterSpacing: "0.08em", padding: "2px 8px", borderRadius: 3, border: "1px solid",
                 color: tag.type === "free" ? "#6ab840" : tag.type === "key" ? "#c8f000" : "#888",
                 borderColor: tag.type === "free" ? "#1e3a10" : tag.type === "key" ? "#2a4400" : "#222220",
               }}>{tag.label}</span>
@@ -716,7 +712,7 @@ const ToolGrid = ({ items }: { items: { name: string; desc: string; tags: { labe
           </div>
         </div>
         <span style={{ color: "#c8f000", fontFamily: "'DM Mono', monospace", fontSize: 11, whiteSpace: "nowrap", letterSpacing: "0.05em" }}>{item.link}</span>
-      </div>
+      </motion.div>
     ))}
   </div>
 );
