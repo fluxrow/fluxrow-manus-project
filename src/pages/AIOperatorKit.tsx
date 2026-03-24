@@ -645,16 +645,24 @@ const Callout = ({ text, warn = false }: { text: string; warn?: boolean }) => (
 const Steps = ({ items }: { items: { title: string; body: string }[] }) => (
   <div style={{ display: "grid", gap: 2, margin: "24px 0" }}>
     {items.map((item, i) => (
-      <div key={i} className="kit-step" style={{
-        background: "#111110",
-        border: "1px solid #222220",
-        padding: "24px 28px",
-        display: "grid",
-        gridTemplateColumns: "56px 1fr",
-        gap: 16,
-        transition: "border-color 0.2s",
-        borderRadius: i === 0 ? "8px 8px 0 0" : i === items.length - 1 ? "0 0 8px 8px" : 0,
-      }}>
+      <motion.div
+        key={i}
+        className="kit-step"
+        initial={{ opacity: 0, y: 15 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-20px" }}
+        transition={{ duration: 0.4, delay: i * 0.08 }}
+        style={{
+          background: "#111110",
+          border: "1px solid #222220",
+          padding: "24px 28px",
+          display: "grid",
+          gridTemplateColumns: "56px 1fr",
+          gap: 16,
+          transition: "border-color 0.2s",
+          borderRadius: i === 0 ? "8px 8px 0 0" : i === items.length - 1 ? "0 0 8px 8px" : 0,
+        }}
+      >
         <div style={{ display: "flex", flexDirection: "column", gap: 4, paddingTop: 2 }}>
           <span className="kit-mono" style={{ fontSize: 10, color: "#c8f000", letterSpacing: "0.1em" }}>{String(i + 1).padStart(2, "0")}</span>
           {i < items.length - 1 && <span style={{ width: 1, flex: 1, background: "#222220", margin: "6px auto 0" }} />}
@@ -663,7 +671,7 @@ const Steps = ({ items }: { items: { title: string; body: string }[] }) => (
           <div style={{ fontSize: 15, fontWeight: 500, color: "#e8e6df", marginBottom: 6 }}>{item.title}</div>
           <p style={{ fontSize: 14, color: "#888", lineHeight: 1.65, margin: 0, whiteSpace: "pre-wrap" }}>{item.body}</p>
         </div>
-      </div>
+      </motion.div>
     ))}
   </div>
 );
