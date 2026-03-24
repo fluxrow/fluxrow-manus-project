@@ -8,6 +8,7 @@ import { useTranslation } from 'react-i18next';
 gsap.registerPlugin(ScrollTrigger);
 
 const HorizonAgencyHero = () => {
+  const { t } = useTranslation();
   const containerRef = useRef(null);
   const canvasRef = useRef(null);
   const titleRef = useRef(null);
