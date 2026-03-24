@@ -109,7 +109,8 @@ const App = () => (
             <Route path="/conteudos/:slug" element={<div>Página Individual de Conteúdo</div>} />
             <Route path="/contato" element={<Contato />} />
             <Route path="/p/:slug" element={<PropostaPublica />} />
-            <Route path="/kit" element={<AIOperatorKit />} />
+            <Route path="/kit" element={<AIOperatorKitSales />} />
+            <Route path="/kit/content" element={<AIOperatorKit />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
