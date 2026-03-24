@@ -49,7 +49,7 @@ const AIOperatorKit = () => {
           <div style={{ background: "#0f1f00", border: "1px solid #2a4400", color: "#c8f000", fontFamily: "'DM Mono', monospace", fontSize: 10, letterSpacing: "0.1em", padding: "4px 12px", borderRadius: 100 }}>
             v1.0 — 2025
           </div>
-        </div>
+        </motion.div>
 
         {/* HERO */}
         <div style={{ padding: "80px 0 72px", borderBottom: "1px solid #222220" }}>
