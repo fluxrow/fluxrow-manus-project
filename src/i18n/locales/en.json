@@ -1,0 +1,468 @@
+{
+  "nav": {
+    "services": "Services",
+    "cases": "Cases",
+    "process": "Process",
+    "briefing": "Briefing",
+    "contact": "Contact",
+    "cta": "Get in Touch"
+  },
+  "hero": {
+    "stats": {
+      "automations": "automations",
+      "leads": "leads",
+      "hours": "hours"
+    },
+    "sections": [
+      {
+        "title": "FLUXROW",
+        "subtitle": "We turn ideas into results with AI, automation and creativity"
+      },
+      {
+        "title": "AUTOMATION",
+        "subtitle": "From strategy to delivery, Fluxrow handles everything for you"
+      },
+      {
+        "title": "RESULTS",
+        "subtitle": "Websites, automations, content and real results for your business"
+      }
+    ],
+    "cta_primary": "Discover Fluxrow",
+    "cta_secondary": "View Cases"
+  },
+  "services": {
+    "title": "What We Do",
+    "subtitle": "Complete solutions that turn your business into a results machine",
+    "items": [
+      {
+        "tag": "Technology",
+        "title": "Automations & AI",
+        "description": "Smart workflows running 24/7: WhatsApp, email, CRM, virtual agents and AI integrations.",
+        "benefit": "Save 20h/week",
+        "fullDescription": "We build custom automation workflows that eliminate repetitive tasks and scale your customer service. Our AI agents are trained specifically for your business, answering questions, qualifying leads and scheduling meetings automatically — 24/7.",
+        "features": [
+          "Smart chatbots for WhatsApp, Instagram and website",
+          "Email marketing automation with dynamic segmentation",
+          "CRM integration (RD Station, Pipedrive, HubSpot)",
+          "Virtual agents with generative AI (GPT, Claude)",
+          "No-code automations with Make, n8n and Zapier",
+          "Automated nurturing and follow-up workflows"
+        ],
+        "deliverables": [
+          "Documented workflows",
+          "Metrics dashboard",
+          "Team training",
+          "30-day support"
+        ]
+      },
+      {
+        "tag": "Creative",
+        "title": "Marketing & Content",
+        "description": "Posts, campaigns, blogs and social media with consistency and strategy.",
+        "benefit": "Content that converts",
+        "fullDescription": "We plan and execute your digital presence with strategic content that builds authority and drives conversions. From social media posts to full paid traffic campaigns, we handle the entire customer journey with persuasive copy and scroll-stopping design.",
+        "features": [
+          "Monthly editorial calendar with ready-to-post content",
+          "Informative carousels and engaging stories",
+          "Paid traffic management (Meta Ads, Google Ads)",
+          "Persuasive copywriting for ads and landing pages",
+          "Short-form video production (Reels, TikTok)",
+          "Performance reports and continuous optimization"
+        ],
+        "deliverables": [
+          "Monthly planning",
+          "Editable creatives",
+          "Weekly report",
+          "Alignment calls"
+        ]
+      },
+      {
+        "tag": "Development",
+        "title": "Websites & Landing Pages",
+        "description": "Modern sites built with Lovable or Webflow, focused on performance and full integration.",
+        "benefit": "High conversion",
+        "fullDescription": "We create websites and landing pages that aren't just beautiful — they're conversion machines. We use the most modern platforms to deliver fast, responsive projects fully integrated with your sales funnel and automation tools.",
+        "features": [
+          "Responsive mobile-first design",
+          "Development in Lovable, Webflow or custom code",
+          "Speed optimization and technical SEO",
+          "CRM, WhatsApp and marketing tools integration",
+          "Smart forms with lead qualification",
+          "Analytics and heatmaps configured"
+        ],
+        "deliverables": [
+          "Published website",
+          "Domain configured",
+          "SSL & security",
+          "Editing manual"
+        ]
+      },
+      {
+        "tag": "Design",
+        "title": "Branding & Creatives",
+        "description": "Visual identity, carousels, 3D renders and designs ready to engage and convert.",
+        "benefit": "Unique identity",
+        "fullDescription": "We develop memorable visual identities and graphic materials that position your brand as a market reference. From logo to post templates, we create a cohesive visual system that conveys professionalism and instant recognition.",
+        "features": [
+          "Logo creation and variations",
+          "Complete visual identity manual",
+          "Editable templates for Canva/Figma",
+          "Ad creatives (static and animated)",
+          "Professional 3D renders and mockups",
+          "Business presentation design"
+        ],
+        "deliverables": [
+          "High-resolution files",
+          "Web and print versions",
+          "Fonts and color palette",
+          "Social media kit"
+        ]
+      },
+      {
+        "tag": "Performance",
+        "title": "Paid Traffic",
+        "description": "Strategic campaigns on Meta Ads, Google Ads and LinkedIn to attract qualified leads.",
+        "benefit": "Measurable ROI",
+        "fullDescription": "We create and manage paid traffic campaigns focused on measurable results. From campaign setup to continuous optimization, we ensure every dollar invested works to bring qualified leads and increase your sales.",
+        "features": [
+          "Meta Ads campaigns (Facebook/Instagram)",
+          "Google Ads (Search, Display, YouTube)",
+          "LinkedIn Ads for B2B",
+          "Smart remarketing",
+          "Continuous A/B testing",
+          "Conversion optimization"
+        ],
+        "deliverables": [
+          "Complete setup",
+          "Optimized creatives",
+          "Weekly report",
+          "Performance calls"
+        ]
+      },
+      {
+        "tag": "Social Media",
+        "title": "Social Media",
+        "description": "Complete management of Instagram, Facebook and LinkedIn with strategic content and organic growth.",
+        "benefit": "Real engagement",
+        "fullDescription": "We take over full management of your social media with a strategic approach. We create engaging content, build community and turn followers into loyal customers through a consistent and authentic digital presence.",
+        "features": [
+          "Monthly strategic planning",
+          "Post and story creation",
+          "Community management",
+          "Metrics analysis",
+          "Editorial calendar",
+          "Follower engagement"
+        ],
+        "deliverables": [
+          "Monthly posts",
+          "Stories",
+          "Monthly report",
+          "Ongoing support"
+        ]
+      },
+      {
+        "tag": "Strategy",
+        "title": "Digital Consulting",
+        "description": "Complete diagnosis and personalized strategic plan to accelerate your digital growth.",
+        "benefit": "Clear direction",
+        "fullDescription": "We conduct a deep diagnosis of your business and market to create a tailored strategic plan. We identify opportunities, define priorities and chart a clear roadmap for you to achieve your goals in a structured way.",
+        "features": [
+          "Digital maturity diagnosis",
+          "Competitive analysis",
+          "Detailed action plan",
+          "KPI definition",
+          "Customer journey mapping",
+          "Investment prioritization"
+        ],
+        "deliverables": [
+          "Diagnostic report",
+          "Strategic plan",
+          "90-day roadmap",
+          "Mentoring session"
+        ]
+      },
+      {
+        "tag": "Product",
+        "title": "Web Systems",
+        "description": "Custom web applications, dashboards and internal systems to optimize operations.",
+        "benefit": "Custom solution",
+        "fullDescription": "We develop custom web applications that solve specific problems in your business. From BI dashboards to internal management systems, we create solutions that automate processes and improve decision-making.",
+        "features": [
+          "Custom BI dashboards",
+          "Internal management systems",
+          "Client portals",
+          "API integrations",
+          "Admin panels",
+          "Automated reports"
+        ],
+        "deliverables": [
+          "Published system",
+          "Documentation",
+          "Training",
+          "Technical support"
+        ]
+      }
+    ]
+  },
+  "cases": {
+    "title": "Success Stories",
+    "subtitle": "Real results that transformed businesses with technology"
+  },
+  "process": {
+    "title": "How We Work",
+    "subtitle": "A tested and refined process that delivers consistent results",
+    "step": "Step",
+    "steps": [
+      {
+        "title": "Smart Briefing",
+        "description": "We understand your business with an interactive quiz that maps unique opportunities and challenges.",
+        "details": "Our AI analyzes your market, competition and objectives to create a personalized strategy."
+      },
+      {
+        "title": "Strategy & Action Plan",
+        "description": "We define the fastest path to results based on data and experience.",
+        "details": "We prioritize high-impact actions and create a detailed roadmap with measurable goals."
+      },
+      {
+        "title": "Creation & Implementation",
+        "description": "Websites, content, automations and smart workflows executed with excellence.",
+        "details": "Agile development with incremental deliveries and continuous performance testing."
+      },
+      {
+        "title": "Optimization & Scale",
+        "description": "Continuous adjustments and measured results to maximize return on investment.",
+        "details": "Real-time monitoring with detailed reports and data-driven optimizations."
+      }
+    ]
+  },
+  "behind": {
+    "badge": "Tech Stack",
+    "title": "Technology in",
+    "titleHighlight": "Action",
+    "subtitle": "Real market tools we use to deliver extraordinary results",
+    "devPlatforms": "Development & Platforms",
+    "showcase": {
+      "title": "Creative Intelligence",
+      "titleSuffix": "in every delivery",
+      "subtitle": "From idea to result. Creatives, traffic, automation, systems — all under one roof, no extra vendor needed."
+    },
+    "categories": [
+      {
+        "title": "Artificial Intelligence",
+        "subtitle": "AI That Works for You",
+        "techs": [
+          { "name": "GPT-4 Turbo", "desc": "24/7 sales agents" },
+          { "name": "Claude", "desc": "Intelligent analysis" },
+          { "name": "Vision AI", "desc": "Document reading" },
+          { "name": "Embeddings", "desc": "Semantic search" }
+        ]
+      },
+      {
+        "title": "Automation & Workflows",
+        "subtitle": "Automation Without Limits",
+        "techs": [
+          { "name": "Make", "desc": "Complex visual flows" },
+          { "name": "n8n", "desc": "Advanced automations" },
+          { "name": "Zapier", "desc": "Quick integrations" },
+          { "name": "Z-API", "desc": "Unrestricted WhatsApp" }
+        ]
+      },
+      {
+        "title": "Paid Traffic",
+        "subtitle": "Ads That Convert",
+        "techs": [
+          { "name": "Meta Ads", "desc": "Facebook and Instagram" },
+          { "name": "Google Ads", "desc": "Search, Display, YouTube" },
+          { "name": "LinkedIn Ads", "desc": "B2B professionals" },
+          { "name": "TikTok Ads", "desc": "Young audience" }
+        ]
+      },
+      {
+        "title": "Channels & CRM",
+        "subtitle": "All Channels Connected",
+        "techs": [
+          { "name": "WhatsApp Business", "desc": "Messaging and support" },
+          { "name": "RD Station", "desc": "Lead management" },
+          { "name": "Pipedrive", "desc": "Sales pipeline" },
+          { "name": "Email Marketing", "desc": "Nurturing and follow-up" }
+        ]
+      }
+    ],
+    "showcaseBlocks": [
+      { "title": "Feed & Story Creatives", "desc": "Posts, carousels and stories that convert", "tag": "Design" },
+      { "title": "Videos & Reels", "desc": "Editing, motion and creative scripting", "tag": "Production" },
+      { "title": "Paid Traffic", "desc": "Managed Meta, Google and TikTok Ads", "tag": "Performance" },
+      { "title": "Landing Pages", "desc": "High-conversion pages, design + code", "tag": "Web" },
+      { "title": "Automations & AI", "desc": "Smart workflows with Make, n8n and GPT", "tag": "Technology" },
+      { "title": "CRM & Pipeline", "desc": "Pipedrive, RD Station, full funnel", "tag": "Sales" },
+      { "title": "Systems & SaaS", "desc": "Dashboards, platforms and custom apps", "tag": "Product" },
+      { "title": "Branding & Identity", "desc": "Logo, visual identity and applications", "tag": "Identity" }
+    ]
+  },
+  "briefing": {
+    "title": "Briefing",
+    "titleHighlight": "Smart",
+    "subtitle": "2 minutes for a personalized AI-powered strategy",
+    "back": "Back",
+    "yourChoices": "Your choices",
+    "selection": "selection",
+    "selections": "selections",
+    "completion": {
+      "whatsapp": "Chat on WhatsApp",
+      "schedule": "Schedule a Call",
+      "footer": "Free consultation • No commitment • Reply in 5 min"
+    },
+    "questions": [
+      {
+        "title": "What type of business do you have?",
+        "subtitle": "We'll personalize our approach for your industry.",
+        "options": [
+          { "label": "E-commerce", "description": "We automate your entire funnel: from acquisition to post-sale." },
+          { "label": "Services", "description": "Automatic qualification and smart scheduling." },
+          { "label": "Consulting", "description": "Lead nurturing and high-ticket sales." },
+          { "label": "SaaS / Software", "description": "Automated onboarding, retention and upsell." },
+          { "label": "Local Business", "description": "Online/offline integration and local automation." },
+          { "label": "Digital Products", "description": "Complete funnels and automated delivery." },
+          { "label": "Agency / Freelancer", "description": "Automation for client acquisition and management." }
+        ]
+      },
+      {
+        "title": "What is your main goal?",
+        "subtitle": "Understand how we can accelerate your results.",
+        "options": [
+          { "label": "Generate More Leads", "description": "Automated capture with AI + smart qualification." },
+          { "label": "Increase Sales", "description": "Optimized funnels + automatic follow-up." },
+          { "label": "Automate Support", "description": "ChatBot + AI + WhatsApp Business integration." },
+          { "label": "Optimize Processes", "description": "Task automation + system integration." },
+          { "label": "Improve Retention", "description": "Post-sale journey + automatic reactivation." },
+          { "label": "Scale Without Costs", "description": "Complete automation + AI for growth." }
+        ]
+      },
+      {
+        "title": "Your level and biggest challenge?",
+        "subtitle": "Select what best describes your current situation.",
+        "options": [
+          { "label": "No automation + Lack of time", "description": "Everything manual with no time for strategy." },
+          { "label": "No automation + Bad leads", "description": "Many cold leads without qualification." },
+          { "label": "Basic + High costs", "description": "Some tools, but CAC is too high." },
+          { "label": "Basic + Hard to scale", "description": "Operational bottlenecks prevent growth." },
+          { "label": "Intermediate + Lack of integration", "description": "Multiple disconnected tools." },
+          { "label": "Advanced + Optimize performance", "description": "Robust system, need more efficiency." }
+        ]
+      },
+      {
+        "title": "What's your monthly investment?",
+        "subtitle": "We'll size the ideal solution.",
+        "options": [
+          { "label": "Up to $1,000", "description": "Essential automation + basic setup." },
+          { "label": "$1,000 – $3,000", "description": "Advanced automation + AI + integrations." },
+          { "label": "$3,000 – $10,000", "description": "Enterprise solution + premium support." },
+          { "label": "Above $10,000", "description": "Custom solution + dedicated team." }
+        ]
+      },
+      {
+        "title": "When do you want to see results?",
+        "subtitle": "Let's align expectations and timeline.",
+        "options": [
+          { "label": "Urgent (7 days)", "description": "Quick setup + essential automations." },
+          { "label": "Within 30 days", "description": "Complete implementation + optimization." },
+          { "label": "Within 60 days", "description": "Robust project + training." },
+          { "label": "Next Quarter", "description": "Complete + sustainable transformation." }
+        ]
+      }
+    ],
+    "diagnostics": {
+      "sales": {
+        "title": "Intelligent Sales Machine",
+        "description": "Your operation has the potential to multiply results with automated funnels and AI qualification.",
+        "highlight": "Estimate: +200% qualified leads in 60 days"
+      },
+      "support": {
+        "title": "24/7 AI Support",
+        "description": "Your business needs support automation to scale without growing the team.",
+        "highlight": "Estimate: -70% response time"
+      },
+      "scale": {
+        "title": "Scalable Growth",
+        "description": "We identified operational bottlenecks that can be eliminated with smart automation.",
+        "highlight": "Estimate: -50% operational costs"
+      },
+      "default": {
+        "title": "Personalized Strategy",
+        "description": "We analyzed your profile and identified unique automation opportunities.",
+        "highlight": "Estimate: Positive ROI within 90 days"
+      }
+    }
+  },
+  "cta": {
+    "heading": "Ready to transform your business with",
+    "headingHighlight": "AI, automation and strategic design?",
+    "description": "Fluxrow is ready to accelerate your results. Let's talk about how we can turn your challenges into growth opportunities.",
+    "button": "Talk to Fluxrow",
+    "supporting": "🎯 We serve companies, creators and startups looking to accelerate results",
+    "whatsappMessage": "Hi! I came through the Fluxrow website and would like to know more about how you can help my business with AI, automation and strategic design.",
+    "footer": {
+      "nav": "Navigation",
+      "home": "Home",
+      "services": "Services",
+      "cases": "Cases",
+      "content": "Content",
+      "contact": "Contact",
+      "contactTitle": "Contact",
+      "social": "Social",
+      "legal": "Legal",
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Use",
+      "tagline": "– Automation, AI and Creativity that deliver results.",
+      "rights": "All rights reserved."
+    }
+  },
+  "seo": {
+    "title": "Fluxrow - Creative Intelligence",
+    "description": "Generative AI, automations and growth marketing. Fluxrow is the lab behind the brands that lead."
+  },
+  "contact": {
+    "title": "Get in Touch",
+    "subtitle": "We're here to help you succeed with AI",
+    "whatsapp": {
+      "title": "WhatsApp",
+      "description": "Direct support via WhatsApp",
+      "action": "Chat on WhatsApp"
+    },
+    "email": {
+      "title": "Email",
+      "description": "suporte@fluxrow.com.br",
+      "action": "Send Email"
+    },
+    "social": {
+      "title": "Social Media",
+      "subtitle": "Follow us on social media to stay up to date",
+      "follow": "Follow"
+    },
+    "form": {
+      "title": "Send a Message",
+      "subtitle": "Fill out the form below and we'll get back to you within 24 hours",
+      "name": "Full Name",
+      "namePlaceholder": "Your full name",
+      "email": "Email",
+      "emailPlaceholder": "your@email.com",
+      "subject": "Subject",
+      "subjectPlaceholder": "Select a subject",
+      "subjects": {
+        "course": "Course question",
+        "technical": "Technical issue",
+        "payment": "Payment support",
+        "partnership": "Partnership proposal",
+        "other": "Other"
+      },
+      "message": "Message",
+      "messagePlaceholder": "Describe your question or message...",
+      "submit": "Send Message",
+      "success": {
+        "title": "Message Sent!",
+        "description": "Thank you for reaching out. We'll get back to you within 24 hours.",
+        "newMessage": "Send New Message"
+      }
+    }
+  }
+}

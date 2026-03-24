@@ -1,0 +1,468 @@
+{
+  "nav": {
+    "services": "Serviços",
+    "cases": "Cases",
+    "process": "Processo",
+    "briefing": "Briefing",
+    "contact": "Contato",
+    "cta": "Fale Conosco"
+  },
+  "hero": {
+    "stats": {
+      "automations": "automações",
+      "leads": "leads",
+      "hours": "horas"
+    },
+    "sections": [
+      {
+        "title": "FLUXROW",
+        "subtitle": "Transformamos ideias em resultados com IA, automação e criatividade"
+      },
+      {
+        "title": "AUTOMAÇÃO",
+        "subtitle": "Da estratégia ao entregável, a Fluxrow cuida de tudo para você"
+      },
+      {
+        "title": "RESULTADOS",
+        "subtitle": "Sites, automações, conteúdo e resultados reais para seu negócio"
+      }
+    ],
+    "cta_primary": "Quero conhecer a Fluxrow",
+    "cta_secondary": "Ver Cases"
+  },
+  "services": {
+    "title": "O que fazemos",
+    "subtitle": "Soluções completas que transformam seu negócio em uma máquina de resultados",
+    "items": [
+      {
+        "tag": "Tecnologia",
+        "title": "Automações e IA",
+        "description": "Fluxos inteligentes que trabalham 24h por você: WhatsApp, e-mail, CRM, agentes virtuais e integrações com IA.",
+        "benefit": "Economia de 20h/semana",
+        "fullDescription": "Desenvolvemos fluxos de automação personalizados que eliminam tarefas repetitivas e escalam seu atendimento. Nossos agentes de IA são treinados especificamente para seu negócio, respondendo dúvidas, qualificando leads e agendando reuniões automaticamente — 24 horas por dia, 7 dias por semana.",
+        "features": [
+          "Chatbots inteligentes para WhatsApp, Instagram e site",
+          "Automação de e-mail marketing com segmentação dinâmica",
+          "Integração com CRMs (RD Station, Pipedrive, HubSpot)",
+          "Agentes virtuais com IA generativa (GPT, Claude)",
+          "Automações no-code com Make, n8n e Zapier",
+          "Fluxos de nutrição e follow-up automáticos"
+        ],
+        "deliverables": [
+          "Fluxos documentados",
+          "Dashboard de métricas",
+          "Treinamento da equipe",
+          "Suporte por 30 dias"
+        ]
+      },
+      {
+        "tag": "Criativo",
+        "title": "Marketing e Conteúdo",
+        "description": "Criação de posts, campanhas, blogs e social media com consistência e estratégia.",
+        "benefit": "Conteúdo que converte",
+        "fullDescription": "Planejamos e executamos sua presença digital com conteúdo estratégico que gera autoridade e conversões. Da criação de posts para redes sociais até campanhas completas de tráfego pago, cuidamos de toda a jornada do cliente com copy persuasiva e design que para o scroll.",
+        "features": [
+          "Calendário editorial mensal com posts prontos",
+          "Carrosséis informativos e stories engajadores",
+          "Gestão de tráfego pago (Meta Ads, Google Ads)",
+          "Copywriting persuasivo para anúncios e landing pages",
+          "Produção de vídeos curtos (Reels, TikTok)",
+          "Relatórios de performance e otimização contínua"
+        ],
+        "deliverables": [
+          "Planejamento mensal",
+          "Criativos editáveis",
+          "Relatório semanal",
+          "Calls de alinhamento"
+        ]
+      },
+      {
+        "tag": "Desenvolvimento",
+        "title": "Websites e Landing Pages",
+        "description": "Sites modernos em Lovable ou Webflow, com foco em performance e integração total.",
+        "benefit": "Alta conversão",
+        "fullDescription": "Criamos sites e landing pages que não são apenas bonitos — são máquinas de conversão. Utilizamos as plataformas mais modernas do mercado para entregar projetos rápidos, responsivos e totalmente integrados com seu funil de vendas e ferramentas de automação.",
+        "features": [
+          "Design responsivo e mobile-first",
+          "Desenvolvimento em Lovable, Webflow ou código customizado",
+          "Otimização de velocidade e SEO técnico",
+          "Integração com CRM, WhatsApp e ferramentas de marketing",
+          "Formulários inteligentes com qualificação de leads",
+          "Analytics e heatmaps configurados"
+        ],
+        "deliverables": [
+          "Site publicado",
+          "Domínio configurado",
+          "SSL e segurança",
+          "Manual de edição"
+        ]
+      },
+      {
+        "tag": "Design",
+        "title": "Branding e Criativos",
+        "description": "Identidade visual, carrosséis, renders 3D e designs prontos para engajar e converter.",
+        "benefit": "Identidade única",
+        "fullDescription": "Desenvolvemos identidades visuais memoráveis e materiais gráficos que posicionam sua marca como referência no mercado. Do logotipo aos templates de posts, criamos um sistema visual coeso que transmite profissionalismo e gera reconhecimento instantâneo.",
+        "features": [
+          "Criação de logotipo e variações",
+          "Manual de identidade visual completo",
+          "Templates editáveis para Canva/Figma",
+          "Criativos para anúncios (estático e animado)",
+          "Renders 3D e mockups profissionais",
+          "Design de apresentações comerciais"
+        ],
+        "deliverables": [
+          "Arquivos em alta resolução",
+          "Versões para web e print",
+          "Fontes e paleta de cores",
+          "Kit de redes sociais"
+        ]
+      },
+      {
+        "tag": "Performance",
+        "title": "Tráfego Pago",
+        "description": "Campanhas estratégicas em Meta Ads, Google Ads e LinkedIn para atrair leads qualificados.",
+        "benefit": "ROI mensurável",
+        "fullDescription": "Criamos e gerenciamos campanhas de tráfego pago com foco em resultados mensuráveis. Desde a estruturação das campanhas até a otimização contínua, garantimos que cada real investido trabalhe para trazer leads qualificados e aumentar suas vendas.",
+        "features": [
+          "Campanhas Meta Ads (Facebook/Instagram)",
+          "Google Ads (Search, Display, YouTube)",
+          "LinkedIn Ads para B2B",
+          "Remarketing inteligente",
+          "Testes A/B contínuos",
+          "Otimização de conversões"
+        ],
+        "deliverables": [
+          "Setup completo",
+          "Criativos otimizados",
+          "Relatório semanal",
+          "Calls de performance"
+        ]
+      },
+      {
+        "tag": "Social Media",
+        "title": "Redes Sociais",
+        "description": "Gestão completa de Instagram, Facebook e LinkedIn com conteúdo estratégico e crescimento orgânico.",
+        "benefit": "Engajamento real",
+        "fullDescription": "Assumimos a gestão completa das suas redes sociais com uma abordagem estratégica. Criamos conteúdo que engaja, construímos comunidade e transformamos seguidores em clientes fiéis através de uma presença digital consistente e autêntica.",
+        "features": [
+          "Planejamento estratégico mensal",
+          "Criação de posts e stories",
+          "Gestão de comunidade",
+          "Análise de métricas",
+          "Calendário editorial",
+          "Interação com seguidores"
+        ],
+        "deliverables": [
+          "Posts mensais",
+          "Stories",
+          "Relatório mensal",
+          "Suporte contínuo"
+        ]
+      },
+      {
+        "tag": "Estratégia",
+        "title": "Consultoria Digital",
+        "description": "Diagnóstico completo e plano estratégico personalizado para acelerar seu crescimento digital.",
+        "benefit": "Direção clara",
+        "fullDescription": "Realizamos um diagnóstico profundo do seu negócio e mercado para criar um plano estratégico sob medida. Identificamos oportunidades, definimos prioridades e traçamos um roadmap claro para você alcançar seus objetivos de forma estruturada.",
+        "features": [
+          "Diagnóstico de maturidade digital",
+          "Análise de concorrência",
+          "Plano de ação detalhado",
+          "Definição de KPIs",
+          "Mapeamento de jornada do cliente",
+          "Priorização de investimentos"
+        ],
+        "deliverables": [
+          "Relatório diagnóstico",
+          "Plano estratégico",
+          "Roadmap 90 dias",
+          "Sessão de mentoria"
+        ]
+      },
+      {
+        "tag": "Produto",
+        "title": "Sistemas Web",
+        "description": "Aplicações web personalizadas, dashboards e sistemas internos para otimizar operações.",
+        "benefit": "Solução sob medida",
+        "fullDescription": "Desenvolvemos aplicações web customizadas que resolvem problemas específicos do seu negócio. De dashboards de BI a sistemas de gestão interna, criamos soluções que automatizam processos e melhoram a tomada de decisão.",
+        "features": [
+          "Dashboards de BI customizados",
+          "Sistemas de gestão interna",
+          "Portais de clientes",
+          "Integrações com APIs",
+          "Painéis administrativos",
+          "Relatórios automatizados"
+        ],
+        "deliverables": [
+          "Sistema publicado",
+          "Documentação",
+          "Treinamento",
+          "Suporte técnico"
+        ]
+      }
+    ]
+  },
+  "cases": {
+    "title": "Cases de Sucesso",
+    "subtitle": "Resultados reais que transformaram negócios com tecnologia"
+  },
+  "process": {
+    "title": "Como Trabalhamos",
+    "subtitle": "Um processo testado e refinado que entrega resultados consistentes",
+    "step": "Etapa",
+    "steps": [
+      {
+        "title": "Briefing Inteligente",
+        "description": "Entendemos seu negócio com um quiz interativo que mapeia oportunidades e desafios únicos.",
+        "details": "Nossa IA analisa seu mercado, concorrência e objetivos para criar uma estratégia personalizada."
+      },
+      {
+        "title": "Estratégia e Plano de Ação",
+        "description": "Definimos o caminho mais rápido para resultado com base em dados e experiência.",
+        "details": "Priorizamos ações de alto impacto e criamos um roadmap detalhado com metas mensuráveis."
+      },
+      {
+        "title": "Criação e Implementação",
+        "description": "Sites, conteúdos, automações e fluxos inteligentes executados com excelência.",
+        "details": "Desenvolvimento ágil com entregas incrementais e testes contínuos de performance."
+      },
+      {
+        "title": "Otimização e Escala",
+        "description": "Ajustes contínuos e resultados medidos para maximizar o retorno do investimento.",
+        "details": "Monitoramento em tempo real com relatórios detalhados e otimizações baseadas em dados."
+      }
+    ]
+  },
+  "behind": {
+    "badge": "Stack Tecnológico",
+    "title": "Tecnologia em",
+    "titleHighlight": "Ação",
+    "subtitle": "Ferramentas reais de mercado que usamos para entregar resultados extraordinários",
+    "devPlatforms": "Desenvolvimento & Plataformas",
+    "showcase": {
+      "title": "Inteligência Criativa",
+      "titleSuffix": "em cada entrega",
+      "subtitle": "Da ideia ao resultado. Criativos, tráfego, automação, sistemas — tudo sob o mesmo teto, sem precisar de outro fornecedor."
+    },
+    "categories": [
+      {
+        "title": "Inteligência Artificial",
+        "subtitle": "IA que Trabalha por Você",
+        "techs": [
+          { "name": "GPT-4 Turbo", "desc": "Agentes de vendas 24/7" },
+          { "name": "Claude", "desc": "Análise inteligente" },
+          { "name": "Vision AI", "desc": "Leitura de documentos" },
+          { "name": "Embeddings", "desc": "Busca semântica" }
+        ]
+      },
+      {
+        "title": "Automação & Fluxos",
+        "subtitle": "Automação sem Limites",
+        "techs": [
+          { "name": "Make", "desc": "Fluxos visuais complexos" },
+          { "name": "n8n", "desc": "Automações avançadas" },
+          { "name": "Zapier", "desc": "Integrações rápidas" },
+          { "name": "Z-API", "desc": "WhatsApp sem restrições" }
+        ]
+      },
+      {
+        "title": "Tráfego Pago",
+        "subtitle": "Ads que Convertem",
+        "techs": [
+          { "name": "Meta Ads", "desc": "Facebook e Instagram" },
+          { "name": "Google Ads", "desc": "Search, Display, YouTube" },
+          { "name": "LinkedIn Ads", "desc": "Profissionais B2B" },
+          { "name": "TikTok Ads", "desc": "Público jovem" }
+        ]
+      },
+      {
+        "title": "Canais & CRM",
+        "subtitle": "Todos os Canais Conectados",
+        "techs": [
+          { "name": "WhatsApp Business", "desc": "Disparos e atendimento" },
+          { "name": "RD Station", "desc": "Gestão de leads" },
+          { "name": "Pipedrive", "desc": "Pipeline de vendas" },
+          { "name": "Email Marketing", "desc": "Nutrição e follow-up" }
+        ]
+      }
+    ],
+    "showcaseBlocks": [
+      { "title": "Criativos para Feed e Stories", "desc": "Posts, carrosséis e stories que convertem", "tag": "Design" },
+      { "title": "Vídeos e Reels", "desc": "Edição, motion e roteiro criativo", "tag": "Produção" },
+      { "title": "Tráfego Pago", "desc": "Meta, Google e TikTok Ads gerenciados", "tag": "Performance" },
+      { "title": "Landing Pages", "desc": "Páginas de alta conversão, design + código", "tag": "Web" },
+      { "title": "Automações e IA", "desc": "Fluxos inteligentes com Make, n8n e GPT", "tag": "Tecnologia" },
+      { "title": "CRM e Pipeline", "desc": "Pipedrive, RD Station, funil completo", "tag": "Vendas" },
+      { "title": "Sistemas e SaaS", "desc": "Dashboards, plataformas e apps sob medida", "tag": "Produto" },
+      { "title": "Branding e Identidade", "desc": "Logo, identidade visual e aplicações", "tag": "Identidade" }
+    ]
+  },
+  "briefing": {
+    "title": "Briefing",
+    "titleHighlight": "Inteligente",
+    "subtitle": "2 minutos para uma estratégia personalizada com IA",
+    "back": "Voltar",
+    "yourChoices": "Suas escolhas",
+    "selection": "seleção",
+    "selections": "seleções",
+    "completion": {
+      "whatsapp": "Falar no WhatsApp",
+      "schedule": "Agendar Call",
+      "footer": "Consultoria gratuita • Sem compromisso • Resposta em 5 min"
+    },
+    "questions": [
+      {
+        "title": "Qual o tipo do seu negócio?",
+        "subtitle": "Vamos personalizar nossa abordagem para o seu setor.",
+        "options": [
+          { "label": "E-commerce", "description": "Automatizamos todo seu funil: captação até pós-venda." },
+          { "label": "Serviços", "description": "Qualificação automática e agendamentos inteligentes." },
+          { "label": "Consultoria", "description": "Nutrição de leads e vendas de alto ticket." },
+          { "label": "SaaS / Software", "description": "Onboarding, retenção e upsell automatizados." },
+          { "label": "Negócio Físico", "description": "Integração online/offline e automação local." },
+          { "label": "Infoprodutos", "description": "Funis completos e entrega automatizada." },
+          { "label": "Agência / Freelancer", "description": "Automação para captação e gestão de clientes." }
+        ]
+      },
+      {
+        "title": "Qual seu principal objetivo?",
+        "subtitle": "Entenda como podemos acelerar seus resultados.",
+        "options": [
+          { "label": "Gerar Mais Leads", "description": "Captação automatizada com IA + qualificação inteligente." },
+          { "label": "Aumentar Vendas", "description": "Funis otimizados + follow-up automático." },
+          { "label": "Automatizar Atendimento", "description": "ChatBot + IA + integração WhatsApp Business." },
+          { "label": "Otimizar Processos", "description": "Automação de tarefas + integração de sistemas." },
+          { "label": "Melhorar Retenção", "description": "Jornada pós-venda + reativação automática." },
+          { "label": "Escalar Sem Custos", "description": "Automação completa + IA para crescimento." }
+        ]
+      },
+      {
+        "title": "Seu nível e maior desafio?",
+        "subtitle": "Selecione o que melhor descreve sua situação atual.",
+        "options": [
+          { "label": "Sem automação + Falta de tempo", "description": "Tudo manual e sem tempo para estratégia." },
+          { "label": "Sem automação + Leads ruins", "description": "Muitos leads frios sem qualificação." },
+          { "label": "Básico + Custos altos", "description": "Algumas ferramentas, mas CAC muito alto." },
+          { "label": "Básico + Dificuldade em escalar", "description": "Gargalos operacionais impedem crescimento." },
+          { "label": "Intermediário + Falta integração", "description": "Várias ferramentas desconectadas." },
+          { "label": "Avançado + Otimizar performance", "description": "Sistema robusto, preciso de mais eficiência." }
+        ]
+      },
+      {
+        "title": "Qual seu investimento mensal?",
+        "subtitle": "Vamos dimensionar a solução ideal.",
+        "options": [
+          { "label": "Até R$ 5 mil", "description": "Automação essencial + Setup básico." },
+          { "label": "R$ 5 mil – R$ 15 mil", "description": "Automação avançada + IA + Integrações." },
+          { "label": "R$ 15 mil – R$ 50 mil", "description": "Solução enterprise + Suporte premium." },
+          { "label": "Acima de R$ 50 mil", "description": "Solução customizada + Dedicação exclusiva." }
+        ]
+      },
+      {
+        "title": "Quando quer ver resultados?",
+        "subtitle": "Vamos alinhar expectativas e cronograma.",
+        "options": [
+          { "label": "Urgente (7 dias)", "description": "Setup rápido + automações essenciais." },
+          { "label": "Em até 30 dias", "description": "Implementação completa + otimização." },
+          { "label": "Em até 60 dias", "description": "Projeto robusto + treinamento." },
+          { "label": "Próximo Trimestre", "description": "Transformação completa + sustentável." }
+        ]
+      }
+    ],
+    "diagnostics": {
+      "sales": {
+        "title": "Máquina de Vendas Inteligente",
+        "description": "Sua operação tem potencial para multiplicar resultados com funis automatizados e IA de qualificação.",
+        "highlight": "Estimativa: +200% de leads qualificados em 60 dias"
+      },
+      "support": {
+        "title": "Atendimento 24/7 com IA",
+        "description": "Seu negócio precisa de automação de atendimento para escalar sem aumentar equipe.",
+        "highlight": "Estimativa: -70% no tempo de resposta"
+      },
+      "scale": {
+        "title": "Crescimento Escalável",
+        "description": "Identificamos gargalos operacionais que podem ser eliminados com automação inteligente.",
+        "highlight": "Estimativa: -50% em custos operacionais"
+      },
+      "default": {
+        "title": "Estratégia Personalizada",
+        "description": "Analisamos seu perfil e identificamos oportunidades únicas de automação.",
+        "highlight": "Estimativa: ROI positivo em até 90 dias"
+      }
+    }
+  },
+  "cta": {
+    "heading": "Quer transformar seu negócio com",
+    "headingHighlight": "IA, automação e design estratégico?",
+    "description": "A Fluxrow está pronta para acelerar seus resultados. Vamos conversar sobre como podemos transformar seus desafios em oportunidades de crescimento.",
+    "button": "Quero falar com a Fluxrow",
+    "supporting": "🎯 Atendemos empresas, criadores e startups que querem acelerar resultados",
+    "whatsappMessage": "Olá! Vim através do site institucional da Fluxrow e gostaria de saber mais sobre como vocês podem ajudar meu negócio com IA, automação e design estratégico.",
+    "footer": {
+      "nav": "Navegação",
+      "home": "Início",
+      "services": "Serviços",
+      "cases": "Cases",
+      "content": "Conteúdos",
+      "contact": "Contato",
+      "contactTitle": "Contato",
+      "social": "Social",
+      "legal": "Legal",
+      "privacy": "Política de Privacidade",
+      "terms": "Termos de Uso",
+      "tagline": "– Automação, IA e Criatividade que entregam resultados.",
+      "rights": "Todos os direitos reservados."
+    }
+  },
+  "seo": {
+    "title": "Fluxrow - Inteligência Criativa",
+    "description": "IA generativa, automações e growth marketing. A Fluxrow é o laboratório por trás das marcas que lideram."
+  },
+  "contact": {
+    "title": "Entre em Contato",
+    "subtitle": "Estamos aqui para ajudar você a ter sucesso com IA",
+    "whatsapp": {
+      "title": "WhatsApp",
+      "description": "Suporte direto via WhatsApp",
+      "action": "Chamar no WhatsApp"
+    },
+    "email": {
+      "title": "E-mail",
+      "description": "suporte@fluxrow.com.br",
+      "action": "Enviar E-mail"
+    },
+    "social": {
+      "title": "Redes Sociais",
+      "subtitle": "Siga-nos nas redes sociais para ficar por dentro das novidades",
+      "follow": "Seguir"
+    },
+    "form": {
+      "title": "Envie sua Mensagem",
+      "subtitle": "Preencha o formulário abaixo e retornaremos em até 24 horas",
+      "name": "Nome Completo",
+      "namePlaceholder": "Seu nome completo",
+      "email": "E-mail",
+      "emailPlaceholder": "seu@email.com",
+      "subject": "Assunto",
+      "subjectPlaceholder": "Selecione um assunto",
+      "subjects": {
+        "course": "Dúvida sobre o curso",
+        "technical": "Problema técnico",
+        "payment": "Suporte de pagamento",
+        "partnership": "Proposta de parceria",
+        "other": "Outro"
+      },
+      "message": "Mensagem",
+      "messagePlaceholder": "Descreva sua dúvida ou mensagem...",
+      "submit": "Enviar Mensagem",
+      "success": {
+        "title": "Mensagem Enviada!",
+        "description": "Obrigado pelo contato. Retornaremos em até 24 horas.",
+        "newMessage": "Enviar Nova Mensagem"
+      }
+    }
+  }
+}
