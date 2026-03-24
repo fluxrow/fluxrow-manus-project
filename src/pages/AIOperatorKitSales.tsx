@@ -56,6 +56,11 @@ const insideBlocks = [
     title: "Revenue Math",
     desc: "Funnel benchmarks, monthly revenue scenarios, and upsell math from $27 buyers to $500–$5,000 high-ticket conversions.",
   },
+  {
+    num: "09",
+    title: "Upgrade Path",
+    desc: "What to build after your first 10, 30, and 100 sales — testimonials, high-ticket offers, path graduation, and monthly brain audits.",
+  },
 ];
 
 const forList = [
@@ -79,10 +84,10 @@ const valueStack = [
   "5-message ManyChat DM sequence — ready to deploy",
   "Operator Repository with 5 skill files + n8n workflow templates",
   "Decision framework — when to use which tool",
-  "Path-specific launch checklists (2 days → 7 days)",
-  "Revenue math + upsell strategy breakdown",
+  "Fast Path checklist (2 days) + Stable Path checklist (7 days)",
+  "Revenue math — funnel benchmarks + upsell strategy to $5K+",
+  "Upgrade path — what to build after 10, 30, and 100 sales",
   "20 topic ideas + 20 hook templates",
-  "Troubleshooting guide for common issues",
 ];
 
 const Divider = () => (
@@ -209,7 +214,7 @@ const AIOperatorKitSales = () => {
             className="text-3xl md:text-4xl mb-14"
             style={{ fontFamily: "'Instrument Serif', serif" }}
           >
-            10 chapters. One system. Your speed.
+            9 chapters. One system. Your speed.
           </motion.h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12">
