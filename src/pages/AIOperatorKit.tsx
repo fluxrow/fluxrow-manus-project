@@ -101,7 +101,7 @@ const AIOperatorKit = () => {
               </a>
             ))}
           </div>
-        </div>
+        </motion.div>
 
         {/* CHAPTER 01 */}
         <Chapter num="01" title={<>The system <em className="kit-accent" style={{ fontStyle: "italic" }}>architecture</em></>}
