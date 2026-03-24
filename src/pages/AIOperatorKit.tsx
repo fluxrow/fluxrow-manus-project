@@ -822,9 +822,9 @@ const Checklist = ({ items }: { items: { title: string; desc: string }[] }) => (
 );
 
 const Quote = ({ text }: { text: string }) => (
-  <div style={{ borderLeft: "3px solid #c8f000", padding: "20px 24px", margin: "32px 0", background: "#111110" }}>
+  <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-30px" }} transition={{ duration: 0.6 }} style={{ borderLeft: "3px solid #c8f000", padding: "20px 24px", margin: "32px 0", background: "#111110" }}>
     <p className="kit-serif" style={{ fontSize: 22, color: "#e8e6df", lineHeight: 1.4, fontStyle: "italic", marginBottom: 0 }}>{text}</p>
-  </div>
+  </motion.div>
 );
 
 export default AIOperatorKit;
