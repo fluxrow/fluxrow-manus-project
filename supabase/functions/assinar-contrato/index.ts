@@ -1,5 +1,5 @@
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.38.4';
-import { Resend } from 'npm:resend@4.0.0';
+import { Resend } from 'https://esm.sh/resend@4.0.0';
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -438,8 +438,9 @@ Deno.serve(async (req) => {
           .update({ email_enviado: true })
           .eq('id', contratoId);
       }
-    } catch (emailError) {
-      console.error('Erro ao enviar email de confirmação:', emailError?.message || 'Unknown error');
+    } catch (emailError: unknown) {
+      const errorMessage = emailError instanceof Error ? emailError.message : 'Unknown error';
+      console.error('Erro ao enviar email de confirmação:', errorMessage);
       // Continua mesmo se o email falhar
     }
 
