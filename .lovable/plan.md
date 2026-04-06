@@ -1,50 +1,66 @@
 
 
-## AI Operator Kit — Sales Funnel Implementation
+## Plano: Reestruturar Proposta Teresópolis Shopping (Pacote Inicial R$ 500/mês)
 
-### What changes
+### Resumo
 
-| File | Action |
-|------|--------|
-| `src/pages/AIOperatorKitSales.tsx` | **Create** — Short-form sales page |
-| `src/App.tsx` | **Update** — `/kit` → Sales page, `/kit/content` → Product page |
+Transformar a proposta de 3 planos (R$ 1.800 a R$ 3.500/mês) em um pacote único inicial de **R$ 500/mês + R$ 2.500 de implementação**, focado no que realmente será entregue agora. O que não entra no pacote inicial fica visível como "upgrade futuro".
 
-### Sales Page (`AIOperatorKitSales.tsx`)
+### O que muda na proposta
 
-Same design system as the product page — dark `#080807`, `Instrument Serif` headings, `DM Mono` labels, `Inter` body, `#c8f000` accent. Restrained `framer-motion` fade/slide-up on scroll (no bouncy or flashy effects).
+**Escopo do pacote inicial (R$ 500/mês):**
+- Atendimento B2C via WhatsApp (canal principal)
+- Sistema de atendimento telefônico com IA que atende ligações, responde perguntas e sugere continuar no WhatsApp, abrindo a conversa direto
+- IA treinada com FAQ do shopping (horários, lojas, serviços, etc.)
+- Fluxo B2B para lojistas: IA coleta a demanda do lojista e encaminha para o setor responsável dar andamento
+- Dashboard básico de atendimentos
 
-**Design guardrails to keep it premium Fluxrow:**
-- Max-width `860px` centered, same as product page
-- Generous whitespace between sections (64-80px padding)
-- Subtle `1px solid #222220` dividers between sections
-- No gradients, no cards with shadows, no generic SaaS patterns
-- Typography-driven hierarchy: large serif headlines, mono labels, light sans body
-- CTA buttons: `#c8f000` background, dark text, no rounded-full pills — squared-off with slight radius
+**O que fica como upgrade futuro (visível mas não incluso):**
+- Instagram, Facebook e Email como canais adicionais
+- Analytics avançado / BI com índices de comportamento
+- Integrações com Group Shopping / BeMall / COM21
+- Gamificação para lojistas
+- Captura avançada de dados (data fishing)
 
-**7 sections:**
+### Arquivos que serão alterados
 
-1. **Hero** — Mono tag "AI OPERATOR STARTER KIT" + serif headline "Build the AI system that runs your content, DMs, and sales." + 1-line subheadline + "Get the Kit — $27" CTA button → `[INSERT_LEMON_SQUEEZY_LINK]`
+1. **`src/pages/PropostaTeresopolis.tsx`**
+   - Atualizar Hero: trocar "Central de IA Multicanal" por foco em WhatsApp + Atendimento Telefônico
+   - Remover tags de Instagram/Facebook/Email do hero
+   - Remover seções que não fazem parte do pacote: `IntelligenceSection`, `IntegrationsSection`, `GamificationSection`
+   - Manter `ScopeB2CSection` e `ScopeB2BSection` (com ajustes)
 
-2. **Problem** — 2-3 short paragraphs. Tools without a system, random prompts, inconsistent output, DMs that don't convert. Direct practitioner tone.
+2. **`src/components/teresopolis/PlansSection.tsx`**
+   - Substituir os 3 planos por um card único: R$ 500/mês + R$ 2.500 implementação
+   - Listar detalhadamente o que está incluso
+   - Adicionar seção "Upgrades Futuros" com lista do que pode ser adicionado depois
 
-3. **What's Inside** — 6 benefit blocks in a 2-column grid (1-col on mobile). Each block: mono number/label + serif title + 1-line benefit. Blocks: System Architecture, AI Brain, Content Queue, Hook+Content System, DM Sales Engine, 7-Day Launch Checklist.
+3. **`src/components/teresopolis/ProblemSection.tsx`**
+   - Manter problemas relevantes (perguntas repetitivas, ligações, lojistas sem canal)
+   - Adicionar destaque para o problema de ligações excessivas
 
-4. **Social Proof** — Stats row (120+, 850+, $0) with numbers slightly smaller than product page. Below: "Built from real implementation work." as a prominent line in accent-adjacent color, visually elevated (larger font, not buried).
+4. **`src/components/teresopolis/SolutionSection.tsx`**
+   - Focar nas soluções do pacote: WhatsApp + atendimento telefônico inteligente + fluxo lojistas
+   - Adicionar simulação de como funciona: ligação → IA atende → sugere WhatsApp → conversa aberta
 
-5. **Who It's For / Not For** — Two-column layout. Clean ✓/✗ lists. Non-aggressive, non-defensive tone.
+5. **`src/components/teresopolis/ChannelsSection.tsx`**
+   - Simplificar para mostrar WhatsApp + Telefone como canais principais
+   - Instagram/FB/Email ficam como "canais futuros"
 
-6. **Price Block** — $27 large serif number. Value stack list (prompts, templates, DM scripts, architecture, checklist). Reinforcing line: "Built to be used this week, not admired later." Two CTAs on mobile (`md:hidden` second instance at bottom). → `[INSERT_LEMON_SQUEEZY_LINK]`
+6. **`src/components/teresopolis/ScopeB2BSection.tsx`**
+   - Simplificar: IA recebe demanda do lojista → coleta informações → encaminha ao setor responsável
+   - Remover portal do lojista, gamificação e ranking
 
-7. **Footer** — `FLUXROW · 2026`, mono, muted.
+7. **`src/components/teresopolis/TimelineSection.tsx`**
+   - Ajustar para 3 semanas (descoberta, configuração, go-live)
+   - Remover fase B2B separada (lojistas entram junto no go-live)
 
-### Routing (`App.tsx`)
+8. **`src/data/propostas.ts`**
+   - Atualizar valor de "R$ 8.000/mês" para "R$ 500/mês"
 
-- Add lazy import: `const AIOperatorKitSales = React.lazy(() => import("./pages/AIOperatorKitSales"))`
-- Change line 111: `/kit` → `<AIOperatorKitSales />`
-- Add new route: `/kit/content` → `<AIOperatorKit />`
+### Detalhes Técnicos
 
-### Post-implementation
-
-- Replace `[INSERT_LEMON_SQUEEZY_LINK]` in `AIOperatorKitSales.tsx` with real checkout URL
-- Product page at `/kit/content` preserved as-is, to be refined later
+- Nenhuma mudança de backend ou banco de dados
+- Apenas alterações de componentes React e dados estáticos
+- As seções removidas da página principal (`GamificationSection`, `IntelligenceSection`, `IntegrationsSection`) continuam existindo no código para uso futuro
 
