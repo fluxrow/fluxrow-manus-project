@@ -1,6 +1,6 @@
 import BackToHomeButton from '@/components/ui/BackToHomeButton';
 import DownloadPdfButton from '@/components/ui/DownloadPdfButton';
-import { MessageCircle, ArrowDown } from "lucide-react";
+import { MessageCircle, ArrowDown, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import FluxrowLogo from "@/components/ui/FluxrowLogo";
 import ProblemSection from "@/components/teresopolis/ProblemSection";
@@ -8,9 +8,6 @@ import SolutionSection from "@/components/teresopolis/SolutionSection";
 import ChannelsSection from "@/components/teresopolis/ChannelsSection";
 import ScopeB2CSection from "@/components/teresopolis/ScopeB2CSection";
 import ScopeB2BSection from "@/components/teresopolis/ScopeB2BSection";
-import IntelligenceSection from "@/components/teresopolis/IntelligenceSection";
-import IntegrationsSection from "@/components/teresopolis/IntegrationsSection";
-import GamificationSection from "@/components/teresopolis/GamificationSection";
 import PlansSection from "@/components/teresopolis/PlansSection";
 import TimelineSection from "@/components/teresopolis/TimelineSection";
 import LowRiskSection from "@/components/teresopolis/LowRiskSection";
@@ -36,11 +33,9 @@ const PropostaTeresopolis = () => {
 
       {/* Animated Background Effects */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
-        {/* Pulsing blur circles */}
         <div className="absolute top-20 left-10 w-72 h-72 bg-blue-500/20 rounded-full blur-3xl animate-pulse" />
         <div className="absolute top-40 right-20 w-96 h-96 bg-teal-500/15 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
         <div className="absolute bottom-40 left-1/4 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
-        <div className="absolute top-1/2 right-10 w-64 h-64 bg-emerald-500/15 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1.5s' }} />
       </div>
 
       {/* Hero Section */}
@@ -59,22 +54,22 @@ const PropostaTeresopolis = () => {
           </h2>
           
           <p className="text-xl md:text-2xl text-gray-400 mb-8 animate-fade-in" style={{ animationDelay: '0.3s' }}>
-            Central de IA Multicanal para
+            Atendimento Inteligente via
             <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-emerald-400 font-semibold">
-              Atendimento e Relacionamento
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-teal-400 font-semibold">
+              WhatsApp + Telefone com IA
             </span>
           </p>
 
           <div className="flex flex-wrap gap-4 justify-center mb-12 animate-fade-in" style={{ animationDelay: '0.4s' }}>
-            {["WhatsApp", "Instagram", "Facebook", "Email"].map((channel, index) => (
-              <div 
-                key={channel}
-                className="px-4 py-2 rounded-lg bg-slate-800/50 border border-slate-700/50 hover:border-blue-500/50 transition-all duration-300 hover:scale-105"
-              >
-                <span className="text-gray-400">{channel}</span>
-              </div>
-            ))}
+            <div className="px-5 py-3 rounded-lg bg-green-500/10 border border-green-500/30 hover:border-green-500/50 transition-all duration-300 hover:scale-105 flex items-center gap-2">
+              <MessageCircle className="w-5 h-5 text-green-400" />
+              <span className="text-green-300 font-medium">WhatsApp</span>
+            </div>
+            <div className="px-5 py-3 rounded-lg bg-blue-500/10 border border-blue-500/30 hover:border-blue-500/50 transition-all duration-300 hover:scale-105 flex items-center gap-2">
+              <Phone className="w-5 h-5 text-blue-400" />
+              <span className="text-blue-300 font-medium">Telefone IA</span>
+            </div>
           </div>
 
           <Button
@@ -100,9 +95,6 @@ const PropostaTeresopolis = () => {
       <ChannelsSection />
       <ScopeB2CSection />
       <ScopeB2BSection />
-      <IntelligenceSection />
-      <IntegrationsSection />
-      <GamificationSection />
       <PlansSection />
       <TimelineSection />
       <LowRiskSection />
