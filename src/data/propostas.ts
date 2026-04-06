@@ -104,7 +104,7 @@ export const propostas: PropostaItem[] = [
     cliente: 'Teresópolis Shopping',
     empresa: 'Teresópolis Shopping',
     servico: 'IA Multicanal',
-    valor: 'R$ 8.000/mês',
+    valor: 'R$ 500/mês',
     rota: '/propostas/teresopolis',
     rotaPublica: '/p/teresopolis',
     status: 'enviada',

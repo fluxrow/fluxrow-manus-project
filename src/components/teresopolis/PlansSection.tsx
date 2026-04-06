@@ -1,100 +1,29 @@
-import { Check, MessageCircle, Zap, Crown } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Check, X, MessageCircle, Phone, Bot, BarChart3, Building, Sparkles, Instagram, Facebook, Mail, Trophy, Database, LineChart } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
-const plans = [
-  {
-    name: "Essencial",
-    subtitle: "Atendimento Básico",
-    price: "1.800",
-    implementation: "1.800",
-    icon: MessageCircle,
-    color: "blue",
-    popular: false,
-    description: "Ideal para começar a automatizar",
-    features: [
-      "WhatsApp + 1 canal adicional (Insta OU Facebook)",
-      "IA treinada com FAQ do shopping",
-      "Respostas automáticas B2C",
-      "Dashboard básico",
-      "Suporte por email",
-    ],
-    notIncluded: [
-      "Atendimento B2B (lojistas)",
-      "Analytics avançado",
-      "Integrações com sistemas",
-      "Gamificação",
-    ],
-  },
-  {
-    name: "Profissional",
-    subtitle: "Multicanal Completo",
-    price: "2.600",
-    implementation: "2.600",
-    icon: Zap,
-    color: "teal",
-    popular: true,
-    description: "Ideal para operação completa",
-    features: [
-      "Todos os canais (WhatsApp + Insta + FB + Email)",
-      "IA para B2C + B2B (lojistas)",
-      "Triagem inteligente para setores",
-      "Dashboard de analytics completo",
-      "Captura de dados de clientes",
-      "Suporte prioritário",
-    ],
-    notIncluded: [
-      "Integrações com sistemas",
-      "Gamificação para lojistas",
-      "BI avançado",
-    ],
-  },
-  {
-    name: "Enterprise",
-    subtitle: "Inteligência Total",
-    price: "3.500",
-    implementation: "3.500",
-    icon: Crown,
-    color: "purple",
-    popular: false,
-    description: "Ideal para transformação digital completa",
-    features: [
-      "Tudo do Profissional +",
-      "Integrações com Group Shopping / BeMall",
-      "Sistema de gamificação para lojistas",
-      "BI avançado com insights de comportamento",
-      "Reuniões mensais de otimização",
-      "Suporte premium (WhatsApp direto)",
-    ],
-    notIncluded: [],
-  },
+const includedFeatures = [
+  { icon: MessageCircle, text: "WhatsApp como canal principal de atendimento B2C" },
+  { icon: Phone, text: "Sistema telefônico com IA que atende ligações automaticamente" },
+  { icon: Bot, text: "IA treinada com FAQ completo do shopping (horários, lojas, serviços, eventos)" },
+  { icon: Phone, text: "Redirecionamento inteligente: ligação → IA responde → sugere WhatsApp → conversa aberta" },
+  { icon: Building, text: "Fluxo B2B para lojistas: IA coleta demanda e encaminha ao setor responsável" },
+  { icon: BarChart3, text: "Dashboard básico com métricas de atendimento" },
+  { icon: Bot, text: "Atendimento 24/7 sem intervenção humana para dúvidas comuns" },
+  { icon: Sparkles, text: "Triagem inteligente: quando precisa de humano, IA direciona automaticamente" },
+];
+
+const notIncludedFeatures = [
+  { icon: Instagram, text: "Instagram como canal de atendimento" },
+  { icon: Facebook, text: "Facebook Messenger" },
+  { icon: Mail, text: "Email automatizado" },
+  { icon: LineChart, text: "Analytics avançado / BI com índices de comportamento" },
+  { icon: Database, text: "Integrações com Group Shopping / BeMall / COM21" },
+  { icon: Trophy, text: "Gamificação e ranking para lojistas" },
+  { icon: Database, text: "Captura avançada de dados (data fishing)" },
 ];
 
 const PlansSection = () => {
-  const getColorClasses = (color: string, popular: boolean) => {
-    const colors: Record<string, { border: string; bg: string; text: string; button: string }> = {
-      blue: {
-        border: popular ? "border-blue-500" : "border-blue-500/20",
-        bg: "bg-blue-500/10",
-        text: "text-blue-400",
-        button: "bg-blue-600 hover:bg-blue-700",
-      },
-      teal: {
-        border: popular ? "border-teal-500" : "border-teal-500/20",
-        bg: "bg-teal-500/10",
-        text: "text-teal-400",
-        button: "bg-teal-600 hover:bg-teal-700",
-      },
-      purple: {
-        border: popular ? "border-purple-500" : "border-purple-500/20",
-        bg: "bg-purple-500/10",
-        text: "text-purple-400",
-        button: "bg-purple-600 hover:bg-purple-700",
-      },
-    };
-    return colors[color];
-  };
-
   return (
     <section className="py-16 md:py-24">
       <div className="container mx-auto px-4">
@@ -103,89 +32,107 @@ const PlansSection = () => {
             Investimento
           </span>
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Planos por Valor Entregue
+            Pacote Inicial
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
-            Escolha o plano que melhor se adapta às necessidades do shopping. Todos incluem setup completo e suporte.
+            Tudo que o shopping precisa para começar a automatizar o atendimento com IA, focado no que gera resultado imediato
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {plans.map((plan, index) => {
-            const colors = getColorClasses(plan.color, plan.popular);
-            return (
-              <Card
-                key={index}
-                className={`relative bg-slate-900/50 ${colors.border} ${plan.popular ? "border-2 scale-105" : ""} transition-all duration-300 hover:scale-105`}
-              >
-                {plan.popular && (
-                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                    <span className="px-4 py-1 rounded-full bg-teal-500 text-white text-sm font-medium">
-                      Mais Popular
-                    </span>
-                  </div>
-                )}
-
-                <CardHeader className="text-center pb-2">
-                  <div className={`w-14 h-14 rounded-2xl ${colors.bg} flex items-center justify-center mx-auto mb-4`}>
-                    <plan.icon className={`w-7 h-7 ${colors.text}`} />
-                  </div>
-                  <CardTitle className="text-2xl text-white">{plan.name}</CardTitle>
-                  <p className={`text-sm ${colors.text}`}>{plan.subtitle}</p>
-                </CardHeader>
-
-                <CardContent className="pt-4">
-                  <div className="text-center mb-6">
+        {/* Single Plan Card */}
+        <div className="max-w-2xl mx-auto mb-16">
+          <Card className="bg-slate-900/50 border-2 border-teal-500 shadow-lg shadow-teal-500/10">
+            <CardContent className="p-8">
+              {/* Pricing */}
+              <div className="text-center mb-8 pb-8 border-b border-slate-700/50">
+                <h3 className="text-2xl font-bold text-white mb-2">WhatsApp + Telefone IA + Lojistas</h3>
+                <p className="text-gray-400 text-sm mb-6">Atendimento inteligente para clientes e lojistas</p>
+                
+                <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12">
+                  <div>
+                    <p className="text-gray-400 text-sm mb-1">Mensalidade</p>
                     <div className="flex items-baseline justify-center gap-1">
                       <span className="text-gray-400 text-lg">R$</span>
-                      <span className="text-4xl font-bold text-white">{plan.price}</span>
+                      <span className="text-5xl font-bold text-white">500</span>
                       <span className="text-gray-400">/mês</span>
                     </div>
-                    <p className="text-gray-500 text-sm mt-2">
-                      Implementação: R$ {plan.implementation}
-                    </p>
                   </div>
-
-                  <p className="text-gray-400 text-sm text-center mb-6 pb-6 border-b border-slate-700/50">
-                    {plan.description}
-                  </p>
-
-                  <div className="space-y-3 mb-6">
-                    {plan.features.map((feature, idx) => (
-                      <div key={idx} className="flex items-start gap-3">
-                        <Check className={`w-5 h-5 ${colors.text} flex-shrink-0 mt-0.5`} />
-                        <span className="text-gray-300 text-sm">{feature}</span>
-                      </div>
-                    ))}
-                  </div>
-
-                  {plan.notIncluded.length > 0 && (
-                    <div className="space-y-2 mb-6 pt-4 border-t border-slate-700/50">
-                      {plan.notIncluded.map((feature, idx) => (
-                        <div key={idx} className="flex items-start gap-3 opacity-50">
-                          <span className="w-5 h-5 flex items-center justify-center text-gray-500">—</span>
-                          <span className="text-gray-500 text-sm">{feature}</span>
-                        </div>
-                      ))}
+                  <div className="hidden md:block w-px h-16 bg-slate-700" />
+                  <div>
+                    <p className="text-gray-400 text-sm mb-1">Implementação</p>
+                    <div className="flex items-baseline justify-center gap-1">
+                      <span className="text-gray-400 text-lg">R$</span>
+                      <span className="text-4xl font-bold text-teal-400">2.500</span>
+                      <span className="text-gray-400 text-sm">(único)</span>
                     </div>
-                  )}
+                  </div>
+                </div>
+              </div>
 
-                  <Button
-                    className={`w-full ${colors.button} text-white`}
-                    onClick={() => window.open("https://wa.me/5541992361868?text=Olá! Tenho interesse no plano " + plan.name + " para o Teresópolis Shopping", "_blank")}
-                  >
-                    Escolher {plan.name}
-                  </Button>
-                </CardContent>
-              </Card>
-            );
-          })}
+              {/* What's Included */}
+              <div className="mb-8">
+                <h4 className="text-lg font-semibold text-emerald-400 mb-4 flex items-center gap-2">
+                  <Check className="w-5 h-5" />
+                  O que está incluso
+                </h4>
+                <div className="space-y-3">
+                  {includedFeatures.map((feature, idx) => (
+                    <div key={idx} className="flex items-start gap-3">
+                      <div className="w-8 h-8 rounded-lg bg-emerald-500/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <feature.icon className="w-4 h-4 text-emerald-400" />
+                      </div>
+                      <span className="text-gray-300 text-sm">{feature.text}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* CTA */}
+              <Button
+                className="w-full bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 text-white py-6 text-lg"
+                onClick={() => window.open("https://wa.me/5541992361868?text=Olá! Tenho interesse no pacote inicial para o Teresópolis Shopping", "_blank")}
+              >
+                <MessageCircle className="mr-2 w-5 h-5" />
+                Quero Começar
+              </Button>
+            </CardContent>
+          </Card>
         </div>
 
-        <div className="text-center mt-12">
-          <p className="text-gray-500 text-sm">
-            Valores podem ser ajustados conforme necessidades específicas do projeto
-          </p>
+        {/* Future Upgrades */}
+        <div className="max-w-2xl mx-auto">
+          <Card className="bg-slate-900/30 border border-slate-700/50">
+            <CardContent className="p-8">
+              <div className="text-center mb-6">
+                <span className="inline-block px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 text-xs font-medium mb-2">
+                  Fase 2
+                </span>
+                <h4 className="text-xl font-bold text-white mb-2">
+                  Upgrades Futuros
+                </h4>
+                <p className="text-gray-400 text-sm">
+                  Depois que o sistema estiver rodando bem, essas funcionalidades podem ser adicionadas ao projeto
+                </p>
+              </div>
+
+              <div className="space-y-3">
+                {notIncludedFeatures.map((feature, idx) => (
+                  <div key={idx} className="flex items-start gap-3 opacity-60">
+                    <div className="w-8 h-8 rounded-lg bg-slate-700/50 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <feature.icon className="w-4 h-4 text-gray-400" />
+                    </div>
+                    <span className="text-gray-400 text-sm">{feature.text}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-6 pt-6 border-t border-slate-700/50 text-center">
+                <p className="text-gray-500 text-xs">
+                  Valores e escopo dos upgrades serão definidos conforme a necessidade do projeto
+                </p>
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </div>
     </section>

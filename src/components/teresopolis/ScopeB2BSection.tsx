@@ -1,54 +1,38 @@
-import { Bell, Wrench, Search, Receipt, Calendar, BookOpen, Store, Check, Clock, TrendingUp, Trophy } from "lucide-react";
+import { MessageCircle, Bot, Building, Send, ArrowRight, Check, Clock, Wrench, Receipt, Bell, HelpCircle } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
-const categories = [
+const flowSteps = [
   {
-    icon: Bell,
-    category: "Comunicados",
-    description: "Circulares e avisos importantes do shopping para lojistas",
-    examples: ["Novos horários", "Manutenções programadas", "Eventos especiais"],
+    step: "1",
+    icon: MessageCircle,
+    title: "Lojista envia mensagem",
+    description: "O lojista entra em contato pelo WhatsApp do shopping com sua demanda",
+    color: "text-green-400",
+    bgColor: "bg-green-500/10",
   },
   {
-    icon: Wrench,
-    category: "Solicitações",
-    description: "Abertura de chamados para manutenção e serviços",
-    examples: ["Ar condicionado", "Limpeza", "Segurança"],
+    step: "2",
+    icon: Bot,
+    title: "IA coleta os detalhes",
+    description: "A IA faz perguntas para entender o que precisa: qual loja, tipo de demanda, urgência, detalhes",
+    color: "text-teal-400",
+    bgColor: "bg-teal-500/10",
   },
   {
-    icon: Search,
-    category: "Achados e Perdidos",
-    description: "Registro e consulta de itens encontrados ou perdidos",
-    examples: ["Registrar item", "Consultar status", "Devolução"],
-  },
-  {
-    icon: Receipt,
-    category: "Financeiro",
-    description: "Informações sobre cobranças e pagamentos",
-    examples: ["2ª via de boleto", "Datas de vencimento", "Composição de cobrança"],
-  },
-  {
-    icon: Calendar,
-    category: "Eventos",
-    description: "Calendário de ações e participação em campanhas",
-    examples: ["Datas comemorativas", "Promoções coletivas", "Inscrição em eventos"],
-  },
-  {
-    icon: BookOpen,
-    category: "Normas",
-    description: "Regras do shopping e procedimentos operacionais",
-    examples: ["Horários de carga/descarga", "Regras de vitrine", "Padrões de fachada"],
+    step: "3",
+    icon: Send,
+    title: "Encaminha ao setor responsável",
+    description: "Com todas as informações organizadas, a IA envia a solicitação para o setor correto dar andamento",
+    color: "text-blue-400",
+    bgColor: "bg-blue-500/10",
   },
 ];
 
-const mockCommunications = [
-  { title: "Horário especial de Carnaval", date: "28/02", status: "new" },
-  { title: "Vaga Verde - Novos procedimentos", date: "05/03", status: "new" },
-  { title: "Campanha Dia das Mães 2025", date: "10/03", status: "new" },
-];
-
-const mockRequests = [
-  { title: "Lâmpada queimada", status: "resolved" },
-  { title: "Limpeza urgente", status: "progress" },
+const demandTypes = [
+  { icon: Wrench, label: "Manutenção", example: "Ar condicionado com problema na loja 12" },
+  { icon: Receipt, label: "Financeiro", example: "Preciso da 2ª via do boleto de março" },
+  { icon: Bell, label: "Comunicados", example: "Quero saber sobre o horário especial de feriado" },
+  { icon: HelpCircle, label: "Dúvidas gerais", example: "Como funciona a reserva de espaço para evento?" },
 ];
 
 const ScopeB2BSection = () => {
@@ -63,133 +47,67 @@ const ScopeB2BSection = () => {
             Atendimento aos Lojistas
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
-            Canal exclusivo para comunicação interna com os lojistas do shopping
+            Fluxo simples e eficiente: o lojista fala com a IA, ela coleta os detalhes e encaminha para o setor responsável
           </p>
         </div>
 
-        {/* Portal Mockup */}
-        <div className="max-w-2xl mx-auto mb-16">
-          <div className="bg-slate-800 rounded-2xl border border-teal-500/30 shadow-2xl overflow-hidden">
-            {/* Portal Header */}
-            <div className="bg-gradient-to-r from-teal-600/30 to-blue-600/30 p-4 border-b border-slate-700">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-lg bg-teal-500 flex items-center justify-center">
-                    <Store className="w-5 h-5 text-white" />
-                  </div>
-                  <div>
-                    <p className="text-white font-semibold">Portal do Lojista</p>
-                    <p className="text-teal-300 text-sm">Renner - Loja Âncora</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Trophy className="w-5 h-5 text-amber-400" />
-                  <span className="text-amber-400 text-sm font-bold">3º lugar</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Portal Content */}
-            <div className="p-6 space-y-6">
-              {/* Comunicados */}
-              <div>
-                <div className="flex items-center justify-between mb-3">
-                  <div className="flex items-center gap-2">
-                    <Bell className="w-4 h-4 text-teal-400" />
-                    <span className="text-white font-medium">Comunicados</span>
-                  </div>
-                  <span className="px-2 py-1 rounded-full bg-red-500/20 text-red-400 text-xs font-bold">
-                    3 novos
-                  </span>
-                </div>
-                <div className="space-y-2">
-                  {mockCommunications.map((comm, idx) => (
-                    <div key={idx} className="flex items-center justify-between bg-slate-700/50 rounded-lg px-4 py-3">
-                      <div className="flex items-center gap-3">
-                        <div className="w-2 h-2 rounded-full bg-teal-400" />
-                        <span className="text-gray-200 text-sm">{comm.title}</span>
-                      </div>
-                      <span className="text-gray-500 text-xs">{comm.date}</span>
+        {/* Flow Steps */}
+        <div className="max-w-4xl mx-auto mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {flowSteps.map((step, index) => (
+              <div key={index} className="relative">
+                <Card className={`bg-slate-900/50 border-slate-700/50 hover:scale-105 transition-all duration-300 h-full`}>
+                  <CardContent className="p-6 text-center">
+                    <div className="w-10 h-10 rounded-full bg-teal-500 flex items-center justify-center mx-auto mb-4 text-white font-bold">
+                      {step.step}
                     </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Solicitações */}
-              <div>
-                <div className="flex items-center gap-2 mb-3">
-                  <Wrench className="w-4 h-4 text-teal-400" />
-                  <span className="text-white font-medium">Minhas Solicitações</span>
-                </div>
-                <div className="space-y-2">
-                  {mockRequests.map((req, idx) => (
-                    <div key={idx} className="flex items-center justify-between bg-slate-700/50 rounded-lg px-4 py-3">
-                      <span className="text-gray-200 text-sm">{req.title}</span>
-                      {req.status === 'resolved' ? (
-                        <span className="flex items-center gap-1 text-emerald-400 text-xs">
-                          <Check className="w-3 h-3" />
-                          Resolvido
-                        </span>
-                      ) : (
-                        <span className="flex items-center gap-1 text-amber-400 text-xs">
-                          <Clock className="w-3 h-3" />
-                          Em andamento
-                        </span>
-                      )}
+                    <div className={`w-14 h-14 rounded-2xl ${step.bgColor} flex items-center justify-center mx-auto mb-4`}>
+                      <step.icon className={`w-7 h-7 ${step.color}`} />
                     </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Ranking */}
-              <div className="bg-gradient-to-r from-amber-500/20 to-orange-500/20 rounded-xl p-4 border border-amber-500/30">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <TrendingUp className="w-5 h-5 text-amber-400" />
-                    <div>
-                      <p className="text-white font-medium">Seu Ranking</p>
-                      <p className="text-amber-300 text-sm">3º lugar no mês</p>
-                    </div>
+                    <h3 className="text-lg font-semibold text-white mb-2">
+                      {step.title}
+                    </h3>
+                    <p className="text-gray-400 text-sm">
+                      {step.description}
+                    </p>
+                  </CardContent>
+                </Card>
+                {index < flowSteps.length - 1 && (
+                  <div className="hidden md:flex absolute top-1/2 -right-3 transform -translate-y-1/2 z-10">
+                    <ArrowRight className="w-6 h-6 text-teal-400" />
                   </div>
-                  <div className="text-right">
-                    <p className="text-white font-bold text-xl">+45</p>
-                    <p className="text-gray-400 text-xs">pontos</p>
-                  </div>
-                </div>
+                )}
               </div>
-            </div>
+            ))}
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {categories.map((item, index) => (
-            <Card
-              key={index}
-              className="bg-slate-900/50 border-teal-500/20 hover:border-teal-500/40 transition-all duration-300 group hover:scale-105"
-            >
-              <CardContent className="p-6">
-                <div className="w-12 h-12 rounded-lg bg-teal-500/10 flex items-center justify-center mb-4 group-hover:bg-teal-500/20 transition-colors">
-                  <item.icon className="w-6 h-6 text-teal-400" />
-                </div>
-                <h3 className="text-lg font-semibold text-white mb-2">
-                  {item.category}
-                </h3>
-                <p className="text-gray-400 text-sm mb-4">
-                  {item.description}
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {item.examples.map((example, idx) => (
-                    <span
-                      key={idx}
-                      className="inline-block px-2 py-1 rounded bg-teal-500/10 text-teal-300 text-xs"
-                    >
-                      {example}
-                    </span>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          ))}
+        {/* Demand Types */}
+        <div className="max-w-3xl mx-auto">
+          <h3 className="text-xl font-semibold text-white text-center mb-6">
+            Tipos de demandas que a IA consegue coletar e encaminhar:
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {demandTypes.map((demand, index) => (
+              <Card key={index} className="bg-slate-900/50 border-teal-500/20 hover:border-teal-500/40 transition-all duration-300">
+                <CardContent className="p-4 flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-lg bg-teal-500/10 flex items-center justify-center flex-shrink-0">
+                    <demand.icon className="w-5 h-5 text-teal-400" />
+                  </div>
+                  <div>
+                    <h4 className="text-white font-medium mb-1">{demand.label}</h4>
+                    <p className="text-gray-400 text-xs italic">Ex: "{demand.example}"</p>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          <div className="text-center mt-8">
+            <p className="text-gray-500 text-sm">
+              💡 A IA não resolve a demanda — ela organiza e encaminha. O setor responsável recebe tudo pronto para agir.
+            </p>
+          </div>
         </div>
       </div>
     </section>
