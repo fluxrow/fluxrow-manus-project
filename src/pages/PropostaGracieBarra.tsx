@@ -688,6 +688,149 @@ const PropostaGracieBarra = () => {
         </div>
       </section>
 
+      {/* CRONOGRAMA — TIMELINE 30/60/90 DIAS */}
+      <section className="py-20 md:py-28 relative border-t border-zinc-900/50">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-500/10 border border-red-500/20 text-red-400 text-xs font-semibold mb-4">
+              <Calendar className="w-4 h-4" /> CRONOGRAMA
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+              Roteiro de <span className="text-red-500">90 dias</span>
+            </h2>
+            <p className="text-zinc-400 text-lg max-w-2xl mx-auto">
+              Marcos claros para acompanhar o que acontece em cada fase do projeto
+            </p>
+          </div>
+
+          {/* Desktop horizontal timeline */}
+          <div className="hidden md:block relative mb-12">
+            <div className="absolute top-12 left-0 right-0 h-0.5 bg-gradient-to-r from-red-500/20 via-red-500/60 to-red-500/20" />
+            <div className="grid grid-cols-3 gap-6 relative">
+              {[
+                {
+                  day: '30 dias',
+                  phase: 'Setup & Lançamento',
+                  icon: Zap,
+                  milestones: [
+                    'Estrutura completa de campanhas no Meta Ads',
+                    'Automação SMS + agendamento ativos',
+                    'Criativos iniciais publicados',
+                    'Primeiros leads chegando ao funil',
+                  ],
+                },
+                {
+                  day: '60 dias',
+                  phase: 'Otimização & Matrículas',
+                  icon: TrendingUp,
+                  milestones: [
+                    'Custo por lead estabilizado ($5–$15)',
+                    'Primeiras matrículas confirmadas',
+                    'Ajuste de criativos com base em dados',
+                    'Remarketing rodando em escala',
+                  ],
+                },
+                {
+                  day: '90 dias',
+                  phase: 'ROI & Previsibilidade',
+                  icon: Trophy,
+                  milestones: [
+                    'Investimento pago pelo ticket recorrente',
+                    'Fluxo previsível de 4–10 alunos/mês',
+                    'LTV alto sustentando crescimento',
+                    'Base pronta para escalar verba',
+                  ],
+                },
+              ].map((step, i) => (
+                <div key={i} className="relative">
+                  <div className="w-24 h-24 mx-auto rounded-full bg-gradient-to-br from-red-600 to-red-800 border-4 border-zinc-950 flex items-center justify-center shadow-2xl shadow-red-900/40 relative z-10">
+                    <step.icon className="w-10 h-10 text-white" />
+                  </div>
+                  <div className="mt-6 p-6 rounded-2xl bg-gradient-to-b from-zinc-900 to-zinc-900/40 border border-zinc-800">
+                    <div className="text-center mb-4">
+                      <div className="text-red-400 text-sm font-bold tracking-wider">{step.day}</div>
+                      <h3 className="text-white text-xl font-bold mt-1">{step.phase}</h3>
+                    </div>
+                    <ul className="space-y-2">
+                      {step.milestones.map((m, j) => (
+                        <li key={j} className="flex items-start gap-2 text-zinc-300 text-sm">
+                          <CheckCircle2 className="w-4 h-4 text-red-400 flex-shrink-0 mt-0.5" />
+                          <span>{m}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Mobile vertical timeline */}
+          <div className="md:hidden space-y-6 mb-10">
+            {[
+              {
+                day: '30 dias',
+                phase: 'Setup & Lançamento',
+                icon: Zap,
+                milestones: [
+                  'Estrutura completa de campanhas no Meta Ads',
+                  'Automação SMS + agendamento ativos',
+                  'Criativos iniciais publicados',
+                  'Primeiros leads chegando ao funil',
+                ],
+              },
+              {
+                day: '60 dias',
+                phase: 'Otimização & Matrículas',
+                icon: TrendingUp,
+                milestones: [
+                  'Custo por lead estabilizado ($5–$15)',
+                  'Primeiras matrículas confirmadas',
+                  'Ajuste de criativos com base em dados',
+                  'Remarketing rodando em escala',
+                ],
+              },
+              {
+                day: '90 dias',
+                phase: 'ROI & Previsibilidade',
+                icon: Trophy,
+                milestones: [
+                  'Investimento pago pelo ticket recorrente',
+                  'Fluxo previsível de 4–10 alunos/mês',
+                  'LTV alto sustentando crescimento',
+                  'Base pronta para escalar verba',
+                ],
+              },
+            ].map((step, i) => (
+              <div key={i} className="relative pl-16">
+                <div className="absolute left-0 top-0 w-12 h-12 rounded-full bg-gradient-to-br from-red-600 to-red-800 flex items-center justify-center shadow-lg shadow-red-900/40">
+                  <step.icon className="w-6 h-6 text-white" />
+                </div>
+                {i < 2 && (
+                  <div className="absolute left-6 top-12 bottom-0 w-0.5 bg-gradient-to-b from-red-500/60 to-red-500/10" />
+                )}
+                <div className="p-5 rounded-xl bg-gradient-to-b from-zinc-900 to-zinc-900/40 border border-zinc-800">
+                  <div className="text-red-400 text-xs font-bold tracking-wider">{step.day}</div>
+                  <h3 className="text-white text-lg font-bold mt-1 mb-3">{step.phase}</h3>
+                  <ul className="space-y-2">
+                    {step.milestones.map((m, j) => (
+                      <li key={j} className="flex items-start gap-2 text-zinc-300 text-sm">
+                        <CheckCircle2 className="w-4 h-4 text-red-400 flex-shrink-0 mt-0.5" />
+                        <span>{m}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <p className="text-center text-zinc-500 text-sm">
+            * Marcos baseados em médias de mercado para o nicho fitness/local nos EUA. Resultados reais variam conforme criativos, oferta e operação interna.
+          </p>
+        </div>
+      </section>
+
       {/* SLIDE 15 — PRÓXIMO PASSO */}
       <section className="py-20 md:py-28 relative">
         <div className="container mx-auto px-4 max-w-4xl">
