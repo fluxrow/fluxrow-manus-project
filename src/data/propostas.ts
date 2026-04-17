@@ -109,6 +109,16 @@ export const propostas: PropostaItem[] = [
     rotaPublica: '/p/teresopolis',
     status: 'enviada',
   },
+  {
+    slug: 'gracie-barra',
+    cliente: 'Gracie Barra',
+    empresa: 'Gracie Barra Mount Pleasant',
+    servico: 'Aquisição de Alunos via Meta Ads',
+    valor: '$900/mês',
+    rota: '/propostas/gracie-barra',
+    rotaPublica: '/p/gracie-barra',
+    status: 'enviada',
+  },
 ];
 
 export const statusLabels: Record<PropostaStatus, string> = {
