@@ -58,8 +58,8 @@ const PropostaGracieBarra = () => {
             alt="Aula de Brazilian Jiu-Jitsu na Gracie Barra Mount Pleasant"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-zinc-950" />
-          <div className="absolute inset-0 bg-gradient-to-r from-red-950/40 via-transparent to-red-950/40" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-zinc-950 md:from-black/35 md:via-black/25 md:to-zinc-950/95" />
+          <div className="absolute inset-0 bg-gradient-to-r from-red-950/20 via-transparent to-red-950/20" />
         </div>
 
         <div className="relative z-10 container mx-auto px-4 text-center max-w-5xl">
