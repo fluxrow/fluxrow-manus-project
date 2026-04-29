@@ -55,7 +55,7 @@ const PropostaGracieBarra = () => {
         <div className="absolute inset-0 z-0">
           <img
             src={heroImage}
-            alt="Aula de Brazilian Jiu-Jitsu na Gracie Barra Mount Pleasant"
+            alt="Aula de Brazilian Jiu-Jitsu na Gracie Barra North Austin"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-zinc-950 md:from-black/35 md:via-black/25 md:to-zinc-950/95" />
@@ -74,7 +74,7 @@ const PropostaGracieBarra = () => {
             Gracie Barra
             <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-red-500 to-orange-500">
-              Mount Pleasant
+              North Austin
             </span>
           </h1>
 
@@ -163,7 +163,7 @@ const PropostaGracieBarra = () => {
               <BarChart3 className="w-4 h-4" /> MERCADO LOCAL
             </div>
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-              A realidade de <span className="text-red-500">Mount Pleasant</span>
+              A realidade de <span className="text-red-500">North Austin</span>
             </h2>
           </div>
 
@@ -869,7 +869,7 @@ const PropostaGracieBarra = () => {
               size="lg"
               onClick={() =>
                 window.open(
-                  'https://wa.me/5541992361868?text=Olá! Vi a proposta da Gracie Barra Mount Pleasant e gostaria de conversar.',
+                  'https://wa.me/5541992361868?text=Olá! Vi a proposta da Gracie Barra North Austin e gostaria de conversar.',
                   '_blank'
                 )
               }
