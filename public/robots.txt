@@ -1,19 +1,39 @@
+# Fluxrow — robots.txt
+# Indexação permitida apenas em rotas públicas.
+# Rotas privadas (propostas, contratos, admin, relatórios, briefings) são bloqueadas.
+
 User-agent: *
-Allow: /
+Allow: /$
+Allow: /contato
+Allow: /conteudos
+Allow: /conteudos/
+Allow: /curso
+Allow: /kit
+Allow: /kit/
+Allow: /politica-de-privacidade
+Allow: /termos-de-uso
 
-User-agent: Googlebot
-Allow: /
+# Bloqueio de rotas privadas / comerciais
+Disallow: /p/
+Disallow: /propostas
+Disallow: /propostas/
+Disallow: /preview/
+Disallow: /admin/
+Disallow: /relatorio/
+Disallow: /briefing-alek
+Disallow: /apresentacao-evolua-digital
+Disallow: /modulos
+Disallow: /modulos/
+Disallow: /materiais
 
-User-agent: Bingbot
-Allow: /
+# Bloqueio explícito para crawlers de IA (opcional — remova se quiser permitir)
+User-agent: GPTBot
+Disallow: /
 
-User-agent: Twitterbot
-Allow: /
+User-agent: ClaudeBot
+Disallow: /
 
-User-agent: facebookexternalhit
-Allow: /
-
-User-agent: LinkedInBot
-Allow: /
+User-agent: CCBot
+Disallow: /
 
 Sitemap: https://fluxrow.com/sitemap.xml
