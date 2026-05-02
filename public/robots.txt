@@ -26,14 +26,32 @@ Disallow: /modulos
 Disallow: /modulos/
 Disallow: /materiais
 
-# Bloqueio explícito para crawlers de IA (opcional — remova se quiser permitir)
+# =====================================================
+# CRAWLERS DE IA — controle individual
+# =====================================================
+# Para PERMITIR um crawler de IA: comente (#) o bloco correspondente
+#   ou troque "Disallow: /" por "Allow: /".
+# Para BLOQUEAR: mantenha "Disallow: /".
+# =====================================================
+
+# OpenAI (ChatGPT) — BLOQUEADO
 User-agent: GPTBot
 Disallow: /
 
+# Anthropic (Claude) — BLOQUEADO
 User-agent: ClaudeBot
 Disallow: /
 
+# Common Crawl (usado para treinar vários LLMs) — BLOQUEADO
 User-agent: CCBot
 Disallow: /
+
+# Outros crawlers de IA conhecidos (descomente para bloquear)
+# User-agent: Google-Extended
+# Disallow: /
+# User-agent: PerplexityBot
+# Disallow: /
+# User-agent: Applebot-Extended
+# Disallow: /
 
 Sitemap: https://fluxrow.com/sitemap.xml
