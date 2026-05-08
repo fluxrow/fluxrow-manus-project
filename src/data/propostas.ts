@@ -112,7 +112,7 @@ export const propostas: PropostaItem[] = [
   {
     slug: 'gracie-barra',
     cliente: 'Gracie Barra',
-    empresa: 'Gracie Barra North Austin',
+    empresa: 'Gracie Barra North Charleston',
     servico: 'Aquisição de Alunos via Meta Ads',
     valor: '$900/mês',
     rota: '/propostas/gracie-barra',
