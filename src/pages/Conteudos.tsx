@@ -109,12 +109,12 @@ const Conteudos = () => {
             <Link
               key={c.id}
               to={`/conteudos/${c.id}`}
-              className="group block border border-white/10 hover:border-white/30 transition-colors p-7 rounded-sm bg-white/[0.02] hover:bg-white/[0.04]"
+              className="group block border border-white/10 hover:border-white/30 transition-colors p-6 sm:p-7 rounded-sm bg-white/[0.02] hover:bg-white/[0.04]"
             >
               <p className="text-xs uppercase tracking-[0.2em] text-white/55 font-mono mb-5">
                 {c.eyebrow}
               </p>
-              <h2 className="font-serif text-2xl md:text-[1.65rem] leading-tight mb-3">
+              <h2 className="font-serif text-[1.35rem] sm:text-2xl md:text-[1.65rem] leading-tight mb-3 break-words hyphens-auto">
                 {c.title}
               </h2>
               <p className="text-white/60 text-sm leading-relaxed mb-6">
