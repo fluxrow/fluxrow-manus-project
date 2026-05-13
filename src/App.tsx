@@ -3,7 +3,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import React, { Suspense } from "react";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
@@ -55,6 +55,7 @@ const TermosDeUso = React.lazy(() => import("./pages/TermosDeUso"));
 const AIOperatorKit = React.lazy(() => import("./pages/AIOperatorKit"));
 const AIOperatorKitSales = React.lazy(() => import("./pages/AIOperatorKitSales"));
 const CursoIAOperator = React.lazy(() => import("./pages/CursoIAOperator"));
+const ProdutosHub = React.lazy(() => import("./pages/ProdutosHub"));
 const CheckoutReturn = React.lazy(() => import("./pages/CheckoutReturn"));
 
 const queryClient = new QueryClient();
@@ -122,6 +123,10 @@ const App = () => (
             <Route path="/kit" element={<AIOperatorKitSales />} />
             <Route path="/kit/content" element={<AIOperatorKit />} />
             <Route path="/curso-ia-operator" element={<CursoIAOperator />} />
+            {/* Hub de produtos + aliases canônicos */}
+            <Route path="/produtos" element={<ProdutosHub />} />
+            <Route path="/produtos/ai-operator-kit" element={<AIOperatorKitSales />} />
+            <Route path="/produtos/operator-curso" element={<CursoIAOperator />} />
             <Route path="/checkout/return" element={<CheckoutReturn />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
