@@ -137,8 +137,8 @@ const ProdutosHub = () => {
                 <ul className="space-y-2 text-sm text-white/75 mb-10">
                   {c.features.map((f) => (
                     <li key={f} className="flex gap-2">
-                      <Check className="w-4 h-4 text-white/55 shrink-0 mt-0.5" />{" "}
-                      {f}
+                      <Check className="w-4 h-4 text-white/55 shrink-0 mt-0.5" />
+                      <span className="min-w-0 break-words">{f}</span>
                     </li>
                   ))}
                 </ul>
