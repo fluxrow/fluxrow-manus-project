@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Copy, Check, Rocket, Brain, Cog, Target, Search, Lightbulb, AlertTriangle, CheckCircle, Zap } from 'lucide-react';
 import Header from '../components/Header';
+import SEO from '../components/SEO';
+import { buildArticleSchema } from '../lib/articleSchema';
 
 const ConteudoIAEscalar = () => {
   const [copiedPrompts, setCopiedPrompts] = useState<number[]>([]);
