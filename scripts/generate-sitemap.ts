@@ -69,29 +69,41 @@ function generateSitemap(items: SitemapEntry[]) {
   ].join("\n");
 }
 
+// Sitemap mínimo para staging — apenas a home, para validar parsing
+// sem expor rotas reais a crawlers que ignorem o robots.txt restritivo.
+const stagingEntries: SitemapEntry[] = [
+  { path: "/", changefreq: "never", priority: "0.1", lastmod: today },
+];
+
+// Sempre regenerar o template de staging (commitado no repo) para que
+// auditorias possam abrir public/sitemap.staging.xml diretamente.
+writeFileSync(
+  resolve("public/sitemap.staging.xml"),
+  generateSitemap(stagingEntries),
+);
+
 // Environment switch:
-//   DEPLOY_ENV=staging  -> escreve sitemap mínimo e copia robots.staging.txt
-//   DEPLOY_ENV=production (default) -> escreve sitemap completo e mantém robots.production.txt
+//   DEPLOY_ENV=staging  -> serve sitemap.staging.xml como sitemap.xml + robots restritivo
+//   DEPLOY_ENV=production (default) -> sitemap completo + robots de produção
 const env = (process.env.DEPLOY_ENV || "production").toLowerCase();
 
 if (env === "staging") {
-  // Sitemap mínimo (sem URLs reais) para evitar descoberta acidental.
-  const emptyXml = [
-    `<?xml version="1.0" encoding="UTF-8"?>`,
-    `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"></urlset>`,
-    ``,
-  ].join("\n");
-  writeFileSync(resolve("public/sitemap.xml"), emptyXml);
-  // Copia o template restritivo para robots.txt
+  // Reaproveita o sitemap mínimo já gerado.
+  const stagingXml = readFileSync(
+    resolve("public/sitemap.staging.xml"),
+    "utf8",
+  );
+  writeFileSync(resolve("public/sitemap.xml"), stagingXml);
   const stagingRobots = readFileSync(
     resolve("public/robots.staging.txt"),
     "utf8",
   );
   writeFileSync(resolve("public/robots.txt"), stagingRobots);
-  console.log("[staging] empty sitemap.xml + restrictive robots.txt written");
+  console.log(
+    `[staging] sitemap.xml (${stagingEntries.length} entry) + restrictive robots.txt written`,
+  );
 } else {
   writeFileSync(resolve("public/sitemap.xml"), generateSitemap(entries));
-  // Garante que o robots.txt em uso é o de produção
   const prodRobots = readFileSync(
     resolve("public/robots.production.txt"),
     "utf8",
