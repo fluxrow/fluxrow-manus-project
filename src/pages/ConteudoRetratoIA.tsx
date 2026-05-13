@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import Header from '../components/Header';
+import SEO from '../components/SEO';
+import { buildArticleSchema } from '../lib/articleSchema';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Camera, Sparkles, Target, CheckCircle, AlertTriangle, Copy, Check, Brain, Eye, Zap, Star, Lightbulb, DollarSign, TrendingUp } from 'lucide-react';
 
@@ -98,6 +100,16 @@ const ConteudoRetratoIA = () => {
 
   return (
     <div className="min-h-screen bg-black">
+      <SEO
+        title="Retrato viral com IA: prompts e estratégias | Fluxrow"
+        description="Aprenda a gerar retratos virais com IA, escolher modelos certos e transformar imagens em conteúdo de alto engajamento."
+        path="/conteudos/retrato-viral-ia"
+        jsonLd={buildArticleSchema({
+          title: 'Retrato viral com IA: prompts e estratégias',
+          description: 'Aprenda a gerar retratos virais com IA, escolher modelos certos e transformar imagens em conteúdo de alto engajamento.',
+          slug: 'retrato-viral-ia',
+        })}
+      />
       <Header />
       
       <main className="pt-24 pb-20 px-6">

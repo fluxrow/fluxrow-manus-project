@@ -1,5 +1,7 @@
 import React from 'react';
 import Header from '../components/Header';
+import SEO from '../components/SEO';
+import { buildArticleSchema } from '../lib/articleSchema';
 import { ArrowLeft, Download, Copy, Lightbulb, Target, CheckCircle, TrendingDown, Package, Calendar, Zap, Star, AlertCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -114,6 +116,16 @@ Explique por quê e me mostre os períodos com maior histórico de desconto.`,
 
   return (
     <div className="min-h-screen bg-black">
+      <SEO
+        title="Prompts de IA para economizar dinheiro | Fluxrow"
+        description="Biblioteca de prompts prontos para usar IA na hora de comprar: comparar preços, achar cupons, rastrear quedas e economizar de verdade."
+        path="/conteudos/prompts-economia"
+        jsonLd={buildArticleSchema({
+          title: 'Prompts de IA para economizar dinheiro',
+          description: 'Biblioteca de prompts prontos para usar IA na hora de comprar: comparar preços, achar cupons, rastrear quedas e economizar de verdade.',
+          slug: 'prompts-economia',
+        })}
+      />
       <Header />
       
       <main className="pt-24 pb-20 px-6">

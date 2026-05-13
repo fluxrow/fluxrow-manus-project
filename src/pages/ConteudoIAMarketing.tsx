@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Copy, Check, Brain, Target, Zap, Search, FileText, AlertTriangle, CheckCircle, Lightbulb } from 'lucide-react';
 import Header from '../components/Header';
+import SEO from '../components/SEO';
+import { buildArticleSchema } from '../lib/articleSchema';
 
 const ConteudoIAMarketing = () => {
   const [copiedPrompts, setCopiedPrompts] = useState<number[]>([]);
@@ -201,6 +203,16 @@ Concorrentes conhecidos: [LISTA]`,
 
   return (
     <div className="min-h-screen bg-black">
+      <SEO
+        title="Produto sugerido por IA: prompts para marketing | Fluxrow"
+        description="Como usar IA para sugerir produtos, criar campanhas e gerar copy de alta conversão com prompts prontos."
+        path="/conteudos/produto-sugerido-ia"
+        jsonLd={buildArticleSchema({
+          title: 'Produto sugerido por IA: prompts para marketing',
+          description: 'Como usar IA para sugerir produtos, criar campanhas e gerar copy de alta conversão com prompts prontos.',
+          slug: 'produto-sugerido-ia',
+        })}
+      />
       <Header />
       
       <main className="pt-24 pb-20 px-6">

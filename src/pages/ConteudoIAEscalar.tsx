@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Copy, Check, Rocket, Brain, Cog, Target, Search, Lightbulb, AlertTriangle, CheckCircle, Zap } from 'lucide-react';
 import Header from '../components/Header';
+import SEO from '../components/SEO';
+import { buildArticleSchema } from '../lib/articleSchema';
 
 const ConteudoIAEscalar = () => {
   const [copiedPrompts, setCopiedPrompts] = useState<number[]>([]);
@@ -165,6 +167,16 @@ Mantenha minha voz, mas adapte para máximo engajamento.`,
 
   return (
     <div className="min-h-screen bg-black">
+      <SEO
+        title="IA para escalar negócios: prompts e frameworks | Fluxrow"
+        description="Como usar IA generativa, automações e agentes para escalar processos, vendas e operações em pequenos e médios negócios."
+        path="/conteudos/ia-escalar-negocio"
+        jsonLd={buildArticleSchema({
+          title: 'IA para escalar negócios: prompts e frameworks',
+          description: 'Como usar IA generativa, automações e agentes para escalar processos, vendas e operações em pequenos e médios negócios.',
+          slug: 'ia-escalar-negocio',
+        })}
+      />
       <Header />
       
       <main className="pt-24 pb-20 px-6">

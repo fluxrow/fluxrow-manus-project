@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import Header from '../components/Header';
+import SEO from '../components/SEO';
+import { buildArticleSchema } from '../lib/articleSchema';
 import { Copy, Check, Youtube, AlertTriangle, TrendingDown, TrendingUp, Target, Lightbulb } from 'lucide-react';
 
 const ConteudoYouTubeMonetizacao = () => {
@@ -74,6 +76,16 @@ const ConteudoYouTubeMonetizacao = () => {
 
   return (
     <div className="min-h-screen bg-black">
+      <SEO
+        title="YouTube + IA: como monetizar canais com automação | Fluxrow"
+        description="Estratégias e prompts para usar IA na criação, otimização e monetização de canais no YouTube."
+        path="/conteudos/youtube-monetizacao-ia"
+        jsonLd={buildArticleSchema({
+          title: 'YouTube + IA: como monetizar canais com automação',
+          description: 'Estratégias e prompts para usar IA na criação, otimização e monetização de canais no YouTube.',
+          slug: 'youtube-monetizacao-ia',
+        })}
+      />
       <Header />
       
       <main className="pt-24 pb-20 px-6">

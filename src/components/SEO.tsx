@@ -9,6 +9,7 @@ interface SEOProps {
   imageAlt?: string;
   lang?: string;
   locale?: string;
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 }
 
 const SEO = ({
@@ -19,6 +20,7 @@ const SEO = ({
   imageAlt = 'Fluxrow - Creative Intelligence Agency',
   lang,
   locale,
+  jsonLd,
 }: SEOProps) => {
   const { t, i18n } = useTranslation();
   
@@ -50,6 +52,12 @@ const SEO = ({
       <meta name="twitter:title" content={finalTitle} />
       <meta name="twitter:description" content={finalDescription} />
       <meta name="twitter:image" content={image} />
+
+      {jsonLd && (
+        <script type="application/ld+json">
+          {JSON.stringify(jsonLd)}
+        </script>
+      )}
     </Helmet>
   );
 };
