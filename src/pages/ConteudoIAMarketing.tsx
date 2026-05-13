@@ -249,13 +249,13 @@ Concorrentes conhecidos: [LISTA]`,
             </p>
 
             <div className="flex flex-wrap justify-center gap-4 mb-8">
-              <span className="bg-white text-white px-4 py-2 rounded-sm text-sm font-semibold font-space-grotesk">
+              <span className="bg-white text-[#080807] px-4 py-2 rounded-sm text-sm font-semibold font-space-grotesk">
                 ✅ 5 Prompts Estratégicos
               </span>
-              <span className="bg-white text-white px-4 py-2 rounded-sm text-sm font-semibold font-space-grotesk">
+              <span className="bg-white text-[#080807] px-4 py-2 rounded-sm text-sm font-semibold font-space-grotesk">
                 ✅ Estrutura Testada
               </span>
-              <span className="bg-white text-white px-4 py-2 rounded-sm text-sm font-semibold font-space-grotesk">
+              <span className="bg-white text-[#080807] px-4 py-2 rounded-sm text-sm font-semibold font-space-grotesk">
                 ✅ Exemplos Práticos
               </span>
             </div>
@@ -421,7 +421,7 @@ Concorrentes conhecidos: [LISTA]`,
 
           {/* CTA para Curso Completo */}
           <div className="bg-white/[0.03] border-2 border-gradient-to-r from-green-500 to-blue-500 rounded-sm p-10 text-center">
-            <div className="absolute inset-0 bg-white/[0.03] blur-xl"></div>
+            <div className="absolute inset-0 bg-white/[0.03] "></div>
             <div className="relative z-10">
               <h3 className="text-3xl md:text-4xl font-bold font-space-grotesk text-white mb-6">
                 Quer dominar <span className="gradient-text">TODAS as estratégias</span> de IA?
@@ -431,16 +431,16 @@ Concorrentes conhecidos: [LISTA]`,
                 profissionais, ferramentas exclusivas e estratégias avançadas para transformar seu negócio com IA.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
-                <span className="bg-white text-white px-6 py-3 rounded-sm text-lg font-bold font-space-grotesk">
+                <span className="bg-white text-[#080807] px-6 py-3 rounded-sm text-lg font-bold font-space-grotesk">
                   🚀 +200 Prompts Profissionais
                 </span>
-                <span className="bg-white text-white px-6 py-3 rounded-sm text-lg font-bold font-space-grotesk">
+                <span className="bg-white text-[#080807] px-6 py-3 rounded-sm text-lg font-bold font-space-grotesk">
                   🎯 Ferramentas Exclusivas
                 </span>
               </div>
               <Link
                 to="/"
-                className="inline-block bg-white text-white text-xl font-bold font-space-grotesk px-12 py-4 rounded-sm hover:bg-white/90 transition-all duration-300 hover:scale-105 shadow-2xl"
+                className="inline-block bg-white text-[#080807] text-xl font-bold font-space-grotesk px-12 py-4 rounded-sm hover:bg-white/90 transition-all duration-300 hover:scale-105 shadow-2xl"
               >
                 🔥 QUERO O CURSO COMPLETO
               </Link>

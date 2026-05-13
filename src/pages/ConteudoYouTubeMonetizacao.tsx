@@ -200,7 +200,7 @@ const ConteudoYouTubeMonetizacao = () => {
                     </h3>
                     <button
                       onClick={() => copyToClipboard(estrategia.estrategia + '\n\nExemplo:\n' + estrategia.exemplo, estrategia.id)}
-                      className="bg-white text-white p-2 rounded-lg hover:bg-white/90 transition-all duration-300 flex-shrink-0"
+                      className="bg-white text-[#080807] p-2 rounded-lg hover:bg-white/90 transition-all duration-300 flex-shrink-0"
                     >
                       {copiedItems[estrategia.id] ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
                     </button>
@@ -300,7 +300,7 @@ const ConteudoYouTubeMonetizacao = () => {
 
           {/* CTA Final */}
           <div className="bg-white/[0.03] border-2 border-gradient-to-r from-pink-500 to-cyan-500 rounded-sm p-10 text-center relative overflow-hidden">
-            <div className="absolute inset-0 bg-white/[0.03] blur-xl"></div>
+            <div className="absolute inset-0 bg-white/[0.03] "></div>
             <div className="relative z-10">
               <h3 className="text-3xl md:text-4xl font-bold font-space-grotesk text-white mb-6">
                 Você não precisa <span className="gradient-text">parecer com todo mundo</span>
@@ -309,16 +309,16 @@ const ConteudoYouTubeMonetizacao = () => {
                 Precisa fazer sentido pra quem importa. A mudança do YouTube é sua chance de se destacar criando conteúdo autêntico com IA como aliada, não como substituta.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
-                <span className="bg-white text-white px-6 py-3 rounded-sm text-lg font-bold font-space-grotesk">
+                <span className="bg-white text-[#080807] px-6 py-3 rounded-sm text-lg font-bold font-space-grotesk">
                   🎯 Seja Autêntico, Não Genérico
                 </span>
-                <span className="bg-white text-white px-6 py-3 rounded-sm text-lg font-bold font-space-grotesk">
+                <span className="bg-white text-[#080807] px-6 py-3 rounded-sm text-lg font-bold font-space-grotesk">
                   🚀 Use IA para Potencializar
                 </span>
               </div>
               <a
                 href="/"
-                className="inline-block bg-white text-white text-xl font-bold font-space-grotesk px-12 py-4 rounded-sm hover:bg-white/90 transition-all duration-300 hover:scale-105 shadow-2xl"
+                className="inline-block bg-white text-[#080807] text-xl font-bold font-space-grotesk px-12 py-4 rounded-sm hover:bg-white/90 transition-all duration-300 hover:scale-105 shadow-2xl"
               >
                 🔥 APRENDA A CRIAR CONTEÚDO AUTÊNTICO
               </a>

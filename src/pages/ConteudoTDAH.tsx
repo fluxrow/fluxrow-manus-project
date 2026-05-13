@@ -336,7 +336,7 @@ Foque em sistemas que FUNCIONAM SOZINHOS, não que dependem da minha memória.`,
               ].map((item, index) => (
                 <div key={index} className="bg-white/[0.03] border border-white/15 rounded-xl p-4">
                   <div className="flex items-center mb-3">
-                    <span className="bg-white text-white w-8 h-8 rounded-sm flex items-center justify-center font-bold text-sm mr-3">
+                    <span className="bg-white text-[#080807] w-8 h-8 rounded-sm flex items-center justify-center font-bold text-sm mr-3">
                       {item.step}
                     </span>
                     <h3 className="font-semibold text-white font-space-grotesk">{item.title}</h3>
@@ -373,7 +373,7 @@ Foque em sistemas que FUNCIONAM SOZINHOS, não que dependem da minha memória.`,
                       <span className="text-white/85 font-semibold font-space-grotesk">📋 Prompt Pronto para Copiar:</span>
                       <button
                         onClick={() => copyToClipboard(prompt.prompt, prompt.id)}
-                        className="flex items-center gap-2 bg-white text-white px-4 py-2 rounded-lg hover:bg-white/90 transition-all font-space-grotesk"
+                        className="flex items-center gap-2 bg-white text-[#080807] px-4 py-2 rounded-lg hover:bg-white/90 transition-all font-space-grotesk"
                       >
                         {copiedStates[prompt.id] ? (
                           <>
@@ -498,7 +498,7 @@ Foque em sistemas que FUNCIONAM SOZINHOS, não que dependem da minha memória.`,
           {/* Back to Main Course CTA */}
           <div className="mt-16 text-center">
             <div className="bg-white/[0.03] border-2 border-gradient-to-r from-pink-500 to-cyan-500 rounded-sm p-10 max-w-4xl mx-auto relative overflow-hidden">
-              <div className="absolute inset-0 bg-white/[0.03] blur-xl"></div>
+              <div className="absolute inset-0 bg-white/[0.03] "></div>
               <div className="relative z-10">
                 <h3 className="text-3xl md:text-4xl font-bold font-space-grotesk text-white mb-6">
                   Quer ir <span className="gradient-text">ainda mais fundo</span>?
@@ -509,7 +509,7 @@ Foque em sistemas que FUNCIONAM SOZINHOS, não que dependem da minha memória.`,
                 </p>
                 <Link
                   to="/"
-                  className="inline-block bg-white text-white text-xl font-bold font-space-grotesk px-12 py-4 rounded-sm hover:bg-white/90 transition-all duration-300 hover:scale-105 shadow-2xl"
+                  className="inline-block bg-white text-[#080807] text-xl font-bold font-space-grotesk px-12 py-4 rounded-sm hover:bg-white/90 transition-all duration-300 hover:scale-105 shadow-2xl"
                 >
                   🚀 VER CURSO COMPLETO
                 </Link>

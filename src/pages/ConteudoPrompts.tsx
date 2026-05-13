@@ -138,7 +138,7 @@ Explique por quê e me mostre os períodos com maior histórico de desconto.`,
             </Link>
             
             <div className="text-center mb-12">
-              <div className="bg-white text-white px-4 py-2 rounded-sm text-sm font-semibold font-space-grotesk inline-block mb-6">
+              <div className="bg-white text-[#080807] px-4 py-2 rounded-sm text-sm font-semibold font-space-grotesk inline-block mb-6">
                 CONTEÚDO EXCLUSIVO #01
               </div>
               <h1 className="text-4xl md:text-5xl font-bold font-space-grotesk mb-6">
@@ -249,7 +249,7 @@ Explique por quê e me mostre os períodos com maior histórico de desconto.`,
                       </p>
                     </div>
                   </div>
-                  <div className="bg-white text-white px-3 py-1 rounded-sm text-xs font-bold font-space-grotesk">
+                  <div className="bg-white text-[#080807] px-3 py-1 rounded-sm text-xs font-bold font-space-grotesk">
                     {promptData.economia}
                   </div>
                 </div>
@@ -390,9 +390,9 @@ Explique por quê e me mostre os períodos com maior histórico de desconto.`,
 
           {/* CTA Final Robusto */}
           <div className="bg-white/[0.03] border-2 border-gradient-to-r from-pink-500 to-cyan-500 rounded-sm p-10 text-center relative overflow-hidden">
-            <div className="absolute inset-0 bg-white/[0.03] blur-xl"></div>
+            <div className="absolute inset-0 bg-white/[0.03] "></div>
             <div className="relative z-10">
-              <div className="bg-white text-white px-6 py-3 rounded-sm text-lg font-bold font-space-grotesk inline-block mb-6">
+              <div className="bg-white text-[#080807] px-6 py-3 rounded-sm text-lg font-bold font-space-grotesk inline-block mb-6">
                 🚀 ISSO É SÓ O COMEÇO
               </div>
               
@@ -430,17 +430,17 @@ Explique por quê e me mostre os períodos com maior histórico de desconto.`,
               </div>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
-                <span className="bg-white text-white px-6 py-3 rounded-sm text-lg font-bold font-space-grotesk">
+                <span className="bg-white text-[#080807] px-6 py-3 rounded-sm text-lg font-bold font-space-grotesk">
                   🎯 Mais de 20 Módulos Práticos
                 </span>
-                <span className="bg-white text-white px-6 py-3 rounded-sm text-lg font-bold font-space-grotesk">
+                <span className="bg-white text-[#080807] px-6 py-3 rounded-sm text-lg font-bold font-space-grotesk">
                   🤝 Suporte Direto dos Criadores
                 </span>
               </div>
               
               <Link
                 to="/"
-                className="inline-block bg-white text-white text-xl font-bold font-space-grotesk px-12 py-4 rounded-sm hover:bg-white/90 transition-all duration-300 hover:scale-105 shadow-2xl mb-4"
+                className="inline-block bg-white text-[#080807] text-xl font-bold font-space-grotesk px-12 py-4 rounded-sm hover:bg-white/90 transition-all duration-300 hover:scale-105 shadow-2xl mb-4"
               >
                 🔥 QUERO ACESSO TOTAL AO FLUXROW START
               </Link>

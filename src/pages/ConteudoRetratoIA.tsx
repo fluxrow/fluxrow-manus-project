@@ -146,13 +146,13 @@ const ConteudoRetratoIA = () => {
             </p>
 
             <div className="flex flex-wrap justify-center gap-4 mb-8">
-              <span className="bg-white text-white px-4 py-2 rounded-sm text-sm font-semibold font-space-grotesk">
+              <span className="bg-white text-[#080807] px-4 py-2 rounded-sm text-sm font-semibold font-space-grotesk">
                 ✅ 5 Prompts Prontos
               </span>
-              <span className="bg-white text-white px-4 py-2 rounded-sm text-sm font-semibold font-space-grotesk">
+              <span className="bg-white text-[#080807] px-4 py-2 rounded-sm text-sm font-semibold font-space-grotesk">
                 ✅ Variações Testadas
               </span>
-              <span className="bg-white text-white px-4 py-2 rounded-sm text-sm font-semibold font-space-grotesk">
+              <span className="bg-white text-[#080807] px-4 py-2 rounded-sm text-sm font-semibold font-space-grotesk">
                 ✅ Estratégias de Monetização
               </span>
             </div>
@@ -514,7 +514,7 @@ const ConteudoRetratoIA = () => {
 
           {/* CTA para Curso Completo */}
           <div className="bg-white/[0.03] border-2 border-gradient-to-r from-pink-500 to-cyan-500 rounded-sm p-10 text-center">
-            <div className="absolute inset-0 bg-white/[0.03] blur-xl"></div>
+            <div className="absolute inset-0 bg-white/[0.03] "></div>
             <div className="relative z-10">
               <h3 className="text-3xl md:text-4xl font-bold font-space-grotesk text-white mb-6">
                 Quer dominar <span className="gradient-text">TODAS as técnicas</span>?
@@ -523,16 +523,16 @@ const ConteudoRetratoIA = () => {
                 Este é apenas 1 dos mais de 50 prompts visuais exclusivos do nosso curso. Aprenda a criar qualquer tipo de conteúdo visual com IA e transforme sua criatividade em resultados reais.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
-                <span className="bg-white text-white px-6 py-3 rounded-sm text-lg font-bold font-space-grotesk">
+                <span className="bg-white text-[#080807] px-6 py-3 rounded-sm text-lg font-bold font-space-grotesk">
                   🎨 +50 Prompts Visuais Exclusivos
                 </span>
-                <span className="bg-white text-white px-6 py-3 rounded-sm text-lg font-bold font-space-grotesk">
+                <span className="bg-white text-[#080807] px-6 py-3 rounded-sm text-lg font-bold font-space-grotesk">
                   💰 Estratégias de Monetização
                 </span>
               </div>
               <Link
                 to="/"
-                className="inline-block bg-white text-white text-xl font-bold font-space-grotesk px-12 py-4 rounded-sm hover:bg-white/90 transition-all duration-300 hover:scale-105 shadow-2xl"
+                className="inline-block bg-white text-[#080807] text-xl font-bold font-space-grotesk px-12 py-4 rounded-sm hover:bg-white/90 transition-all duration-300 hover:scale-105 shadow-2xl"
               >
                 🚀 ACESSAR CURSO COMPLETO
               </Link>
