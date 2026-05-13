@@ -82,7 +82,7 @@ const TermosDeUso = () => {
             <p>
               O conteúdo deste site é fornecido "como está" (as is), sem garantias de qualquer natureza, expressas ou implícitas. A Fluxrow não garante que:
             </p>
-            <ul className="list-disc pl-6 space-y-2 mt-3">
+            <ul className="list-disc pl-6 space-y-2 mt-3 break-words">
               <li>O site estará disponível de forma ininterrupta ou livre de erros;</li>
               <li>Os resultados obtidos com os serviços de marketing, IA ou automação corresponderão a expectativas específicas do contratante, uma vez que dependem de múltiplos fatores externos;</li>
               <li>As informações apresentadas no site sejam completas, precisas ou atualizadas em todos os momentos.</li>
