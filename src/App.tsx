@@ -52,6 +52,8 @@ const AIOperatorKitSales = React.lazy(() => import("./pages/AIOperatorKitSales")
 const ProdutosHub = React.lazy(() => import("./pages/ProdutosHub"));
 
 const CheckoutReturn = React.lazy(() => import("./pages/CheckoutReturn"));
+const Login = React.lazy(() => import("./pages/Login"));
+const KitReader = React.lazy(() => import("./pages/KitReader"));
 
 const queryClient = new QueryClient();
 
@@ -119,8 +121,9 @@ const App = () => (
             <Route path="/conteudos/:slug" element={<div>Página Individual de Conteúdo</div>} />
             <Route path="/contato" element={<Contato />} />
             <Route path="/p/:slug" element={<PropostaPublica />} />
-            {/* Kit antigo → redirect canônico */}
-            <Route path="/kit" element={<Navigate to="/produtos/ai-operator-kit" replace />} />
+            {/* Login + Kit gated reader */}
+            <Route path="/login" element={<Login />} />
+            <Route path="/kit" element={<KitReader />} />
             <Route path="/kit/content" element={<AIOperatorKit />} />
             {/* Hub de produtos + Kit bilingue */}
             <Route path="/produtos" element={<ProdutosHub />} />

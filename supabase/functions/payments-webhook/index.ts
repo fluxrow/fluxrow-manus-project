@@ -12,6 +12,33 @@ function getSupabase() {
   return _supabase;
 }
 
+function getSiteUrl(): string {
+  // Prefer explicit SITE_URL secret; fallback to production canonical.
+  return Deno.env.get("SITE_URL") || "https://fluxrow.com";
+}
+
+async function generateMagicLink(email: string, lang: string) {
+  const supabase = getSupabase();
+  const redirectTo = `${getSiteUrl()}/kit?lang=${lang}`;
+
+  const { data, error } = await supabase.auth.admin.generateLink({
+    type: "magiclink",
+    email,
+    options: { redirectTo },
+  });
+
+  if (error) {
+    console.error("generateLink error:", error.message);
+    return { actionLink: null as string | null, userId: null as string | null };
+  }
+  // The action_link is a URL to /auth/v1/verify?token=... that, when opened,
+  // logs the user in and redirects to redirectTo.
+  const actionLink =
+    (data?.properties?.action_link as string | undefined) ?? null;
+  const userId = (data?.user?.id as string | undefined) ?? null;
+  return { actionLink, userId };
+}
+
 async function handleCheckoutCompleted(session: any, env: StripeEnv) {
   const email =
     session.customer_details?.email ||
@@ -26,21 +53,26 @@ async function handleCheckoutCompleted(session: any, env: StripeEnv) {
   }
 
   const supabase = getSupabase();
+  const normalizedEmail = String(email).trim().toLowerCase();
 
-  // Idempotent insert
+  // 1. Generate magic link (also creates the auth.user if missing)
+  const { actionLink, userId } = await generateMagicLink(normalizedEmail, lang);
+
+  // 2. Idempotent upsert with user_id linked
   const { data: inserted, error } = await supabase
     .from("kit_purchases")
     .upsert(
       {
         stripe_session_id: session.id,
         stripe_customer_id: session.customer ?? null,
-        email,
+        email: normalizedEmail,
         lang,
         price_id: priceId,
         amount_total: session.amount_total ?? null,
         currency: session.currency ?? null,
         status: session.payment_status === "paid" ? "paid" : session.payment_status,
         environment: env,
+        user_id: userId,
         raw: session,
       },
       { onConflict: "stripe_session_id", ignoreDuplicates: false },
@@ -53,20 +85,21 @@ async function handleCheckoutCompleted(session: any, env: StripeEnv) {
     throw error;
   }
 
-  // Trigger email send (function may not exist yet — fire-and-forget, log errors)
-  if (inserted && !inserted.email_sent_at) {
+  // 3. Send delivery email with magic link
+  if (inserted && !inserted.email_sent_at && actionLink) {
     try {
       const { error: invokeError } = await supabase.functions.invoke(
         "send-transactional-email",
         {
           body: {
             templateName: lang === "en" ? "kit-delivery-en" : "kit-delivery-pt",
-            recipientEmail: email,
+            recipientEmail: normalizedEmail,
             idempotencyKey: `kit-delivery-${session.id}`,
             templateData: {
-              accessToken: inserted.access_token,
+              magicLink: actionLink,
               amount: session.amount_total,
               currency: session.currency,
+              email: normalizedEmail,
             },
           },
         },
@@ -82,6 +115,8 @@ async function handleCheckoutCompleted(session: any, env: StripeEnv) {
     } catch (e) {
       console.error("Email send failed (will retry on next event):", e);
     }
+  } else if (!actionLink) {
+    console.error("No magic link generated; skipping email for", session.id);
   }
 }
 

@@ -4,7 +4,7 @@ import { CheckCircle2 } from "lucide-react";
 const COPY = {
   pt: {
     title: "Pagamento confirmado",
-    body: "Em instantes você vai receber um email com o acesso ao AI Operator Kit e instruções pra começar.",
+    body: "Confira seu email: enviamos um link de acesso ao Kit. Basta clicar pra entrar — sem senha.",
     sessionLabel: "ID da sessão:",
     home: "Voltar para a home",
     wa: "Tirar dúvida no WhatsApp",
@@ -15,7 +15,7 @@ const COPY = {
   },
   en: {
     title: "Payment confirmed",
-    body: "You'll receive an email shortly with access to the AI Operator Kit and your getting-started instructions.",
+    body: "Check your email: we sent you a Kit access link. Just click to sign in — no password.",
     sessionLabel: "Session ID:",
     home: "Back to home",
     wa: "Ask on WhatsApp",
@@ -47,16 +47,16 @@ export default function CheckoutReturn() {
             </p>
             <div className="pt-4 flex flex-col sm:flex-row gap-3 justify-center">
               <Link
-                to={`/produtos/ai-operator-kit?lang=${lang}`}
-                className="px-6 py-3 border border-white/20 hover:border-white/40 transition rounded-md font-dm-mono text-sm"
+                to={`/login?lang=${lang}`}
+                className="px-6 py-3 bg-white text-black transition rounded-md font-dm-mono text-sm"
               >
-                {t.home}
+                {lang === "pt" ? "Já recebi o email — entrar" : "Got the email — sign in"}
               </Link>
               <a
                 href={`https://wa.me/5541992361868?text=${encodeURIComponent(t.waMsg)}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-6 py-3 bg-emerald-500 hover:bg-emerald-400 text-black transition rounded-md font-dm-mono text-sm"
+                className="px-6 py-3 border border-white/20 hover:border-white/40 transition rounded-md font-dm-mono text-sm"
               >
                 {t.wa}
               </a>
