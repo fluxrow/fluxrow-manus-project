@@ -42,16 +42,22 @@ const SEO = ({
       <meta property="og:description" content={finalDescription} />
       <meta property="og:url" content={url} />
       <meta property="og:image" content={image} />
+      <meta property="og:image:secure_url" content={image} />
       <meta property="og:image:alt" content={imageAlt} />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
+      <meta property="og:image:type" content="image/jpeg" />
       <meta property="og:type" content="website" />
       <meta property="og:locale" content={finalLocale} />
       <meta property="og:site_name" content="Fluxrow" />
 
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:site" content="@fluxrow" />
+      <meta name="twitter:creator" content="@fluxrow" />
       <meta name="twitter:title" content={finalTitle} />
       <meta name="twitter:description" content={finalDescription} />
       <meta name="twitter:image" content={image} />
+      <meta name="twitter:image:alt" content={imageAlt} />
 
       {jsonLd && (
         <script type="application/ld+json">
