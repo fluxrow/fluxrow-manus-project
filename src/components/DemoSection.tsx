@@ -2,8 +2,8 @@
 import React, { useEffect } from 'react';
 import ImageWithFallback from './ui/image-with-fallback';
 import techWorkspace from '../assets/tech-workspace.jpg';
-import playbooks from '../assets/playbooks.png';
-import templatesProntos from '../assets/templates-prontos.png';
+import playbooks from '../assets/playbooks.webp';
+import templatesProntos from '../assets/templates-prontos.webp';
 
 const DemoSection = () => {
   const demos = [
