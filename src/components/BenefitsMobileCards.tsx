@@ -7,11 +7,11 @@ import { useIsMobile } from "../hooks/use-mobile"
 import ImageWithFallback from "./ui/image-with-fallback"
 
 // Importar imagens existentes
-import estudantes from '../assets/estudantes.png'
-import freelancerAgencias from '../assets/freelancer-agencias.png'
-import profissionaisLiberais from '../assets/profissionais-liberais.png'
-import donosPequenosNegocios from '../assets/donos-pequenos-negocios.png'
-import empreendedoresIniciantes from '../assets/empreendedores-iniciantes.png'
+import estudantes from '../assets/estudantes.webp'
+import freelancerAgencias from '../assets/freelancer-agencias.webp'
+import profissionaisLiberais from '../assets/profissionais-liberais.webp'
+import donosPequenosNegocios from '../assets/donos-pequenos-negocios.webp'
+import empreendedoresIniciantes from '../assets/empreendedores-iniciantes.webp'
 
 interface BenefitProfile {
   id: string

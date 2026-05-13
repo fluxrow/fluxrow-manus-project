@@ -27,7 +27,7 @@ import {
   Calendar,
   CheckCircle2,
 } from 'lucide-react';
-import heroImage from '@/assets/gracie-barra-hero.png';
+import heroImage from '@/assets/gracie-barra-hero.webp';
 
 const PropostaGracieBarra = () => {
   const scrollToContent = () => {
