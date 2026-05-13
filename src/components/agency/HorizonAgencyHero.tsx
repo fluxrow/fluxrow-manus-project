@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ArrowRight, Play } from 'lucide-react';
+import { ArrowRight, Play, MessageCircle } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -476,6 +476,17 @@ const HorizonAgencyHero = () => {
               <Play className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
               {t('hero.cta_secondary')}
             </button>
+
+            <a
+              href="https://wa.me/5541992361868?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Fluxrow%20e%20gostaria%20de%20conversar%20sobre%20um%20projeto."
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Falar com a Fluxrow no WhatsApp"
+              className="bg-[#25D366] hover:bg-[#1ebe57] text-white px-6 sm:px-10 py-4 sm:py-5 rounded-full font-semibold font-space-grotesk transition-all duration-300 group flex items-center justify-center w-full sm:w-auto shadow-lg shadow-[#25D366]/20 hover:scale-105"
+            >
+              <MessageCircle className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
+              WhatsApp
+            </a>
           </div>
         </div>
       </div>
