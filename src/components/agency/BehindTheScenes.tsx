@@ -27,7 +27,7 @@ const techCategoryMeta = [
   {
     id: "ai",
     colorClass: "cyan",
-    gradient: "from-cyan-500/20 to-cyan-900/10",
+    gradient: "from-white/20 to-white/10",
     border: "border-white/30 hover:border-white/30",
     iconBg: "bg-white/20",
     iconColor: "text-white/80",
@@ -36,7 +36,7 @@ const techCategoryMeta = [
   {
     id: "automation",
     colorClass: "purple",
-    gradient: "from-purple-500/20 to-purple-900/10",
+    gradient: "from-white/20 to-white/10",
     border: "border-white/30 hover:border-white/30",
     iconBg: "bg-white/20",
     iconColor: "text-white/80",
@@ -45,7 +45,7 @@ const techCategoryMeta = [
   {
     id: "traffic",
     colorClass: "green",
-    gradient: "from-green-500/20 to-green-900/10",
+    gradient: "from-white/20 to-white/10",
     border: "border-white/30 hover:border-white/30",
     iconBg: "bg-white/20",
     iconColor: "text-white/80",
@@ -54,7 +54,7 @@ const techCategoryMeta = [
   {
     id: "channels",
     colorClass: "orange",
-    gradient: "from-orange-500/20 to-orange-900/10",
+    gradient: "from-white/20 to-white/10",
     border: "border-white/30 hover:border-white/30",
     iconBg: "bg-white/20",
     iconColor: "text-white/80",
@@ -137,10 +137,10 @@ const TechCard = ({ category, translatedCategory, index }: { category: typeof te
 const FeedMockup = () => (
   <div className="grid grid-cols-2 gap-1.5 w-full h-[110px]">
     {[
-      "from-pink-500 to-rose-400",
-      "from-fuchsia-500 to-pink-400",
-      "from-rose-400 to-orange-400",
-      "from-pink-400 to-fuchsia-500"
+      "from-white/10 to-white/5",
+      "from-white/10 to-white/5",
+      "from-white/10 to-white/5",
+      "from-white/10 to-white/5"
     ].map((g, i) => (
       <div key={i} className={`rounded-md bg-gradient-to-br ${g} relative overflow-hidden`}>
         <div className="absolute bottom-1 left-1 flex gap-1">
@@ -379,14 +379,14 @@ const BrandingMockup = () => {
 };
 
 const showcaseBlocks = [
-  { title: "Criativos para Feed e Stories", desc: "Posts, carrosséis e stories que convertem", tag: "Design", borderColor: "border-white/30 hover:border-white/30", tagBg: "bg-white/20", tagText: "text-white/80", glow: "from-pink-500/10 to-pink-900/5", Mockup: FeedMockup },
-  { title: "Vídeos e Reels", desc: "Edição, motion e roteiro criativo", tag: "Produção", borderColor: "border-white/30 hover:border-white/30", tagBg: "bg-white/20", tagText: "text-white/80", glow: "from-red-500/10 to-red-900/5", Mockup: VideoMockup },
-  { title: "Tráfego Pago", desc: "Meta, Google e TikTok Ads gerenciados", tag: "Performance", borderColor: "border-white/30 hover:border-white/30", tagBg: "bg-white/20", tagText: "text-white/80", glow: "from-green-500/10 to-green-900/5", Mockup: AdsMockup },
-  { title: "Landing Pages", desc: "Páginas de alta conversão, design + código", tag: "Web", borderColor: "border-white/30 hover:border-white/30", tagBg: "bg-white/20", tagText: "text-white/80", glow: "from-blue-500/10 to-blue-900/5", Mockup: LandingPageMockup },
-  { title: "Automações e IA", desc: "Fluxos inteligentes com Make, n8n e GPT", tag: "Tecnologia", borderColor: "border-white/30 hover:border-white/30", tagBg: "bg-white/20", tagText: "text-white/80", glow: "from-cyan-500/10 to-cyan-900/5", Mockup: AutomationMockup },
-  { title: "CRM e Pipeline", desc: "Pipedrive, RD Station, funil completo", tag: "Vendas", borderColor: "border-white/30 hover:border-white/30", tagBg: "bg-white/20", tagText: "text-white/80", glow: "from-orange-500/10 to-orange-900/5", Mockup: CRMMockup },
-  { title: "Sistemas e SaaS", desc: "Dashboards, plataformas e apps sob medida", tag: "Produto", borderColor: "border-white/30 hover:border-white/30", tagBg: "bg-white/20", tagText: "text-white/80", glow: "from-purple-500/10 to-purple-900/5", Mockup: DashboardMockup },
-  { title: "Branding e Identidade", desc: "Logo, identidade visual e aplicações", tag: "Identidade", borderColor: "border-white/30 hover:border-white/30", tagBg: "bg-white/20", tagText: "text-white/80", glow: "from-yellow-500/10 to-yellow-900/5", Mockup: BrandingMockup }
+  { title: "Criativos para Feed e Stories", desc: "Posts, carrosséis e stories que convertem", tag: "Design", borderColor: "border-white/30 hover:border-white/30", tagBg: "bg-white/20", tagText: "text-white/80", glow: "from-white/10 to-white/5", Mockup: FeedMockup },
+  { title: "Vídeos e Reels", desc: "Edição, motion e roteiro criativo", tag: "Produção", borderColor: "border-white/30 hover:border-white/30", tagBg: "bg-white/20", tagText: "text-white/80", glow: "from-white/10 to-white/5", Mockup: VideoMockup },
+  { title: "Tráfego Pago", desc: "Meta, Google e TikTok Ads gerenciados", tag: "Performance", borderColor: "border-white/30 hover:border-white/30", tagBg: "bg-white/20", tagText: "text-white/80", glow: "from-white/10 to-white/5", Mockup: AdsMockup },
+  { title: "Landing Pages", desc: "Páginas de alta conversão, design + código", tag: "Web", borderColor: "border-white/30 hover:border-white/30", tagBg: "bg-white/20", tagText: "text-white/80", glow: "from-white/10 to-white/5", Mockup: LandingPageMockup },
+  { title: "Automações e IA", desc: "Fluxos inteligentes com Make, n8n e GPT", tag: "Tecnologia", borderColor: "border-white/30 hover:border-white/30", tagBg: "bg-white/20", tagText: "text-white/80", glow: "from-white/10 to-white/5", Mockup: AutomationMockup },
+  { title: "CRM e Pipeline", desc: "Pipedrive, RD Station, funil completo", tag: "Vendas", borderColor: "border-white/30 hover:border-white/30", tagBg: "bg-white/20", tagText: "text-white/80", glow: "from-white/10 to-white/5", Mockup: CRMMockup },
+  { title: "Sistemas e SaaS", desc: "Dashboards, plataformas e apps sob medida", tag: "Produto", borderColor: "border-white/30 hover:border-white/30", tagBg: "bg-white/20", tagText: "text-white/80", glow: "from-white/10 to-white/5", Mockup: DashboardMockup },
+  { title: "Branding e Identidade", desc: "Logo, identidade visual e aplicações", tag: "Identidade", borderColor: "border-white/30 hover:border-white/30", tagBg: "bg-white/20", tagText: "text-white/80", glow: "from-white/10 to-white/5", Mockup: BrandingMockup }
 ];
 
 const CreativeShowcase = () => {

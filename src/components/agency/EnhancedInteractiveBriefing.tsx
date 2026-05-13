@@ -304,7 +304,7 @@ const EnhancedInteractiveBriefing = () => {
         </motion.div>
 
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
-          <Button onClick={() => window.open(whatsappUrl, '_blank')} className="bg-white/5 hover:from-green-600 hover:to-green-700 text-primary-foreground px-6 py-3 rounded-xl font-semibold">
+          <Button onClick={() => window.open(whatsappUrl, '_blank')} className="bg-white/5 hover:from-white/10 hover:to-white/10 text-primary-foreground px-6 py-3 rounded-xl font-semibold">
             <MessageCircle className="w-5 h-5 mr-2" />
             {t('briefing.completion.whatsapp')}
           </Button>

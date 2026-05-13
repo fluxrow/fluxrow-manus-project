@@ -20,28 +20,28 @@ const colorClasses = {
     title: "text-white/80",
     border: "border-white/30",
     glow: "shadow-black/20",
-    gradient: "from-cyan-500/20 to-transparent",
+    gradient: "from-white/20 to-transparent",
   },
   purple: {
     icon: "text-white/80",
     title: "text-white/80",
     border: "border-white/30",
     glow: "shadow-black/20",
-    gradient: "from-purple-500/20 to-transparent",
+    gradient: "from-white/20 to-transparent",
   },
   green: {
     icon: "text-white/80",
     title: "text-white/80",
     border: "border-white/30",
     glow: "shadow-black/20",
-    gradient: "from-green-500/20 to-transparent",
+    gradient: "from-white/20 to-transparent",
   },
   yellow: {
     icon: "text-white/80",
     title: "text-white/80",
     border: "border-white/30",
     glow: "shadow-black/20",
-    gradient: "from-yellow-500/20 to-transparent",
+    gradient: "from-white/20 to-transparent",
   },
 };
 
