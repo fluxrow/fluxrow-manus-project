@@ -259,10 +259,15 @@ const enFormCopy = {
   successTitle: 'All set.',
   successDescription:
     'Taking you to the AI Operator Kit. If it does not redirect automatically, use the button below.',
+  duplicateTitle: 'You are already on the list.',
+  duplicateDescription:
+    'This email is already registered. No problem — sending you straight to the AI Operator Kit.',
   successCta: 'Go to the AI Operator Kit',
   privacyNote: 'No spam. You can unsubscribe anytime.',
   invalidName: 'Please enter your name (min 2 characters).',
-  invalidEmail: 'Please enter a valid email.',
+  invalidEmail: 'Please enter a valid email (e.g. name@company.com).',
+  serverInvalid: 'The information looks invalid. Check your name and email and try again.',
+  networkError: 'No connection to the server. Check your internet and try again.',
   genericError: 'We could not submit right now. Please try again shortly.',
 };
 
