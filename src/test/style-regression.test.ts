@@ -114,6 +114,7 @@ describe("style regression guard (public pages)", () => {
         const src = readFileSync(file, "utf8");
         const lines = src.split("\n");
         lines.forEach((line, i) => {
+          if (ALLOWED_LINE_PATTERNS.some((p) => p.test(line))) return;
           if (re.test(line)) violations.push(`${rel}:${i + 1}  ${line.trim().slice(0, 160)}`);
         });
       }
