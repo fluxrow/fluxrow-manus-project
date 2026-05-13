@@ -51,7 +51,7 @@ const ProcessTimeline = () => {
                 
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-2">
-                    <span className="text-xs text-white/40 bg-white/5 px-2 py-0.5 rounded">
+                    <span className="text-xs text-white/55 bg-white/5 px-2 py-0.5 rounded">
                       {t('process.step')} {index + 1}
                     </span>
                   </div>

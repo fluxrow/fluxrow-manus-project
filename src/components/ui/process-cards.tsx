@@ -93,7 +93,7 @@ function ProcessCard({
 
         {/* Step indicator */}
         <div className="flex items-center justify-between mt-auto pt-4 border-t border-white/10">
-          <span className="text-xs text-white/40">
+          <span className="text-xs text-white/55">
             Etapa {step} de {totalSteps}
           </span>
           <div className="flex gap-1">
