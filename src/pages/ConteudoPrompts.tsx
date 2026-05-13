@@ -132,13 +132,13 @@ Explique por quê e me mostre os períodos com maior histórico de desconto.`,
         <div className="max-w-4xl mx-auto">
           {/* Header */}
           <div className="mb-8">
-            <Link to="/conteudos" className="inline-flex items-center text-cyan-400 hover:text-cyan-300 font-space-grotesk mb-6 transition-colors">
+            <Link to="/conteudos" className="inline-flex items-center text-white/85 hover:text-white/85 font-space-grotesk mb-6 transition-colors">
               <ArrowLeft className="w-4 h-4 mr-2" />
               Voltar para Conteúdos
             </Link>
             
             <div className="text-center mb-12">
-              <div className="bg-gradient-to-r from-pink-500 to-cyan-500 text-white px-4 py-2 rounded-full text-sm font-semibold font-space-grotesk inline-block mb-6">
+              <div className="bg-white text-[#080807] px-4 py-2 rounded-sm text-sm font-semibold font-space-grotesk inline-block mb-6">
                 CONTEÚDO EXCLUSIVO #01
               </div>
               <h1 className="text-4xl md:text-5xl font-bold font-space-grotesk mb-6">
@@ -152,7 +152,7 @@ Explique por quê e me mostre os períodos com maior histórico de desconto.`,
           </div>
 
           {/* Introdução Robusta */}
-          <div className="bg-gradient-to-r from-purple-900/20 to-blue-900/20 border border-purple-500/30 rounded-2xl p-8 mb-12">
+          <div className="bg-white/[0.03] border border-white/15 rounded-sm p-8 mb-12">
             <div className="flex items-center mb-6">
               <Lightbulb className="w-8 h-8 text-yellow-400 mr-3" />
               <h2 className="text-2xl font-bold font-space-grotesk text-white">Introdução Estratégica</h2>
@@ -172,17 +172,17 @@ Explique por quê e me mostre os períodos com maior histórico de desconto.`,
               <div>
                 <h3 className="text-lg font-semibold font-space-grotesk text-white mb-4">🎯 Para quem serve:</h3>
                 <ul className="space-y-2 text-gray-300 font-space-grotesk">
-                  <li className="flex items-start"><Target className="w-4 h-4 text-cyan-400 mr-2 mt-1 flex-shrink-0" />Quem compra por impulso e se arrepende</li>
-                  <li className="flex items-start"><Target className="w-4 h-4 text-cyan-400 mr-2 mt-1 flex-shrink-0" />Pessoas que gastam demais sem planejamento</li>
-                  <li className="flex items-start"><Target className="w-4 h-4 text-cyan-400 mr-2 mt-1 flex-shrink-0" />Quem quer usar IA para economizar dinheiro</li>
-                  <li className="flex items-start"><Target className="w-4 h-4 text-cyan-400 mr-2 mt-1 flex-shrink-0" />Compradores inteligentes que buscam eficiência</li>
+                  <li className="flex items-start"><Target className="w-4 h-4 text-white/85 mr-2 mt-1 flex-shrink-0" />Quem compra por impulso e se arrepende</li>
+                  <li className="flex items-start"><Target className="w-4 h-4 text-white/85 mr-2 mt-1 flex-shrink-0" />Pessoas que gastam demais sem planejamento</li>
+                  <li className="flex items-start"><Target className="w-4 h-4 text-white/85 mr-2 mt-1 flex-shrink-0" />Quem quer usar IA para economizar dinheiro</li>
+                  <li className="flex items-start"><Target className="w-4 h-4 text-white/85 mr-2 mt-1 flex-shrink-0" />Compradores inteligentes que buscam eficiência</li>
                 </ul>
               </div>
             </div>
           </div>
 
           {/* Metodologia */}
-          <div className="bg-gradient-to-r from-yellow-900/20 to-orange-900/20 border border-yellow-500/30 rounded-2xl p-8 mb-12">
+          <div className="bg-white/[0.03] border border-white/15 rounded-sm p-8 mb-12">
             <div className="flex items-center mb-6">
               <Zap className="w-8 h-8 text-yellow-400 mr-3" />
               <h2 className="text-2xl font-bold font-space-grotesk text-white">Como Usar os Prompts Corretamente</h2>
@@ -193,15 +193,15 @@ Explique por quê e me mostre os períodos com maior histórico de desconto.`,
                 <h3 className="text-lg font-semibold font-space-grotesk text-white mb-4">⚡ Metodologia:</h3>
                 <div className="space-y-4 text-gray-300 font-space-grotesk">
                   <div className="bg-black/20 p-4 rounded-lg">
-                    <strong className="text-cyan-400">1. Não é só copiar e colar</strong><br />
+                    <strong className="text-white/85">1. Não é só copiar e colar</strong><br />
                     Use como ponto de partida e refine conforme sua situação específica
                   </div>
                   <div className="bg-black/20 p-4 rounded-lg">
-                    <strong className="text-cyan-400">2. Personalize sempre</strong><br />
+                    <strong className="text-white/85">2. Personalize sempre</strong><br />
                     Adicione contexto sobre seu orçamento, necessidades e preferências
                   </div>
                   <div className="bg-black/20 p-4 rounded-lg">
-                    <strong className="text-cyan-400">3. Faça follow-up</strong><br />
+                    <strong className="text-white/85">3. Faça follow-up</strong><br />
                     Continue a conversa para refinar as respostas
                   </div>
                 </div>
@@ -209,11 +209,11 @@ Explique por quê e me mostre os períodos com maior histórico de desconto.`,
               
               <div>
                 <h3 className="text-lg font-semibold font-space-grotesk text-white mb-4">💡 Dica de Ouro:</h3>
-                <div className="bg-gradient-to-r from-pink-500/20 to-cyan-500/20 border border-pink-500/30 p-6 rounded-lg">
+                <div className="bg-white/[0.03] border border-white/15 p-6 rounded-lg">
                   <p className="text-white font-space-grotesk text-lg mb-4">
                     Depois de usar qualquer prompt, sempre finalize com:
                   </p>
-                  <div className="bg-black/40 p-4 rounded-lg font-mono text-cyan-400 mb-4">
+                  <div className="bg-black/40 p-4 rounded-lg font-mono text-white/85 mb-4">
                     "O que mais eu deveria perguntar sobre isso?"
                   </div>
                   <p className="text-gray-300 font-space-grotesk">
@@ -234,11 +234,11 @@ Explique por quê e me mostre os períodos com maior histórico de desconto.`,
               <div key={promptData.id} className="glass-card">
                 <div className="flex items-start justify-between mb-6">
                   <div className="flex items-center">
-                    <div className="bg-gradient-to-r from-pink-500 to-cyan-500 p-3 rounded-xl text-white mr-4">
+                    <div className="bg-white p-3 rounded-xl text-white mr-4">
                       {promptData.icon}
                     </div>
                     <div>
-                      <div className="text-sm text-cyan-400 font-space-grotesk font-semibold mb-1">
+                      <div className="text-sm text-white/85 font-space-grotesk font-semibold mb-1">
                         PROMPT {promptData.id.toString().padStart(2, '0')}
                       </div>
                       <h3 className="text-xl font-bold font-space-grotesk text-white">
@@ -249,7 +249,7 @@ Explique por quê e me mostre os períodos com maior histórico de desconto.`,
                       </p>
                     </div>
                   </div>
-                  <div className="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-3 py-1 rounded-full text-xs font-bold font-space-grotesk">
+                  <div className="bg-white text-[#080807] px-3 py-1 rounded-sm text-xs font-bold font-space-grotesk">
                     {promptData.economia}
                   </div>
                 </div>
@@ -259,7 +259,7 @@ Explique por quê e me mostre os períodos com maior histórico de desconto.`,
                     <h4 className="text-lg font-semibold font-space-grotesk text-white">📝 Prompt:</h4>
                     <button
                       onClick={() => copyToClipboard(promptData.prompt)}
-                      className="flex items-center text-cyan-400 hover:text-cyan-300 font-space-grotesk text-sm transition-colors"
+                      className="flex items-center text-white/85 hover:text-white/85 font-space-grotesk text-sm transition-colors"
                     >
                       <Copy className="w-4 h-4 mr-1" />
                       Copiar
@@ -291,7 +291,7 @@ Explique por quê e me mostre os períodos com maior histórico de desconto.`,
                       <Lightbulb className="w-4 h-4 text-yellow-400 mr-2" />
                       Exemplo Prático:
                     </h4>
-                    <div className="bg-gradient-to-r from-blue-900/20 to-purple-900/20 border border-blue-500/30 p-4 rounded-lg">
+                    <div className="bg-white/[0.03] border border-white/15 p-4 rounded-lg">
                       <p className="text-gray-300 font-space-grotesk text-sm">
                         {promptData.example}
                       </p>
@@ -303,7 +303,7 @@ Explique por quê e me mostre os períodos com maior histórico de desconto.`,
           </div>
 
           {/* Checklist e Bonus */}
-          <div className="bg-gradient-to-r from-green-900/20 to-emerald-900/20 border border-green-500/30 rounded-2xl p-8 mb-12">
+          <div className="bg-white/[0.03] border border-white/15 rounded-sm p-8 mb-12">
             <div className="flex items-center mb-6">
               <CheckCircle className="w-8 h-8 text-green-400 mr-3" />
               <h2 className="text-2xl font-bold font-space-grotesk text-white">Checklist de Implementação</h2>
@@ -349,9 +349,9 @@ Explique por quê e me mostre os períodos com maior histórico de desconto.`,
           </div>
 
           {/* Ferramentas Complementares */}
-          <div className="bg-gradient-to-r from-purple-900/20 to-pink-900/20 border border-purple-500/30 rounded-2xl p-8 mb-12">
+          <div className="bg-white/[0.03] border border-white/15 rounded-sm p-8 mb-12">
             <div className="flex items-center mb-6">
-              <Package className="w-8 h-8 text-purple-400 mr-3" />
+              <Package className="w-8 h-8 text-white/85 mr-3" />
               <h2 className="text-2xl font-bold font-space-grotesk text-white">Ferramentas Complementares</h2>
             </div>
             
@@ -389,10 +389,10 @@ Explique por quê e me mostre os períodos com maior histórico de desconto.`,
           </div>
 
           {/* CTA Final Robusto */}
-          <div className="bg-gradient-to-r from-pink-900/30 to-cyan-900/30 border-2 border-gradient-to-r from-pink-500 to-cyan-500 rounded-3xl p-10 text-center relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-r from-pink-500/10 to-cyan-500/10 blur-xl"></div>
+          <div className="bg-white/[0.03] border-2 border-gradient-to-r from-pink-500 to-cyan-500 rounded-sm p-10 text-center relative overflow-hidden">
+            <div className="absolute inset-0 bg-white/[0.03] "></div>
             <div className="relative z-10">
-              <div className="bg-gradient-to-r from-pink-500 to-cyan-500 text-white px-6 py-3 rounded-full text-lg font-bold font-space-grotesk inline-block mb-6">
+              <div className="bg-white text-[#080807] px-6 py-3 rounded-sm text-lg font-bold font-space-grotesk inline-block mb-6">
                 🚀 ISSO É SÓ O COMEÇO
               </div>
               
@@ -430,17 +430,17 @@ Explique por quê e me mostre os períodos com maior histórico de desconto.`,
               </div>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
-                <span className="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-6 py-3 rounded-full text-lg font-bold font-space-grotesk">
+                <span className="bg-white text-[#080807] px-6 py-3 rounded-sm text-lg font-bold font-space-grotesk">
                   🎯 Mais de 20 Módulos Práticos
                 </span>
-                <span className="bg-gradient-to-r from-blue-500 to-purple-500 text-white px-6 py-3 rounded-full text-lg font-bold font-space-grotesk">
+                <span className="bg-white text-[#080807] px-6 py-3 rounded-sm text-lg font-bold font-space-grotesk">
                   🤝 Suporte Direto dos Criadores
                 </span>
               </div>
               
               <Link
                 to="/"
-                className="inline-block bg-gradient-to-r from-pink-500 to-cyan-500 text-white text-xl font-bold font-space-grotesk px-12 py-4 rounded-full hover:from-pink-600 hover:to-cyan-600 transition-all duration-300 hover:scale-105 shadow-2xl mb-4"
+                className="inline-block bg-white text-[#080807] text-xl font-bold font-space-grotesk px-12 py-4 rounded-sm hover:bg-white/90 transition-all duration-300 hover:scale-105 shadow-2xl mb-4"
               >
                 🔥 QUERO ACESSO TOTAL AO FLUXROW START
               </Link>
@@ -453,14 +453,14 @@ Explique por quê e me mostre os períodos com maior histórico de desconto.`,
 
           {/* Rodapé de Compartilhamento */}
           <div className="mt-12 text-center">
-            <div className="bg-gradient-to-r from-gray-900/40 to-gray-800/40 border border-gray-700 rounded-2xl p-6">
+            <div className="bg-gradient-to-r from-gray-900/40 to-gray-800/40 border border-gray-700 rounded-sm p-6">
               <p className="text-gray-300 font-space-grotesk mb-4">
                 📱 <strong>Gostou do conteúdo?</strong> Compartilhe com seus amigos e marque{' '}
                 <a 
                   href="https://instagram.com/flux.row" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="text-cyan-400 hover:text-cyan-300 font-bold transition-colors cursor-pointer"
+                  className="text-white/85 hover:text-white/85 font-bold transition-colors cursor-pointer"
                 >
                   @flux.row
                 </a>

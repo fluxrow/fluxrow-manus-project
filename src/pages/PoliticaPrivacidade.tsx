@@ -4,7 +4,7 @@ import BackToHomeButton from "@/components/ui/BackToHomeButton";
 
 const PoliticaPrivacidade = () => {
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-gray-300">
+    <div className="min-h-screen bg-[#080807] text-gray-300">
       <BackToHomeButton />
 
       {/* Header */}

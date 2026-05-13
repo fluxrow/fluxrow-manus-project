@@ -115,7 +115,7 @@ export default function Blog() {
                   <span className="flex items-center gap-1.5"><Calendar className="w-3 h-3" />{new Date(p.published_at).toLocaleDateString(lang === "en" ? "en-US" : "pt-BR", { day: "2-digit", month: "short", year: "numeric" })}</span>
                   <span className="flex items-center gap-1.5"><Clock className="w-3 h-3" />{p.reading_minutes} {t.min}</span>
                 </div>
-                <h2 className="font-serif text-3xl md:text-4xl mb-3 group-hover:text-cyan-200 transition">{p.title}</h2>
+                <h2 className="font-serif text-3xl md:text-4xl mb-3 group-hover:text-white transition">{p.title}</h2>
                 <p className="text-white/60 text-base mb-4 max-w-3xl">{p.excerpt}</p>
                 <div className="flex items-center justify-between">
                   <div className="flex flex-wrap gap-2">

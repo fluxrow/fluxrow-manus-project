@@ -93,7 +93,7 @@ const ConteudoYouTubeMonetizacao = () => {
           
           {/* Header Section */}
           <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-3 bg-gradient-to-r from-red-500/20 to-orange-500/20 border border-red-500/30 rounded-full px-6 py-3 mb-8">
+            <div className="inline-flex items-center gap-3 bg-white/[0.03] border border-white/15 rounded-sm px-6 py-3 mb-8">
               <Youtube className="w-6 h-6 text-red-400" />
               <span className="text-red-400 font-semibold font-space-grotesk">MUDANÇA OFICIAL DO YOUTUBE</span>
             </div>
@@ -104,7 +104,7 @@ const ConteudoYouTubeMonetizacao = () => {
             </h1>
             
             <p className="text-xl md:text-2xl text-gray-300 font-space-grotesk mb-8 max-w-3xl mx-auto leading-relaxed">
-              A partir de 15 de julho, só quem entrega <span className="text-cyan-400 font-semibold">originalidade e voz real</span> continua no jogo.
+              A partir de 15 de julho, só quem entrega <span className="text-white/85 font-semibold">originalidade e voz real</span> continua no jogo.
               Quem só copia, recorta e empacota… <span className="text-red-400 font-semibold">tá fora</span>.
             </p>
           </div>
@@ -112,7 +112,7 @@ const ConteudoYouTubeMonetizacao = () => {
           {/* Introdução */}
           <div className="glass-card mb-12">
             <div className="flex items-start gap-4 mb-6">
-              <div className="bg-gradient-to-r from-red-500 to-orange-500 p-3 rounded-xl">
+              <div className="bg-white p-3 rounded-xl">
                 <AlertTriangle className="w-6 h-6 text-white" />
               </div>
               <div>
@@ -120,11 +120,11 @@ const ConteudoYouTubeMonetizacao = () => {
                   O que mudou oficialmente
                 </h2>
                 <p className="text-gray-300 font-space-grotesk text-lg leading-relaxed">
-                  O YouTube anunciou uma mudança que vai <span className="text-cyan-400">sacudir o mercado digital</span>: 
+                  O YouTube anunciou uma mudança que vai <span className="text-white/85">sacudir o mercado digital</span>: 
                   vídeos com voz gerada por IA, reaproveitados ou sem presença real serão desmonetizados.
                 </p>
                 <p className="text-gray-300 font-space-grotesk text-lg leading-relaxed mt-4">
-                  A plataforma quer criadores com <span className="text-cyan-400">ponto de vista, participação ativa e criatividade</span>. 
+                  A plataforma quer criadores com <span className="text-white/85">ponto de vista, participação ativa e criatividade</span>. 
                   Ou seja: não basta mais aparecer no feed — tem que entregar valor.
                 </p>
               </div>
@@ -141,7 +141,7 @@ const ConteudoYouTubeMonetizacao = () => {
             </div>
             
             <div className="grid md:grid-cols-2 gap-6">
-              <div className="bg-red-900/20 border border-red-500/30 rounded-xl p-6">
+              <div className="bg-red-900/20 border border-white/15 rounded-xl p-6">
                 <h3 className="text-xl font-bold font-space-grotesk text-red-400 mb-4">❌ O que vai sumir</h3>
                 <ul className="space-y-3">
                   <li className="text-gray-300 font-space-grotesk">• Conteúdos com voz de IA vão perder monetização</li>
@@ -151,7 +151,7 @@ const ConteudoYouTubeMonetizacao = () => {
                 </ul>
               </div>
               
-              <div className="bg-green-900/20 border border-green-500/30 rounded-xl p-6">
+              <div className="bg-green-900/20 border border-white/15 rounded-xl p-6">
                 <h3 className="text-xl font-bold font-space-grotesk text-green-400 mb-4">✅ O que vai prosperar</h3>
                 <ul className="space-y-3">
                   <li className="text-gray-300 font-space-grotesk">• Criadores que aparecem e falam</li>
@@ -174,8 +174,8 @@ const ConteudoYouTubeMonetizacao = () => {
             
             <div className="grid gap-4">
               {conteudosProibidos.map((conteudo, index) => (
-                <div key={index} className="bg-red-900/10 border border-red-500/20 rounded-lg p-4 flex items-center gap-3">
-                  <div className="w-2 h-2 bg-red-400 rounded-full flex-shrink-0"></div>
+                <div key={index} className="bg-red-900/10 border border-white/15 rounded-lg p-4 flex items-center gap-3">
+                  <div className="w-2 h-2 bg-white/40 rounded-sm flex-shrink-0"></div>
                   <span className="text-gray-300 font-space-grotesk">{conteudo}</span>
                 </div>
               ))}
@@ -185,7 +185,7 @@ const ConteudoYouTubeMonetizacao = () => {
           {/* Como usar IA do jeito certo */}
           <div className="glass-card mb-12">
             <div className="flex items-center gap-3 mb-8">
-              <Lightbulb className="w-8 h-8 text-cyan-400" />
+              <Lightbulb className="w-8 h-8 text-white/85" />
               <h2 className="text-3xl font-bold font-space-grotesk text-white">
                 Como usar IA do jeito certo
               </h2>
@@ -193,14 +193,14 @@ const ConteudoYouTubeMonetizacao = () => {
             
             <div className="grid gap-8">
               {estrategiasCriativas.map((estrategia) => (
-                <div key={estrategia.id} className="bg-gradient-to-r from-purple-900/20 to-blue-900/20 border border-purple-500/30 rounded-xl p-6">
+                <div key={estrategia.id} className="bg-white/[0.03] border border-white/15 rounded-xl p-6">
                   <div className="flex items-start justify-between mb-4">
-                    <h3 className="text-xl font-bold font-space-grotesk text-cyan-400">
+                    <h3 className="text-xl font-bold font-space-grotesk text-white/85">
                       {estrategia.titulo}
                     </h3>
                     <button
                       onClick={() => copyToClipboard(estrategia.estrategia + '\n\nExemplo:\n' + estrategia.exemplo, estrategia.id)}
-                      className="bg-gradient-to-r from-pink-500 to-cyan-500 text-white p-2 rounded-lg hover:from-pink-600 hover:to-cyan-600 transition-all duration-300 flex-shrink-0"
+                      className="bg-white text-[#080807] p-2 rounded-lg hover:bg-white/90 transition-all duration-300 flex-shrink-0"
                     >
                       {copiedItems[estrategia.id] ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
                     </button>
@@ -211,7 +211,7 @@ const ConteudoYouTubeMonetizacao = () => {
                   </p>
                   
                   <div className="bg-black/30 rounded-lg p-4 border-l-4 border-cyan-400">
-                    <h4 className="text-cyan-400 font-semibold font-space-grotesk mb-2">Exemplo prático:</h4>
+                    <h4 className="text-white/85 font-semibold font-space-grotesk mb-2">Exemplo prático:</h4>
                     <p className="text-gray-300 font-space-grotesk text-sm whitespace-pre-line">
                       {estrategia.exemplo}
                     </p>
@@ -230,20 +230,20 @@ const ConteudoYouTubeMonetizacao = () => {
               </h2>
             </div>
             
-            <div className="bg-gradient-to-r from-green-900/20 to-emerald-900/20 border border-green-500/30 rounded-xl p-8 mb-8">
+            <div className="bg-white/[0.03] border border-white/15 rounded-xl p-8 mb-8">
               <p className="text-xl text-gray-300 font-space-grotesk leading-relaxed mb-6">
                 Essa mudança <span className="text-green-400 font-semibold">não é um problema</span>. 
                 É um filtro natural que vai separar os produtores de conteúdo de verdade dos que só replicam o que já foi feito.
               </p>
               <p className="text-lg text-gray-300 font-space-grotesk leading-relaxed">
-                Na Fluxrow, a gente te mostra como criar com IA <span className="text-cyan-400 font-semibold">sem virar genérico</span>. 
+                Na Fluxrow, a gente te mostra como criar com IA <span className="text-white/85 font-semibold">sem virar genérico</span>. 
                 Aqui a inteligência artificial é usada pra potencializar, não pra esconder.
               </p>
             </div>
             
             <div className="grid md:grid-cols-2 gap-6">
               {oportunidades.map((oportunidade, index) => (
-                <div key={index} className="bg-green-900/10 border border-green-500/20 rounded-lg p-6">
+                <div key={index} className="bg-green-900/10 border border-white/15 rounded-lg p-6">
                   <h3 className="text-lg font-bold font-space-grotesk text-green-400 mb-3">
                     {oportunidade.titulo}
                   </h3>
@@ -263,7 +263,7 @@ const ConteudoYouTubeMonetizacao = () => {
             
             <div className="grid md:grid-cols-2 gap-6">
               <div className="space-y-4">
-                <h3 className="text-xl font-bold font-space-grotesk text-cyan-400 mb-4">Auditoria do seu canal</h3>
+                <h3 className="text-xl font-bold font-space-grotesk text-white/85 mb-4">Auditoria do seu canal</h3>
                 <div className="space-y-3">
                   {[
                     'Identifique vídeos com voz de IA',
@@ -280,7 +280,7 @@ const ConteudoYouTubeMonetizacao = () => {
               </div>
               
               <div className="space-y-4">
-                <h3 className="text-xl font-bold font-space-grotesk text-cyan-400 mb-4">Plano de transição</h3>
+                <h3 className="text-xl font-bold font-space-grotesk text-white/85 mb-4">Plano de transição</h3>
                 <div className="space-y-3">
                   {[
                     'Defina seu posicionamento único',
@@ -299,8 +299,8 @@ const ConteudoYouTubeMonetizacao = () => {
           </div>
 
           {/* CTA Final */}
-          <div className="bg-gradient-to-r from-pink-900/30 to-cyan-900/30 border-2 border-gradient-to-r from-pink-500 to-cyan-500 rounded-3xl p-10 text-center relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-r from-pink-500/10 to-cyan-500/10 blur-xl"></div>
+          <div className="bg-white/[0.03] border-2 border-gradient-to-r from-pink-500 to-cyan-500 rounded-sm p-10 text-center relative overflow-hidden">
+            <div className="absolute inset-0 bg-white/[0.03] "></div>
             <div className="relative z-10">
               <h3 className="text-3xl md:text-4xl font-bold font-space-grotesk text-white mb-6">
                 Você não precisa <span className="gradient-text">parecer com todo mundo</span>
@@ -309,16 +309,16 @@ const ConteudoYouTubeMonetizacao = () => {
                 Precisa fazer sentido pra quem importa. A mudança do YouTube é sua chance de se destacar criando conteúdo autêntico com IA como aliada, não como substituta.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
-                <span className="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-6 py-3 rounded-full text-lg font-bold font-space-grotesk">
+                <span className="bg-white text-[#080807] px-6 py-3 rounded-sm text-lg font-bold font-space-grotesk">
                   🎯 Seja Autêntico, Não Genérico
                 </span>
-                <span className="bg-gradient-to-r from-blue-500 to-purple-500 text-white px-6 py-3 rounded-full text-lg font-bold font-space-grotesk">
+                <span className="bg-white text-[#080807] px-6 py-3 rounded-sm text-lg font-bold font-space-grotesk">
                   🚀 Use IA para Potencializar
                 </span>
               </div>
               <a
                 href="/"
-                className="inline-block bg-gradient-to-r from-pink-500 to-cyan-500 text-white text-xl font-bold font-space-grotesk px-12 py-4 rounded-full hover:from-pink-600 hover:to-cyan-600 transition-all duration-300 hover:scale-105 shadow-2xl"
+                className="inline-block bg-white text-[#080807] text-xl font-bold font-space-grotesk px-12 py-4 rounded-sm hover:bg-white/90 transition-all duration-300 hover:scale-105 shadow-2xl"
               >
                 🔥 APRENDA A CRIAR CONTEÚDO AUTÊNTICO
               </a>

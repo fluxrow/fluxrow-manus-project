@@ -127,15 +127,15 @@ const ConteudoRetratoIA = () => {
 
           {/* Header */}
           <div className="text-center mb-16">
-            <div className="inline-block bg-gradient-to-r from-pink-500/20 to-cyan-500/20 border border-pink-500/30 rounded-full px-6 py-2 mb-6">
-              <span className="text-pink-400 font-semibold font-space-grotesk text-sm">
+            <div className="inline-block bg-white/[0.03] border border-white/15 rounded-sm px-6 py-2 mb-6">
+              <span className="text-white/85 font-semibold font-space-grotesk text-sm">
                 🎨 CONTEÚDO EXCLUSIVO #03
               </span>
             </div>
             
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold font-space-grotesk mb-6 leading-tight">
               Como criar o{' '}
-              <span className="bg-gradient-to-r from-pink-400 to-cyan-400 bg-clip-text text-transparent">
+              <span className="bg-white bg-clip-text text-transparent">
                 retrato viral com IA
               </span>{' '}
               Water Droplet Portrait
@@ -146,22 +146,22 @@ const ConteudoRetratoIA = () => {
             </p>
 
             <div className="flex flex-wrap justify-center gap-4 mb-8">
-              <span className="bg-gradient-to-r from-pink-500 to-cyan-500 text-white px-4 py-2 rounded-full text-sm font-semibold font-space-grotesk">
+              <span className="bg-white text-[#080807] px-4 py-2 rounded-sm text-sm font-semibold font-space-grotesk">
                 ✅ 5 Prompts Prontos
               </span>
-              <span className="bg-gradient-to-r from-purple-500 to-blue-500 text-white px-4 py-2 rounded-full text-sm font-semibold font-space-grotesk">
+              <span className="bg-white text-[#080807] px-4 py-2 rounded-sm text-sm font-semibold font-space-grotesk">
                 ✅ Variações Testadas
               </span>
-              <span className="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-4 py-2 rounded-full text-sm font-semibold font-space-grotesk">
+              <span className="bg-white text-[#080807] px-4 py-2 rounded-sm text-sm font-semibold font-space-grotesk">
                 ✅ Estratégias de Monetização
               </span>
             </div>
           </div>
 
           {/* Introdução Estratégica */}
-          <div className="bg-gradient-to-r from-pink-900/20 to-cyan-900/20 border border-pink-500/30 rounded-3xl p-8 mb-16">
+          <div className="bg-white/[0.03] border border-white/15 rounded-sm p-8 mb-16">
             <div className="flex items-start gap-4 mb-6">
-              <div className="bg-gradient-to-r from-pink-500 to-cyan-500 p-3 rounded-xl">
+              <div className="bg-white p-3 rounded-xl">
                 <Brain className="w-6 h-6 text-white" />
               </div>
               <div>
@@ -181,7 +181,7 @@ const ConteudoRetratoIA = () => {
           </div>
 
           {/* Anatomia do Prompt Perfeito */}
-          <div className="bg-gradient-to-r from-yellow-900/20 to-orange-900/20 border border-yellow-500/30 rounded-3xl p-8 mb-16">
+          <div className="bg-white/[0.03] border border-white/15 rounded-sm p-8 mb-16">
             <div className="flex items-center mb-6">
               <Lightbulb className="w-8 h-8 text-yellow-400 mr-3" />
               <h2 className="text-2xl font-bold font-space-grotesk text-white">Anatomia do Prompt Perfeito</h2>
@@ -192,19 +192,19 @@ const ConteudoRetratoIA = () => {
                 <h3 className="text-lg font-semibold font-space-grotesk text-white mb-4">🔬 Estrutura Científica:</h3>
                 <div className="space-y-4 text-gray-300 font-space-grotesk">
                   <div className="bg-black/20 p-4 rounded-lg">
-                    <strong className="text-cyan-400">1. Estilo Base:</strong><br />
+                    <strong className="text-white/85">1. Estilo Base:</strong><br />
                     "Black and white" → Força contraste e drama
                   </div>
                   <div className="bg-black/20 p-4 rounded-lg">
-                    <strong className="text-cyan-400">2. Elemento Viral:</strong><br />
+                    <strong className="text-white/85">2. Elemento Viral:</strong><br />
                     "Water droplets and bubbles" → O hook visual
                   </div>
                   <div className="bg-black/20 p-4 rounded-lg">
-                    <strong className="text-cyan-400">3. Contexto Emocional:</strong><br />
+                    <strong className="text-white/85">3. Contexto Emocional:</strong><br />
                     "Just emerged from water" → História implícita
                   </div>
                   <div className="bg-black/20 p-4 rounded-lg">
-                    <strong className="text-cyan-400">4. Finalização Técnica:</strong><br />
+                    <strong className="text-white/85">4. Finalização Técnica:</strong><br />
                     "High detail, dramatic lighting" → Qualidade profissional
                   </div>
                 </div>
@@ -212,7 +212,7 @@ const ConteudoRetratoIA = () => {
               
               <div>
                 <h3 className="text-lg font-semibold font-space-grotesk text-white mb-4">💡 Psicologia por trás:</h3>
-                <div className="bg-gradient-to-r from-pink-500/20 to-cyan-500/20 border border-pink-500/30 p-6 rounded-lg space-y-3">
+                <div className="bg-white/[0.03] border border-white/15 p-6 rounded-lg space-y-3">
                   <p className="text-gray-300 font-space-grotesk">
                     <strong className="text-white">Água = Vida:</strong> Ativa neurônios primitivos de sobrevivência
                   </p>
@@ -244,7 +244,7 @@ const ConteudoRetratoIA = () => {
                 <div key={promptData.id} className="glass-card group">
                   {/* Header do Prompt */}
                   <div className="flex items-start gap-4 mb-6">
-                    <div className={`bg-gradient-to-r ${promptData.color} p-4 rounded-2xl`}>
+                    <div className={`bg-gradient-to-r ${promptData.color} p-4 rounded-sm`}>
                       <IconComponent className="w-8 h-8 text-white" />
                     </div>
                     <div className="flex-1">
@@ -252,7 +252,7 @@ const ConteudoRetratoIA = () => {
                         <h3 className="text-2xl font-bold font-space-grotesk text-white">
                           {promptData.title}
                         </h3>
-                        <span className="bg-gradient-to-r from-gray-700 to-gray-800 text-gray-300 px-3 py-1 rounded-full text-xs font-semibold font-space-grotesk">
+                        <span className="bg-gradient-to-r from-gray-700 to-gray-800 text-gray-300 px-3 py-1 rounded-sm text-xs font-semibold font-space-grotesk">
                           #{promptData.id}
                         </span>
                       </div>
@@ -263,7 +263,7 @@ const ConteudoRetratoIA = () => {
                   </div>
 
                   {/* Prompt Box */}
-                  <div className="bg-gradient-to-r from-gray-900/50 to-gray-800/50 border border-gray-700 rounded-2xl p-6 mb-6 relative">
+                  <div className="bg-gradient-to-r from-gray-900/50 to-gray-800/50 border border-gray-700 rounded-sm p-6 mb-6 relative">
                     <button
                       onClick={() => copyToClipboard(promptData.prompt, index)}
                       className="absolute top-4 right-4 bg-gradient-to-r from-gray-700 to-gray-600 hover:from-gray-600 hover:to-gray-500 text-white p-2 rounded-lg transition-all duration-300 group"
@@ -316,7 +316,7 @@ const ConteudoRetratoIA = () => {
           </div>
 
           {/* Ferramentas e Configurações */}
-          <div className="bg-gradient-to-r from-blue-900/20 to-purple-900/20 border border-blue-500/30 rounded-3xl p-8 mb-16">
+          <div className="bg-white/[0.03] border border-white/15 rounded-sm p-8 mb-16">
             <h3 className="text-2xl font-bold font-space-grotesk text-white mb-8 text-center">
               ⚙️ Ferramentas e Configurações Otimizadas
             </h3>
@@ -337,7 +337,7 @@ const ConteudoRetratoIA = () => {
                     <p className="text-gray-300 text-sm">Líder em qualidade artística. Adicione "--style raw" para menos estilização.</p>
                   </div>
                   <div className="bg-black/30 p-4 rounded-lg">
-                    <strong className="text-purple-400">Playground AI:</strong>
+                    <strong className="text-white/85">Playground AI:</strong>
                     <p className="text-gray-300 text-sm">Ótimo custo-benefício. Configure em "Realistic" mode.</p>
                   </div>
                 </div>
@@ -350,11 +350,11 @@ const ConteudoRetratoIA = () => {
                 </h4>
                 <div className="space-y-3">
                   <div className="bg-black/30 p-4 rounded-lg">
-                    <strong className="text-cyan-400">Aspect Ratio:</strong>
+                    <strong className="text-white/85">Aspect Ratio:</strong>
                     <p className="text-gray-300 text-sm">Use 1:1 para redes sociais, 16:9 para thumbnails YouTube.</p>
                   </div>
                   <div className="bg-black/30 p-4 rounded-lg">
-                    <strong className="text-pink-400">Quality Settings:</strong>
+                    <strong className="text-white/85">Quality Settings:</strong>
                     <p className="text-gray-300 text-sm">Sempre máxima qualidade. O investimento vale a pena.</p>
                   </div>
                   <div className="bg-black/30 p-4 rounded-lg">
@@ -367,7 +367,7 @@ const ConteudoRetratoIA = () => {
           </div>
 
           {/* Estratégias de Monetização */}
-          <div className="bg-gradient-to-r from-green-900/20 to-emerald-900/20 border border-green-500/30 rounded-3xl p-8 mb-16">
+          <div className="bg-white/[0.03] border border-white/15 rounded-sm p-8 mb-16">
             <div className="flex items-center mb-8">
               <DollarSign className="w-8 h-8 text-green-400 mr-3" />
               <h2 className="text-2xl font-bold font-space-grotesk text-white">Como Monetizar Esses Retratos</h2>
@@ -375,14 +375,14 @@ const ConteudoRetratoIA = () => {
             
             <div className="grid md:grid-cols-3 gap-6">
               <div className="text-center">
-                <div className="bg-gradient-to-r from-green-500 to-emerald-500 p-4 rounded-2xl w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                <div className="bg-white p-4 rounded-sm w-16 h-16 mx-auto mb-4 flex items-center justify-center">
                   <Camera className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-lg font-bold font-space-grotesk text-white mb-2">Serviços de Design</h3>
                 <p className="text-gray-300 font-space-grotesk text-sm mb-3">
                   Cobre R$ 50-200 por retrato personalizado
                 </p>
-                <div className="bg-green-500/20 border border-green-500/30 p-3 rounded-lg">
+                <div className="bg-white/40/20 border border-white/15 p-3 rounded-lg">
                   <p className="text-green-400 font-space-grotesk text-xs font-semibold">
                     Margem: 95% | Tempo: 10min por retrato
                   </p>
@@ -390,14 +390,14 @@ const ConteudoRetratoIA = () => {
               </div>
               
               <div className="text-center">
-                <div className="bg-gradient-to-r from-blue-500 to-cyan-500 p-4 rounded-2xl w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                <div className="bg-white p-4 rounded-sm w-16 h-16 mx-auto mb-4 flex items-center justify-center">
                   <TrendingUp className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-lg font-bold font-space-grotesk text-white mb-2">Conteúdo Viral</h3>
                 <p className="text-gray-300 font-space-grotesk text-sm mb-3">
                   Thumbnails que aumentam CTR em 40%
                 </p>
-                <div className="bg-blue-500/20 border border-blue-500/30 p-3 rounded-lg">
+                <div className="bg-white/40/20 border border-white/15 p-3 rounded-lg">
                   <p className="text-blue-400 font-space-grotesk text-xs font-semibold">
                     ROI: 300%+ em views e engajamento
                   </p>
@@ -405,15 +405,15 @@ const ConteudoRetratoIA = () => {
               </div>
               
               <div className="text-center">
-                <div className="bg-gradient-to-r from-purple-500 to-pink-500 p-4 rounded-2xl w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                <div className="bg-white p-4 rounded-sm w-16 h-16 mx-auto mb-4 flex items-center justify-center">
                   <Star className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-lg font-bold font-space-grotesk text-white mb-2">NFTs / Arte Digital</h3>
                 <p className="text-gray-300 font-space-grotesk text-sm mb-3">
                   Coleções temáticas que vendem
                 </p>
-                <div className="bg-purple-500/20 border border-purple-500/30 p-3 rounded-lg">
-                  <p className="text-purple-400 font-space-grotesk text-xs font-semibold">
+                <div className="bg-white/40/20 border border-white/15 p-3 rounded-lg">
+                  <p className="text-white/85 font-space-grotesk text-xs font-semibold">
                     Valor: R$ 100-2000 por peça única
                   </p>
                 </div>
@@ -422,7 +422,7 @@ const ConteudoRetratoIA = () => {
           </div>
 
           {/* Erros Comuns */}
-          <div className="bg-gradient-to-r from-red-900/20 to-orange-900/20 border border-red-500/30 rounded-3xl p-8 mb-16">
+          <div className="bg-white/[0.03] border border-white/15 rounded-sm p-8 mb-16">
             <div className="flex items-center mb-6">
               <AlertTriangle className="w-8 h-8 text-red-400 mr-3" />
               <h2 className="text-2xl font-bold font-space-grotesk text-white">Erros Que Matam o Resultado</h2>
@@ -468,7 +468,7 @@ const ConteudoRetratoIA = () => {
           </div>
 
           {/* Checklist de Implementação */}
-          <div className="bg-gradient-to-r from-gray-900/50 to-gray-800/50 border border-gray-700 rounded-3xl p-8 mb-16">
+          <div className="bg-gradient-to-r from-gray-900/50 to-gray-800/50 border border-gray-700 rounded-sm p-8 mb-16">
             <h3 className="text-2xl font-bold font-space-grotesk text-white mb-8 text-center">
               ✅ Checklist: Do Prompt ao Viral
             </h3>
@@ -513,8 +513,8 @@ const ConteudoRetratoIA = () => {
           </div>
 
           {/* CTA para Curso Completo */}
-          <div className="bg-gradient-to-r from-pink-900/30 to-cyan-900/30 border-2 border-gradient-to-r from-pink-500 to-cyan-500 rounded-3xl p-10 text-center">
-            <div className="absolute inset-0 bg-gradient-to-r from-pink-500/10 to-cyan-500/10 blur-xl"></div>
+          <div className="bg-white/[0.03] border-2 border-gradient-to-r from-pink-500 to-cyan-500 rounded-sm p-10 text-center">
+            <div className="absolute inset-0 bg-white/[0.03] "></div>
             <div className="relative z-10">
               <h3 className="text-3xl md:text-4xl font-bold font-space-grotesk text-white mb-6">
                 Quer dominar <span className="gradient-text">TODAS as técnicas</span>?
@@ -523,16 +523,16 @@ const ConteudoRetratoIA = () => {
                 Este é apenas 1 dos mais de 50 prompts visuais exclusivos do nosso curso. Aprenda a criar qualquer tipo de conteúdo visual com IA e transforme sua criatividade em resultados reais.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
-                <span className="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-6 py-3 rounded-full text-lg font-bold font-space-grotesk">
+                <span className="bg-white text-[#080807] px-6 py-3 rounded-sm text-lg font-bold font-space-grotesk">
                   🎨 +50 Prompts Visuais Exclusivos
                 </span>
-                <span className="bg-gradient-to-r from-blue-500 to-purple-500 text-white px-6 py-3 rounded-full text-lg font-bold font-space-grotesk">
+                <span className="bg-white text-[#080807] px-6 py-3 rounded-sm text-lg font-bold font-space-grotesk">
                   💰 Estratégias de Monetização
                 </span>
               </div>
               <Link
                 to="/"
-                className="inline-block bg-gradient-to-r from-pink-500 to-cyan-500 text-white text-xl font-bold font-space-grotesk px-12 py-4 rounded-full hover:from-pink-600 hover:to-cyan-600 transition-all duration-300 hover:scale-105 shadow-2xl"
+                className="inline-block bg-white text-[#080807] text-xl font-bold font-space-grotesk px-12 py-4 rounded-sm hover:bg-white/90 transition-all duration-300 hover:scale-105 shadow-2xl"
               >
                 🚀 ACESSAR CURSO COMPLETO
               </Link>

@@ -264,7 +264,7 @@ Foque em sistemas que FUNCIONAM SOZINHOS, não que dependem da minha memória.`,
           <div className="mb-8">
             <Link 
               to="/conteudos" 
-              className="inline-flex items-center text-cyan-400 hover:text-cyan-300 transition-colors font-space-grotesk"
+              className="inline-flex items-center text-white/85 hover:text-white/85 transition-colors font-space-grotesk"
             >
               <ArrowLeft className="w-4 h-4 mr-2" />
               Voltar para Conteúdos
@@ -281,9 +281,9 @@ Foque em sistemas que FUNCIONAM SOZINHOS, não que dependem da minha memória.`,
               Como transformar caos em clareza com 5 prompts práticos
             </p>
             
-            <div className="bg-gradient-to-r from-purple-900/20 to-blue-900/20 border border-purple-500/30 rounded-2xl p-6 max-w-2xl mx-auto">
+            <div className="bg-white/[0.03] border border-white/15 rounded-sm p-6 max-w-2xl mx-auto">
               <p className="text-gray-300 font-space-grotesk mb-4">
-                🧠 <strong className="text-cyan-400">Você não precisa lutar contra seu cérebro.</strong>
+                🧠 <strong className="text-white/85">Você não precisa lutar contra seu cérebro.</strong>
               </p>
               <p className="text-gray-300 font-space-grotesk">
                 Você só precisa de um sistema que funcione pra você — e com a IA, dá pra construir isso agora mesmo.
@@ -294,7 +294,7 @@ Foque em sistemas que FUNCIONAM SOZINHOS, não que dependem da minha memória.`,
           {/* Introduction Section */}
           <div className="glass-card mb-16">
             <h2 className="text-2xl font-bold font-space-grotesk text-white mb-6 flex items-center">
-              <Brain className="w-6 h-6 mr-3 text-cyan-400" />
+              <Brain className="w-6 h-6 mr-3 text-white/85" />
               Por que a IA é perfeita para cérebros TDAH?
             </h2>
             
@@ -305,10 +305,10 @@ Foque em sistemas que FUNCIONAM SOZINHOS, não que dependem da minha memória.`,
               </p>
               
               <p>
-                Mas e se o ChatGPT pudesse se tornar seu <strong className="text-cyan-400">sistema de apoio cognitivo</strong>?
+                Mas e se o ChatGPT pudesse se tornar seu <strong className="text-white/85">sistema de apoio cognitivo</strong>?
               </p>
               
-              <div className="bg-gradient-to-r from-pink-900/20 to-cyan-900/20 border border-pink-500/20 rounded-xl p-6">
+              <div className="bg-white/[0.03] border border-white/15 rounded-xl p-6">
                 <p className="text-white font-semibold mb-4">Com os prompts certos, ele vira um copiloto que:</p>
                 <ul className="space-y-2">
                   <li className="flex items-center"><span className="text-green-400 mr-2">✓</span> Te lembra o que importa</li>
@@ -334,9 +334,9 @@ Foque em sistemas que FUNCIONAM SOZINHOS, não que dependem da minha memória.`,
                 { step: '4', title: 'Aplique pequenos ajustes', desc: 'Que viram hábitos automáticos com o tempo' },
                 { step: '5', title: 'Monte seu sistema leve', desc: 'De produtividade personalizado com ChatGPT' }
               ].map((item, index) => (
-                <div key={index} className="bg-gradient-to-br from-purple-900/20 to-blue-900/20 border border-purple-500/30 rounded-xl p-4">
+                <div key={index} className="bg-white/[0.03] border border-white/15 rounded-xl p-4">
                   <div className="flex items-center mb-3">
-                    <span className="bg-gradient-to-r from-pink-500 to-cyan-500 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm mr-3">
+                    <span className="bg-white text-[#080807] w-8 h-8 rounded-sm flex items-center justify-center font-bold text-sm mr-3">
                       {item.step}
                     </span>
                     <h3 className="font-semibold text-white font-space-grotesk">{item.title}</h3>
@@ -357,23 +357,23 @@ Foque em sistemas que FUNCIONAM SOZINHOS, não que dependem da minha memória.`,
               {prompts.map((prompt, index) => (
                 <div key={prompt.id} className="glass-card">
                   <div className="flex items-start gap-4 mb-6">
-                    <div className="bg-gradient-to-r from-pink-500 to-cyan-500 p-3 rounded-xl text-white flex-shrink-0">
+                    <div className="bg-white p-3 rounded-xl text-white flex-shrink-0">
                       {prompt.icon}
                     </div>
                     <div>
                       <h3 className="text-xl font-bold font-space-grotesk text-white mb-2">
                         Prompt {index + 1}: {prompt.title}
                       </h3>
-                      <p className="text-cyan-400 font-space-grotesk">{prompt.subtitle}</p>
+                      <p className="text-white/85 font-space-grotesk">{prompt.subtitle}</p>
                     </div>
                   </div>
                   
                   <div className="bg-black/50 border border-gray-600 rounded-xl p-6 mb-6">
                     <div className="flex justify-between items-center mb-4">
-                      <span className="text-cyan-400 font-semibold font-space-grotesk">📋 Prompt Pronto para Copiar:</span>
+                      <span className="text-white/85 font-semibold font-space-grotesk">📋 Prompt Pronto para Copiar:</span>
                       <button
                         onClick={() => copyToClipboard(prompt.prompt, prompt.id)}
-                        className="flex items-center gap-2 bg-gradient-to-r from-pink-500 to-cyan-500 text-white px-4 py-2 rounded-lg hover:from-pink-600 hover:to-cyan-600 transition-all font-space-grotesk"
+                        className="flex items-center gap-2 bg-white text-[#080807] px-4 py-2 rounded-lg hover:bg-white/90 transition-all font-space-grotesk"
                       >
                         {copiedStates[prompt.id] ? (
                           <>
@@ -393,7 +393,7 @@ Foque em sistemas que FUNCIONAM SOZINHOS, não que dependem da minha memória.`,
                     </pre>
                   </div>
                   
-                  <div className="bg-gradient-to-r from-purple-900/20 to-blue-900/20 border border-purple-500/30 rounded-xl p-6">
+                  <div className="bg-white/[0.03] border border-white/15 rounded-xl p-6">
                     <h4 className="text-lg font-semibold text-white mb-4 font-space-grotesk">
                       🧠 Como Funciona e Por Que É Eficaz:
                     </h4>
@@ -402,7 +402,7 @@ Foque em sistemas que FUNCIONAM SOZINHOS, não que dependem da minha memória.`,
                         <div key={i}>
                           {paragraph.startsWith('**') ? (
                             <div className="bg-black/30 border-l-4 border-cyan-400 pl-4 py-2">
-                              <p className="font-semibold text-cyan-400">
+                              <p className="font-semibold text-white/85">
                                 {paragraph.replace(/\*\*/g, '')}
                               </p>
                             </div>
@@ -426,10 +426,10 @@ Foque em sistemas que FUNCIONAM SOZINHOS, não que dependem da minha memória.`,
             
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {tools.map((tool, index) => (
-                <div key={index} className="bg-gradient-to-br from-purple-900/20 to-blue-900/20 border border-purple-500/30 rounded-xl p-4">
+                <div key={index} className="bg-white/[0.03] border border-white/15 rounded-xl p-4">
                   <div className="flex items-center justify-between mb-3">
                     <h3 className="font-semibold text-white font-space-grotesk">{tool.name}</h3>
-                    <span className="text-xs text-cyan-400 bg-cyan-400/20 px-2 py-1 rounded-full font-space-grotesk">
+                    <span className="text-xs text-white/85 bg-white/40/20 px-2 py-1 rounded-sm font-space-grotesk">
                       {tool.category}
                     </span>
                   </div>
@@ -450,7 +450,7 @@ Foque em sistemas que FUNCIONAM SOZINHOS, não que dependem da minha memória.`,
                 <label key={index} className="flex items-start gap-3 cursor-pointer group">
                   <input 
                     type="checkbox" 
-                    className="mt-1 w-4 h-4 text-cyan-500 bg-transparent border-2 border-gray-600 rounded focus:ring-cyan-500 focus:ring-2"
+                    className="mt-1 w-4 h-4 text-white/85 bg-transparent border-2 border-gray-600 rounded focus:ring-cyan-500 focus:ring-2"
                   />
                   <span className="text-gray-300 font-space-grotesk group-hover:text-white transition-colors">
                     {item}
@@ -468,7 +468,7 @@ Foque em sistemas que FUNCIONAM SOZINHOS, não que dependem da minha memória.`,
             
             <div className="space-y-6 text-gray-300 font-space-grotesk leading-relaxed max-w-2xl mx-auto">
               <p className="text-lg">
-                <strong className="text-cyan-400">Você não precisa "corrigir" o jeito que você pensa.</strong>
+                <strong className="text-white/85">Você não precisa "corrigir" o jeito que você pensa.</strong>
               </p>
               
               <p>
@@ -479,7 +479,7 @@ Foque em sistemas que FUNCIONAM SOZINHOS, não que dependem da minha memória.`,
                 E agora você pode criar esse sistema com IA.
               </p>
               
-              <div className="bg-gradient-to-r from-pink-900/30 to-cyan-900/30 border border-pink-500/30 rounded-xl p-6 mt-8">
+              <div className="bg-white/[0.03] border border-white/15 rounded-xl p-6 mt-8">
                 <p className="text-white font-semibold mb-4">Próximos passos:</p>
                 <ul className="space-y-2 text-left">
                   <li>✓ Use isso como base</li>
@@ -497,8 +497,8 @@ Foque em sistemas que FUNCIONAM SOZINHOS, não que dependem da minha memória.`,
 
           {/* Back to Main Course CTA */}
           <div className="mt-16 text-center">
-            <div className="bg-gradient-to-r from-pink-900/30 to-cyan-900/30 border-2 border-gradient-to-r from-pink-500 to-cyan-500 rounded-3xl p-10 max-w-4xl mx-auto relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-r from-pink-500/10 to-cyan-500/10 blur-xl"></div>
+            <div className="bg-white/[0.03] border-2 border-gradient-to-r from-pink-500 to-cyan-500 rounded-sm p-10 max-w-4xl mx-auto relative overflow-hidden">
+              <div className="absolute inset-0 bg-white/[0.03] "></div>
               <div className="relative z-10">
                 <h3 className="text-3xl md:text-4xl font-bold font-space-grotesk text-white mb-6">
                   Quer ir <span className="gradient-text">ainda mais fundo</span>?
@@ -509,7 +509,7 @@ Foque em sistemas que FUNCIONAM SOZINHOS, não que dependem da minha memória.`,
                 </p>
                 <Link
                   to="/"
-                  className="inline-block bg-gradient-to-r from-pink-500 to-cyan-500 text-white text-xl font-bold font-space-grotesk px-12 py-4 rounded-full hover:from-pink-600 hover:to-cyan-600 transition-all duration-300 hover:scale-105 shadow-2xl"
+                  className="inline-block bg-white text-[#080807] text-xl font-bold font-space-grotesk px-12 py-4 rounded-sm hover:bg-white/90 transition-all duration-300 hover:scale-105 shadow-2xl"
                 >
                   🚀 VER CURSO COMPLETO
                 </Link>
