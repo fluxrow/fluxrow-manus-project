@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { useStripeCheckout } from "@/hooks/useStripeCheckout";
 import { PaymentTestModeBanner } from "@/components/PaymentTestModeBanner";
-import { BackToHomeButton } from "@/components/ui/BackToHomeButton";
+import BackToHomeButton from "@/components/ui/BackToHomeButton";
 import { Check, Zap, MessageSquare, Workflow, BarChart3, Shield, Calendar } from "lucide-react";
 
 const PRICE_ID = "curso_ia_operator_unico";
