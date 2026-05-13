@@ -288,7 +288,7 @@ const ConteudoRetratoIA = () => {
                         <CheckCircle className="w-5 h-5 text-green-400" />
                         Dicas de Otimização
                       </h4>
-                      <ul className="space-y-2">
+                      <ul className="space-y-2 break-words">
                         {promptData.tips.map((tip, tipIndex) => (
                           <li key={tipIndex} className="text-gray-300 font-space-grotesk text-sm flex items-start gap-2">
                             <span className="text-green-400 mt-1">•</span>
@@ -431,7 +431,7 @@ const ConteudoRetratoIA = () => {
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <h3 className="text-lg font-semibold font-space-grotesk text-white mb-4">❌ Não Faça:</h3>
-                <ul className="space-y-3">
+                <ul className="space-y-3 break-words">
                   {[
                     "Usar 'colorful' ou 'bright colors' - mata o drama",
                     "Esquecer 'realistic texture' - fica artificial",
@@ -449,7 +449,7 @@ const ConteudoRetratoIA = () => {
               
               <div>
                 <h3 className="text-lg font-semibold font-space-grotesk text-white mb-4">✅ Sempre Faça:</h3>
-                <ul className="space-y-3">
+                <ul className="space-y-3 break-words">
                   {[
                     "Teste 3-5 variações do mesmo prompt",
                     "Analise qual variação teve mais likes",
@@ -476,7 +476,7 @@ const ConteudoRetratoIA = () => {
             <div className="grid md:grid-cols-2 gap-8">
               <div>
                 <h4 className="text-lg font-semibold font-space-grotesk text-white mb-4">🎯 Preparação (5min):</h4>
-                <ul className="space-y-3">
+                <ul className="space-y-3 break-words">
                   {[
                     "Escolha sua ferramenta favorita",
                     "Configure qualidade máxima",
@@ -494,7 +494,7 @@ const ConteudoRetratoIA = () => {
               
               <div>
                 <h4 className="text-lg font-semibold font-space-grotesk text-white mb-4">🚀 Execução (10min):</h4>
-                <ul className="space-y-3">
+                <ul className="space-y-3 break-words">
                   {[
                     "Gere 3-5 variações do mesmo prompt",
                     "Analise qual ficou mais impactante",

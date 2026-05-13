@@ -181,9 +181,9 @@ function BenefitCard({ profile }: { profile: BenefitProfile }) {
                     <h4 className="text-white font-semibold text-sm mb-2 font-space-grotesk">Estratégias Principais:</h4>
                     <ul className="space-y-1">
                       {profile.strategies.map((strategy, index) => (
-                        <li key={index} className="text-white/80 text-sm font-space-grotesk flex items-center gap-2">
-                          <span className="text-cyan-400 text-xs">▶</span>
-                          {strategy}
+                        <li key={index} className="text-white/80 text-sm font-space-grotesk flex items-start gap-2">
+                          <span className="text-cyan-400 text-xs mt-1 shrink-0">▶</span>
+                          <span className="min-w-0 break-words">{strategy}</span>
                         </li>
                       ))}
                     </ul>
@@ -218,9 +218,9 @@ function BenefitCard({ profile }: { profile: BenefitProfile }) {
                     <h4 className="text-white font-semibold text-sm mb-2 font-space-grotesk">Casos de Sucesso:</h4>
                     <ul className="space-y-1">
                       {profile.examples.map((example, index) => (
-                        <li key={index} className="text-white/80 text-sm font-space-grotesk flex items-center gap-2">
-                          <span className="text-green-400 text-xs">✓</span>
-                          {example}
+                        <li key={index} className="text-white/80 text-sm font-space-grotesk flex items-start gap-2">
+                          <span className="text-green-400 text-xs mt-1 shrink-0">✓</span>
+                          <span className="min-w-0 break-words">{example}</span>
                         </li>
                       ))}
                     </ul>

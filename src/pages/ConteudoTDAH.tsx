@@ -310,7 +310,7 @@ Foque em sistemas que FUNCIONAM SOZINHOS, não que dependem da minha memória.`,
               
               <div className="bg-white/[0.03] border border-white/15 rounded-xl p-6">
                 <p className="text-white font-semibold mb-4">Com os prompts certos, ele vira um copiloto que:</p>
-                <ul className="space-y-2">
+                <ul className="space-y-2 break-words">
                   <li className="flex items-center"><span className="text-green-400 mr-2">✓</span> Te lembra o que importa</li>
                   <li className="flex items-center"><span className="text-green-400 mr-2">✓</span> Te ajuda a focar</li>
                   <li className="flex items-center"><span className="text-green-400 mr-2">✓</span> Cria recompensas estratégicas</li>
@@ -481,7 +481,7 @@ Foque em sistemas que FUNCIONAM SOZINHOS, não que dependem da minha memória.`,
               
               <div className="bg-white/[0.03] border border-white/15 rounded-xl p-6 mt-8">
                 <p className="text-white font-semibold mb-4">Próximos passos:</p>
-                <ul className="space-y-2 text-left">
+                <ul className="space-y-2 break-words text-left">
                   <li>✓ Use isso como base</li>
                   <li>✓ Ajuste com sua realidade</li>
                   <li>✓ Compartilhe com alguém que também vai se beneficiar</li>

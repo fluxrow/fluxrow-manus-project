@@ -55,13 +55,13 @@ const ProcessTimeline = () => {
                       {t('process.step')} {index + 1}
                     </span>
                   </div>
-                  <h3 className={`text-lg font-bold font-space-grotesk ${colorStyle.title} mb-2`}>
+                  <h3 className={`text-lg font-bold font-space-grotesk ${colorStyle.title} mb-2 break-words`}>
                     {step.title}
                   </h3>
-                  <p className="text-white/90 text-sm leading-relaxed mb-2">
+                  <p className="text-white/90 text-sm leading-relaxed mb-2 break-words">
                     {step.description}
                   </p>
-                  <p className="text-xs text-white/60 leading-relaxed">
+                  <p className="text-xs text-white/60 leading-relaxed break-words">
                     {step.details}
                   </p>
                 </div>

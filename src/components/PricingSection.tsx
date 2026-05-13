@@ -101,28 +101,28 @@ const PricingSection = () => {
             </div>
             
             <div className="pricing-features text-left mb-8">
-              <div className="feature py-3 border-b border-gray-700 text-white font-space-grotesk flex items-center">
-                <span className="text-green-500 mr-3">✓</span>
-                6 módulos completos (8h de conteúdo)
+              <div className="feature py-3 border-b border-gray-700 text-white font-space-grotesk flex items-start gap-3 min-w-0 break-words">
+                <span className="text-green-500 shrink-0 mt-0.5">✓</span>
+                <span>6 módulos completos (8h de conteúdo)</span>
               </div>
-              <div className="feature py-3 border-b border-gray-700 text-white font-space-grotesk flex items-center">
-                <span className="text-green-500 mr-3">✓</span>
-                200+ templates e prompts testados
+              <div className="feature py-3 border-b border-gray-700 text-white font-space-grotesk flex items-start gap-3 min-w-0 break-words">
+                <span className="text-green-500 shrink-0 mt-0.5">✓</span>
+                <span>200+ templates e prompts testados</span>
               </div>
-              <div className="feature py-3 border-b border-gray-700 text-white font-space-grotesk flex items-center">
-                <span className="text-green-500 mr-3">✓</span>
-                Fluxos de automação prontos
+              <div className="feature py-3 border-b border-gray-700 text-white font-space-grotesk flex items-start gap-3 min-w-0 break-words">
+                <span className="text-green-500 shrink-0 mt-0.5">✓</span>
+                <span>Fluxos de automação prontos</span>
               </div>
-              <div className="feature py-3 border-b border-gray-700 text-white font-space-grotesk flex items-center">
-                <span className="text-green-500 mr-3">✓</span>
-                Suporte e comunidade exclusiva
+              <div className="feature py-3 border-b border-gray-700 text-white font-space-grotesk flex items-start gap-3 min-w-0 break-words">
+                <span className="text-green-500 shrink-0 mt-0.5">✓</span>
+                <span>Suporte e comunidade exclusiva</span>
               </div>
-              <div className="feature py-3 border-b border-gray-700 text-white font-space-grotesk flex items-center">
-                <span className="text-green-500 mr-3">✓</span>
-                Acesso vitalício + atualizações
+              <div className="feature py-3 border-b border-gray-700 text-white font-space-grotesk flex items-start gap-3 min-w-0 break-words">
+                <span className="text-green-500 shrink-0 mt-0.5">✓</span>
+                <span>Acesso vitalício + atualizações</span>
               </div>
-              <div className="feature py-3 text-white font-space-grotesk flex items-center">
-                <span className="text-yellow-500 mr-3">🛡️</span>
+              <div className="feature py-3 text-white font-space-grotesk flex items-start gap-3 min-w-0 break-words">
+                <span className="text-yellow-500 shrink-0 mt-0.5">🛡️</span>
                 <strong>Garantia incondicional de 7 dias</strong>
               </div>
             </div>

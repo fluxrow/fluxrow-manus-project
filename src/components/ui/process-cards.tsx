@@ -82,12 +82,12 @@ function ProcessCard({
         </div>
 
         {/* Description */}
-        <p className="text-white/90 text-sm leading-relaxed flex-grow">
+        <p className="text-white/90 text-sm leading-relaxed flex-grow break-words">
           {description}
         </p>
 
         {/* Details - visible on card */}
-        <p className="text-white/60 text-xs leading-relaxed mt-2 mb-4">
+        <p className="text-white/60 text-xs leading-relaxed mt-2 mb-4 break-words">
           {details}
         </p>
 

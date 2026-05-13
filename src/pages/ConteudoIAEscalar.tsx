@@ -499,7 +499,7 @@ const ConteudoIAEscalar = () => {
                           <CheckCircle className="w-5 h-5 text-green-400" />
                           Dicas de uso
                         </h4>
-                        <ul className="space-y-2">
+                        <ul className="space-y-2 break-words">
                           {promptData.tips.map((tip, tipIndex) => (
                             <li
                               key={tipIndex}
@@ -579,7 +579,7 @@ const ConteudoIAEscalar = () => {
               <AlertTriangle className="w-7 h-7 text-white mr-3" />
               <h2 className="text-2xl font-bold font-space-grotesk text-white">Erros comuns ao adotar IA</h2>
             </div>
-            <ul className="space-y-3 text-gray-300 font-space-grotesk">
+            <ul className="space-y-3 break-words text-gray-300 font-space-grotesk">
               <li>• <strong className="text-white">Automatizar antes de padronizar</strong> — bot bom em cima de processo ruim só amplia o caos.</li>
               <li>• <strong className="text-white">Comprar 8 ferramentas no primeiro mês</strong> — você vai usar 1, perder dinheiro nas outras 7.</li>
               <li>• <strong className="text-white">Esperar perfeição</strong> — IA acerta 80%; o resto se resolve com revisão humana ou guard-rails.</li>

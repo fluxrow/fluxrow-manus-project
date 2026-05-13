@@ -161,7 +161,7 @@ Explique por quê e me mostre os períodos com maior histórico de desconto.`,
             <div className="grid md:grid-cols-2 gap-8">
               <div>
                 <h3 className="text-lg font-semibold font-space-grotesk text-white mb-4">🧠 O que você vai aprender:</h3>
-                <ul className="space-y-2 text-gray-300 font-space-grotesk">
+                <ul className="space-y-2 break-words text-gray-300 font-space-grotesk">
                   <li className="flex items-start"><CheckCircle className="w-4 h-4 text-green-400 mr-2 mt-1 flex-shrink-0" />Usar ChatGPT como consultor de economia pessoal</li>
                   <li className="flex items-start"><CheckCircle className="w-4 h-4 text-green-400 mr-2 mt-1 flex-shrink-0" />Pensar e interagir com IA de forma estratégica</li>
                   <li className="flex items-start"><CheckCircle className="w-4 h-4 text-green-400 mr-2 mt-1 flex-shrink-0" />Extrair máximo valor das suas interações</li>
@@ -171,7 +171,7 @@ Explique por quê e me mostre os períodos com maior histórico de desconto.`,
               
               <div>
                 <h3 className="text-lg font-semibold font-space-grotesk text-white mb-4">🎯 Para quem serve:</h3>
-                <ul className="space-y-2 text-gray-300 font-space-grotesk">
+                <ul className="space-y-2 break-words text-gray-300 font-space-grotesk">
                   <li className="flex items-start"><Target className="w-4 h-4 text-white/85 mr-2 mt-1 flex-shrink-0" />Quem compra por impulso e se arrepende</li>
                   <li className="flex items-start"><Target className="w-4 h-4 text-white/85 mr-2 mt-1 flex-shrink-0" />Pessoas que gastam demais sem planejamento</li>
                   <li className="flex items-start"><Target className="w-4 h-4 text-white/85 mr-2 mt-1 flex-shrink-0" />Quem quer usar IA para economizar dinheiro</li>
@@ -276,7 +276,7 @@ Explique por quê e me mostre os períodos com maior histórico de desconto.`,
                       <Star className="w-4 h-4 text-yellow-400 mr-2" />
                       Dicas Estratégicas:
                     </h4>
-                    <ul className="space-y-2">
+                    <ul className="space-y-2 break-words">
                       {promptData.tips.map((tip, tipIndex) => (
                         <li key={tipIndex} className="flex items-start text-gray-300 font-space-grotesk text-sm">
                           <CheckCircle className="w-4 h-4 text-green-400 mr-2 mt-0.5 flex-shrink-0" />
@@ -312,7 +312,7 @@ Explique por quê e me mostre os períodos com maior histórico de desconto.`,
             <div className="grid md:grid-cols-2 gap-8">
               <div>
                 <h3 className="text-lg font-semibold font-space-grotesk text-white mb-4">✅ Ações Imediatas:</h3>
-                <ul className="space-y-3">
+                <ul className="space-y-3 break-words">
                   {[
                     "Teste um prompt hoje mesmo com um produto que você quer",
                     "Refine os prompts com seu contexto específico",
@@ -330,7 +330,7 @@ Explique por quê e me mostre os períodos com maior histórico de desconto.`,
               
               <div>
                 <h3 className="text-lg font-semibold font-space-grotesk text-white mb-4">🚀 Próximos Passos:</h3>
-                <ul className="space-y-3">
+                <ul className="space-y-3 break-words">
                   {[
                     "Compartilhe com amigos (e marca a @flux.row)",
                     "Documente suas economias para medir resultados",
@@ -358,7 +358,7 @@ Explique por quê e me mostre os períodos com maior histórico de desconto.`,
             <div className="grid md:grid-cols-3 gap-6">
               <div className="bg-black/20 p-6 rounded-lg">
                 <h3 className="text-lg font-semibold font-space-grotesk text-white mb-3">📊 Monitoramento:</h3>
-                <ul className="space-y-2 text-gray-300 font-space-grotesk text-sm">
+                <ul className="space-y-2 break-words text-gray-300 font-space-grotesk text-sm">
                   <li>• Zoom.com.br (histórico de preços)</li>
                   <li>• Google Shopping (comparação)</li>
                   <li>• Keepa (Amazon)</li>
@@ -368,7 +368,7 @@ Explique por quê e me mostre os períodos com maior histórico de desconto.`,
               
               <div className="bg-black/20 p-6 rounded-lg">
                 <h3 className="text-lg font-semibold font-space-grotesk text-white mb-3">🎫 Cupons:</h3>
-                <ul className="space-y-2 text-gray-300 font-space-grotesk text-sm">
+                <ul className="space-y-2 break-words text-gray-300 font-space-grotesk text-sm">
                   <li>• Cupomundo</li>
                   <li>• Cuponeria</li>
                   <li>• Pelando</li>
@@ -378,7 +378,7 @@ Explique por quê e me mostre os períodos com maior histórico de desconto.`,
               
               <div className="bg-black/20 p-6 rounded-lg">
                 <h3 className="text-lg font-semibold font-space-grotesk text-white mb-3">💰 Cashback:</h3>
-                <ul className="space-y-2 text-gray-300 font-space-grotesk text-sm">
+                <ul className="space-y-2 break-words text-gray-300 font-space-grotesk text-sm">
                   <li>• Méliuz</li>
                   <li>• Ame Digital</li>
                   <li>• PicPay</li>
@@ -410,7 +410,7 @@ Explique por quê e me mostre os períodos com maior histórico de desconto.`,
               <div className="grid md:grid-cols-2 gap-6 mb-8 max-w-4xl mx-auto">
                 <div className="bg-black/20 p-6 rounded-lg">
                   <h4 className="text-lg font-bold font-space-grotesk text-white mb-4">💼 Para Negócios:</h4>
-                  <ul className="text-left space-y-2 text-gray-300 font-space-grotesk">
+                  <ul className="text-left space-y-2 break-words text-gray-300 font-space-grotesk">
                     <li>• Automatizar atendimento ao cliente</li>
                     <li>• Criar conteúdo para redes sociais</li>
                     <li>• Desenvolver produtos digitais</li>
@@ -420,7 +420,7 @@ Explique por quê e me mostre os períodos com maior histórico de desconto.`,
                 
                 <div className="bg-black/20 p-6 rounded-lg">
                   <h4 className="text-lg font-bold font-space-grotesk text-white mb-4">👤 Para Vida Pessoal:</h4>
-                  <ul className="text-left space-y-2 text-gray-300 font-space-grotesk">
+                  <ul className="text-left space-y-2 break-words text-gray-300 font-space-grotesk">
                     <li>• Organizar finanças pessoais</li>
                     <li>• Planejar viagens e rotinas</li>
                     <li>• Aprender novos idiomas</li>

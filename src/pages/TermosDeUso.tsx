@@ -39,7 +39,7 @@ const TermosDeUso = () => {
           <section>
             <h2 className="text-xl font-semibold text-white mb-3">2. Descrição dos Serviços</h2>
             <p className="mb-3">A Fluxrow é uma agência especializada em soluções digitais, oferecendo os seguintes serviços:</p>
-            <ul className="list-disc pl-6 space-y-2">
+            <ul className="list-disc pl-6 space-y-2 break-words">
               <li><strong className="text-white">Growth Marketing:</strong> estratégias de aquisição, retenção e crescimento baseadas em dados e performance.</li>
               <li><strong className="text-white">Automação e IA Generativa:</strong> implementação de fluxos automatizados, chatbots inteligentes e soluções com inteligência artificial para otimização de processos.</li>
               <li><strong className="text-white">Desenvolvimento Web:</strong> criação de sites, landing pages, sistemas web e aplicações digitais.</li>
@@ -66,7 +66,7 @@ const TermosDeUso = () => {
           <section>
             <h2 className="text-xl font-semibold text-white mb-3">4. Uso Aceitável</h2>
             <p className="mb-3">Ao utilizar este site, você se compromete a:</p>
-            <ul className="list-disc pl-6 space-y-2">
+            <ul className="list-disc pl-6 space-y-2 break-words">
               <li>Não utilizar o site para fins ilícitos ou contrários à moral e aos bons costumes;</li>
               <li>Não tentar acessar áreas restritas do site ou sistemas da Fluxrow sem autorização;</li>
               <li>Não reproduzir, copiar ou distribuir conteúdo do site sem autorização prévia;</li>
@@ -82,7 +82,7 @@ const TermosDeUso = () => {
             <p>
               O conteúdo deste site é fornecido "como está" (as is), sem garantias de qualquer natureza, expressas ou implícitas. A Fluxrow não garante que:
             </p>
-            <ul className="list-disc pl-6 space-y-2 mt-3">
+            <ul className="list-disc pl-6 space-y-2 mt-3 break-words">
               <li>O site estará disponível de forma ininterrupta ou livre de erros;</li>
               <li>Os resultados obtidos com os serviços de marketing, IA ou automação corresponderão a expectativas específicas do contratante, uma vez que dependem de múltiplos fatores externos;</li>
               <li>As informações apresentadas no site sejam completas, precisas ou atualizadas em todos os momentos.</li>

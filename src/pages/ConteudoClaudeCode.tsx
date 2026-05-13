@@ -229,7 +229,7 @@ claude                # inicia a sessão interativa`}
               <Workflow className="w-7 h-7 text-white mr-3" />
               <h2 className="text-2xl font-bold font-space-grotesk text-white">Comandos e atalhos essenciais</h2>
             </div>
-            <ul className="space-y-2 text-gray-300 font-space-grotesk text-sm">
+            <ul className="space-y-2 break-words text-gray-300 font-space-grotesk text-sm">
               <li><code className="text-white">/clear</code> — limpa contexto sem encerrar a sessão.</li>
               <li><code className="text-white">/compact</code> — comprime histórico antigo, mantém o essencial.</li>
               <li><code className="text-white">/cost</code> — mostra tokens e custo da sessão.</li>
@@ -252,7 +252,7 @@ claude                # inicia a sessão interativa`}
               <Link to="/conteudos/mcp-claude" className="text-white underline">MCP</Link> e{' '}
               <Link to="/conteudos/claude-skills" className="text-white underline">Skills</Link>, vira plataforma:
             </p>
-            <ul className="space-y-2 text-gray-300 font-space-grotesk text-sm">
+            <ul className="space-y-2 break-words text-gray-300 font-space-grotesk text-sm">
               <li>• <strong className="text-white">MCP</strong> conecta o agente a Postgres, GitHub, Linear, Sentry, sua API. Ele consulta dados frescos e age fora do repositório.</li>
               <li>• <strong className="text-white">Skills</strong> empacotam conhecimento procedural (como deployar, como gerar relatório, como criar feature flag) que o agente carrega só quando relevante.</li>
               <li>• <strong className="text-white">Sub-agentes</strong> permitem rodar tarefas paralelas — útil para code review automatizado em PRs grandes.</li>
@@ -264,7 +264,7 @@ claude                # inicia a sessão interativa`}
               <ShieldCheck className="w-7 h-7 text-white mr-3" />
               <h2 className="text-2xl font-bold font-space-grotesk text-white">Boas práticas de segurança</h2>
             </div>
-            <ul className="space-y-2 text-gray-300 font-space-grotesk">
+            <ul className="space-y-2 break-words text-gray-300 font-space-grotesk">
               <li>• Rode sempre em branch separada — nunca direto na <code className="text-white">main</code>.</li>
               <li>• Mantenha commits pequenos e mensagens claras para facilitar reverter.</li>
               <li>• Use containers ou devcontainers para sessões com <code className="text-white">--dangerously-skip-permissions</code>.</li>
@@ -284,7 +284,7 @@ claude                # inicia a sessão interativa`}
                 <h3 className="text-green-400 font-semibold font-space-grotesk mb-3 flex items-center">
                   <CheckCircle className="w-4 h-4 mr-2" />Vale
                 </h3>
-                <ul className="space-y-2 text-gray-300 font-space-grotesk text-sm">
+                <ul className="space-y-2 break-words text-gray-300 font-space-grotesk text-sm">
                   <li>• Refatorações grandes em vários arquivos</li>
                   <li>• Migrar código entre frameworks ou versões</li>
                   <li>• Cobrir um módulo legado com testes</li>
@@ -298,7 +298,7 @@ claude                # inicia a sessão interativa`}
                 <h3 className="text-white font-semibold font-space-grotesk mb-3 flex items-center">
                   <AlertCircle className="w-4 h-4 mr-2" />Não vale
                 </h3>
-                <ul className="space-y-2 text-gray-300 font-space-grotesk text-sm">
+                <ul className="space-y-2 break-words text-gray-300 font-space-grotesk text-sm">
                   <li>• Edits triviais de uma linha</li>
                   <li>• Decisões de arquitetura sem revisão humana</li>
                   <li>• Operar em produção sem ambiente isolado</li>

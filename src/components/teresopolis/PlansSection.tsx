@@ -81,7 +81,7 @@ const PlansSection = () => {
                       <div className="w-8 h-8 rounded-lg bg-emerald-500/10 flex items-center justify-center flex-shrink-0 mt-0.5">
                         <feature.icon className="w-4 h-4 text-emerald-400" />
                       </div>
-                      <span className="text-gray-300 text-sm">{feature.text}</span>
+                      <span className="text-gray-300 text-sm min-w-0 break-words">{feature.text}</span>
                     </div>
                   ))}
                 </div>
@@ -121,7 +121,7 @@ const PlansSection = () => {
                     <div className="w-8 h-8 rounded-lg bg-slate-700/50 flex items-center justify-center flex-shrink-0 mt-0.5">
                       <feature.icon className="w-4 h-4 text-gray-400" />
                     </div>
-                    <span className="text-gray-400 text-sm">{feature.text}</span>
+                    <span className="text-gray-400 text-sm min-w-0 break-words">{feature.text}</span>
                   </div>
                 ))}
               </div>
