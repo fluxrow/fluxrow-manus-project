@@ -54,6 +54,7 @@ const ProdutosHub = React.lazy(() => import("./pages/ProdutosHub"));
 const CheckoutReturn = React.lazy(() => import("./pages/CheckoutReturn"));
 const Login = React.lazy(() => import("./pages/Login"));
 const KitReader = React.lazy(() => import("./pages/KitReader"));
+const Unsubscribe = React.lazy(() => import("./pages/Unsubscribe"));
 
 const queryClient = new QueryClient();
 
@@ -124,6 +125,7 @@ const App = () => (
             {/* Login + Kit gated reader */}
             <Route path="/login" element={<Login />} />
             <Route path="/kit" element={<KitReader />} />
+            <Route path="/unsubscribe" element={<Unsubscribe />} />
             <Route path="/kit/content" element={<AIOperatorKit />} />
             {/* Hub de produtos + Kit bilingue */}
             <Route path="/produtos" element={<ProdutosHub />} />
