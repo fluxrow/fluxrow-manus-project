@@ -127,9 +127,9 @@ const Index = () => {
               Implementação completa: arquitetura, código, integração, deploy e operação contínua. A Fluxrow opera o stack para você focar no negócio.
             </p>
             <ul className="text-sm text-white/60 space-y-1 mb-8 font-mono">
-              <li>· Projetos B2B sob medida</li>
-              <li>· Discovery em 7 dias</li>
-              <li>· Suporte e operação inclusos</li>
+              <li className="break-words">· Projetos B2B sob medida</li>
+              <li className="break-words">· Discovery em 7 dias</li>
+              <li className="break-words">· Suporte e operação inclusos</li>
             </ul>
             <span className="inline-flex items-center gap-2 text-sm font-mono text-white group-hover:gap-3 transition-all">
               Conheça a agência <ArrowRight className="w-4 h-4" />
