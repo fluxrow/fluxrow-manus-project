@@ -125,11 +125,11 @@ const ProdutosHub = () => {
         <section className="mb-16">
           <article className="border border-white/10 hover:border-white/25 transition-all rounded-md bg-white/[0.02] overflow-hidden">
             <div className="grid md:grid-cols-[1.4fr_1fr]">
-              <div className="p-8 md:p-10 border-b md:border-b-0 md:border-r border-white/10">
+              <div className="p-6 sm:p-8 md:p-10 border-b md:border-b-0 md:border-r border-white/10">
                 <p className="text-xs uppercase tracking-[0.2em] text-white/55 font-mono mb-6">
                   {c.cardEyebrow}
                 </p>
-                <h2 className="text-3xl md:text-4xl font-serif mb-4">
+                <h2 className="text-[1.65rem] sm:text-3xl md:text-4xl font-serif mb-4 leading-tight break-words">
                   {c.cardH2}
                 </h2>
                 <p className="text-white/70 mb-8 leading-relaxed">{c.cardP}</p>
