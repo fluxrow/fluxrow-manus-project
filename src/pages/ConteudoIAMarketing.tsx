@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Copy, Check, Brain, Target, Zap, Search, FileText, AlertTriangle, CheckCircle, Lightbulb } from 'lucide-react';
 import Header from '../components/Header';
+import SEO from '../components/SEO';
+import { buildArticleSchema } from '../lib/articleSchema';
 
 const ConteudoIAMarketing = () => {
   const [copiedPrompts, setCopiedPrompts] = useState<number[]>([]);
