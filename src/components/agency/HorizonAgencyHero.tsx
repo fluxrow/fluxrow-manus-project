@@ -444,7 +444,7 @@ const HorizonAgencyHero = () => {
           <h1 ref={titleRef} className="hero-title font-space-grotesk mb-4 md:mb-6 relative" style={{ visibility: 'hidden' }}>
             {/* Vidro escurecido de fundo */}
             <div className="absolute inset-0 bg-black/30 backdrop-blur-sm rounded-sm md:rounded-sm border border-white/10 shadow-2xl -m-2 md:-m-4 p-2 md:p-4"></div>
-            <span className="relative block text-3xl sm:text-5xl md:text-8xl font-serif font-normal italic mb-2 md:mb-4 text-white tracking-tight" style={{ fontFamily: content.title === 'FLUXROW' ? 'Akony, sans-serif' : "'Instrument Serif', serif" }}>{content.title}</span>
+            <span className="relative block text-3xl sm:text-5xl md:text-8xl font-serif font-normal italic mb-2 md:mb-4 gradient-accent-text tracking-tight" style={{ fontFamily: content.title === 'FLUXROW' ? 'Akony, sans-serif' : "'Instrument Serif', serif" }}>{content.title}</span>
           </h1>
           
           <p ref={subtitleRef} className="hero-subtitle text-white font-space-grotesk text-base sm:text-lg md:text-xl max-w-4xl mx-auto mb-6 md:mb-8 drop-shadow-lg px-2" style={{ visibility: 'hidden', textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 8px rgba(0, 0, 0, 0.6)' }}>
