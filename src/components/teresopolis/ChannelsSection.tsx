@@ -58,7 +58,7 @@ const ChannelsSection = () => {
                   </h3>
                   <ul className="space-y-2">
                     {channel.features.map((feature, idx) => (
-                      <li key={idx} className="text-gray-400 text-sm">
+                      <li key={idx} className="text-gray-400 text-sm break-words">
                         {feature}
                       </li>
                     ))}
