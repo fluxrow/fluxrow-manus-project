@@ -49,7 +49,7 @@ export default function BlogPost() {
         .eq("lang", l)
         .eq("status", "published")
         .maybeSingle();
-      setPost((data as Post) ?? null);
+      setPost((data as unknown as Post) ?? null);
 
       // Check the other language
       const otherLang = l === "pt" ? "en" : "pt";
@@ -73,7 +73,7 @@ export default function BlogPost() {
           .overlaps("tags", data.tags)
           .order("published_at", { ascending: false })
           .limit(3);
-        setRelated((rel as Post[]) ?? []);
+        setRelated((rel as unknown as Post[]) ?? []);
       }
 
       // Fire-and-forget view increment
