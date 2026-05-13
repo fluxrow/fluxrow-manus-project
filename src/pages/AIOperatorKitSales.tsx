@@ -96,6 +96,7 @@ const AIOperatorKitSales = () => {
         lang={lang === "pt" ? "pt-BR" : "en-US"}
         locale={lang === "pt" ? "pt_BR" : "en_US"}
       />
+      {checkoutElement}
       <Helmet>
         <link rel="canonical" href={`https://fluxrow.com/produtos/ai-operator-kit?lang=${lang}`} />
         <link rel="alternate" hrefLang="en" href="https://fluxrow.com/produtos/ai-operator-kit?lang=en" />
