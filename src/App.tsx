@@ -50,7 +50,7 @@ const TermosDeUso = React.lazy(() => import("./pages/TermosDeUso"));
 const AIOperatorKit = React.lazy(() => import("./pages/AIOperatorKit"));
 const AIOperatorKitSales = React.lazy(() => import("./pages/AIOperatorKitSales"));
 const ProdutosHub = React.lazy(() => import("./pages/ProdutosHub"));
-const KitOperadorIA = React.lazy(() => import("./pages/KitOperadorIA"));
+
 const CheckoutReturn = React.lazy(() => import("./pages/CheckoutReturn"));
 
 const queryClient = new QueryClient();
