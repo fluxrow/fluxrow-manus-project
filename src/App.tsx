@@ -89,9 +89,6 @@ const App = () => (
             <Route path="/conteudos/claude-code" element={<ConteudoClaudeCode />} />
             <Route path="/conteudos/mcp-claude" element={<ConteudoMCP />} />
             <Route path="/conteudos/claude-skills" element={<ConteudoClaudeSkills />} />
-            <Route path="/modulos/1-premium" element={<Modulo1Premium />} />
-            <Route path="/modulos/2-premium" element={<Modulo2Premium />} />
-            <Route path="/modulos/3-premium" element={<Modulo3Premium />} />
             <Route path="/preview/:slug" element={<ClientPreview />} />
             <Route path="/propostas" element={<Propostas />}>
               <Route path="match-solutions" element={<PropostaMatchSolutions />} />
@@ -121,13 +118,13 @@ const App = () => (
             <Route path="/conteudos/:slug" element={<div>Página Individual de Conteúdo</div>} />
             <Route path="/contato" element={<Contato />} />
             <Route path="/p/:slug" element={<PropostaPublica />} />
-            <Route path="/kit" element={<AIOperatorKitSales />} />
+            {/* Kit antigo → redirect canônico */}
+            <Route path="/kit" element={<Navigate to="/produtos/ai-operator-kit" replace />} />
             <Route path="/kit/content" element={<AIOperatorKit />} />
-            <Route path="/curso-ia-operator" element={<CursoIAOperator />} />
-            {/* Hub de produtos + aliases canônicos */}
+            {/* Hub de produtos + Kit bilingue */}
             <Route path="/produtos" element={<ProdutosHub />} />
             <Route path="/produtos/ai-operator-kit" element={<AIOperatorKitSales />} />
-            <Route path="/produtos/operator-curso" element={<CursoIAOperator />} />
+            <Route path="/produtos/kit-operador-ia" element={<KitOperadorIA />} />
             <Route path="/checkout/return" element={<CheckoutReturn />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
