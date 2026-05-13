@@ -295,7 +295,7 @@ const ServiceCarousel = React.forwardRef<HTMLDivElement, ServiceCarouselProps>(
                   
                   {/* Icon overlay */}
                   <div className="absolute bottom-4 left-6">
-                    <div className="w-14 h-14 rounded-sm bg-white/5 flex items-center justify-center shadow-lg">
+                    <div className="w-14 h-14 rounded-md gradient-accent-bg flex items-center justify-center shadow-lg">
                       <expandedService.icon className="w-7 h-7 text-white" />
                     </div>
                   </div>
