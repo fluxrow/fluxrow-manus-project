@@ -1,4 +1,4 @@
-import React, { useEffect, useState, lazy, Suspense } from 'react';
+import React, { useEffect } from 'react';
 import HorizonAgencyHero from '../components/agency/HorizonAgencyHero';
 import ServicesGrid from '../components/agency/ServicesGrid';
 import CasesPortfolio from '../components/agency/CasesPortfolio';
@@ -10,41 +10,19 @@ import AgencyNav from '../components/agency/AgencyNav';
 import SEO from '../components/SEO';
 import { buildHomeFaqSchema } from '../lib/homeFaqSchema';
 
-// Lazy load SplashCursor to avoid competing with Hero's Three.js on initial load
-const SplashCursor = lazy(() =>
-  import('../components/ui/splash-cursor').then(m => ({ default: m.SplashCursor }))
-);
-
 const Agencia = () => {
-  const [showSplash, setShowSplash] = useState(false);
-
   useEffect(() => {
-    // Initialize cinematic animations
     const initAnimations = async () => {
       if (typeof window !== 'undefined') {
         const { initializeEnhancements } = await import('../utils/initializeEnhancements');
         initializeEnhancements();
       }
     };
-    
     initAnimations();
-
-    // Defer SplashCursor until after hero is interactive
-    if ('requestIdleCallback' in window) {
-      (window as any).requestIdleCallback(() => setShowSplash(true));
-    } else {
-      setTimeout(() => setShowSplash(true), 2000);
-    }
   }, []);
 
   return (
     <div className="min-h-screen bg-[#080807] text-white overflow-x-hidden">
-      {showSplash && (
-        <Suspense fallback={null}>
-          <SplashCursor />
-        </Suspense>
-      )}
-      
       <SEO jsonLd={buildHomeFaqSchema()} />
 
       {/* Navigation */}
