@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import SEO from "@/components/SEO";
 import BackToHomeButton from "@/components/ui/BackToHomeButton";
 import { ArrowRight, Languages } from "lucide-react";
+import { trackEvent } from "@/utils/tracking";
 
 const KitOperadorIA = () => {
   return (
