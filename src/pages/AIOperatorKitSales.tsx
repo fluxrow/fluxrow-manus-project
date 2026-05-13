@@ -1,5 +1,6 @@
 import React from "react";
 import { motion, type Easing } from "framer-motion";
+import { Helmet } from "react-helmet-async";
 import SEO from "@/components/SEO";
 
 const LEMON_LINK = "[INSERT_LEMON_SQUEEZY_LINK]";
