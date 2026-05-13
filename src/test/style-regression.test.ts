@@ -40,6 +40,9 @@ const SKIP_PATH_FRAGMENTS = [
   "/test/",
   ".test.",
   ".spec.",
+  // Internal/presentation pages (not part of the public site nav)
+  "pages/ApresentacaoEvoluaDigital.tsx",
+  "pages/BriefingAlek.tsx",
   // Dead legacy components — not imported by any active route.
   "components/PricingSection.tsx",
   "components/SimpleAISection.tsx",

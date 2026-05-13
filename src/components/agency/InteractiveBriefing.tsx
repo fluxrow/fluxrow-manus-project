@@ -193,7 +193,7 @@ Olá! Completei o briefing no site da Fluxrow e gostaria de conversar sobre como
             </div>
             <div className="w-full bg-gray-800 rounded-full h-2">
               <div 
-                className="bg-gradient-to-r from-cyan-500 to-purple-500 h-2 rounded-full transition-all duration-500"
+                className="bg-white h-2 rounded-full transition-all duration-500"
                 style={{ width: `${progress}%` }}
               ></div>
             </div>
