@@ -2,7 +2,7 @@ import React from 'react';
 import Header from '../components/Header';
 import SEO from '../components/SEO';
 import { Link } from 'react-router-dom';
-import { Download, FileText, Code, Image, Brain, Video } from 'lucide-react';
+import { Download, FileText, Code, Image, Brain, Video, Terminal, Plug, BookOpen } from 'lucide-react';
 
 // Dados dos conteúdos - aqui vamos adicionar todos os 20+
 const conteudosData = [
@@ -59,8 +59,34 @@ const conteudosData = [
     fileType: 'Guia Estratégico',
     fileSize: 'Leitura: 22min',
     available: true
+  },
+  {
+    id: 'claude-code',
+    title: 'Claude Code: o agente de código no seu terminal',
+    description: 'O que é, como difere de Cursor e Copilot, fluxo prático em 5 passos e quando vale (ou não) usar.',
+    icon: 'terminal',
+    fileType: 'Hub Claude · 01',
+    fileSize: 'Leitura: 8min',
+    available: true
+  },
+  {
+    id: 'mcp-claude',
+    title: 'MCP: o protocolo que conecta o Claude às suas ferramentas',
+    description: 'Model Context Protocol explicado: arquitetura host/cliente/servidor, casos de uso e segurança.',
+    icon: 'plug',
+    fileType: 'Hub Claude · 02',
+    fileSize: 'Leitura: 7min',
+    available: true
+  },
+  {
+    id: 'claude-skills',
+    title: 'Claude Skills: conhecimento sob demanda para agentes',
+    description: 'Estrutura SKILL.md, retrieval automático e quando usar Skills em vez de prompts ou MCP.',
+    icon: 'book',
+    fileType: 'Hub Claude · 03',
+    fileSize: 'Leitura: 7min',
+    available: true
   }
-  // Mais conteúdos serão adicionados aqui
 ];
 
 const getIcon = (iconType: string) => {
@@ -75,6 +101,12 @@ const getIcon = (iconType: string) => {
       return <Brain className="w-8 h-8" />;
     case 'video':
       return <Video className="w-8 h-8" />;
+    case 'terminal':
+      return <Terminal className="w-8 h-8" />;
+    case 'plug':
+      return <Plug className="w-8 h-8" />;
+    case 'book':
+      return <BookOpen className="w-8 h-8" />;
     default:
       return <FileText className="w-8 h-8" />;
   }
