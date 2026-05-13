@@ -14,7 +14,7 @@ const ProcessTimeline = () => {
     <section id="process" className="py-20 px-6 relative z-10">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold font-space-grotesk bg-gradient-to-r from-cyan-400 via-purple-400 to-green-400 bg-clip-text text-transparent mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold font-space-grotesk text-white mb-4">
             {t('process.title')}
           </h2>
           <p className="text-white/80 text-lg max-w-3xl mx-auto">
@@ -31,10 +31,10 @@ const ProcessTimeline = () => {
         <div className="md:hidden space-y-6">
           {steps.map((step, index) => {
             const colorClasses = {
-              cyan: { icon: "from-cyan-500 to-cyan-600", title: "text-cyan-400" },
-              purple: { icon: "from-purple-500 to-purple-600", title: "text-purple-400" },
-              green: { icon: "from-green-500 to-green-600", title: "text-green-400" },
-              yellow: { icon: "from-yellow-500 to-yellow-600", title: "text-yellow-400" },
+              cyan: { icon: "from-white/10 to-white/5", title: "text-white/80" },
+              purple: { icon: "from-white/10 to-white/5", title: "text-white/80" },
+              green: { icon: "from-white/10 to-white/5", title: "text-white/80" },
+              yellow: { icon: "from-white/10 to-white/5", title: "text-white/80" },
             };
             const color = colors[index];
             const colorStyle = colorClasses[color];

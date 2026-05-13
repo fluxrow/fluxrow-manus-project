@@ -194,7 +194,7 @@ export function FocusRail({
     >
       {/* Background Ambience */}
       <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-black to-cyan-900/20" />
+        <div className="absolute inset-0 bg-white/[0.02]" />
         <AnimatePresence mode="wait">
           <motion.div
             key={activeItem.id}
@@ -248,10 +248,10 @@ export function FocusRail({
               <motion.div
                 key={`${item.id}-${absIndex}`}
                 className={cn(
-                  "absolute flex h-[280px] w-[240px] md:h-[360px] md:w-[320px] cursor-pointer select-none flex-col overflow-hidden rounded-2xl border shadow-2xl backdrop-blur-md",
+                  "absolute flex h-[280px] w-[240px] md:h-[360px] md:w-[320px] cursor-pointer select-none flex-col overflow-hidden rounded-sm border shadow-2xl backdrop-blur-md",
                   isCenter
-                    ? "border-cyan-400/50 bg-black/60"
-                    : "border-purple-500/30 bg-black/40"
+                    ? "border-white/50 bg-black/60"
+                    : "border-white/30 bg-black/40"
                 )}
                 initial={false}
                 animate={{
@@ -291,16 +291,16 @@ export function FocusRail({
 
                 <div
                   className={cn(
-                    "pointer-events-none absolute inset-0 rounded-2xl transition-opacity duration-300",
+                    "pointer-events-none absolute inset-0 rounded-sm transition-opacity duration-300",
                     isCenter
-                      ? "opacity-100 shadow-[inset_0_0_60px_rgba(6,182,212,0.15)]"
+                      ? "opacity-100 shadow-[inset_0_0_60px_rgba(255,255,255,0.06)]"
                       : "opacity-0"
                   )}
                 />
 
                 {isCenter && (
                   <div className="absolute bottom-4 left-0 right-0 text-center pointer-events-none">
-                    <span className="text-xs text-cyan-400/70 bg-black/40 px-3 py-1 rounded-full backdrop-blur-sm">
+                    <span className="text-xs text-white/70 bg-black/40 px-3 py-1 rounded-full backdrop-blur-sm">
                       Clique para expandir
                     </span>
                   </div>
@@ -322,11 +322,11 @@ export function FocusRail({
               className="text-center"
             >
               {activeItem.meta && (
-                <span className="mb-2 inline-block rounded-full border border-cyan-500/40 bg-cyan-500/10 px-3 py-1 text-xs font-medium text-cyan-400">
+                <span className="mb-2 inline-block rounded-full border border-white/40 bg-white/10 px-3 py-1 text-xs font-medium text-white/80">
                   {activeItem.meta}
                 </span>
               )}
-              <h3 className="text-xl md:text-2xl font-bold font-space-grotesk bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+              <h3 className="text-xl md:text-2xl font-bold font-space-grotesk text-white">
                 {activeItem.title}
               </h3>
               {activeItem.description && (
@@ -341,7 +341,7 @@ export function FocusRail({
             <div className="flex items-center gap-3">
               <button
                 onClick={handlePrev}
-                className="flex h-10 w-10 items-center justify-center rounded-full border border-cyan-500/40 bg-cyan-500/10 text-cyan-400 transition-all hover:bg-cyan-500/20 hover:border-cyan-400/60"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-white/40 bg-white/10 text-white/80 transition-all hover:bg-white/10 hover:border-white/30"
               >
                 <ChevronLeft className="h-5 w-5" />
               </button>
@@ -350,7 +350,7 @@ export function FocusRail({
               </span>
               <button
                 onClick={handleNext}
-                className="flex h-10 w-10 items-center justify-center rounded-full border border-cyan-500/40 bg-cyan-500/10 text-cyan-400 transition-all hover:bg-cyan-500/20 hover:border-cyan-400/60"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-white/40 bg-white/10 text-white/80 transition-all hover:bg-white/10 hover:border-white/30"
               >
                 <ChevronRight className="h-5 w-5" />
               </button>
@@ -359,7 +359,7 @@ export function FocusRail({
             {activeItem.href && (
               <button
                 onClick={(e) => handleViewCase(e, activeItem.href)}
-                className="group flex items-center gap-2 rounded-full border border-purple-500/40 bg-purple-500/10 px-4 py-2 text-sm font-medium text-purple-400 transition-all hover:bg-purple-500/20 hover:border-purple-400/60"
+                className="group flex items-center gap-2 rounded-full border border-white/40 bg-white/10 px-4 py-2 text-sm font-medium text-white/80 transition-all hover:bg-white/10 hover:border-white/30"
               >
                 Explorar
                 <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -385,7 +385,7 @@ export function FocusRail({
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 50 }}
               transition={{ type: "spring", damping: 25, stiffness: 300 }}
-              className="relative w-full max-w-3xl my-8 bg-gradient-to-br from-gray-900 to-black rounded-3xl border border-cyan-500/30 overflow-hidden shadow-2xl"
+              className="relative w-full max-w-3xl my-8 bg-[#0a0a09] rounded-sm border border-white/30 overflow-hidden shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Close button */}
@@ -424,7 +424,7 @@ export function FocusRail({
               >
                 <motion.div variants={itemVariants}>
                   {expandedItem.meta && (
-                    <span className="inline-block mb-3 rounded-full border border-cyan-500/40 bg-cyan-500/10 px-3 py-1 text-xs font-medium text-cyan-400">
+                    <span className="inline-block mb-3 rounded-full border border-white/40 bg-white/10 px-3 py-1 text-xs font-medium text-white/80">
                       {expandedItem.meta}
                     </span>
                   )}
@@ -432,7 +432,7 @@ export function FocusRail({
                 
                 <motion.h2 
                   variants={itemVariants}
-                  className="text-2xl md:text-3xl font-bold font-space-grotesk bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent mb-4"
+                  className="text-2xl md:text-3xl font-bold font-space-grotesk text-white mb-4"
                 >
                   {expandedItem.title}
                 </motion.h2>
@@ -458,9 +458,9 @@ export function FocusRail({
                         initial={{ opacity: 0, scale: 0.8 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: 0.4 + idx * 0.1 }}
-                        className="bg-gradient-to-br from-cyan-500/10 to-purple-500/10 border border-cyan-500/20 rounded-xl p-4 text-center"
+                        className="bg-white/5 border border-white/20 rounded-xl p-4 text-center"
                       >
-                        <TrendingUp className="w-5 h-5 text-cyan-400 mx-auto mb-2" />
+                        <TrendingUp className="w-5 h-5 text-white/80 mx-auto mb-2" />
                         <div className="text-2xl font-bold text-white">{metric.value}</div>
                         <div className="text-xs text-white/60">{metric.label}</div>
                       </motion.div>
@@ -472,14 +472,14 @@ export function FocusRail({
                 {expandedItem.testimonial && (
                   <motion.div 
                     variants={itemVariants}
-                    className="bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-500/20 rounded-xl p-5 mb-6"
+                    className="bg-white/5 border border-white/20 rounded-xl p-5 mb-6"
                   >
-                    <Quote className="w-6 h-6 text-purple-400 mb-3" />
+                    <Quote className="w-6 h-6 text-white/80 mb-3" />
                     <p className="text-white/90 italic mb-3">
                       "{expandedItem.testimonial.quote}"
                     </p>
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center text-white font-bold">
+                      <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white font-bold">
                         {expandedItem.testimonial.author.charAt(0)}
                       </div>
                       <div>
@@ -494,7 +494,7 @@ export function FocusRail({
                   {expandedItem.href && (
                     <button
                       onClick={(e) => handleViewCase(e, expandedItem.href)}
-                      className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-cyan-500 to-purple-500 text-white font-medium hover:shadow-lg hover:shadow-cyan-500/25 transition-all"
+                      className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/5 text-white font-medium hover:shadow-lg hover:shadow-black/20 transition-all"
                     >
                       Ver case completo
                       <ArrowUpRight className="w-4 h-4" />

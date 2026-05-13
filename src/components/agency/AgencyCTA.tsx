@@ -15,14 +15,14 @@ const AgencyCTA = () => {
   return (
     <section className="py-20 px-6 relative z-10 overflow-hidden">
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-r from-cyan-900/20 via-purple-900/20 to-pink-900/20"></div>
+        <div className="absolute inset-0 bg-white/5"></div>
         <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
         <div className="ai-particles absolute inset-0"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-white/5 rounded-full blur-3xl animate-pulse"></div>
       </div>
       
       <div className="max-w-4xl mx-auto text-center relative z-10">
-        <div className="w-20 h-20 mx-auto mb-8 rounded-full bg-gradient-to-r from-cyan-500 to-purple-600 flex items-center justify-center">
+        <div className="w-20 h-20 mx-auto mb-8 rounded-full bg-white/5 flex items-center justify-center">
           <Zap className="w-10 h-10 text-white" />
         </div>
         
@@ -42,7 +42,7 @@ const AgencyCTA = () => {
           <MessageCircle className="w-6 h-6 mr-3" />
           {t('cta.button')}
           <ArrowRight className="w-6 h-6 ml-3 group-hover:translate-x-1 transition-transform" />
-          <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/0 via-cyan-500/30 to-cyan-500/0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+          <div className="absolute inset-0 bg-white/5 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
         </button>
         
         <p className="text-sm text-white/80 mb-12">
@@ -53,21 +53,21 @@ const AgencyCTA = () => {
           <div>
             <h3 className="text-white font-semibold text-sm mb-4 uppercase tracking-wider">{t('cta.footer.nav')}</h3>
             <div className="flex flex-col gap-2.5 text-sm">
-              <a href="/" className="text-white/60 hover:text-cyan-400 transition-colors">{t('cta.footer.home')}</a>
-              <a href="#services" className="text-white/60 hover:text-cyan-400 transition-colors">{t('cta.footer.services')}</a>
-              <a href="#cases" className="text-white/60 hover:text-cyan-400 transition-colors">{t('cta.footer.cases')}</a>
-              <a href="/conteudos" className="text-white/60 hover:text-cyan-400 transition-colors">{t('cta.footer.content')}</a>
-              <a href="/contato" className="text-white/60 hover:text-cyan-400 transition-colors">{t('cta.footer.contact')}</a>
+              <a href="/" className="text-white/60 hover:text-white transition-colors">{t('cta.footer.home')}</a>
+              <a href="#services" className="text-white/60 hover:text-white transition-colors">{t('cta.footer.services')}</a>
+              <a href="#cases" className="text-white/60 hover:text-white transition-colors">{t('cta.footer.cases')}</a>
+              <a href="/conteudos" className="text-white/60 hover:text-white transition-colors">{t('cta.footer.content')}</a>
+              <a href="/contato" className="text-white/60 hover:text-white transition-colors">{t('cta.footer.contact')}</a>
             </div>
           </div>
 
           <div>
             <h3 className="text-white font-semibold text-sm mb-4 uppercase tracking-wider">{t('cta.footer.contactTitle')}</h3>
             <div className="flex flex-col gap-2.5 text-sm">
-              <a href="https://wa.me/5541992361868" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-cyan-400 transition-colors flex items-center gap-2">
+              <a href="https://wa.me/5541992361868" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-white transition-colors flex items-center gap-2">
                 <Phone className="w-3.5 h-3.5" /> (41) 99236-1868
               </a>
-              <a href="mailto:contato@fluxrow.com" className="text-white/60 hover:text-cyan-400 transition-colors flex items-center gap-2">
+              <a href="mailto:contato@fluxrow.com" className="text-white/60 hover:text-white transition-colors flex items-center gap-2">
                 <Mail className="w-3.5 h-3.5" /> contato@fluxrow.com
               </a>
               <p className="text-white/60 flex items-start gap-2">
@@ -79,17 +79,17 @@ const AgencyCTA = () => {
           <div>
             <h3 className="text-white font-semibold text-sm mb-4 uppercase tracking-wider">{t('cta.footer.social')}</h3>
             <div className="flex flex-col gap-2.5 text-sm">
-              <a href="https://instagram.com/fluxrow" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-pink-400 transition-colors">Instagram</a>
-              <a href="https://linkedin.com/company/fluxrow" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-blue-400 transition-colors">LinkedIn</a>
-              <a href="https://youtube.com/@fluxrow" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-red-400 transition-colors">YouTube</a>
+              <a href="https://instagram.com/fluxrow" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-white transition-colors">Instagram</a>
+              <a href="https://linkedin.com/company/fluxrow" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-white transition-colors">LinkedIn</a>
+              <a href="https://youtube.com/@fluxrow" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-white transition-colors">YouTube</a>
             </div>
           </div>
 
           <div>
             <h3 className="text-white font-semibold text-sm mb-4 uppercase tracking-wider">{t('cta.footer.legal')}</h3>
             <div className="flex flex-col gap-2.5 text-sm">
-              <a href="/politica-de-privacidade" className="text-white/60 hover:text-cyan-400 transition-colors">{t('cta.footer.privacy')}</a>
-              <a href="/termos-de-uso" className="text-white/60 hover:text-cyan-400 transition-colors">{t('cta.footer.terms')}</a>
+              <a href="/politica-de-privacidade" className="text-white/60 hover:text-white transition-colors">{t('cta.footer.privacy')}</a>
+              <a href="/termos-de-uso" className="text-white/60 hover:text-white transition-colors">{t('cta.footer.terms')}</a>
             </div>
           </div>
         </div>
