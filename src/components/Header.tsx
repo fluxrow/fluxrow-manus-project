@@ -58,24 +58,14 @@ const Header = () => {
               Início
             </Link>
             <Link 
-              to="/modulos" 
+              to="/produtos" 
               className={`font-space-grotesk transition-colors ${
-                isActive('/modulos') 
+                isActive('/produtos') 
                   ? 'text-cyan-400 font-semibold' 
                   : 'text-white/80 hover:text-white'
               }`}
             >
-              Módulos
-            </Link>
-            <Link 
-              to="/materiais" 
-              className={`font-space-grotesk transition-colors ${
-                isActive('/materiais') 
-                  ? 'text-cyan-400 font-semibold' 
-                  : 'text-white/80 hover:text-white'
-              }`}
-            >
-              Materiais
+              Produtos
             </Link>
             <Link 
               to="/conteudos" 
@@ -133,26 +123,15 @@ const Header = () => {
               Início
             </Link>
             <Link 
-              to="/modulos" 
+              to="/produtos" 
               onClick={() => setMobileMenuOpen(false)}
               className={`font-space-grotesk text-xl transition-colors drop-shadow-lg ${
-                isActive('/modulos') 
+                isActive('/produtos') 
                   ? 'text-cyan-400 font-semibold drop-shadow-[0_0_8px_rgba(34,211,238,0.6)]' 
                   : 'text-white hover:text-cyan-300'
               }`}
             >
-              Módulos
-            </Link>
-            <Link 
-              to="/materiais" 
-              onClick={() => setMobileMenuOpen(false)}
-              className={`font-space-grotesk text-xl transition-colors drop-shadow-lg ${
-                isActive('/materiais') 
-                  ? 'text-cyan-400 font-semibold drop-shadow-[0_0_8px_rgba(34,211,238,0.6)]' 
-                  : 'text-white hover:text-cyan-300'
-              }`}
-            >
-              Materiais
+              Produtos
             </Link>
             <Link 
               to="/conteudos" 
