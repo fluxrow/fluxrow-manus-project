@@ -5,8 +5,7 @@ import { useSearchParams, Link } from "react-router-dom";
 import SEO from "@/components/SEO";
 import { trackEvent } from "@/utils/tracking";
 import { KIT_CONTENT, KIT_PRICE, type KitLang } from "@/content/aiOperatorKit";
-
-const LEMON_LINK = "[INSERT_LEMON_SQUEEZY_LINK]";
+import { useStripeCheckout } from "@/hooks/useStripeCheckout";
 
 const ease: Easing = [0.25, 0.1, 0.25, 1];
 const fade = {
@@ -64,19 +63,26 @@ const AIOperatorKitSales = () => {
   const price = KIT_PRICE[lang];
   const otherLang: KitLang = lang === "pt" ? "en" : "pt";
 
+  const { openCheckout, checkoutElement } = useStripeCheckout();
+
   const handleCta = (location: string) => {
     trackEvent("kit_cta_click", { location, lang, price: price.amount, currency: price.currency });
+    openCheckout({
+      priceId: price.priceId,
+      lang,
+      returnUrl: `${window.location.origin}/checkout/return?session_id={CHECKOUT_SESSION_ID}&lang=${lang}`,
+    });
   };
 
   const CTAButton = ({ className = "", location }: { className?: string; location: string }) => (
-    <a
-      href={LEMON_LINK}
+    <button
+      type="button"
       onClick={() => handleCta(location)}
       className={`inline-block font-medium text-sm tracking-wide px-8 py-4 rounded-sm transition-opacity hover:opacity-90 ${className}`}
       style={{ backgroundColor: "#c8f000", color: "#080807" }}
     >
       {c.hero.cta}
-    </a>
+    </button>
   );
 
   return (
