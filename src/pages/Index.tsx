@@ -8,6 +8,7 @@ import AgencyCTA from '../components/agency/AgencyCTA';
 import BehindTheScenes from '../components/agency/BehindTheScenes';
 import AgencyNav from '../components/agency/AgencyNav';
 import SEO from '../components/SEO';
+import { buildHomeFaqSchema } from '../lib/homeFaqSchema';
 
 // Lazy load SplashCursor to avoid competing with Hero's Three.js on initial load
 const SplashCursor = lazy(() =>
@@ -44,7 +45,7 @@ const Agencia = () => {
         </Suspense>
       )}
       
-      <SEO />
+      <SEO jsonLd={buildHomeFaqSchema()} />
 
       {/* Navigation */}
       <AgencyNav />
