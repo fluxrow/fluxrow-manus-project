@@ -194,7 +194,7 @@ export function FocusRail({
     >
       {/* Background Ambience */}
       <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-black to-white/20" />
+        <div className="absolute inset-0 bg-white/[0.02]" />
         <AnimatePresence mode="wait">
           <motion.div
             key={activeItem.id}
@@ -293,7 +293,7 @@ export function FocusRail({
                   className={cn(
                     "pointer-events-none absolute inset-0 rounded-sm transition-opacity duration-300",
                     isCenter
-                      ? "opacity-100 shadow-[inset_0_0_60px_rgba(6,182,212,0.15)]"
+                      ? "opacity-100 shadow-[inset_0_0_60px_rgba(255,255,255,0.06)]"
                       : "opacity-0"
                   )}
                 />
@@ -385,7 +385,7 @@ export function FocusRail({
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 50 }}
               transition={{ type: "spring", damping: 25, stiffness: 300 }}
-              className="relative w-full max-w-3xl my-8 bg-gradient-to-br from-gray-900 to-black rounded-sm border border-white/30 overflow-hidden shadow-2xl"
+              className="relative w-full max-w-3xl my-8 bg-[#0a0a09] rounded-sm border border-white/30 overflow-hidden shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Close button */}
