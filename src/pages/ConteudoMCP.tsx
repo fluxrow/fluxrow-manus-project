@@ -203,7 +203,7 @@ const ConteudoMCP = () => {
               <Workflow className="w-7 h-7 text-white mr-3" />
               <h2 className="text-2xl font-bold font-space-grotesk text-white">Transports: stdio, HTTP e SSE</h2>
             </div>
-            <ul className="space-y-break-words 3 text-gray-300 font-space-grotesk text-sm">
+            <ul className="space-y-3 break-words text-gray-300 font-space-grotesk text-sm">
               <li><strong className="text-white">stdio</strong> — servidor roda como processo filho do host. Mais simples e seguro, padrão para servidores locais.</li>
               <li><strong className="text-white">Streamable HTTP</strong> — servidor roda em endpoint web, ideal para servidores remotos compartilhados (ex: GitHub MCP hospedado).</li>
               <li><strong className="text-white">SSE (deprecated)</strong> — versão antiga do transporte HTTP, mantido por compatibilidade.</li>
@@ -216,7 +216,7 @@ const ConteudoMCP = () => {
               <h2 className="text-2xl font-bold font-space-grotesk text-white">Servidores MCP oficiais e populares</h2>
             </div>
             <div className="grid md:grid-cols-2 gap-3 text-gray-300 font-space-grotesk text-sm">
-              <ul className="space-y-break-words 2">
+              <ul className="space-y-2 break-words">
                 <li>• <strong className="text-white">filesystem</strong> — acesso seguro a pastas locais</li>
                 <li>• <strong className="text-white">github</strong> — issues, PRs, commits, releases</li>
                 <li>• <strong className="text-white">postgres</strong> — queries read-only e schema</li>
@@ -224,7 +224,7 @@ const ConteudoMCP = () => {
                 <li>• <strong className="text-white">slack</strong> — leitura e envio de mensagens</li>
                 <li>• <strong className="text-white">google-drive</strong> — busca e leitura de docs</li>
               </ul>
-              <ul className="space-y-break-words 2">
+              <ul className="space-y-2 break-words">
                 <li>• <strong className="text-white">brave-search</strong> — busca web</li>
                 <li>• <strong className="text-white">puppeteer</strong> — automação de browser</li>
                 <li>• <strong className="text-white">memory</strong> — persistência cross-session</li>
@@ -306,7 +306,7 @@ await server.connect(new StdioServerTransport());`}
               <CheckCircle className="w-7 h-7 text-white mr-3" />
               <h2 className="text-2xl font-bold font-space-grotesk text-white">Casos de uso reais</h2>
             </div>
-            <ul className="space-y-break-words 3 text-gray-300 font-space-grotesk">
+            <ul className="space-y-3 break-words text-gray-300 font-space-grotesk">
               {[
                 'Claude lendo seu Postgres para responder perguntas de produto sem você exportar planilha.',
                 'Agente abrindo issues, revisando PRs e mergeando direto pelo servidor MCP do GitHub.',
@@ -328,7 +328,7 @@ await server.connect(new StdioServerTransport());`}
               <Shield className="w-7 h-7 text-white mr-3" />
               <h2 className="text-2xl font-bold font-space-grotesk text-white">Segurança e governança</h2>
             </div>
-            <ul className="space-y-break-words 2 text-gray-300 font-space-grotesk">
+            <ul className="space-y-2 break-words text-gray-300 font-space-grotesk">
               <li>• Use servidores oficiais ou auditados — qualquer servidor recebe contexto sensível.</li>
               <li>• Configure escopos mínimos: read-only sempre que possível, tokens com permissão limitada.</li>
               <li>• Revogue conexões que você não usa mais; auditoria periódica do <code className="text-white">mcpServers</code>.</li>

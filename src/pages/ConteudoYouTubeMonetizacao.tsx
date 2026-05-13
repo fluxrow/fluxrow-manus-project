@@ -143,7 +143,7 @@ const ConteudoYouTubeMonetizacao = () => {
             <div className="grid md:grid-cols-2 gap-6">
               <div className="bg-red-900/20 border border-white/15 rounded-xl p-6">
                 <h3 className="text-xl font-bold font-space-grotesk text-red-400 mb-4">❌ O que vai sumir</h3>
-                <ul className="space-y-break-words 3">
+                <ul className="space-y-3 break-words">
                   <li className="text-gray-300 font-space-grotesk">• Conteúdos com voz de IA vão perder monetização</li>
                   <li className="text-gray-300 font-space-grotesk">• Vídeos com pouca edição ou reaproveitamento</li>
                   <li className="text-gray-300 font-space-grotesk">• Cortes automáticos e compilações em massa</li>
@@ -153,7 +153,7 @@ const ConteudoYouTubeMonetizacao = () => {
               
               <div className="bg-green-900/20 border border-white/15 rounded-xl p-6">
                 <h3 className="text-xl font-bold font-space-grotesk text-green-400 mb-4">✅ O que vai prosperar</h3>
-                <ul className="space-y-break-words 3">
+                <ul className="space-y-3 break-words">
                   <li className="text-gray-300 font-space-grotesk">• Criadores que aparecem e falam</li>
                   <li className="text-gray-300 font-space-grotesk">• Conteúdo editado com propósito</li>
                   <li className="text-gray-300 font-space-grotesk">• Opinião e análise pessoal</li>

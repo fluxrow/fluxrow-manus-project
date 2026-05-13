@@ -338,7 +338,7 @@ Concorrentes conhecidos: [LISTA]`,
                         <CheckCircle className="w-5 h-5 text-green-400" />
                         Dicas Estratégicas
                       </h4>
-                      <ul className="space-y-break-words 2">
+                      <ul className="space-y-2 break-words">
                         {promptData.tips.map((tip, tipIndex) => (
                           <li key={tipIndex} className="text-gray-300 font-space-grotesk text-sm flex items-start gap-2">
                             <span className="text-green-400 mt-1">•</span>

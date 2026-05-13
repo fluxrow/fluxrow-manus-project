@@ -577,7 +577,7 @@ const ContentAIScaleBusiness = () => {
                           <CheckCircle className="w-5 h-5 text-green-400" />
                           Tips
                         </h4>
-                        <ul className="space-y-break-words 2">
+                        <ul className="space-y-2 break-words">
                           {promptData.tips.map((tip, tipIndex) => (
                             <li
                               key={tipIndex}
@@ -655,7 +655,7 @@ const ContentAIScaleBusiness = () => {
               <AlertTriangle className="w-7 h-7 text-white mr-3" />
               <h2 className="text-2xl font-bold font-space-grotesk text-white">Common mistakes when adopting AI</h2>
             </div>
-            <ul className="space-y-break-words 3 text-gray-300 font-space-grotesk">
+            <ul className="space-y-3 break-words text-gray-300 font-space-grotesk">
               <li>• <strong className="text-white">Automating before standardizing</strong> — a good bot on top of a bad process only amplifies chaos.</li>
               <li>• <strong className="text-white">Buying 8 tools in the first month</strong> — you'll use 1 and waste money on 7.</li>
               <li>• <strong className="text-white">Waiting for perfection</strong> — AI gets 80% right; the rest is solved with human review or guardrails.</li>

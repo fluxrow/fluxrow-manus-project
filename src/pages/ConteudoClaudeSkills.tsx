@@ -212,7 +212,7 @@ description: Gera relatório semanal de tráfego pago em PDF a partir dos dados 
               <Layers className="w-7 h-7 text-white mr-3" />
               <h2 className="text-2xl font-bold font-space-grotesk text-white">Exemplos prontos de Skills</h2>
             </div>
-            <ul className="space-y-break-words 3 text-gray-300 font-space-grotesk text-sm">
+            <ul className="space-y-3 break-words text-gray-300 font-space-grotesk text-sm">
               <li>• <strong className="text-white">criar-feature-flag</strong> — passos no LaunchDarkly + commit no repo + nota no PR.</li>
               <li>• <strong className="text-white">incident-response</strong> — checklist do war room, template de status page e comunicação interna.</li>
               <li>• <strong className="text-white">analise-cohort</strong> — query padrão, gráfico Plotly, interpretação dos números.</li>
@@ -249,7 +249,7 @@ description: Gera relatório semanal de tráfego pago em PDF a partir dos dados 
               <CheckCircle className="w-7 h-7 text-white mr-3" />
               <h2 className="text-2xl font-bold font-space-grotesk text-white">Boas práticas de design</h2>
             </div>
-            <ul className="space-y-break-words 2 text-gray-300 font-space-grotesk">
+            <ul className="space-y-2 break-words text-gray-300 font-space-grotesk">
               <li>• Uma Skill, uma responsabilidade. Se virar genérica, divida.</li>
               <li>• Description com verbo + objeto + entrada/saída. Evite adjetivos.</li>
               <li>• Inclua um exemplo de input e output esperado dentro do SKILL.md.</li>
