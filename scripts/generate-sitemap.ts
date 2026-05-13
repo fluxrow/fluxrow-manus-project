@@ -2,7 +2,7 @@
 // Runs on `predev` and `prebuild`. Private routes (admin, /p/, /c/, /preview,
 // /relatorio, briefing, contratos) are intentionally excluded.
 
-import { writeFileSync } from "fs";
+import { writeFileSync, readFileSync } from "fs";
 import { resolve } from "path";
 
 const BASE_URL = "https://fluxrow.com";
