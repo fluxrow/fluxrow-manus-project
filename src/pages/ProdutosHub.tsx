@@ -103,9 +103,9 @@ const ProdutosHub = () => {
       <Header />
 
       <main className="max-w-5xl mx-auto px-6 pt-32 pb-24">
-        <header className="mb-16 flex flex-col gap-4">
+        <header className="mb-16 flex flex-col gap-6">
           <div className="flex items-center justify-between gap-4">
-            <p className="text-xs uppercase tracking-[0.2em] text-white/55 font-mono">
+            <p className="text-xs uppercase tracking-[0.3em] text-white/55 font-mono">
               {c.eyebrow}
             </p>
             <button
@@ -116,10 +116,10 @@ const ProdutosHub = () => {
               {c.toggle}
             </button>
           </div>
-          <h1 className="text-5xl md:text-6xl font-serif leading-tight">
+          <h1 className="font-serif text-[2.5rem] sm:text-5xl md:text-6xl leading-[1.05] max-w-3xl break-words">
             {c.h1}
           </h1>
-          <p className="text-lg text-white/70 max-w-2xl">{c.intro}</p>
+          <p className="text-base sm:text-lg text-white/60 max-w-2xl leading-relaxed">{c.intro}</p>
         </header>
 
         <section className="mb-16">
