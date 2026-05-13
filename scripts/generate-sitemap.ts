@@ -39,6 +39,7 @@ const entries: SitemapEntry[] = [
   { path: "/conteudos/claude-code", changefreq: "monthly", priority: "0.6" },
   { path: "/conteudos/mcp-claude", changefreq: "monthly", priority: "0.6" },
   { path: "/conteudos/claude-skills", changefreq: "monthly", priority: "0.6" },
+  { path: "/content/ai-scale-business", changefreq: "monthly", priority: "0.6" },
 
   // Legal
   { path: "/politica-de-privacidade", changefreq: "yearly", priority: "0.3" },
