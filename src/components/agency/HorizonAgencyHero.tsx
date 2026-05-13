@@ -111,18 +111,9 @@ const HorizonAgencyHero = () => {
           positions[j * 3 + 1] = radius * Math.sin(phi) * Math.sin(theta);
           positions[j * 3 + 2] = radius * Math.cos(phi);
 
-          // Color variation - using agency colors (cyan, purple, pink)
+          // Monochrome starfield — neutral whites only
           const color = new THREE.Color();
-          const colorChoice = Math.random();
-          if (colorChoice < 0.4) {
-            color.setHSL(0.5, 0.7, 0.8); // Cyan-ish
-          } else if (colorChoice < 0.7) {
-            color.setHSL(0.8, 0.6, 0.8); // Purple-ish
-          } else if (colorChoice < 0.9) {
-            color.setHSL(0.9, 0.7, 0.8); // Pink-ish
-          } else {
-            color.setHSL(0, 0, 0.8 + Math.random() * 0.2); // White
-          }
+          color.setHSL(0, 0, 0.7 + Math.random() * 0.3);
           
           colors[j * 3] = color.r;
           colors[j * 3 + 1] = color.g;
