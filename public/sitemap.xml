@@ -12,6 +12,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://fluxrow.com/produtos</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://fluxrow.com/kit</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
