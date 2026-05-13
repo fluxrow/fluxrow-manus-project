@@ -20,9 +20,22 @@ import { readdirSync, readFileSync, statSync, mkdirSync, writeFileSync } from "n
 import { join, relative } from "node:path";
 
 const ROOT = process.cwd();
-const SCAN_DIRS = ["src"];
-const EXTENSIONS = [".ts", ".tsx", ".css", ".html"];
-const IGNORE_DIRS = new Set(["node_modules", "dist", ".git", ".lovable"]);
+// Directories to scan recursively. `components` is included for projects that
+// hoist UI to the root; missing dirs are silently skipped.
+const SCAN_DIRS = ["src", "public", "components"];
+// Also scan loose files at the repo root (index.html, *.css, etc.).
+const SCAN_ROOT_FILES = true;
+const EXTENSIONS = [".ts", ".tsx", ".js", ".jsx", ".css", ".html", ".mdx"];
+const IGNORE_DIRS = new Set([
+  "node_modules",
+  "dist",
+  "build",
+  ".git",
+  ".lovable",
+  ".next",
+  "coverage",
+  "reports",
+]);
 
 // Files exempt from the rule (e.g., the utility definition itself).
 const EXEMPT_FILES = new Set<string>([
@@ -49,22 +62,46 @@ function walk(dir: string, out: string[] = []): string[] {
   return out;
 }
 
+function existsDir(p: string): boolean {
+  try {
+    return statSync(p).isDirectory();
+  } catch {
+    return false;
+  }
+}
+
+function scanFile(file: string) {
+  const rel = relative(ROOT, file);
+  if (EXEMPT_FILES.has(rel)) return;
+  const lines = readFileSync(file, "utf8").split("\n");
+  lines.forEach((line, i) => {
+    for (const { name, regex } of PATTERNS) {
+      regex.lastIndex = 0;
+      if (regex.test(line)) {
+        hits.push({ file: rel, line: i + 1, pattern: name, snippet: line.trim() });
+      }
+    }
+  });
+}
+
 const hits: Hit[] = [];
+const scannedDirs: string[] = [];
 for (const dir of SCAN_DIRS) {
   const abs = join(ROOT, dir);
-  for (const file of walk(abs)) {
-    const rel = relative(ROOT, file);
-    if (EXEMPT_FILES.has(rel)) continue;
-    const lines = readFileSync(file, "utf8").split("\n");
-    lines.forEach((line, i) => {
-      for (const { name, regex } of PATTERNS) {
-        regex.lastIndex = 0;
-        if (regex.test(line)) {
-          hits.push({ file: rel, line: i + 1, pattern: name, snippet: line.trim() });
-        }
-      }
-    });
+  if (!existsDir(abs)) continue;
+  scannedDirs.push(dir);
+  for (const file of walk(abs)) scanFile(file);
+}
+
+if (SCAN_ROOT_FILES) {
+  for (const entry of readdirSync(ROOT)) {
+    const full = join(ROOT, entry);
+    let st;
+    try { st = statSync(full); } catch { continue; }
+    if (!st.isFile()) continue;
+    if (EXTENSIONS.some((ext) => entry.endsWith(ext))) scanFile(full);
   }
+  scannedDirs.push("<root files>");
 }
 
 const reportDir = join(ROOT, "reports");
@@ -74,7 +111,7 @@ const reportPath = join(reportDir, "safe-wrap-report.md");
 const header =
   `# safe-wrap report\n\n` +
   `Generated: ${new Date().toISOString()}\n` +
-  `Scanned: ${SCAN_DIRS.join(", ")}\n` +
+  `Scanned: ${scannedDirs.join(", ")}\n` +
   `Patterns: ${PATTERNS.map((p) => "`" + p.name + "`").join(", ")}\n\n`;
 
 let body: string;
