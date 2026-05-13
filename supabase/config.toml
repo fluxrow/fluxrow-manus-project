@@ -34,3 +34,12 @@ verify_jwt = false
 
 [functions.handle-email-suppression]
 verify_jwt = false
+
+[functions.generate-blog-post]
+verify_jwt = false
+
+[functions.sitemap]
+verify_jwt = false
+
+[functions.blog-rss]
+verify_jwt = false
