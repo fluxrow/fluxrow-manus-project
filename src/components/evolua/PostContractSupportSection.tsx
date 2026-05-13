@@ -67,16 +67,16 @@ export default function PostContractSupportSection() {
             {supportFeatures.map((feature, index) => {
               const Icon = feature.icon;
               return (
-                <div 
+              <div 
                   key={index}
                   className="flex items-start gap-4 p-4 bg-slate-800/40 rounded-xl"
                 >
                   <div className="w-10 h-10 rounded-lg bg-blue-500/20 flex items-center justify-center flex-shrink-0">
                     <Icon className="w-5 h-5 text-blue-400" />
                   </div>
-                  <div>
-                    <h4 className="font-semibold text-white mb-1">{feature.title}</h4>
-                    <p className="text-sm text-gray-400">{feature.description}</p>
+                  <div className="min-w-0">
+                    <h4 className="font-semibold text-white mb-1 break-words">{feature.title}</h4>
+                    <p className="text-sm text-gray-400 break-words">{feature.description}</p>
                   </div>
                 </div>
               );
