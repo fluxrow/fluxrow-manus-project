@@ -1,5 +1,6 @@
 
 import React, { useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 import HeroSection from '../components/HeroSection';
 import { BenefitsMobileCards } from '../components/BenefitsMobileCards';
 import { TestimonialsMobileCards } from '../components/TestimonialsMobileCards';
@@ -19,6 +20,9 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-[#0f0f0f] text-white overflow-x-hidden">
+      <Helmet>
+        <meta name="robots" content="noindex, nofollow" />
+      </Helmet>
       <HeroSection />
       <BenefitsMobileCards />
       <InfiniteCarousel />
