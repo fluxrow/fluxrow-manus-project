@@ -59,7 +59,7 @@ const Contato = () => {
 
       <main className="pt-32 pb-20">
         <section className="max-w-5xl mx-auto px-6 mb-16">
-          <p className="text-xs uppercase tracking-[0.3em] text-white/40 font-mono mb-6">
+          <p className="text-xs uppercase tracking-[0.3em] text-white/55 font-mono mb-6">
             Contato
           </p>
           <h1 className="font-serif text-5xl md:text-6xl leading-[1.05] mb-6 max-w-3xl">
@@ -83,7 +83,7 @@ const Contato = () => {
               <div className="flex items-start gap-4 mb-5">
                 <c.icon className="w-5 h-5 text-white/60 mt-1 shrink-0" />
                 <div>
-                  <p className="text-xs uppercase tracking-[0.2em] text-white/40 font-mono mb-2">
+                  <p className="text-xs uppercase tracking-[0.2em] text-white/55 font-mono mb-2">
                     {c.eyebrow}
                   </p>
                   <h2 className="font-serif text-2xl leading-tight">{c.title}</h2>
@@ -100,7 +100,7 @@ const Contato = () => {
         </section>
 
         <section className="max-w-5xl mx-auto px-6 mb-16">
-          <p className="text-xs uppercase tracking-[0.2em] text-white/40 font-mono mb-3">
+          <p className="text-xs uppercase tracking-[0.2em] text-white/55 font-mono mb-3">
             Formulário
           </p>
           <h2 className="font-serif text-3xl md:text-4xl leading-tight mb-8">
@@ -204,15 +204,15 @@ const Contato = () => {
         <section className="max-w-5xl mx-auto px-6 pt-12 border-t border-white/5">
           <div className="grid sm:grid-cols-3 gap-6 text-sm text-white/60">
             <div className="flex items-center gap-3">
-              <Phone className="w-4 h-4 text-white/40" />
+              <Phone className="w-4 h-4 text-white/55" />
               <span>(41) 99236-1868</span>
             </div>
             <div className="flex items-center gap-3">
-              <Mail className="w-4 h-4 text-white/40" />
+              <Mail className="w-4 h-4 text-white/55" />
               <span>contato@fluxrow.com</span>
             </div>
             <div className="flex items-center gap-3">
-              <MapPin className="w-4 h-4 text-white/40" />
+              <MapPin className="w-4 h-4 text-white/55" />
               <span>Curitiba · PR</span>
             </div>
           </div>

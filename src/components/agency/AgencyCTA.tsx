@@ -97,9 +97,9 @@ const AgencyCTA = () => {
         <div className="border-t border-white/10 mt-10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 max-w-5xl mx-auto">
           <div className="flex items-center gap-2">
             <FluxrowLogo size="sm" variant="light" />
-            <span className="text-white/40 text-xs">{t('cta.footer.tagline')}</span>
+            <span className="text-white/55 text-xs">{t('cta.footer.tagline')}</span>
           </div>
-          <p className="text-white/30 text-xs text-center sm:text-right">
+          <p className="text-white/55 text-xs text-center sm:text-right">
             CNPJ: 61.260.831/0001-97 · © {new Date().getFullYear()} Fluxrow. {t('cta.footer.rights')}
           </p>
         </div>

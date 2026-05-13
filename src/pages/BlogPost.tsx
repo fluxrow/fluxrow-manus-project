@@ -84,7 +84,7 @@ export default function BlogPost() {
   }, [slug]);
 
   if (loading) {
-    return <div className="min-h-screen bg-[#080807] flex items-center justify-center text-white/40">…</div>;
+    return <div className="min-h-screen bg-[#080807] flex items-center justify-center text-white/55">…</div>;
   }
 
   if (!post) {
@@ -149,7 +149,7 @@ export default function BlogPost() {
       </header>
 
       <article className="max-w-3xl mx-auto px-6 py-16">
-        <div className="flex items-center gap-4 text-xs text-white/40 mb-4 font-mono uppercase tracking-wider">
+        <div className="flex items-center gap-4 text-xs text-white/55 mb-4 font-mono uppercase tracking-wider">
           <span className="flex items-center gap-1.5"><Calendar className="w-3 h-3" />{new Date(post.published_at).toLocaleDateString(lang === "en" ? "en-US" : "pt-BR", { day: "2-digit", month: "short", year: "numeric" })}</span>
           <span className="flex items-center gap-1.5"><Clock className="w-3 h-3" />{post.reading_minutes} {lang === "en" ? "min read" : "min de leitura"}</span>
         </div>

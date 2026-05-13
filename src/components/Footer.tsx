@@ -9,7 +9,7 @@ const Footer = () => {
       <div className="max-w-6xl mx-auto px-6 py-12 grid md:grid-cols-4 gap-8 text-sm">
         <div>
           <FluxrowLogo size="sm" variant="light" />
-          <p className="text-white/40 mt-3 text-xs font-mono">
+          <p className="text-white/55 mt-3 text-xs font-mono">
             Sistemas com IA · Curitiba, BR
           </p>
         </div>
@@ -46,7 +46,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="border-t border-white/5">
-        <div className="max-w-6xl mx-auto px-6 py-5 text-xs text-white/30 font-mono flex flex-col sm:flex-row justify-between gap-2">
+        <div className="max-w-6xl mx-auto px-6 py-5 text-xs text-white/55 font-mono flex flex-col sm:flex-row justify-between gap-2">
           <span>CNPJ: 61.260.831/0001-97</span>
           <span>© {new Date().getFullYear()} Fluxrow. Todos os direitos reservados.</span>
         </div>

@@ -92,7 +92,7 @@ const Conteudos = () => {
 
       <main className="pt-32 pb-20">
         <section className="max-w-5xl mx-auto px-6 mb-20">
-          <p className="text-xs uppercase tracking-[0.3em] text-white/40 font-mono mb-6">
+          <p className="text-xs uppercase tracking-[0.3em] text-white/55 font-mono mb-6">
             Biblioteca Fluxrow
           </p>
           <h1 className="font-serif text-5xl md:text-6xl leading-[1.05] mb-6 max-w-3xl">
@@ -111,7 +111,7 @@ const Conteudos = () => {
               to={`/conteudos/${c.id}`}
               className="group block border border-white/10 hover:border-white/30 transition-colors p-7 rounded-sm bg-white/[0.02] hover:bg-white/[0.04]"
             >
-              <p className="text-xs uppercase tracking-[0.2em] text-white/40 font-mono mb-5">
+              <p className="text-xs uppercase tracking-[0.2em] text-white/55 font-mono mb-5">
                 {c.eyebrow}
               </p>
               <h2 className="font-serif text-2xl md:text-[1.65rem] leading-tight mb-3">
@@ -121,7 +121,7 @@ const Conteudos = () => {
                 {c.description}
               </p>
               <div className="flex items-center justify-between text-xs font-mono">
-                <span className="text-white/40">{c.readingTime} de leitura</span>
+                <span className="text-white/55">{c.readingTime} de leitura</span>
                 <span className="inline-flex items-center gap-1.5 text-white/70 group-hover:text-white group-hover:gap-2 transition-all">
                   Ler artigo <ArrowRight className="w-3.5 h-3.5" />
                 </span>
@@ -133,7 +133,7 @@ const Conteudos = () => {
         <section className="max-w-5xl mx-auto px-6 mt-24 pt-16 border-t border-white/5">
           <div className="grid md:grid-cols-[2fr_1fr] gap-10 items-end">
             <div>
-              <p className="text-xs uppercase tracking-[0.2em] text-white/40 font-mono mb-4">
+              <p className="text-xs uppercase tracking-[0.2em] text-white/55 font-mono mb-4">
                 Próximo passo
               </p>
               <h2 className="font-serif text-3xl md:text-4xl leading-tight mb-3">

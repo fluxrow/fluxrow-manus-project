@@ -100,9 +100,9 @@ export default function Blog() {
         <p className="text-white/60 text-lg max-w-2xl mb-16">{t.sub}</p>
 
         {loading ? (
-          <div className="text-white/40">…</div>
+          <div className="text-white/55">…</div>
         ) : posts.length === 0 ? (
-          <div className="text-white/40 border border-dashed border-white/10 rounded-xl p-12 text-center">{t.empty}</div>
+          <div className="text-white/55 border border-dashed border-white/10 rounded-xl p-12 text-center">{t.empty}</div>
         ) : (
           <div className="grid gap-8">
             {posts.map((p) => (
@@ -111,7 +111,7 @@ export default function Blog() {
                 to={`/blog/${p.slug}?lang=${lang}`}
                 className="group block border-b border-white/10 pb-8 hover:border-white/30 transition"
               >
-                <div className="flex items-center gap-4 text-xs text-white/40 mb-3 font-mono uppercase tracking-wider">
+                <div className="flex items-center gap-4 text-xs text-white/55 mb-3 font-mono uppercase tracking-wider">
                   <span className="flex items-center gap-1.5"><Calendar className="w-3 h-3" />{new Date(p.published_at).toLocaleDateString(lang === "en" ? "en-US" : "pt-BR", { day: "2-digit", month: "short", year: "numeric" })}</span>
                   <span className="flex items-center gap-1.5"><Clock className="w-3 h-3" />{p.reading_minutes} {t.min}</span>
                 </div>
@@ -123,7 +123,7 @@ export default function Blog() {
                       <span key={tag} className="text-xs px-2 py-1 border border-white/10 rounded text-white/50 font-mono">{tag}</span>
                     ))}
                   </div>
-                  <span className="text-sm text-white/40 group-hover:text-white flex items-center gap-1 transition">
+                  <span className="text-sm text-white/55 group-hover:text-white flex items-center gap-1 transition">
                     {t.read} <ArrowRight className="w-3 h-3" />
                   </span>
                 </div>

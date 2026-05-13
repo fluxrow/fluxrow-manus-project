@@ -1,21 +1,77 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import SEO from "@/components/SEO";
-import BackToHomeButton from "@/components/ui/BackToHomeButton";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import { ArrowRight, Check } from "lucide-react";
 import { trackEvent } from "@/utils/tracking";
 
-const features = [
-  "Arquitetura de 5 camadas (Brain → Queue → Publisher → DM → Revenue)",
-  "3 caminhos de execução (Fast / Stable / Scale)",
-  "15 prompts prontos · sequência ManyChat · templates n8n",
-  "Operator Repository com 5 skill files (formato SKILL.md)",
-  "Checklists de lançamento: Fast (2 dias), Stable (7 dias)",
-  "Revenue math + upgrade path (10/30/100 vendas)",
-];
+const COPY = {
+  pt: {
+    eyebrow: "AI Operator Kit",
+    h1: "O sistema de IA que opera sua operação.",
+    intro:
+      "Brain, fila, publicador, engine de DM e receita — montados em 5 camadas pra você abrir e rodar essa semana. Não é curso. É um kit de campo.",
+    cardEyebrow: "AI Operator Kit · v1",
+    cardH2: "Construa o sistema de IA que roda sua operação.",
+    cardP:
+      "Um stack pronto com Brain, fila, publicador, engine de DM e receita. Você abre, conecta e roda — em dias, não em meses.",
+    features: [
+      "Arquitetura de 5 camadas (Brain → Queue → Publisher → DM → Revenue)",
+      "3 caminhos de execução (Fast / Stable / Scale)",
+      "15 prompts prontos · sequência ManyChat · templates n8n",
+      "Operator Repository com 5 skill files (formato SKILL.md)",
+      "Checklists de lançamento: Fast (2 dias), Stable (7 dias)",
+      "Revenue math + upgrade path (10/30/100 vendas)",
+    ],
+    cta: "Acessar o Kit",
+    invest: "Investimento",
+    price: "R$ 147",
+    priceNote: "à vista · acesso imediato",
+    secondary: "Outside Brazil? US$ 27 USD",
+    guarantee: "Garantia de 7 dias · Pagamento único · Acesso vitalício",
+    customH2: "Precisa de algo sob medida?",
+    customP:
+      "Construímos sistemas, SaaS e automações para empresas. Implementação completa, suporte e operação contínua.",
+    customCta: "Falar com a Fluxrow",
+    toggle: "EN",
+  },
+  en: {
+    eyebrow: "AI Operator Kit",
+    h1: "The AI system that runs your operation.",
+    intro:
+      "Brain, queue, publisher, DM engine, and revenue — assembled in 5 layers so you can open and run it this week. Not a course. A field kit.",
+    cardEyebrow: "AI Operator Kit · v1",
+    cardH2: "Build the AI system that runs your operation.",
+    cardP:
+      "A ready stack with Brain, queue, publisher, DM engine, and revenue. You open it, connect, and run — in days, not months.",
+    features: [
+      "5-layer architecture (Brain → Queue → Publisher → DM → Revenue)",
+      "3 execution paths (Fast / Stable / Scale)",
+      "15 ready prompts · ManyChat sequence · n8n templates",
+      "Operator Repository with 5 skill files (SKILL.md format)",
+      "Launch checklists: Fast (2 days), Stable (7 days)",
+      "Revenue math + upgrade path (10/30/100 sales)",
+    ],
+    cta: "Access the Kit",
+    invest: "Investment",
+    price: "US$ 27",
+    priceNote: "one-time · instant access",
+    secondary: "No Brasil? R$ 147 BRL",
+    guarantee: "7-day guarantee · One-time payment · Lifetime access",
+    customH2: "Need something custom?",
+    customP:
+      "We build systems, SaaS, and automations for companies. Full implementation, support, and ongoing operation.",
+    customCta: "Talk to Fluxrow",
+    toggle: "PT",
+  },
+};
 
 function detectLang(): "pt" | "en" {
   if (typeof window === "undefined") return "pt";
+  const url = new URL(window.location.href);
+  const param = url.searchParams.get("lang");
+  if (param === "pt" || param === "en") return param;
   const stored = localStorage.getItem("aok_lang");
   if (stored === "pt" || stored === "en") return stored;
   const nav = navigator.language?.toLowerCase() || "";
@@ -29,99 +85,124 @@ const ProdutosHub = () => {
     setLang(detectLang());
   }, []);
 
-  const isPT = lang === "pt";
-  const primaryPrice = isPT ? "R$ 147" : "$27";
-  const secondaryNote = isPT ? "Outside Brazil? $27 USD" : "No Brasil? R$ 147 BRL";
+  const c = COPY[lang];
+
+  const switchLang = () => {
+    const next = lang === "pt" ? "en" : "pt";
+    setLang(next);
+    localStorage.setItem("aok_lang", next);
+  };
 
   return (
     <div className="min-h-screen bg-[#080807] text-white">
       <SEO
-        title="AI Operator Kit — Fluxrow"
-        description="Brain, fila, publicador, engine de DM e receita. O kit de campo pra abrir e rodar seu sistema de IA essa semana."
+        title={lang === "pt" ? "AI Operator Kit — Fluxrow" : "AI Operator Kit — Fluxrow"}
+        description={c.intro}
         path="/produtos"
       />
-      <BackToHomeButton />
+      <Header />
 
       <main className="max-w-5xl mx-auto px-6 pt-32 pb-24">
-        <header className="mb-16">
-          <p className="text-xs uppercase tracking-[0.2em] text-white/50 font-mono mb-4">
-            AI Operator Kit
-          </p>
-          <h1 className="text-5xl md:text-6xl font-serif leading-tight mb-6">
-            O sistema de IA que opera sua operação.
+        <header className="mb-16 flex flex-col gap-4">
+          <div className="flex items-center justify-between gap-4">
+            <p className="text-xs uppercase tracking-[0.2em] text-white/55 font-mono">
+              {c.eyebrow}
+            </p>
+            <button
+              onClick={switchLang}
+              className="text-xs font-mono text-white/60 hover:text-white border border-white/10 hover:border-white/30 px-3 py-1.5 rounded-md transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white/40"
+              aria-label="Toggle language"
+            >
+              {c.toggle}
+            </button>
+          </div>
+          <h1 className="text-5xl md:text-6xl font-serif leading-tight">
+            {c.h1}
           </h1>
-          <p className="text-lg text-white/70 max-w-2xl">
-            Brain, fila, publicador, engine de DM e receita — montados em 5 camadas pra você abrir e rodar essa semana. Não é curso. É um kit de campo.
-          </p>
+          <p className="text-lg text-white/70 max-w-2xl">{c.intro}</p>
         </header>
 
         <section className="mb-16">
-          <article className="border border-white/10 hover:border-white/30 transition-all rounded-sm bg-white/[0.02] overflow-hidden">
+          <article className="border border-white/10 hover:border-white/25 transition-all rounded-md bg-white/[0.02] overflow-hidden">
             <div className="grid md:grid-cols-[1.4fr_1fr]">
               <div className="p-8 md:p-10 border-b md:border-b-0 md:border-r border-white/10">
-                <p className="text-xs uppercase tracking-[0.2em] text-white/50 font-mono mb-6">
-                  AI Operator Kit · v1
+                <p className="text-xs uppercase tracking-[0.2em] text-white/55 font-mono mb-6">
+                  {c.cardEyebrow}
                 </p>
                 <h2 className="text-3xl md:text-4xl font-serif mb-4">
-                  Construa o sistema de IA que roda sua operação.
+                  {c.cardH2}
                 </h2>
-                <p className="text-white/65 mb-8 leading-relaxed">
-                  Um stack pronto com Brain, fila, publicador, engine de DM e receita. Você abre, conecta e roda — em dias, não em meses.
-                </p>
+                <p className="text-white/70 mb-8 leading-relaxed">{c.cardP}</p>
 
                 <ul className="space-y-2 text-sm text-white/75 mb-10">
-                  {features.map((f) => (
+                  {c.features.map((f) => (
                     <li key={f} className="flex gap-2">
-                      <Check className="w-4 h-4 text-white/50 shrink-0 mt-0.5" /> {f}
+                      <Check className="w-4 h-4 text-white/55 shrink-0 mt-0.5" />{" "}
+                      {f}
                     </li>
                   ))}
                 </ul>
 
                 <Link
-                  to="/produtos/ai-operator-kit"
-                  onClick={() => trackEvent("product_card_click", { product: "ai_operator_kit", lang })}
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-white text-[#080807] font-medium rounded-sm hover:bg-white/90 transition-colors text-sm"
+                  to={`/produtos/ai-operator-kit?lang=${lang}`}
+                  onClick={() =>
+                    trackEvent("product_card_click", {
+                      product: "ai_operator_kit",
+                      lang,
+                    })
+                  }
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-white text-[#080807] font-medium rounded-md hover:bg-white/90 active:scale-[0.98] transition-all duration-150 text-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#080807]"
                 >
-                  Acessar o Kit <ArrowRight className="w-4 h-4" />
+                  {c.cta} <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>
 
               <div className="p-8 md:p-10 bg-white/[0.015]">
-                <p className="text-xs font-mono text-white/50 mb-4 uppercase tracking-wider">
-                  Investimento
+                <p className="text-xs font-mono text-white/55 mb-4 uppercase tracking-wider">
+                  {c.invest}
                 </p>
 
-                <p className="text-5xl font-serif mb-2">{primaryPrice}</p>
-                <p className="text-xs text-white/50 font-mono mb-6">
-                  {isPT ? "à vista · acesso imediato" : "one-time · instant access"}
+                <p className="text-5xl font-serif mb-2 gradient-accent-text">
+                  {c.price}
+                </p>
+                <p className="text-xs text-white/55 font-mono mb-6">
+                  {c.priceNote}
                 </p>
 
                 <div className="pt-6 border-t border-white/10">
-                  <p className="text-xs text-white/40 font-mono">{secondaryNote}</p>
+                  <button
+                    onClick={switchLang}
+                    className="text-xs text-white/55 hover:text-white font-mono transition-colors"
+                  >
+                    {c.secondary} →
+                  </button>
                 </div>
               </div>
             </div>
           </article>
 
-          <p className="text-xs text-white/40 mt-6 font-mono text-center">
-            Garantia de 7 dias · Pagamento único · Acesso vitalício
+          <p className="text-xs text-white/55 mt-6 font-mono text-center">
+            {c.guarantee}
           </p>
         </section>
 
         <section className="border-t border-white/10 pt-12">
-          <h2 className="text-2xl font-serif mb-3">Precisa de algo sob medida?</h2>
-          <p className="text-white/65 mb-6 max-w-2xl">
-            Construímos sistemas, SaaS e automações para empresas. Implementação completa, suporte e operação contínua.
-          </p>
+          <h2 className="text-2xl font-serif mb-3">{c.customH2}</h2>
+          <p className="text-white/70 mb-6 max-w-2xl">{c.customP}</p>
           <Link
             to="/contato"
-            onClick={() => trackEvent("agency_lead_click", { source: "produtos_hub" })}
-            className="inline-flex items-center gap-2 text-sm font-mono text-white/80 hover:text-white"
+            onClick={() =>
+              trackEvent("agency_lead_click", { source: "produtos_hub" })
+            }
+            className="inline-flex items-center gap-2 text-sm font-mono text-white/80 hover:text-white group"
           >
-            Falar com a Fluxrow <ArrowRight className="w-4 h-4" />
+            {c.customCta}
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
           </Link>
         </section>
       </main>
+
+      <Footer />
     </div>
   );
 };

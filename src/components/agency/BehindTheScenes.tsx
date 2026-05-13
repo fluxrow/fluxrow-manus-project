@@ -176,7 +176,7 @@ const VideoMockup = () => (
 
 const AdsMockup = () => (
   <div className="w-full h-[110px] rounded-lg bg-black/40 p-2 space-y-1.5 text-[9px] font-mono">
-    <div className="flex items-center gap-1 text-white/40 border-b border-white/10 pb-1">
+    <div className="flex items-center gap-1 text-white/55 border-b border-white/10 pb-1">
       <span className="flex-1">Campanha</span>
       <span className="w-10 text-right">CTR</span>
       <span className="w-12 text-right">ROAS</span>
@@ -314,7 +314,7 @@ const DashboardMockup = () => {
       </div>
       <div className="flex-1 p-2">
         <div className="text-[18px] font-bold text-white/80 leading-none mb-1.5">{count}</div>
-        <div className="text-[7px] text-white/40 mb-2">Usuários ativos</div>
+        <div className="text-[7px] text-white/55 mb-2">Usuários ativos</div>
         <div className="flex items-end gap-1 h-8">
           {[40, 65, 50, 80, 70, 90, 60].map((h, i) => (
             <motion.div
@@ -459,7 +459,7 @@ const DevStack = () => {
       viewport={{ once: true }}
       className="mt-12 text-center"
     >
-      <p className="text-xs uppercase tracking-wider text-white/40 mb-4">
+      <p className="text-xs uppercase tracking-wider text-white/55 mb-4">
         {t('behind.devPlatforms')}
       </p>
       <div className="flex flex-wrap items-center justify-center gap-4">
