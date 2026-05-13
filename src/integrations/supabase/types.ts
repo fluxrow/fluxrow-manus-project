@@ -229,7 +229,7 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      has_kit_access: { Args: { _user_id: string }; Returns: boolean }
+      has_kit_access: { Args: never; Returns: boolean }
     }
     Enums: {
       [_ in never]: never
