@@ -51,6 +51,8 @@ const PoliticaPrivacidade = React.lazy(() => import("./pages/PoliticaPrivacidade
 const TermosDeUso = React.lazy(() => import("./pages/TermosDeUso"));
 const AIOperatorKit = React.lazy(() => import("./pages/AIOperatorKit"));
 const AIOperatorKitSales = React.lazy(() => import("./pages/AIOperatorKitSales"));
+const CursoIAOperator = React.lazy(() => import("./pages/CursoIAOperator"));
+const CheckoutReturn = React.lazy(() => import("./pages/CheckoutReturn"));
 
 const queryClient = new QueryClient();
 
@@ -113,6 +115,8 @@ const App = () => (
             <Route path="/p/:slug" element={<PropostaPublica />} />
             <Route path="/kit" element={<AIOperatorKitSales />} />
             <Route path="/kit/content" element={<AIOperatorKit />} />
+            <Route path="/curso-ia-operator" element={<CursoIAOperator />} />
+            <Route path="/checkout/return" element={<CheckoutReturn />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
