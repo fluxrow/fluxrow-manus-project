@@ -103,9 +103,9 @@ const Index = () => {
               O AI Operator Kit (EN) e o Kit Operador IA (PT). Arquitetura de 5 camadas, prompts prontos, sequência de DM, templates n8n. Pagamento único, acesso vitalício.
             </p>
             <ul className="text-sm text-white/60 space-y-1 mb-8 font-mono">
-              <li>· R$ 147 ou US$ 27</li>
-              <li>· Acesso imediato</li>
-              <li>· Garantia de 7 dias</li>
+              <li className="break-words">· R$ 147 ou US$ 27</li>
+              <li className="break-words">· Acesso imediato</li>
+              <li className="break-words">· Garantia de 7 dias</li>
             </ul>
             <span className="inline-flex items-center gap-2 text-sm font-mono text-white group-hover:gap-3 transition-all">
               Ver produtos <ArrowRight className="w-4 h-4" />
