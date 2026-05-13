@@ -55,6 +55,8 @@ const CheckoutReturn = React.lazy(() => import("./pages/CheckoutReturn"));
 const Login = React.lazy(() => import("./pages/Login"));
 const KitReader = React.lazy(() => import("./pages/KitReader"));
 const Unsubscribe = React.lazy(() => import("./pages/Unsubscribe"));
+const Blog = React.lazy(() => import("./pages/Blog"));
+const BlogPost = React.lazy(() => import("./pages/BlogPost"));
 
 const queryClient = new QueryClient();
 
@@ -132,6 +134,9 @@ const App = () => (
             <Route path="/produtos/ai-operator-kit" element={<AIOperatorKitSales />} />
             <Route path="/produtos/kit-operador-ia" element={<Navigate to="/produtos/ai-operator-kit?lang=pt" replace />} />
             <Route path="/checkout/return" element={<CheckoutReturn />} />
+            {/* Blog automático bilíngue */}
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:slug" element={<BlogPost />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

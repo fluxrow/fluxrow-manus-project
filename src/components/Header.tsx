@@ -78,6 +78,16 @@ const Header = () => {
               Conteúdos
             </Link>
             <Link 
+              to="/blog" 
+              className={`font-space-grotesk transition-colors ${
+                location.pathname.startsWith('/blog')
+                  ? 'text-cyan-400 font-semibold' 
+                  : 'text-white/80 hover:text-white'
+              }`}
+            >
+              Blog
+            </Link>
+            <Link 
               to="/contato" 
               className={`font-space-grotesk transition-colors ${
                 isActive('/contato') 
@@ -143,6 +153,17 @@ const Header = () => {
               }`}
             >
               Conteúdos
+            </Link>
+            <Link 
+              to="/blog" 
+              onClick={() => setMobileMenuOpen(false)}
+              className={`font-space-grotesk text-xl transition-colors drop-shadow-lg ${
+                location.pathname.startsWith('/blog')
+                  ? 'text-cyan-400 font-semibold drop-shadow-[0_0_8px_rgba(34,211,238,0.6)]' 
+                  : 'text-white hover:text-cyan-300'
+              }`}
+            >
+              Blog
             </Link>
             <Link 
               to="/contato" 
