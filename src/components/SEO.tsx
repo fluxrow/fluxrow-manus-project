@@ -9,6 +9,7 @@ interface SEOProps {
   imageAlt?: string;
   lang?: string;
   locale?: string;
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 }
 
 const SEO = ({
