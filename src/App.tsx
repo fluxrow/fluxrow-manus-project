@@ -50,7 +50,7 @@ const TermosDeUso = React.lazy(() => import("./pages/TermosDeUso"));
 const AIOperatorKit = React.lazy(() => import("./pages/AIOperatorKit"));
 const AIOperatorKitSales = React.lazy(() => import("./pages/AIOperatorKitSales"));
 const ProdutosHub = React.lazy(() => import("./pages/ProdutosHub"));
-const KitOperadorIA = React.lazy(() => import("./pages/KitOperadorIA"));
+
 const CheckoutReturn = React.lazy(() => import("./pages/CheckoutReturn"));
 
 const queryClient = new QueryClient();
@@ -125,7 +125,7 @@ const App = () => (
             {/* Hub de produtos + Kit bilingue */}
             <Route path="/produtos" element={<ProdutosHub />} />
             <Route path="/produtos/ai-operator-kit" element={<AIOperatorKitSales />} />
-            <Route path="/produtos/kit-operador-ia" element={<KitOperadorIA />} />
+            <Route path="/produtos/kit-operador-ia" element={<Navigate to="/produtos/ai-operator-kit?lang=pt" replace />} />
             <Route path="/checkout/return" element={<CheckoutReturn />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />

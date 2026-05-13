@@ -24,8 +24,8 @@ const entries: SitemapEntry[] = [
 
   // Produtos
   { path: "/produtos", changefreq: "weekly", priority: "0.9" },
-  { path: "/produtos/ai-operator-kit", changefreq: "weekly", priority: "0.9" },
-  { path: "/produtos/kit-operador-ia", changefreq: "weekly", priority: "0.9" },
+  { path: "/produtos/ai-operator-kit?lang=en", changefreq: "weekly", priority: "0.9" },
+  { path: "/produtos/ai-operator-kit?lang=pt", changefreq: "weekly", priority: "0.9" },
   { path: "/kit/content", changefreq: "monthly", priority: "0.6" },
 
   // Editorial hub + posts

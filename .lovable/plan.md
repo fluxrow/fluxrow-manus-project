@@ -1,109 +1,72 @@
-# Reorganização Fluxrow — plano definitivo
+## Diagnóstico do que existe hoje
 
-Baseado nas suas respostas:
-- **Curso premium**: descontinuado, arquivar tudo
-- **Kit**: bilingue PT + EN
-- **Vende**: sistemas, SaaS e automações + conhecimento empacotado (curso, conteúdo, passo a passo)
-- **Meta**: renda passiva o mais rápido possível
+- **Apenas 1 produto real** no código: `AIOperatorKitSales.tsx` (447 linhas, todo em EN, em `/produtos/ai-operator-kit`).
+- `KitOperadorIA.tsx` (99 linhas) **não é um produto** — é uma landing PT que manda o usuário de volta pra página EN.
+- O hub `/produtos` mostra 2 cards mas eles apontam pro mesmo conteúdo final.
+- **Stripe**: o checkout existe (`create-checkout` resolve preço por `lookup_key`), mas eu não consegui inspecionar o que está cadastrado. **Precisa verificação manual antes de mexer em preço.**
+- i18n já tem PT/EN configurados com detecção IP→Brasil=PT, resto=EN, e cache em localStorage. **Vamos reusar isso.**
 
-## Posicionamento que o site vai comunicar
+## Decisão estrutural
 
-Fluxrow vende dois caminhos:
-1. **Feito-pra-você** (agência) — sistemas, SaaS e automações sob medida (B2B, ticket alto)
-2. **Feito-por-você** (produtos) — Kit + futuros cursos/conteúdos para pessoa comprar e operar sozinho (renda passiva)
+Sua resposta foi clara: **2 produtos distintos, cada um com PT + EN**. Mas você levantou "talvez mesclar num produto único". Eu recomendo **começar com 1 produto bem-feito em PT+EN e depois lançar o 2º**, porque hoje só existe 1 produto real e construir 4 combinações de algo que ainda não foi escrito vai criar dívida. Mas o plano abaixo deixa a arquitetura pronta pra escalar pros 2.
 
-Home roteia o visitante para um dos dois caminhos rápido. Sem ambiguidade.
+## Arquitetura proposta
 
-## Nova arquitetura de rotas
+### URLs e roteamento
 
 ```text
-/                           Home (3 blocos: hero + caminho agência + caminho produtos)
-/agencia                    Landing da agência (sistemas, SaaS, automação B2B)
-/contato                    Briefing/contato
-
-/produtos                   Vitrine dos produtos (hoje só o Kit)
-/produtos/ai-operator-kit   Kit em EN (atual /kit)
-/produtos/kit-operador-ia   Kit em PT (nova versão)
-
-/conteudos                  Hub editorial (9 posts atuais, sem mexer)
-/conteudos/:slug            Posts (mantém URLs existentes)
-
-/p/:slug                    Propostas privadas (noindex)
-/c/:slug                    Contratos privados (noindex)
-
-/politica-de-privacidade
-/termos-de-uso
+/produtos                          → hub com os 2 produtos
+/produtos/ai-operator-kit          → Produto 1 (idioma auto pelo navegador, com toggle PT/EN no topo)
+/produtos/ai-operator-kit?lang=pt  → força PT
+/produtos/ai-operator-kit?lang=en  → força EN
+/produtos/kit-operador-pro         → Produto 2 (mesmo padrão; nome a definir — NÃO usar "kit-operador-ia" pra não confundir com o 1)
 ```
 
-## Rotas que somem (com 301 via Navigate)
+- `kit-operador-ia` vira **301 → ai-operator-kit?lang=pt** (preserva SEO atual).
+- Cada produto = **1 página React** com conteúdo em arquivo i18n separado (`kits/operatorKit.pt.json` + `.en.json`), não 2 componentes duplicados.
+- Toggle PT/EN visível no header da página do produto (não esconde a opção, mesmo quando detecta automático).
 
-| De | Para |
-|---|---|
-| `/curso`, `/modulos`, `/materiais` | `/produtos` |
-| `/modulos/1-premium`, `/2-premium`, `/3-premium` | `/produtos` |
-| `/curso-ia-operator`, `/produtos/operator-curso` | `/produtos` |
-| `/kit` | `/produtos/ai-operator-kit` (mantém EN canonical) |
+### Pricing por moeda
 
-## Arquivos deletados (curso descontinuado)
+- **Sem IP novo**: aproveitar o `i18n.language` já detectado.
+- Regra: `language === 'pt' → BRL` ; resto → `USD`.
+- Preços (do que você definiu):
+  - Produto 1 (AI Operator Kit): **$27 USD** / **R$ 147 BRL**
+  - Produto 2 (Kit Operador Pro — escopo a definir): preços a definir.
+- Mostrar **só uma moeda** na página do produto (a que casa com o idioma). Stripe recebe o `priceId` correspondente.
 
-- `src/pages/Curso.tsx`
-- `src/pages/Modulos.tsx`
-- `src/pages/Materiais.tsx`
-- `src/pages/Modulo1Premium.tsx`
-- `src/pages/Modulo2Premium.tsx`
-- `src/pages/Modulo3Premium.tsx`
-- `src/pages/CursoIAOperator.tsx`
-- `src/components/curso/*` (ModuleComponents, ModuleNavigation, ProgressSidebar)
+### Stripe
 
-## Kit bilingue — como vai funcionar
+Antes de criar/atualizar preço:
 
-- `/produtos/ai-operator-kit` → componente atual `AIOperatorKitSales` (EN, intacto)
-- `/produtos/kit-operador-ia` → nova página PT, mesma estrutura, copy traduzida e adaptada para BR (preço em BRL via Stripe quando você quiser ativar)
-- Hub `/produtos` mostra os dois cards com bandeira de idioma; detecção de idioma do navegador sugere o card relevante mas não força
-- `<link rel="alternate" hreflang="en">` e `hreflang="pt-BR"` cruzados entre as duas
+1. Verificar quais `lookup_key` já existem no Stripe (sandbox e live).
+2. Mapear pra: `aok_usd_27` e `aok_brl_147` (Produto 1). Produto 2 entra depois.
+3. `create-checkout` já aceita `priceId` — só passar o `lookup_key` certo conforme idioma ativo.
 
-## Home reescrita (foco renda passiva)
+### SEO / hreflang
 
-3 blocos:
-1. **Hero** — "Sistemas que rodam sozinhos" (mantém estética atual)
-2. **Caminho A — Compre o sistema pronto** → CTA `/produtos` (destaque visual, é o que gera renda passiva)
-3. **Caminho B — Construímos pra você** → CTA `/agencia` (B2B alto ticket)
+- 1 canonical por idioma usando `?lang=` ou path separado. Recomendo manter `?lang=` (mesma URL base, mais simples pra hub). `<link rel="alternate" hreflang>` aponta a versão oposta.
+- Atualizar `sitemap.xml` e `scripts/generate-sitemap.ts`.
 
-Sem misturar curso descontinuado, sem cluster editorial gigante. Conteúdo fica em `/conteudos` como apoio SEO mas não é destaque.
+## Etapas de execução
 
-## Execução em 4 fases
+1. **Auditoria Stripe** (eu rodo) — listar produtos/preços ativos pra você confirmar o que mantém.
+2. **Refatorar Produto 1** em página única bilingue:
+  - Extrair copy de `AIOperatorKitSales.tsx` pra `src/content/kits/aiOperatorKit.{pt,en}.ts`.
+  - Reescrever a página consumindo via `useTranslation`.
+  - Adicionar toggle PT/EN.
+  - Lógica de preço por idioma + `priceId` correspondente.
+  - **Tradução PT do Kit precisa ser escrita** — eu posso fazer um primeiro draft, você revisa.
+3. **Apagar `KitOperadorIA.tsx**` e criar redirect 301.
+4. **Atualizar `/produtos**` pra mostrar os 2 produtos como SKUs distintos (Produto 2 fica como "em breve" até existir).
+5. **Stripe**: criar/atualizar `lookup_keys` `aok_usd_27` e `aok_brl_147` (depende da auditoria).
+6. **SEO + sitemap** atualizados.
+7. **Produto 2** fica fora deste plano até você definir escopo (nome, conteúdo, preço).
 
-### Fase A — Limpeza (deletar curso)
-- Apagar 7 páginas + pasta `components/curso/`
-- Remover rotas correspondentes em `App.tsx`
-- Adicionar `<Navigate>` 301 das URLs antigas para `/produtos`
-- Atualizar Header/Footer/HeroSection (remover qualquer link pra módulos)
-- Atualizar sitemap
+## Pendências que preciso de você antes de implementar
 
-### Fase B — Kit PT
-- Criar `src/pages/KitOperadorIA.tsx` (clone PT do `AIOperatorKitSales`)
-- Adicionar rota `/produtos/kit-operador-ia`
-- Atualizar `ProdutosHub.tsx`: 2 cards (EN + PT), cada um com hreflang
-- Adicionar hreflang nas duas páginas
+1. **Confirmo a estratégia "1 produto bilingue agora, 2º produto depois"?** Ou quer que eu já estruture os 2 mesmo sem conteúdo do 2?j JUNTA os dois em umproduto so. podemos deixar esse ainda mais forte e completo. Pense.
+2. **Posso traduzir o conteúdo do AI Operator Kit pra PT** (draft pra você revisar), ou você prefere escrever? pode escrever 
+3. **Nome do Produto 2** quando existir — pra não conflitar com Produto 1. nao vamso pro produto dois ainda 
 
-### Fase C — Home reescrita
-- Refazer `Index.tsx` com 3 blocos focados (hero + caminho produtos + caminho agência)
-- Sem o conteúdo do curso espalhado
-- CTAs claros para `/produtos` e `/agencia`
-
-### Fase D — Polish
-- Sitemap atualizado
-- Robots.txt revisado
-- Atualizar memória do projeto (Kit deixa de ser "English only")
-
-## O que NÃO toco
-- Three.js / hero visual
-- Sistema de relatórios (`/relatorio/*`, `/admin/*`)
-- Stripe checkout
-- Briefing Alek
-- 9 posts de conteúdo (ficam onde estão)
-- Propostas/contratos individuais
-
-## Pergunta antes de começar
-
-Posso começar pela **Fase A (deletar curso)** agora? É a mudança mais agressiva — depois dela não tem volta sem reverter no Git. Você confirma que esses 7 arquivos podem morrer?
+Sem essas 3 respostas eu não começo a implementar — não quero refazer trabalho de novo.

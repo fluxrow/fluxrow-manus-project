@@ -1,36 +1,24 @@
 import { Link } from "react-router-dom";
 import SEO from "@/components/SEO";
 import BackToHomeButton from "@/components/ui/BackToHomeButton";
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowRight, Check, Globe } from "lucide-react";
 import { trackEvent } from "@/utils/tracking";
 
-const products = [
-  {
-    slug: "ai-operator-kit",
-    flag: "EN",
-    eyebrow: "AI Operator Kit · English",
-    title: "AI Operator Kit",
-    desc: "The 5-layer system to launch your AI operation in 7 days. Brain, Queue, Publisher, DM Engine, Revenue.",
-    href: "/produtos/ai-operator-kit",
-    cta: "Open the Kit",
-  },
-  {
-    slug: "kit-operador-ia",
-    flag: "PT",
-    eyebrow: "Kit Operador IA · Português",
-    title: "Kit Operador IA",
-    desc: "O sistema completo para instalar IA na sua operação em 7 dias. Versão em português, conteúdo entregue em inglês.",
-    href: "/produtos/kit-operador-ia",
-    cta: "Ver o Kit",
-  },
+const features = [
+  "5-layer system architecture (Brain → Queue → Publisher → DM → Revenue)",
+  "3 execution paths (Fast / Stable / Scale)",
+  "15 prompts prontos · ManyChat sequence · n8n templates",
+  "Operator Repository com 5 skill files (formato SKILL.md)",
+  "Launch checklists: Fast (2 dias), Stable (7 dias)",
+  "Revenue math + upgrade path (10/30/100 vendas)",
 ];
 
 const ProdutosHub = () => {
   return (
     <div className="min-h-screen bg-[#080807] text-white">
       <SEO
-        title="Produtos Fluxrow — sistemas para operar IA no seu negócio"
-        description="O AI Operator Kit em inglês e a versão Kit Operador IA em português. Sistemas prontos para transformar IA em operação que gera receita."
+        title="Produtos Fluxrow — AI Operator Kit (PT/EN)"
+        description="O AI Operator Kit: sistema de 5 camadas para operar IA em conteúdo, DMs e vendas. Disponível em português e inglês, preço por moeda."
         path="/produtos"
       />
       <BackToHomeButton />
@@ -41,127 +29,92 @@ const ProdutosHub = () => {
             Produtos
           </p>
           <h1 className="text-5xl md:text-6xl font-serif leading-tight mb-6">
-            Sistemas para operar IA no seu negócio.
+            Um sistema. Dois idiomas. Sua moeda.
           </h1>
           <p className="text-lg text-white/70 max-w-2xl">
-            Compre o sistema pronto e comece a operar essa semana. Escolha o idioma.
+            O AI Operator Kit em uma versão única, completa, disponível em português e inglês — com preço ajustado pra quem está no Brasil ou fora.
           </p>
         </header>
 
-        <section className="grid md:grid-cols-2 gap-6">
-          {products.map((p) => (
-            <Link
-              key={p.slug}
-              to={p.href}
-              className="group block border border-white/10 hover:border-white/30 transition-all p-8 rounded-sm bg-white/[0.02] hover:bg-white/[0.04]"
-            >
-              <div className="flex items-center justify-between mb-6">
-                <p className="text-xs uppercase tracking-[0.18em] text-white/50 font-mono">
-                  {p.eyebrow}
+        {/* Único card de produto */}
+        <section className="mb-16">
+          <article className="border border-white/10 hover:border-white/30 transition-all rounded-sm bg-white/[0.02] overflow-hidden">
+            <div className="grid md:grid-cols-[1.4fr_1fr]">
+              {/* Lado esquerdo — produto */}
+              <div className="p-8 md:p-10 border-b md:border-b-0 md:border-r border-white/10">
+                <div className="flex items-center gap-2 mb-6">
+                  <Globe className="w-3.5 h-3.5 text-white/40" />
+                  <p className="text-xs uppercase tracking-[0.2em] text-white/50 font-mono">
+                    AI Operator Kit · PT + EN
+                  </p>
+                </div>
+                <h2 className="text-3xl md:text-4xl font-serif mb-4">
+                  Build the AI system that runs your operation.
+                </h2>
+                <p className="text-white/65 mb-8 leading-relaxed">
+                  Brain, fila, publicador, engine de DM, receita. Não é curso — é um kit de campo pra abrir e rodar essa semana.
                 </p>
-                <span className="text-[10px] font-mono px-2 py-1 border border-white/15 text-white/60">
-                  {p.flag}
-                </span>
+
+                <ul className="space-y-2 text-sm text-white/75 mb-10">
+                  {features.map((f) => (
+                    <li key={f} className="flex gap-2">
+                      <Check className="w-4 h-4 text-white/50 shrink-0 mt-0.5" /> {f}
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="flex flex-wrap gap-3">
+                  <Link
+                    to="/produtos/ai-operator-kit?lang=pt"
+                    onClick={() => trackEvent("product_card_click", { product: "ai_operator_kit", lang: "pt" })}
+                    className="inline-flex items-center gap-2 px-5 py-3 bg-white text-[#080807] font-medium rounded-sm hover:bg-white/90 transition-colors text-sm"
+                  >
+                    Ver em Português · R$ 147 <ArrowRight className="w-4 h-4" />
+                  </Link>
+                  <Link
+                    to="/produtos/ai-operator-kit?lang=en"
+                    onClick={() => trackEvent("product_card_click", { product: "ai_operator_kit", lang: "en" })}
+                    className="inline-flex items-center gap-2 px-5 py-3 border border-white/20 text-white font-medium rounded-sm hover:border-white/40 transition-colors text-sm"
+                  >
+                    Read in English · $27 <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
               </div>
-              <h2 className="text-3xl font-serif mb-4 group-hover:text-white">
-                {p.title}
-              </h2>
-              <p className="text-white/65 mb-8 leading-relaxed">{p.desc}</p>
-              <span className="inline-flex items-center gap-2 text-sm font-mono text-white/80 group-hover:text-white">
-                {p.cta} <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </span>
-            </Link>
-          ))}
-        </section>
 
-        {/* Pricing */}
-        <section className="mt-24" aria-labelledby="pricing-title">
-          <div className="border-t border-white/10 pt-12 mb-10">
-            <p className="text-xs uppercase tracking-[0.2em] text-white/50 font-mono mb-3">
-              Investimento
-            </p>
-            <h2 id="pricing-title" className="text-3xl md:text-4xl font-serif">
-              Dois produtos, dois caminhos.
-            </h2>
-            <p className="text-white/60 mt-3 max-w-2xl">
-              Cada Kit é um produto distinto, com escopo próprio. Preço ajustado pela moeda do seu país.
-            </p>
-          </div>
+              {/* Lado direito — pricing */}
+              <div className="p-8 md:p-10 bg-white/[0.015]">
+                <p className="text-xs font-mono text-white/50 mb-4 uppercase tracking-wider">
+                  Investimento
+                </p>
 
-          <div className="grid md:grid-cols-2 gap-6">
-            <article className="border border-white/10 p-8 rounded-sm bg-white/[0.02]">
-              <header className="mb-6">
-                <p className="text-xs font-mono text-white/50 mb-2">AI Operator Kit · Global</p>
-                <div className="flex items-baseline gap-2 flex-wrap">
-                  <span className="text-5xl font-serif">$27</span>
-                  <span className="text-white/40 text-sm">USD</span>
-                  <span className="text-white/50 text-sm ml-2">≈ R$ 135 BRL</span>
+                <div className="space-y-6 mb-8">
+                  <div className="pb-6 border-b border-white/10">
+                    <p className="text-xs font-mono text-white/40 mb-1">Brasil · BRL</p>
+                    <p className="text-4xl font-serif">R$ 147</p>
+                    <p className="text-xs text-white/40 mt-1 font-mono">à vista · acesso imediato</p>
+                  </div>
+                  <div>
+                    <p className="text-xs font-mono text-white/40 mb-1">Global · USD</p>
+                    <p className="text-4xl font-serif">$27</p>
+                    <p className="text-xs text-white/40 mt-1 font-mono">one-time · instant access</p>
+                  </div>
                 </div>
-                <p className="text-xs text-white/40 mt-2 font-mono">one-time · entrega em inglês</p>
-              </header>
-              <ul className="space-y-2 text-sm text-white/75 mb-8">
-                {[
-                  "5-layer system architecture (Brain, Queue, Publisher, DM, Revenue)",
-                  "15 copy-ready prompts (EN)",
-                  "ManyChat DM sequence completa",
-                  "n8n workflow templates",
-                  "Launch checklists (Fast / Stable / Scale)",
-                  "Operator repository (SKILL.md format)",
-                ].map((f) => (
-                  <li key={f} className="flex gap-2">
-                    <Check className="w-4 h-4 text-white/50 shrink-0 mt-0.5" /> {f}
-                  </li>
-                ))}
-              </ul>
-              <Link
-                to="/produtos/ai-operator-kit"
-                onClick={() => trackEvent("purchase_intent", { product: "ai_operator_kit", price: 27, currency: "USD" })}
-                className="inline-flex items-center justify-center gap-2 w-full px-6 py-3 bg-[#c8f000] text-[#080807] font-medium rounded-sm hover:opacity-90 transition-opacity"
-              >
-                Get the Kit — $27 <ArrowRight className="w-4 h-4" />
-              </Link>
-            </article>
 
-            <article className="border border-white/10 p-8 rounded-sm bg-white/[0.02]">
-              <header className="mb-6">
-                <p className="text-xs font-mono text-white/50 mb-2">Kit Operador IA · Brasil</p>
-                <div className="flex items-baseline gap-2 flex-wrap">
-                  <span className="text-5xl font-serif">R$ 147</span>
-                  <span className="text-white/40 text-sm">BRL</span>
-                  <span className="text-white/50 text-sm ml-2">≈ $29 USD</span>
-                </div>
-                <p className="text-xs text-white/40 mt-2 font-mono">à vista · onboarding em português</p>
-              </header>
-              <ul className="space-y-2 text-sm text-white/75 mb-8">
-                {[
-                  "Arquitetura de 5 camadas adaptada ao mercado BR",
-                  "Prompts e playbooks traduzidos e contextualizados",
-                  "Onboarding ao vivo em português",
-                  "Suporte direto por WhatsApp",
-                  "Casos práticos de PMEs brasileiras",
-                  "Acesso vitalício + atualizações",
-                ].map((f) => (
-                  <li key={f} className="flex gap-2">
-                    <Check className="w-4 h-4 text-white/50 shrink-0 mt-0.5" /> {f}
-                  </li>
-                ))}
-              </ul>
-              <Link
-                to="/produtos/kit-operador-ia"
-                onClick={() => trackEvent("purchase_intent", { product: "kit_operador_ia", price: 147, currency: "BRL" })}
-                className="inline-flex items-center justify-center gap-2 w-full px-6 py-3 bg-white text-[#080807] font-medium rounded-sm hover:bg-white/90 transition-colors"
-              >
-                Quero o Kit em PT — R$ 147 <ArrowRight className="w-4 h-4" />
-              </Link>
-            </article>
-          </div>
+                <p className="text-xs text-white/40 font-mono leading-relaxed">
+                  Detectamos seu idioma automaticamente.<br />
+                  Você pode trocar PT/EN a qualquer momento.
+                </p>
+              </div>
+            </div>
+          </article>
 
-          <p className="text-xs text-white/40 mt-6 font-mono">
-            Garantia de 7 dias · Pagamento único · Acesso vitalício · Conversão USD→BRL aproximada (cotação do dia)
+          <p className="text-xs text-white/40 mt-6 font-mono text-center">
+            Garantia de 7 dias · Pagamento único · Acesso vitalício
           </p>
         </section>
 
-        <section className="mt-20 border-t border-white/10 pt-12">
+        {/* CTA agência */}
+        <section className="border-t border-white/10 pt-12">
           <h2 className="text-2xl font-serif mb-3">Precisa de algo sob medida?</h2>
           <p className="text-white/65 mb-6 max-w-2xl">
             Construímos sistemas, SaaS e automações para empresas. Implementação completa, suporte e operação contínua.
