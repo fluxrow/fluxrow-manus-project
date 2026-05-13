@@ -83,7 +83,7 @@ if (env === "staging") {
   ].join("\n");
   writeFileSync(resolve("public/sitemap.xml"), emptyXml);
   // Copia o template restritivo para robots.txt
-  const stagingRobots = require("fs").readFileSync(
+  const stagingRobots = readFileSync(
     resolve("public/robots.staging.txt"),
     "utf8",
   );
@@ -92,7 +92,7 @@ if (env === "staging") {
 } else {
   writeFileSync(resolve("public/sitemap.xml"), generateSitemap(entries));
   // Garante que o robots.txt em uso é o de produção
-  const prodRobots = require("fs").readFileSync(
+  const prodRobots = readFileSync(
     resolve("public/robots.production.txt"),
     "utf8",
   );
