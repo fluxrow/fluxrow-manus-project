@@ -39,7 +39,7 @@ const TermosDeUso = () => {
           <section>
             <h2 className="text-xl font-semibold text-white mb-3">2. Descrição dos Serviços</h2>
             <p className="mb-3">A Fluxrow é uma agência especializada em soluções digitais, oferecendo os seguintes serviços:</p>
-            <ul className="list-disc pl-6 space-y-2">
+            <ul className="list-disc pl-6 space-y-2 break-words">
               <li><strong className="text-white">Growth Marketing:</strong> estratégias de aquisição, retenção e crescimento baseadas em dados e performance.</li>
               <li><strong className="text-white">Automação e IA Generativa:</strong> implementação de fluxos automatizados, chatbots inteligentes e soluções com inteligência artificial para otimização de processos.</li>
               <li><strong className="text-white">Desenvolvimento Web:</strong> criação de sites, landing pages, sistemas web e aplicações digitais.</li>
