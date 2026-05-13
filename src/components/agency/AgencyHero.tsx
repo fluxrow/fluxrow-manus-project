@@ -78,16 +78,16 @@ const AgencyHero = () => {
       <div className="max-w-6xl hero-content relative z-10">
         {/* Dynamic Social Proof */}
         <div className="mb-8 flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-4 md:gap-8 text-sm px-4">
-          <div className="bg-gradient-to-r from-cyan-500/20 to-purple-500/20 border border-cyan-500/30 rounded-full px-4 py-3 whitespace-nowrap backdrop-blur-sm">
-            <span className="text-cyan-400 font-bold text-lg md:text-xl">+{counters.automations}</span>
+          <div className="bg-white/5 border border-white/15 rounded-full px-4 py-3 whitespace-nowrap backdrop-blur-sm">
+            <span className="text-white font-bold text-lg md:text-xl">+{counters.automations}</span>
             <span className="text-white/90 ml-2 text-sm">automações</span>
           </div>
-          <div className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-500/30 rounded-full px-4 py-3 whitespace-nowrap backdrop-blur-sm">
-            <span className="text-purple-400 font-bold text-lg md:text-xl">+{counters.leads}</span>
+          <div className="bg-white/5 border border-white/15 rounded-full px-4 py-3 whitespace-nowrap backdrop-blur-sm">
+            <span className="text-white font-bold text-lg md:text-xl">+{counters.leads}</span>
             <span className="text-white/90 ml-2 text-sm">leads</span>
           </div>
-          <div className="bg-gradient-to-r from-pink-500/20 to-yellow-500/20 border border-pink-500/30 rounded-full px-4 py-3 whitespace-nowrap backdrop-blur-sm">
-            <span className="text-pink-400 font-bold text-lg md:text-xl">+{counters.hours}</span>
+          <div className="bg-gradient-to-r from-pink-500/20 to-yellow-500/20 border border-white/15 rounded-full px-4 py-3 whitespace-nowrap backdrop-blur-sm">
+            <span className="text-white font-bold text-lg md:text-xl">+{counters.hours}</span>
             <span className="text-white/90 ml-2 text-sm">horas</span>
           </div>
         </div>
@@ -114,7 +114,7 @@ const AgencyHero = () => {
           
           <button 
             onClick={scrollToCases}
-            className="bg-transparent border-2 border-cyan-500 text-cyan-400 px-10 py-5 rounded-full font-semibold font-space-grotesk hover:bg-cyan-500/10 transition-all duration-300 group flex items-center"
+            className="bg-transparent border-2 border-white/15 text-white px-10 py-5 rounded-full font-semibold font-space-grotesk hover:bg-cyan-500/10 transition-all duration-300 group flex items-center"
           >
             <Play className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
             Ver Cases
@@ -124,7 +124,7 @@ const AgencyHero = () => {
 
       {/* Floating cursor indicator */}
       <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <div className="w-6 h-10 border-2 border-cyan-400 rounded-full relative">
+        <div className="w-6 h-10 border-2 border-white/15 rounded-full relative">
           <div className="w-1 h-3 bg-gradient-to-b from-cyan-400 to-transparent rounded-full absolute top-2 left-1/2 transform -translate-x-1/2 animate-pulse"></div>
         </div>
       </div>

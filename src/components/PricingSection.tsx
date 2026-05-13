@@ -63,7 +63,7 @@ const PricingSection = () => {
             
             {/* Course Features Preview */}
             <div className="grid grid-cols-2 gap-4 mt-6">
-              <div className="bg-gradient-to-r from-purple-900/20 to-blue-900/20 border border-purple-500/30 rounded-xl p-4">
+              <div className="bg-white/5 border border-white/15 rounded-xl p-4">
                 <div className="text-2xl font-bold gradient-text font-space-grotesk">6</div>
                 <div className="text-white/80 text-sm font-space-grotesk">Módulos Práticos</div>
               </div>
@@ -77,7 +77,7 @@ const PricingSection = () => {
           {/* Pricing Card */}
           <div className="pricing-card max-w-lg" data-aos="fade-left">
             <div className="pricing-header text-center mb-8">
-              <div className="bg-gradient-to-r from-pink-500/20 to-cyan-500/20 border border-pink-500/30 text-pink-300 px-4 py-2 rounded-full text-sm font-semibold font-space-grotesk inline-block mb-4">
+              <div className="bg-white/5 border border-white/15 text-white px-4 py-2 rounded-full text-sm font-semibold font-space-grotesk inline-block mb-4">
                 🚀 Oferta por tempo limitado
               </div>
               <h3 className="text-3xl font-bold mb-2 font-space-grotesk text-white">
@@ -136,7 +136,7 @@ const PricingSection = () => {
             </button>
             
             <div className="urgency-indicator text-center">
-              <p className="urgency-text font-space-grotesk text-pink-400 mb-2">
+              <p className="urgency-text font-space-grotesk text-white mb-2">
                 ⚡ Últimas 48 horas com este preço
               </p>
               <p className="text-white/70 text-sm font-space-grotesk">

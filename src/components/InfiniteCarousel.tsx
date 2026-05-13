@@ -16,7 +16,7 @@ const InfiniteCarousel = () => {
       type: "Automação",
       description: "Conecte milhares de apps sem escrever uma linha de código.",
       bgColor: "from-orange-500/20 to-orange-600/10",
-      borderColor: "border-orange-500/30",
+      borderColor: "border-white/15",
       badge: "5000+ Apps"
     },
     {
@@ -25,7 +25,7 @@ const InfiniteCarousel = () => {
       type: "Integração",
       description: "Automatize fluxos complexos com lógica visual e escalável.",
       bgColor: "from-blue-500/20 to-purple-600/10",
-      borderColor: "border-blue-500/30",
+      borderColor: "border-white/15",
       badge: "Visual Builder"
     },
     {
@@ -34,7 +34,7 @@ const InfiniteCarousel = () => {
       type: "Workflow",
       description: "Crie automações ilimitadas com IA, webhooks e APIs abertas.",
       bgColor: "from-pink-500/20 to-red-600/10",
-      borderColor: "border-pink-500/30",
+      borderColor: "border-white/15",
       badge: "Open Source"
     },
     {
@@ -43,7 +43,7 @@ const InfiniteCarousel = () => {
       type: "Assistente de IA",
       description: "Criação de conteúdo e fluxos complexos com linguagem natural.",
       bgColor: "from-indigo-500/20 to-blue-600/10",
-      borderColor: "border-indigo-500/30",
+      borderColor: "border-white/15",
       badge: "AI Advanced"
     },
     {
@@ -72,7 +72,7 @@ const InfiniteCarousel = () => {
   return (
     <section className="py-16 overflow-hidden bg-gradient-to-r from-black via-gray-900 to-black relative">
       <div className="absolute inset-0 opacity-20">
-        <div className="animate-pulse bg-gradient-to-r from-purple-500/10 via-pink-500/10 to-cyan-500/10 h-full"></div>
+        <div className="animate-pulse bg-white/5 h-full"></div>
       </div>
       
       <div className="relative">
@@ -117,7 +117,7 @@ const InfiniteCarousel = () => {
                           {item.badge}
                         </span>
                       </div>
-                      <span className="text-purple-400 text-xs md:text-sm font-space-grotesk block mb-2 md:mb-3 group-hover:text-purple-300 transition-colors">
+                      <span className="text-white text-xs md:text-sm font-space-grotesk block mb-2 md:mb-3 group-hover:text-white transition-colors">
                         {item.type}
                       </span>
                       <p className="text-white/90 text-xs md:text-sm font-space-grotesk leading-relaxed group-hover:text-white transition-colors line-clamp-3">

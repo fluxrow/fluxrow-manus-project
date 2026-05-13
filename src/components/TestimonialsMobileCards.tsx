@@ -133,7 +133,7 @@ function TestimonialCard({ testimonial }: { testimonial: TestimonialProfile }) {
               alt={testimonial.author}
               className="w-14 h-14 rounded-full object-cover transition-transform duration-300 group-hover:scale-110"
             />
-            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-500/20 to-pink-500/20 group-hover:opacity-100 opacity-0 transition-opacity duration-300"></div>
+            <div className="absolute inset-0 rounded-full bg-white/5 group-hover:opacity-100 opacity-0 transition-opacity duration-300"></div>
           </div>
 
           {/* Content */}
@@ -152,7 +152,7 @@ function TestimonialCard({ testimonial }: { testimonial: TestimonialProfile }) {
 
             {/* Author */}
             <div className="flex items-center gap-2">
-              <h4 className="font-semibold text-cyan-400 font-space-grotesk text-sm">
+              <h4 className="font-semibold text-white font-space-grotesk text-sm">
                 {testimonial.author}
               </h4>
               <span className="text-white/60 text-sm font-space-grotesk">
@@ -218,7 +218,7 @@ function TestimonialCard({ testimonial }: { testimonial: TestimonialProfile }) {
                   >
                     {testimonial.metrics.map((metric, index) => (
                       <div key={index} className="bg-white/5 p-3 rounded-lg text-center">
-                        <div className="text-cyan-400 font-bold text-lg font-space-grotesk">{metric.value}</div>
+                        <div className="text-white font-bold text-lg font-space-grotesk">{metric.value}</div>
                         <div className="text-white/70 text-xs font-space-grotesk">{metric.label}</div>
                       </div>
                     ))}
@@ -234,7 +234,7 @@ function TestimonialCard({ testimonial }: { testimonial: TestimonialProfile }) {
                     <div className="space-y-2">
                       {testimonial.keyActions.map((action, index) => (
                         <div key={index} className="flex items-center gap-3">
-                          <span className="text-cyan-400 text-sm">▶</span>
+                          <span className="text-white text-sm">▶</span>
                           <span className="text-white/80 text-sm font-space-grotesk">{action}</span>
                         </div>
                       ))}

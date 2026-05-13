@@ -385,15 +385,15 @@ const ContentAIScaleBusiness = () => {
           </div>
 
           <header className="text-center mb-14">
-            <div className="inline-block bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-500/30 rounded-full px-6 py-2 mb-6">
-              <span className="text-purple-400 font-semibold font-space-grotesk text-sm">
+            <div className="inline-block bg-white/5 border border-white/15 rounded-full px-6 py-2 mb-6">
+              <span className="text-white font-semibold font-space-grotesk text-sm">
                 STRATEGY GUIDE · ARTICLE 06
               </span>
             </div>
 
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold font-space-grotesk mb-6 leading-tight">
               AI to scale your business:{' '}
-              <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+              <span className="bg-white/5 bg-clip-text text-transparent">
                 a practical guide with prompts and frameworks
               </span>
             </h1>
@@ -410,26 +410,26 @@ const ContentAIScaleBusiness = () => {
             </p>
           </header>
 
-          <nav aria-label="Table of contents" className="glass-card mb-12 border border-purple-500/20">
-            <h2 className="text-sm uppercase tracking-wider text-purple-400 font-space-grotesk mb-3">
+          <nav aria-label="Table of contents" className="glass-card mb-12 border border-white/15">
+            <h2 className="text-sm uppercase tracking-wider text-white font-space-grotesk mb-3">
               Table of contents
             </h2>
             <ol className="space-y-1.5 text-gray-300 font-space-grotesk text-sm list-decimal list-inside">
-              <li><a href="#why-now" className="hover:text-purple-300">Why scale with AI now</a></li>
-              <li><a href="#frameworks" className="hover:text-purple-300">3 AI adoption frameworks</a></li>
-              <li><a href="#where-to-start" className="hover:text-purple-300">Where to start: the priority matrix</a></li>
-              <li><a href="#prompts" className="hover:text-purple-300">5 ready-to-use prompts</a></li>
-              <li><a href="#stack" className="hover:text-purple-300">Minimum AI stack for SMBs</a></li>
-              <li><a href="#mistakes" className="hover:text-purple-300">Common mistakes when adopting AI</a></li>
-              <li><a href="#metrics" className="hover:text-purple-300">How to measure AI ROI</a></li>
-              <li><a href="#seven-day-plan" className="hover:text-purple-300">7-day plan to get started</a></li>
-              <li><a href="#faq" className="hover:text-purple-300">Frequently asked questions</a></li>
+              <li><a href="#why-now" className="hover:text-white">Why scale with AI now</a></li>
+              <li><a href="#frameworks" className="hover:text-white">3 AI adoption frameworks</a></li>
+              <li><a href="#where-to-start" className="hover:text-white">Where to start: the priority matrix</a></li>
+              <li><a href="#prompts" className="hover:text-white">5 ready-to-use prompts</a></li>
+              <li><a href="#stack" className="hover:text-white">Minimum AI stack for SMBs</a></li>
+              <li><a href="#mistakes" className="hover:text-white">Common mistakes when adopting AI</a></li>
+              <li><a href="#metrics" className="hover:text-white">How to measure AI ROI</a></li>
+              <li><a href="#seven-day-plan" className="hover:text-white">7-day plan to get started</a></li>
+              <li><a href="#faq" className="hover:text-white">Frequently asked questions</a></li>
             </ol>
             <p className="text-xs text-gray-500 font-space-grotesk mt-3">
               Ler em português:{' '}
               <a
                 href="/conteudos/ia-escalar-negocio"
-                className="text-purple-300 hover:text-purple-200 underline"
+                className="text-white hover:text-purple-200 underline"
               >
                 versão em português →
               </a>
@@ -438,7 +438,7 @@ const ContentAIScaleBusiness = () => {
 
           <section id="why-now" className="glass-card mb-10 scroll-mt-24">
             <div className="flex items-center mb-4">
-              <Lightbulb className="w-7 h-7 text-purple-400 mr-3" />
+              <Lightbulb className="w-7 h-7 text-white mr-3" />
               <h2 className="text-2xl font-bold font-space-grotesk text-white">Why scale with AI now</h2>
             </div>
             <p className="text-gray-300 font-space-grotesk leading-relaxed mb-4">
@@ -460,7 +460,7 @@ const ContentAIScaleBusiness = () => {
 
           <section id="frameworks" className="glass-card mb-10 scroll-mt-24">
             <div className="flex items-center mb-4">
-              <Layers className="w-7 h-7 text-purple-400 mr-3" />
+              <Layers className="w-7 h-7 text-white mr-3" />
               <h2 className="text-2xl font-bold font-space-grotesk text-white">3 AI adoption frameworks</h2>
             </div>
             <div className="space-y-4">
@@ -490,7 +490,7 @@ const ContentAIScaleBusiness = () => {
 
           <section id="where-to-start" className="glass-card mb-10 scroll-mt-24">
             <div className="flex items-center mb-4">
-              <Target className="w-7 h-7 text-purple-400 mr-3" />
+              <Target className="w-7 h-7 text-white mr-3" />
               <h2 className="text-2xl font-bold font-space-grotesk text-white">Where to start: the priority matrix</h2>
             </div>
             <p className="text-gray-300 font-space-grotesk leading-relaxed mb-5">
@@ -520,7 +520,7 @@ const ContentAIScaleBusiness = () => {
 
           <section id="prompts" className="mb-12 scroll-mt-24">
             <div className="flex items-center mb-6">
-              <Wrench className="w-7 h-7 text-purple-400 mr-3" />
+              <Wrench className="w-7 h-7 text-white mr-3" />
               <h2 className="text-3xl font-bold font-space-grotesk text-white">5 ready-to-use prompts</h2>
             </div>
             <p className="text-gray-300 font-space-grotesk leading-relaxed mb-8">
@@ -551,7 +551,7 @@ const ContentAIScaleBusiness = () => {
                         <p className="text-gray-300 font-space-grotesk leading-relaxed mb-2">
                           {promptData.description}
                         </p>
-                        <p className="text-sm text-purple-300 font-space-grotesk">
+                        <p className="text-sm text-white font-space-grotesk">
                           <strong>When to use:</strong> {promptData.whenToUse}
                         </p>
                       </div>
@@ -560,7 +560,7 @@ const ContentAIScaleBusiness = () => {
                     <div className="bg-gradient-to-r from-gray-900/50 to-gray-800/50 border border-gray-700 rounded-2xl p-6 mb-6 relative">
                       <button
                         onClick={() => copyToClipboard(promptData.prompt, index)}
-                        className="absolute top-4 right-4 bg-gradient-to-r from-gray-700 to-gray-600 hover:from-gray-600 hover:to-gray-500 text-white p-2 rounded-lg transition-all duration-300"
+                        className="absolute top-4 right-4 bg-gradient-to-r from-gray-700 to-gray-600 hover:bg-white/90 text-white p-2 rounded-lg transition-all duration-300"
                         title="Copy prompt"
                         aria-label="Copy prompt"
                       >
@@ -592,7 +592,7 @@ const ContentAIScaleBusiness = () => {
 
                       <div>
                         <h4 className="text-base font-semibold font-space-grotesk text-white mb-3 flex items-center gap-2">
-                          <TrendingUp className="w-5 h-5 text-blue-400" />
+                          <TrendingUp className="w-5 h-5 text-white" />
                           Result potential
                         </h4>
                         <div className={`bg-gradient-to-r ${promptData.color} bg-opacity-20 border border-current border-opacity-30 rounded-xl p-4`}>
@@ -610,7 +610,7 @@ const ContentAIScaleBusiness = () => {
 
           <section id="stack" className="glass-card mb-10 scroll-mt-24">
             <div className="flex items-center mb-4">
-              <Wrench className="w-7 h-7 text-purple-400 mr-3" />
+              <Wrench className="w-7 h-7 text-white mr-3" />
               <h2 className="text-2xl font-bold font-space-grotesk text-white">Minimum AI stack for SMBs</h2>
             </div>
             <p className="text-gray-300 font-space-grotesk leading-relaxed mb-5">
@@ -635,15 +635,15 @@ const ContentAIScaleBusiness = () => {
                 <h3 className="text-white font-semibold font-space-grotesk mb-2">Execution layer (1)</h3>
                 <p className="text-gray-300 font-space-grotesk text-sm">
                   For agents operating inside code:{' '}
-                  <Link to="/conteudos/claude-code" className="text-purple-300 underline">Claude Code</Link>. To
+                  <Link to="/conteudos/claude-code" className="text-white underline">Claude Code</Link>. To
                   connect AI to systems:{' '}
-                  <Link to="/conteudos/mcp-claude" className="text-purple-300 underline">MCP</Link>.
+                  <Link to="/conteudos/mcp-claude" className="text-white underline">MCP</Link>.
                 </p>
               </div>
               <div className="bg-black/40 border border-gray-700 rounded-lg p-5">
                 <h3 className="text-white font-semibold font-space-grotesk mb-2">Procedural knowledge (1)</h3>
                 <p className="text-gray-300 font-space-grotesk text-sm">
-                  <Link to="/conteudos/claude-skills" className="text-purple-300 underline">Claude Skills</Link> to
+                  <Link to="/conteudos/claude-skills" className="text-white underline">Claude Skills</Link> to
                   package SOPs as bundles the agent loads on demand.
                 </p>
               </div>
@@ -652,7 +652,7 @@ const ContentAIScaleBusiness = () => {
 
           <section id="mistakes" className="glass-card mb-10 scroll-mt-24">
             <div className="flex items-center mb-4">
-              <AlertTriangle className="w-7 h-7 text-orange-400 mr-3" />
+              <AlertTriangle className="w-7 h-7 text-white mr-3" />
               <h2 className="text-2xl font-bold font-space-grotesk text-white">Common mistakes when adopting AI</h2>
             </div>
             <ul className="space-y-3 text-gray-300 font-space-grotesk">
@@ -667,7 +667,7 @@ const ContentAIScaleBusiness = () => {
 
           <section id="metrics" className="glass-card mb-10 scroll-mt-24">
             <div className="flex items-center mb-4">
-              <TrendingUp className="w-7 h-7 text-purple-400 mr-3" />
+              <TrendingUp className="w-7 h-7 text-white mr-3" />
               <h2 className="text-2xl font-bold font-space-grotesk text-white">How to measure AI ROI</h2>
             </div>
             <p className="text-gray-300 font-space-grotesk leading-relaxed mb-4">
@@ -695,7 +695,7 @@ const ContentAIScaleBusiness = () => {
 
           <section id="seven-day-plan" className="glass-card mb-10 scroll-mt-24">
             <div className="flex items-center mb-4">
-              <CalendarDays className="w-7 h-7 text-purple-400 mr-3" />
+              <CalendarDays className="w-7 h-7 text-white mr-3" />
               <h2 className="text-2xl font-bold font-space-grotesk text-white">
                 7-day plan to start applying AI in your business
               </h2>
@@ -712,14 +712,14 @@ const ContentAIScaleBusiness = () => {
                   className="bg-black/40 border border-gray-700 rounded-xl p-5 flex flex-col md:flex-row gap-4"
                 >
                   <div className="md:w-28 flex-shrink-0">
-                    <div className="inline-block bg-gradient-to-r from-purple-500 to-pink-500 text-white text-xs font-semibold font-space-grotesk px-3 py-1 rounded-full">
+                    <div className="inline-block bg-white/5 text-white text-xs font-semibold font-space-grotesk px-3 py-1 rounded-full">
                       {d.day}
                     </div>
                   </div>
                   <div className="flex-1">
                     <h3 className="text-white font-semibold font-space-grotesk mb-1">{d.title}</h3>
                     <p className="text-gray-300 font-space-grotesk text-sm mb-2 leading-relaxed">{d.task}</p>
-                    <p className="text-purple-300 font-space-grotesk text-xs">
+                    <p className="text-white font-space-grotesk text-xs">
                       <strong>Metric:</strong> {d.metric}
                     </p>
                   </div>
@@ -727,7 +727,7 @@ const ContentAIScaleBusiness = () => {
               ))}
             </ol>
 
-            <div className="mt-6 bg-purple-500/5 border border-purple-500/20 rounded-xl p-5">
+            <div className="mt-6 bg-purple-500/5 border border-white/15 rounded-xl p-5">
               <p className="text-gray-300 font-space-grotesk text-sm leading-relaxed">
                 <strong className="text-white">Plan rule:</strong> end every day with something that didn't exist
                 before (SOP, prompt, number, decision). If a day produces only "nice idea", you didn't comply.
@@ -737,7 +737,7 @@ const ContentAIScaleBusiness = () => {
 
           <section id="faq" className="glass-card mb-10 scroll-mt-24">
             <div className="flex items-center mb-4">
-              <HelpCircle className="w-7 h-7 text-purple-400 mr-3" />
+              <HelpCircle className="w-7 h-7 text-white mr-3" />
               <h2 className="text-2xl font-bold font-space-grotesk text-white">Frequently asked questions</h2>
             </div>
             <div className="space-y-5">
@@ -752,7 +752,7 @@ const ContentAIScaleBusiness = () => {
 
           <div
             id="cta-kit"
-            className="bg-gradient-to-r from-purple-900/30 to-pink-900/30 border border-purple-500/30 rounded-3xl p-8 md:p-10"
+            className="bg-white/5 border border-white/15 rounded-3xl p-8 md:p-10"
           >
             <LeadCaptureForm
               source="ia-escalar-en"
@@ -760,10 +760,10 @@ const ContentAIScaleBusiness = () => {
               redirectTo="/produtos/ai-operator-kit?lang=en"
               copy={enFormCopy}
             />
-            <div className="mt-6 pt-6 border-t border-purple-500/20 text-center">
+            <div className="mt-6 pt-6 border-t border-white/15 text-center">
               <Link
                 to="/conteudos"
-                className="inline-block text-purple-300 font-semibold font-space-grotesk text-sm hover:text-purple-200 transition-colors"
+                className="inline-block text-white font-semibold font-space-grotesk text-sm hover:text-purple-200 transition-colors"
               >
                 See more content →
               </Link>

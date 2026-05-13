@@ -109,7 +109,7 @@ const HeroSection = () => {
       <div className="max-w-5xl hero-content relative z-10">
         {/* Highlight Badge */}
         <div className="mb-6">
-          <span className="inline-block bg-gradient-to-r from-pink-500/20 to-cyan-500/20 border border-pink-500/30 text-pink-300 px-6 py-2 rounded-full text-sm font-semibold font-space-grotesk">
+          <span className="inline-block bg-white/5 border border-white/15 text-white px-6 py-2 rounded-full text-sm font-semibold font-space-grotesk">
             ⚡ Método comprovado para faturar R$5K em 30 dias
           </span>
         </div>
@@ -136,13 +136,13 @@ const HeroSection = () => {
           
           <a 
             href="/produtos/operator-curso"
-            className="bg-transparent border-2 border-cyan-500 text-cyan-400 px-8 py-4 rounded-full font-semibold font-space-grotesk hover:bg-cyan-500/10 transition-all duration-300"
+            className="bg-transparent border-2 border-white/15 text-white px-8 py-4 rounded-full font-semibold font-space-grotesk hover:bg-cyan-500/10 transition-all duration-300"
           >
             Ver Curso
           </a>
         </div>
         
-        <p className="cta-guarantee mt-6 mb-16 text-sm text-pink-400 font-space-grotesk">
+        <p className="cta-guarantee mt-6 mb-16 text-sm text-white font-space-grotesk">
           🎯 Garantia de 7 dias • Acesso vitalício • Suporte incluso
         </p>
       </div>

@@ -52,7 +52,7 @@ const DemoSection = () => {
                   className="w-full h-48 object-cover transition-transform duration-700 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
-                <div className="absolute top-4 right-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white text-xs px-3 py-1 rounded-full font-space-grotesk">
+                <div className="absolute top-4 right-4 bg-white/5 text-white text-xs px-3 py-1 rounded-full font-space-grotesk">
                   {demo.highlight}
                 </div>
               </div>

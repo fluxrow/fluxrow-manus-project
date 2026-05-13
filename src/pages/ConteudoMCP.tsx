@@ -76,14 +76,14 @@ const ConteudoMCP = () => {
         <article className="max-w-4xl mx-auto">
           <Link
             to="/conteudos"
-            className="inline-flex items-center text-cyan-400 hover:text-cyan-300 font-space-grotesk mb-6 transition-colors"
+            className="inline-flex items-center text-white hover:text-white font-space-grotesk mb-6 transition-colors"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
             Voltar para Conteúdos
           </Link>
 
           <header className="text-center mb-12">
-            <div className="bg-gradient-to-r from-pink-500 to-cyan-500 text-white px-4 py-2 rounded-full text-sm font-semibold font-space-grotesk inline-block mb-6">
+            <div className="bg-white/5 text-white px-4 py-2 rounded-full text-sm font-semibold font-space-grotesk inline-block mb-6">
               HUB CLAUDE · ARTIGO 02
             </div>
             <h1 className="text-4xl md:text-5xl font-bold font-space-grotesk mb-6">
@@ -100,25 +100,25 @@ const ConteudoMCP = () => {
             </p>
           </header>
 
-          <nav aria-label="Sumário" className="glass-card mb-10 border border-cyan-500/20">
-            <h2 className="text-sm uppercase tracking-wider text-cyan-400 font-space-grotesk mb-3">Sumário</h2>
+          <nav aria-label="Sumário" className="glass-card mb-10 border border-white/15">
+            <h2 className="text-sm uppercase tracking-wider text-white font-space-grotesk mb-3">Sumário</h2>
             <ol className="space-y-1.5 text-gray-300 font-space-grotesk text-sm list-decimal list-inside">
-              <li><a href="#problema" className="hover:text-cyan-300">O problema que MCP resolve</a></li>
-              <li><a href="#arquitetura" className="hover:text-cyan-300">Arquitetura: host, cliente e servidor</a></li>
-              <li><a href="#capacidades" className="hover:text-cyan-300">As três capacidades: resources, tools, prompts</a></li>
-              <li><a href="#transports" className="hover:text-cyan-300">Transports: stdio, HTTP e SSE</a></li>
-              <li><a href="#servidores" className="hover:text-cyan-300">Servidores MCP oficiais e populares</a></li>
-              <li><a href="#instalacao" className="hover:text-cyan-300">Como instalar no Claude e no Cursor</a></li>
-              <li><a href="#criar" className="hover:text-cyan-300">Criando seu próprio servidor</a></li>
-              <li><a href="#casos" className="hover:text-cyan-300">Casos de uso reais</a></li>
-              <li><a href="#seguranca" className="hover:text-cyan-300">Segurança e governança</a></li>
-              <li><a href="#faq" className="hover:text-cyan-300">Perguntas frequentes</a></li>
+              <li><a href="#problema" className="hover:text-white">O problema que MCP resolve</a></li>
+              <li><a href="#arquitetura" className="hover:text-white">Arquitetura: host, cliente e servidor</a></li>
+              <li><a href="#capacidades" className="hover:text-white">As três capacidades: resources, tools, prompts</a></li>
+              <li><a href="#transports" className="hover:text-white">Transports: stdio, HTTP e SSE</a></li>
+              <li><a href="#servidores" className="hover:text-white">Servidores MCP oficiais e populares</a></li>
+              <li><a href="#instalacao" className="hover:text-white">Como instalar no Claude e no Cursor</a></li>
+              <li><a href="#criar" className="hover:text-white">Criando seu próprio servidor</a></li>
+              <li><a href="#casos" className="hover:text-white">Casos de uso reais</a></li>
+              <li><a href="#seguranca" className="hover:text-white">Segurança e governança</a></li>
+              <li><a href="#faq" className="hover:text-white">Perguntas frequentes</a></li>
             </ol>
           </nav>
 
           <section id="problema" className="glass-card mb-8 scroll-mt-24">
             <div className="flex items-center mb-4">
-              <Plug className="w-7 h-7 text-cyan-400 mr-3" />
+              <Plug className="w-7 h-7 text-white mr-3" />
               <h2 className="text-2xl font-bold font-space-grotesk text-white">O problema que MCP resolve</h2>
             </div>
             <p className="text-gray-300 font-space-grotesk leading-relaxed mb-3">
@@ -135,7 +135,7 @@ const ConteudoMCP = () => {
 
           <section id="arquitetura" className="glass-card mb-8 scroll-mt-24">
             <div className="flex items-center mb-4">
-              <Layers className="w-7 h-7 text-cyan-400 mr-3" />
+              <Layers className="w-7 h-7 text-white mr-3" />
               <h2 className="text-2xl font-bold font-space-grotesk text-white">Arquitetura: host, cliente e servidor</h2>
             </div>
             <div className="grid md:grid-cols-3 gap-4 mb-5">
@@ -170,7 +170,7 @@ const ConteudoMCP = () => {
 
           <section id="capacidades" className="glass-card mb-8 scroll-mt-24">
             <div className="flex items-center mb-4">
-              <Code2 className="w-7 h-7 text-cyan-400 mr-3" />
+              <Code2 className="w-7 h-7 text-white mr-3" />
               <h2 className="text-2xl font-bold font-space-grotesk text-white">As três capacidades</h2>
             </div>
             <div className="space-y-4">
@@ -200,7 +200,7 @@ const ConteudoMCP = () => {
 
           <section id="transports" className="glass-card mb-8 scroll-mt-24">
             <div className="flex items-center mb-4">
-              <Workflow className="w-7 h-7 text-cyan-400 mr-3" />
+              <Workflow className="w-7 h-7 text-white mr-3" />
               <h2 className="text-2xl font-bold font-space-grotesk text-white">Transports: stdio, HTTP e SSE</h2>
             </div>
             <ul className="space-y-3 text-gray-300 font-space-grotesk text-sm">
@@ -212,7 +212,7 @@ const ConteudoMCP = () => {
 
           <section id="servidores" className="glass-card mb-8 scroll-mt-24">
             <div className="flex items-center mb-4">
-              <Server className="w-7 h-7 text-cyan-400 mr-3" />
+              <Server className="w-7 h-7 text-white mr-3" />
               <h2 className="text-2xl font-bold font-space-grotesk text-white">Servidores MCP oficiais e populares</h2>
             </div>
             <div className="grid md:grid-cols-2 gap-3 text-gray-300 font-space-grotesk text-sm">
@@ -237,11 +237,11 @@ const ConteudoMCP = () => {
 
           <section id="instalacao" className="glass-card mb-8 scroll-mt-24">
             <div className="flex items-center mb-4">
-              <Settings className="w-7 h-7 text-cyan-400 mr-3" />
+              <Settings className="w-7 h-7 text-white mr-3" />
               <h2 className="text-2xl font-bold font-space-grotesk text-white">Como instalar no Claude e no Cursor</h2>
             </div>
             <p className="text-gray-300 font-space-grotesk text-sm mb-3">Claude Desktop (macOS):</p>
-            <pre className="bg-black/40 border border-gray-700 rounded-lg p-5 text-cyan-300 font-mono text-sm overflow-x-auto mb-4">
+            <pre className="bg-black/40 border border-gray-700 rounded-lg p-5 text-white font-mono text-sm overflow-x-auto mb-4">
 {`// ~/Library/Application Support/Claude/claude_desktop_config.json
 {
   "mcpServers": {
@@ -258,7 +258,7 @@ const ConteudoMCP = () => {
 }`}
             </pre>
             <p className="text-gray-300 font-space-grotesk text-sm mb-3">Claude Code (no repo):</p>
-            <pre className="bg-black/40 border border-gray-700 rounded-lg p-5 text-cyan-300 font-mono text-sm overflow-x-auto">
+            <pre className="bg-black/40 border border-gray-700 rounded-lg p-5 text-white font-mono text-sm overflow-x-auto">
 {`claude mcp add github --command "npx" --args "-y,@modelcontextprotocol/server-github"
 # ou edite .mcp.json na raiz do repo`}
             </pre>
@@ -266,13 +266,13 @@ const ConteudoMCP = () => {
 
           <section id="criar" className="glass-card mb-8 scroll-mt-24">
             <div className="flex items-center mb-4">
-              <Code2 className="w-7 h-7 text-cyan-400 mr-3" />
+              <Code2 className="w-7 h-7 text-white mr-3" />
               <h2 className="text-2xl font-bold font-space-grotesk text-white">Criando seu próprio servidor</h2>
             </div>
             <p className="text-gray-300 font-space-grotesk text-sm mb-3">
               SDK em TypeScript, ~50 linhas para uma tool funcional:
             </p>
-            <pre className="bg-black/40 border border-gray-700 rounded-lg p-5 text-cyan-300 font-mono text-xs overflow-x-auto">
+            <pre className="bg-black/40 border border-gray-700 rounded-lg p-5 text-white font-mono text-xs overflow-x-auto">
 {`import { Server } from "@modelcontextprotocol/sdk/server/index.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 
@@ -303,7 +303,7 @@ await server.connect(new StdioServerTransport());`}
 
           <section id="casos" className="glass-card mb-8 scroll-mt-24">
             <div className="flex items-center mb-4">
-              <CheckCircle className="w-7 h-7 text-cyan-400 mr-3" />
+              <CheckCircle className="w-7 h-7 text-white mr-3" />
               <h2 className="text-2xl font-bold font-space-grotesk text-white">Casos de uso reais</h2>
             </div>
             <ul className="space-y-3 text-gray-300 font-space-grotesk">
@@ -325,13 +325,13 @@ await server.connect(new StdioServerTransport());`}
 
           <section id="seguranca" className="glass-card mb-8 scroll-mt-24">
             <div className="flex items-center mb-4">
-              <Shield className="w-7 h-7 text-cyan-400 mr-3" />
+              <Shield className="w-7 h-7 text-white mr-3" />
               <h2 className="text-2xl font-bold font-space-grotesk text-white">Segurança e governança</h2>
             </div>
             <ul className="space-y-2 text-gray-300 font-space-grotesk">
               <li>• Use servidores oficiais ou auditados — qualquer servidor recebe contexto sensível.</li>
               <li>• Configure escopos mínimos: read-only sempre que possível, tokens com permissão limitada.</li>
-              <li>• Revogue conexões que você não usa mais; auditoria periódica do <code className="text-cyan-300">mcpServers</code>.</li>
+              <li>• Revogue conexões que você não usa mais; auditoria periódica do <code className="text-white">mcpServers</code>.</li>
               <li>• Para servidores próprios, valide input com schema (Zod, Pydantic) e logue toda chamada.</li>
               <li>• Atenção a <em>prompt injection</em>: dados externos podem conter instruções maliciosas — sanitize.</li>
               <li>• Em ambiente corporativo, prefira servidores remotos centralizados com auth corporativa (OAuth).</li>
@@ -340,7 +340,7 @@ await server.connect(new StdioServerTransport());`}
 
           <section id="faq" className="glass-card mb-8 scroll-mt-24">
             <div className="flex items-center mb-4">
-              <HelpCircle className="w-7 h-7 text-cyan-400 mr-3" />
+              <HelpCircle className="w-7 h-7 text-white mr-3" />
               <h2 className="text-2xl font-bold font-space-grotesk text-white">Perguntas frequentes</h2>
             </div>
             <div className="space-y-5">
@@ -353,7 +353,7 @@ await server.connect(new StdioServerTransport());`}
             </div>
           </section>
 
-          <div className="bg-gradient-to-r from-pink-900/30 to-cyan-900/30 border border-pink-500/30 rounded-2xl p-8 text-center">
+          <div className="bg-white/5 border border-white/15 rounded-2xl p-8 text-center">
             <h3 className="text-2xl font-bold font-space-grotesk text-white mb-3">Continue no hub Claude</h3>
             <p className="text-gray-300 font-space-grotesk mb-6">
               Skills: como empacotar conhecimento procedural reutilizável que o Claude carrega sob demanda.
@@ -361,13 +361,13 @@ await server.connect(new StdioServerTransport());`}
             <div className="flex flex-wrap gap-3 justify-center">
               <Link
                 to="/conteudos/claude-skills"
-                className="inline-block bg-gradient-to-r from-pink-500 to-cyan-500 text-white font-semibold font-space-grotesk px-8 py-3 rounded-full hover:from-pink-600 hover:to-cyan-600 transition-all"
+                className="inline-block bg-white/5 text-white font-semibold font-space-grotesk px-8 py-3 rounded-full hover:bg-white/90 transition-all"
               >
                 Ler sobre Skills →
               </Link>
               <Link
                 to="/conteudos/claude-code"
-                className="inline-block border border-cyan-500/50 text-cyan-300 font-semibold font-space-grotesk px-8 py-3 rounded-full hover:bg-cyan-500/10 transition-all"
+                className="inline-block border border-white/15 text-white font-semibold font-space-grotesk px-8 py-3 rounded-full hover:bg-cyan-500/10 transition-all"
               >
                 Voltar ao Claude Code →
               </Link>

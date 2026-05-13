@@ -166,7 +166,7 @@ const ConteudoYouTubeMonetizacao = () => {
           {/* Tipos de conteúdo que vão sumir */}
           <div className="glass-card mb-12">
             <div className="flex items-center gap-3 mb-8">
-              <Target className="w-8 h-8 text-orange-400" />
+              <Target className="w-8 h-8 text-white" />
               <h2 className="text-3xl font-bold font-space-grotesk text-white">
                 Tipos de conteúdo que vão sumir do algoritmo
               </h2>
@@ -210,7 +210,7 @@ const ConteudoYouTubeMonetizacao = () => {
                     {estrategia.estrategia}
                   </p>
                   
-                  <div className="bg-black/30 rounded-lg p-4 border-l-4 border-cyan-400">
+                  <div className="bg-black/30 rounded-lg p-4 border-l-4 border-white/15">
                     <h4 className="text-white/85 font-semibold font-space-grotesk mb-2">Exemplo prático:</h4>
                     <p className="text-gray-300 font-space-grotesk text-sm whitespace-pre-line">
                       {estrategia.exemplo}
@@ -272,7 +272,7 @@ const ConteudoYouTubeMonetizacao = () => {
                     'Analise engajamento real vs. views'
                   ].map((item, index) => (
                     <label key={index} className="flex items-center gap-3 cursor-pointer">
-                      <input type="checkbox" className="w-5 h-5 rounded border-2 border-cyan-400 bg-transparent" />
+                      <input type="checkbox" className="w-5 h-5 rounded border-2 border-white/15 bg-transparent" />
                       <span className="text-gray-300 font-space-grotesk">{item}</span>
                     </label>
                   ))}
@@ -289,7 +289,7 @@ const ConteudoYouTubeMonetizacao = () => {
                     'Estabeleça cronograma sustentável'
                   ].map((item, index) => (
                     <label key={index} className="flex items-center gap-3 cursor-pointer">
-                      <input type="checkbox" className="w-5 h-5 rounded border-2 border-cyan-400 bg-transparent" />
+                      <input type="checkbox" className="w-5 h-5 rounded border-2 border-white/15 bg-transparent" />
                       <span className="text-gray-300 font-space-grotesk">{item}</span>
                     </label>
                   ))}

@@ -23,7 +23,7 @@ const FluxrowLogo: React.FC<FluxrowLogoProps> = ({
   return (
     <span
       className={cn(
-        'font-bold bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent',
+        'font-bold bg-white/5 bg-clip-text text-transparent',
         sizeClasses[size],
         className
       )}

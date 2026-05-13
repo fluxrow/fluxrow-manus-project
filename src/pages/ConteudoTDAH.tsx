@@ -401,7 +401,7 @@ Foque em sistemas que FUNCIONAM SOZINHOS, não que dependem da minha memória.`,
                       {prompt.explanation.split('\n\n').map((paragraph, i) => (
                         <div key={i}>
                           {paragraph.startsWith('**') ? (
-                            <div className="bg-black/30 border-l-4 border-cyan-400 pl-4 py-2">
+                            <div className="bg-black/30 border-l-4 border-white/15 pl-4 py-2">
                               <p className="font-semibold text-white/85">
                                 {paragraph.replace(/\*\*/g, '')}
                               </p>

@@ -303,15 +303,15 @@ const ConteudoIAEscalar = () => {
 
           {/* Header */}
           <header className="text-center mb-14">
-            <div className="inline-block bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-500/30 rounded-full px-6 py-2 mb-6">
-              <span className="text-purple-400 font-semibold font-space-grotesk text-sm">
+            <div className="inline-block bg-white/5 border border-white/15 rounded-full px-6 py-2 mb-6">
+              <span className="text-white font-semibold font-space-grotesk text-sm">
                 CONTEÚDO ESTRATÉGICO · ARTIGO 06
               </span>
             </div>
 
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold font-space-grotesk mb-6 leading-tight">
               IA para escalar negócios:{' '}
-              <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+              <span className="bg-white/5 bg-clip-text text-transparent">
                 guia prático com prompts e frameworks
               </span>
             </h1>
@@ -331,31 +331,31 @@ const ConteudoIAEscalar = () => {
           {/* TOC */}
           <nav
             aria-label="Sumário"
-            className="glass-card mb-12 border border-purple-500/20"
+            className="glass-card mb-12 border border-white/15"
           >
-            <h2 className="text-sm uppercase tracking-wider text-purple-400 font-space-grotesk mb-3">
+            <h2 className="text-sm uppercase tracking-wider text-white font-space-grotesk mb-3">
               Sumário
             </h2>
             <ol className="space-y-1.5 text-gray-300 font-space-grotesk text-sm list-decimal list-inside">
-              <li><a href="#por-que-agora" className="hover:text-purple-300">Por que escalar com IA agora</a></li>
-              <li><a href="#frameworks" className="hover:text-purple-300">3 frameworks de adoção de IA</a></li>
-              <li><a href="#onde-comecar" className="hover:text-purple-300">Onde começar: a matriz de prioridade</a></li>
-              <li><a href="#prompts" className="hover:text-purple-300">5 prompts prontos para escalar</a></li>
-              <li><a href="#stack" className="hover:text-purple-300">Stack mínimo de IA para PMEs</a></li>
-              <li><a href="#erros" className="hover:text-purple-300">Erros comuns ao adotar IA</a></li>
-              <li><a href="#metricas" className="hover:text-purple-300">Como medir ROI de IA</a></li>
-              <li><a href="#plano-7-dias" className="hover:text-purple-300">Plano de 7 dias para começar</a></li>
-              <li><a href="#faq" className="hover:text-purple-300">Perguntas frequentes</a></li>
+              <li><a href="#por-que-agora" className="hover:text-white">Por que escalar com IA agora</a></li>
+              <li><a href="#frameworks" className="hover:text-white">3 frameworks de adoção de IA</a></li>
+              <li><a href="#onde-comecar" className="hover:text-white">Onde começar: a matriz de prioridade</a></li>
+              <li><a href="#prompts" className="hover:text-white">5 prompts prontos para escalar</a></li>
+              <li><a href="#stack" className="hover:text-white">Stack mínimo de IA para PMEs</a></li>
+              <li><a href="#erros" className="hover:text-white">Erros comuns ao adotar IA</a></li>
+              <li><a href="#metricas" className="hover:text-white">Como medir ROI de IA</a></li>
+              <li><a href="#plano-7-dias" className="hover:text-white">Plano de 7 dias para começar</a></li>
+              <li><a href="#faq" className="hover:text-white">Perguntas frequentes</a></li>
             </ol>
             <p className="text-xs text-gray-500 font-space-grotesk mt-3">
-              Read in English: <a href="/content/ai-scale-business" className="text-purple-300 hover:text-purple-200 underline">English version →</a>
+              Read in English: <a href="/content/ai-scale-business" className="text-white hover:text-purple-200 underline">English version →</a>
             </p>
           </nav>
 
           {/* Por que agora */}
           <section id="por-que-agora" className="glass-card mb-10 scroll-mt-24">
             <div className="flex items-center mb-4">
-              <Lightbulb className="w-7 h-7 text-purple-400 mr-3" />
+              <Lightbulb className="w-7 h-7 text-white mr-3" />
               <h2 className="text-2xl font-bold font-space-grotesk text-white">Por que escalar com IA agora</h2>
             </div>
             <p className="text-gray-300 font-space-grotesk leading-relaxed mb-4">
@@ -378,7 +378,7 @@ const ConteudoIAEscalar = () => {
           {/* Frameworks */}
           <section id="frameworks" className="glass-card mb-10 scroll-mt-24">
             <div className="flex items-center mb-4">
-              <Layers className="w-7 h-7 text-purple-400 mr-3" />
+              <Layers className="w-7 h-7 text-white mr-3" />
               <h2 className="text-2xl font-bold font-space-grotesk text-white">3 frameworks de adoção de IA</h2>
             </div>
             <div className="space-y-4">
@@ -409,7 +409,7 @@ const ConteudoIAEscalar = () => {
           {/* Onde começar */}
           <section id="onde-comecar" className="glass-card mb-10 scroll-mt-24">
             <div className="flex items-center mb-4">
-              <Target className="w-7 h-7 text-purple-400 mr-3" />
+              <Target className="w-7 h-7 text-white mr-3" />
               <h2 className="text-2xl font-bold font-space-grotesk text-white">
                 Onde começar: a matriz de prioridade
               </h2>
@@ -442,7 +442,7 @@ const ConteudoIAEscalar = () => {
           {/* Prompts */}
           <section id="prompts" className="mb-12 scroll-mt-24">
             <div className="flex items-center mb-6">
-              <Wrench className="w-7 h-7 text-purple-400 mr-3" />
+              <Wrench className="w-7 h-7 text-white mr-3" />
               <h2 className="text-3xl font-bold font-space-grotesk text-white">5 prompts prontos para escalar</h2>
             </div>
             <p className="text-gray-300 font-space-grotesk leading-relaxed mb-8">
@@ -473,7 +473,7 @@ const ConteudoIAEscalar = () => {
                         <p className="text-gray-300 font-space-grotesk leading-relaxed mb-2">
                           {promptData.description}
                         </p>
-                        <p className="text-sm text-purple-300 font-space-grotesk">
+                        <p className="text-sm text-white font-space-grotesk">
                           <strong>Quando usar:</strong> {promptData.whenToUse}
                         </p>
                       </div>
@@ -482,7 +482,7 @@ const ConteudoIAEscalar = () => {
                     <div className="bg-gradient-to-r from-gray-900/50 to-gray-800/50 border border-gray-700 rounded-2xl p-6 mb-6 relative">
                       <button
                         onClick={() => copyToClipboard(promptData.prompt, index)}
-                        className="absolute top-4 right-4 bg-gradient-to-r from-gray-700 to-gray-600 hover:from-gray-600 hover:to-gray-500 text-white p-2 rounded-lg transition-all duration-300"
+                        className="absolute top-4 right-4 bg-gradient-to-r from-gray-700 to-gray-600 hover:bg-white/90 text-white p-2 rounded-lg transition-all duration-300"
                         title="Copiar prompt"
                         aria-label="Copiar prompt"
                       >
@@ -514,7 +514,7 @@ const ConteudoIAEscalar = () => {
 
                       <div>
                         <h4 className="text-base font-semibold font-space-grotesk text-white mb-3 flex items-center gap-2">
-                          <TrendingUp className="w-5 h-5 text-blue-400" />
+                          <TrendingUp className="w-5 h-5 text-white" />
                           Potencial de resultado
                         </h4>
                         <div className={`bg-gradient-to-r ${promptData.color} bg-opacity-20 border border-current border-opacity-30 rounded-xl p-4`}>
@@ -533,7 +533,7 @@ const ConteudoIAEscalar = () => {
           {/* Stack */}
           <section id="stack" className="glass-card mb-10 scroll-mt-24">
             <div className="flex items-center mb-4">
-              <Wrench className="w-7 h-7 text-purple-400 mr-3" />
+              <Wrench className="w-7 h-7 text-white mr-3" />
               <h2 className="text-2xl font-bold font-space-grotesk text-white">Stack mínimo de IA para PMEs</h2>
             </div>
             <p className="text-gray-300 font-space-grotesk leading-relaxed mb-5">
@@ -558,15 +558,15 @@ const ConteudoIAEscalar = () => {
                 <h3 className="text-white font-semibold font-space-grotesk mb-2">Camada de execução (1)</h3>
                 <p className="text-gray-300 font-space-grotesk text-sm">
                   Para agentes operando dentro do código:{' '}
-                  <Link to="/conteudos/claude-code" className="text-purple-300 underline">Claude Code</Link>. Para
+                  <Link to="/conteudos/claude-code" className="text-white underline">Claude Code</Link>. Para
                   conectar IA a sistemas:{' '}
-                  <Link to="/conteudos/mcp-claude" className="text-purple-300 underline">MCP</Link>.
+                  <Link to="/conteudos/mcp-claude" className="text-white underline">MCP</Link>.
                 </p>
               </div>
               <div className="bg-black/40 border border-gray-700 rounded-lg p-5">
                 <h3 className="text-white font-semibold font-space-grotesk mb-2">Conhecimento procedural (1)</h3>
                 <p className="text-gray-300 font-space-grotesk text-sm">
-                  <Link to="/conteudos/claude-skills" className="text-purple-300 underline">Claude Skills</Link> para
+                  <Link to="/conteudos/claude-skills" className="text-white underline">Claude Skills</Link> para
                   empacotar SOPs como pacotes que o agente carrega sob demanda.
                 </p>
               </div>
@@ -576,7 +576,7 @@ const ConteudoIAEscalar = () => {
           {/* Erros comuns */}
           <section id="erros" className="glass-card mb-10 scroll-mt-24">
             <div className="flex items-center mb-4">
-              <AlertTriangle className="w-7 h-7 text-orange-400 mr-3" />
+              <AlertTriangle className="w-7 h-7 text-white mr-3" />
               <h2 className="text-2xl font-bold font-space-grotesk text-white">Erros comuns ao adotar IA</h2>
             </div>
             <ul className="space-y-3 text-gray-300 font-space-grotesk">
@@ -592,7 +592,7 @@ const ConteudoIAEscalar = () => {
           {/* Métricas */}
           <section id="metricas" className="glass-card mb-10 scroll-mt-24">
             <div className="flex items-center mb-4">
-              <TrendingUp className="w-7 h-7 text-purple-400 mr-3" />
+              <TrendingUp className="w-7 h-7 text-white mr-3" />
               <h2 className="text-2xl font-bold font-space-grotesk text-white">Como medir ROI de IA</h2>
             </div>
             <p className="text-gray-300 font-space-grotesk leading-relaxed mb-4">
@@ -621,7 +621,7 @@ const ConteudoIAEscalar = () => {
           {/* Plano de 7 dias */}
           <section id="plano-7-dias" className="glass-card mb-10 scroll-mt-24">
             <div className="flex items-center mb-4">
-              <CalendarDays className="w-7 h-7 text-purple-400 mr-3" />
+              <CalendarDays className="w-7 h-7 text-white mr-3" />
               <h2 className="text-2xl font-bold font-space-grotesk text-white">
                 Plano de 7 dias para começar a aplicar IA no seu negócio
               </h2>
@@ -681,14 +681,14 @@ const ConteudoIAEscalar = () => {
                   className="bg-black/40 border border-gray-700 rounded-xl p-5 flex flex-col md:flex-row gap-4"
                 >
                   <div className="md:w-28 flex-shrink-0">
-                    <div className="inline-block bg-gradient-to-r from-purple-500 to-pink-500 text-white text-xs font-semibold font-space-grotesk px-3 py-1 rounded-full">
+                    <div className="inline-block bg-white/5 text-white text-xs font-semibold font-space-grotesk px-3 py-1 rounded-full">
                       {d.day}
                     </div>
                   </div>
                   <div className="flex-1">
                     <h3 className="text-white font-semibold font-space-grotesk mb-1">{d.title}</h3>
                     <p className="text-gray-300 font-space-grotesk text-sm mb-2 leading-relaxed">{d.task}</p>
-                    <p className="text-purple-300 font-space-grotesk text-xs">
+                    <p className="text-white font-space-grotesk text-xs">
                       <strong>Métrica:</strong> {d.metric}
                     </p>
                   </div>
@@ -696,7 +696,7 @@ const ConteudoIAEscalar = () => {
               ))}
             </ol>
 
-            <div className="mt-6 bg-purple-500/5 border border-purple-500/20 rounded-xl p-5">
+            <div className="mt-6 bg-purple-500/5 border border-white/15 rounded-xl p-5">
               <p className="text-gray-300 font-space-grotesk text-sm leading-relaxed">
                 <strong className="text-white">Regra do plano:</strong> termine cada dia com algo que existia antes
                 (SOP, prompt, número, decisão). Se um dia produzir só "ideia legal", você não cumpriu.
@@ -707,7 +707,7 @@ const ConteudoIAEscalar = () => {
           {/* FAQ */}
           <section id="faq" className="glass-card mb-10 scroll-mt-24">
             <div className="flex items-center mb-4">
-              <HelpCircle className="w-7 h-7 text-purple-400 mr-3" />
+              <HelpCircle className="w-7 h-7 text-white mr-3" />
               <h2 className="text-2xl font-bold font-space-grotesk text-white">Perguntas frequentes</h2>
             </div>
             <div className="space-y-5">
@@ -723,17 +723,17 @@ const ConteudoIAEscalar = () => {
           {/* Lead capture CTA */}
           <div
             id="cta-kit"
-            className="bg-gradient-to-r from-purple-900/30 to-pink-900/30 border border-purple-500/30 rounded-3xl p-8 md:p-10"
+            className="bg-white/5 border border-white/15 rounded-3xl p-8 md:p-10"
           >
             <LeadCaptureForm
               source="ia-escalar-pt"
               lang="pt"
               redirectTo="/produtos/ai-operator-kit?lang=pt"
             />
-            <div className="mt-6 pt-6 border-t border-purple-500/20 text-center">
+            <div className="mt-6 pt-6 border-t border-white/15 text-center">
               <Link
                 to="/conteudos"
-                className="inline-block text-purple-300 font-semibold font-space-grotesk text-sm hover:text-purple-200 transition-colors"
+                className="inline-block text-white font-semibold font-space-grotesk text-sm hover:text-purple-200 transition-colors"
               >
                 Ver mais conteúdos →
               </Link>
