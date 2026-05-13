@@ -125,7 +125,7 @@ const App = () => (
             {/* Hub de produtos + Kit bilingue */}
             <Route path="/produtos" element={<ProdutosHub />} />
             <Route path="/produtos/ai-operator-kit" element={<AIOperatorKitSales />} />
-            <Route path="/produtos/kit-operador-ia" element={<KitOperadorIA />} />
+            <Route path="/produtos/kit-operador-ia" element={<Navigate to="/produtos/ai-operator-kit?lang=pt" replace />} />
             <Route path="/checkout/return" element={<CheckoutReturn />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
