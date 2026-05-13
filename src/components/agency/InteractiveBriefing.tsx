@@ -214,14 +214,14 @@ Olá! Completei o briefing no site da Fluxrow e gostaria de conversar sobre como
                       onClick={() => handleOptionSelect(questions[currentStep].id, option.value)}
                       className={`w-full p-4 rounded-lg border-2 transition-all duration-300 text-left group ${
                         briefingData[questions[currentStep].id as keyof BriefingData] === option.value
-                          ? 'border-cyan-500 bg-cyan-500/10'
-                          : 'border-gray-700 hover:border-cyan-500/50 hover:bg-cyan-500/5'
+                          ? 'border-white/30 bg-white/10'
+                          : 'border-gray-700 hover:border-white/30/50 hover:bg-white/5'
                       }`}
                     >
                       <div className="flex items-center gap-4">
                         <span className="text-2xl">{option.icon}</span>
                         <div className="flex-1">
-                          <div className="font-semibold text-white group-hover:text-cyan-400 transition-colors">
+                          <div className="font-semibold text-white group-hover:text-white transition-colors">
                             {option.label}
                           </div>
                           <div className="text-sm text-white/80">
@@ -229,7 +229,7 @@ Olá! Completei o briefing no site da Fluxrow e gostaria de conversar sobre como
                           </div>
                         </div>
                         {briefingData[questions[currentStep].id as keyof BriefingData] === option.value && (
-                          <CheckCircle className="w-5 h-5 text-cyan-400" />
+                          <CheckCircle className="w-5 h-5 text-white" />
                         )}
                       </div>
                     </button>
@@ -247,7 +247,7 @@ Olá! Completei o briefing no site da Fluxrow e gostaria de conversar sobre como
                     value={briefingData.challenge}
                     onChange={(e) => setBriefingData(prev => ({ ...prev, challenge: e.target.value }))}
                     placeholder="Descreva seu principal obstáculo ou o que mais te preocupa no momento..."
-                    className="w-full p-4 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:border-cyan-500 focus:outline-none transition-colors"
+                    className="w-full p-4 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:border-white/30 focus:outline-none transition-colors"
                     rows={4}
                   />
                 </div>
@@ -261,7 +261,7 @@ Olá! Completei o briefing no site da Fluxrow e gostaria de conversar sobre como
                   className={`flex items-center gap-2 px-6 py-3 rounded-lg font-semibold transition-all duration-300 ${
                     currentStep === 0
                       ? 'text-white/60 cursor-not-allowed'
-                      : 'text-cyan-400 hover:bg-cyan-500/10'
+                      : 'text-white hover:bg-white/10'
                   }`}
                 >
                   <ChevronLeft className="w-5 h-5" />
@@ -283,7 +283,7 @@ Olá! Completei o briefing no site da Fluxrow e gostaria de conversar sobre como
                     className={`flex items-center gap-2 px-6 py-3 rounded-lg font-semibold transition-all duration-300 ${
                       !briefingData[questions[currentStep].id as keyof BriefingData]
                         ? 'text-white/60 cursor-not-allowed'
-                        : 'text-cyan-400 hover:bg-cyan-500/10'
+                        : 'text-white hover:bg-white/10'
                     }`}
                   >
                     Próxima
@@ -304,7 +304,7 @@ Olá! Completei o briefing no site da Fluxrow e gostaria de conversar sobre como
               </h3>
               
               <div className="bg-gray-800/50 rounded-lg p-6 mb-8 text-left max-w-2xl mx-auto">
-                <h4 className="font-semibold text-cyan-400 mb-4">Resumo das suas respostas:</h4>
+                <h4 className="font-semibold text-white mb-4">Resumo das suas respostas:</h4>
                 <div className="space-y-3 text-white/80">
                   <p><strong>Tipo de negócio:</strong> {briefingData.businessType}</p>
                   <p><strong>Objetivo principal:</strong> {briefingData.objective}</p>
