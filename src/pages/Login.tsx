@@ -65,7 +65,7 @@ export default function Login() {
 
         {state === "sent" ? (
           <div className="text-center space-y-4">
-            <CheckCircle2 className="w-14 h-14 text-emerald-400 mx-auto" />
+            <CheckCircle2 className="w-14 h-14 text-white mx-auto" />
             <h1 className="font-instrument-serif text-3xl">{t.sent}</h1>
             <p className="text-white/70 font-dm-mono text-sm">{t.sentBody}</p>
             <p className="text-white/40 font-dm-mono text-xs">{t.sentHint}</p>

@@ -72,7 +72,7 @@ function ExpandableCard({ item }: { item: ExpandableItem }) {
             </div>
 
             {item.subtitle && (
-              <p className="text-cyan-400 text-sm mb-2 font-space-grotesk">
+              <p className="text-white text-sm mb-2 font-space-grotesk">
                 {item.subtitle}
               </p>
             )}

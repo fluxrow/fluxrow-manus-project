@@ -135,7 +135,7 @@ const TermosDeUso = () => {
             </p>
             <div className="mt-3 p-4 border border-white/10 rounded-lg bg-white/5">
               <p><strong className="text-white">Fluxrow</strong></p>
-              <p>E-mail: <a href="mailto:contato@fluxrow.com" className="text-cyan-400 hover:underline">contato@fluxrow.com</a></p>
+              <p>E-mail: <a href="mailto:contato@fluxrow.com" className="text-white hover:underline">contato@fluxrow.com</a></p>
               <p>CNPJ: 61.260.831/0001-97</p>
               <p>Curitiba/PR — Brasil</p>
             </div>
@@ -146,8 +146,8 @@ const TermosDeUso = () => {
         <div className="mt-16 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-gray-500">
           <p>© {new Date().getFullYear()} Fluxrow. Todos os direitos reservados.</p>
           <div className="flex gap-6">
-            <Link to="/politica-de-privacidade" className="hover:text-cyan-400 transition-colors">Política de Privacidade</Link>
-            <Link to="/" className="hover:text-cyan-400 transition-colors">Página Inicial</Link>
+            <Link to="/politica-de-privacidade" className="hover:text-white transition-colors">Política de Privacidade</Link>
+            <Link to="/" className="hover:text-white transition-colors">Página Inicial</Link>
           </div>
         </div>
       </main>
