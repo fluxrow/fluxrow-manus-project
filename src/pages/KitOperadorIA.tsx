@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import SEO from "@/components/SEO";
 import BackToHomeButton from "@/components/ui/BackToHomeButton";
 import { ArrowRight, Languages } from "lucide-react";
+import { trackEvent } from "@/utils/tracking";
 
 const KitOperadorIA = () => {
   return (
@@ -75,6 +76,7 @@ const KitOperadorIA = () => {
         <div className="flex flex-col sm:flex-row gap-4">
           <Link
             to="/produtos/ai-operator-kit"
+            onClick={() => trackEvent("kit_cta_click", { source: "kit_pt", destination: "kit_en" })}
             className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-black font-medium rounded-sm hover:bg-white/90 transition-colors"
           >
             Acessar o Kit (EN) <ArrowRight className="w-4 h-4" />
@@ -83,6 +85,7 @@ const KitOperadorIA = () => {
             href="https://wa.me/5541992361868?text=Quero+saber+mais+sobre+o+Kit+Operador+IA"
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackEvent("whatsapp_click", { source: "kit_pt" })}
             className="inline-flex items-center justify-center gap-2 px-8 py-4 border border-white/20 text-white font-medium rounded-sm hover:border-white/40 transition-colors"
           >
             Falar no WhatsApp

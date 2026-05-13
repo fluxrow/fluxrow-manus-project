@@ -1,5 +1,6 @@
 import React from "react";
 import { motion, type Easing } from "framer-motion";
+import { Helmet } from "react-helmet-async";
 import SEO from "@/components/SEO";
 
 const LEMON_LINK = "[INSERT_LEMON_SQUEEZY_LINK]";
@@ -108,14 +109,19 @@ const AIOperatorKitSales = () => {
   return (
     <div className="min-h-screen" style={{ backgroundColor: "#080807", color: "#e5e5e0" }}>
       <SEO
-        title="AI Operator Kit — Sales Page | Fluxrow"
-        description="The AI Operator Kit sales page: system architecture, execution paths, prompts, templates, and launch checklists to run your content-to-revenue engine. $27 one-time."
-        path="/kit"
+        title="AI Operator Kit — install AI in your operation in 7 days"
+        description="The 5-layer AI Operator Kit: Brain, Queue, Publisher, DM Engine, Revenue. 15 prompts, ManyChat sequence, n8n templates, launch checklists. $27 one-time."
+        path="/produtos/ai-operator-kit"
         image="https://fluxrow.com/og-kit.jpg"
         imageAlt="AI Operator Starter Kit by Fluxrow"
         lang="en-US"
         locale="en_US"
       />
+      <Helmet>
+        <link rel="alternate" hrefLang="en" href="https://fluxrow.com/produtos/ai-operator-kit" />
+        <link rel="alternate" hrefLang="pt-BR" href="https://fluxrow.com/produtos/kit-operador-ia" />
+        <link rel="alternate" hrefLang="x-default" href="https://fluxrow.com/produtos/ai-operator-kit" />
+      </Helmet>
       {/* ── Hero ── */}
       <motion.section
         className="pt-24 pb-20 px-6"
