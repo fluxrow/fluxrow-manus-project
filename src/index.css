@@ -41,7 +41,11 @@
   --border: 0 0% 16%;
   --input: 0 0% 14%;
   --ring: 0 0% 80%;
-  --radius: 0.25rem;
+  --radius: 0.5rem;
+  /* Logo accent palette (cyan-400 / purple-400 / pink-400) */
+  --accent-from: #22d3ee;
+  --accent-via: #c084fc;
+  --accent-to: #f472b6;
   --sidebar-background: 240 5.9% 10%;
   --sidebar-foreground: 240 4.8% 95.9%;
   --sidebar-primary: 263 70% 50%;
