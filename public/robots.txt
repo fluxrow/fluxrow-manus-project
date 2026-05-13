@@ -17,7 +17,7 @@ Allow: /kit/
 Allow: /politica-de-privacidade
 Allow: /termos-de-uso
 
-# Bloqueio de rotas privadas / comerciais
+# Bloqueio de rotas privadas / comerciais / transacionais
 Disallow: /p/
 Disallow: /propostas
 Disallow: /propostas/
@@ -29,6 +29,13 @@ Disallow: /apresentacao-evolua-digital
 Disallow: /modulos
 Disallow: /modulos/
 Disallow: /materiais
+Disallow: /curso
+Disallow: /curso-ia-operator
+Disallow: /login
+Disallow: /unsubscribe
+Disallow: /checkout/
+Disallow: /produtos/operator-curso
+Disallow: /produtos/kit-operador-ia
 
 # =====================================================
 # CRAWLERS DE IA — controle individual
