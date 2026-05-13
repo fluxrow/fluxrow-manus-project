@@ -23,7 +23,8 @@ const SCAN_DIRS = [
   "pages",
 ];
 
-// Skip non-public surfaces and known-dead legacy files (not imported anywhere).
+// Skip non-public surfaces and known-dead legacy files (not imported anywhere
+// or used only in client proposals/internal dashboards).
 const SKIP_PATH_FRAGMENTS = [
   "/proposta",
   "/proposals",
@@ -31,12 +32,23 @@ const SKIP_PATH_FRAGMENTS = [
   "/admin",
   "/dashboard",
   "/teresopolis",
+  "/comunica",
+  "/evolua",
+  "/batavo",
+  "/ai-showcase",
+  "/clients/",
   "/test/",
   ".test.",
   ".spec.",
+  // Dead legacy components — not imported by any active route.
   "components/PricingSection.tsx",
   "components/SimpleAISection.tsx",
   "components/TestimonialsMobileCards.tsx",
+  "components/BenefitsMobileCards.tsx",
+  "components/DemoSection.tsx",
+  "components/HeroSection.tsx",
+  "components/InfiniteCarousel.tsx",
+  "components/FAQSection.tsx",
   "components/agency/AgencyHero.tsx",
   "components/ui/DownloadPdfButton.tsx",
 ];
