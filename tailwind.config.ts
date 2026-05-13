@@ -21,6 +21,9 @@ export default {
 		extend: {
 			fontFamily: {
 				'space-grotesk': ['Space Grotesk', 'sans-serif'],
+				sans: ['Space Grotesk', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+				serif: ['Instrument Serif', 'ui-serif', 'Georgia', 'serif'],
+				mono: ['DM Mono', 'ui-monospace', 'Menlo', 'monospace'],
 			},
 			backgroundImage: {
 				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

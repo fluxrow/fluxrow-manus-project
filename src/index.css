@@ -13,37 +13,35 @@
   font-display: swap;
 }
 
-/* Modern CSS Variables */
+/* Modern CSS Variables — Fluxrow elegant dark identity */
 :root {
-  --bg-primary: hsl(0, 0%, 6%);
+  --bg-primary: hsl(40, 8%, 3%);
   --text-primary: hsl(0, 0%, 100%);
-  --accent-magenta: hsl(312, 100%, 50%);
-  --accent-blue: hsl(180, 100%, 50%);
-  --text-secondary: hsl(0, 0%, 63%);
-  --card-bg: hsla(0, 0%, 100%, 0.05);
+  --text-secondary: hsl(0, 0%, 65%);
+  --card-bg: hsla(0, 0%, 100%, 0.02);
   --border-color: hsla(0, 0%, 100%, 0.1);
-  
-  /* Shadcn variables - Dark theme as default */
-  --background: 0 0% 6%;
+
+  /* Shadcn tokens — neutral, monochrome, no neon */
+  --background: 40 8% 3%;
   --foreground: 0 0% 100%;
-  --card: 0 0% 6%;
+  --card: 40 8% 4%;
   --card-foreground: 0 0% 100%;
-  --popover: 0 0% 6%;
+  --popover: 40 8% 4%;
   --popover-foreground: 0 0% 100%;
-  --primary: 263 70% 50%;
-  --primary-foreground: 0 0% 100%;
-  --secondary: 215 28% 17%;
+  --primary: 0 0% 100%;
+  --primary-foreground: 40 8% 3%;
+  --secondary: 0 0% 12%;
   --secondary-foreground: 0 0% 100%;
-  --muted: 215 28% 17%;
-  --muted-foreground: 217 11% 65%;
-  --accent: 215 28% 17%;
+  --muted: 0 0% 10%;
+  --muted-foreground: 0 0% 65%;
+  --accent: 0 0% 14%;
   --accent-foreground: 0 0% 100%;
-  --destructive: 0 63% 31%;
+  --destructive: 0 63% 41%;
   --destructive-foreground: 0 0% 100%;
-  --border: 215 28% 17%;
-  --input: 215 28% 17%;
-  --ring: 263 70% 50%;
-  --radius: 0.5rem;
+  --border: 0 0% 16%;
+  --input: 0 0% 14%;
+  --ring: 0 0% 80%;
+  --radius: 0.25rem;
   --sidebar-background: 240 5.9% 10%;
   --sidebar-foreground: 240 4.8% 95.9%;
   --sidebar-primary: 263 70% 50%;
