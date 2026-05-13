@@ -47,16 +47,16 @@ export default function CheckoutReturn() {
             </p>
             <div className="pt-4 flex flex-col sm:flex-row gap-3 justify-center">
               <Link
-                to={`/produtos/ai-operator-kit?lang=${lang}`}
-                className="px-6 py-3 border border-white/20 hover:border-white/40 transition rounded-md font-dm-mono text-sm"
+                to={`/login?lang=${lang}`}
+                className="px-6 py-3 bg-white text-black transition rounded-md font-dm-mono text-sm"
               >
-                {t.home}
+                {lang === "pt" ? "Já recebi o email — entrar" : "Got the email — sign in"}
               </Link>
               <a
                 href={`https://wa.me/5541992361868?text=${encodeURIComponent(t.waMsg)}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-6 py-3 bg-emerald-500 hover:bg-emerald-400 text-black transition rounded-md font-dm-mono text-sm"
+                className="px-6 py-3 border border-white/20 hover:border-white/40 transition rounded-md font-dm-mono text-sm"
               >
                 {t.wa}
               </a>
