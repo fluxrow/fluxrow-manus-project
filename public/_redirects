@@ -1,3 +1,6 @@
+/sitemap.xml https://lpuybtjctiffqlabjszc.supabase.co/functions/v1/sitemap 200
+/blog/rss.xml https://lpuybtjctiffqlabjszc.supabase.co/functions/v1/blog-rss 200
+/blog/rss-en.xml https://lpuybtjctiffqlabjszc.supabase.co/functions/v1/blog-rss?lang=en 200
 /kit /kit/index.html 200
 /kit/ /kit/index.html 200
 /kit/content /kit/content/index.html 200

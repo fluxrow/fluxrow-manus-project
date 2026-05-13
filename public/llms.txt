@@ -1,29 +1,40 @@
 # Fluxrow
 
-> Creative intelligence agency building AI-powered websites, automations, and operator systems for businesses.
+> Creative intelligence agency building AI-powered websites, automations, and operator systems for businesses. Daily AI news in PT and EN.
 
-Fluxrow combines design, engineering, and AI to ship production systems: marketing sites, conversational agents, internal dashboards, and the AI Operator Kit (English-language playbook for solo operators).
+Fluxrow combines design, engineering, and AI to ship production systems: marketing sites, conversational agents, internal dashboards, and the AI Operator Kit (bilingual playbook for solo operators). The Fluxrow blog publishes a new article every day on AI, Lovable, Claude, and automation.
 
 ## Pages
 
 - [Home](/): Agency overview, services, cases, and process.
+- [Agência](/agencia): Services, methodology, and engagement.
+- [Produtos](/produtos): Product hub.
+- [AI Operator Kit](/produtos/ai-operator-kit): Bilingual practitioner kit (PT + EN).
+- [Conteúdos](/conteudos): Long-form guides on AI, Lovable, Claude, prompts, automation.
+- [Blog](/blog): Daily AI news, analysis and tutorials (PT). EN version at /blog?lang=en.
 - [Contato](/contato): Contact form and direct channels.
-- [Curso](/curso): Course landing page.
-- [Conteúdos](/conteudos): Index of long-form content and guides.
-- [AI Operator Kit](/kit): Sales page for the AI Operator Kit (English).
-- [Kit Content](/kit/content): Kit reader for buyers.
 - [Política de Privacidade](/politica-de-privacidade): LGPD privacy policy.
 - [Termos de Uso](/termos-de-uso): Terms of service.
 
 ## Conteúdos
 
+- [Claude Code](/conteudos/claude-code): Working guide to Claude Code, agents and CLI workflows.
+- [Claude Skills](/conteudos/claude-skills): Building, packaging, and shipping Claude Skills.
+- [MCP com Claude](/conteudos/mcp-claude): Model Context Protocol explained for builders.
+- [IA para escalar negócio](/conteudos/ia-escalar-negocio): How to scale a business with AI.
+- [IA para marketing](/conteudos/produto-sugerido-ia): Using AI for product recommendations and marketing.
 - [Prompts de economia](/conteudos/prompts-economia): Prompt library to cut AI costs.
-- [Produto sugerido por IA](/conteudos/produto-sugerido-ia): Using AI for product recommendations.
 - [Retrato viral com IA](/conteudos/retrato-viral-ia): Viral portrait generation workflow.
 - [IA e TDAH](/conteudos/ia-tdah-organizacao): AI workflows for ADHD organization.
 - [YouTube + monetização com IA](/conteudos/youtube-monetizacao-ia): Monetizing YouTube with AI.
-- [IA para escalar negócio](/conteudos/ia-escalar-negocio): Scaling a business with AI.
+
+## Blog feeds
+
+- [Blog index PT](/blog): Daily AI articles in Portuguese.
+- [Blog index EN](/blog?lang=en): Daily AI articles in English.
+- [RSS PT](/blog/rss.xml): RSS feed (Portuguese).
+- [RSS EN](/blog/rss-en.xml): RSS feed (English).
 
 ## Optional
 
-- [Sitemap](/sitemap.xml): Machine-readable list of indexable URLs.
+- [Sitemap](/sitemap.xml): Machine-readable list of indexable URLs (includes blog posts dynamically).

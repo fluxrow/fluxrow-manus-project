@@ -4,10 +4,14 @@
 
 User-agent: *
 Allow: /$
+Allow: /agencia
+Allow: /produtos
+Allow: /produtos/
 Allow: /contato
 Allow: /conteudos
 Allow: /conteudos/
-Allow: /curso
+Allow: /blog
+Allow: /blog/
 Allow: /kit
 Allow: /kit/
 Allow: /politica-de-privacidade
