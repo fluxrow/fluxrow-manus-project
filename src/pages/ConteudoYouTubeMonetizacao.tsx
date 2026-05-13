@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import Header from '../components/Header';
+import SEO from '../components/SEO';
+import { buildArticleSchema } from '../lib/articleSchema';
 import { Copy, Check, Youtube, AlertTriangle, TrendingDown, TrendingUp, Target, Lightbulb } from 'lucide-react';
 
 const ConteudoYouTubeMonetizacao = () => {
