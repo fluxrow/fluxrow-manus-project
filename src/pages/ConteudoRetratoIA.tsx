@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import Header from '../components/Header';
+import SEO from '../components/SEO';
+import { buildArticleSchema } from '../lib/articleSchema';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Camera, Sparkles, Target, CheckCircle, AlertTriangle, Copy, Check, Brain, Eye, Zap, Star, Lightbulb, DollarSign, TrendingUp } from 'lucide-react';
 
