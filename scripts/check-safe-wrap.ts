@@ -20,9 +20,22 @@ import { readdirSync, readFileSync, statSync, mkdirSync, writeFileSync } from "n
 import { join, relative } from "node:path";
 
 const ROOT = process.cwd();
-const SCAN_DIRS = ["src"];
-const EXTENSIONS = [".ts", ".tsx", ".css", ".html"];
-const IGNORE_DIRS = new Set(["node_modules", "dist", ".git", ".lovable"]);
+// Directories to scan recursively. `components` is included for projects that
+// hoist UI to the root; missing dirs are silently skipped.
+const SCAN_DIRS = ["src", "public", "components"];
+// Also scan loose files at the repo root (index.html, *.css, etc.).
+const SCAN_ROOT_FILES = true;
+const EXTENSIONS = [".ts", ".tsx", ".js", ".jsx", ".css", ".html", ".mdx"];
+const IGNORE_DIRS = new Set([
+  "node_modules",
+  "dist",
+  "build",
+  ".git",
+  ".lovable",
+  ".next",
+  "coverage",
+  "reports",
+]);
 
 // Files exempt from the rule (e.g., the utility definition itself).
 const EXEMPT_FILES = new Set<string>([
