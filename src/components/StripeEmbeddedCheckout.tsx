@@ -10,6 +10,7 @@ interface StripeEmbeddedCheckoutProps {
   returnUrl?: string;
   title?: string;
   subtitle?: string;
+  lang?: 'pt' | 'en';
 }
 
 export function StripeEmbeddedCheckout({
@@ -20,6 +21,7 @@ export function StripeEmbeddedCheckout({
   returnUrl,
   title = "Finalizar compra",
   subtitle,
+  lang,
 }: StripeEmbeddedCheckoutProps) {
   const fetchClientSecret = async (): Promise<string> => {
     const { data, error } = await supabase.functions.invoke("create-checkout", {
@@ -28,6 +30,7 @@ export function StripeEmbeddedCheckout({
         quantity,
         customerEmail,
         userId,
+        lang,
         returnUrl: returnUrl || `${window.location.origin}/checkout/return?session_id={CHECKOUT_SESSION_ID}`,
         environment: getStripeEnvironment(),
       },
