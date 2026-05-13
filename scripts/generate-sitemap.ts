@@ -19,6 +19,7 @@ const today = new Date().toISOString().split("T")[0];
 const entries: SitemapEntry[] = [
   // Core
   { path: "/", changefreq: "weekly", priority: "1.0", lastmod: today },
+  { path: "/agencia", changefreq: "weekly", priority: "0.9" },
   { path: "/contato", changefreq: "monthly", priority: "0.8" },
 
   // Produtos

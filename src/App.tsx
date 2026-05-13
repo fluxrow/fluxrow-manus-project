@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import React, { Suspense } from "react";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
+const Agencia = React.lazy(() => import("./pages/Agencia"));
 
 // Lazy-loaded routes for code splitting
 const Conteudos = React.lazy(() => import("./pages/Conteudos"));
@@ -69,7 +70,7 @@ const App = () => (
         <Suspense fallback={<LazyFallback />}>
           <Routes>
             <Route path="/" element={<Index />} />
-            <Route path="/agencia" element={<Navigate to="/" replace />} />
+            <Route path="/agencia" element={<Agencia />} />
             {/* Curso descontinuado — redirect 301 para /produtos */}
             <Route path="/curso" element={<Navigate to="/produtos" replace />} />
             <Route path="/modulos" element={<Navigate to="/produtos" replace />} />
