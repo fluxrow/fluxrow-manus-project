@@ -21,11 +21,11 @@ const entries: SitemapEntry[] = [
   { path: "/", changefreq: "weekly", priority: "1.0", lastmod: today },
   { path: "/contato", changefreq: "monthly", priority: "0.8" },
 
-  // Produtos (hub + páginas)
+  // Produtos
   { path: "/produtos", changefreq: "weekly", priority: "0.9" },
-  { path: "/kit", changefreq: "weekly", priority: "0.9" },
-  { path: "/kit/content", changefreq: "monthly", priority: "0.7" },
-  { path: "/curso-ia-operator", changefreq: "weekly", priority: "0.9" },
+  { path: "/produtos/ai-operator-kit", changefreq: "weekly", priority: "0.9" },
+  { path: "/produtos/kit-operador-ia", changefreq: "weekly", priority: "0.9" },
+  { path: "/kit/content", changefreq: "monthly", priority: "0.6" },
 
   // Editorial hub + posts
   { path: "/conteudos", changefreq: "weekly", priority: "0.8" },

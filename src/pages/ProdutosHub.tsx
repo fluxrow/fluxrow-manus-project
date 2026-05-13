@@ -6,19 +6,21 @@ import { ArrowRight } from "lucide-react";
 const products = [
   {
     slug: "ai-operator-kit",
-    eyebrow: "Starter Kit · English",
+    flag: "EN",
+    eyebrow: "AI Operator Kit · English",
     title: "AI Operator Kit",
     desc: "The 5-layer system to launch your AI operation in 7 days. Brain, Queue, Publisher, DM Engine, Revenue.",
     href: "/produtos/ai-operator-kit",
     cta: "Open the Kit",
   },
   {
-    slug: "operator-curso",
-    eyebrow: "Curso · Português",
-    title: "Curso IA Operator para Empresários",
-    desc: "Como instalar IA no seu negócio sem virar engenheiro. Stack mínimo viável e automações que geram caixa.",
-    href: "/produtos/operator-curso",
-    cta: "Ver o curso",
+    slug: "kit-operador-ia",
+    flag: "PT",
+    eyebrow: "Kit Operador IA · Português",
+    title: "Kit Operador IA",
+    desc: "O sistema completo para instalar IA na sua operação em 7 dias. Versão em português, conteúdo entregue em inglês.",
+    href: "/produtos/kit-operador-ia",
+    cta: "Ver o Kit",
   },
 ];
 
@@ -26,8 +28,8 @@ const ProdutosHub = () => {
   return (
     <div className="min-h-screen bg-[#080807] text-white">
       <SEO
-        title="Produtos Fluxrow — IA Operator Kit e Curso"
-        description="Os produtos da Fluxrow para operar IA no seu negócio: o AI Operator Kit (EN) e o Curso IA Operator para empresários (PT)."
+        title="Produtos Fluxrow — sistemas para operar IA no seu negócio"
+        description="O AI Operator Kit em inglês e a versão Kit Operador IA em português. Sistemas prontos para transformar IA em operação que gera receita."
         path="/produtos"
       />
       <BackToHomeButton />
@@ -41,7 +43,7 @@ const ProdutosHub = () => {
             Sistemas para operar IA no seu negócio.
           </h1>
           <p className="text-lg text-white/70 max-w-2xl">
-            Dois caminhos práticos: o Kit para quem quer montar a operação sozinho, e o Curso para quem quer instalar IA na própria empresa.
+            Compre o sistema pronto e comece a operar essa semana. Escolha o idioma.
           </p>
         </header>
 
@@ -52,9 +54,14 @@ const ProdutosHub = () => {
               to={p.href}
               className="group block border border-white/10 hover:border-white/30 transition-all p-8 rounded-sm bg-white/[0.02] hover:bg-white/[0.04]"
             >
-              <p className="text-xs uppercase tracking-[0.18em] text-white/50 font-mono mb-6">
-                {p.eyebrow}
-              </p>
+              <div className="flex items-center justify-between mb-6">
+                <p className="text-xs uppercase tracking-[0.18em] text-white/50 font-mono">
+                  {p.eyebrow}
+                </p>
+                <span className="text-[10px] font-mono px-2 py-1 border border-white/15 text-white/60">
+                  {p.flag}
+                </span>
+              </div>
               <h2 className="text-3xl font-serif mb-4 group-hover:text-white">
                 {p.title}
               </h2>
@@ -64,6 +71,19 @@ const ProdutosHub = () => {
               </span>
             </Link>
           ))}
+        </section>
+
+        <section className="mt-24 border-t border-white/10 pt-12">
+          <h2 className="text-2xl font-serif mb-3">Precisa de algo sob medida?</h2>
+          <p className="text-white/65 mb-6 max-w-2xl">
+            Construímos sistemas, SaaS e automações para empresas. Implementação completa, suporte e operação contínua.
+          </p>
+          <Link
+            to="/contato"
+            className="inline-flex items-center gap-2 text-sm font-mono text-white/80 hover:text-white"
+          >
+            Falar com a Fluxrow <ArrowRight className="w-4 h-4" />
+          </Link>
         </section>
       </main>
     </div>

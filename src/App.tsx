@@ -9,9 +9,6 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 
 // Lazy-loaded routes for code splitting
-const Curso = React.lazy(() => import("./pages/Curso"));
-const Modulos = React.lazy(() => import("./pages/Modulos"));
-const Materiais = React.lazy(() => import("./pages/Materiais"));
 const Conteudos = React.lazy(() => import("./pages/Conteudos"));
 const Contato = React.lazy(() => import("./pages/Contato"));
 const ConteudoPrompts = React.lazy(() => import("./pages/ConteudoPrompts"));
@@ -23,9 +20,6 @@ const ConteudoIAEscalar = React.lazy(() => import("./pages/ConteudoIAEscalar"));
 const ConteudoClaudeCode = React.lazy(() => import("./pages/ConteudoClaudeCode"));
 const ConteudoMCP = React.lazy(() => import("./pages/ConteudoMCP"));
 const ConteudoClaudeSkills = React.lazy(() => import("./pages/ConteudoClaudeSkills"));
-const Modulo1Premium = React.lazy(() => import("./pages/Modulo1Premium"));
-const Modulo2Premium = React.lazy(() => import("./pages/Modulo2Premium"));
-const Modulo3Premium = React.lazy(() => import("./pages/Modulo3Premium"));
 const ClientPreview = React.lazy(() => import("./pages/ClientPreview"));
 const Propostas = React.lazy(() => import("./pages/Propostas"));
 const PropostaView = React.lazy(() => import("./pages/PropostaView"));
@@ -54,8 +48,8 @@ const PoliticaPrivacidade = React.lazy(() => import("./pages/PoliticaPrivacidade
 const TermosDeUso = React.lazy(() => import("./pages/TermosDeUso"));
 const AIOperatorKit = React.lazy(() => import("./pages/AIOperatorKit"));
 const AIOperatorKitSales = React.lazy(() => import("./pages/AIOperatorKitSales"));
-const CursoIAOperator = React.lazy(() => import("./pages/CursoIAOperator"));
 const ProdutosHub = React.lazy(() => import("./pages/ProdutosHub"));
+const KitOperadorIA = React.lazy(() => import("./pages/KitOperadorIA"));
 const CheckoutReturn = React.lazy(() => import("./pages/CheckoutReturn"));
 
 const queryClient = new QueryClient();
@@ -75,9 +69,16 @@ const App = () => (
         <Suspense fallback={<LazyFallback />}>
           <Routes>
             <Route path="/" element={<Index />} />
-            <Route path="/curso" element={<Curso />} />
-            <Route path="/modulos" element={<Modulos />} />
-            <Route path="/materiais" element={<Materiais />} />
+            <Route path="/agencia" element={<Navigate to="/" replace />} />
+            {/* Curso descontinuado — redirect 301 para /produtos */}
+            <Route path="/curso" element={<Navigate to="/produtos" replace />} />
+            <Route path="/modulos" element={<Navigate to="/produtos" replace />} />
+            <Route path="/materiais" element={<Navigate to="/produtos" replace />} />
+            <Route path="/modulos/1-premium" element={<Navigate to="/produtos" replace />} />
+            <Route path="/modulos/2-premium" element={<Navigate to="/produtos" replace />} />
+            <Route path="/modulos/3-premium" element={<Navigate to="/produtos" replace />} />
+            <Route path="/curso-ia-operator" element={<Navigate to="/produtos" replace />} />
+            <Route path="/produtos/operator-curso" element={<Navigate to="/produtos" replace />} />
             <Route path="/conteudos" element={<Conteudos />} />
             <Route path="/conteudos/prompts-economia" element={<ConteudoPrompts />} />
             <Route path="/conteudos/produto-sugerido-ia" element={<ConteudoIAMarketing />} />
@@ -88,9 +89,6 @@ const App = () => (
             <Route path="/conteudos/claude-code" element={<ConteudoClaudeCode />} />
             <Route path="/conteudos/mcp-claude" element={<ConteudoMCP />} />
             <Route path="/conteudos/claude-skills" element={<ConteudoClaudeSkills />} />
-            <Route path="/modulos/1-premium" element={<Modulo1Premium />} />
-            <Route path="/modulos/2-premium" element={<Modulo2Premium />} />
-            <Route path="/modulos/3-premium" element={<Modulo3Premium />} />
             <Route path="/preview/:slug" element={<ClientPreview />} />
             <Route path="/propostas" element={<Propostas />}>
               <Route path="match-solutions" element={<PropostaMatchSolutions />} />
@@ -120,13 +118,13 @@ const App = () => (
             <Route path="/conteudos/:slug" element={<div>Página Individual de Conteúdo</div>} />
             <Route path="/contato" element={<Contato />} />
             <Route path="/p/:slug" element={<PropostaPublica />} />
-            <Route path="/kit" element={<AIOperatorKitSales />} />
+            {/* Kit antigo → redirect canônico */}
+            <Route path="/kit" element={<Navigate to="/produtos/ai-operator-kit" replace />} />
             <Route path="/kit/content" element={<AIOperatorKit />} />
-            <Route path="/curso-ia-operator" element={<CursoIAOperator />} />
-            {/* Hub de produtos + aliases canônicos */}
+            {/* Hub de produtos + Kit bilingue */}
             <Route path="/produtos" element={<ProdutosHub />} />
             <Route path="/produtos/ai-operator-kit" element={<AIOperatorKitSales />} />
-            <Route path="/produtos/operator-curso" element={<CursoIAOperator />} />
+            <Route path="/produtos/kit-operador-ia" element={<KitOperadorIA />} />
             <Route path="/checkout/return" element={<CheckoutReturn />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
