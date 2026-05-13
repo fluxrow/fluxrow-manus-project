@@ -111,7 +111,7 @@ const reportPath = join(reportDir, "safe-wrap-report.md");
 const header =
   `# safe-wrap report\n\n` +
   `Generated: ${new Date().toISOString()}\n` +
-  `Scanned: ${SCAN_DIRS.join(", ")}\n` +
+  `Scanned: ${scannedDirs.join(", ")}\n` +
   `Patterns: ${PATTERNS.map((p) => "`" + p.name + "`").join(", ")}\n\n`;
 
 let body: string;
