@@ -1,5 +1,7 @@
 import React from 'react';
 import Header from '../components/Header';
+import SEO from '../components/SEO';
+import { buildArticleSchema } from '../lib/articleSchema';
 import { ArrowLeft, Download, Copy, Lightbulb, Target, CheckCircle, TrendingDown, Package, Calendar, Zap, Star, AlertCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
