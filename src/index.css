@@ -2,6 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ============================================================
+ * Standard word-break utility for lists & feature cards
+ * Use `safe-wrap` on any text container that may receive long
+ * tokens (URLs, technical terms, arrows like "Brain → Queue").
+ * Replaces ad-hoc combinations of min-w-0 + break-words +
+ * [overflow-wrap:anywhere] across the codebase.
+ * ============================================================ */
+@layer utilities {
+  .safe-wrap {
+    min-width: 0;
+    word-break: normal;
+    overflow-wrap: anywhere;
+    hyphens: auto;
+  }
+}
+
 /* Akony Font - Official Fluxrow Logo Font */
 @font-face {
   font-family: 'Akony';
