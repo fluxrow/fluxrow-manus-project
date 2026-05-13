@@ -321,6 +321,23 @@ body {
   animation: none;
 }
 
+/* Accent — restricted use: hero main title + small graphic details only.
+   Mirrors the logo gradient (cyan → purple → pink). */
+.gradient-accent-text {
+  background: linear-gradient(90deg, var(--accent-from), var(--accent-via), var(--accent-to));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+.gradient-accent-bg {
+  background: linear-gradient(135deg, color-mix(in srgb, var(--accent-from) 18%, transparent), color-mix(in srgb, var(--accent-to) 18%, transparent));
+  border: 1px solid color-mix(in srgb, var(--accent-via) 35%, transparent);
+}
+.gradient-accent-stroke {
+  border-color: color-mix(in srgb, var(--accent-via) 45%, transparent);
+}
+
 @keyframes gradientShift {
   0%, 100% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
