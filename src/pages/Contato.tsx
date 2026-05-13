@@ -62,10 +62,10 @@ const Contato = () => {
           <p className="text-xs uppercase tracking-[0.3em] text-white/55 font-mono mb-6">
             Contato
           </p>
-          <h1 className="font-serif text-5xl md:text-6xl leading-[1.05] mb-6 max-w-3xl">
+          <h1 className="font-serif text-[2.5rem] sm:text-5xl md:text-6xl leading-[1.05] mb-6 max-w-3xl break-words">
             Conta o que você precisa. A gente responde rápido.
           </h1>
-          <p className="text-lg text-white/60 max-w-2xl leading-relaxed">
+          <p className="text-base sm:text-lg text-white/60 max-w-2xl leading-relaxed">
             Pra dúvida sobre produto, escopo de projeto ou parceria — escolha o canal
             mais confortável pra você.
           </p>
@@ -78,15 +78,15 @@ const Contato = () => {
               href={c.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="group block border border-white/10 hover:border-white/30 transition-colors p-8 rounded-sm bg-white/[0.02] hover:bg-white/[0.04]"
+              className="group block border border-white/10 hover:border-white/30 transition-colors p-6 sm:p-8 rounded-sm bg-white/[0.02] hover:bg-white/[0.04]"
             >
               <div className="flex items-start gap-4 mb-5">
                 <c.icon className="w-5 h-5 text-white/60 mt-1 shrink-0" />
-                <div>
+                <div className="min-w-0">
                   <p className="text-xs uppercase tracking-[0.2em] text-white/55 font-mono mb-2">
                     {c.eyebrow}
                   </p>
-                  <h2 className="font-serif text-2xl leading-tight">{c.title}</h2>
+                  <h2 className="font-serif text-xl sm:text-2xl leading-tight break-words">{c.title}</h2>
                 </div>
               </div>
               <p className="text-white/60 text-sm leading-relaxed mb-6">

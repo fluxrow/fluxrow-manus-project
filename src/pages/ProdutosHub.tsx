@@ -103,9 +103,9 @@ const ProdutosHub = () => {
       <Header />
 
       <main className="max-w-5xl mx-auto px-6 pt-32 pb-24">
-        <header className="mb-16 flex flex-col gap-4">
+        <header className="mb-16 flex flex-col gap-6">
           <div className="flex items-center justify-between gap-4">
-            <p className="text-xs uppercase tracking-[0.2em] text-white/55 font-mono">
+            <p className="text-xs uppercase tracking-[0.3em] text-white/55 font-mono">
               {c.eyebrow}
             </p>
             <button
@@ -116,20 +116,20 @@ const ProdutosHub = () => {
               {c.toggle}
             </button>
           </div>
-          <h1 className="text-5xl md:text-6xl font-serif leading-tight">
+          <h1 className="font-serif text-[2.5rem] sm:text-5xl md:text-6xl leading-[1.05] max-w-3xl break-words">
             {c.h1}
           </h1>
-          <p className="text-lg text-white/70 max-w-2xl">{c.intro}</p>
+          <p className="text-base sm:text-lg text-white/60 max-w-2xl leading-relaxed">{c.intro}</p>
         </header>
 
         <section className="mb-16">
           <article className="border border-white/10 hover:border-white/25 transition-all rounded-md bg-white/[0.02] overflow-hidden">
             <div className="grid md:grid-cols-[1.4fr_1fr]">
-              <div className="p-8 md:p-10 border-b md:border-b-0 md:border-r border-white/10">
+              <div className="p-6 sm:p-8 md:p-10 border-b md:border-b-0 md:border-r border-white/10">
                 <p className="text-xs uppercase tracking-[0.2em] text-white/55 font-mono mb-6">
                   {c.cardEyebrow}
                 </p>
-                <h2 className="text-3xl md:text-4xl font-serif mb-4">
+                <h2 className="text-[1.65rem] sm:text-3xl md:text-4xl font-serif mb-4 leading-tight break-words">
                   {c.cardH2}
                 </h2>
                 <p className="text-white/70 mb-8 leading-relaxed">{c.cardP}</p>
@@ -137,8 +137,8 @@ const ProdutosHub = () => {
                 <ul className="space-y-2 text-sm text-white/75 mb-10">
                   {c.features.map((f) => (
                     <li key={f} className="flex gap-2">
-                      <Check className="w-4 h-4 text-white/55 shrink-0 mt-0.5" />{" "}
-                      {f}
+                      <Check className="w-4 h-4 text-white/55 shrink-0 mt-0.5" />
+                      <span className="min-w-0 break-words">{f}</span>
                     </li>
                   ))}
                 </ul>
@@ -157,7 +157,7 @@ const ProdutosHub = () => {
                 </Link>
               </div>
 
-              <div className="p-8 md:p-10 bg-white/[0.015]">
+              <div className="p-6 sm:p-8 md:p-10 bg-white/[0.015]">
                 <p className="text-xs font-mono text-white/55 mb-4 uppercase tracking-wider">
                   {c.invest}
                 </p>
