@@ -35,7 +35,7 @@ export default function FeaturesSection() {
             <div className="w-10 h-10 rounded-lg bg-cyan-500/20 flex items-center justify-center flex-shrink-0">
               <feature.icon className="w-5 h-5 text-cyan-400" />
             </div>
-            <span className="text-gray-300 text-sm min-w-0 break-words">{feature.label}</span>
+            <span className="text-gray-300 text-sm safe-wrap">{feature.label}</span>
           </div>
         ))}
       </div>

@@ -169,7 +169,7 @@ export default function InvestmentSection() {
                     className="flex items-center gap-3 p-2.5 bg-gradient-to-r from-slate-800/60 to-transparent rounded-lg"
                   >
                     <CheckCircle className="w-4 h-4 text-emerald-400 flex-shrink-0" />
-                    <span className="text-sm text-gray-300 min-w-0 break-words">{item.text}</span>
+                    <span className="text-sm text-gray-300 safe-wrap">{item.text}</span>
                   </div>
                 );
               })}
