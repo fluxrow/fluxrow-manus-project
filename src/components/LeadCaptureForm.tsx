@@ -150,7 +150,7 @@ const LeadCaptureForm = ({
         </p>
         <Link
           to={redirectTo}
-          className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold font-space-grotesk px-8 py-3 rounded-full hover:from-purple-600 hover:to-pink-600 transition-all"
+          className="inline-flex items-center gap-2 bg-white text-[#080807] hover:bg-white/90 font-semibold font-space-grotesk px-8 py-3 rounded-full hover:bg-white/90 transition-all"
         >
           {copy.successCta} <ArrowRight className="w-4 h-4" />
         </Link>
@@ -161,7 +161,7 @@ const LeadCaptureForm = ({
   return (
     <form onSubmit={handleSubmit} className="max-w-xl mx-auto" noValidate aria-busy={submitting}>
       {copy.eyebrow && (
-        <p className="text-xs uppercase tracking-widest text-purple-400 font-space-grotesk text-center mb-3">
+        <p className="text-xs uppercase tracking-widest text-white/70 font-space-grotesk text-center mb-3">
           {copy.eyebrow}
         </p>
       )}
@@ -189,7 +189,7 @@ const LeadCaptureForm = ({
             required
             disabled={submitting}
             aria-invalid={Boolean(error)}
-            className="w-full bg-black/40 border border-gray-700 focus:border-purple-500 focus:outline-none text-white placeholder-gray-500 font-space-grotesk px-4 py-3 rounded-lg transition-colors disabled:opacity-60"
+            className="w-full bg-black/40 border border-gray-700 focus:border-white/40 focus:outline-none text-white placeholder-gray-500 font-space-grotesk px-4 py-3 rounded-lg transition-colors disabled:opacity-60"
           />
         </div>
         <div>
@@ -208,7 +208,7 @@ const LeadCaptureForm = ({
             required
             disabled={submitting}
             aria-invalid={Boolean(error)}
-            className="w-full bg-black/40 border border-gray-700 focus:border-purple-500 focus:outline-none text-white placeholder-gray-500 font-space-grotesk px-4 py-3 rounded-lg transition-colors disabled:opacity-60"
+            className="w-full bg-black/40 border border-gray-700 focus:border-white/40 focus:outline-none text-white placeholder-gray-500 font-space-grotesk px-4 py-3 rounded-lg transition-colors disabled:opacity-60"
           />
         </div>
 
@@ -227,7 +227,7 @@ const LeadCaptureForm = ({
         <button
           type="submit"
           disabled={submitting}
-          className="w-full inline-flex items-center justify-center gap-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold font-space-grotesk px-6 py-3 rounded-lg hover:from-purple-600 hover:to-pink-600 transition-all disabled:opacity-60 disabled:cursor-not-allowed"
+          className="w-full inline-flex items-center justify-center gap-2 bg-white text-[#080807] hover:bg-white/90 font-semibold font-space-grotesk px-6 py-3 rounded-lg hover:bg-white/90 transition-all disabled:opacity-60 disabled:cursor-not-allowed"
         >
           {submitting ? (
             <>

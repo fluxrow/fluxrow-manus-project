@@ -38,7 +38,7 @@ export default function CheckoutReturn() {
       <div className="max-w-xl w-full text-center space-y-6">
         {sessionId ? (
           <>
-            <CheckCircle2 className="w-16 h-16 text-emerald-400 mx-auto" />
+            <CheckCircle2 className="w-16 h-16 text-white mx-auto" />
             <h1 className="font-instrument-serif text-4xl md:text-5xl">{t.title}</h1>
             <p className="text-white/70 font-dm-mono text-sm">{t.body}</p>
             <p className="text-white/40 font-dm-mono text-xs">{t.noEmail}</p>
@@ -67,7 +67,7 @@ export default function CheckoutReturn() {
             <h1 className="font-instrument-serif text-3xl">{t.notFound}</h1>
             <Link
               to={`/produtos/ai-operator-kit?lang=${lang}`}
-              className="text-emerald-400 underline font-dm-mono text-sm"
+              className="text-white underline font-dm-mono text-sm"
             >
               {t.back}
             </Link>

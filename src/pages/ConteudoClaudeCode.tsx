@@ -74,14 +74,14 @@ const ConteudoClaudeCode = () => {
         <article className="max-w-4xl mx-auto">
           <Link
             to="/conteudos"
-            className="inline-flex items-center text-cyan-400 hover:text-cyan-300 font-space-grotesk mb-6 transition-colors"
+            className="inline-flex items-center text-white hover:text-white font-space-grotesk mb-6 transition-colors"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
             Voltar para Conteúdos
           </Link>
 
           <header className="text-center mb-12">
-            <div className="bg-gradient-to-r from-pink-500 to-cyan-500 text-white px-4 py-2 rounded-full text-sm font-semibold font-space-grotesk inline-block mb-6">
+            <div className="bg-white/5 text-white px-4 py-2 rounded-full text-sm font-semibold font-space-grotesk inline-block mb-6">
               HUB CLAUDE · ARTIGO 01
             </div>
             <h1 className="text-4xl md:text-5xl font-bold font-space-grotesk mb-6">
@@ -102,28 +102,28 @@ const ConteudoClaudeCode = () => {
           {/* TOC */}
           <nav
             aria-label="Sumário"
-            className="glass-card mb-10 border border-cyan-500/20"
+            className="glass-card mb-10 border border-white/15"
           >
-            <h2 className="text-sm uppercase tracking-wider text-cyan-400 font-space-grotesk mb-3">
+            <h2 className="text-sm uppercase tracking-wider text-white font-space-grotesk mb-3">
               Sumário
             </h2>
             <ol className="space-y-1.5 text-gray-300 font-space-grotesk text-sm list-decimal list-inside">
-              <li><a href="#o-que-e" className="hover:text-cyan-300">O que é Claude Code</a></li>
-              <li><a href="#vs-cursor-copilot" className="hover:text-cyan-300">Claude Code vs Cursor vs Copilot</a></li>
-              <li><a href="#instalacao" className="hover:text-cyan-300">Instalação e primeiros passos</a></li>
-              <li><a href="#fluxo" className="hover:text-cyan-300">Fluxo prático em 5 passos</a></li>
-              <li><a href="#comandos" className="hover:text-cyan-300">Comandos e atalhos essenciais</a></li>
-              <li><a href="#mcp-skills" className="hover:text-cyan-300">Integração com MCP e Skills</a></li>
-              <li><a href="#seguranca" className="hover:text-cyan-300">Boas práticas de segurança</a></li>
-              <li><a href="#quando-vale" className="hover:text-cyan-300">Quando vale (e quando não)</a></li>
-              <li><a href="#exemplos" className="hover:text-cyan-300">Exemplos reais de prompts</a></li>
-              <li><a href="#faq" className="hover:text-cyan-300">Perguntas frequentes</a></li>
+              <li><a href="#o-que-e" className="hover:text-white">O que é Claude Code</a></li>
+              <li><a href="#vs-cursor-copilot" className="hover:text-white">Claude Code vs Cursor vs Copilot</a></li>
+              <li><a href="#instalacao" className="hover:text-white">Instalação e primeiros passos</a></li>
+              <li><a href="#fluxo" className="hover:text-white">Fluxo prático em 5 passos</a></li>
+              <li><a href="#comandos" className="hover:text-white">Comandos e atalhos essenciais</a></li>
+              <li><a href="#mcp-skills" className="hover:text-white">Integração com MCP e Skills</a></li>
+              <li><a href="#seguranca" className="hover:text-white">Boas práticas de segurança</a></li>
+              <li><a href="#quando-vale" className="hover:text-white">Quando vale (e quando não)</a></li>
+              <li><a href="#exemplos" className="hover:text-white">Exemplos reais de prompts</a></li>
+              <li><a href="#faq" className="hover:text-white">Perguntas frequentes</a></li>
             </ol>
           </nav>
 
           <section id="o-que-e" className="glass-card mb-8 scroll-mt-24">
             <div className="flex items-center mb-4">
-              <Terminal className="w-7 h-7 text-cyan-400 mr-3" />
+              <Terminal className="w-7 h-7 text-white mr-3" />
               <h2 className="text-2xl font-bold font-space-grotesk text-white">O que é Claude Code</h2>
             </div>
             <p className="text-gray-300 font-space-grotesk leading-relaxed mb-4">
@@ -141,14 +141,14 @@ const ConteudoClaudeCode = () => {
             </p>
             <p className="text-gray-300 font-space-grotesk leading-relaxed">
               Foi lançado em fevereiro de 2025 e amadureceu rápido: hoje suporta sub-agentes, hooks, configuração por
-              repositório (<code className="text-cyan-300">CLAUDE.md</code>), integração nativa com GitHub Actions e
+              repositório (<code className="text-white">CLAUDE.md</code>), integração nativa com GitHub Actions e
               comandos slash customizáveis.
             </p>
           </section>
 
           <section id="vs-cursor-copilot" className="glass-card mb-8 scroll-mt-24">
             <div className="flex items-center mb-4">
-              <Code2 className="w-7 h-7 text-cyan-400 mr-3" />
+              <Code2 className="w-7 h-7 text-white mr-3" />
               <h2 className="text-2xl font-bold font-space-grotesk text-white">
                 Claude Code vs Cursor vs GitHub Copilot
               </h2>
@@ -181,13 +181,13 @@ const ConteudoClaudeCode = () => {
 
           <section id="instalacao" className="glass-card mb-8 scroll-mt-24">
             <div className="flex items-center mb-4">
-              <Settings className="w-7 h-7 text-cyan-400 mr-3" />
+              <Settings className="w-7 h-7 text-white mr-3" />
               <h2 className="text-2xl font-bold font-space-grotesk text-white">Instalação e primeiros passos</h2>
             </div>
             <p className="text-gray-300 font-space-grotesk leading-relaxed mb-4">
               Instalação global via npm (Node 18+):
             </p>
-            <pre className="bg-black/40 border border-gray-700 rounded-lg p-5 text-cyan-300 font-mono text-sm overflow-x-auto mb-4">
+            <pre className="bg-black/40 border border-gray-700 rounded-lg p-5 text-white font-mono text-sm overflow-x-auto mb-4">
 {`npm install -g @anthropic-ai/claude-code
 claude login          # autentica com sua conta Anthropic
 cd seu-repositorio
@@ -195,7 +195,7 @@ claude                # inicia a sessão interativa`}
             </pre>
             <p className="text-gray-300 font-space-grotesk leading-relaxed">
               Na primeira execução, ele cria um arquivo{' '}
-              <code className="text-cyan-300">CLAUDE.md</code> opcional na raiz do projeto. Esse arquivo é a memória
+              <code className="text-white">CLAUDE.md</code> opcional na raiz do projeto. Esse arquivo é a memória
               persistente que o agente lê em toda sessão — coloque ali convenções de código, comandos de build,
               estrutura de pastas e regras de negócio. Quanto mais explícito, menos retrabalho.
             </p>
@@ -203,7 +203,7 @@ claude                # inicia a sessão interativa`}
 
           <section id="fluxo" className="glass-card mb-8 scroll-mt-24">
             <div className="flex items-center mb-4">
-              <Zap className="w-7 h-7 text-cyan-400 mr-3" />
+              <Zap className="w-7 h-7 text-white mr-3" />
               <h2 className="text-2xl font-bold font-space-grotesk text-white">Fluxo prático em 5 passos</h2>
             </div>
             <ol className="space-y-3 text-gray-300 font-space-grotesk">
@@ -215,7 +215,7 @@ claude                # inicia a sessão interativa`}
                 'Use `/commit` para gerar mensagem de commit semântica e `gh pr create` (ou plug MCP do GitHub) para abrir o PR.',
               ].map((step, i) => (
                 <li key={i} className="flex items-start">
-                  <span className="bg-gradient-to-r from-pink-500 to-cyan-500 text-white text-sm w-7 h-7 rounded-full flex items-center justify-center mr-3 flex-shrink-0 font-semibold">
+                  <span className="bg-white/5 text-white text-sm w-7 h-7 rounded-full flex items-center justify-center mr-3 flex-shrink-0 font-semibold">
                     {i + 1}
                   </span>
                   {step}
@@ -226,31 +226,31 @@ claude                # inicia a sessão interativa`}
 
           <section id="comandos" className="glass-card mb-8 scroll-mt-24">
             <div className="flex items-center mb-4">
-              <Workflow className="w-7 h-7 text-cyan-400 mr-3" />
+              <Workflow className="w-7 h-7 text-white mr-3" />
               <h2 className="text-2xl font-bold font-space-grotesk text-white">Comandos e atalhos essenciais</h2>
             </div>
             <ul className="space-y-2 text-gray-300 font-space-grotesk text-sm">
-              <li><code className="text-cyan-300">/clear</code> — limpa contexto sem encerrar a sessão.</li>
-              <li><code className="text-cyan-300">/compact</code> — comprime histórico antigo, mantém o essencial.</li>
-              <li><code className="text-cyan-300">/cost</code> — mostra tokens e custo da sessão.</li>
-              <li><code className="text-cyan-300">/model</code> — alterna entre Sonnet, Opus e Haiku.</li>
-              <li><code className="text-cyan-300">/mcp</code> — lista servidores MCP conectados.</li>
-              <li><code className="text-cyan-300">/review</code> — pede revisão crítica do trecho atual.</li>
-              <li><code className="text-cyan-300">/init</code> — gera um <code>CLAUDE.md</code> a partir do repo.</li>
-              <li><code className="text-cyan-300">!comando</code> — executa shell sem perguntar (use com cuidado).</li>
-              <li><code className="text-cyan-300">@arquivo</code> — injeta arquivo específico no contexto.</li>
+              <li><code className="text-white">/clear</code> — limpa contexto sem encerrar a sessão.</li>
+              <li><code className="text-white">/compact</code> — comprime histórico antigo, mantém o essencial.</li>
+              <li><code className="text-white">/cost</code> — mostra tokens e custo da sessão.</li>
+              <li><code className="text-white">/model</code> — alterna entre Sonnet, Opus e Haiku.</li>
+              <li><code className="text-white">/mcp</code> — lista servidores MCP conectados.</li>
+              <li><code className="text-white">/review</code> — pede revisão crítica do trecho atual.</li>
+              <li><code className="text-white">/init</code> — gera um <code>CLAUDE.md</code> a partir do repo.</li>
+              <li><code className="text-white">!comando</code> — executa shell sem perguntar (use com cuidado).</li>
+              <li><code className="text-white">@arquivo</code> — injeta arquivo específico no contexto.</li>
             </ul>
           </section>
 
           <section id="mcp-skills" className="glass-card mb-8 scroll-mt-24">
             <div className="flex items-center mb-4">
-              <Layers className="w-7 h-7 text-cyan-400 mr-3" />
+              <Layers className="w-7 h-7 text-white mr-3" />
               <h2 className="text-2xl font-bold font-space-grotesk text-white">Integração com MCP e Skills</h2>
             </div>
             <p className="text-gray-300 font-space-grotesk leading-relaxed mb-3">
               Claude Code sozinho já é poderoso. Combinado com{' '}
-              <Link to="/conteudos/mcp-claude" className="text-cyan-300 underline">MCP</Link> e{' '}
-              <Link to="/conteudos/claude-skills" className="text-cyan-300 underline">Skills</Link>, vira plataforma:
+              <Link to="/conteudos/mcp-claude" className="text-white underline">MCP</Link> e{' '}
+              <Link to="/conteudos/claude-skills" className="text-white underline">Skills</Link>, vira plataforma:
             </p>
             <ul className="space-y-2 text-gray-300 font-space-grotesk text-sm">
               <li>• <strong className="text-white">MCP</strong> conecta o agente a Postgres, GitHub, Linear, Sentry, sua API. Ele consulta dados frescos e age fora do repositório.</li>
@@ -261,22 +261,22 @@ claude                # inicia a sessão interativa`}
 
           <section id="seguranca" className="glass-card mb-8 scroll-mt-24">
             <div className="flex items-center mb-4">
-              <ShieldCheck className="w-7 h-7 text-cyan-400 mr-3" />
+              <ShieldCheck className="w-7 h-7 text-white mr-3" />
               <h2 className="text-2xl font-bold font-space-grotesk text-white">Boas práticas de segurança</h2>
             </div>
             <ul className="space-y-2 text-gray-300 font-space-grotesk">
-              <li>• Rode sempre em branch separada — nunca direto na <code className="text-cyan-300">main</code>.</li>
+              <li>• Rode sempre em branch separada — nunca direto na <code className="text-white">main</code>.</li>
               <li>• Mantenha commits pequenos e mensagens claras para facilitar reverter.</li>
-              <li>• Use containers ou devcontainers para sessões com <code className="text-cyan-300">--dangerously-skip-permissions</code>.</li>
+              <li>• Use containers ou devcontainers para sessões com <code className="text-white">--dangerously-skip-permissions</code>.</li>
               <li>• Restrinja servidores MCP ao escopo mínimo (read-only quando possível).</li>
               <li>• Não cole secrets no chat — use variáveis de ambiente ou MCP de secret manager.</li>
-              <li>• Audite o <code className="text-cyan-300">CLAUDE.md</code>: ele é injetado em todo prompt e pode vazar regras sensíveis.</li>
+              <li>• Audite o <code className="text-white">CLAUDE.md</code>: ele é injetado em todo prompt e pode vazar regras sensíveis.</li>
             </ul>
           </section>
 
           <section id="quando-vale" className="glass-card mb-8 scroll-mt-24">
             <div className="flex items-center mb-4">
-              <GitBranch className="w-7 h-7 text-cyan-400 mr-3" />
+              <GitBranch className="w-7 h-7 text-white mr-3" />
               <h2 className="text-2xl font-bold font-space-grotesk text-white">Quando vale (e quando não)</h2>
             </div>
             <div className="grid md:grid-cols-2 gap-6">
@@ -295,7 +295,7 @@ claude                # inicia a sessão interativa`}
                 </ul>
               </div>
               <div>
-                <h3 className="text-orange-400 font-semibold font-space-grotesk mb-3 flex items-center">
+                <h3 className="text-white font-semibold font-space-grotesk mb-3 flex items-center">
                   <AlertCircle className="w-4 h-4 mr-2" />Não vale
                 </h3>
                 <ul className="space-y-2 text-gray-300 font-space-grotesk text-sm">
@@ -312,7 +312,7 @@ claude                # inicia a sessão interativa`}
 
           <section id="exemplos" className="glass-card mb-8 scroll-mt-24">
             <div className="flex items-center mb-4">
-              <Terminal className="w-7 h-7 text-cyan-400 mr-3" />
+              <Terminal className="w-7 h-7 text-white mr-3" />
               <h2 className="text-2xl font-bold font-space-grotesk text-white">Exemplos reais de prompts</h2>
             </div>
             <div className="space-y-4 text-gray-300 font-space-grotesk text-sm">
@@ -333,7 +333,7 @@ claude                # inicia a sessão interativa`}
 
           <section id="faq" className="glass-card mb-8 scroll-mt-24">
             <div className="flex items-center mb-4">
-              <HelpCircle className="w-7 h-7 text-cyan-400 mr-3" />
+              <HelpCircle className="w-7 h-7 text-white mr-3" />
               <h2 className="text-2xl font-bold font-space-grotesk text-white">Perguntas frequentes</h2>
             </div>
             <div className="space-y-5">
@@ -346,7 +346,7 @@ claude                # inicia a sessão interativa`}
             </div>
           </section>
 
-          <div className="bg-gradient-to-r from-pink-900/30 to-cyan-900/30 border border-pink-500/30 rounded-2xl p-8 text-center">
+          <div className="bg-white/5 border border-white/15 rounded-2xl p-8 text-center">
             <h3 className="text-2xl font-bold font-space-grotesk text-white mb-3">Continue no hub Claude</h3>
             <p className="text-gray-300 font-space-grotesk mb-6">
               Entenda o MCP — o protocolo que dá superpoderes ao Claude Code conectando-o às suas ferramentas reais.
@@ -354,13 +354,13 @@ claude                # inicia a sessão interativa`}
             <div className="flex flex-wrap gap-3 justify-center">
               <Link
                 to="/conteudos/mcp-claude"
-                className="inline-block bg-gradient-to-r from-pink-500 to-cyan-500 text-white font-semibold font-space-grotesk px-8 py-3 rounded-full hover:from-pink-600 hover:to-cyan-600 transition-all"
+                className="inline-block bg-white/5 text-white font-semibold font-space-grotesk px-8 py-3 rounded-full hover:bg-white/90 transition-all"
               >
                 Ler sobre MCP →
               </Link>
               <Link
                 to="/conteudos/claude-skills"
-                className="inline-block border border-cyan-500/50 text-cyan-300 font-semibold font-space-grotesk px-8 py-3 rounded-full hover:bg-cyan-500/10 transition-all"
+                className="inline-block border border-white/15 text-white font-semibold font-space-grotesk px-8 py-3 rounded-full hover:bg-cyan-500/10 transition-all"
               >
                 Ler sobre Skills →
               </Link>

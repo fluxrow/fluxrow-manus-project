@@ -266,7 +266,7 @@ const ConteudoRetratoIA = () => {
                   <div className="bg-gradient-to-r from-gray-900/50 to-gray-800/50 border border-gray-700 rounded-sm p-6 mb-6 relative">
                     <button
                       onClick={() => copyToClipboard(promptData.prompt, index)}
-                      className="absolute top-4 right-4 bg-gradient-to-r from-gray-700 to-gray-600 hover:from-gray-600 hover:to-gray-500 text-white p-2 rounded-lg transition-all duration-300 group"
+                      className="absolute top-4 right-4 bg-gradient-to-r from-gray-700 to-gray-600 hover:bg-white/90 text-white p-2 rounded-lg transition-all duration-300 group"
                       title="Copiar prompt"
                     >
                       {isCopied ? (
@@ -300,7 +300,7 @@ const ConteudoRetratoIA = () => {
                     
                     <div>
                       <h4 className="text-lg font-semibold font-space-grotesk text-white mb-3 flex items-center gap-2">
-                        <Target className="w-5 h-5 text-blue-400" />
+                        <Target className="w-5 h-5 text-white" />
                         Onde Usar
                       </h4>
                       <div className={`bg-gradient-to-r ${promptData.color} bg-opacity-20 border border-current border-opacity-30 rounded-xl p-4`}>
@@ -333,7 +333,7 @@ const ConteudoRetratoIA = () => {
                     <p className="text-gray-300 text-sm">Melhor para realismo fotográfico. Use "photorealistic" no início.</p>
                   </div>
                   <div className="bg-black/30 p-4 rounded-lg">
-                    <strong className="text-blue-400">Midjourney v6:</strong>
+                    <strong className="text-white">Midjourney v6:</strong>
                     <p className="text-gray-300 text-sm">Líder em qualidade artística. Adicione "--style raw" para menos estilização.</p>
                   </div>
                   <div className="bg-black/30 p-4 rounded-lg">
@@ -358,7 +358,7 @@ const ConteudoRetratoIA = () => {
                     <p className="text-gray-300 text-sm">Sempre máxima qualidade. O investimento vale a pena.</p>
                   </div>
                   <div className="bg-black/30 p-4 rounded-lg">
-                    <strong className="text-orange-400">Negative Prompts:</strong>
+                    <strong className="text-white">Negative Prompts:</strong>
                     <p className="text-gray-300 text-sm">Evite: "cartoon, anime, illustration, painted"</p>
                   </div>
                 </div>
@@ -398,7 +398,7 @@ const ConteudoRetratoIA = () => {
                   Thumbnails que aumentam CTR em 40%
                 </p>
                 <div className="bg-white/40/20 border border-white/15 p-3 rounded-lg">
-                  <p className="text-blue-400 font-space-grotesk text-xs font-semibold">
+                  <p className="text-white font-space-grotesk text-xs font-semibold">
                     ROI: 300%+ em views e engajamento
                   </p>
                 </div>

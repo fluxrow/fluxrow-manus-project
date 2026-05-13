@@ -130,7 +130,7 @@ const ServiceCard = React.forwardRef<HTMLDivElement, ServiceCardProps>(
           {/* Footer */}
           <div className="mt-6 flex items-center justify-between pt-4 border-t border-white/10">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center">
+              <div className="w-10 h-10 rounded-md gradient-accent-bg flex items-center justify-center">
                 <Icon className="w-5 h-5 text-white" />
               </div>
               <span className="text-sm font-medium text-white/90">
@@ -295,7 +295,7 @@ const ServiceCarousel = React.forwardRef<HTMLDivElement, ServiceCarouselProps>(
                   
                   {/* Icon overlay */}
                   <div className="absolute bottom-4 left-6">
-                    <div className="w-14 h-14 rounded-sm bg-white/5 flex items-center justify-center shadow-lg">
+                    <div className="w-14 h-14 rounded-md gradient-accent-bg flex items-center justify-center shadow-lg">
                       <expandedService.icon className="w-7 h-7 text-white" />
                     </div>
                   </div>
@@ -378,7 +378,7 @@ const ServiceCarousel = React.forwardRef<HTMLDivElement, ServiceCarouselProps>(
                     variants={itemVariants}
                     className="flex items-center gap-3 mb-6 p-3 rounded-xl bg-white/5 border border-white/20"
                   >
-                    <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center flex-shrink-0">
+                    <div className="w-10 h-10 rounded-md gradient-accent-bg flex items-center justify-center flex-shrink-0">
                       <expandedService.icon className="w-5 h-5 text-white" />
                     </div>
                     <div>

@@ -316,7 +316,7 @@ Concorrentes conhecidos: [LISTA]`,
                   <div className="bg-gradient-to-r from-gray-900/50 to-gray-800/50 border border-gray-700 rounded-sm p-6 mb-6 relative">
                     <button
                       onClick={() => copyToClipboard(promptData.prompt, index)}
-                      className="absolute top-4 right-4 bg-gradient-to-r from-gray-700 to-gray-600 hover:from-gray-600 hover:to-gray-500 text-white p-2 rounded-lg transition-all duration-300 group"
+                      className="absolute top-4 right-4 bg-gradient-to-r from-gray-700 to-gray-600 hover:bg-white/90 text-white p-2 rounded-lg transition-all duration-300 group"
                       title="Copiar prompt"
                     >
                       {isCopied ? (
@@ -350,7 +350,7 @@ Concorrentes conhecidos: [LISTA]`,
                     
                     <div>
                       <h4 className="text-lg font-semibold font-space-grotesk text-white mb-3 flex items-center gap-2">
-                        <Target className="w-5 h-5 text-blue-400" />
+                        <Target className="w-5 h-5 text-white" />
                         Potencial de Resultado
                       </h4>
                       <div className={`bg-gradient-to-r ${promptData.color} bg-opacity-20 border border-current border-opacity-30 rounded-xl p-4`}>

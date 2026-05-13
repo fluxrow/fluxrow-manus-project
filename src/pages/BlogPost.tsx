@@ -162,7 +162,7 @@ export default function BlogPost() {
           prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-4
           prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3
           prose-p:text-white/80 prose-p:leading-relaxed
-          prose-a:text-cyan-300 prose-a:no-underline hover:prose-a:underline
+          prose-a:text-white prose-a:no-underline hover:prose-a:underline
           prose-strong:text-white
           prose-li:text-white/80
           prose-code:text-cyan-200 prose-code:bg-white/5 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded
@@ -176,7 +176,7 @@ export default function BlogPost() {
             <ul className="space-y-2 text-sm">
               {post.sources.map((s, i) => (
                 <li key={i}>
-                  <a href={s.url} target="_blank" rel="noopener noreferrer" className="text-white/50 hover:text-cyan-300 inline-flex items-center gap-2">
+                  <a href={s.url} target="_blank" rel="noopener noreferrer" className="text-white/50 hover:text-white inline-flex items-center gap-2">
                     <ExternalLink className="w-3 h-3" />
                     {s.title || s.url.replace(/^https?:\/\//, "")}
                   </a>
