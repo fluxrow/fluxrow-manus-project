@@ -23,16 +23,22 @@ const SCAN_DIRS = [
   "pages",
 ];
 
-// Skip non-public surfaces (admin/proposals/reports/internal dashboards).
+// Skip non-public surfaces and known-dead legacy files (not imported anywhere).
 const SKIP_PATH_FRAGMENTS = [
   "/proposta",
   "/proposals",
   "/relatorio",
   "/admin",
   "/dashboard",
+  "/teresopolis",
   "/test/",
   ".test.",
   ".spec.",
+  "components/PricingSection.tsx",
+  "components/SimpleAISection.tsx",
+  "components/TestimonialsMobileCards.tsx",
+  "components/agency/AgencyHero.tsx",
+  "components/ui/DownloadPdfButton.tsx",
 ];
 
 // Files explicitly allowed to keep brand gradient (the logo only).
