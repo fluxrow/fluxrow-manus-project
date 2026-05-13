@@ -100,9 +100,9 @@ export default function ModulesSection() {
                   </div>
                   <ul className={`space-y-2 ${index % 2 === 0 ? 'lg:text-right' : ''}`}>
                     {module.features.map((feature, fIndex) => (
-                      <li key={fIndex} className="text-gray-400 text-sm flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-cyan-500/60" />
-                        {feature}
+                      <li key={fIndex} className="text-gray-400 text-sm flex items-start gap-2 min-w-0">
+                        <span className="w-1.5 h-1.5 rounded-full bg-cyan-500/60 shrink-0 mt-1.5" />
+                        <span className="min-w-0 break-words">{feature}</span>
                       </li>
                     ))}
                   </ul>
