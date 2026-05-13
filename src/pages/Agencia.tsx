@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react';
-import HorizonAgencyHero from '../components/agency/HorizonAgencyHero';
+import EditorialAgencyHero from '../components/agency/EditorialAgencyHero';
 import ServicesGrid from '../components/agency/ServicesGrid';
 import CasesPortfolio from '../components/agency/CasesPortfolio';
 import ProcessTimeline from '../components/agency/ProcessTimeline';
 import EnhancedInteractiveBriefing from '../components/agency/EnhancedInteractiveBriefing';
 import AgencyCTA from '../components/agency/AgencyCTA';
 import BehindTheScenes from '../components/agency/BehindTheScenes';
-import AgencyNav from '../components/agency/AgencyNav';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 import SEO from '../components/SEO';
 import { buildHomeFaqSchema } from '../lib/homeFaqSchema';
 
@@ -25,45 +26,37 @@ const Agencia = () => {
     <div className="min-h-screen bg-[#080807] text-white overflow-x-hidden">
       <SEO jsonLd={buildHomeFaqSchema()} />
 
-      {/* Navigation */}
-      <AgencyNav />
-      
-      {/* Hero Section */}
-      <header>
-        <HorizonAgencyHero />
-      </header>
-      
-      {/* Services Grid */}
-      <main>
-        <section id="services" aria-label="Serviços">
+      <Header />
+
+      <main className="pt-16">
+        <EditorialAgencyHero />
+
+        <section id="services" aria-label="Serviços" className="border-t border-white/5">
           <ServicesGrid />
         </section>
-        
-        {/* Cases Portfolio */}
-        <section id="cases" aria-label="Cases e Portfólio">
+
+        <section id="cases" aria-label="Cases e Portfólio" className="border-t border-white/5">
           <CasesPortfolio />
         </section>
-        
-        {/* Process Timeline */}
-        <section id="processo" aria-label="Processo de Trabalho">
+
+        <section id="processo" aria-label="Processo de Trabalho" className="border-t border-white/5">
           <ProcessTimeline />
         </section>
-        
-        {/* Behind the Scenes */}
-        <section aria-label="Bastidores">
+
+        <section aria-label="Bastidores" className="border-t border-white/5">
           <BehindTheScenes />
         </section>
-        
-        {/* Enhanced Interactive Briefing */}
-        <section id="briefing" aria-label="Briefing Inteligente">
+
+        <section id="briefing" aria-label="Briefing Inteligente" className="border-t border-white/5">
           <EnhancedInteractiveBriefing />
         </section>
+
+        <section aria-label="Próximo passo" className="border-t border-white/5">
+          <AgencyCTA />
+        </section>
       </main>
-      
-      {/* Final CTA + Footer */}
-      <footer>
-        <AgencyCTA />
-      </footer>
+
+      <Footer />
     </div>
   );
 };
