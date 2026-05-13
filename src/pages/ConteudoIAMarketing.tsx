@@ -203,6 +203,16 @@ Concorrentes conhecidos: [LISTA]`,
 
   return (
     <div className="min-h-screen bg-black">
+      <SEO
+        title="Produto sugerido por IA: prompts para marketing | Fluxrow"
+        description="Como usar IA para sugerir produtos, criar campanhas e gerar copy de alta conversão com prompts prontos."
+        path="/conteudos/produto-sugerido-ia"
+        jsonLd={buildArticleSchema({
+          title: 'Produto sugerido por IA: prompts para marketing',
+          description: 'Como usar IA para sugerir produtos, criar campanhas e gerar copy de alta conversão com prompts prontos.',
+          slug: 'produto-sugerido-ia',
+        })}
+      />
       <Header />
       
       <main className="pt-24 pb-20 px-6">
