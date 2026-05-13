@@ -20,6 +20,9 @@ const ConteudoRetratoIA = React.lazy(() => import("./pages/ConteudoRetratoIA"));
 const ConteudoTDAH = React.lazy(() => import("./pages/ConteudoTDAH"));
 const ConteudoYouTubeMonetizacao = React.lazy(() => import("./pages/ConteudoYouTubeMonetizacao"));
 const ConteudoIAEscalar = React.lazy(() => import("./pages/ConteudoIAEscalar"));
+const ConteudoClaudeCode = React.lazy(() => import("./pages/ConteudoClaudeCode"));
+const ConteudoMCP = React.lazy(() => import("./pages/ConteudoMCP"));
+const ConteudoClaudeSkills = React.lazy(() => import("./pages/ConteudoClaudeSkills"));
 const Modulo1Premium = React.lazy(() => import("./pages/Modulo1Premium"));
 const Modulo2Premium = React.lazy(() => import("./pages/Modulo2Premium"));
 const Modulo3Premium = React.lazy(() => import("./pages/Modulo3Premium"));
@@ -81,6 +84,9 @@ const App = () => (
             <Route path="/conteudos/ia-tdah-organizacao" element={<ConteudoTDAH />} />
             <Route path="/conteudos/youtube-monetizacao-ia" element={<ConteudoYouTubeMonetizacao />} />
             <Route path="/conteudos/ia-escalar-negocio" element={<ConteudoIAEscalar />} />
+            <Route path="/conteudos/claude-code" element={<ConteudoClaudeCode />} />
+            <Route path="/conteudos/mcp-claude" element={<ConteudoMCP />} />
+            <Route path="/conteudos/claude-skills" element={<ConteudoClaudeSkills />} />
             <Route path="/modulos/1-premium" element={<Modulo1Premium />} />
             <Route path="/modulos/2-premium" element={<Modulo2Premium />} />
             <Route path="/modulos/3-premium" element={<Modulo3Premium />} />
