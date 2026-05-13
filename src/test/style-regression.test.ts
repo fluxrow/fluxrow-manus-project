@@ -60,7 +60,7 @@ function walk(dir: string, out: string[] = []): string[] {
   for (const entry of readdirSync(dir)) {
     const full = join(dir, entry);
     const rel = "/" + relative(process.cwd(), full).replace(/\\/g, "/");
-    if (SKIP_PATH_FRAGMENTS.some((f) => rel.toLowerCase().includes(f))) continue;
+    if (SKIP_PATH_FRAGMENTS.some((f) => rel.toLowerCase().includes(f.toLowerCase()))) continue;
     const s = statSync(full);
     if (s.isDirectory()) walk(full, out);
     else if (/\.(tsx?|css)$/.test(entry)) out.push(full);
