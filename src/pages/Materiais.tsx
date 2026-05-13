@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { Download, FileText, Image, Code, CheckCircle, ArrowRight } from 'lucide-react';
@@ -121,6 +122,9 @@ const Materiais = () => {
 
   return (
     <div className="min-h-screen bg-[#0f0f0f] text-white">
+      <Helmet>
+        <meta name="robots" content="noindex, nofollow" />
+      </Helmet>
       <Header />
       
       <main className="pt-24 pb-20">

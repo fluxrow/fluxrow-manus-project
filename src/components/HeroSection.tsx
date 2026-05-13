@@ -135,10 +135,10 @@ const HeroSection = () => {
           </button>
           
           <a 
-            href="/modulos"
+            href="/produtos/operator-curso"
             className="bg-transparent border-2 border-cyan-500 text-cyan-400 px-8 py-4 rounded-full font-semibold font-space-grotesk hover:bg-cyan-500/10 transition-all duration-300"
           >
-            Ver Módulos
+            Ver Curso
           </a>
         </div>
         
