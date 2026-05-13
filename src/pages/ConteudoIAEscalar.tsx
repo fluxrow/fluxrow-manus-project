@@ -725,7 +725,11 @@ const ConteudoIAEscalar = () => {
             id="cta-kit"
             className="bg-gradient-to-r from-purple-900/30 to-pink-900/30 border border-purple-500/30 rounded-3xl p-8 md:p-10"
           >
-            <LeadCaptureForm source="ia-escalar-pt" lang="pt" />
+            <LeadCaptureForm
+              source="ia-escalar-pt"
+              lang="pt"
+              redirectTo="/produtos/ai-operator-kit?lang=pt"
+            />
             <div className="mt-6 pt-6 border-t border-purple-500/20 text-center">
               <Link
                 to="/conteudos"

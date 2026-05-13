@@ -1,31 +1,37 @@
 import { useState, FormEvent } from 'react';
 import { Link } from 'react-router-dom';
-import { Loader2, CheckCircle, ArrowRight } from 'lucide-react';
+import { Loader2, CheckCircle, ArrowRight, AlertCircle, Info } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
+
+interface LeadFormCopy {
+  eyebrow?: string;
+  title: string;
+  description: string;
+  namePlaceholder: string;
+  emailPlaceholder: string;
+  submit: string;
+  submitting: string;
+  successTitle: string;
+  successDescription: string;
+  duplicateTitle: string;
+  duplicateDescription: string;
+  successCta: string;
+  privacyNote: string;
+  invalidName: string;
+  invalidEmail: string;
+  serverInvalid: string;
+  networkError: string;
+  genericError: string;
+}
 
 interface LeadCaptureFormProps {
   source: string;
   lang?: 'pt' | 'en';
   redirectTo?: string;
-  copy?: {
-    eyebrow?: string;
-    title: string;
-    description: string;
-    namePlaceholder: string;
-    emailPlaceholder: string;
-    submit: string;
-    submitting: string;
-    successTitle: string;
-    successDescription: string;
-    successCta: string;
-    privacyNote: string;
-    invalidName: string;
-    invalidEmail: string;
-    genericError: string;
-  };
+  copy?: LeadFormCopy;
 }
 
-const defaultCopyPt = {
+const defaultCopyPt: LeadFormCopy = {
   eyebrow: 'PRÓXIMO PASSO',
   title: 'Pronto para aplicar IA no seu negócio?',
   description:
@@ -37,10 +43,15 @@ const defaultCopyPt = {
   successTitle: 'Tudo certo.',
   successDescription:
     'Levando você para o AI Operator Kit. Se não redirecionar automaticamente, use o botão abaixo.',
+  duplicateTitle: 'Você já está na lista.',
+  duplicateDescription:
+    'Esse e-mail já foi registrado antes. Sem problema — vamos te levar direto para o AI Operator Kit.',
   successCta: 'Ir para o AI Operator Kit',
   privacyNote: 'Sem spam. Você pode cancelar quando quiser.',
   invalidName: 'Informe seu nome (mínimo 2 caracteres).',
-  invalidEmail: 'Informe um e-mail válido.',
+  invalidEmail: 'Informe um e-mail válido (ex: nome@empresa.com).',
+  serverInvalid: 'Os dados informados parecem inválidos. Confira nome e e-mail e tente novamente.',
+  networkError: 'Sem conexão com o servidor. Verifique sua internet e tente novamente.',
   genericError: 'Não foi possível enviar agora. Tente novamente em instantes.',
 };
 
@@ -57,7 +68,7 @@ const LeadCaptureForm = ({
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [submitting, setSubmitting] = useState(false);
-  const [success, setSuccess] = useState(false);
+  const [status, setStatus] = useState<'idle' | 'success' | 'duplicate'>('idle');
   const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async (e: FormEvent) => {
@@ -78,35 +89,65 @@ const LeadCaptureForm = ({
 
     setSubmitting(true);
     try {
-      const { error: fnError } = await supabase.functions.invoke('capture-lead', {
+      const { data, error: fnError } = await supabase.functions.invoke('capture-lead', {
         body: { name: trimmedName, email: trimmedEmail, source, lang },
       });
 
       if (fnError) {
-        setError(copy.genericError);
+        // FunctionsHttpError exposes context with status; fall back generically
+        const status = (fnError as { context?: { status?: number } })?.context?.status;
+        if (status === 400) setError(copy.serverInvalid);
+        else if (status && status >= 500) setError(copy.genericError);
+        else setError(copy.networkError);
         setSubmitting(false);
         return;
       }
 
-      setSuccess(true);
-      // Redirect with small delay so the user sees the confirmation
+      const payload = (data ?? {}) as { ok?: boolean; duplicate?: boolean; error?: string };
+
+      if (!payload.ok) {
+        if (payload.error === 'invalid_input' || payload.error === 'invalid_payload') {
+          setError(copy.serverInvalid);
+        } else {
+          setError(copy.genericError);
+        }
+        setSubmitting(false);
+        return;
+      }
+
+      setStatus(payload.duplicate ? 'duplicate' : 'success');
       window.setTimeout(() => {
         window.location.assign(redirectTo);
-      }, 1200);
+      }, 1500);
     } catch {
-      setError(copy.genericError);
+      setError(copy.networkError);
       setSubmitting(false);
     }
   };
 
-  if (success) {
+  if (status !== 'idle') {
+    const isDup = status === 'duplicate';
     return (
-      <div className="text-center py-6">
-        <div className="inline-flex items-center justify-center w-14 h-14 bg-green-500/10 border border-green-500/30 rounded-full mb-4">
-          <CheckCircle className="w-7 h-7 text-green-400" />
+      <div className="text-center py-6" role="status" aria-live="polite">
+        <div
+          className={`inline-flex items-center justify-center w-14 h-14 rounded-full mb-4 border ${
+            isDup
+              ? 'bg-blue-500/10 border-blue-500/30'
+              : 'bg-green-500/10 border-green-500/30'
+          }`}
+        >
+          {isDup ? (
+            <Info className="w-7 h-7 text-blue-400" />
+          ) : (
+            <CheckCircle className="w-7 h-7 text-green-400" />
+          )}
         </div>
-        <h3 className="text-2xl font-bold font-space-grotesk text-white mb-2">{copy.successTitle}</h3>
-        <p className="text-gray-300 font-space-grotesk mb-6">{copy.successDescription}</p>
+        <h3 className="text-2xl font-bold font-space-grotesk text-white mb-2">
+          {isDup ? copy.duplicateTitle : copy.successTitle}
+        </h3>
+        <p className="text-gray-300 font-space-grotesk mb-6">
+          {isDup ? copy.duplicateDescription : copy.successDescription}
+        </p>
         <Link
           to={redirectTo}
           className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold font-space-grotesk px-8 py-3 rounded-full hover:from-purple-600 hover:to-pink-600 transition-all"
@@ -118,7 +159,7 @@ const LeadCaptureForm = ({
   }
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-xl mx-auto" noValidate>
+    <form onSubmit={handleSubmit} className="max-w-xl mx-auto" noValidate aria-busy={submitting}>
       {copy.eyebrow && (
         <p className="text-xs uppercase tracking-widest text-purple-400 font-space-grotesk text-center mb-3">
           {copy.eyebrow}
@@ -146,7 +187,9 @@ const LeadCaptureForm = ({
             onChange={(e) => setName(e.target.value)}
             maxLength={100}
             required
-            className="w-full bg-black/40 border border-gray-700 focus:border-purple-500 focus:outline-none text-white placeholder-gray-500 font-space-grotesk px-4 py-3 rounded-lg transition-colors"
+            disabled={submitting}
+            aria-invalid={Boolean(error)}
+            className="w-full bg-black/40 border border-gray-700 focus:border-purple-500 focus:outline-none text-white placeholder-gray-500 font-space-grotesk px-4 py-3 rounded-lg transition-colors disabled:opacity-60"
           />
         </div>
         <div>
@@ -163,15 +206,23 @@ const LeadCaptureForm = ({
             onChange={(e) => setEmail(e.target.value)}
             maxLength={255}
             required
-            className="w-full bg-black/40 border border-gray-700 focus:border-purple-500 focus:outline-none text-white placeholder-gray-500 font-space-grotesk px-4 py-3 rounded-lg transition-colors"
+            disabled={submitting}
+            aria-invalid={Boolean(error)}
+            className="w-full bg-black/40 border border-gray-700 focus:border-purple-500 focus:outline-none text-white placeholder-gray-500 font-space-grotesk px-4 py-3 rounded-lg transition-colors disabled:opacity-60"
           />
         </div>
 
-        {error && (
-          <p className="text-sm text-red-400 font-space-grotesk" role="alert">
-            {error}
-          </p>
-        )}
+        <div aria-live="polite" className="min-h-[1.25rem]">
+          {error && (
+            <p
+              className="text-sm text-red-400 font-space-grotesk flex items-start gap-2"
+              role="alert"
+            >
+              <AlertCircle className="w-4 h-4 mt-0.5 flex-shrink-0" />
+              <span>{error}</span>
+            </p>
+          )}
+        </div>
 
         <button
           type="submit"

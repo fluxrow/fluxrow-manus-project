@@ -70,13 +70,16 @@ Deno.serve(async (req) => {
       metadata,
     });
 
-    // Treat duplicate as success (idempotent capture)
-    if (error && error.code !== "23505") {
+    if (error) {
+      // Duplicate (unique violation): idempotent success with a flag
+      if (error.code === "23505") {
+        return json({ ok: true, duplicate: true });
+      }
       return json({ ok: false, error: "insert_failed" }, 500);
     }
   } catch (_err) {
     return json({ ok: false, error: "internal_error" }, 500);
   }
 
-  return json({ ok: true });
+  return json({ ok: true, duplicate: false });
 });
