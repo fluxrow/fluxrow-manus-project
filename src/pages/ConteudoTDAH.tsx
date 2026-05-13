@@ -246,6 +246,16 @@ Foque em sistemas que FUNCIONAM SOZINHOS, não que dependem da minha memória.`,
 
   return (
     <div className="min-h-screen bg-black">
+      <SEO
+        title="IA para TDAH: organize sua rotina com prompts | Fluxrow"
+        description="Como pessoas com TDAH podem usar IA para organizar tarefas, criar rotinas, manter foco e reduzir sobrecarga mental."
+        path="/conteudos/ia-tdah-organizacao"
+        jsonLd={buildArticleSchema({
+          title: 'IA para TDAH: organize sua rotina com prompts',
+          description: 'Como pessoas com TDAH podem usar IA para organizar tarefas, criar rotinas, manter foco e reduzir sobrecarga mental.',
+          slug: 'ia-tdah-organizacao',
+        })}
+      />
       <Header />
       
       <main className="pt-24 pb-20 px-6">
