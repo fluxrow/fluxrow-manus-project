@@ -66,7 +66,7 @@ const TermosDeUso = () => {
           <section>
             <h2 className="text-xl font-semibold text-white mb-3">4. Uso Aceitável</h2>
             <p className="mb-3">Ao utilizar este site, você se compromete a:</p>
-            <ul className="list-disc pl-6 space-y-2">
+            <ul className="list-disc pl-6 space-y-2 break-words">
               <li>Não utilizar o site para fins ilícitos ou contrários à moral e aos bons costumes;</li>
               <li>Não tentar acessar áreas restritas do site ou sistemas da Fluxrow sem autorização;</li>
               <li>Não reproduzir, copiar ou distribuir conteúdo do site sem autorização prévia;</li>
