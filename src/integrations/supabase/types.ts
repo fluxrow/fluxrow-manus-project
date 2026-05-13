@@ -14,6 +14,102 @@ export type Database = {
   }
   public: {
     Tables: {
+      blog_generation_runs: {
+        Row: {
+          error: string | null
+          finished_at: string | null
+          id: string
+          posts_created: number
+          raw_log: Json | null
+          sources_count: number
+          started_at: string
+        }
+        Insert: {
+          error?: string | null
+          finished_at?: string | null
+          id?: string
+          posts_created?: number
+          raw_log?: Json | null
+          sources_count?: number
+          started_at?: string
+        }
+        Update: {
+          error?: string | null
+          finished_at?: string | null
+          id?: string
+          posts_created?: number
+          raw_log?: Json | null
+          sources_count?: number
+          started_at?: string
+        }
+        Relationships: []
+      }
+      blog_posts: {
+        Row: {
+          body_md: string
+          cover_image_url: string | null
+          created_at: string
+          excerpt: string
+          id: string
+          keywords: string[]
+          lang: string
+          published_at: string
+          reading_minutes: number
+          seo_description: string | null
+          seo_title: string | null
+          slug: string
+          sources: Json
+          sources_hash: string | null
+          status: string
+          tags: string[]
+          title: string
+          updated_at: string
+          view_count: number
+        }
+        Insert: {
+          body_md: string
+          cover_image_url?: string | null
+          created_at?: string
+          excerpt: string
+          id?: string
+          keywords?: string[]
+          lang: string
+          published_at?: string
+          reading_minutes?: number
+          seo_description?: string | null
+          seo_title?: string | null
+          slug: string
+          sources?: Json
+          sources_hash?: string | null
+          status?: string
+          tags?: string[]
+          title: string
+          updated_at?: string
+          view_count?: number
+        }
+        Update: {
+          body_md?: string
+          cover_image_url?: string | null
+          created_at?: string
+          excerpt?: string
+          id?: string
+          keywords?: string[]
+          lang?: string
+          published_at?: string
+          reading_minutes?: number
+          seo_description?: string | null
+          seo_title?: string | null
+          slug?: string
+          sources?: Json
+          sources_hash?: string | null
+          status?: string
+          tags?: string[]
+          title?: string
+          updated_at?: string
+          view_count?: number
+        }
+        Relationships: []
+      }
       contratos_assinados: {
         Row: {
           assinatura_cargo_responsavel: string | null
@@ -349,6 +445,10 @@ export type Database = {
         Returns: number
       }
       has_kit_access: { Args: never; Returns: boolean }
+      increment_blog_view: {
+        Args: { _lang: string; _slug: string }
+        Returns: undefined
+      }
       move_to_dlq: {
         Args: {
           dlq_name: string
