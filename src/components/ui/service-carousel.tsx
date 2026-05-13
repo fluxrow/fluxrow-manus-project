@@ -346,7 +346,7 @@ const ServiceCarousel = React.forwardRef<HTMLDivElement, ServiceCarouselProps>(
                             className="flex items-start gap-2 text-sm text-white/70"
                           >
                             <Check className="w-4 h-4 text-white/80 mt-0.5 flex-shrink-0" />
-                            <span>{feature}</span>
+                            <span className="min-w-0 break-words">{feature}</span>
                           </motion.div>
                         ))}
                       </div>
