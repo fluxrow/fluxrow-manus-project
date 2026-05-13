@@ -1,0 +1,48 @@
+# Fluxrow — robots.txt
+# Default: tudo permitido. Apenas as rotas privadas/transacionais
+# listadas em "Disallow" abaixo são bloqueadas.
+
+Sitemap: https://fluxrow.com/sitemap.xml
+
+User-agent: *
+# Rotas privadas / comerciais / transacionais
+Disallow: /p/
+Disallow: /propostas
+Disallow: /preview/
+Disallow: /admin/
+Disallow: /relatorio/
+Disallow: /briefing-alek
+Disallow: /apresentacao-evolua-digital
+Disallow: /modulos
+Disallow: /materiais
+Disallow: /curso
+Disallow: /login
+Disallow: /unsubscribe
+Disallow: /checkout/
+Disallow: /produtos/operator-curso
+Disallow: /produtos/kit-operador-ia
+
+# =====================================================
+# CRAWLERS DE IA — controle individual
+# Para PERMITIR: comente o bloco ou troque "Disallow: /" por "Allow: /".
+# =====================================================
+
+# OpenAI (ChatGPT) — BLOQUEADO
+User-agent: GPTBot
+Disallow: /
+
+# Anthropic (Claude) — BLOQUEADO
+User-agent: ClaudeBot
+Disallow: /
+
+# Common Crawl (treina vários LLMs) — BLOQUEADO
+User-agent: CCBot
+Disallow: /
+
+# Outros crawlers de IA conhecidos (descomente para bloquear)
+# User-agent: Google-Extended
+# Disallow: /
+# User-agent: PerplexityBot
+# Disallow: /
+# User-agent: Applebot-Extended
+# Disallow: /

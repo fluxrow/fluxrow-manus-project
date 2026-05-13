@@ -1,0 +1,10 @@
+# Fluxrow — robots.staging.txt
+# Template para hosts de staging/preview (lovable.app, id-preview, custom dev domains).
+# Bloqueia indexação completa. Para usar, copie sobre public/robots.txt antes de
+# fazer build com DEPLOY_ENV=staging, OU confie no guard de runtime em index.html
+# que injeta <meta name="robots" content="noindex,nofollow"> quando hostname != produção.
+
+User-agent: *
+Disallow: /
+
+# Sem diretiva Sitemap em staging — não queremos que o sitemap seja descoberto aqui.

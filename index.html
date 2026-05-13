@@ -12,6 +12,31 @@
     <meta name="keywords" content="agência de IA, automação de marketing, growth marketing, inteligência artificial para empresas, n8n, make, chatgpt, criação de sites, automação de vendas, marketing digital com IA" />
     <meta name="author" content="Fluxrow" />
     <meta name="robots" content="index, follow" />
+    <!-- Staging guard: força noindex,nofollow em qualquer host que não seja produção
+         (lovable.app, id-preview, custom dev domains). Roda síncrono antes do paint
+         para garantir que crawlers JS-aware (Googlebot) leiam o valor correto. -->
+    <script>
+      (function () {
+        try {
+          var host = location.hostname;
+          var PROD_HOSTS = ['fluxrow.com', 'www.fluxrow.com'];
+          if (PROD_HOSTS.indexOf(host) === -1) {
+            var robots = document.querySelector('meta[name="robots"]');
+            if (!robots) {
+              robots = document.createElement('meta');
+              robots.setAttribute('name', 'robots');
+              document.head.appendChild(robots);
+            }
+            robots.setAttribute('content', 'noindex, nofollow, noarchive');
+            // Sinal extra para validadores SEO (Ahrefs, Screaming Frog).
+            var xRobots = document.createElement('meta');
+            xRobots.setAttribute('name', 'googlebot');
+            xRobots.setAttribute('content', 'noindex, nofollow');
+            document.head.appendChild(xRobots);
+          }
+        } catch (_) { /* swallow */ }
+      })();
+    </script>
     <meta name="facebook-domain-verification" content="vmc7s40gwmx2ieuvz4kvpumc7yv9k3" />
     <meta name="google-site-verification" content="MkluADVvO3fRhohBGvhJbKz2lKBFb7aTDqaxvUal0Mg" />
     <link rel="alternate" hreflang="pt-BR" href="https://fluxrow.com/" />

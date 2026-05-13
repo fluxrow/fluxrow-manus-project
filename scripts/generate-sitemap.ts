@@ -2,7 +2,7 @@
 // Runs on `predev` and `prebuild`. Private routes (admin, /p/, /c/, /preview,
 // /relatorio, briefing, contratos) are intentionally excluded.
 
-import { writeFileSync } from "fs";
+import { writeFileSync, readFileSync } from "fs";
 import { resolve } from "path";
 
 const BASE_URL = "https://fluxrow.com";
@@ -69,5 +69,35 @@ function generateSitemap(items: SitemapEntry[]) {
   ].join("\n");
 }
 
-writeFileSync(resolve("public/sitemap.xml"), generateSitemap(entries));
-console.log(`sitemap.xml written (${entries.length} entries)`);
+// Environment switch:
+//   DEPLOY_ENV=staging  -> escreve sitemap mínimo e copia robots.staging.txt
+//   DEPLOY_ENV=production (default) -> escreve sitemap completo e mantém robots.production.txt
+const env = (process.env.DEPLOY_ENV || "production").toLowerCase();
+
+if (env === "staging") {
+  // Sitemap mínimo (sem URLs reais) para evitar descoberta acidental.
+  const emptyXml = [
+    `<?xml version="1.0" encoding="UTF-8"?>`,
+    `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"></urlset>`,
+    ``,
+  ].join("\n");
+  writeFileSync(resolve("public/sitemap.xml"), emptyXml);
+  // Copia o template restritivo para robots.txt
+  const stagingRobots = readFileSync(
+    resolve("public/robots.staging.txt"),
+    "utf8",
+  );
+  writeFileSync(resolve("public/robots.txt"), stagingRobots);
+  console.log("[staging] empty sitemap.xml + restrictive robots.txt written");
+} else {
+  writeFileSync(resolve("public/sitemap.xml"), generateSitemap(entries));
+  // Garante que o robots.txt em uso é o de produção
+  const prodRobots = readFileSync(
+    resolve("public/robots.production.txt"),
+    "utf8",
+  );
+  writeFileSync(resolve("public/robots.txt"), prodRobots);
+  console.log(
+    `[production] sitemap.xml written (${entries.length} entries) + production robots.txt`,
+  );
+}
