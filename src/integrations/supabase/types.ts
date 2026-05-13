@@ -112,6 +112,7 @@ export type Database = {
           stripe_customer_id: string | null
           stripe_session_id: string
           updated_at: string
+          user_id: string | null
         }
         Insert: {
           access_token?: string
@@ -129,6 +130,7 @@ export type Database = {
           stripe_customer_id?: string | null
           stripe_session_id: string
           updated_at?: string
+          user_id?: string | null
         }
         Update: {
           access_token?: string
@@ -146,6 +148,7 @@ export type Database = {
           stripe_customer_id?: string | null
           stripe_session_id?: string
           updated_at?: string
+          user_id?: string | null
         }
         Relationships: []
       }
@@ -226,7 +229,7 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_kit_access: { Args: { _user_id: string }; Returns: boolean }
     }
     Enums: {
       [_ in never]: never
