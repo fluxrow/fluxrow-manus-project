@@ -62,22 +62,46 @@ function walk(dir: string, out: string[] = []): string[] {
   return out;
 }
 
+function existsDir(p: string): boolean {
+  try {
+    return statSync(p).isDirectory();
+  } catch {
+    return false;
+  }
+}
+
+function scanFile(file: string) {
+  const rel = relative(ROOT, file);
+  if (EXEMPT_FILES.has(rel)) return;
+  const lines = readFileSync(file, "utf8").split("\n");
+  lines.forEach((line, i) => {
+    for (const { name, regex } of PATTERNS) {
+      regex.lastIndex = 0;
+      if (regex.test(line)) {
+        hits.push({ file: rel, line: i + 1, pattern: name, snippet: line.trim() });
+      }
+    }
+  });
+}
+
 const hits: Hit[] = [];
+const scannedDirs: string[] = [];
 for (const dir of SCAN_DIRS) {
   const abs = join(ROOT, dir);
-  for (const file of walk(abs)) {
-    const rel = relative(ROOT, file);
-    if (EXEMPT_FILES.has(rel)) continue;
-    const lines = readFileSync(file, "utf8").split("\n");
-    lines.forEach((line, i) => {
-      for (const { name, regex } of PATTERNS) {
-        regex.lastIndex = 0;
-        if (regex.test(line)) {
-          hits.push({ file: rel, line: i + 1, pattern: name, snippet: line.trim() });
-        }
-      }
-    });
+  if (!existsDir(abs)) continue;
+  scannedDirs.push(dir);
+  for (const file of walk(abs)) scanFile(file);
+}
+
+if (SCAN_ROOT_FILES) {
+  for (const entry of readdirSync(ROOT)) {
+    const full = join(ROOT, entry);
+    let st;
+    try { st = statSync(full); } catch { continue; }
+    if (!st.isFile()) continue;
+    if (EXTENSIONS.some((ext) => entry.endsWith(ext))) scanFile(full);
   }
+  scannedDirs.push("<root files>");
 }
 
 const reportDir = join(ROOT, "reports");
