@@ -78,15 +78,15 @@ const Contato = () => {
               href={c.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="group block border border-white/10 hover:border-white/30 transition-colors p-8 rounded-sm bg-white/[0.02] hover:bg-white/[0.04]"
+              className="group block border border-white/10 hover:border-white/30 transition-colors p-6 sm:p-8 rounded-sm bg-white/[0.02] hover:bg-white/[0.04]"
             >
               <div className="flex items-start gap-4 mb-5">
                 <c.icon className="w-5 h-5 text-white/60 mt-1 shrink-0" />
-                <div>
+                <div className="min-w-0">
                   <p className="text-xs uppercase tracking-[0.2em] text-white/55 font-mono mb-2">
                     {c.eyebrow}
                   </p>
-                  <h2 className="font-serif text-2xl leading-tight">{c.title}</h2>
+                  <h2 className="font-serif text-xl sm:text-2xl leading-tight break-words">{c.title}</h2>
                 </div>
               </div>
               <p className="text-white/60 text-sm leading-relaxed mb-6">
