@@ -81,26 +81,32 @@ const ProdutosHub = () => {
               Investimento
             </p>
             <h2 id="pricing-title" className="text-3xl md:text-4xl font-serif">
-              Pague uma vez. Use pra sempre.
+              Dois produtos, dois caminhos.
             </h2>
+            <p className="text-white/60 mt-3 max-w-2xl">
+              Cada Kit é um produto distinto, com escopo próprio. Preço ajustado pela moeda do seu país.
+            </p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-6">
             <article className="border border-white/10 p-8 rounded-sm bg-white/[0.02]">
               <header className="mb-6">
-                <p className="text-xs font-mono text-white/50 mb-2">AI Operator Kit · EN</p>
-                <div className="flex items-baseline gap-2">
+                <p className="text-xs font-mono text-white/50 mb-2">AI Operator Kit · Global</p>
+                <div className="flex items-baseline gap-2 flex-wrap">
                   <span className="text-5xl font-serif">$27</span>
-                  <span className="text-white/50 text-sm">one-time</span>
+                  <span className="text-white/40 text-sm">USD</span>
+                  <span className="text-white/50 text-sm ml-2">≈ R$ 135 BRL</span>
                 </div>
+                <p className="text-xs text-white/40 mt-2 font-mono">one-time · entrega em inglês</p>
               </header>
               <ul className="space-y-2 text-sm text-white/75 mb-8">
                 {[
-                  "5-layer system architecture",
-                  "15 copy-ready prompts",
-                  "ManyChat DM sequence",
+                  "5-layer system architecture (Brain, Queue, Publisher, DM, Revenue)",
+                  "15 copy-ready prompts (EN)",
+                  "ManyChat DM sequence completa",
                   "n8n workflow templates",
                   "Launch checklists (Fast / Stable / Scale)",
+                  "Operator repository (SKILL.md format)",
                 ].map((f) => (
                   <li key={f} className="flex gap-2">
                     <Check className="w-4 h-4 text-white/50 shrink-0 mt-0.5" /> {f}
@@ -118,19 +124,22 @@ const ProdutosHub = () => {
 
             <article className="border border-white/10 p-8 rounded-sm bg-white/[0.02]">
               <header className="mb-6">
-                <p className="text-xs font-mono text-white/50 mb-2">Kit Operador IA · PT</p>
-                <div className="flex items-baseline gap-2">
+                <p className="text-xs font-mono text-white/50 mb-2">Kit Operador IA · Brasil</p>
+                <div className="flex items-baseline gap-2 flex-wrap">
                   <span className="text-5xl font-serif">R$ 147</span>
-                  <span className="text-white/50 text-sm">à vista</span>
+                  <span className="text-white/40 text-sm">BRL</span>
+                  <span className="text-white/50 text-sm ml-2">≈ $29 USD</span>
                 </div>
+                <p className="text-xs text-white/40 mt-2 font-mono">à vista · onboarding em português</p>
               </header>
               <ul className="space-y-2 text-sm text-white/75 mb-8">
                 {[
-                  "Mesma arquitetura de 5 camadas",
-                  "Onboarding em português",
-                  "Suporte por WhatsApp",
-                  "Material entregue em inglês",
-                  "Acesso vitalício",
+                  "Arquitetura de 5 camadas adaptada ao mercado BR",
+                  "Prompts e playbooks traduzidos e contextualizados",
+                  "Onboarding ao vivo em português",
+                  "Suporte direto por WhatsApp",
+                  "Casos práticos de PMEs brasileiras",
+                  "Acesso vitalício + atualizações",
                 ].map((f) => (
                   <li key={f} className="flex gap-2">
                     <Check className="w-4 h-4 text-white/50 shrink-0 mt-0.5" /> {f}
@@ -142,13 +151,13 @@ const ProdutosHub = () => {
                 onClick={() => trackEvent("purchase_intent", { product: "kit_operador_ia", price: 147, currency: "BRL" })}
                 className="inline-flex items-center justify-center gap-2 w-full px-6 py-3 bg-white text-[#080807] font-medium rounded-sm hover:bg-white/90 transition-colors"
               >
-                Quero o Kit em PT <ArrowRight className="w-4 h-4" />
+                Quero o Kit em PT — R$ 147 <ArrowRight className="w-4 h-4" />
               </Link>
             </article>
           </div>
 
           <p className="text-xs text-white/40 mt-6 font-mono">
-            Garantia de 7 dias · Pagamento único · Acesso vitalício
+            Garantia de 7 dias · Pagamento único · Acesso vitalício · Conversão USD→BRL aproximada (cotação do dia)
           </p>
         </section>
 
