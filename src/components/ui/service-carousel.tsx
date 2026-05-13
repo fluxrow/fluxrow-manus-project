@@ -76,7 +76,7 @@ const ServiceCard = React.forwardRef<HTMLDivElement, ServiceCardProps>(
         onClick={handleCardClick}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        className="group relative flex-shrink-0 w-[320px] h-[420px] rounded-2xl overflow-hidden cursor-pointer block"
+        className="group relative flex-shrink-0 w-[320px] h-[420px] rounded-sm overflow-hidden cursor-pointer block"
         whileHover={!isMobile ? { y: -8, scale: 1.02 } : undefined}
         transition={{ duration: 0.3, ease: "easeOut" }}
       >
@@ -90,19 +90,19 @@ const ServiceCard = React.forwardRef<HTMLDivElement, ServiceCardProps>(
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent" />
         
         {/* Hover Glow Effect */}
-        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-purple-500/20 to-cyan-500/20" />
+        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-white/5" />
         
         {/* Card Content */}
         <div className="relative h-full flex flex-col justify-end p-6">
           <div className="space-y-4">
             {/* Tag */}
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 backdrop-blur-sm">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-white/20 text-white/80 border border-white/30 backdrop-blur-sm">
               <Icon className="w-3 h-3" />
               {service.tag}
             </span>
 
             {/* Title */}
-            <h3 className="text-xl font-bold text-white font-space-grotesk group-hover:text-cyan-400 transition-colors">
+            <h3 className="text-xl font-bold text-white font-space-grotesk group-hover:text-white transition-colors">
               {service.title}
             </h3>
 
@@ -120,7 +120,7 @@ const ServiceCard = React.forwardRef<HTMLDivElement, ServiceCardProps>(
 
             {/* Click hint */}
             <motion.div 
-              className="flex items-center gap-1 text-xs text-cyan-400/70"
+              className="flex items-center gap-1 text-xs text-white/70"
               animate={{ opacity: isHovered ? 1 : 0.7 }}
             >
               <span>Clique para ver detalhes</span>
@@ -130,7 +130,7 @@ const ServiceCard = React.forwardRef<HTMLDivElement, ServiceCardProps>(
           {/* Footer */}
           <div className="mt-6 flex items-center justify-between pt-4 border-t border-white/10">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-gradient-to-r from-cyan-500 to-purple-500 flex items-center justify-center">
+              <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center">
                 <Icon className="w-5 h-5 text-white" />
               </div>
               <span className="text-sm font-medium text-white/90">
@@ -140,10 +140,10 @@ const ServiceCard = React.forwardRef<HTMLDivElement, ServiceCardProps>(
 
             <button
               onClick={handleArrowClick}
-              className="w-8 h-8 rounded-full bg-white/10 hover:bg-cyan-500/30 flex items-center justify-center transition-all duration-300 hover:translate-x-1 group/arrow"
+              className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/10 flex items-center justify-center transition-all duration-300 hover:translate-x-1 group/arrow"
               aria-label={`Contato sobre ${service.title}`}
             >
-              <ArrowRight className="w-4 h-4 text-white group-hover/arrow:text-cyan-400" />
+              <ArrowRight className="w-4 h-4 text-white group-hover/arrow:text-white/80" />
             </button>
           </div>
         </div>
@@ -214,7 +214,7 @@ const ServiceCarousel = React.forwardRef<HTMLDivElement, ServiceCarouselProps>(
           {/* Left Scroll Button */}
           <button
             onClick={() => scroll("left")}
-            className="absolute top-1/2 -translate-y-1/2 left-2 md:left-4 z-10 w-10 h-10 rounded-full bg-black/50 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-all duration-300 hover:bg-cyan-500/30 hover:border-cyan-500/50"
+            className="absolute top-1/2 -translate-y-1/2 left-2 md:left-4 z-10 w-10 h-10 rounded-full bg-black/50 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-all duration-300 hover:bg-white/10 hover:border-white/30"
             aria-label="Scroll Left"
           >
             <ChevronLeft className="w-5 h-5" />
@@ -242,7 +242,7 @@ const ServiceCarousel = React.forwardRef<HTMLDivElement, ServiceCarouselProps>(
           {/* Right Scroll Button */}
           <button
             onClick={() => scroll("right")}
-            className="absolute top-1/2 -translate-y-1/2 right-2 md:right-4 z-10 w-10 h-10 rounded-full bg-black/50 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-all duration-300 hover:bg-cyan-500/30 hover:border-cyan-500/50"
+            className="absolute top-1/2 -translate-y-1/2 right-2 md:right-4 z-10 w-10 h-10 rounded-full bg-black/50 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-all duration-300 hover:bg-white/10 hover:border-white/30"
             aria-label="Scroll Right"
           >
             <ChevronRight className="w-5 h-5" />
@@ -265,7 +265,7 @@ const ServiceCarousel = React.forwardRef<HTMLDivElement, ServiceCarouselProps>(
                 animate={{ scale: 1, opacity: 1, y: 0 }}
                 exit={{ scale: 0.9, opacity: 0, y: 50 }}
                 transition={{ type: "spring", damping: 25, stiffness: 300 }}
-                className="relative w-full max-w-2xl my-8 bg-gradient-to-br from-gray-900 to-black rounded-3xl border border-cyan-500/30 overflow-hidden shadow-2xl"
+                className="relative w-full max-w-2xl my-8 bg-gradient-to-br from-gray-900 to-black rounded-sm border border-white/30 overflow-hidden shadow-2xl"
                 onClick={(e) => e.stopPropagation()}
               >
                 {/* Close button */}
@@ -295,7 +295,7 @@ const ServiceCarousel = React.forwardRef<HTMLDivElement, ServiceCarouselProps>(
                   
                   {/* Icon overlay */}
                   <div className="absolute bottom-4 left-6">
-                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-r from-cyan-500 to-purple-500 flex items-center justify-center shadow-lg">
+                    <div className="w-14 h-14 rounded-sm bg-white/5 flex items-center justify-center shadow-lg">
                       <expandedService.icon className="w-7 h-7 text-white" />
                     </div>
                   </div>
@@ -310,14 +310,14 @@ const ServiceCarousel = React.forwardRef<HTMLDivElement, ServiceCarouselProps>(
                   exit="exit"
                 >
                   <motion.div variants={itemVariants}>
-                    <span className="inline-block mb-3 rounded-full border border-cyan-500/40 bg-cyan-500/10 px-3 py-1 text-xs font-medium text-cyan-400">
+                    <span className="inline-block mb-3 rounded-full border border-white/40 bg-white/10 px-3 py-1 text-xs font-medium text-white/80">
                       {expandedService.tag}
                     </span>
                   </motion.div>
                   
                   <motion.h2 
                     variants={itemVariants}
-                    className="text-2xl md:text-3xl font-bold font-space-grotesk bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent mb-4"
+                    className="text-2xl md:text-3xl font-bold font-space-grotesk text-white mb-4"
                   >
                     {expandedService.title}
                   </motion.h2>
@@ -333,7 +333,7 @@ const ServiceCarousel = React.forwardRef<HTMLDivElement, ServiceCarouselProps>(
                   {expandedService.features && expandedService.features.length > 0 && (
                     <motion.div variants={itemVariants} className="mb-6">
                       <h4 className="text-sm font-semibold text-white mb-3 flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
+                        <span className="w-1.5 h-1.5 rounded-full bg-white/10" />
                         O que inclui
                       </h4>
                       <div className="grid gap-2">
@@ -345,7 +345,7 @@ const ServiceCarousel = React.forwardRef<HTMLDivElement, ServiceCarouselProps>(
                             transition={{ delay: 0.3 + idx * 0.05 }}
                             className="flex items-start gap-2 text-sm text-white/70"
                           >
-                            <Check className="w-4 h-4 text-cyan-400 mt-0.5 flex-shrink-0" />
+                            <Check className="w-4 h-4 text-white/80 mt-0.5 flex-shrink-0" />
                             <span>{feature}</span>
                           </motion.div>
                         ))}
@@ -357,7 +357,7 @@ const ServiceCarousel = React.forwardRef<HTMLDivElement, ServiceCarouselProps>(
                   {expandedService.deliverables && expandedService.deliverables.length > 0 && (
                     <motion.div 
                       variants={itemVariants}
-                      className="bg-gradient-to-r from-purple-500/10 to-cyan-500/10 border border-purple-500/20 rounded-xl p-4 mb-6"
+                      className="bg-white/5 border border-white/20 rounded-xl p-4 mb-6"
                     >
                       <h4 className="text-sm font-semibold text-white mb-3">Entregas</h4>
                       <div className="flex flex-wrap gap-2">
@@ -376,9 +376,9 @@ const ServiceCarousel = React.forwardRef<HTMLDivElement, ServiceCarouselProps>(
                   {/* Benefit highlight */}
                   <motion.div 
                     variants={itemVariants}
-                    className="flex items-center gap-3 mb-6 p-3 rounded-xl bg-gradient-to-r from-cyan-500/10 to-purple-500/10 border border-cyan-500/20"
+                    className="flex items-center gap-3 mb-6 p-3 rounded-xl bg-white/5 border border-white/20"
                   >
-                    <div className="w-10 h-10 rounded-full bg-gradient-to-r from-cyan-500 to-purple-500 flex items-center justify-center flex-shrink-0">
+                    <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center flex-shrink-0">
                       <expandedService.icon className="w-5 h-5 text-white" />
                     </div>
                     <div>
@@ -390,7 +390,7 @@ const ServiceCarousel = React.forwardRef<HTMLDivElement, ServiceCarouselProps>(
                   <motion.div variants={itemVariants}>
                     <button
                       onClick={(e) => handleContactClick(e, expandedService.title)}
-                      className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-cyan-500 to-purple-500 text-white font-medium hover:shadow-lg hover:shadow-cyan-500/25 transition-all"
+                      className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/5 text-white font-medium hover:shadow-lg hover:shadow-black/20 transition-all"
                     >
                       Solicitar orçamento
                       <ArrowRight className="w-4 h-4" />

@@ -62,7 +62,7 @@ const AgencyNav = () => {
                   handleClick(link.href);
                 }
               }}
-              className="text-sm text-white/70 hover:text-cyan-400 transition-colors font-medium"
+              className="text-sm text-white/70 hover:text-white transition-colors font-medium"
             >
               {link.label}
             </a>
@@ -71,7 +71,7 @@ const AgencyNav = () => {
           {/* Language Toggle */}
           <button
             onClick={toggleLanguage}
-            className="text-sm text-white/70 hover:text-cyan-400 transition-colors font-medium px-2 py-1 rounded border border-white/10 hover:border-cyan-400/40"
+            className="text-sm text-white/70 hover:text-white transition-colors font-medium px-2 py-1 rounded border border-white/10 hover:border-white/30"
             aria-label="Toggle language"
           >
             {i18n.language === 'pt' ? '🇺🇸 EN' : '🇧🇷 PT'}
@@ -81,7 +81,7 @@ const AgencyNav = () => {
             href="https://wa.me/5541992361868"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-sm font-semibold px-5 py-2 rounded-full bg-gradient-to-r from-cyan-500 to-purple-600 text-white hover:opacity-90 transition-opacity"
+            className="text-sm font-semibold px-5 py-2 rounded-full bg-white/5 text-white hover:opacity-90 transition-opacity"
           >
             {t('nav.cta')}
           </a>
@@ -110,7 +110,7 @@ const AgencyNav = () => {
                   handleClick(link.href);
                 }
               }}
-              className="block text-white/80 hover:text-cyan-400 transition-colors font-medium text-lg"
+              className="block text-white/80 hover:text-white transition-colors font-medium text-lg"
             >
               {link.label}
             </a>
@@ -119,7 +119,7 @@ const AgencyNav = () => {
           {/* Language Toggle Mobile */}
           <button
             onClick={toggleLanguage}
-            className="block text-white/80 hover:text-cyan-400 transition-colors font-medium text-lg"
+            className="block text-white/80 hover:text-white transition-colors font-medium text-lg"
           >
             {i18n.language === 'pt' ? '🇺🇸 English' : '🇧🇷 Português'}
           </button>
@@ -128,7 +128,7 @@ const AgencyNav = () => {
             href="https://wa.me/5541992361868"
             target="_blank"
             rel="noopener noreferrer"
-            className="block text-center font-semibold px-5 py-3 rounded-full bg-gradient-to-r from-cyan-500 to-purple-600 text-white"
+            className="block text-center font-semibold px-5 py-3 rounded-full bg-white/5 text-white"
           >
             {t('nav.cta')}
           </a>

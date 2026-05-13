@@ -304,7 +304,7 @@ const EnhancedInteractiveBriefing = () => {
         </motion.div>
 
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
-          <Button onClick={() => window.open(whatsappUrl, '_blank')} className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-primary-foreground px-6 py-3 rounded-xl font-semibold">
+          <Button onClick={() => window.open(whatsappUrl, '_blank')} className="bg-white/5 hover:from-green-600 hover:to-green-700 text-primary-foreground px-6 py-3 rounded-xl font-semibold">
             <MessageCircle className="w-5 h-5 mr-2" />
             {t('briefing.completion.whatsapp')}
           </Button>
@@ -356,7 +356,7 @@ const EnhancedInteractiveBriefing = () => {
         <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-6">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-3">
             {t('briefing.title')}{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400">
+            <span className="text-white">
               {t('briefing.titleHighlight')}
             </span>
           </h2>
@@ -417,7 +417,7 @@ const EnhancedInteractiveBriefing = () => {
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
-                className="absolute right-4 top-1/2 -translate-y-1/2 w-52 p-4 rounded-2xl bg-background/60 backdrop-blur-md border border-border hidden lg:block"
+                className="absolute right-4 top-1/2 -translate-y-1/2 w-52 p-4 rounded-sm bg-background/60 backdrop-blur-md border border-border hidden lg:block"
               >
                 <p className="text-[10px] uppercase tracking-wider text-muted-foreground mb-3">{t('briefing.yourChoices')}</p>
                 {chipList}
@@ -438,7 +438,7 @@ const EnhancedInteractiveBriefing = () => {
                       animate={{ y: 0 }}
                       exit={{ y: '100%' }}
                       transition={{ type: 'spring', damping: 25 }}
-                      className="fixed bottom-20 left-4 right-4 z-50 p-4 rounded-2xl bg-background/80 backdrop-blur-lg border border-border"
+                      className="fixed bottom-20 left-4 right-4 z-50 p-4 rounded-sm bg-background/80 backdrop-blur-lg border border-border"
                     >
                       <p className="text-[10px] uppercase tracking-wider text-muted-foreground mb-3">{t('briefing.yourChoices')}</p>
                       {chipList}

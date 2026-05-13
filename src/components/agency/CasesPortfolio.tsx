@@ -109,7 +109,7 @@ const CasesPortfolio = () => {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-8 px-6">
           <h2 className="text-4xl md:text-5xl font-bold font-space-grotesk mb-4">
-            <span className="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+            <span className="text-white">
               {t('cases.title')}
             </span>
           </h2>

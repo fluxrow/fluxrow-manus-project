@@ -28,36 +28,36 @@ const techCategoryMeta = [
     id: "ai",
     colorClass: "cyan",
     gradient: "from-cyan-500/20 to-cyan-900/10",
-    border: "border-cyan-500/30 hover:border-cyan-400/60",
-    iconBg: "bg-cyan-500/20",
-    iconColor: "text-cyan-400",
+    border: "border-white/30 hover:border-white/30",
+    iconBg: "bg-white/20",
+    iconColor: "text-white/80",
     icons: [Bot, Brain, Eye, Search],
   },
   {
     id: "automation",
     colorClass: "purple",
     gradient: "from-purple-500/20 to-purple-900/10",
-    border: "border-purple-500/30 hover:border-purple-400/60",
-    iconBg: "bg-purple-500/20",
-    iconColor: "text-purple-400",
+    border: "border-white/30 hover:border-white/30",
+    iconBg: "bg-white/20",
+    iconColor: "text-white/80",
     icons: [Workflow, Zap, Zap, MessageSquare],
   },
   {
     id: "traffic",
     colorClass: "green",
     gradient: "from-green-500/20 to-green-900/10",
-    border: "border-green-500/30 hover:border-green-400/60",
-    iconBg: "bg-green-500/20",
-    iconColor: "text-green-400",
+    border: "border-white/30 hover:border-white/30",
+    iconBg: "bg-white/20",
+    iconColor: "text-white/80",
     icons: [Target, TrendingUp, Linkedin, Video],
   },
   {
     id: "channels",
     colorClass: "orange",
     gradient: "from-orange-500/20 to-orange-900/10",
-    border: "border-orange-500/30 hover:border-orange-400/60",
-    iconBg: "bg-orange-500/20",
-    iconColor: "text-orange-400",
+    border: "border-white/30 hover:border-white/30",
+    iconBg: "bg-white/20",
+    iconColor: "text-white/80",
     icons: [Phone, BarChart3, Users, Mail],
   },
 ];
@@ -78,7 +78,7 @@ const TechCard = ({ category, translatedCategory, index }: { category: typeof te
       transition={{ duration: 0.5, delay: index * 0.1 }}
       viewport={{ once: true }}
       className={`
-        relative group rounded-2xl p-6 
+        relative group rounded-sm p-6 
         bg-gradient-to-br ${category.gradient}
         border ${category.border}
         backdrop-blur-sm
@@ -123,7 +123,7 @@ const TechCard = ({ category, translatedCategory, index }: { category: typeof te
 
       {/* Glow effect on hover */}
       <div className={`
-        absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100
+        absolute inset-0 rounded-sm opacity-0 group-hover:opacity-100
         transition-opacity duration-300 pointer-events-none
         bg-gradient-to-br ${category.gradient}
         blur-xl -z-10
@@ -154,20 +154,20 @@ const FeedMockup = () => (
 
 const VideoMockup = () => (
   <div className="w-full h-[110px] bg-black/60 rounded-lg relative flex items-center justify-center">
-    <div className="w-10 h-10 rounded-full bg-red-500/80 flex items-center justify-center animate-[pulse_2s_cubic-bezier(0.4,0,0.6,1)_infinite] shadow-[0_0_15px_rgba(239,68,68,0.4)]">
+    <div className="w-10 h-10 rounded-full bg-white/80 flex items-center justify-center animate-[pulse_2s_cubic-bezier(0.4,0,0.6,1)_infinite] shadow-md">
       <div className="w-0 h-0 border-t-[6px] border-b-[6px] border-l-[10px] border-transparent border-l-white ml-0.5" />
     </div>
     <div className="absolute bottom-2 left-2 right-2">
       <div className="h-1 bg-white/20 rounded-full relative overflow-hidden">
         <motion.div
-          className="absolute left-0 top-0 h-full bg-red-500 rounded-full"
+          className="absolute left-0 top-0 h-full bg-white/10 rounded-full"
           animate={{ width: ["30%", "70%", "30%"] }}
           transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
         />
       </div>
       <div className="flex gap-1 mt-1">
         {[15, 35, 60, 80].map((p) => (
-          <div key={p} className="w-1 h-2 bg-yellow-400/60 rounded-sm" style={{ marginLeft: `${p * 0.15}rem` }} />
+          <div key={p} className="w-1 h-2 bg-white/60 rounded-sm" style={{ marginLeft: `${p * 0.15}rem` }} />
         ))}
       </div>
     </div>
@@ -187,10 +187,10 @@ const AdsMockup = () => (
       { name: "Retargeting Hot", ctr: "5.1%", roas: "8.3x" }
     ].map((c, i) => (
       <div key={i} className="flex items-center gap-1 text-white/70">
-        <div className="w-1.5 h-1.5 rounded-full bg-green-400 flex-shrink-0 animate-[pulse_1.5s_cubic-bezier(0.4,0,0.6,1)_infinite]" style={{ animationDelay: `${i * 0.3}s` }} />
+        <div className="w-1.5 h-1.5 rounded-full bg-white/10 flex-shrink-0 animate-[pulse_1.5s_cubic-bezier(0.4,0,0.6,1)_infinite]" style={{ animationDelay: `${i * 0.3}s` }} />
         <span className="flex-1 truncate">{c.name}</span>
-        <span className="w-10 text-right text-green-400">{c.ctr}</span>
-        <span className="w-12 text-right text-emerald-400">{c.roas}</span>
+        <span className="w-10 text-right text-white/80">{c.ctr}</span>
+        <span className="w-12 text-right text-white/80">{c.roas}</span>
       </div>
     ))}
   </div>
@@ -200,14 +200,14 @@ const LandingPageMockup = () => (
   <div className="w-full h-[110px] rounded-lg bg-black/40 overflow-hidden border border-white/10 relative">
     <div className="flex items-center gap-1 px-2 py-1 bg-white/5 border-b border-white/10">
       <div className="flex gap-0.5">
-        <div className="w-1.5 h-1.5 rounded-full bg-red-400" />
-        <div className="w-1.5 h-1.5 rounded-full bg-yellow-400" />
-        <div className="w-1.5 h-1.5 rounded-full bg-green-400" />
+        <div className="w-1.5 h-1.5 rounded-full bg-white/10" />
+        <div className="w-1.5 h-1.5 rounded-full bg-white/10" />
+        <div className="w-1.5 h-1.5 rounded-full bg-white/10" />
       </div>
       <div className="flex-1 h-2.5 bg-white/10 rounded-sm mx-2" />
     </div>
     <div className="p-2 space-y-1.5">
-      <div className="h-5 bg-gradient-to-r from-blue-500/30 to-blue-400/10 rounded-sm relative overflow-hidden">
+      <div className="h-5 bg-white/5 rounded-sm relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shimmer" />
       </div>
       <div className="h-2 bg-white/10 rounded-sm w-[80%] relative overflow-hidden">
@@ -217,7 +217,7 @@ const LandingPageMockup = () => (
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shimmer" style={{ animationDelay: '0.4s' }} />
       </div>
       <div className="flex gap-1 mt-1">
-        <div className="h-4 flex-1 bg-blue-500/40 rounded-sm animate-[pulse_2s_cubic-bezier(0.4,0,0.6,1)_infinite]" />
+        <div className="h-4 flex-1 bg-white/40 rounded-sm animate-[pulse_2s_cubic-bezier(0.4,0,0.6,1)_infinite]" />
         <div className="h-4 w-12 bg-white/10 rounded-sm" />
       </div>
     </div>
@@ -242,11 +242,11 @@ const AutomationMockup = () => (
       ))}
     </svg>
     {[
-      { label: "Trigger", x: "5%", y: "35%", color: "bg-cyan-500/30 border-cyan-400/50" },
-      { label: "AI", x: "30%", y: "35%", color: "bg-purple-500/30 border-purple-400/50" },
-      { label: "Filter", x: "55%", y: "15%", color: "bg-amber-500/30 border-amber-400/50" },
-      { label: "Action", x: "55%", y: "55%", color: "bg-green-500/30 border-green-400/50" },
-      { label: "Output", x: "80%", y: "35%", color: "bg-pink-500/30 border-pink-400/50" }
+      { label: "Trigger", x: "5%", y: "35%", color: "bg-white/30 border-white/50" },
+      { label: "AI", x: "30%", y: "35%", color: "bg-white/30 border-white/50" },
+      { label: "Filter", x: "55%", y: "15%", color: "bg-white/30 border-white/50" },
+      { label: "Action", x: "55%", y: "55%", color: "bg-white/30 border-white/50" },
+      { label: "Output", x: "80%", y: "35%", color: "bg-white/30 border-white/50" }
     ].map((node) => (
       <div key={node.label} className={`absolute ${node.color} border rounded-full w-9 h-9 flex items-center justify-center`} style={{ left: node.x, top: node.y }}>
         <span className="text-[7px] text-white/80 font-medium">{node.label}</span>
@@ -258,9 +258,9 @@ const AutomationMockup = () => (
 const CRMMockup = () => (
   <div className="w-full h-[110px] flex gap-1 p-1">
     {[
-      { title: "Novo", color: "border-blue-400/40", cards: [0, 1, 2] },
-      { title: "Qualif.", color: "border-amber-400/40", cards: [0, 1] },
-      { title: "Fechado", color: "border-green-400/40", cards: [0, 1] }
+      { title: "Novo", color: "border-white/40", cards: [0, 1, 2] },
+      { title: "Qualif.", color: "border-white/40", cards: [0, 1] },
+      { title: "Fechado", color: "border-white/40", cards: [0, 1] }
     ].map((col, colIdx) => (
       <div key={col.title} className={`flex-1 rounded-md bg-white/5 border ${col.color} p-1`}>
         <p className="text-[7px] text-white/50 text-center mb-1 font-medium">{col.title}</p>
@@ -307,19 +307,19 @@ const DashboardMockup = () => {
 
   return (
     <div ref={ref} className="w-full h-[110px] flex rounded-lg bg-black/40 overflow-hidden border border-white/10">
-      <div className="w-6 bg-purple-500/10 border-r border-white/10 flex flex-col items-center pt-2 gap-1.5">
+      <div className="w-6 bg-white/10 border-r border-white/10 flex flex-col items-center pt-2 gap-1.5">
         {[1, 2, 3, 4].map((i) => (
-          <div key={i} className="w-2.5 h-2.5 rounded-sm bg-purple-400/30" />
+          <div key={i} className="w-2.5 h-2.5 rounded-sm bg-white/30" />
         ))}
       </div>
       <div className="flex-1 p-2">
-        <div className="text-[18px] font-bold text-purple-400 leading-none mb-1.5">{count}</div>
+        <div className="text-[18px] font-bold text-white/80 leading-none mb-1.5">{count}</div>
         <div className="text-[7px] text-white/40 mb-2">Usuários ativos</div>
         <div className="flex items-end gap-1 h-8">
           {[40, 65, 50, 80, 70, 90, 60].map((h, i) => (
             <motion.div
               key={i}
-              className="flex-1 bg-purple-500/40 rounded-t-sm"
+              className="flex-1 bg-white/40 rounded-t-sm"
               initial={{ height: 0 }}
               whileInView={{ height: `${h}%` }}
               transition={{ duration: 0.6, delay: i * 0.08, ease: "easeOut" }}
@@ -359,17 +359,17 @@ const BrandingMockup = () => {
 
   return (
     <div className="w-full h-[110px] flex items-center justify-center gap-3">
-      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-yellow-400 to-amber-500 flex items-center justify-center">
+      <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center">
         <span className="text-black font-bold text-[10px]">LOGO</span>
       </div>
       <div className="space-y-2">
-        <div className="h-5 w-20 bg-gradient-to-r from-yellow-400/30 to-amber-500/20 rounded-sm flex items-center justify-center">
+        <div className="h-5 w-20 bg-white/5 rounded-sm flex items-center justify-center">
           <span className="text-[8px] text-white/70 font-medium font-space-grotesk">
             {displayText}<span className={`${showCursor ? 'opacity-100' : 'opacity-0'} transition-opacity`}>|</span>
           </span>
         </div>
-        <div className="h-10 w-20 bg-white/5 rounded-sm border border-yellow-400/20 p-1">
-          <div className="w-3 h-3 rounded-full bg-yellow-400/40 mb-0.5" />
+        <div className="h-10 w-20 bg-white/5 rounded-sm border border-white/20 p-1">
+          <div className="w-3 h-3 rounded-full bg-white/40 mb-0.5" />
           <div className="h-1 bg-white/10 rounded-full w-[70%]" />
           <div className="h-1 bg-white/10 rounded-full w-[50%] mt-0.5" />
         </div>
@@ -379,14 +379,14 @@ const BrandingMockup = () => {
 };
 
 const showcaseBlocks = [
-  { title: "Criativos para Feed e Stories", desc: "Posts, carrosséis e stories que convertem", tag: "Design", borderColor: "border-pink-500/30 hover:border-pink-400/60", tagBg: "bg-pink-500/20", tagText: "text-pink-400", glow: "from-pink-500/10 to-pink-900/5", Mockup: FeedMockup },
-  { title: "Vídeos e Reels", desc: "Edição, motion e roteiro criativo", tag: "Produção", borderColor: "border-red-500/30 hover:border-red-400/60", tagBg: "bg-red-500/20", tagText: "text-red-400", glow: "from-red-500/10 to-red-900/5", Mockup: VideoMockup },
-  { title: "Tráfego Pago", desc: "Meta, Google e TikTok Ads gerenciados", tag: "Performance", borderColor: "border-green-500/30 hover:border-green-400/60", tagBg: "bg-green-500/20", tagText: "text-green-400", glow: "from-green-500/10 to-green-900/5", Mockup: AdsMockup },
-  { title: "Landing Pages", desc: "Páginas de alta conversão, design + código", tag: "Web", borderColor: "border-blue-500/30 hover:border-blue-400/60", tagBg: "bg-blue-500/20", tagText: "text-blue-400", glow: "from-blue-500/10 to-blue-900/5", Mockup: LandingPageMockup },
-  { title: "Automações e IA", desc: "Fluxos inteligentes com Make, n8n e GPT", tag: "Tecnologia", borderColor: "border-cyan-500/30 hover:border-cyan-400/60", tagBg: "bg-cyan-500/20", tagText: "text-cyan-400", glow: "from-cyan-500/10 to-cyan-900/5", Mockup: AutomationMockup },
-  { title: "CRM e Pipeline", desc: "Pipedrive, RD Station, funil completo", tag: "Vendas", borderColor: "border-orange-500/30 hover:border-orange-400/60", tagBg: "bg-orange-500/20", tagText: "text-orange-400", glow: "from-orange-500/10 to-orange-900/5", Mockup: CRMMockup },
-  { title: "Sistemas e SaaS", desc: "Dashboards, plataformas e apps sob medida", tag: "Produto", borderColor: "border-purple-500/30 hover:border-purple-400/60", tagBg: "bg-purple-500/20", tagText: "text-purple-400", glow: "from-purple-500/10 to-purple-900/5", Mockup: DashboardMockup },
-  { title: "Branding e Identidade", desc: "Logo, identidade visual e aplicações", tag: "Identidade", borderColor: "border-yellow-500/30 hover:border-yellow-400/60", tagBg: "bg-yellow-500/20", tagText: "text-yellow-400", glow: "from-yellow-500/10 to-yellow-900/5", Mockup: BrandingMockup }
+  { title: "Criativos para Feed e Stories", desc: "Posts, carrosséis e stories que convertem", tag: "Design", borderColor: "border-white/30 hover:border-white/30", tagBg: "bg-white/20", tagText: "text-white/80", glow: "from-pink-500/10 to-pink-900/5", Mockup: FeedMockup },
+  { title: "Vídeos e Reels", desc: "Edição, motion e roteiro criativo", tag: "Produção", borderColor: "border-white/30 hover:border-white/30", tagBg: "bg-white/20", tagText: "text-white/80", glow: "from-red-500/10 to-red-900/5", Mockup: VideoMockup },
+  { title: "Tráfego Pago", desc: "Meta, Google e TikTok Ads gerenciados", tag: "Performance", borderColor: "border-white/30 hover:border-white/30", tagBg: "bg-white/20", tagText: "text-white/80", glow: "from-green-500/10 to-green-900/5", Mockup: AdsMockup },
+  { title: "Landing Pages", desc: "Páginas de alta conversão, design + código", tag: "Web", borderColor: "border-white/30 hover:border-white/30", tagBg: "bg-white/20", tagText: "text-white/80", glow: "from-blue-500/10 to-blue-900/5", Mockup: LandingPageMockup },
+  { title: "Automações e IA", desc: "Fluxos inteligentes com Make, n8n e GPT", tag: "Tecnologia", borderColor: "border-white/30 hover:border-white/30", tagBg: "bg-white/20", tagText: "text-white/80", glow: "from-cyan-500/10 to-cyan-900/5", Mockup: AutomationMockup },
+  { title: "CRM e Pipeline", desc: "Pipedrive, RD Station, funil completo", tag: "Vendas", borderColor: "border-white/30 hover:border-white/30", tagBg: "bg-white/20", tagText: "text-white/80", glow: "from-orange-500/10 to-orange-900/5", Mockup: CRMMockup },
+  { title: "Sistemas e SaaS", desc: "Dashboards, plataformas e apps sob medida", tag: "Produto", borderColor: "border-white/30 hover:border-white/30", tagBg: "bg-white/20", tagText: "text-white/80", glow: "from-purple-500/10 to-purple-900/5", Mockup: DashboardMockup },
+  { title: "Branding e Identidade", desc: "Logo, identidade visual e aplicações", tag: "Identidade", borderColor: "border-white/30 hover:border-white/30", tagBg: "bg-white/20", tagText: "text-white/80", glow: "from-yellow-500/10 to-yellow-900/5", Mockup: BrandingMockup }
 ];
 
 const CreativeShowcase = () => {
@@ -403,7 +403,7 @@ const CreativeShowcase = () => {
           viewport={{ once: true }}
           className="text-2xl md:text-3xl font-bold font-space-grotesk text-white"
         >
-          <span className="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-500 bg-clip-text text-transparent">
+          <span className="text-white">
             {t('behind.showcase.title')}
           </span>
           {' '}{t('behind.showcase.titleSuffix')}
@@ -430,7 +430,7 @@ const CreativeShowcase = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: index * 0.08 }}
               viewport={{ once: true }}
-              className={`group relative rounded-2xl p-4 bg-white/5 border ${block.borderColor} backdrop-blur-sm transition-all duration-300 hover:scale-[1.02] hover:shadow-lg`}
+              className={`group relative rounded-sm p-4 bg-white/5 border ${block.borderColor} backdrop-blur-sm transition-all duration-300 hover:scale-[1.02] hover:shadow-lg`}
             >
               <div className="mb-3">
                 <MockupComponent />
@@ -440,7 +440,7 @@ const CreativeShowcase = () => {
               </span>
               <h4 className="text-sm font-semibold text-white font-space-grotesk">{translated?.title || block.title}</h4>
               <p className="text-xs text-white/50 mt-0.5">{translated?.desc || block.desc}</p>
-              <div className={`absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none bg-gradient-to-br ${block.glow} blur-xl -z-10`} />
+              <div className={`absolute inset-0 rounded-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none bg-gradient-to-br ${block.glow} blur-xl -z-10`} />
             </motion.div>
           );
         })}
@@ -509,7 +509,7 @@ const BehindTheScenes = () => {
             className="text-3xl md:text-4xl font-bold font-space-grotesk text-white mb-4"
           >
             {t('behind.title')}{' '}
-            <span className="bg-gradient-to-r from-cyan-400 via-purple-400 to-orange-400 bg-clip-text text-transparent">
+            <span className="text-white">
               {t('behind.titleHighlight')}
             </span>
           </motion.h2>
