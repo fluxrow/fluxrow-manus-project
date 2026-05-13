@@ -95,6 +95,60 @@ export type Database = {
         }
         Relationships: []
       }
+      kit_purchases: {
+        Row: {
+          access_token: string
+          amount_total: number | null
+          created_at: string
+          currency: string | null
+          email: string
+          email_sent_at: string | null
+          environment: string
+          id: string
+          lang: string
+          price_id: string | null
+          raw: Json | null
+          status: string
+          stripe_customer_id: string | null
+          stripe_session_id: string
+          updated_at: string
+        }
+        Insert: {
+          access_token?: string
+          amount_total?: number | null
+          created_at?: string
+          currency?: string | null
+          email: string
+          email_sent_at?: string | null
+          environment?: string
+          id?: string
+          lang?: string
+          price_id?: string | null
+          raw?: Json | null
+          status?: string
+          stripe_customer_id?: string | null
+          stripe_session_id: string
+          updated_at?: string
+        }
+        Update: {
+          access_token?: string
+          amount_total?: number | null
+          created_at?: string
+          currency?: string | null
+          email?: string
+          email_sent_at?: string | null
+          environment?: string
+          id?: string
+          lang?: string
+          price_id?: string | null
+          raw?: Json | null
+          status?: string
+          stripe_customer_id?: string | null
+          stripe_session_id?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       relatorios_semanais: {
         Row: {
           conversas_mensagem: Json | null
