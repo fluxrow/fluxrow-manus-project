@@ -125,7 +125,7 @@ const TimelineSection = () => {
                         {phase.tasks.map((task, idx) => (
                           <li key={idx} className="text-gray-400 text-sm flex items-start gap-2">
                             <div className={`w-1.5 h-1.5 rounded-full ${colors.line} mt-2 flex-shrink-0`} />
-                            {task}
+                            <span className="min-w-0 break-words">{task}</span>
                           </li>
                         ))}
                       </ul>
