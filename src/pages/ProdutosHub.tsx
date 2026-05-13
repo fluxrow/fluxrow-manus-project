@@ -157,7 +157,7 @@ const ProdutosHub = () => {
                 </Link>
               </div>
 
-              <div className="p-8 md:p-10 bg-white/[0.015]">
+              <div className="p-6 sm:p-8 md:p-10 bg-white/[0.015]">
                 <p className="text-xs font-mono text-white/55 mb-4 uppercase tracking-wider">
                   {c.invest}
                 </p>
