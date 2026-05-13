@@ -13,6 +13,7 @@ interface CheckoutBody {
   userId?: string;
   returnUrl: string;
   environment: StripeEnv;
+  lang?: 'pt' | 'en';
 }
 
 async function resolveOrCreateCustomer(
@@ -101,15 +102,20 @@ Deno.serve(async (req) => {
         })
       : undefined;
 
+    const lang = body.lang === 'en' ? 'en' : 'pt';
     const session = await stripe.checkout.sessions.create({
       line_items: [{ price: stripePrice.id, quantity: body.quantity || 1 }],
       mode: isRecurring ? 'subscription' : 'payment',
       ui_mode: 'embedded_page',
       return_url: body.returnUrl,
       ...(customerId && { customer: customerId }),
-      ...(body.userId && {
-        metadata: { userId: body.userId },
-        ...(isRecurring && { subscription_data: { metadata: { userId: body.userId } } }),
+      metadata: {
+        lang,
+        priceId: body.priceId,
+        ...(body.userId && { userId: body.userId }),
+      },
+      ...(body.userId && isRecurring && {
+        subscription_data: { metadata: { userId: body.userId, lang } },
       }),
     });
 
