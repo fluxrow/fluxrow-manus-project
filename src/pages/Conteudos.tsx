@@ -95,10 +95,10 @@ const Conteudos = () => {
           <p className="text-xs uppercase tracking-[0.3em] text-white/55 font-mono mb-6">
             Biblioteca Fluxrow
           </p>
-          <h1 className="font-serif text-5xl md:text-6xl leading-[1.05] mb-6 max-w-3xl">
+          <h1 className="font-serif text-[2.5rem] sm:text-5xl md:text-6xl leading-[1.05] mb-6 max-w-3xl break-words">
             Aprenda como a gente constrói. De graça.
           </h1>
-          <p className="text-lg text-white/60 max-w-2xl leading-relaxed">
+          <p className="text-base sm:text-lg text-white/60 max-w-2xl leading-relaxed">
             Guias práticos sobre IA aplicada, Claude Code, MCP, automação e como
             transformar conhecimento em receita. Sem fórmula mágica.
           </p>
