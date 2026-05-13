@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import Header from '../components/Header';
+import SEO from '../components/SEO';
+import { buildArticleSchema } from '../lib/articleSchema';
 import { Copy, Check, ArrowLeft, Brain, Target, Shield, Clock, Database } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
