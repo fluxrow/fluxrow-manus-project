@@ -16,9 +16,11 @@ import {
   HelpCircle,
   Layers,
   Wrench,
+  CalendarDays,
 } from 'lucide-react';
 import Header from '../components/Header';
 import SEO from '../components/SEO';
+import LeadCaptureForm from '../components/LeadCaptureForm';
 import { buildArticleSchema } from '../lib/articleSchema';
 import { buildFaqSchema } from '../lib/faqSchema';
 
@@ -265,16 +267,21 @@ const ConteudoIAEscalar = () => {
     <div className="min-h-screen bg-black">
       <SEO
         title="IA para escalar negócios em 2026: guia prático com prompts e frameworks"
-        description="Como usar IA generativa, automações e agentes para escalar processos, vendas e operações em pequenos e médios negócios. 5 prompts testados, frameworks e FAQ."
+        description="Como usar IA generativa, automações e agentes para escalar processos, vendas e operações em pequenos e médios negócios. 5 prompts testados, frameworks, plano de 7 dias e FAQ."
         path="/conteudos/ia-escalar-negocio"
+        image="https://fluxrow.com/og-ia-escalar.jpg"
+        imageAlt="IA para escalar negócios — guia prático Fluxrow"
+        lang="pt-BR"
+        locale="pt_BR"
         jsonLd={[
           buildArticleSchema({
             title: 'IA para escalar negócios: guia prático com prompts e frameworks',
             description:
-              'Guia completo sobre como usar IA generativa, automações e agentes para escalar pequenos e médios negócios. Prompts testados e frameworks práticos.',
+              'Guia completo sobre como usar IA generativa, automações e agentes para escalar pequenos e médios negócios. Prompts testados, plano de 7 dias e frameworks práticos.',
             slug: 'ia-escalar-negocio',
             datePublished: '2025-09-01',
             dateModified: '2026-05-13',
+            image: 'https://fluxrow.com/og-ia-escalar.jpg',
           }),
           buildFaqSchema(faqs),
         ]}
@@ -337,8 +344,12 @@ const ConteudoIAEscalar = () => {
               <li><a href="#stack" className="hover:text-purple-300">Stack mínimo de IA para PMEs</a></li>
               <li><a href="#erros" className="hover:text-purple-300">Erros comuns ao adotar IA</a></li>
               <li><a href="#metricas" className="hover:text-purple-300">Como medir ROI de IA</a></li>
+              <li><a href="#plano-7-dias" className="hover:text-purple-300">Plano de 7 dias para começar</a></li>
               <li><a href="#faq" className="hover:text-purple-300">Perguntas frequentes</a></li>
             </ol>
+            <p className="text-xs text-gray-500 font-space-grotesk mt-3">
+              Read in English: <a href="/content/ai-scale-business" className="text-purple-300 hover:text-purple-200 underline">English version →</a>
+            </p>
           </nav>
 
           {/* Por que agora */}
@@ -607,6 +618,92 @@ const ConteudoIAEscalar = () => {
             </p>
           </section>
 
+          {/* Plano de 7 dias */}
+          <section id="plano-7-dias" className="glass-card mb-10 scroll-mt-24">
+            <div className="flex items-center mb-4">
+              <CalendarDays className="w-7 h-7 text-purple-400 mr-3" />
+              <h2 className="text-2xl font-bold font-space-grotesk text-white">
+                Plano de 7 dias para começar a aplicar IA no seu negócio
+              </h2>
+            </div>
+            <p className="text-gray-300 font-space-grotesk leading-relaxed mb-6">
+              Esqueça o roadmap de 6 meses. Em 7 dias você já consegue colocar 1 processo rodando assistido por IA, com
+              métrica clara. Use este plano como ponto de partida — uma tarefa por dia, sem desviar.
+            </p>
+
+            <ol className="space-y-4">
+              {[
+                {
+                  day: 'Dia 1',
+                  title: 'Diagnóstico de tempo',
+                  task: 'Liste todas as tarefas recorrentes da semana e cronometre as 5 que mais consomem tempo. Sem chute — meça.',
+                  metric: 'Horas/semana por tarefa (baseline).',
+                },
+                {
+                  day: 'Dia 2',
+                  title: 'Escolha do alvo',
+                  task: 'Aplique a matriz de prioridade. Escolha 1 tarefa de alta frequência + alta dor para atacar primeiro.',
+                  metric: 'Tarefa-alvo definida com critério de "feito".',
+                },
+                {
+                  day: 'Dia 3',
+                  title: 'Documentação manual (SOP)',
+                  task: 'Escreva o passo a passo numerado de como você executa hoje. Sem IA ainda — só clareza.',
+                  metric: 'SOP de 1 página validado por quem executa.',
+                },
+                {
+                  day: 'Dia 4',
+                  title: 'Primeiro prompt',
+                  task: 'Pegue o prompt mais próximo deste guia, adapte ao seu contexto e rode 3 vezes refinando o output.',
+                  metric: 'Output em qualidade aceitável em até 3 iterações.',
+                },
+                {
+                  day: 'Dia 5',
+                  title: 'Copiloto humano',
+                  task: 'Execute a tarefa com IA assistindo (não substituindo). Anote onde acertou e onde travou.',
+                  metric: 'Tempo gasto vs. baseline do Dia 1.',
+                },
+                {
+                  day: 'Dia 6',
+                  title: 'Padronização',
+                  task: 'Atualize o SOP com o que aprendeu. Salve o prompt em local fixo (Notion, doc, repositório).',
+                  metric: 'SOP + prompt versionados e acessíveis ao time.',
+                },
+                {
+                  day: 'Dia 7',
+                  title: 'Medição e decisão',
+                  task: 'Compare horas economizadas, qualidade do output e satisfação. Decida: escalar, refinar ou abandonar.',
+                  metric: 'Decisão registrada com dado, não com sensação.',
+                },
+              ].map((d) => (
+                <li
+                  key={d.day}
+                  className="bg-black/40 border border-gray-700 rounded-xl p-5 flex flex-col md:flex-row gap-4"
+                >
+                  <div className="md:w-28 flex-shrink-0">
+                    <div className="inline-block bg-gradient-to-r from-purple-500 to-pink-500 text-white text-xs font-semibold font-space-grotesk px-3 py-1 rounded-full">
+                      {d.day}
+                    </div>
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-white font-semibold font-space-grotesk mb-1">{d.title}</h3>
+                    <p className="text-gray-300 font-space-grotesk text-sm mb-2 leading-relaxed">{d.task}</p>
+                    <p className="text-purple-300 font-space-grotesk text-xs">
+                      <strong>Métrica:</strong> {d.metric}
+                    </p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+
+            <div className="mt-6 bg-purple-500/5 border border-purple-500/20 rounded-xl p-5">
+              <p className="text-gray-300 font-space-grotesk text-sm leading-relaxed">
+                <strong className="text-white">Regra do plano:</strong> termine cada dia com algo que existia antes
+                (SOP, prompt, número, decisão). Se um dia produzir só "ideia legal", você não cumpriu.
+              </p>
+            </div>
+          </section>
+
           {/* FAQ */}
           <section id="faq" className="glass-card mb-10 scroll-mt-24">
             <div className="flex items-center mb-4">
@@ -623,29 +720,16 @@ const ConteudoIAEscalar = () => {
             </div>
           </section>
 
-          {/* CTA */}
-          <div className="bg-gradient-to-r from-purple-900/30 to-pink-900/30 border border-purple-500/30 rounded-3xl p-10 text-center">
-            <h3 className="text-3xl md:text-4xl font-bold font-space-grotesk text-white mb-6">
-              Quer aplicar isso{' '}
-              <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-                de verdade
-              </span>{' '}
-              no seu negócio?
-            </h3>
-            <p className="text-xl text-gray-300 font-space-grotesk mb-8 max-w-2xl mx-auto leading-relaxed">
-              O AI Operator Kit é um sistema prático para montar agentes operacionais que entregam resultado — não demo.
-              Inclui playbooks, prompts validados e o método para escalar sem virar refém da ferramenta.
-            </p>
-            <div className="flex flex-wrap gap-3 justify-center">
-              <Link
-                to="/produtos/ai-operator-kit"
-                className="inline-block bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold font-space-grotesk px-8 py-3 rounded-full hover:from-purple-600 hover:to-pink-600 transition-all"
-              >
-                Conhecer o AI Operator Kit →
-              </Link>
+          {/* Lead capture CTA */}
+          <div
+            id="cta-kit"
+            className="bg-gradient-to-r from-purple-900/30 to-pink-900/30 border border-purple-500/30 rounded-3xl p-8 md:p-10"
+          >
+            <LeadCaptureForm source="ia-escalar-pt" lang="pt" />
+            <div className="mt-6 pt-6 border-t border-purple-500/20 text-center">
               <Link
                 to="/conteudos"
-                className="inline-block border border-purple-500/50 text-purple-300 font-semibold font-space-grotesk px-8 py-3 rounded-full hover:bg-purple-500/10 transition-all"
+                className="inline-block text-purple-300 font-semibold font-space-grotesk text-sm hover:text-purple-200 transition-colors"
               >
                 Ver mais conteúdos →
               </Link>

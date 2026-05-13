@@ -18,6 +18,7 @@ const ConteudoRetratoIA = React.lazy(() => import("./pages/ConteudoRetratoIA"));
 const ConteudoTDAH = React.lazy(() => import("./pages/ConteudoTDAH"));
 const ConteudoYouTubeMonetizacao = React.lazy(() => import("./pages/ConteudoYouTubeMonetizacao"));
 const ConteudoIAEscalar = React.lazy(() => import("./pages/ConteudoIAEscalar"));
+const ContentAIScaleBusiness = React.lazy(() => import("./pages/ContentAIScaleBusiness"));
 const ConteudoClaudeCode = React.lazy(() => import("./pages/ConteudoClaudeCode"));
 const ConteudoMCP = React.lazy(() => import("./pages/ConteudoMCP"));
 const ConteudoClaudeSkills = React.lazy(() => import("./pages/ConteudoClaudeSkills"));
@@ -92,6 +93,7 @@ const App = () => (
             <Route path="/conteudos/ia-tdah-organizacao" element={<ConteudoTDAH />} />
             <Route path="/conteudos/youtube-monetizacao-ia" element={<ConteudoYouTubeMonetizacao />} />
             <Route path="/conteudos/ia-escalar-negocio" element={<ConteudoIAEscalar />} />
+            <Route path="/content/ai-scale-business" element={<ContentAIScaleBusiness />} />
             <Route path="/conteudos/claude-code" element={<ConteudoClaudeCode />} />
             <Route path="/conteudos/mcp-claude" element={<ConteudoMCP />} />
             <Route path="/conteudos/claude-skills" element={<ConteudoClaudeSkills />} />
