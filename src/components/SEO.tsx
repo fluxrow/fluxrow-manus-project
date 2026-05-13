@@ -20,6 +20,7 @@ const SEO = ({
   imageAlt = 'Fluxrow - Creative Intelligence Agency',
   lang,
   locale,
+  jsonLd,
 }: SEOProps) => {
   const { t, i18n } = useTranslation();
   
