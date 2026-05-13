@@ -62,6 +62,21 @@ const ALLOWLIST_FILES = [
   "src/index.css", // defines the controlled accent utilities
 ];
 
+// Per-line escape hatches: any line matching one of these is treated as an
+// authorized graphic detail and skipped by every forbidden-pattern check.
+// Use these to opt-in to controlled accents without disabling the guard.
+//
+//   1. The `gradient-accent-*` utility classes (.gradient-accent-text /
+//      .gradient-accent-bg / .gradient-accent-stroke) defined in index.css.
+//   2. The exact logo gradient triplet (cyan-400 → purple-400 → pink-400).
+//   3. An explicit opt-in comment: `/* allow-accent */` on the same line.
+const ALLOWED_LINE_PATTERNS: RegExp[] = [
+  /gradient-accent-(text|bg|stroke)/,
+  /from-cyan-400[^"'`]*via-purple-400[^"'`]*to-pink-400/,
+  /\/\*\s*allow-accent\s*\*\//,
+  /\/\/\s*allow-accent\b/,
+];
+
 // Patterns we never want to see again on public pages.
 const FORBIDDEN: { name: string; re: RegExp }[] = [
   { name: "tailwind neon gradient", re: /bg-gradient-to-[a-z]+\s+from-(cyan|purple|pink|fuchsia|violet|indigo|emerald|lime|rose)-\d{3}/ },
@@ -99,6 +114,7 @@ describe("style regression guard (public pages)", () => {
         const src = readFileSync(file, "utf8");
         const lines = src.split("\n");
         lines.forEach((line, i) => {
+          if (ALLOWED_LINE_PATTERNS.some((p) => p.test(line))) return;
           if (re.test(line)) violations.push(`${rel}:${i + 1}  ${line.trim().slice(0, 160)}`);
         });
       }
