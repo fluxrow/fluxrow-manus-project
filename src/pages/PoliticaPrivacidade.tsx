@@ -39,7 +39,7 @@ const PoliticaPrivacidade = () => {
           <section>
             <h2 className="text-xl font-semibold text-white mb-3">2. Dados Pessoais Coletados</h2>
             <p className="mb-3">Coletamos os seguintes tipos de dados pessoais:</p>
-            <ul className="list-disc pl-6 space-y-2">
+            <ul className="list-disc pl-6 space-y-2 break-words">
               <li><strong className="text-white">Dados de navegação:</strong> endereço IP, tipo de navegador, sistema operacional, páginas visitadas, tempo de permanência, URL de origem e dados de geolocalização aproximada.</li>
               <li><strong className="text-white">Dados de formulários:</strong> nome, e-mail, telefone, empresa, cargo e demais informações fornecidas voluntariamente em formulários de contato, briefing ou solicitação de proposta.</li>
               <li><strong className="text-white">Dados de interação:</strong> mensagens trocadas via chat (widget GPTMaker), respostas a formulários interativos e briefings.</li>
@@ -52,7 +52,7 @@ const PoliticaPrivacidade = () => {
           <section>
             <h2 className="text-xl font-semibold text-white mb-3">3. Finalidades do Tratamento</h2>
             <p className="mb-3">Os dados pessoais coletados são utilizados para as seguintes finalidades:</p>
-            <ul className="list-disc pl-6 space-y-2">
+            <ul className="list-disc pl-6 space-y-2 break-words">
               <li>Prestação de serviços de marketing digital, automação, inteligência artificial e desenvolvimento web;</li>
               <li>Envio de propostas comerciais, apresentações e materiais relacionados aos nossos serviços;</li>
               <li>Comunicação com clientes e potenciais clientes;</li>
@@ -67,7 +67,7 @@ const PoliticaPrivacidade = () => {
           <section>
             <h2 className="text-xl font-semibold text-white mb-3">4. Base Legal para o Tratamento</h2>
             <p className="mb-3">O tratamento de dados pessoais é realizado com fundamento nas seguintes bases legais previstas na LGPD (Art. 7º):</p>
-            <ul className="list-disc pl-6 space-y-2">
+            <ul className="list-disc pl-6 space-y-2 break-words">
               <li><strong className="text-white">Consentimento (Art. 7º, I):</strong> quando o titular fornece seus dados voluntariamente em formulários ou aceita cookies opcionais.</li>
               <li><strong className="text-white">Execução de contrato (Art. 7º, V):</strong> para a prestação dos serviços contratados e cumprimento de obrigações contratuais.</li>
               <li><strong className="text-white">Interesse legítimo (Art. 7º, IX):</strong> para análises internas, melhoria dos serviços e comunicações de marketing direto, desde que respeitados os direitos do titular.</li>
@@ -79,7 +79,7 @@ const PoliticaPrivacidade = () => {
           <section>
             <h2 className="text-xl font-semibold text-white mb-3">5. Compartilhamento de Dados com Terceiros</h2>
             <p className="mb-3">Podemos compartilhar seus dados pessoais com os seguintes terceiros, exclusivamente para as finalidades descritas nesta Política:</p>
-            <ul className="list-disc pl-6 space-y-2">
+            <ul className="list-disc pl-6 space-y-2 break-words">
               <li><strong className="text-white">Google Analytics:</strong> análise de tráfego e comportamento de navegação no site.</li>
               <li><strong className="text-white">Meta Pixel (Facebook/Instagram):</strong> mensuração de conversões e otimização de campanhas publicitárias nas plataformas Meta.</li>
               <li><strong className="text-white">GPTMaker:</strong> processamento de interações via widget de chat com inteligência artificial integrado ao site.</li>
@@ -94,7 +94,7 @@ const PoliticaPrivacidade = () => {
           <section>
             <h2 className="text-xl font-semibold text-white mb-3">6. Cookies e Tecnologias de Rastreamento</h2>
             <p className="mb-3">Utilizamos cookies e tecnologias similares para melhorar sua experiência de navegação. Os tipos de cookies utilizados são:</p>
-            <ul className="list-disc pl-6 space-y-2">
+            <ul className="list-disc pl-6 space-y-2 break-words">
               <li><strong className="text-white">Cookies essenciais:</strong> necessários para o funcionamento básico do site, não podem ser desativados.</li>
               <li><strong className="text-white">Cookies analíticos:</strong> utilizados para coletar dados sobre como os visitantes usam o site (Google Analytics), permitindo melhorias contínuas.</li>
               <li><strong className="text-white">Cookies de marketing:</strong> utilizados para rastrear visitantes em diferentes sites e exibir anúncios relevantes (Meta Pixel).</li>
@@ -109,7 +109,7 @@ const PoliticaPrivacidade = () => {
           <section>
             <h2 className="text-xl font-semibold text-white mb-3">7. Direitos do Titular dos Dados</h2>
             <p className="mb-3">Em conformidade com a LGPD (Art. 18), você tem os seguintes direitos:</p>
-            <ul className="list-disc pl-6 space-y-2">
+            <ul className="list-disc pl-6 space-y-2 break-words">
               <li>Confirmação da existência de tratamento de dados;</li>
               <li>Acesso aos dados pessoais tratados;</li>
               <li>Correção de dados incompletos, inexatos ou desatualizados;</li>
