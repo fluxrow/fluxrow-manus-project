@@ -38,7 +38,7 @@ const Agencia = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-white overflow-x-hidden">
+    <div className="min-h-screen bg-[#080807] text-white overflow-x-hidden">
       {showSplash && (
         <Suspense fallback={null}>
           <SplashCursor />
