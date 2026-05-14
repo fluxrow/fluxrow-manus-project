@@ -95,6 +95,9 @@ const ProdutosHub = () => {
         title={lang === "pt" ? "AI Operator Kit — Fluxrow" : "AI Operator Kit — Fluxrow"}
         description={c.intro}
         path="/produtos"
+        lang={lang === "pt" ? "pt-BR" : "en-US"}
+        locale={lang === "pt" ? "pt_BR" : "en_US"}
+        bilingual
       />
       <Header />
 

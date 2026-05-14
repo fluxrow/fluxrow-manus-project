@@ -87,11 +87,12 @@ const AIOperatorKitSales = () => {
       <SEO
         title={c.meta.title}
         description={c.meta.description}
-        path={`/produtos/ai-operator-kit?lang=${lang}`}
+        path="/produtos/ai-operator-kit"
         image="https://fluxrow.com/og-kit.jpg"
         imageAlt="AI Operator Starter Kit by Fluxrow"
         lang={lang === "pt" ? "pt-BR" : "en-US"}
         locale={lang === "pt" ? "pt_BR" : "en_US"}
+        bilingual
       />
       {checkoutElement}
       <Helmet>
