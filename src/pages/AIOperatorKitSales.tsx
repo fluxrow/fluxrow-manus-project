@@ -49,7 +49,7 @@ const AIOperatorKitSales = () => {
   const switchLang = useCallback(() => {
     const next: KitLang = lang === "pt" ? "en" : "pt";
     setLang(next);
-    localStorage.setItem("aok-lang", next);
+    persistLang(next);
     const sp = new URLSearchParams(params);
     sp.set("lang", next);
     setParams(sp, { replace: true });
