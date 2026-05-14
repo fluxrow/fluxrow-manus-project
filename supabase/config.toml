@@ -46,3 +46,6 @@ verify_jwt = false
 
 [functions.capture-lead]
 verify_jwt = false
+
+[functions.publish-scheduled-posts]
+verify_jwt = false

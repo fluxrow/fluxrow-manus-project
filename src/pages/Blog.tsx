@@ -57,6 +57,7 @@ export default function Blog() {
         .from("blog_posts")
         .select("slug, lang, title, excerpt, tags, reading_minutes, published_at")
         .eq("status", "published")
+        .lte("published_at", new Date().toISOString())
         .eq("lang", l)
         .order("published_at", { ascending: false })
         .limit(50);
