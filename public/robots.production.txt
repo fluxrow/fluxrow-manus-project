@@ -2,9 +2,14 @@
 # Default: tudo permitido. Apenas as rotas privadas/transacionais
 # listadas em "Disallow" abaixo são bloqueadas.
 
+# =====================================================
+# SITEMAP — descoberta pelo Google e demais crawlers
+# Diretiva global (não pertence a nenhum User-agent específico)
+# =====================================================
 Sitemap: https://fluxrow.com/sitemap.xml
 
 User-agent: *
+Allow: /
 # Rotas privadas / comerciais / transacionais
 Disallow: /p/
 Disallow: /propostas
@@ -21,6 +26,50 @@ Disallow: /unsubscribe
 Disallow: /checkout/
 Disallow: /produtos/operator-curso
 Disallow: /produtos/kit-operador-ia
+
+# Garantir que o sitemap em si nunca seja bloqueado
+Allow: /sitemap.xml
+
+# =====================================================
+# Crawlers principais — acesso total + sitemap explícito
+# =====================================================
+User-agent: Googlebot
+Allow: /
+Disallow: /p/
+Disallow: /propostas
+Disallow: /preview/
+Disallow: /admin/
+Disallow: /relatorio/
+Disallow: /briefing-alek
+Disallow: /apresentacao-evolua-digital
+Disallow: /modulos
+Disallow: /materiais
+Disallow: /curso
+Disallow: /login
+Disallow: /unsubscribe
+Disallow: /checkout/
+Disallow: /produtos/operator-curso
+Disallow: /produtos/kit-operador-ia
+Allow: /sitemap.xml
+
+User-agent: Bingbot
+Allow: /
+Disallow: /p/
+Disallow: /propostas
+Disallow: /preview/
+Disallow: /admin/
+Disallow: /relatorio/
+Disallow: /briefing-alek
+Disallow: /apresentacao-evolua-digital
+Disallow: /modulos
+Disallow: /materiais
+Disallow: /curso
+Disallow: /login
+Disallow: /unsubscribe
+Disallow: /checkout/
+Disallow: /produtos/operator-curso
+Disallow: /produtos/kit-operador-ia
+Allow: /sitemap.xml
 
 # =====================================================
 # CRAWLERS DE IA — controle individual
@@ -46,3 +95,6 @@ Disallow: /
 # Disallow: /
 # User-agent: Applebot-Extended
 # Disallow: /
+
+# Reafirmar sitemap no final (lido por crawlers que processam em ordem)
+Sitemap: https://fluxrow.com/sitemap.xml
