@@ -98,6 +98,7 @@ const App = () => (
             <Route path="/conteudos/claude-code" element={<ConteudoClaudeCode />} />
             <Route path="/conteudos/mcp-claude" element={<ConteudoMCP />} />
             <Route path="/conteudos/claude-skills" element={<ConteudoClaudeSkills />} />
+            <Route path="/conteudos/ai-for-customer-support" element={<ConteudoAICustomerSupport />} />
             <Route path="/preview/:slug" element={<ClientPreview />} />
             <Route path="/propostas" element={<Propostas />}>
               <Route path="match-solutions" element={<PropostaMatchSolutions />} />
