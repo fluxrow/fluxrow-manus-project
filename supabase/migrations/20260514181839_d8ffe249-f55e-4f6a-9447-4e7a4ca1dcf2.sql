@@ -1,0 +1,2 @@
+ALTER TABLE public.blog_posts DROP CONSTRAINT IF EXISTS blog_posts_status_check;
+ALTER TABLE public.blog_posts ADD CONSTRAINT blog_posts_status_check CHECK (status IN ('draft','scheduled','published','archived'));

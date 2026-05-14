@@ -20,6 +20,7 @@ Deno.serve(async (req) => {
     .from("blog_posts")
     .select("slug, title, excerpt, published_at")
     .eq("status", "published")
+    .lte("published_at", new Date().toISOString())
     .eq("lang", lang)
     .order("published_at", { ascending: false })
     .limit(50);
