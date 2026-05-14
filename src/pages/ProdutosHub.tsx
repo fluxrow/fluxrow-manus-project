@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { ArrowRight, Check } from "lucide-react";
 import { trackEvent } from "@/utils/tracking";
+import { detectLang, persistLang } from "@/utils/langDetect";
 
 const COPY = {
   pt: {
