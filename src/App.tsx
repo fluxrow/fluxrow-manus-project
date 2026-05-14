@@ -22,6 +22,7 @@ const ContentAIScaleBusiness = React.lazy(() => import("./pages/ContentAIScaleBu
 const ConteudoClaudeCode = React.lazy(() => import("./pages/ConteudoClaudeCode"));
 const ConteudoMCP = React.lazy(() => import("./pages/ConteudoMCP"));
 const ConteudoClaudeSkills = React.lazy(() => import("./pages/ConteudoClaudeSkills"));
+const ConteudoAICustomerSupport = React.lazy(() => import("./pages/ConteudoAICustomerSupport"));
 const ClientPreview = React.lazy(() => import("./pages/ClientPreview"));
 const Propostas = React.lazy(() => import("./pages/Propostas"));
 const PropostaView = React.lazy(() => import("./pages/PropostaView"));
