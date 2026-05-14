@@ -48,6 +48,7 @@ export default function BlogPost() {
         .eq("slug", slug)
         .eq("lang", l)
         .eq("status", "published")
+        .lte("published_at", new Date().toISOString())
         .maybeSingle();
       setPost((data as unknown as Post) ?? null);
 
@@ -59,6 +60,7 @@ export default function BlogPost() {
         .eq("slug", slug)
         .eq("lang", otherLang)
         .eq("status", "published")
+        .lte("published_at", new Date().toISOString())
         .maybeSingle();
       setHasOtherLang(!!other);
 
@@ -69,6 +71,7 @@ export default function BlogPost() {
           .select("slug, lang, title, excerpt, tags, reading_minutes, published_at, body_md, keywords, sources, seo_title, seo_description, updated_at")
           .eq("lang", l)
           .eq("status", "published")
+          .lte("published_at", new Date().toISOString())
           .neq("slug", slug)
           .overlaps("tags", data.tags)
           .order("published_at", { ascending: false })
