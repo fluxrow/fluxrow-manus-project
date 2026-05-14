@@ -6,6 +6,7 @@ import SEO from "@/components/SEO";
 import { trackEvent } from "@/utils/tracking";
 import { KIT_CONTENT, KIT_PRICE, type KitLang } from "@/content/aiOperatorKit";
 import { useStripeCheckout } from "@/hooks/useStripeCheckout";
+import { detectLang as detectGlobalLang, persistLang } from "@/utils/langDetect";
 
 const ease: Easing = [0.25, 0.1, 0.25, 1];
 const fade = {
@@ -17,11 +18,7 @@ const stagger = { visible: { transition: { staggerChildren: 0.1 } } };
 const Divider = () => <div className="w-full h-px" style={{ backgroundColor: "#222220" }} />;
 
 function detectLang(): KitLang {
-  if (typeof window === "undefined") return "en";
-  const stored = localStorage.getItem("aok-lang");
-  if (stored === "pt" || stored === "en") return stored;
-  const nav = (navigator.language || "en").toLowerCase();
-  return nav.startsWith("pt") ? "pt" : "en";
+  return detectGlobalLang();
 }
 
 const AIOperatorKitSales = () => {
@@ -52,7 +49,7 @@ const AIOperatorKitSales = () => {
   const switchLang = useCallback(() => {
     const next: KitLang = lang === "pt" ? "en" : "pt";
     setLang(next);
-    localStorage.setItem("aok-lang", next);
+    persistLang(next);
     const sp = new URLSearchParams(params);
     sp.set("lang", next);
     setParams(sp, { replace: true });

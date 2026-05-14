@@ -5,6 +5,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import React, { Suspense } from "react";
+import LangBootstrap from "@/components/LangBootstrap";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 const Agencia = React.lazy(() => import("./pages/Agencia"));
@@ -74,6 +75,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <LangBootstrap />
         <Suspense fallback={<LazyFallback />}>
           <Routes>
             <Route path="/" element={<Index />} />

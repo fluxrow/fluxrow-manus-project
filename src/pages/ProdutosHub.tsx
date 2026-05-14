@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { ArrowRight, Check } from "lucide-react";
 import { trackEvent } from "@/utils/tracking";
+import { detectLang, persistLang } from "@/utils/langDetect";
 
 const COPY = {
   pt: {
@@ -67,17 +68,6 @@ const COPY = {
   },
 };
 
-function detectLang(): "pt" | "en" {
-  if (typeof window === "undefined") return "pt";
-  const url = new URL(window.location.href);
-  const param = url.searchParams.get("lang");
-  if (param === "pt" || param === "en") return param;
-  const stored = localStorage.getItem("aok_lang");
-  if (stored === "pt" || stored === "en") return stored;
-  const nav = navigator.language?.toLowerCase() || "";
-  return nav.startsWith("pt") ? "pt" : "en";
-}
-
 const ProdutosHub = () => {
   const [lang, setLang] = useState<"pt" | "en">("pt");
 
@@ -90,7 +80,13 @@ const ProdutosHub = () => {
   const switchLang = () => {
     const next = lang === "pt" ? "en" : "pt";
     setLang(next);
-    localStorage.setItem("aok_lang", next);
+    persistLang(next);
+    // Reflect choice in URL so it stays sticky on refresh / share.
+    if (typeof window !== "undefined") {
+      const u = new URL(window.location.href);
+      u.searchParams.set("lang", next);
+      window.history.replaceState({}, "", u.toString());
+    }
   };
 
   return (
