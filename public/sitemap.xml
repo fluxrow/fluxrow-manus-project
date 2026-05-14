@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://fluxrow.com/</loc>
     <lastmod>2026-05-14</lastmod>
@@ -17,19 +17,36 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://fluxrow.com/produtos</loc>
+    <loc>https://fluxrow.com/produtos?lang=pt</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://fluxrow.com/produtos?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fluxrow.com/produtos?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fluxrow.com/produtos?lang=en"/>
   </url>
   <url>
-    <loc>https://fluxrow.com/produtos/ai-operator-kit?lang=en</loc>
+    <loc>https://fluxrow.com/produtos?lang=en</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://fluxrow.com/produtos?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fluxrow.com/produtos?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fluxrow.com/produtos?lang=en"/>
   </url>
   <url>
     <loc>https://fluxrow.com/produtos/ai-operator-kit?lang=pt</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://fluxrow.com/produtos/ai-operator-kit?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fluxrow.com/produtos/ai-operator-kit?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fluxrow.com/produtos/ai-operator-kit?lang=en"/>
+  </url>
+  <url>
+    <loc>https://fluxrow.com/produtos/ai-operator-kit?lang=en</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://fluxrow.com/produtos/ai-operator-kit?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fluxrow.com/produtos/ai-operator-kit?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fluxrow.com/produtos/ai-operator-kit?lang=en"/>
   </url>
   <url>
     <loc>https://fluxrow.com/kit/content</loc>
@@ -37,54 +54,164 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://fluxrow.com/conteudos</loc>
+    <loc>https://fluxrow.com/conteudos?lang=pt</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://fluxrow.com/conteudos?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fluxrow.com/conteudos?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fluxrow.com/conteudos?lang=en"/>
   </url>
   <url>
-    <loc>https://fluxrow.com/conteudos/prompts-economia</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <loc>https://fluxrow.com/conteudos?lang=en</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://fluxrow.com/conteudos?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fluxrow.com/conteudos?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fluxrow.com/conteudos?lang=en"/>
   </url>
   <url>
-    <loc>https://fluxrow.com/conteudos/produto-sugerido-ia</loc>
+    <loc>https://fluxrow.com/conteudos/prompts-economia?lang=pt</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://fluxrow.com/conteudos/prompts-economia?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fluxrow.com/conteudos/prompts-economia?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fluxrow.com/conteudos/prompts-economia?lang=en"/>
   </url>
   <url>
-    <loc>https://fluxrow.com/conteudos/retrato-viral-ia</loc>
+    <loc>https://fluxrow.com/conteudos/prompts-economia?lang=en</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://fluxrow.com/conteudos/prompts-economia?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fluxrow.com/conteudos/prompts-economia?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fluxrow.com/conteudos/prompts-economia?lang=en"/>
   </url>
   <url>
-    <loc>https://fluxrow.com/conteudos/ia-tdah-organizacao</loc>
+    <loc>https://fluxrow.com/conteudos/produto-sugerido-ia?lang=pt</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://fluxrow.com/conteudos/produto-sugerido-ia?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fluxrow.com/conteudos/produto-sugerido-ia?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fluxrow.com/conteudos/produto-sugerido-ia?lang=en"/>
   </url>
   <url>
-    <loc>https://fluxrow.com/conteudos/youtube-monetizacao-ia</loc>
+    <loc>https://fluxrow.com/conteudos/produto-sugerido-ia?lang=en</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://fluxrow.com/conteudos/produto-sugerido-ia?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fluxrow.com/conteudos/produto-sugerido-ia?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fluxrow.com/conteudos/produto-sugerido-ia?lang=en"/>
   </url>
   <url>
-    <loc>https://fluxrow.com/conteudos/ia-escalar-negocio</loc>
+    <loc>https://fluxrow.com/conteudos/retrato-viral-ia?lang=pt</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://fluxrow.com/conteudos/retrato-viral-ia?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fluxrow.com/conteudos/retrato-viral-ia?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fluxrow.com/conteudos/retrato-viral-ia?lang=en"/>
   </url>
   <url>
-    <loc>https://fluxrow.com/conteudos/claude-code</loc>
+    <loc>https://fluxrow.com/conteudos/retrato-viral-ia?lang=en</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://fluxrow.com/conteudos/retrato-viral-ia?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fluxrow.com/conteudos/retrato-viral-ia?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fluxrow.com/conteudos/retrato-viral-ia?lang=en"/>
   </url>
   <url>
-    <loc>https://fluxrow.com/conteudos/mcp-claude</loc>
+    <loc>https://fluxrow.com/conteudos/ia-tdah-organizacao?lang=pt</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://fluxrow.com/conteudos/ia-tdah-organizacao?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fluxrow.com/conteudos/ia-tdah-organizacao?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fluxrow.com/conteudos/ia-tdah-organizacao?lang=en"/>
   </url>
   <url>
-    <loc>https://fluxrow.com/conteudos/claude-skills</loc>
+    <loc>https://fluxrow.com/conteudos/ia-tdah-organizacao?lang=en</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://fluxrow.com/conteudos/ia-tdah-organizacao?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fluxrow.com/conteudos/ia-tdah-organizacao?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fluxrow.com/conteudos/ia-tdah-organizacao?lang=en"/>
+  </url>
+  <url>
+    <loc>https://fluxrow.com/conteudos/youtube-monetizacao-ia?lang=pt</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://fluxrow.com/conteudos/youtube-monetizacao-ia?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fluxrow.com/conteudos/youtube-monetizacao-ia?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fluxrow.com/conteudos/youtube-monetizacao-ia?lang=en"/>
+  </url>
+  <url>
+    <loc>https://fluxrow.com/conteudos/youtube-monetizacao-ia?lang=en</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://fluxrow.com/conteudos/youtube-monetizacao-ia?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fluxrow.com/conteudos/youtube-monetizacao-ia?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fluxrow.com/conteudos/youtube-monetizacao-ia?lang=en"/>
+  </url>
+  <url>
+    <loc>https://fluxrow.com/conteudos/ia-escalar-negocio?lang=pt</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://fluxrow.com/conteudos/ia-escalar-negocio?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fluxrow.com/conteudos/ia-escalar-negocio?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fluxrow.com/conteudos/ia-escalar-negocio?lang=en"/>
+  </url>
+  <url>
+    <loc>https://fluxrow.com/conteudos/ia-escalar-negocio?lang=en</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://fluxrow.com/conteudos/ia-escalar-negocio?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fluxrow.com/conteudos/ia-escalar-negocio?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fluxrow.com/conteudos/ia-escalar-negocio?lang=en"/>
+  </url>
+  <url>
+    <loc>https://fluxrow.com/conteudos/claude-code?lang=pt</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://fluxrow.com/conteudos/claude-code?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fluxrow.com/conteudos/claude-code?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fluxrow.com/conteudos/claude-code?lang=en"/>
+  </url>
+  <url>
+    <loc>https://fluxrow.com/conteudos/claude-code?lang=en</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://fluxrow.com/conteudos/claude-code?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fluxrow.com/conteudos/claude-code?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fluxrow.com/conteudos/claude-code?lang=en"/>
+  </url>
+  <url>
+    <loc>https://fluxrow.com/conteudos/mcp-claude?lang=pt</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://fluxrow.com/conteudos/mcp-claude?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fluxrow.com/conteudos/mcp-claude?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fluxrow.com/conteudos/mcp-claude?lang=en"/>
+  </url>
+  <url>
+    <loc>https://fluxrow.com/conteudos/mcp-claude?lang=en</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://fluxrow.com/conteudos/mcp-claude?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fluxrow.com/conteudos/mcp-claude?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fluxrow.com/conteudos/mcp-claude?lang=en"/>
+  </url>
+  <url>
+    <loc>https://fluxrow.com/conteudos/claude-skills?lang=pt</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://fluxrow.com/conteudos/claude-skills?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fluxrow.com/conteudos/claude-skills?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fluxrow.com/conteudos/claude-skills?lang=en"/>
+  </url>
+  <url>
+    <loc>https://fluxrow.com/conteudos/claude-skills?lang=en</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://fluxrow.com/conteudos/claude-skills?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fluxrow.com/conteudos/claude-skills?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fluxrow.com/conteudos/claude-skills?lang=en"/>
   </url>
   <url>
     <loc>https://fluxrow.com/content/ai-scale-business</loc>
