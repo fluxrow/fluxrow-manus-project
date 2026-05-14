@@ -10,6 +10,13 @@ interface SEOProps {
   lang?: string;
   locale?: string;
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+  /**
+   * When true, this page is bilingual (PT+EN) and LangBootstrap is the single
+   * source of truth for canonical, hreflang alternates, og:url and og:locale.
+   * SEO.tsx will skip those tags to avoid duplicate <link rel="canonical"> and
+   * conflicting hreflang signals.
+   */
+  bilingual?: boolean;
 }
 
 const SEO = ({
@@ -21,12 +28,15 @@ const SEO = ({
   lang,
   locale,
   jsonLd,
+  bilingual = false,
 }: SEOProps) => {
   const { t, i18n } = useTranslation();
-  
+
   const finalTitle = title || t('seo.title');
   const finalDescription = description || t('seo.description');
-  const normalizedPath = path.startsWith('/') ? path : `/${path}`;
+  // Strip any query string from path for canonical (LangBootstrap owns ?lang=)
+  const cleanPath = path.split('?')[0];
+  const normalizedPath = cleanPath.startsWith('/') ? cleanPath : `/${cleanPath}`;
   const url = `https://fluxrow.com${normalizedPath}`;
   const finalLang = lang || i18n.language;
   const finalLocale = locale || (finalLang.startsWith('pt') ? 'pt_BR' : 'en_US');
@@ -36,11 +46,11 @@ const SEO = ({
       <html lang={finalLang} />
       <title>{finalTitle}</title>
       <meta name="description" content={finalDescription} />
-      <link rel="canonical" href={url} />
+      {!bilingual && <link rel="canonical" href={url} />}
 
       <meta property="og:title" content={finalTitle} />
       <meta property="og:description" content={finalDescription} />
-      <meta property="og:url" content={url} />
+      {!bilingual && <meta property="og:url" content={url} />}
       <meta property="og:image" content={image} />
       <meta property="og:image:secure_url" content={image} />
       <meta property="og:image:alt" content={imageAlt} />
@@ -48,7 +58,7 @@ const SEO = ({
       <meta property="og:image:height" content="630" />
       <meta property="og:image:type" content="image/jpeg" />
       <meta property="og:type" content="website" />
-      <meta property="og:locale" content={finalLocale} />
+      {!bilingual && <meta property="og:locale" content={finalLocale} />}
       <meta property="og:site_name" content="Fluxrow" />
 
       <meta name="twitter:card" content="summary_large_image" />
