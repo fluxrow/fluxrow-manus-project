@@ -103,7 +103,12 @@ Deno.serve(async () => {
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">${urls}</urlset>`;
 
-  return new Response(xml, {
+  // Use Uint8Array to force Deno to respect our Content-Type header
+  const encoder = new TextEncoder();
+  const body = encoder.encode(xml);
+
+  return new Response(body, {
+    status: 200,
     headers: {
       "Content-Type": "application/xml; charset=utf-8",
       "Cache-Control": "public, max-age=3600",
