@@ -648,7 +648,10 @@ Response back to ticketing + observability log (Langfuse / Helicone)`}
             </p>
             <div className="flex flex-wrap gap-3 justify-center">
               <Link
-                to="/produtos/ai-operator-kit"
+                to="/produtos/ai-operator-kit?lang=en"
+                onClick={() => {
+                  try { localStorage.setItem('aok_lang', 'en'); } catch {}
+                }}
                 className="inline-block bg-white/10 text-white font-semibold font-space-grotesk px-8 py-3 rounded-full hover:bg-white/20 transition-all"
               >
                 Explore the AI Operator Kit →
