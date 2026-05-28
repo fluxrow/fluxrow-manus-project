@@ -155,9 +155,9 @@ const Index = () => {
               </p>
               <ul className="space-y-4 mb-10 flex-1">
                 {[
-                  "Cansou de juntar prompt avulso e quer um sistema pronto pra rodar",
-                  "Quer transformar conhecimento em receita sem virar dev nem agência",
-                  "Precisa montar a operação de IA essa semana, não daqui a 6 meses",
+                  "Você faz tudo sozinho e o tempo é seu gargalo principal",
+                  "Quer automatizar prospecção, atendimento ou entrega — sem contratar",
+                  "Precisa de um sistema pronto para instalar e começar a usar essa semana",
                 ].map((b) => (
                   <li key={b} className="flex gap-3 text-sm text-white/75 leading-relaxed">
                     <span className="gradient-accent-text font-mono shrink-0">→</span>
