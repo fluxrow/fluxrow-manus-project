@@ -50,7 +50,7 @@ const Index = () => {
             <span className="gradient-accent-text italic">Receita</span> que continua entrando.
           </h1>
           <p className="text-lg md:text-xl text-white/70 max-w-2xl mx-auto mb-12 leading-relaxed">
-            A Fluxrow constrói operações com IA — pra quem quer comprar pronto e operar sozinho, ou pra quem quer terceirizar tudo.
+            Para solo operators e criadores que querem montar sua máquina de IA em dias — e para empresas que querem terceirizar o stack completo e focar no negócio.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
             <Link
