@@ -91,49 +91,35 @@ const Index = () => {
           <Link
             to="/produtos"
             onClick={() => trackEvent("home_card_click", { path: "produtos" })}
-            className="group block border border-white/10 hover:border-white/25 transition-all p-10 rounded-md bg-white/[0.02] hover:bg-white/[0.04] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white/40"
+            className="group flex flex-col h-full border border-white/10 hover:border-white/25 transition-all p-10 rounded-md bg-white/[0.02] hover:bg-white/[0.04] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white/40"
           >
             <p className="text-xs uppercase tracking-[0.2em] text-white/55 font-mono mb-6">
-              Caminho A · Compre o sistema pronto
+              CAMINHO A
             </p>
-            <h2 className="font-serif text-3xl md:text-4xl mb-5 leading-tight">
-              Operadores solo, criadores e quem quer começar essa semana.
+            <h2 className="font-serif text-xl text-white mb-5 leading-tight">
+              Sou solo operator ou criador
             </h2>
-            <p className="text-white/70 mb-8 leading-relaxed">
-              O AI Operator Kit (EN) e o Kit Operador IA (PT). Arquitetura de 5 camadas, prompts prontos, sequência de DM, templates n8n. Pagamento único, acesso vitalício.
+            <p className="text-sm text-white/60 leading-relaxed mb-8">
+              Quero comprar o kit pronto e montar minha operação de IA essa semana.
             </p>
-            <ul className="text-sm text-white/60 space-y-1 mb-8 font-mono">
-              <li className="break-words">· R$ 147 ou US$ 27</li>
-              <li className="break-words">· Acesso imediato</li>
-              <li className="break-words">· Garantia de 7 dias</li>
-            </ul>
-            <span className="inline-flex items-center gap-2 text-sm font-mono text-white group-hover:gap-3 transition-all">
-              Ver produtos <ArrowRight className="w-4 h-4" />
-            </span>
+            <ArrowRight className="w-4 h-4 text-white/40 mt-auto" />
           </Link>
 
           <Link
             to="/agencia"
             onClick={() => trackEvent("home_card_click", { path: "agencia" })}
-            className="group block border border-white/10 hover:border-white/25 transition-all p-10 rounded-md bg-white/[0.02] hover:bg-white/[0.04] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white/40"
+            className="group flex flex-col h-full border border-white/10 hover:border-white/25 transition-all p-10 rounded-md bg-white/[0.02] hover:bg-white/[0.04] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white/40"
           >
             <p className="text-xs uppercase tracking-[0.2em] text-white/55 font-mono mb-6">
-              Caminho B · Construímos pra você
+              CAMINHO B
             </p>
-            <h2 className="font-serif text-3xl md:text-4xl mb-5 leading-tight">
-              Empresas que precisam de sistema, SaaS ou automação sob medida.
+            <h2 className="font-serif text-xl text-white mb-5 leading-tight">
+              Sou gestor ou empresa
             </h2>
-            <p className="text-white/70 mb-8 leading-relaxed">
-              Implementação completa: arquitetura, código, integração, deploy e operação contínua. A Fluxrow opera o stack para você focar no negócio.
+            <p className="text-sm text-white/60 leading-relaxed mb-8">
+              Quero terceirizar o stack completo — sistema, automação e operação contínua.
             </p>
-            <ul className="text-sm text-white/60 space-y-1 mb-8 font-mono">
-              <li className="break-words">· Projetos B2B sob medida</li>
-              <li className="break-words">· Discovery em 7 dias</li>
-              <li className="break-words">· Suporte e operação inclusos</li>
-            </ul>
-            <span className="inline-flex items-center gap-2 text-sm font-mono text-white group-hover:gap-3 transition-all">
-              Conheça a agência <ArrowRight className="w-4 h-4" />
-            </span>
+            <ArrowRight className="w-4 h-4 text-white/40 mt-auto" />
           </Link>
         </section>
 
