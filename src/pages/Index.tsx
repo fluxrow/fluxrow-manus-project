@@ -9,7 +9,7 @@ const STATS = [
   { value: "+120", label: "automações entregues" },
   { value: "+850", label: "leads gerados" },
   { value: "+2.500", label: "horas economizadas" },
-  { value: "5", label: "camadas no kit" },
+  { value: "R$147", label: "menor investimento para começar" },
 ];
 
 const Index = () => {
