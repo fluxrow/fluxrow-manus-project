@@ -92,42 +92,6 @@ const Index = () => {
           </div>
         </section>
 
-        {/* Os dois caminhos */}
-        <section className="max-w-6xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-6">
-          <Link
-            to="/produtos"
-            onClick={() => trackEvent("home_card_click", { path: "produtos" })}
-            className="group flex flex-col h-full border border-white/10 hover:border-white/25 transition-all p-10 rounded-md bg-white/[0.02] hover:bg-white/[0.04] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white/40"
-          >
-            <p className="text-xs uppercase tracking-[0.2em] text-white/55 font-mono mb-6">
-              CAMINHO A
-            </p>
-            <h2 className="font-serif text-xl text-white mb-5 leading-tight">
-              Sou solo operator ou criador
-            </h2>
-            <p className="text-sm text-white/60 leading-relaxed mb-8">
-              Quero comprar o kit pronto e montar minha operação de IA essa semana.
-            </p>
-            <ArrowRight className="w-4 h-4 text-white/40 mt-auto" />
-          </Link>
-
-          <Link
-            to="/agencia"
-            onClick={() => trackEvent("home_card_click", { path: "agencia" })}
-            className="group flex flex-col h-full border border-white/10 hover:border-white/25 transition-all p-10 rounded-md bg-white/[0.02] hover:bg-white/[0.04] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white/40"
-          >
-            <p className="text-xs uppercase tracking-[0.2em] text-white/55 font-mono mb-6">
-              CAMINHO B
-            </p>
-            <h2 className="font-serif text-xl text-white mb-5 leading-tight">
-              Sou gestor ou empresa
-            </h2>
-            <p className="text-sm text-white/60 leading-relaxed mb-8">
-              Quero terceirizar o stack completo — sistema, automação e operação contínua.
-            </p>
-            <ArrowRight className="w-4 h-4 text-white/40 mt-auto" />
-          </Link>
-        </section>
 
         {/* Para quem é */}
         <section className="max-w-5xl mx-auto px-6 py-20">
