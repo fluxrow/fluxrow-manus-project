@@ -130,7 +130,7 @@ const Index = () => {
         </section>
 
         {/* Para quem é */}
-        <section className="max-w-6xl mx-auto px-6 py-20 border-t border-white/5">
+        <section className="max-w-5xl mx-auto px-6 py-20">
           <div className="text-center mb-14">
             <p className="text-xs uppercase tracking-[0.3em] text-white/55 font-mono mb-4">
               PARA QUEM É A FLUXROW
