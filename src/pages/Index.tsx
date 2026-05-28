@@ -52,20 +52,26 @@ const Index = () => {
           <p className="text-lg md:text-xl text-white/70 max-w-2xl mx-auto mb-12 leading-relaxed">
             Para solo operators e criadores que querem montar sua máquina de IA em dias — e para empresas que querem terceirizar o stack completo e focar no negócio.
           </p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-stretch max-w-2xl mx-auto mt-8">
             <Link
               to="/produtos"
               onClick={() => trackEvent("home_path_click", { path: "produtos" })}
-              className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-white text-[#080807] font-medium rounded-md hover:bg-white/90 active:scale-[0.98] transition-all duration-150 w-full sm:w-auto focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#080807]"
+              className="border border-white/20 rounded-xl p-6 flex flex-col gap-2 cursor-pointer hover:border-white/50 transition-all duration-200 flex-1 text-left bg-white/5 hover:bg-white/10 no-underline"
             >
-              Ver produtos <ArrowRight className="w-4 h-4" />
+              <p className="text-xs uppercase tracking-wider text-white/50 font-mono">CAMINHO A</p>
+              <p className="text-xl font-serif text-white">Sou solo operator ou criador</p>
+              <p className="text-sm text-white/60 leading-relaxed">Quero comprar o kit pronto e montar minha operação de IA essa semana.</p>
+              <ArrowRight className="w-4 h-4 text-white/40 mt-2" />
             </Link>
             <Link
               to="/agencia"
               onClick={() => trackEvent("home_path_click", { path: "agencia" })}
-              className="inline-flex items-center justify-center gap-2 px-7 py-3.5 border border-white/15 text-white rounded-md hover:border-white/30 hover:bg-white/5 transition-colors w-full sm:w-auto focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#080807]"
+              className="border border-white/20 rounded-xl p-6 flex flex-col gap-2 cursor-pointer hover:border-white/50 transition-all duration-200 flex-1 text-left bg-white/5 hover:bg-white/10 no-underline"
             >
-              Conheça a agência
+              <p className="text-xs uppercase tracking-wider text-white/50 font-mono">CAMINHO B</p>
+              <p className="text-xl font-serif text-white">Sou gestor ou empresa</p>
+              <p className="text-sm text-white/60 leading-relaxed">Quero terceirizar o stack completo — sistema, automação e operação contínua.</p>
+              <ArrowRight className="w-4 h-4 text-white/40 mt-2" />
             </Link>
           </div>
         </section>
