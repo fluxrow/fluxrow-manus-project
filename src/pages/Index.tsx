@@ -129,6 +129,87 @@ const Index = () => {
           </Link>
         </section>
 
+        {/* Para quem é */}
+        <section className="max-w-6xl mx-auto px-6 py-20 border-t border-white/5">
+          <div className="text-center mb-14">
+            <p className="text-xs uppercase tracking-[0.3em] text-white/55 font-mono mb-4">
+              PARA QUEM É A FLUXROW
+            </p>
+            <h2 className="font-serif text-3xl md:text-5xl leading-tight max-w-3xl mx-auto">
+              Dois perfis. Uma missão:{" "}
+              <span className="gradient-accent-text italic">operar com IA.</span>
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* Card 1 — Perfil 01 */}
+            <div className="bg-white/5 border border-white/10 rounded-2xl p-8 flex flex-col">
+              <p className="text-xs uppercase tracking-[0.3em] text-white/55 font-mono mb-4">
+                PERFIL 01
+              </p>
+              <h3 className="font-serif text-2xl md:text-3xl text-white mb-3 leading-tight">
+                Solo operator ou criador
+              </h3>
+              <p className="text-sm text-white/60 mb-8">
+                Freelancer, creator, consultor, empreendedor solo
+              </p>
+              <ul className="space-y-4 mb-10 flex-1">
+                {[
+                  "Cansou de juntar prompt avulso e quer um sistema pronto pra rodar",
+                  "Quer transformar conhecimento em receita sem virar dev nem agência",
+                  "Precisa montar a operação de IA essa semana, não daqui a 6 meses",
+                ].map((b) => (
+                  <li key={b} className="flex gap-3 text-sm text-white/75 leading-relaxed">
+                    <span className="gradient-accent-text font-mono shrink-0">→</span>
+                    <span>{b}</span>
+                  </li>
+                ))}
+              </ul>
+              <Link
+                to="/produtos"
+                onClick={() => trackEvent("para_quem_cta_produtos")}
+                className="inline-flex items-center gap-2 text-sm font-mono text-white hover:text-white/80 group"
+              >
+                Ver o AI Operator Kit
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+              </Link>
+            </div>
+
+            {/* Card 2 — Perfil 02 */}
+            <div className="bg-white/5 border border-white/10 rounded-2xl p-8 flex flex-col">
+              <p className="text-xs uppercase tracking-[0.3em] text-white/55 font-mono mb-4">
+                PERFIL 02
+              </p>
+              <h3 className="font-serif text-2xl md:text-3xl text-white mb-3 leading-tight">
+                Gestor ou empresa
+              </h3>
+              <p className="text-sm text-white/60 mb-8">
+                CEO, diretor, gestor de operações, equipe de 5–50 pessoas
+              </p>
+              <ul className="space-y-4 mb-10 flex-1">
+                {[
+                  "Processos manuais estão travando o crescimento do negócio",
+                  "Já testou ferramentas de IA mas sem uma arquitetura que funcione de verdade",
+                  "Quer terceirizar o stack completo — sistema, automação e operação contínua",
+                ].map((b) => (
+                  <li key={b} className="flex gap-3 text-sm text-white/75 leading-relaxed">
+                    <span className="gradient-accent-text font-mono shrink-0">→</span>
+                    <span>{b}</span>
+                  </li>
+                ))}
+              </ul>
+              <Link
+                to="/agencia"
+                onClick={() => trackEvent("para_quem_cta_agencia")}
+                className="inline-flex items-center gap-2 text-sm font-mono text-white hover:text-white/80 group"
+              >
+                Conhecer a agência
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+              </Link>
+            </div>
+          </div>
+        </section>
+
         {/* Conteúdos */}
         <section className="max-w-5xl mx-auto px-6 py-20 border-t border-white/5">
           <div className="grid md:grid-cols-[2fr_1fr] gap-12 items-end mb-12">
