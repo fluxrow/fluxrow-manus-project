@@ -1,52 +1,61 @@
+
 ## Objetivo
 
-Deixar conteúdos 2, 3 e 4 escritos (PT+EN), salvos como `scheduled` no banco, e publicados automaticamente por um cron — sem repetir tópicos já cobertos e sem perder o controle do que está na fila.
+Criar uma proposta comercial interativa para a **Positivo**, hospedada em `/propostas/positivo`, seguindo o padrão de propostas existentes (Comunica, Batavo, Teresópolis) mas com identidade visual própria: Dark Slate-900/Zinc-950 com amarelo institucional `#f9b217` como cor de conversão.
 
-## Estado atual
+## Conteúdo (extraído do Google Doc "Proposta Estratégica Positivo - Fluxrow")
 
-- Já publicados: `prova-futuro-ia-maio-2026` e `ia-agentes-futuro-negocios-2026`.
-- `generate-blog-post` raspa notícias (Lovable, Anthropic, OpenAI…) e publica na hora — não é Semrush-driven, não tem agendamento.
-- Reader filtra `status='published'` mas **não** checa `published_at <= now()`.
-- Não há cron configurado para o blog.
+1. **Sumário Executivo** — Ponto de inflexão da Positivo, gargalo no WhatsApp, ecossistema unificado.
+2. **Dores e Diagnóstico** — Tabela (sintoma atual → solução Fluxrow) sobre: agentes WhatsApp deficitários, falta de roteamento por especialidade, dados cegos vs Meta/LinkedIn/GMN, sem qualificação NLP.
+3. **Arquitetura da Solução** — Hub Omnichannel (Meta, LinkedIn, Google Meu Negócio) → Agente SDR (NLP) → Routing Engine para vendedor especialista em < 3s.
+4. **Cronograma** — 3 fases: Estabilização (1-30d), Roteamento e Ativação (31-60d), Otimização e Escala (61d+).
+5. **Visão de Futuro** — Apps proprietários integrados a ERPs/CRMs + Mentoria estratégica.
 
-## O que vou fazer
+## Arquivos a criar
 
-### 1. Pesquisa Semrush (briefing dos 3 tópicos)
-Rodar `keyword_compare` em 6–8 candidatos alinhados ao Fluxrow (Lovable, agentes IA, n8n, automação operacional, Claude Skills, MCP) no database `br`. Escolher 3 com volume ≥ 200 e KDI ≤ 50, sem sobrepor os 2 posts já no ar.
-
-### 2. Geração dos 3 posts (PT + EN)
-Para cada keyword vencedora, chamar o Lovable AI Gateway diretamente do meu shell (`gemini-2.5-pro`) com o mesmo prompt do edge function — estrutura H2 + FAQ + "Como aplicar" + tom praticante. Salvar 6 linhas (`pt` + `en`) em `blog_posts` com:
-- `status = 'scheduled'`
-- `published_at` futuro (D+1, D+3, D+5 às 09:00 BRT)
-- `sources_hash` único (hash do briefing Semrush, não de notícia)
-
-### 3. Cron de publicação
-Adicionar nova edge function `publish-scheduled-posts` que faz `UPDATE blog_posts SET status='published' WHERE status='scheduled' AND published_at <= now()`. Agendar via `pg_cron` a cada 15 minutos (insert tool, não migration — contém URL do projeto e anon key).
-
-### 4. Defesa no reader
-Adicionar `.lte('published_at', new Date().toISOString())` em `Blog.tsx`, `BlogPost.tsx` e `blog-rss/index.ts` — assim mesmo se alguém marcar `published` cedo demais, não vaza.
-
-### 5. Plano vivo
-Criar `.lovable/plan.md` com tabela:
-
-```text
-| # | Slug | Keyword | Volume | KDI | Publica em | Status |
-| - | ---- | ------- | ------ | --- | ---------- | ------ |
-```
-
-Cada vez que rodarmos a próxima leva, atualizo essa tabela. É o nosso source of truth pra não repetir tópico nem perder agendamento.
-
-## O que NÃO vou mexer agora
-
-- O `generate-blog-post` antigo (continua funcionando pra raspagem de notícia se quisermos).
-- O sitemap (vai pegar os novos posts automaticamente quando publicarem).
-- Layout do blog.
+- `src/data/propostaPositivo.ts` — Estrutura tipada com dores, fases, canais.
+- `src/pages/PropostaPositivo.tsx` — Página principal com SEO noindex.
+- `src/components/positivo/HeroPositivo.tsx` — Hero dark com headline serif, badge "Proposta exclusiva", validade.
+- `src/components/positivo/LeadRoutingPanel.tsx` — **Componente assinatura**: 3 canais (Meta/LinkedIn/GMN) com pulsos animados → linhas SVG convergindo para bloco central "IA SDR Inteligente" → após 2s dispara para card "Vendedor Especialista Responsável". Loop infinito controlado por Framer Motion.
+- `src/components/positivo/DoresGrid.tsx` — Grid de cards de dores. Hover/click revela "Sintoma Atual" (badge vermelho) → expande para "Solução Arquitetada Fluxrow" (borda iluminada `#f9b217`).
+- `src/components/positivo/CronogramaTimeline.tsx` — Timeline vertical com 3 fases. IntersectionObserver / useScroll do Framer ilumina cada nó conforme o usuário rola.
+- `src/components/positivo/VisaoFuturoSection.tsx` — Seção "oculta" que aparece com fade+slide elegante (whileInView).
+- `src/components/positivo/MagneticCTA.tsx` — Botão CTA flutuante (fixed bottom) magnético (segue cursor com spring) escrito "Aceitar Proposta e Iniciar Setup" — feedback de clique com burst de partículas amarelas.
+- Rota em `src/App.tsx`: `<Route path="positivo" element={<PropostaPositivo />} />` dentro de `/propostas`.
 
 ## Detalhes técnicos
 
-- Migration: nenhuma. `status` e `published_at` já existem na tabela.
-- Insert tool: usado pra (a) gravar os 6 rows, (b) criar o cron job.
-- Edge function nova: `publish-scheduled-posts` com `verify_jwt = false` + checagem de `apikey`.
-- Idempotência: `sources_hash` evita duplicidade se rodar 2x.
+- **Stack**: Tailwind + Framer Motion (já instalado v12.23.21) + lucide-react.
+- **Tokens locais**: variável CSS `--positivo-yellow: #f9b217`, fundo `bg-slate-950` com camadas `bg-slate-900/50`, texto `text-slate-100/200/400`.
+- **Tipografia**: mantém Instrument Serif para headlines (padrão Fluxrow) e DM Mono para labels técnicos.
+- **Animações**:
+  - LeadRoutingPanel: timeline orquestrada (`useAnimate` + sequence) com 3 etapas de 2s cada, linhas SVG com `pathLength` e gradiente animado, pulsos `animate-ping` no nó central.
+  - Cards dores: `whileHover={{ y: -4 }}` + `AnimatePresence` para expansão.
+  - Timeline: `whileInView` com `viewport={{ once: false, amount: 0.6 }}` para iluminar nó.
+  - CTA magnético: `useMotionValue` + `useSpring` rastreando posição do mouse dentro de raio.
+  - Partículas: 8-12 divs absolutos animados radialmente no `onClick`.
+- **60fps**: usar somente `transform` e `opacity`, evitar layout thrash, `will-change` em elementos animados intensos.
+- **CTA destino**: WhatsApp Fluxrow (+55 41 99236-1868) com mensagem pré-preenchida "Quero aceitar a proposta Positivo e iniciar o setup."
+- **SEO**: `noindex, nofollow` (proposta confidencial), title "Proposta Estratégica Positivo · Fluxrow".
 
-Confirma que posso ir em frente?
+## Estrutura visual da página
+
+```text
+[ Header Fluxrow existente ]
+[ Hero — headline + subtítulo + data/validade + scroll cue ]
+[ Sumário Executivo — texto editorial centrado ]
+[ LeadRoutingPanel — componente animado em destaque ]
+[ Arquitetura da Solução — 3 cards (Hub / SDR / Routing) ]
+[ DoresGrid — 4 cards interativos ]
+[ CronogramaTimeline — 3 fases ]
+[ VisaoFuturoSection — 2 pilares de longo prazo ]
+[ Investimento / Próximos passos — bloco final ]
+[ Footer Fluxrow existente ]
+[ MagneticCTA — fixed bottom-right ]
+```
+
+## Fora do escopo
+
+- Não conecta gateway de pagamento, não cria registro em banco, não envia e-mail.
+- Não altera demais páginas/propostas existentes.
+- Não cria botão de aprovação com assinatura digital (apenas WhatsApp CTA).
