@@ -295,7 +295,7 @@ export default function PropostaPositivo() {
 
       <section className="max-w-3xl mx-auto px-6 py-24 text-center border-t border-slate-900">
         <p className="text-[10px] uppercase tracking-[0.3em] text-[#f9b217] font-mono mb-4">
-          07 · Próximos passos
+          08 · Próximos passos
         </p>
         <h2 className="font-serif text-3xl md:text-5xl text-white leading-tight mb-6">
           Pronto para iniciar o setup?
