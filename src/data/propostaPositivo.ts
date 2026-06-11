@@ -50,34 +50,34 @@ export const DORES: Dor[] = [
     id: "dados-cegos",
     area: "Dados Cegos vs Vitrines Digitais",
     sintoma: "Operação opera sem leitura ativa de Meta, LinkedIn e Google Meu Negócio — investimento em mídia se perde no caminho.",
-    solucao: "Hub Omnichannel com microsserviços dedicados escutando endpoints de mensagens e comentários em tempo real, unificando origem do lead.",
+    solucao: "Gateway Unificado de Mensageria escutando endpoints oficiais em tempo real, unificando origem do lead sob uma única camada proprietária.",
   },
   {
     id: "qualificacao",
     area: "Qualificação Engessada",
     sintoma: "Menus numéricos destroem a experiência do usuário e filtram volume, não intenção.",
-    solucao: "Agente SDR com NLP faz triagem invisível e humanizada — identifica segmento, urgência e dados mínimos (Nome, Empresa, Cargo, Volume) sem fricção.",
+    solucao: "Interface Conversacional Avançada faz triagem invisível e humanizada — identifica segmento, urgência e dados mínimos (Nome, Empresa, Cargo, Volume) sem fricção.",
   },
 ];
 
 export const PILARES: PilarSolucao[] = [
   {
-    id: "hub",
+    id: "gateway",
     numero: "3.1",
-    titulo: "Hub de Captura Omnichannel",
-    descricao: "Microsserviços dedicados escutando Meta (Instagram + Facebook), LinkedIn (InMail + Company Page) e Google Meu Negócio (busca + mapas).",
+    titulo: "Gateway Unificado de Mensageria",
+    descricao: "Camada proprietária da Fluxrow que conecta as APIs oficiais das vitrines digitais (Meta, LinkedIn, Google Meu Negócio) sob um único barramento de eventos normalizado.",
   },
   {
-    id: "sdr",
+    id: "core",
     numero: "3.2",
-    titulo: "Agente SDR Inteligente",
-    descricao: "NLP em PT-BR realiza triagem invisível: segmento de interesse, nível de urgência e dados mínimos de qualificação — sem menus numéricos.",
+    titulo: "Fluxrow Core Engine",
+    descricao: "Motor proprietário de orquestração: faz análise de intenção via NLP, enriquecimento de dados e classificação de segmento — sem expor lógica nem dependências externas.",
   },
   {
-    id: "routing",
+    id: "interface",
     numero: "3.3",
-    titulo: "Painel de Distribuição Dinâmica",
-    descricao: "Routing Engine despacha o lead qualificado em menos de 3 segundos para o vendedor especialista por algoritmo Round-Robin + geolocalização.",
+    titulo: "Interface Conversacional Avançada",
+    descricao: "Camada de diálogo humanizada que conduz triagem invisível e despacha o lead qualificado em menos de 3 segundos ao vendedor especialista, via Roteador Preditivo proprietário.",
   },
 ];
 
@@ -86,20 +86,20 @@ export const FASES: Fase[] = [
     numero: 1,
     titulo: "Estabilização e Conexão Omnichannel",
     periodo: "Dias 1 a 30",
-    descricao: "Substituição imediata dos agentes legados do WhatsApp. Conexão das APIs do Meta, LinkedIn e Google Meu Negócio. Implementação do painel básico de triagem e inteligência de intenção.",
+    descricao: "Substituição imediata dos agentes legados do WhatsApp. Conexão das APIs oficiais sob o Gateway Unificado de Mensageria. Implementação do painel básico de triagem e inteligência de intenção.",
     entregaveis: [
       "Agentes legados desativados",
-      "APIs Meta + LinkedIn + GMN conectadas",
-      "Painel de triagem em produção",
+      "Gateway Unificado em produção",
+      "Painel de triagem ativo",
     ],
   },
   {
     numero: 2,
     titulo: "Motor de Roteamento e Ativação de Dados",
     periodo: "Dias 31 a 60",
-    descricao: "Desenvolvimento da lógica fina de distribuição automatizada de leads para o time de vendas. Estruturação do banco de dados para campanhas ativas de reengajamento via WhatsApp e e-mail marketing.",
+    descricao: "Ativação do Roteador Preditivo proprietário. Estruturação do banco de dados para campanhas ativas de reengajamento via WhatsApp e e-mail marketing.",
     entregaveis: [
-      "Routing Engine em produção",
+      "Roteador Preditivo em produção",
       "Banco de dados unificado",
       "Campanhas de reengajamento ativas",
     ],
@@ -108,7 +108,7 @@ export const FASES: Fase[] = [
     numero: 3,
     titulo: "Otimização Contínua e Escala",
     periodo: "Dias 61+",
-    descricao: "Análise de performance dos agentes de IA, refinamento de modelos de linguagem para melhor entendimento das intenções e início do plano de expansão com dashboards gerenciais avançados.",
+    descricao: "Refinamento dos modelos de linguagem do Core Engine, análise de performance dos agentes e início do plano de expansão com dashboards gerenciais avançados.",
     entregaveis: [
       "Modelos NLP refinados",
       "Dashboards gerenciais",
@@ -126,6 +126,49 @@ export const VISAO_FUTURO = [
     titulo: "Mentoria Estratégica de Tecnologia e Growth",
     descricao: "Transferência de conhecimento técnico de ponta para os times internos da Positivo, garantindo permanência na vanguarda de dados, IA e automação de performance marketing na América Latina.",
   },
+];
+
+export interface InvestimentoCard {
+  id: string;
+  tipo: string;
+  titulo: string;
+  valor: string;
+  unidade: string;
+  entregas: string[];
+}
+
+export const INVESTIMENTO: InvestimentoCard[] = [
+  {
+    id: "setup",
+    tipo: "Taxa única",
+    titulo: "Engenharia & Setup Omnichannel",
+    valor: "R$ 13.500",
+    unidade: "investimento único",
+    entregas: [
+      "Integração de APIs oficiais (Meta, LinkedIn, GMN)",
+      "Treinamento da IA SDR proprietária",
+      "Roteador Preditivo calibrado por especialidade",
+    ],
+  },
+  {
+    id: "recorrencia",
+    tipo: "Mensalidade",
+    titulo: "Sustentação & Cloud Engine",
+    valor: "R$ 4.800",
+    unidade: "por mês",
+    entregas: [
+      "Infraestrutura cloud dedicada e monitoramento 24/7",
+      "Refinamento contínuo dos modelos NLP",
+      "Suporte técnico prioritário e evoluções incrementais",
+    ],
+  },
+];
+
+export const ESTEIRA_ETAPAS = [
+  { id: "captacao", label: "Captação", badge: "Payload Validado" },
+  { id: "normalizacao", label: "Normalização de Dados", badge: "Schema Aligned" },
+  { id: "intencao", label: "Análise de Intenção (NLP)", badge: "Data Enrichment" },
+  { id: "roteamento", label: "Roteamento", badge: "Routing Sealed" },
 ];
 
 export const WHATSAPP_CTA =
