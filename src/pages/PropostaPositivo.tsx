@@ -7,7 +7,10 @@ import LeadRoutingPanel from "@/components/positivo/LeadRoutingPanel";
 import DoresGrid from "@/components/positivo/DoresGrid";
 import CronogramaTimeline from "@/components/positivo/CronogramaTimeline";
 import MagneticCTA from "@/components/positivo/MagneticCTA";
-import { PILARES, VISAO_FUTURO } from "@/data/propostaPositivo";
+import EsteiraLogistica from "@/components/positivo/EsteiraLogistica";
+import { PILARES, VISAO_FUTURO, INVESTIMENTO } from "@/data/propostaPositivo";
+import { Check } from "lucide-react";
+
 
 const PILAR_ICONS = [Workflow, Brain, Compass];
 
