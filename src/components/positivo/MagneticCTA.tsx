@@ -1,6 +1,5 @@
 import { motion, useMotionValue, useSpring } from "framer-motion";
-import { useRef, useState, MouseEvent } from "rea
-ct";
+import { useRef, useState, MouseEvent } from "react";
 import { ArrowRight } from "lucide-react";
 import { WHATSAPP_CTA } from "@/data/propostaPositivo";
 
