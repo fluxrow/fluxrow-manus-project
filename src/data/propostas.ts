@@ -119,6 +119,16 @@ export const propostas: PropostaItem[] = [
     rotaPublica: '/p/gracie-barra',
     status: 'enviada',
   },
+  {
+    slug: 'positivo',
+    cliente: 'Positivo',
+    empresa: 'Positivo',
+    servico: 'Omnichannel + IA SDR + Roteamento',
+    valor: 'A definir',
+    rota: '/propostas/positivo',
+    rotaPublica: '/propostas/positivo',
+    status: 'enviada',
+  },
 ];
 
 export const statusLabels: Record<PropostaStatus, string> = {
