@@ -173,7 +173,9 @@ export default function PropostaPositivo() {
             );
           })}
         </div>
+        <EsteiraLogistica />
       </section>
+
 
       {/* Dores */}
       <section className="max-w-6xl mx-auto px-6 py-24 border-t border-slate-900">
