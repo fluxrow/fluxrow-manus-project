@@ -242,7 +242,57 @@ export default function PropostaPositivo() {
         </motion.div>
       </section>
 
+      {/* Investimento */}
+      <section className="max-w-6xl mx-auto px-6 py-24 border-t border-slate-900">
+        <div className="mb-14">
+          <p className="text-[10px] uppercase tracking-[0.3em] text-[#f9b217] font-mono mb-4">
+            07 · Investimento
+          </p>
+          <h2 className="font-serif text-3xl md:text-5xl text-white leading-tight max-w-3xl">
+            Estrutura comercial enxuta —{" "}
+            <span className="italic text-[#f9b217]">setup único + sustentação contínua.</span>
+          </h2>
+        </div>
+        <div className="grid md:grid-cols-2 gap-6">
+          {INVESTIMENTO.map((card, i) => (
+            <motion.div
+              key={card.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.6, delay: i * 0.15 }}
+              className={`relative rounded-2xl border p-8 ${
+                card.id === "setup"
+                  ? "border-[#f9b217]/40 bg-gradient-to-br from-[#f9b217]/5 to-slate-950"
+                  : "border-slate-800 bg-slate-900/60"
+              }`}
+            >
+              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full border border-slate-700 bg-slate-950 text-[10px] font-mono text-slate-400 uppercase tracking-wider">
+                {card.tipo}
+              </span>
+              <h3 className="font-serif text-2xl text-white mt-5 mb-6">{card.titulo}</h3>
+              <div className="flex items-baseline gap-2 mb-8">
+                <span className="font-serif text-5xl text-white">{card.valor}</span>
+                <span className="text-xs font-mono text-slate-500">{card.unidade}</span>
+              </div>
+              <ul className="space-y-3">
+                {card.entregas.map((e) => (
+                  <li key={e} className="flex items-start gap-3 text-sm text-slate-300">
+                    <Check className="w-4 h-4 mt-0.5 text-[#f9b217] flex-shrink-0" />
+                    <span>{e}</span>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          ))}
+        </div>
+        <p className="mt-8 text-xs font-mono text-slate-500 text-center">
+          Mídia paga e custos de terceiros (cloud, APIs oficiais) não inclusos · faturamento direto pelo fornecedor.
+        </p>
+      </section>
+
       {/* Fechamento */}
+
       <section className="max-w-3xl mx-auto px-6 py-24 text-center border-t border-slate-900">
         <p className="text-[10px] uppercase tracking-[0.3em] text-[#f9b217] font-mono mb-4">
           07 · Próximos passos
