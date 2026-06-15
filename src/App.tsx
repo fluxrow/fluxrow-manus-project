@@ -38,6 +38,7 @@ const PropostaTeresopolis = React.lazy(() => import("./pages/PropostaTeresopolis
 const PropostaGracieBarra = React.lazy(() => import("./pages/PropostaGracieBarra"));
 const PropostaPositivo = React.lazy(() => import("./pages/PropostaPositivo"));
 const PropostaEvolder = React.lazy(() => import("./pages/PropostaEvolder"));
+const PropostaBuratiGT = React.lazy(() => import("./pages/PropostaBuratiGT"));
 const ApresentacaoEvoluaDigital = React.lazy(() => import("./pages/ApresentacaoEvoluaDigital"));
 const ContratoMatchSolutions = React.lazy(() => import("./pages/ContratoMatchSolutions"));
 const ContratoAmandaNeves = React.lazy(() => import("./pages/ContratoAmandaNeves"));
@@ -116,6 +117,7 @@ const App = () => (
               <Route path="gracie-barra" element={<PropostaGracieBarra />} />
               <Route path="positivo" element={<PropostaPositivo />} />
               <Route path="evolder" element={<PropostaEvolder />} />
+              <Route path="burati-gt" element={<PropostaBuratiGT />} />
               <Route path="contrato-match-solutions" element={<ContratoMatchSolutions />} />
               <Route path="contrato-amanda-neves" element={<ContratoAmandaNeves />} />
               <Route path="contrato-promotrip" element={<ContratoPromotrip />} />
