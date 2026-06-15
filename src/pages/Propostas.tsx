@@ -182,7 +182,7 @@ export default function Propostas() {
   const [authenticated, setAuthenticated] = useState(false);
   const location = useLocation();
   const isSubRoute = location.pathname !== '/propostas' && location.pathname !== '/propostas/';
-  const publicProposalRoutes = ['/propostas/positivo', '/propostas/evolder'];
+  const publicProposalRoutes = ['/propostas/positivo', '/propostas/evolder', '/propostas/burati-gt'];
   const isPublicProposalRoute = publicProposalRoutes.includes(location.pathname);
 
   if (isPublicProposalRoute) {

@@ -139,6 +139,16 @@ export const propostas: PropostaItem[] = [
     rotaPublica: '/propostas/evolder',
     status: 'enviada',
   },
+  {
+    slug: 'burati-gt',
+    cliente: 'Vanessa',
+    empresa: 'Burati GT',
+    servico: 'Burati GT Hub — sistema whitelabel (OMIE + iRecebi + VOKI + CRM próprio)',
+    valor: 'A definir',
+    rota: '/propostas/burati-gt',
+    rotaPublica: '/propostas/burati-gt',
+    status: 'enviada',
+  },
 ];
 
 export const statusLabels: Record<PropostaStatus, string> = {
