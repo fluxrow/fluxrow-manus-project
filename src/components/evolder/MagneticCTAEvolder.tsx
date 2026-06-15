@@ -67,8 +67,7 @@ export default function MagneticCTAEvolder() {
           onClick={handleBurst}
           style={{ x: sx, y: sy, willChange: "transform" }}
           whileTap={{ scale: 0.96 }}
-          className="group inline-flex items-center gap-3 rounded-full px-5 md:px-7 py-3 md:py-4 text-sm md:text-base font-semibold text-slate-950 shadow-[0_10px_40px_-10px_rgba(16,185,129,0.6)] hover:shadow-[0_15px_50px_-10px_rgba(16,185,129,0.85)] transition-shadow"
-          // eslint-disable-next-line react/forbid-dom-props
+          className="group relative overflow-hidden inline-flex items-center gap-3 rounded-full px-5 md:px-7 py-3 md:py-4 text-sm md:text-base font-semibold text-slate-950 shadow-[0_10px_40px_-10px_rgba(16,185,129,0.6)] hover:shadow-[0_15px_50px_-10px_rgba(16,185,129,0.85)] transition-shadow"
         >
           <span
             className="absolute inset-0 rounded-full"
