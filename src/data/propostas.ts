@@ -129,6 +129,16 @@ export const propostas: PropostaItem[] = [
     rotaPublica: '/propostas/positivo',
     status: 'enviada',
   },
+  {
+    slug: 'evolder',
+    cliente: 'Ericson',
+    empresa: 'Evolder',
+    servico: 'Site + App de assinatura (manutenção AC)',
+    valor: 'R$ 7.000',
+    rota: '/propostas/evolder',
+    rotaPublica: '/propostas/evolder',
+    status: 'enviada',
+  },
 ];
 
 export const statusLabels: Record<PropostaStatus, string> = {
