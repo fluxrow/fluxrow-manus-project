@@ -142,7 +142,7 @@ export const INVESTIMENTO: InvestimentoCard[] = [
     id: "setup",
     tipo: "Taxa única",
     titulo: "Engenharia & Setup Omnichannel",
-    valor: "R$ 13.500",
+    valor: "R$ 7.500",
     unidade: "investimento único",
     entregas: [
       "Integração de APIs oficiais (Meta, LinkedIn, GMN)",
