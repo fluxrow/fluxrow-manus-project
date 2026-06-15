@@ -182,6 +182,12 @@ export default function Propostas() {
   const [authenticated, setAuthenticated] = useState(false);
   const location = useLocation();
   const isSubRoute = location.pathname !== '/propostas' && location.pathname !== '/propostas/';
+  const publicProposalRoutes = ['/propostas/positivo', '/propostas/evolder'];
+  const isPublicProposalRoute = publicProposalRoutes.includes(location.pathname);
+
+  if (isPublicProposalRoute) {
+    return <Outlet />;
+  }
 
   if (!authenticated) {
     return <PinScreen onSuccess={() => setAuthenticated(true)} />;
