@@ -1,5 +1,6 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, Sparkles, Users, BookOpen, Compass } from "lucide-react";
+import { ArrowRight, Sparkles, Users, BookOpen, Compass, Palette } from "lucide-react";
 import { motion } from "framer-motion";
 import SEO from "@/components/SEO";
 import Header from "@/components/Header";
