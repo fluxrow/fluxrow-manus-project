@@ -339,7 +339,7 @@ const Agencia = () => {
           aria-label="Briefing Inteligente"
           className="border-t border-white/10"
         >
-          <EnhancedInteractiveBriefing />
+          <BriefingFlow />
         </section>
 
         {/* CTA final */}
