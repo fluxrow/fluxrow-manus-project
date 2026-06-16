@@ -4,22 +4,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Diagnóstico gratuito — Fluxrow</title>
+  <meta name="robots" content="noindex,nofollow">
   <meta name="description" content="Descubra o que está travando suas vendas no WhatsApp e o que fazer agora.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --bg: #0a0a0a; --bg2: #111111; --bg3: #1a1a1a;
+      --bg: #050505; --bg2: #0d0d0d; --bg3: #161616;
       --border: rgba(255,255,255,0.08); --border2: rgba(255,255,255,0.15);
       --text: #f0f0f0; --text2: #888; --text3: #555;
-      --green: #1D9E75; --radius: 12px; --radius-sm: 8px;
+      --green: #FF6709; --radius: 12px; --radius-sm: 8px;
     }
     body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; line-height: 1.6; }
 
     .hero { max-width: 720px; margin: 0 auto; padding: 4rem 1.5rem 2rem; text-align: center; }
     .logo { font-size: 13px; font-weight: 600; letter-spacing: 0.12em; color: var(--text3); text-transform: uppercase; margin-bottom: 2.5rem; }
-    .hero-tag { display: inline-block; font-size: 12px; font-weight: 500; color: var(--green); background: rgba(29,158,117,0.1); border: 1px solid rgba(29,158,117,0.2); border-radius: 20px; padding: 4px 14px; margin-bottom: 1.2rem; }
+    .hero-tag { display: inline-block; font-size: 12px; font-weight: 500; color: var(--green); background: rgba(255,103,9,0.1); border: 1px solid rgba(255,103,9,0.2); border-radius: 20px; padding: 4px 14px; margin-bottom: 1.2rem; }
     .hero h1 { font-size: clamp(26px, 5vw, 42px); font-weight: 600; line-height: 1.2; margin-bottom: 1rem; letter-spacing: -0.02em; }
     .hero h1 span { color: var(--green); }
     .hero p { font-size: 16px; color: var(--text2); max-width: 520px; margin: 0 auto 2rem; }
@@ -49,9 +50,9 @@
     .options { display: grid; gap: 8px; margin-bottom: 1.5rem; }
     .opt { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; cursor: pointer; font-size: 14px; color: var(--text); text-align: left; transition: border-color 0.15s, background 0.15s; display: flex; align-items: center; gap: 12px; font-family: 'Inter', sans-serif; line-height: 1.4; }
     .opt:hover { border-color: var(--border2); background: var(--bg3); }
-    .opt.selected { border-color: var(--green); background: rgba(29,158,117,0.08); }
+    .opt.selected { border-color: var(--green); background: rgba(255,103,9,0.08); }
     .opt-icon { width: 34px; height: 34px; border-radius: var(--radius-sm); background: var(--bg3); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 16px; }
-    .opt.selected .opt-icon { background: rgba(29,158,117,0.15); }
+    .opt.selected .opt-icon { background: rgba(255,103,9,0.15); }
     .check-box { width: 18px; height: 18px; border-radius: 4px; border: 1px solid var(--border2); flex-shrink: 0; margin-left: auto; display: flex; align-items: center; justify-content: center; transition: background 0.15s, border-color 0.15s; }
     .opt.selected .check-box { background: var(--green); border-color: var(--green); }
     .check-box svg { display: none; }
@@ -70,7 +71,7 @@
 
     .result-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; margin-bottom: 12px; }
     .fit-badge { display: inline-block; font-size: 11px; font-weight: 600; padding: 3px 12px; border-radius: 20px; margin-bottom: 14px; letter-spacing: 0.06em; text-transform: uppercase; }
-    .fit-alto { background: rgba(29,158,117,0.15); color: #5DCAA5; }
+    .fit-alto { background: rgba(255,103,9,0.15); color: #5DCAA5; }
     .fit-medio { background: rgba(239,159,39,0.15); color: #EF9F27; }
     .fit-baixo { background: rgba(226,75,74,0.15); color: #F09595; }
     .fit-title { font-size: 18px; font-weight: 600; color: var(--text); margin-bottom: 8px; letter-spacing: -0.01em; }
@@ -81,13 +82,13 @@
     .btn-wa { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; background: #25D366; border: none; border-radius: var(--radius-sm); padding: 14px; font-size: 15px; font-weight: 600; color: #fff; cursor: pointer; font-family: 'Inter', sans-serif; transition: opacity 0.15s; margin-bottom: 10px; }
     .btn-wa:hover { opacity: 0.88; }
 
-    .upsell-card { background: var(--bg2); border: 1px solid rgba(29,158,117,0.25); border-radius: var(--radius); padding: 1.25rem 1.5rem; margin-top: 1.5rem; display: flex; align-items: center; gap: 16px; }
-    .upsell-icon { width: 44px; height: 44px; border-radius: var(--radius-sm); background: rgba(29,158,117,0.1); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 22px; }
+    .upsell-card { background: var(--bg2); border: 1px solid rgba(255,103,9,0.25); border-radius: var(--radius); padding: 1.25rem 1.5rem; margin-top: 1.5rem; display: flex; align-items: center; gap: 16px; }
+    .upsell-icon { width: 44px; height: 44px; border-radius: var(--radius-sm); background: rgba(255,103,9,0.1); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 22px; }
     .upsell-text { flex: 1; }
     .upsell-text p { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 3px; }
     .upsell-text span { font-size: 12px; color: var(--text2); line-height: 1.5; }
-    .btn-upsell { background: none; border: 1px solid rgba(29,158,117,0.4); border-radius: var(--radius-sm); padding: 8px 16px; font-size: 13px; font-weight: 500; color: var(--green); cursor: pointer; font-family: 'Inter', sans-serif; white-space: nowrap; transition: background 0.15s; flex-shrink: 0; }
-    .btn-upsell:hover { background: rgba(29,158,117,0.08); }
+    .btn-upsell { background: none; border: 1px solid rgba(255,103,9,0.4); border-radius: var(--radius-sm); padding: 8px 16px; font-size: 13px; font-weight: 500; color: var(--green); cursor: pointer; font-family: 'Inter', sans-serif; white-space: nowrap; transition: background 0.15s; flex-shrink: 0; }
+    .btn-upsell:hover { background: rgba(255,103,9,0.08); }
 
     .wa-note { text-align: center; font-size: 12px; color: var(--text3); margin-top: 6px; }
     @media (max-width: 480px) {
