@@ -387,13 +387,27 @@ function ArchDiagram() {
         </defs>
         <circle cx={cx} cy={cy} r="120" fill="url(#hubGlow)" />
 
-        {/* area title labels (rendered first so lines/nodes sit on top) */}
+        {/* area title labels — placed outside the system nodes for visibility */}
         {groups.map((g, gi) => {
           const groupAngle = (gi / groups.length) * Math.PI * 2 - Math.PI / 2;
-          const gx = cx + Math.cos(groupAngle) * R;
-          const gy = cy + Math.sin(groupAngle) * R;
+          const labelR = R_sys + 45;
+          const lx = cx + Math.cos(groupAngle) * labelR;
+          const ly = cy + Math.sin(groupAngle) * labelR;
+          const c = Math.cos(groupAngle);
+          const anchor = c > 0.15 ? "start" : c < -0.15 ? "end" : "middle";
+          const dx = c > 0.15 ? 8 : c < -0.15 ? -8 : 0;
           return (
-            <text key={`t-${gi}`} x={gx} y={gy - 42} textAnchor="middle" fill={g.color} fontSize="11" fontWeight="700" letterSpacing="2">
+            <text
+              key={`t-${gi}`}
+              x={lx + dx}
+              y={ly}
+              textAnchor={anchor}
+              dominantBaseline="middle"
+              fill={g.color}
+              fontSize="12"
+              fontWeight="800"
+              letterSpacing="2"
+            >
               {g.area.toUpperCase()}
             </text>
           );
