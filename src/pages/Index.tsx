@@ -269,6 +269,22 @@ const Index = () => {
         </SectionShell>
       </main>
 
+      {/* Palette toggle — preview Burati GT visual language */}
+      <button
+        type="button"
+        onClick={() => setPalette(isBurati ? "fluxrow" : "burati")}
+        className="fixed bottom-6 right-6 z-50 inline-flex items-center gap-2 rounded-full border px-4 py-2.5 text-xs font-mono uppercase tracking-[0.2em] shadow-lg backdrop-blur transition-all hover:scale-[1.02]"
+        style={{
+          backgroundColor: isBurati ? "#1A1A1A" : "rgba(255,255,255,0.06)",
+          borderColor: isBurati ? "#FF6709" : "rgba(255,255,255,0.18)",
+          color: isBurati ? "#F5F3EE" : "rgba(255,255,255,0.85)",
+        }}
+        aria-label="Alternar paleta"
+      >
+        <Palette className="w-3.5 h-3.5" strokeWidth={1.8} />
+        {isBurati ? "Fluxrow" : "Burati GT"}
+      </button>
+
       <Footer />
     </div>
   );
