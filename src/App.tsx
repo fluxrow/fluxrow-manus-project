@@ -45,10 +45,6 @@ const ContratoAmandaNeves = React.lazy(() => import("./pages/ContratoAmandaNeves
 const ContratoAssinatura = React.lazy(() => import("./pages/ContratoAssinatura"));
 const ContratoPromotrip = React.lazy(() => import("./pages/ContratoPromotrip"));
 const ResetContrato = React.lazy(() => import("./pages/ResetContrato"));
-const RelatorioFachini = React.lazy(() => import("./pages/RelatorioFachini"));
-const RelatorioSemanalFachini = React.lazy(() => import("./pages/RelatorioSemanalFachini"));
-const AdminTestReportei = React.lazy(() => import("./pages/AdminTestReportei"));
-const AdminRelatorios = React.lazy(() => import("./pages/AdminRelatorios"));
 const BriefingAlek = React.lazy(() => import("./pages/BriefingAlek"));
 const PropostaPublica = React.lazy(() => import("./pages/PropostaPublica"));
 const PoliticaPrivacidade = React.lazy(() => import("./pages/PoliticaPrivacidade"));
@@ -126,10 +122,6 @@ const App = () => (
             </Route>
             <Route path="/apresentacao-evolua-digital" element={<ApresentacaoEvoluaDigital />} />
             <Route path="/admin/reset-contrato" element={<ResetContrato />} />
-            <Route path="/admin/test-reportei" element={<AdminTestReportei />} />
-            <Route path="/admin/relatorios" element={<AdminRelatorios />} />
-            <Route path="/relatorio/fachini-mensal" element={<RelatorioFachini />} />
-            <Route path="/relatorio/fachini-semanal" element={<RelatorioSemanalFachini />} />
             <Route path="/briefing-alek" element={<BriefingAlek />} />
             <Route path="/politica-de-privacidade" element={<PoliticaPrivacidade />} />
             <Route path="/termos-de-uso" element={<TermosDeUso />} />
