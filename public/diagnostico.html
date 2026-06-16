@@ -342,15 +342,26 @@
       
     }
 
+    function buildWAUrl(msg) {
+      const phone = '5541992361868';
+      const text = encodeURIComponent(msg);
+      const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+      // Mobile: usa esquema direto que aciona o app instalado.
+      // Desktop: usa api.whatsapp.com/send (abre WhatsApp Web / Desktop).
+      return isMobile
+        ? `whatsapp://send?phone=${phone}&text=${text}`
+        : `https://api.whatsapp.com/send?phone=${phone}&text=${text}`;
+    }
+
     function openWA() {
       const msg = `Olá Cauã! Fiz o diagnóstico no site 👇\n\n*Nome:* ${answers.nome}\n*Negócio:* ${answers.negocio || '-'}\n*Vende por:* ${answers.canal || '-'}\n*Maiores dores:* ${answers.dor || '-'}\n*Leads/mês:* ${answers.volume || '-'}\n*Sistema atual:* ${answers.sistema || '-'}\n*Precisa de:* ${answers.objetivo || '-'}\n\n*Diagnóstico: FIT ${answers.fit}*\n\nQuero entender como isso funciona!`;
-      window.open('https://wa.me/5541992361868?text=' + encodeURIComponent(msg), '_blank');
+      window.location.href = buildWAUrl(msg);
     }
 
     function openUpsell() {
       const nome = answers.nome ? answers.nome.split(' ')[0] : '';
       const msg = `Oi Cauã! Vi o quiz de diagnóstico e quero um igual pro meu negócio. ${nome ? 'Me chamo ' + nome + '.' : ''} Pode me contar como funciona?`;
-      window.open('https://wa.me/5541992361868?text=' + encodeURIComponent(msg), '_blank');
+      window.location.href = buildWAUrl(msg);
     }
   </script>
 </body>
