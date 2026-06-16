@@ -549,7 +549,7 @@ export default function PropostaBuratiGT() {
             <span style={{ color: C.primary }} className="italic">Zero conversa entre eles.</span>
           </h2>
           <p className="text-lg max-w-3xl mb-16" style={{ color: C.gray }}>
-            Pesquisa da McKinsey aponta que profissionais perdem 19% do tempo de trabalho buscando e consolidando informações entre sistemas — quase 2 dias inteiros por semana em retrabalho puro.
+            Pesquisa da McKinsey aponta que profissionais perdem 19% do tempo de trabalho buscando e consolidando informações entre sistemas, quase 2 dias inteiros por semana em retrabalho puro.
           </p>
 
           <div className="grid md:grid-cols-2 gap-6">
