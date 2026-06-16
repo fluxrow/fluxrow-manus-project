@@ -59,6 +59,7 @@ const KitReader = React.lazy(() => import("./pages/KitReader"));
 const Unsubscribe = React.lazy(() => import("./pages/Unsubscribe"));
 const Blog = React.lazy(() => import("./pages/Blog"));
 const BlogPost = React.lazy(() => import("./pages/BlogPost"));
+const Diagnostico = React.lazy(() => import("./pages/Diagnostico"));
 
 const queryClient = new QueryClient();
 
@@ -78,6 +79,7 @@ const App = () => (
         <Suspense fallback={<LazyFallback />}>
           <Routes>
             <Route path="/" element={<Index />} />
+            <Route path="/diagnostico" element={<Diagnostico />} />
             <Route path="/agencia" element={<Agencia />} />
             {/* Curso descontinuado — redirect 301 para /produtos */}
             <Route path="/curso" element={<Navigate to="/produtos" replace />} />
