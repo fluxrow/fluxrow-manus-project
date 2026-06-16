@@ -1,6 +1,5 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, Sparkles, Users, BookOpen, Compass, Palette } from "lucide-react";
+import { ArrowRight, Sparkles, Users, BookOpen, Compass } from "lucide-react";
 import { motion } from "framer-motion";
 import SEO from "@/components/SEO";
 import Header from "@/components/Header";
@@ -20,9 +19,6 @@ const STATS = [
 ];
 
 const Index = () => {
-  const [palette, setPalette] = useState<"fluxrow" | "burati">("fluxrow");
-  const isBurati = palette === "burati";
-
   const orgJsonLd = {
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -36,11 +32,7 @@ const Index = () => {
   };
 
   return (
-    <div
-      data-palette={palette}
-      className="min-h-screen text-white overflow-x-hidden transition-colors duration-500"
-      style={{ backgroundColor: isBurati ? "#F5F3EE" : "#080807" }}
-    >
+    <div className="min-h-screen overflow-x-hidden bg-[#F5F3EE] text-[#1A1A1A]">
       <SEO
         title="Fluxrow — sistemas, SaaS e automações com IA"
         description="Compre o sistema pronto ou contrate a operação completa. Fluxrow constrói infraestrutura de IA para quem quer transformar conhecimento em receita."
@@ -269,21 +261,6 @@ const Index = () => {
         </SectionShell>
       </main>
 
-      {/* Palette toggle — preview Burati GT visual language */}
-      <button
-        type="button"
-        onClick={() => setPalette(isBurati ? "fluxrow" : "burati")}
-        className="fixed bottom-6 right-6 z-50 inline-flex items-center gap-2 rounded-full border px-4 py-2.5 text-xs font-mono uppercase tracking-[0.2em] shadow-lg backdrop-blur transition-all hover:scale-[1.02]"
-        style={{
-          backgroundColor: isBurati ? "#1A1A1A" : "rgba(255,255,255,0.06)",
-          borderColor: isBurati ? "#FF6709" : "rgba(255,255,255,0.18)",
-          color: isBurati ? "#F5F3EE" : "rgba(255,255,255,0.85)",
-        }}
-        aria-label="Alternar paleta"
-      >
-        <Palette className="w-3.5 h-3.5" strokeWidth={1.8} />
-        {isBurati ? "Fluxrow" : "Burati GT"}
-      </button>
 
       <Footer />
     </div>
