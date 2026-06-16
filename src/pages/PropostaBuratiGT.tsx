@@ -374,8 +374,8 @@ function AIChat() {
 function ArchDiagram() {
   const groups = SYSTEM_GROUPS;
   const cx = 400, cy = 400;
-  const R = 260;
-  const R_sys = 340;
+  const R = 235;
+  const R_sys = 305;
   return (
     <div className="w-full max-w-4xl mx-auto">
       <svg viewBox="-60 -60 920 920" className="w-full h-auto">
