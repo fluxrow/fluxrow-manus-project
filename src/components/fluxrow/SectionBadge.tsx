@@ -1,0 +1,34 @@
+import { LucideIcon } from "lucide-react";
+
+interface SectionBadgeProps {
+  icon?: LucideIcon;
+  label: string;
+  className?: string;
+}
+
+/**
+ * Opening mark for a Fluxrow section.
+ * Circular accent dot/icon + uppercase tracked label.
+ * Adapted from the Burati GT proposal language, in Fluxrow dark.
+ */
+export function SectionBadge({ icon: Icon, label, className = "" }: SectionBadgeProps) {
+  return (
+    <div className={`flex items-center gap-3 mb-6 ${className}`}>
+      <span
+        className="w-10 h-10 rounded-full flex items-center justify-center shrink-0 border border-white/15 bg-white/[0.04]"
+        aria-hidden="true"
+      >
+        {Icon ? (
+          <Icon className="w-4 h-4 text-white/85" strokeWidth={1.6} />
+        ) : (
+          <span className="w-1.5 h-1.5 rounded-full bg-white/85" />
+        )}
+      </span>
+      <span className="text-[11px] font-mono uppercase text-white/70 tracking-[0.3em]">
+        {label}
+      </span>
+    </div>
+  );
+}
+
+export default SectionBadge;
