@@ -26,7 +26,7 @@ import SoftCard from "@/components/fluxrow/SoftCard";
 import Counter from "@/components/fluxrow/Counter";
 import { fadeUp } from "@/lib/motion";
 
-import EnhancedInteractiveBriefing from "@/components/agency/EnhancedInteractiveBriefing";
+import BriefingFlow from "@/components/agency/BriefingFlow";
 import { buildHomeFaqSchema } from "@/lib/homeFaqSchema";
 
 const STATS = [
@@ -339,7 +339,7 @@ const Agencia = () => {
           aria-label="Briefing Inteligente"
           className="border-t border-white/10"
         >
-          <EnhancedInteractiveBriefing />
+          <BriefingFlow />
         </section>
 
         {/* CTA final */}
