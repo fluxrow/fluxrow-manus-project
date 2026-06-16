@@ -2,54 +2,58 @@ import { Helmet } from "react-helmet-async";
 import { motion, useInView } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import {
-  Zap, Search, Lightbulb, Settings, GitBranch, TrendingDown, Rocket,
-  BarChart2, CreditCard, Kanban, Phone, LayoutDashboard, DollarSign,
-  Bot, FileBarChart, GraduationCap, Code, Check, ArrowUpRight,
+  Zap, Layers, Search, Lightbulb, GitBranch, Grid, TrendingUp, Rocket,
+  BarChart2, CreditCard, Kanban, CheckSquare, Users, PieChart, Trello,
+  LayoutDashboard, DollarSign, FileText, Scale, Mail, Bot, Brain,
+  Link as LinkIcon, Minimize2, GraduationCap, Code2, Check, X,
+  AlertTriangle, AlertCircle, ArrowUpRight,
 } from "lucide-react";
 import BackToHomeButton from "@/components/ui/BackToHomeButton";
 
 // ============================================================
-// Burati GT Hub – Proposta navegável (Fluxrow)
-// Paleta oficial Burati GT:  laranja #FF6709 / preto #050505
+// Burati GT Hub — Proposta navegável v2.0 (Fluxrow)
+// Paleta oficial Burati GT: laranja #FF6709 / preto #050505
+// 15 sistemas reais identificados
 // ============================================================
 
 const C = {
   primary: "#FF6709",
   black: "#050505",
   secondary: "#1C1C1C",
+  dark: "#101211",
   white: "#F5F5F5",
   light: "#E7E7E9",
-  dark: "#C7C7C7",
+  gray: "#C7C7C7",
+  red: "#BF1935",
+  yellow: "#F5B400",
 };
 
 const WHATSAPP =
   "https://wa.me/5541992361868?text=" +
-  encodeURIComponent(
-    "Oi! Vi a proposta do Burati GT Hub e quero marcar a reunião de diagnóstico."
-  );
+  encodeURIComponent("Oi! Vi a proposta do Burati GT Hub e quero marcar a reunião de diagnóstico.");
 
 /* ---------- helpers ---------- */
 const fadeUp: any = {
-  hidden: { opacity: 0, y: 24 },
+  hidden: { opacity: 0, y: 28 },
   show: (i: number = 0) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] as any },
+    transition: { duration: 0.7, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] as any },
   }),
 };
 
-function SectionBadge({ icon: Icon, label }: { icon: any; label: string }) {
+function SectionBadge({ icon: Icon, label, dark = false }: { icon: any; label: string; dark?: boolean }) {
   return (
-    <div className="flex items-center gap-3 mb-6">
+    <div className="flex items-center gap-3 mb-8">
       <span
-        className="w-10 h-10 rounded-full flex items-center justify-center"
+        className="w-11 h-11 rounded-full flex items-center justify-center shrink-0"
         style={{ backgroundColor: C.primary }}
       >
-        <Icon className="w-5 h-5 text-white" />
+        <Icon className="w-5 h-5" style={{ color: dark ? C.black : "#fff" }} />
       </span>
       <span
-        className="text-xs font-semibold uppercase"
-        style={{ letterSpacing: "3px", color: "currentColor" }}
+        className="text-[11px] font-semibold uppercase"
+        style={{ letterSpacing: "3px", color: C.primary }}
       >
         {label}
       </span>
@@ -64,7 +68,7 @@ function Counter({ to, suffix = "", prefix = "" }: { to: number; suffix?: string
   useEffect(() => {
     if (!inView) return;
     const start = performance.now();
-    const dur = 1600;
+    const dur = 1800;
     const tick = (t: number) => {
       const p = Math.min(1, (t - start) / dur);
       setV(Math.round(to * (1 - Math.pow(1 - p, 3))));
@@ -81,876 +85,1006 @@ function Counter({ to, suffix = "", prefix = "" }: { to: number; suffix?: string
   );
 }
 
-/* ---------- Hero orbit (SVG) ---------- */
-function HeroOrbit() {
-  const nodes = ["OMIE", "iRecebi", "PipeRun", "VOKI"];
-  return (
-    <div className="relative w-full max-w-[520px] aspect-square mx-auto">
-      {/* orbit rings */}
-      <svg viewBox="0 0 400 400" className="absolute inset-0 w-full h-full">
-        <defs>
-          <radialGradient id="hexGrad" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor={C.primary} stopOpacity="0.25" />
-            <stop offset="100%" stopColor={C.primary} stopOpacity="0" />
-          </radialGradient>
-        </defs>
-        <circle cx="200" cy="200" r="170" fill="none" stroke={C.primary} strokeOpacity="0.18" strokeDasharray="4 6" />
-        <circle cx="200" cy="200" r="130" fill="none" stroke={C.primary} strokeOpacity="0.12" strokeDasharray="2 8" />
-        <circle cx="200" cy="200" r="90" fill="url(#hexGrad)" />
-        {/* hub hex */}
-        <polygon
-          points="200,130 260,165 260,235 200,270 140,235 140,165"
-          fill={C.black}
-          stroke={C.primary}
-          strokeWidth="2"
-        />
-        <text x="200" y="195" textAnchor="middle" fill={C.white} fontSize="18" fontWeight="800" fontFamily="Inter">GT HUB</text>
-        <text x="200" y="218" textAnchor="middle" fill={C.primary} fontSize="9" letterSpacing="3" fontFamily="Inter">BURATI</text>
-      </svg>
+/* ---------- DATA ---------- */
+const SYSTEM_GROUPS = [
+  {
+    area: "RH", icon: Users, color: "#8B5CF6",
+    systems: [
+      { name: "Flash", desc: "Multibenefícios, cartão corporativo, controle de jornada e despesas" },
+      { name: "Mindsight", desc: "Recrutamento, desempenho, engajamento e jornada do colaborador" },
+    ],
+    overlap: { level: "warning", text: "⚠️ SOBREPOSIÇÃO PARCIAL" },
+  },
+  {
+    area: "Financeiro", icon: DollarSign, color: "#10B981",
+    systems: [
+      { name: "OMIE", desc: "ERP financeiro, fiscal, NF-e, DRE, contas a pagar/receber" },
+      { name: "iRecebi", desc: "Cobrança omnichannel — WhatsApp, SMS, boletos, Voice Bot" },
+    ],
+  },
+  {
+    area: "Fiscal", icon: FileText, color: "#3B82F6",
+    border: C.red,
+    systems: [
+      { name: "HubCount", desc: "BI fiscal — dashboards, relatórios contábeis automatizados" },
+      { name: "MA Tecnologia", desc: "Apuração de impostos, SPED, obrigações acessórias" },
+      { name: "MR Tecnologia", desc: "Software fiscal especializado — apuração e compliance" },
+    ],
+    overlap: { level: "critical", text: "🚨 ALERTA: 3 SISTEMAS NA MESMA ÁREA" },
+  },
+  {
+    area: "Jurídico", icon: Scale, color: "#F59E0B",
+    systems: [
+      { name: "Leviatan", desc: "Backup e gestão de documentos jurídicos (CPJ)" },
+      { name: "Preâmbulo", desc: "Contratos, gestão processual, documentos jurídicos" },
+    ],
+  },
+  {
+    area: "Comercial", icon: Kanban, color: "#FF6709",
+    systems: [
+      { name: "PipeRun", desc: "CRM com funil de vendas, Kanban, automações — usado por todas as áreas" },
+    ],
+  },
+  {
+    area: "Projetos", icon: CheckSquare, color: "#06B6D4",
+    border: C.yellow,
+    systems: [
+      { name: "ClickUp", desc: "Gestão de tarefas, projetos e sprints — Btax" },
+      { name: "Atlassian (Jira/Confluence)", desc: "Gestão ágil de projetos e documentação — Marketing" },
+    ],
+    overlap: { level: "warning", text: "⚠️ SOBREPOSIÇÃO: MESMA FUNÇÃO, 2 CONTRATOS" },
+  },
+  {
+    area: "Marketing & Infra", icon: Mail, color: "#EC4899",
+    systems: [
+      { name: "Mailchimp", desc: "E-mail marketing e automação de campanhas" },
+      { name: "Kinghost", desc: "Hospedagem, e-mail corporativo e domínios" },
+      { name: "Ingram", desc: "Gestão de licenças e distribuição de tecnologia" },
+    ],
+  },
+];
 
-      {/* orbiting logos */}
-      <div className="absolute inset-0 animate-[spin_28s_linear_infinite]">
-        {nodes.map((n, i) => {
-          const angle = (i / nodes.length) * Math.PI * 2 - Math.PI / 2;
-          const r = 42; // % from center
-          const x = 50 + Math.cos(angle) * r;
-          const y = 50 + Math.sin(angle) * r;
-          return (
-            <div
-              key={n}
-              className="absolute -translate-x-1/2 -translate-y-1/2 px-3 py-1.5 rounded-full text-xs font-bold bg-white shadow-lg"
-              style={{ left: `${x}%`, top: `${y}%`, color: C.black, border: `1px solid ${C.primary}40` }}
-            >
-              {n}
-            </div>
-          );
-        })}
+const MODULES = [
+  {
+    n: 1, bg: C.black, fg: "#fff", accent: C.primary,
+    icon: LayoutDashboard, badge: "CEO / GESTÃO", title: "Painel Executivo",
+    desc: "Dashboard unificado de todas as 7 áreas em tempo real. Uma tela. Todas as métricas que importam.",
+    items: [
+      "KPIs financeiros (OMIE + iRecebi)",
+      "Status de cobranças e inadimplência",
+      "Performance comercial (PipeRun)",
+      "Headcount e custo por colaborador (Flash + Mindsight)",
+      "Volume de projetos em andamento (ClickUp + Atlassian)",
+      "Alertas automáticos por meta",
+    ],
+    stat: "CEOs com dashboards integrados reduzem 60% do tempo em reuniões de alinhamento. (Bain & Company)",
+  },
+  {
+    n: 2, bg: C.primary, fg: C.black, accent: C.black,
+    icon: DollarSign, badge: "FINANCEIRO", title: "Financeiro Inteligente",
+    desc: "Sync automático com OMIE e iRecebi. Visão consolidada de tudo que entra e sai — sem planilha manual.",
+    items: [
+      "Conciliação bancária automática (OMIE)",
+      "Boletos e cobranças em tempo real (iRecebi)",
+      "Projeção de fluxo de caixa com IA",
+      "DRE gerado automaticamente",
+      "Alertas de vencimento antecipados",
+      "Custo por colaborador cruzado com RH (Flash)",
+    ],
+    stat: "Automatizar processos financeiros reduz erros operacionais em 87% e libera 12h/semana do time. (Deloitte, 2023)",
+  },
+  {
+    n: 3, bg: C.black, fg: "#fff", accent: C.primary,
+    icon: FileText, badge: "FISCAL — 3 SISTEMAS → 1 VISÃO", title: "Fiscal Unificado",
+    desc: "HubCount, MA Tecnologia e MR Tecnologia passam a alimentar uma única visão fiscal — sem cruzar dados manualmente entre plataformas.",
+    items: [
+      "Dashboard fiscal consolidado",
+      "Apuração unificada por período",
+      "Alertas de obrigações acessórias",
+      "Cruzamento NFs emitidas (OMIE) × obrigações fiscais",
+      "Histórico tributário completo",
+      "Relatórios automáticos para a contabilidade",
+    ],
+    stat: "Empresas com compliance fiscal automatizado reduzem em 73% os erros em obrigações acessórias. (Deloitte Tax Survey, 2023)",
+  },
+  {
+    n: 4, bg: C.secondary, fg: "#fff", accent: C.primary,
+    icon: Kanban, badge: "SUBSTITUI / COMPLEMENTA PIPERUN", title: "CRM Próprio",
+    desc: "Funil de vendas completo com histórico 360° do cliente — ligações, cobranças, contratos e NFs num único card.",
+    items: [
+      "Kanban visual de oportunidades",
+      "Histórico de cobranças iRecebi no card do cliente",
+      "Contratos jurídicos vinculados (Leviatan + Preâmbulo)",
+      "NFs OMIE acessíveis no perfil",
+      "Automações de follow-up",
+      "Relatório de conversão por consultor",
+    ],
+    stat: "Vendedores com contexto completo do cliente convertem 47% mais. (Salesforce State of Sales, 2024)",
+  },
+  {
+    n: 5, bg: C.primary, fg: C.black, accent: C.black,
+    icon: Users, badge: "RH — FLASH + MINDSIGHT CONECTADOS", title: "RH Integrado",
+    desc: "Os dados de Flash e Mindsight chegam ao Hub e, pela primeira vez, se conectam ao financeiro — mostrando o custo real de cada colaborador.",
+    items: [
+      "Headcount por área em tempo real",
+      "Custo total por colaborador (salário + benefícios Flash)",
+      "Pipeline de recrutamento (Mindsight)",
+      "Indicadores de engajamento e desempenho",
+      "Alertas de turnover por área",
+      "Cruzamento com produtividade por área",
+    ],
+    stat: "Empresas que integram RH ao financeiro têm 2,5x mais precisão no planejamento orçamentário. (PwC Workforce Survey, 2023)",
+  },
+  {
+    n: 6, bg: C.black, fg: "#fff", accent: C.primary,
+    icon: CheckSquare, badge: "PROJETOS — CLICKUP + ATLASSIAN CONECTADOS", title: "Gestão de Projetos Unificada",
+    desc: "ClickUp (Btax) e Atlassian (Marketing) alimentam um painel único de projetos — com visão consolidada de entregas, prazos e times.",
+    items: [
+      "Painel de projetos de todas as áreas",
+      "Status de tarefas em tempo real",
+      "Cruzamento de entregas com metas comerciais",
+      "Carga de trabalho por time",
+      "Relatório de projetos atrasados",
+      "Visibilidade total para o gestor — sem precisar acessar as duas ferramentas",
+    ],
+    stat: "Times com visibilidade unificada de projetos entregam 28% mais dentro do prazo. (PMI Pulse, 2024)",
+  },
+  {
+    n: 7, bg: C.secondary, fg: "#fff", accent: C.primary,
+    icon: Scale, badge: "JURÍDICO — CPJ INTEGRADO", title: "Jurídico Conectado",
+    desc: "Contratos do Leviatan e Preâmbulo vinculados ao cliente no CRM e às NFs no OMIE — rastreabilidade jurídica completa.",
+    items: [
+      "Contratos vinculados ao perfil do cliente",
+      "Alertas de vencimento de contratos",
+      "NFs emitidas vinculadas ao contrato correspondente",
+      "Status processual por cliente",
+      "Documentos acessíveis diretamente do CRM",
+      "Histórico jurídico completo por empresa atendida",
+    ],
+    stat: "Empresas com gestão jurídica integrada ao financeiro reduzem em 40% o tempo de recuperação de créditos vencidos. (IBGE/FGV, 2023)",
+  },
+  {
+    n: 8, bg: C.primary, fg: C.black, accent: C.black, isAI: true,
+    icon: Bot, badge: "INTELIGÊNCIA ARTIFICIAL", title: "Assistente IA Interno",
+    desc: "Chat interno estilo ChatGPT que responde perguntas reais do negócio em segundos — cruzando dados das 7 áreas e dos 15 sistemas.",
+    items: [],
+    stat: "Empresas com IA para consultas operacionais reduzem em 70% o tempo de geração de relatórios gerenciais. (McKinsey Global Institute, 2024)",
+  },
+];
+
+const AI_QUESTIONS = [
+  "Quantos boletos em atraso temos de 01/06 a 15/06?",
+  "Qual consultor fechou mais em maio?",
+  "Quais clientes têm contrato ativo mas NF pendente?",
+  "Me dá o top 10 devedores do trimestre",
+  "Qual o custo total de RH do mês de junho?",
+  "Quantos projetos estão atrasados essa semana?",
+  "Qual o LTV médio dos clientes ativos da Btax?",
+  "Quais obrigações fiscais vencem essa semana?",
+];
+
+/* ---------- AI Chat Demo ---------- */
+function AIChat() {
+  const [idx, setIdx] = useState(0);
+  const [typed, setTyped] = useState("");
+  const [showAnswer, setShowAnswer] = useState(false);
+
+  useEffect(() => {
+    const q = AI_QUESTIONS[idx];
+    setTyped(""); setShowAnswer(false);
+    let i = 0;
+    const typer = setInterval(() => {
+      i++;
+      setTyped(q.slice(0, i));
+      if (i >= q.length) {
+        clearInterval(typer);
+        setTimeout(() => setShowAnswer(true), 400);
+        setTimeout(() => setIdx((p) => (p + 1) % AI_QUESTIONS.length), 3800);
+      }
+    }, 32);
+    return () => clearInterval(typer);
+  }, [idx]);
+
+  return (
+    <div className="rounded-2xl p-5 font-mono text-sm" style={{ backgroundColor: C.black, color: "#fff" }}>
+      <div className="flex items-center gap-2 mb-4 opacity-60">
+        <span className="w-3 h-3 rounded-full bg-red-500" />
+        <span className="w-3 h-3 rounded-full bg-yellow-500" />
+        <span className="w-3 h-3 rounded-full bg-green-500" />
+        <span className="ml-2 text-xs">gt-hub-ai · live</span>
+      </div>
+      <div className="space-y-3 min-h-[140px]">
+        <div className="flex gap-2">
+          <span style={{ color: C.primary }}>→</span>
+          <span>{typed}<span className="animate-pulse">▍</span></span>
+        </div>
+        {showAnswer && (
+          <motion.div
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="ml-5 pl-3 border-l-2 text-xs leading-relaxed"
+            style={{ borderColor: C.primary, color: C.gray }}
+          >
+            ✓ Consultando OMIE + iRecebi + PipeRun…<br />
+            ✓ Cruzando dados das últimas 24h<br />
+            <span style={{ color: C.primary }}>→ Resposta entregue em 1.8s</span>
+          </motion.div>
+        )}
       </div>
     </div>
   );
 }
 
-/* ---------- Solution diagram ---------- */
-function SolutionDiagram() {
-  const modules = ["📊 Dashboard", "💰 Financeiro", "🎯 CRM", "📞 Comunicação", "🤖 IA", "📈 Relatórios"];
-  const sources = [
-    { name: "OMIE", color: "#10b981" },
-    { name: "iRecebi", color: "#059669" },
-    { name: "PipeRun", color: "#3b82f6" },
-    { name: "VOKI", color: "#8b5cf6" },
-  ];
+/* ---------- Architecture Diagram (15 nodes) ---------- */
+function ArchDiagram() {
+  const groups = SYSTEM_GROUPS;
+  const cx = 400, cy = 400, R = 280;
   return (
-    <div className="relative w-full max-w-3xl mx-auto py-8">
-      <svg viewBox="0 0 800 500" className="w-full h-auto">
+    <div className="w-full max-w-4xl mx-auto">
+      <svg viewBox="0 0 800 800" className="w-full h-auto">
         <defs>
-          <radialGradient id="hubG" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor={C.primary} stopOpacity="0.35" />
+          <radialGradient id="hubGlow">
+            <stop offset="0%" stopColor={C.primary} stopOpacity="0.4" />
             <stop offset="100%" stopColor={C.primary} stopOpacity="0" />
           </radialGradient>
         </defs>
+        <circle cx={cx} cy={cy} r="120" fill="url(#hubGlow)" />
 
-        {/* connecting lines with animated dash */}
-        {sources.map((s, i) => {
-          const positions = [
-            { x: 90, y: 90 },
-            { x: 710, y: 90 },
-            { x: 90, y: 320 },
-            { x: 710, y: 320 },
-          ][i];
+        {/* lines + nodes */}
+        {groups.map((g, gi) => {
+          const groupAngle = (gi / groups.length) * Math.PI * 2 - Math.PI / 2;
+          const gx = cx + Math.cos(groupAngle) * R;
+          const gy = cy + Math.sin(groupAngle) * R;
           return (
-            <g key={s.name}>
-              <line
-                x1={positions.x}
-                y1={positions.y}
-                x2={400}
-                y2={210}
-                stroke={C.primary}
-                strokeWidth="1.5"
-                strokeDasharray="6 6"
-                strokeOpacity="0.5"
-              >
-                <animate attributeName="stroke-dashoffset" from="0" to="-24" dur="1.4s" repeatCount="indefinite" />
-              </line>
-              <circle cx={positions.x} cy={positions.y} r="42" fill={s.color} opacity="0.9" />
-              <text x={positions.x} y={positions.y + 5} textAnchor="middle" fill="#fff" fontSize="14" fontWeight="700" fontFamily="Inter">
-                {s.name}
+            <g key={gi}>
+              {g.systems.map((s, si) => {
+                const spread = (si - (g.systems.length - 1) / 2) * 0.18;
+                const a = groupAngle + spread;
+                const x = cx + Math.cos(a) * R;
+                const y = cy + Math.sin(a) * R;
+                return (
+                  <g key={si}>
+                    <motion.line
+                      x1={cx} y1={cy} x2={x} y2={y}
+                      stroke={g.color} strokeWidth="1.5" strokeOpacity="0.4"
+                      initial={{ pathLength: 0 }}
+                      whileInView={{ pathLength: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 1.2, delay: gi * 0.1 + si * 0.05 }}
+                    />
+                    <motion.circle
+                      cx={x} cy={y} r="22" fill={g.color}
+                      initial={{ scale: 0 }}
+                      whileInView={{ scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: gi * 0.1 + si * 0.05 + 0.5, type: "spring" }}
+                    />
+                    <text x={x} y={y + 38} textAnchor="middle" fill="#fff" fontSize="10" fontWeight="600">
+                      {s.name.split(" ")[0]}
+                    </text>
+                  </g>
+                );
+              })}
+              <text x={gx} y={gy - 50} textAnchor="middle" fill={g.color} fontSize="11" fontWeight="700" letterSpacing="2">
+                {g.area.toUpperCase()}
               </text>
             </g>
           );
         })}
 
-        {/* central hub */}
-        <circle cx="400" cy="210" r="120" fill="url(#hubG)" />
-        <polygon
-          points="400,130 470,170 470,250 400,290 330,250 330,170"
-          fill={C.black}
-          stroke={C.primary}
-          strokeWidth="2.5"
-        />
-        <text x="400" y="205" textAnchor="middle" fill={C.white} fontSize="22" fontWeight="800" fontFamily="Inter">GT HUB</text>
-        <text x="400" y="228" textAnchor="middle" fill={C.primary} fontSize="10" letterSpacing="2" fontFamily="Inter">BURATI</text>
-
-        {/* output to modules */}
-        <line x1="400" y1="290" x2="400" y2="380" stroke={C.primary} strokeWidth="2" strokeDasharray="6 6">
-          <animate attributeName="stroke-dashoffset" from="0" to="-24" dur="1.2s" repeatCount="indefinite" />
-        </line>
+        {/* central hexagon */}
+        <motion.g
+          animate={{ scale: [1, 1.05, 1] }}
+          transition={{ duration: 2, repeat: Infinity }}
+          style={{ transformOrigin: `${cx}px ${cy}px` }}
+        >
+          <polygon
+            points={`${cx},${cy - 75} ${cx + 65},${cy - 37} ${cx + 65},${cy + 37} ${cx},${cy + 75} ${cx - 65},${cy + 37} ${cx - 65},${cy - 37}`}
+            fill={C.primary}
+            stroke="#fff" strokeWidth="2"
+          />
+          <text x={cx} y={cy + 6} textAnchor="middle" fill="#fff" fontSize="22" fontWeight="900">GT HUB</text>
+        </motion.g>
       </svg>
-
-      <div className="grid grid-cols-3 md:grid-cols-6 gap-2 mt-2">
-        {modules.map((m) => (
-          <div
-            key={m}
-            className="text-xs font-semibold text-center px-2 py-2 rounded-xl"
-            style={{ backgroundColor: C.secondary, color: C.white }}
-          >
-            {m}
-          </div>
-        ))}
-      </div>
     </div>
   );
 }
 
-/* ---------- IA chat demo ---------- */
-const IA_QUESTIONS = [
-  "Quantos boletos em atraso de 01/06 a 15/06?",
-  "Qual consultor fechou mais em maio?",
-  "Clientes com NF emitida mas cobrança pendente?",
-  "Top 10 devedores do trimestre",
-  "LTV médio dos clientes ativos?",
-];
-function TypingDemo() {
-  const [qi, setQi] = useState(0);
-  const [text, setText] = useState("");
-  useEffect(() => {
-    const q = IA_QUESTIONS[qi];
-    let i = 0;
-    const id = setInterval(() => {
-      i++;
-      setText(q.slice(0, i));
-      if (i >= q.length) {
-        clearInterval(id);
-        setTimeout(() => {
-          setText("");
-          setQi((x) => (x + 1) % IA_QUESTIONS.length);
-        }, 1800);
-      }
-    }, 45);
-    return () => clearInterval(id);
-  }, [qi]);
+/* ---------- Hero Orbit ---------- */
+function HeroOrbit() {
+  const orbits = [
+    { r: 110, dur: 22, items: [{ n: "OMIE", c: "#10B981" }, { n: "iRecebi", c: "#10B981" }] },
+    { r: 180, dur: 32, items: [{ n: "PipeRun", c: "#FF6709" }, { n: "ClickUp", c: "#06B6D4" }, { n: "Flash", c: "#8B5CF6" }] },
+    { r: 250, dur: 44, items: [{ n: "HubCount", c: "#3B82F6" }, { n: "Atlassian", c: "#06B6D4" }] },
+  ];
   return (
-    <div className="mt-4 rounded-2xl bg-black/20 p-4 font-mono text-sm">
-      <div className="flex items-center gap-2 mb-2 text-xs opacity-70">
-        <Bot className="w-3.5 h-3.5" /> burati-gt-ai · pergunte qualquer coisa
-      </div>
-      <div className="min-h-[2.5rem]">
-        <span>{text}</span>
-        <span className="inline-block w-2 h-4 bg-black/70 align-middle animate-pulse ml-0.5" />
-      </div>
+    <div className="relative w-full aspect-square max-w-[560px] mx-auto">
+      {orbits.map((o, oi) => (
+        <motion.div
+          key={oi}
+          className="absolute inset-0 rounded-full"
+          style={{
+            border: `1px dashed ${C.dark}`,
+            margin: `calc(50% - ${o.r}px)`,
+            width: o.r * 2, height: o.r * 2, left: "50%", top: "50%",
+            transform: "translate(-50%,-50%)",
+          }}
+          animate={{ rotate: 360 }}
+          transition={{ duration: o.dur, repeat: Infinity, ease: "linear" }}
+        >
+          {o.items.map((it, i) => {
+            const a = (i / o.items.length) * Math.PI * 2;
+            const x = Math.cos(a) * o.r;
+            const y = Math.sin(a) * o.r;
+            return (
+              <motion.div
+                key={i}
+                animate={{ rotate: -360 }}
+                transition={{ duration: o.dur, repeat: Infinity, ease: "linear" }}
+                className="absolute w-14 h-14 rounded-full flex items-center justify-center text-[10px] font-bold text-white shadow-lg"
+                style={{
+                  backgroundColor: it.c,
+                  left: `calc(50% + ${x}px - 28px)`,
+                  top: `calc(50% + ${y}px - 28px)`,
+                }}
+              >
+                {it.n}
+              </motion.div>
+            );
+          })}
+        </motion.div>
+      ))}
+      {/* center */}
+      <motion.div
+        animate={{ scale: [1, 1.05, 1] }}
+        transition={{ duration: 2, repeat: Infinity }}
+        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 flex flex-col items-center justify-center"
+        style={{
+          backgroundColor: C.black,
+          color: "#fff",
+          clipPath: "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)",
+          border: `2px solid ${C.primary}`,
+        }}
+      >
+        <span className="text-2xl font-black leading-none">GT</span>
+        <span className="text-2xl font-black leading-none" style={{ color: C.primary }}>HUB</span>
+      </motion.div>
+
+      {/* floating card */}
+      <motion.div
+        animate={{ y: [0, -8, 0] }}
+        transition={{ duration: 3, repeat: Infinity }}
+        className="absolute -bottom-2 -right-2 sm:bottom-4 sm:right-0 rounded-2xl p-4 max-w-[200px] shadow-2xl"
+        style={{ backgroundColor: C.black, color: "#fff" }}
+      >
+        <div className="text-[10px] font-semibold mb-1" style={{ letterSpacing: "2px", color: C.primary }}>
+          ⚡ ALTA PERFORMANCE
+        </div>
+        <div className="text-sm font-bold leading-tight">
+          <span style={{ color: C.primary }}>+600MM</span> recuperados pela Burati GT
+        </div>
+      </motion.div>
     </div>
   );
 }
 
-/* ---------- modules data ---------- */
-const MODULES = [
-  {
-    icon: LayoutDashboard,
-    badge: "CEO / GESTÃO",
-    title: "Painel Executivo",
-    desc: "Dashboard unificado em tempo real. KPIs de todas as áreas numa tela. Fim do relatório manual de final de mês.",
-    bullets: [
-      "KPIs financeiros (OMIE)",
-      "Status cobranças (iRecebi)",
-      "Performance comercial",
-      "Volume ligações (VOKI)",
-      "Alertas automáticos por meta",
-    ],
-    data: "CEOs com dashboards integrados reduzem 60% do tempo em reuniões de alinhamento. (Bain & Company)",
-    dark: true,
-  },
-  {
-    icon: DollarSign,
-    badge: "FINANCEIRO",
-    title: "Financeiro Inteligente",
-    desc: "Sync automático com OMIE e iRecebi. Relatórios gerados automaticamente. Fim das planilhas manuais.",
-    bullets: [
-      "Conciliação bancária automática",
-      "Visão consolidada boletos + NFs",
-      "Alertas de vencimento antecipados",
-      "Projeção de fluxo de caixa com IA",
-      "DRE gerado automaticamente",
-    ],
-    data: "Automatizar processos financeiros reduz erros operacionais em 87% e libera 12h/semana do time. (Deloitte, 2023)",
-    dark: false,
-  },
-  {
-    icon: Kanban,
-    badge: "SUBSTITUI O PIPERUN",
-    title: "CRM Próprio",
-    desc: "Kanban completo com histórico 360° do cliente: ligações, cobranças, contratos e NFs — tudo em um card.",
-    bullets: [
-      "Funil visual Kanban",
-      "Histórico ligações VOKI no card",
-      "Status cobrança iRecebi vinculado",
-      "Contratos e NFs OMIE acessíveis",
-      "Automações de follow-up",
-      "Fim da assinatura PipeRun",
-    ],
-    data: "Vendedores com contexto completo do cliente convertem 47% mais que os que trabalham com sistemas isolados. (Salesforce, 2024)",
-    dark: true,
-  },
-  {
-    icon: Phone,
-    badge: "VOKI INTEGRADO",
-    title: "Comunicação Centralizada",
-    desc: "Histórico de ligações, gravações e transcrições vinculadas ao perfil do cliente. Gatilhos automáticos de comunicação.",
-    bullets: [
-      "Histórico chamadas no card do cliente",
-      "Gravações e transcrições automáticas",
-      "Gatilho: inadimplência → ligação automática",
-      "Discador integrado ao funil",
-      "Métricas de atendimento em tempo real",
-    ],
-    data: "Integrar telefonia ao CRM aumenta a taxa de contato efetivo em 40% e reduz o tempo médio de resolução em 25%. (Aberdeen Group)",
-    dark: true,
-  },
-  {
-    icon: Bot,
-    badge: "INTELIGÊNCIA ARTIFICIAL",
-    title: "Assistente IA",
-    desc: "Chat interno estilo ChatGPT que responde perguntas reais do negócio em segundos, cruzando dados de todos os sistemas.",
-    bullets: [],
-    data: "Empresas com IA para consultas operacionais reduzem 70% o tempo de geração de relatórios gerenciais. (McKinsey Global Institute, 2024)",
-    dark: false,
-    custom: true,
-  },
-  {
-    icon: FileBarChart,
-    badge: "ANALYTICS",
-    title: "Relatórios Automáticos",
-    desc: "Relatórios por área gerados e enviados automaticamente. Semanal, mensal ou sob demanda.",
-    bullets: [
-      "Relatório financeiro automático",
-      "Performance por consultor",
-      "Taxa inadimplência com histórico",
-      "Volume ligações x conversões",
-      "Exportação PDF e Excel 1 clique",
-      "Envio automático por e-mail",
-    ],
-    data: "Profissionais de finanças gastam 30% do tempo compilando dados manualmente. Automação elimina esse custo completamente. (KPMG, 2023)",
-    dark: true,
-  },
-];
-
-/* ============================================================ */
-
+/* =================================================================
+   PAGE
+   ================================================================= */
 export default function PropostaBuratiGT() {
-  return (
-    <div
-      className="min-h-screen overflow-x-hidden"
-      style={{ backgroundColor: C.light, color: C.black, fontFamily: "Inter, system-ui, sans-serif" }}
-    >
-      <Helmet>
-        <title>Burati GT Hub — Proposta de Transformação Digital · Fluxrow</title>
-        <meta name="robots" content="noindex, nofollow" />
-        <meta
-          name="description"
-          content="De 4 sistemas fragmentados para uma inteligência única. Proposta Fluxrow para Burati GT."
-        />
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,600;0,700;0,800;1,700;1,800&display=swap"
-        />
-      </Helmet>
+  const [form, setForm] = useState({ nome: "", empresa: "", cargo: "", whats: "", dor: "" });
 
+  return (
+    <div style={{ backgroundColor: C.light, color: C.black, fontFamily: "Inter, system-ui, sans-serif" }}>
+      <Helmet>
+        <title>Burati GT Hub — Proposta de Transformação Digital</title>
+        <meta name="description" content="De 15 sistemas fragmentados para uma inteligência única. Proposta Fluxrow para o ecossistema Burati GT e Btax." />
+        <meta name="robots" content="noindex,nofollow" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+      </Helmet>
       <BackToHomeButton />
 
-      {/* ====== HERO ====== */}
-      <section
-        className="relative min-h-screen flex items-center pt-24 pb-16 px-6"
-        style={{ backgroundColor: C.light }}
-      >
-        <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-12 items-center">
+      {/* ============ 1. HERO ============ */}
+      <section className="min-h-screen flex items-center px-6 sm:px-10 py-24" style={{ backgroundColor: C.light }}>
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center w-full">
           <div>
-            <SectionBadge icon={Zap} label="BURATI GT HUB" />
-            <motion.h1
-              variants={fadeUp}
-              initial="hidden"
-              animate="show"
-              className="font-extrabold leading-[1.02] text-5xl md:text-7xl"
-              style={{ color: C.black }}
-            >
-              De 4 sistemas <br />
-              fragmentados para <br />
-              <span className="italic font-extrabold" style={{ color: C.primary }}>
-                uma inteligência única
-              </span>
-            </motion.h1>
+            <SectionBadge icon={Zap} label="Burati GT Hub" />
+            <h1 className="font-black leading-[0.95] text-5xl sm:text-6xl lg:text-[72px] tracking-tight">
+              {["Transformando", "15 sistemas", "em uma única"].map((t, i) => (
+                <motion.div key={i} variants={fadeUp} initial="hidden" animate="show" custom={i}>
+                  {t}
+                </motion.div>
+              ))}
+              <motion.div variants={fadeUp} initial="hidden" animate="show" custom={3} className="italic" style={{ color: C.primary }}>
+                inteligência
+              </motion.div>
+            </h1>
             <motion.p
-              variants={fadeUp}
-              custom={2}
-              initial="hidden"
-              animate="show"
-              className="mt-6 text-lg md:text-xl"
+              variants={fadeUp} initial="hidden" animate="show" custom={5}
+              className="mt-8 text-lg sm:text-xl max-w-xl"
               style={{ color: C.secondary }}
             >
-              Seu ecossistema inteligente de gestão, em um único lugar.
+              O ecossistema integrado da Burati GT e da Btax — onde cada dado de cada área alimenta uma única fonte de decisão.
             </motion.p>
-
             <motion.div
-              variants={fadeUp}
-              custom={3}
-              initial="hidden"
-              animate="show"
-              className="flex flex-wrap gap-3 mt-8"
+              variants={fadeUp} initial="hidden" animate="show" custom={7}
+              className="mt-10 flex flex-wrap gap-4"
             >
-              <a
-                href="#solucao"
-                className="px-6 py-3 rounded-xl font-semibold text-white transition hover:opacity-90"
-                style={{ backgroundColor: C.black }}
-              >
-                Conheça a solução
+              <a href="#diagnostico" className="px-7 py-4 rounded-xl font-bold text-sm sm:text-base"
+                style={{ backgroundColor: C.black, color: "#fff" }}>
+                Ver o diagnóstico
               </a>
-              <a
-                href="#cta"
-                className="px-6 py-3 rounded-xl font-semibold text-white transition hover:opacity-90 inline-flex items-center gap-2"
-                style={{ backgroundColor: C.primary }}
-              >
-                Entender a oportunidade <ArrowUpRight className="w-4 h-4" />
+              <a href="#solucao" className="px-7 py-4 rounded-xl font-bold text-sm sm:text-base inline-flex items-center gap-2"
+                style={{ backgroundColor: C.primary, color: C.black }}>
+                Conhecer a solução <ArrowUpRight className="w-4 h-4" />
               </a>
-            </motion.div>
-
-            <motion.div
-              variants={fadeUp}
-              custom={4}
-              initial="hidden"
-              animate="show"
-              className="mt-10 inline-block px-5 py-3 rounded-2xl shadow-lg animate-pulse"
-              style={{ backgroundColor: "#fff", border: `1px solid ${C.primary}40` }}
-            >
-              <span className="text-sm font-bold" style={{ color: C.primary }}>
-                +600MM
-              </span>{" "}
-              <span className="text-sm" style={{ color: C.black }}>
-                recuperados pela Burati GT
-              </span>
             </motion.div>
           </div>
-
           <HeroOrbit />
         </div>
       </section>
 
-      {/* ====== DIAGNÓSTICO ====== */}
-      <section className="px-6 py-24" style={{ backgroundColor: C.black, color: C.white }}>
+      {/* Ticker */}
+      <div className="overflow-hidden py-4" style={{ backgroundColor: C.primary }}>
+        <motion.div
+          className="flex gap-8 whitespace-nowrap font-bold text-sm sm:text-base"
+          style={{ color: C.black, letterSpacing: "2px" }}
+          animate={{ x: ["0%", "-50%"] }}
+          transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+        >
+          {Array(6).fill(0).map((_, i) => (
+            <span key={i}>BURATI GT HUB • 15 SISTEMAS INTEGRADOS • DADOS EM TEMPO REAL •</span>
+          ))}
+        </motion.div>
+      </div>
+
+      {/* ============ 2. ESCALA DO PROBLEMA ============ */}
+      <section className="px-6 sm:px-10 py-24" style={{ backgroundColor: C.black, color: "#fff" }}>
         <div className="max-w-7xl mx-auto">
-          <SectionBadge icon={Search} label="DIAGNÓSTICO" />
-          <h2 className="font-extrabold text-4xl md:text-6xl leading-[1.05]">
-            Como a Burati GT opera{" "}
-            <span className="italic" style={{ color: C.primary }}>
-              hoje
-            </span>
+          <SectionBadge icon={Layers} label="O Ecossistema Atual" />
+          <h2 className="font-black text-4xl sm:text-5xl lg:text-[56px] leading-[1.05] mb-8">
+            15 sistemas.<br />
+            7 áreas.<br />
+            <span style={{ color: C.primary }} className="italic">Zero conversa entre eles.</span>
           </h2>
-          <p className="mt-6 max-w-3xl text-lg" style={{ color: C.dark }}>
-            Segundo pesquisa da McKinsey, profissionais gastam em média 19% do tempo de trabalho
-            buscando e consolidando informações entre sistemas diferentes. São quase 2 dias por
-            semana perdidos em retrabalho.
+          <p className="text-lg max-w-3xl mb-16" style={{ color: C.gray }}>
+            Pesquisa da McKinsey aponta que profissionais perdem 19% do tempo de trabalho buscando e consolidando informações entre sistemas — quase 2 dias inteiros por semana em retrabalho puro.
           </p>
 
-          <div className="grid md:grid-cols-2 gap-6 mt-12">
-            {[
-              {
-                icon: BarChart2,
-                title: "OMIE — ERP Financeiro",
-                fn: "Financeiro, fiscal, NF-e, contas a pagar/receber, DRE",
-                problem: "Dados ricos presos no ERP. Sem visão cruzada com comercial ou cobrança.",
-                tag: "Núcleo do negócio — mas as informações ficam em silo",
-              },
-              {
-                icon: CreditCard,
-                title: "iRecebi — Cobrança Omnichannel",
-                fn: "Cobranças via WhatsApp, SMS, e-mail, Voice Bot, boletos, RCS",
-                problem: "Réguas de cobrança disparadas sem contexto comercial do cliente.",
-                tag: "Cobrança omnichannel recupera até 3x mais inadimplência que canal único",
-              },
-              {
-                icon: Kanban,
-                title: "PipeRun — CRM Comercial",
-                fn: "Funil de vendas, Kanban, gestão de oportunidades, follow-up",
-                problem: "Usado só pelo comercial. Não conversa com financeiro nem cobrança. Alto custo.",
-                tag: "CRMs isolados resultam em 27% menos conversão por falta de contexto (Salesforce, 2024)",
-              },
-              {
-                icon: Phone,
-                title: "VOKI — Comunicação e Telefonia",
-                fn: "Ligações, URA, discador automático, gravações, histórico de chamadas",
-                problem: "Histórico de ligações desconectado do perfil do cliente no CRM e financeiro.",
-                tag: "Integrar telefonia ao CRM gera 34% mais produtividade no atendimento (Gartner, 2023)",
-              },
-            ].map((card, i) => {
-              const Icon = card.icon;
-              return (
-                <motion.div
-                  key={card.title}
-                  variants={fadeUp}
-                  custom={i}
-                  initial="hidden"
-                  whileInView="show"
-                  viewport={{ once: true, margin: "-50px" }}
-                  className="rounded-3xl p-6 transition-all hover:scale-[1.02]"
-                  style={{
-                    backgroundColor: C.secondary,
-                    borderTop: `4px solid ${C.primary}`,
-                    boxShadow: "0 8px 32px rgba(0,0,0,0.30)",
-                  }}
-                >
-                  <Icon className="w-7 h-7 mb-4" style={{ color: C.primary }} />
-                  <h3 className="text-xl font-bold mb-2">{card.title}</h3>
-                  <p className="text-sm mb-3" style={{ color: C.dark }}>
-                    <span className="font-semibold" style={{ color: C.white }}>Função: </span>
-                    {card.fn}
-                  </p>
-                  <p className="text-sm mb-4" style={{ color: C.dark }}>
-                    <span className="font-semibold" style={{ color: C.white }}>Problema: </span>
-                    {card.problem}
-                  </p>
-                  <span
-                    className="inline-block text-xs font-semibold px-3 py-1.5 rounded-full"
-                    style={{ backgroundColor: `${C.primary}20`, color: C.primary }}
-                  >
-                    {card.tag}
+          <div className="grid md:grid-cols-2 gap-6">
+            {SYSTEM_GROUPS.map((g, gi) => (
+              <motion.div
+                key={gi}
+                variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} custom={gi % 4}
+                className="rounded-3xl p-6"
+                style={{
+                  backgroundColor: C.secondary,
+                  border: g.border ? `2px solid ${g.border}` : "1px solid #2a2a2a",
+                }}
+              >
+                <div className="flex items-center gap-3 mb-5">
+                  <span className="w-10 h-10 rounded-full flex items-center justify-center" style={{ backgroundColor: g.color }}>
+                    <g.icon className="w-5 h-5 text-white" />
                   </span>
-                </motion.div>
-              );
-            })}
+                  <span className="text-[11px] font-bold uppercase" style={{ letterSpacing: "3px", color: g.color }}>
+                    {g.area}
+                  </span>
+                </div>
+                <div className="space-y-3">
+                  {g.systems.map((s, si) => (
+                    <div key={si} className="rounded-xl p-4" style={{ backgroundColor: C.black }}>
+                      <div className="font-bold text-base mb-1" style={{ color: C.primary }}>{s.name}</div>
+                      <div className="text-sm" style={{ color: C.gray }}>{s.desc}</div>
+                    </div>
+                  ))}
+                </div>
+                {g.overlap && (
+                  <div
+                    className="mt-4 px-4 py-2 rounded-lg text-xs font-bold"
+                    style={{
+                      backgroundColor: g.overlap.level === "critical" ? C.red : C.yellow,
+                      color: g.overlap.level === "critical" ? "#fff" : C.black,
+                    }}
+                  >
+                    {g.overlap.text}
+                  </div>
+                )}
+              </motion.div>
+            ))}
           </div>
 
           <motion.p
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
-            className="font-extrabold text-3xl md:text-5xl text-center mt-20 leading-tight"
+            variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}
+            className="mt-20 text-center font-bold text-2xl sm:text-3xl lg:text-4xl leading-tight"
             style={{ color: C.primary }}
           >
-            4 sistemas. 4 senhas. 4 relatórios. <br />
-            Nenhum deles fala entre si.
+            15 sistemas. Nenhum dado cruzado.<br />
+            Toda decisão estratégica baseada em informação incompleta.
           </motion.p>
-
-          <div
-            className="mt-16 rounded-2xl p-6 max-w-3xl mx-auto"
-            style={{
-              backgroundColor: C.secondary,
-              borderLeft: `4px solid ${C.primary}`,
-            }}
-          >
-            <p className="italic" style={{ color: C.dark }}>
-              Empresas brasileiras de médio porte gastam em média R$ 8.400/mês em assinaturas de
-              softwares que se sobrepõem em funcionalidades. (ABES, 2024)
-            </p>
-          </div>
         </div>
       </section>
 
-      {/* ====== SOLUÇÃO ====== */}
-      <section id="solucao" className="px-6 py-24" style={{ backgroundColor: C.light }}>
+      {/* ============ 3. DIAGNÓSTICO ============ */}
+      <section id="diagnostico" className="px-6 sm:px-10 py-24" style={{ backgroundColor: C.secondary, color: "#fff" }}>
         <div className="max-w-7xl mx-auto">
-          <SectionBadge icon={Lightbulb} label="A SOLUÇÃO" />
-          <h2 className="font-extrabold text-4xl md:text-6xl leading-[1.05]" style={{ color: C.black }}>
-            E se tudo falasse <span className="italic" style={{ color: C.primary }}>a mesma língua?</span>
+          <SectionBadge icon={Search} label="Diagnóstico" />
+          <h2 className="font-black text-4xl sm:text-5xl lg:text-[52px] leading-[1.05] mb-8">
+            O custo oculto<br />
+            de sistemas <span className="italic" style={{ color: C.primary }}>fragmentados.</span>
           </h2>
-          <p className="mt-6 max-w-3xl text-lg" style={{ color: C.secondary }}>
-            O Burati GT Hub centraliza todos os seus sistemas em um banco de dados único e
-            inteligente — eliminando retrabalho, conectando áreas e transformando dados em decisões
-            em tempo real.
+          <p className="text-lg max-w-3xl mb-16" style={{ color: C.gray }}>
+            Antes de integrar, precisamos identificar o que pode ser eliminado. Aqui estão as sobreposições mapeadas no ecossistema atual.
           </p>
 
-          <SolutionDiagram />
-
-          <div
-            className="mt-10 rounded-2xl p-6 max-w-3xl mx-auto text-center"
-            style={{ backgroundColor: C.black }}
-          >
-            <p className="italic font-semibold" style={{ color: C.primary }}>
-              Organizações com dados integrados têm 23x mais chance de adquirir clientes, 6x mais de
-              retê-los e 19x mais de serem lucrativas. (McKinsey & Company)
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* ====== MÓDULOS ====== */}
-      <section className="px-6 py-24" style={{ backgroundColor: C.black, color: C.white }}>
-        <div className="max-w-7xl mx-auto">
-          <SectionBadge icon={Settings} label="MÓDULOS DO SISTEMA" />
-          <h2 className="font-extrabold text-4xl md:text-6xl leading-[1.05]">
-            6 módulos. <span className="italic" style={{ color: C.primary }}>Um ecossistema completo.</span>
-          </h2>
-
-          <div className="grid md:grid-cols-2 gap-6 mt-12">
-            {MODULES.map((m, i) => {
-              const Icon = m.icon;
-              const orange = !m.dark;
-              return (
-                <motion.div
-                  key={m.title}
-                  variants={fadeUp}
-                  custom={i}
-                  initial="hidden"
-                  whileInView="show"
-                  viewport={{ once: true, margin: "-50px" }}
-                  className="rounded-3xl p-6 transition-all hover:scale-[1.02]"
-                  style={{
-                    backgroundColor: orange ? C.primary : C.secondary,
-                    color: orange ? C.black : C.white,
-                    boxShadow: "0 8px 32px rgba(0,0,0,0.30)",
-                  }}
-                >
-                  <div className="flex items-start justify-between mb-4">
-                    <Icon className="w-8 h-8" style={{ color: orange ? C.black : C.primary }} />
-                    <span
-                      className="text-[10px] font-bold uppercase px-2 py-1 rounded-full"
-                      style={{
-                        letterSpacing: "2px",
-                        backgroundColor: orange ? C.black : `${C.primary}25`,
-                        color: orange ? C.primary : C.primary,
-                      }}
-                    >
-                      {m.badge}
-                    </span>
-                  </div>
-                  <h3 className="text-2xl font-extrabold mb-2">{m.title}</h3>
-                  <p className="text-sm mb-4 opacity-90">{m.desc}</p>
-
-                  {m.custom ? (
-                    <TypingDemo />
-                  ) : (
-                    <ul className="space-y-1.5 mb-4">
-                      {m.bullets.map((b) => (
-                        <li key={b} className="flex items-start gap-2 text-sm">
-                          <Check
-                            className="w-4 h-4 mt-0.5 flex-shrink-0"
-                            style={{ color: orange ? C.black : C.primary }}
-                          />
-                          <span>{b}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-
-                  <p className="italic text-xs mt-4 opacity-80 border-t border-current/20 pt-3">
-                    {m.data}
-                  </p>
-                </motion.div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* ====== ARQUITETURA ====== */}
-      <section className="px-6 py-24" style={{ backgroundColor: C.light }}>
-        <div className="max-w-7xl mx-auto">
-          <SectionBadge icon={GitBranch} label="ARQUITETURA" />
-          <h2 className="font-extrabold text-4xl md:text-6xl leading-[1.05]" style={{ color: C.black }}>
-            Nenhum dado <span className="italic" style={{ color: C.primary }}>se perde.</span>
-          </h2>
-
-          <div className="mt-12 rounded-3xl p-8 md:p-12" style={{ backgroundColor: "#fff" }}>
-            <div className="grid md:grid-cols-3 gap-6 items-center">
-              <div className="space-y-2 text-sm font-semibold">
-                {["OMIE API", "iRecebi API", "PipeRun API", "VOKI API"].map((s) => (
-                  <div
-                    key={s}
-                    className="px-4 py-3 rounded-xl text-center"
-                    style={{ backgroundColor: C.light, color: C.black }}
-                  >
-                    {s}
-                  </div>
-                ))}
-              </div>
-              <div className="text-center">
-                <div
-                  className="rounded-2xl p-6 inline-block"
-                  style={{ backgroundColor: C.black, color: C.white }}
-                >
-                  <div className="text-xs uppercase tracking-widest mb-1" style={{ color: C.primary }}>
-                    Banco Unificado
-                  </div>
-                  <div className="font-extrabold text-2xl">BURATI GT</div>
-                </div>
-                <div className="my-3 text-2xl" style={{ color: C.primary }}>↓</div>
-                <div className="text-xs uppercase tracking-widest font-semibold" style={{ color: C.secondary }}>
-                  Módulos do Hub
-                </div>
-              </div>
-              <div className="space-y-2 text-sm font-semibold">
-                {["Dashboard / IA", "CRM Próprio", "Relatórios", "Comunicação"].map((s) => (
-                  <div
-                    key={s}
-                    className="px-4 py-3 rounded-xl text-center text-white"
-                    style={{ backgroundColor: C.primary }}
-                  >
-                    {s}
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-6 mt-12">
+          <div className="grid lg:grid-cols-3 gap-6 mb-16">
             {[
-              { t: "Dados em tempo real", d: "Qualquer alteração em qualquer sistema aparece imediatamente no Hub." },
-              { t: "Uma fonte de verdade", d: "Um dado. Uma versão. Financeiro, comercial e operacional alinhados." },
-              { t: "Segurança e controle", d: "Permissões por área, auditoria automática, conformidade LGPD." },
-            ].map((b) => (
-              <div
-                key={b.t}
-                className="rounded-2xl p-6 bg-white"
-                style={{ borderLeft: `4px solid ${C.primary}` }}
-              >
-                <h4 className="font-extrabold text-lg mb-2" style={{ color: C.black }}>{b.t}</h4>
-                <p className="text-sm" style={{ color: C.secondary }}>{b.d}</p>
-              </div>
-            ))}
-          </div>
-
-          <div
-            className="mt-12 rounded-2xl p-8 text-center max-w-3xl mx-auto"
-            style={{ backgroundColor: C.black }}
-          >
-            <p className="italic font-bold text-xl md:text-2xl" style={{ color: C.primary }}>
-              Organizações com dados integrados tomam decisões até 5x mais rápido. (Harvard Business
-              Review, 2023)
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* ====== CUSTO DE OPORTUNIDADE ====== */}
-      <section className="px-6 py-24" style={{ backgroundColor: C.black, color: C.white }}>
-        <div className="max-w-7xl mx-auto">
-          <SectionBadge icon={TrendingDown} label="CUSTO DE OPORTUNIDADE" />
-          <h2 className="font-extrabold text-4xl md:text-6xl leading-[1.05]">
-            Quanto custa <span className="italic" style={{ color: C.primary }}>manter o atual?</span>
-          </h2>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12">
-            {[
-              { v: <><span style={{ color: C.primary }}>R$ </span><Counter to={8400} />/mês</>, l: "Custo médio de 4 assinaturas sobrepostas para PMEs (ABES, 2024)" },
-              { v: <><Counter to={19} suffix="%" /></>, l: "Do tempo perdido buscando informações entre sistemas (McKinsey)" },
-              { v: <><Counter to={87} suffix="%" /></>, l: "Redução de erros operacionais com automação financeira (Deloitte, 2023)" },
-              { v: <><Counter to={5} suffix="x" /></>, l: "Mais velocidade na tomada de decisão com dados integrados (HBR, 2023)" },
-            ].map((s, i) => (
-              <div
-                key={i}
-                className="rounded-2xl p-6"
-                style={{ backgroundColor: C.secondary, borderTop: `4px solid ${C.primary}` }}
-              >
-                <div className="text-3xl md:text-4xl font-extrabold mb-3" style={{ color: C.primary }}>
-                  {s.v}
-                </div>
-                <p className="text-xs leading-relaxed" style={{ color: C.dark }}>{s.l}</p>
-              </div>
-            ))}
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-6 mt-16">
-            <div
-              className="rounded-2xl p-6"
-              style={{ backgroundColor: C.secondary, borderLeft: `4px solid ${C.dark}` }}
-            >
-              <div className="text-xs uppercase tracking-widest mb-3" style={{ color: C.dark }}>Hoje</div>
-              <ul className="space-y-2 text-sm" style={{ color: C.dark }}>
-                <li>→ 4 assinaturas separadas</li>
-                <li>→ Retrabalho manual</li>
-                <li>→ Dados desencontrados</li>
-                <li>→ Relatório manual de horas</li>
-              </ul>
-            </div>
-            <div
-              className="rounded-2xl p-6"
-              style={{ backgroundColor: C.primary, color: C.black }}
-            >
-              <div className="text-xs uppercase tracking-widest mb-3 font-bold">Com o Hub</div>
-              <ul className="space-y-2 text-sm font-semibold">
-                <li>✓ 1 plataforma</li>
-                <li>✓ Automação total</li>
-                <li>✓ Dados cruzados</li>
-                <li>✓ Relatório com 1 clique</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ====== COMO TRABALHAMOS ====== */}
-      <section className="px-6 py-24" style={{ backgroundColor: C.light }}>
-        <div className="max-w-7xl mx-auto">
-          <SectionBadge icon={Rocket} label="COMO TRABALHAMOS" />
-          <h2 className="font-extrabold text-4xl md:text-6xl leading-[1.05]" style={{ color: C.black }}>
-            Duas formas de{" "}
-            <span className="italic" style={{ color: C.primary }}>transformar sua operação.</span>
-          </h2>
-
-          <div className="grid md:grid-cols-2 gap-6 mt-12">
-            {/* Card A */}
-            <div
-              className="rounded-3xl p-8"
-              style={{ backgroundColor: C.secondary, color: C.white, boxShadow: "0 8px 32px rgba(0,0,0,0.10)" }}
-            >
-              <GraduationCap className="w-10 h-10 mb-4" style={{ color: C.primary }} />
-              <h3 className="text-2xl font-extrabold mb-1">Mentoria + Implementação Guiada</h3>
-              <p className="text-sm italic mb-4" style={{ color: C.primary }}>
-                Você no controle, eu no suporte
-              </p>
-              <p className="text-sm mb-6 opacity-90">
-                Sessões de trabalho práticas onde eu te guio na construção de cada módulo com seu time interno.
-              </p>
-              <ul className="space-y-2 text-sm">
-                {[
-                  "Mapeamento dos fluxos atuais",
-                  "Arquitetura de dados definida",
-                  "Templates de integração via API",
-                  "Documentação técnica completa",
-                  "Acompanhamento até o go-live",
-                  "Treinamento do time",
-                ].map((x) => (
-                  <li key={x} className="flex items-start gap-2">
-                    <Check className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: C.primary }} />
-                    <span>{x}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Card B */}
-            <div
-              className="rounded-3xl p-8"
-              style={{ backgroundColor: C.primary, color: C.black, boxShadow: "0 8px 32px rgba(255,103,9,0.25)" }}
-            >
-              <Code className="w-10 h-10 mb-4" style={{ color: C.black }} />
-              <h3 className="text-2xl font-extrabold mb-1">Projeto Completo com Implementação</h3>
-              <p className="text-sm italic mb-4 font-semibold">
-                Eu projeto, construo e entrego rodando
-              </p>
-              <p className="text-sm mb-6">
-                Cuido de tudo da arquitetura ao deploy. Você recebe o Hub pronto, funcionando e treinado.
-              </p>
-              <ul className="space-y-2 text-sm font-medium">
-                {[
-                  "Levantamento detalhado de requisitos",
-                  "Desenvolvimento do Hub (React + banco de dados)",
-                  "Integrações OMIE + iRecebi + VOKI via API oficial",
-                  "CRM próprio substituindo PipeRun",
-                  "Assistente IA configurado com seus dados",
-                  "Treinamento completo do time",
-                  "Suporte 90 dias pós-entrega",
-                ].map((x) => (
-                  <li key={x} className="flex items-start gap-2">
-                    <Check className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                    <span>{x}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ====== CTA FINAL ====== */}
-      <section id="cta" className="px-6 py-24" style={{ backgroundColor: C.black, color: C.white }}>
-        <div className="max-w-7xl mx-auto">
-          <h2
-            className="font-extrabold text-5xl md:text-7xl leading-[1.02]"
-            style={{ color: C.primary }}
-          >
-            Transforme seus <br />
-            sistemas em <br />
-            resultados.
-          </h2>
-          <p className="mt-6 text-lg max-w-2xl" style={{ color: C.dark }}>
-            A Burati GT já transforma desafios tributários em soluções. Agora é hora de transformar
-            seus sistemas também.
-          </p>
-
-          <div className="grid md:grid-cols-3 gap-6 mt-12">
-            {[
-              { n: 1, t: "Reunião de Diagnóstico", d: "Mapear fluxos, volumes, dores e prioridades.", time: "60–90 min" },
-              { n: 2, t: "Proposta Personalizada", d: "Escopo, arquitetura, prazo e investimento.", time: "3–5 dias úteis" },
-              { n: 3, t: "Início do Projeto", d: "Kick-off e primeiras integrações rodando.", time: "Resultados em até 60 dias" },
-            ].map((s, i) => (
+              {
+                level: "critical", icon: AlertTriangle, color: C.red, badge: "PRIORIDADE ALTA",
+                title: "Área Fiscal: 3 sistemas", systems: "HubCount + MA Tecnologia + MR Tecnologia",
+                desc: "Três plataformas atuando sobre a mesma base de dados fiscais. Alta probabilidade de redundância de funcionalidades e custo triplicado em compliance.",
+                impact: "Potencial de consolidação: 1–2 contratos eliminados",
+              },
+              {
+                level: "warning", icon: AlertCircle, color: C.yellow, badge: "PRIORIDADE MÉDIA",
+                title: "Gestão de Projetos: 2 sistemas", systems: "ClickUp (Btax) + Atlassian (Marketing)",
+                desc: "ClickUp e Atlassian/Jira resolvem o mesmo problema: gestão de tarefas, sprints e documentação. Dois contratos separados para a mesma função, em empresas do mesmo grupo.",
+                impact: "Unificação possível em 1 plataforma",
+              },
+              {
+                level: "warning", icon: AlertCircle, color: C.yellow, badge: "PRIORIDADE MÉDIA",
+                title: "RH: Jornada em dois sistemas", systems: "Flash + Mindsight",
+                desc: "Flash cobre benefícios, cartão e jornada. Mindsight cobre recrutamento e desempenho. Há sobreposição no módulo de gestão de pessoas — e nenhum dos dois fala com o financeiro para calcular custo real por colaborador.",
+                impact: "Integração pode eliminar entrada manual de dados",
+              },
+            ].map((c, i) => (
               <motion.div
-                key={s.n}
-                variants={fadeUp}
-                custom={i}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true }}
-                className="rounded-2xl p-6"
-                style={{ backgroundColor: C.secondary, borderTop: `4px solid ${C.primary}` }}
+                key={i}
+                variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} custom={i}
+                className="rounded-3xl p-6 relative overflow-hidden"
+                style={{ backgroundColor: C.black, borderLeft: `6px solid ${c.color}` }}
               >
-                <div
-                  className="w-10 h-10 rounded-full flex items-center justify-center font-extrabold mb-4"
-                  style={{ backgroundColor: C.primary, color: C.black }}
-                >
-                  {s.n}
+                <c.icon className="w-8 h-8 mb-4" style={{ color: c.color }} />
+                <h3 className="font-bold text-xl mb-2">{c.title}</h3>
+                <div className="text-xs font-semibold mb-4" style={{ color: c.color, letterSpacing: "1px" }}>
+                  {c.systems}
                 </div>
-                <h3 className="text-xl font-bold mb-2">{s.t}</h3>
-                <p className="text-sm mb-3" style={{ color: C.dark }}>{s.d}</p>
+                <p className="text-sm mb-5" style={{ color: C.gray }}>{c.desc}</p>
+                <div className="text-sm font-bold mb-4" style={{ color: C.primary }}>{c.impact}</div>
                 <span
-                  className="text-[11px] uppercase tracking-widest font-semibold"
-                  style={{ color: C.primary }}
+                  className="inline-block px-3 py-1 rounded-md text-[10px] font-bold"
+                  style={{ backgroundColor: c.color, color: c.level === "critical" ? "#fff" : C.black, letterSpacing: "1px" }}
                 >
-                  {s.time}
+                  {c.badge}
                 </span>
               </motion.div>
             ))}
           </div>
 
-          <div className="mt-16 grid md:grid-cols-2 gap-8 items-center">
-            <div>
-              <h3 className="text-2xl font-extrabold mb-4">
-                Vamos marcar a{" "}
-                <span className="italic" style={{ color: C.primary }}>reunião de diagnóstico?</span>
-              </h3>
-              <p style={{ color: C.dark }}>
-                Em 60 a 90 minutos mapeamos os fluxos atuais, dores e prioridades — e você já sai
-                com clareza do que pode ser automatizado primeiro.
-              </p>
-              <a
-                href={WHATSAPP}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-6 inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-white transition hover:opacity-90"
-                style={{ backgroundColor: C.primary }}
-              >
-                Quero marcar a reunião de diagnóstico <ArrowUpRight className="w-4 h-4" />
-              </a>
-            </div>
+          <div className="rounded-3xl p-8 grid sm:grid-cols-2 lg:grid-cols-4 gap-6" style={{ backgroundColor: C.black }}>
+            {[
+              { v: "3–5", l: "contratos com sobreposição de função" },
+              { v: "19%", l: "do tempo perdido em retrabalho entre sistemas (McKinsey)" },
+              { v: "R$ 8.400/mês", l: "custo médio de licenças sobrepostas em PMEs (ABES, 2024)" },
+              { v: "0", l: "dados cruzados entre as 7 áreas hoje" },
+            ].map((s, i) => (
+              <div key={i}>
+                <div className="font-black text-4xl mb-2" style={{ color: C.primary }}>{s.v}</div>
+                <div className="text-sm" style={{ color: C.gray }}>{s.l}</div>
+              </div>
+            ))}
+          </div>
 
-            <div
-              className="rounded-2xl p-6"
-              style={{ backgroundColor: C.primary, color: C.black }}
-            >
-              <p className="font-bold italic">
-                Empresas que integram seus sistemas de gestão relatam ROI médio de 250% no primeiro
-                ano. (Aberdeen Group, 2024)
-              </p>
-            </div>
+          <p className="text-center mt-12 italic text-base" style={{ color: C.gray }}>
+            E tudo isso antes de falar em integração. O primeiro passo é saber o que pode ser eliminado.
+          </p>
+        </div>
+      </section>
+
+      {/* ============ 4. SOLUÇÃO ============ */}
+      <section id="solucao" className="px-6 sm:px-10 py-24" style={{ backgroundColor: C.light }}>
+        <div className="max-w-7xl mx-auto">
+          <SectionBadge icon={Lightbulb} label="A Solução" />
+          <h2 className="font-black text-4xl sm:text-5xl lg:text-[52px] leading-[1.05] mb-8" style={{ color: C.black }}>
+            E se todas as suas áreas<br />
+            falassem a<br />
+            <span className="italic" style={{ color: C.primary }}>mesma língua?</span>
+          </h2>
+          <p className="text-lg max-w-3xl mb-16" style={{ color: C.secondary }}>
+            O Burati GT Hub não é só uma integração. É uma camada de inteligência que se conecta aos seus sistemas via API, unifica os dados em um banco central e entrega visão completa do negócio em tempo real — sem trocar o que já funciona.
+          </p>
+
+          <div className="space-y-6 mb-16">
+            {[
+              { bg: C.black, fg: "#fff", icon: LinkIcon, accent: C.primary, t: "Conectar o que pode ser conectado", d: "Via APIs oficiais de cada plataforma, os dados passam a fluir automaticamente para o banco central. Nenhuma alteração nos sistemas atuais." },
+              { bg: C.primary, fg: C.black, icon: Minimize2, accent: C.black, t: "Identificar e eliminar redundâncias", d: "Com o mapa completo de funções e custos, fica claro o que pode ser consolidado, substituído ou eliminado — gerando economia real mensurável." },
+              { bg: C.black, fg: "#fff", icon: Brain, accent: C.primary, t: "Transformar dados em decisão", d: "Dashboard unificado, relatórios automáticos e assistente IA que responde perguntas reais do negócio em segundos — cruzando dados de todas as 7 áreas." },
+            ].map((l, i) => (
+              <motion.div
+                key={i}
+                variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} custom={i}
+                className="rounded-3xl p-8 flex gap-6 items-start"
+                style={{ backgroundColor: l.bg, color: l.fg, borderLeft: l.bg === C.black ? `6px solid ${C.primary}` : "none" }}
+              >
+                <span className="w-14 h-14 rounded-2xl flex items-center justify-center shrink-0" style={{ backgroundColor: l.accent + "22" }}>
+                  <l.icon className="w-7 h-7" style={{ color: l.accent }} />
+                </span>
+                <div>
+                  <div className="text-xs font-bold mb-2" style={{ color: l.accent, letterSpacing: "2px" }}>CAMADA {i + 1}</div>
+                  <h3 className="font-bold text-2xl mb-3">{l.t}</h3>
+                  <p className="text-base opacity-90 leading-relaxed">{l.d}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="rounded-3xl p-10 text-center" style={{ backgroundColor: C.black }}>
+            <p className="font-bold text-xl sm:text-2xl leading-tight" style={{ color: C.primary }}>
+              "Organizações com dados integrados têm 23x mais chance de adquirir clientes, 6x mais de retê-los e 19x mais de serem lucrativas."
+            </p>
+            <p className="mt-4 text-sm" style={{ color: C.gray }}>McKinsey & Company</p>
           </div>
         </div>
       </section>
 
-      {/* ====== FOOTER ====== */}
-      <footer className="px-6 py-12" style={{ backgroundColor: C.light, color: C.secondary }}>
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-          <div>
-            <div className="font-extrabold text-lg" style={{ color: C.black }}>Fluxrow</div>
-            <div className="text-xs">Inteligência Criativa</div>
+      {/* ============ 5. ARQUITETURA ============ */}
+      <section className="px-6 sm:px-10 py-24" style={{ backgroundColor: C.black, color: "#fff" }}>
+        <div className="max-w-7xl mx-auto">
+          <SectionBadge icon={GitBranch} label="Arquitetura" />
+          <h2 className="font-black text-4xl sm:text-5xl lg:text-[52px] leading-[1.05] mb-12">
+            Nenhum dado<br />
+            <span className="italic" style={{ color: C.primary }}>se perde.</span>
+          </h2>
+
+          <ArchDiagram />
+
+          <div className="grid md:grid-cols-3 gap-6 mt-16">
+            {[
+              { t: "Tempo real", d: "Qualquer dado alterado em qualquer sistema aparece instantaneamente no Hub" },
+              { t: "Uma fonte de verdade", d: "Um número. Uma versão. Todas as áreas alinhadas" },
+              { t: "Segurança e LGPD", d: "Permissões por área, auditoria completa, conformidade total" },
+            ].map((c, i) => (
+              <motion.div
+                key={i}
+                variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} custom={i}
+                className="rounded-2xl p-6"
+                style={{ backgroundColor: C.secondary, borderLeft: `4px solid ${C.primary}` }}
+              >
+                <h3 className="font-bold text-xl mb-2">{c.t}</h3>
+                <p className="text-sm" style={{ color: C.gray }}>{c.d}</p>
+              </motion.div>
+            ))}
           </div>
-          <div className="text-xs text-center">
-            © 2026 Fluxrow. Todos os direitos reservados.
+
+          <div className="mt-16 rounded-3xl p-8 text-center" style={{ backgroundColor: C.primary, color: C.black }}>
+            <p className="font-bold text-xl sm:text-2xl">
+              "Empresas com dados integrados tomam decisões até 5x mais rápido que as que operam com sistemas isolados."
+            </p>
+            <p className="mt-3 text-sm opacity-80">Harvard Business Review, 2023</p>
+          </div>
+        </div>
+      </section>
+
+      {/* ============ 6. MÓDULOS ============ */}
+      <section className="px-6 sm:px-10 py-24" style={{ backgroundColor: C.light }}>
+        <div className="max-w-7xl mx-auto">
+          <SectionBadge icon={Grid} label="Módulos do Sistema" />
+          <h2 className="font-black text-4xl sm:text-5xl lg:text-[52px] leading-[1.05] mb-16" style={{ color: C.black }}>
+            8 módulos.<br />
+            Um ecossistema<br />
+            <span className="italic" style={{ color: C.primary }}>completo.</span>
+          </h2>
+
+          <div className="grid lg:grid-cols-2 gap-6">
+            {MODULES.map((m, i) => (
+              <motion.div
+                key={m.n}
+                variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} custom={i % 2}
+                className="rounded-3xl p-8 flex flex-col"
+                style={{ backgroundColor: m.bg, color: m.fg }}
+              >
+                <div className="flex items-start justify-between mb-5">
+                  <span className="w-12 h-12 rounded-2xl flex items-center justify-center" style={{ backgroundColor: m.accent + "22" }}>
+                    <m.icon className="w-6 h-6" style={{ color: m.accent }} />
+                  </span>
+                  <span className="text-[10px] font-bold opacity-80" style={{ letterSpacing: "2px", color: m.accent }}>
+                    {m.badge}
+                  </span>
+                </div>
+                <h3 className="font-black text-2xl sm:text-3xl mb-3">{m.title}</h3>
+                <p className="text-base mb-6 opacity-90 leading-relaxed">{m.desc}</p>
+
+                {m.isAI ? (
+                  <AIChat />
+                ) : (
+                  <ul className="space-y-2 mb-6 flex-1">
+                    {m.items.map((it, ii) => (
+                      <li key={ii} className="flex gap-2 text-sm">
+                        <Check className="w-4 h-4 shrink-0 mt-0.5" style={{ color: m.accent }} />
+                        <span className="opacity-90">{it}</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+
+                <div className="mt-6 pt-5 border-t text-xs italic opacity-80" style={{ borderColor: m.accent + "44" }}>
+                  {m.stat}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ============ 7. IMPACTO ============ */}
+      <section className="px-6 sm:px-10 py-24" style={{ backgroundColor: C.black, color: "#fff" }}>
+        <div className="max-w-7xl mx-auto">
+          <SectionBadge icon={TrendingUp} label="Impacto Real" />
+          <h2 className="font-black text-4xl sm:text-5xl lg:text-[52px] leading-[1.05] mb-16">
+            O que muda<br />
+            a partir do<br />
+            <span className="italic" style={{ color: C.primary }}>primeiro mês.</span>
+          </h2>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
+            {[
+              { v: 87, suf: "%", l: "Redução de erros operacionais com automação financeira (Deloitte, 2023)" },
+              { v: 19, suf: "%", l: "Do tempo de trabalho recuperado ao eliminar busca manual entre sistemas (McKinsey)" },
+              { v: 5, suf: "x", l: "Mais velocidade nas decisões com dados integrados (HBR, 2023)" },
+              { v: 250, suf: "%", l: "ROI médio no primeiro ano com integração de sistemas de gestão (Aberdeen Group, 2024)" },
+            ].map((c, i) => (
+              <motion.div
+                key={i}
+                variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} custom={i}
+                className="rounded-2xl p-6"
+                style={{ backgroundColor: C.secondary }}
+              >
+                <div className="font-black text-5xl sm:text-6xl mb-3" style={{ color: C.primary }}>
+                  <Counter to={c.v} suffix={c.suf} />
+                </div>
+                <div className="text-sm" style={{ color: C.gray }}>{c.l}</div>
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6 mb-16">
+            <div className="rounded-3xl p-8" style={{ backgroundColor: C.secondary }}>
+              <div className="text-xs font-bold mb-5" style={{ color: C.red, letterSpacing: "3px" }}>ANTES</div>
+              <ul className="space-y-3">
+                {[
+                  "15 logins diferentes todo dia",
+                  "Relatório mensal leva 3–5 dias para compilar",
+                  "Decisões baseadas em dados parciais e desatualizados",
+                  "3 sistemas fiscais sem comunicação",
+                  "CRM sem histórico de cobranças ou contratos",
+                  "RH desconectado do financeiro",
+                ].map((t, i) => (
+                  <li key={i} className="flex gap-3 text-sm" style={{ color: C.gray }}>
+                    <X className="w-5 h-5 shrink-0" style={{ color: C.red }} />
+                    {t}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="rounded-3xl p-8" style={{ backgroundColor: C.secondary, borderLeft: `4px solid ${C.primary}` }}>
+              <div className="text-xs font-bold mb-5" style={{ color: C.primary, letterSpacing: "3px" }}>DEPOIS</div>
+              <ul className="space-y-3">
+                {[
+                  "1 login. Todas as áreas. Todos os dados",
+                  "Relatório automático disponível em segundos",
+                  "Decisões baseadas em dados cruzados em tempo real",
+                  "1 visão fiscal unificada com alertas automáticos",
+                  "CRM com histórico 360° — jurídico, financeiro e comercial",
+                  "Custo real por colaborador visível no dashboard",
+                ].map((t, i) => (
+                  <li key={i} className="flex gap-3 text-sm">
+                    <Check className="w-5 h-5 shrink-0" style={{ color: C.primary }} />
+                    {t}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          <div className="rounded-3xl p-8" style={{ backgroundColor: C.secondary, borderLeft: `6px solid ${C.primary}` }}>
+            <div className="text-xs font-bold mb-4" style={{ color: C.primary, letterSpacing: "3px" }}>POTENCIAL DE CONSOLIDAÇÃO IDENTIFICADO</div>
+            <ul className="space-y-2 text-base" style={{ color: C.gray }}>
+              <li>• 3 a 5 contratos com sobreposição de função</li>
+              <li>• 12+ horas semanais de retrabalho eliminadas por área</li>
+              <li>• Relatórios manuais substituídos por automação</li>
+              <li>• Decisões estratégicas baseadas em dados reais pela primeira vez</li>
+            </ul>
+            <p className="mt-6 italic text-sm" style={{ color: C.primary }}>
+              Os valores exatos serão levantados na reunião de diagnóstico.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ============ 8. COMO TRABALHAMOS ============ */}
+      <section className="px-6 sm:px-10 py-24" style={{ backgroundColor: C.light }}>
+        <div className="max-w-7xl mx-auto">
+          <SectionBadge icon={Rocket} label="Como Trabalhamos" />
+          <h2 className="font-black text-4xl sm:text-5xl lg:text-[52px] leading-[1.05] mb-16" style={{ color: C.black }}>
+            Duas formas de<br />
+            transformar sua<br />
+            <span className="italic" style={{ color: C.primary }}>operação.</span>
+          </h2>
+
+          <div className="grid lg:grid-cols-2 gap-6">
+            {[
+              {
+                bg: C.black, fg: "#fff", accent: C.primary, icon: GraduationCap,
+                title: "Mentoria Estratégica", sub: "Você no controle, eu na orientação",
+                desc: "Sessões de trabalho práticas onde mapeamos juntos cada fluxo, definimos a arquitetura e eu guio o time interno na implementação — passo a passo.",
+                items: [
+                  "Mapeamento completo dos 15 sistemas",
+                  "Diagnóstico de sobreposições com custo real",
+                  "Arquitetura de banco de dados definida",
+                  "Templates de integração via API",
+                  "Documentação técnica completa",
+                  "Acompanhamento até o go-live",
+                  "Treinamento do time",
+                ],
+              },
+              {
+                bg: C.primary, fg: C.black, accent: C.black, icon: Code2,
+                title: "Projeto Completo", sub: "Eu projeto, construo e entrego rodando",
+                desc: "Do mapeamento ao deploy — meu time cuida de tudo. Você recebe o Hub funcionando, o time treinado e os dados integrados.",
+                items: [
+                  "Mapeamento e diagnóstico completo",
+                  "Desenvolvimento do Hub (React + banco de dados)",
+                  "Integrações via APIs oficiais de todos os sistemas",
+                  "Módulos personalizados para cada área",
+                  "Assistente IA configurado com os dados da empresa",
+                  "Treinamento completo de todos os times",
+                  "90 dias de suporte pós-entrega",
+                  "SLA de uptime garantido",
+                ],
+              },
+            ].map((c, i) => (
+              <motion.div
+                key={i}
+                variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} custom={i}
+                className="rounded-3xl p-8"
+                style={{ backgroundColor: c.bg, color: c.fg }}
+              >
+                <span className="w-14 h-14 rounded-2xl flex items-center justify-center mb-6" style={{ backgroundColor: c.accent + "22" }}>
+                  <c.icon className="w-7 h-7" style={{ color: c.accent }} />
+                </span>
+                <h3 className="font-black text-3xl mb-2">{c.title}</h3>
+                <p className="text-base mb-5 opacity-80">{c.sub}</p>
+                <p className="text-base mb-6 leading-relaxed opacity-90">{c.desc}</p>
+                <ul className="space-y-2">
+                  {c.items.map((it, ii) => (
+                    <li key={ii} className="flex gap-2 text-sm">
+                      <Check className="w-4 h-4 shrink-0 mt-0.5" style={{ color: c.accent }} />
+                      <span className="opacity-90">{it}</span>
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ============ 9. CTA FINAL ============ */}
+      <section className="px-6 sm:px-10 py-24" style={{ backgroundColor: C.black, color: "#fff" }}>
+        <div className="max-w-6xl mx-auto">
+          <motion.h2
+            initial={{ opacity: 0, scale: 0.96 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="font-black text-center text-5xl sm:text-6xl lg:text-[80px] leading-[0.95] mb-8"
+            style={{ color: C.primary }}
+          >
+            Transforme seus<br />sistemas em<br />resultados.
+          </motion.h2>
+          <p className="text-center text-lg sm:text-xl max-w-2xl mx-auto mb-20" style={{ color: C.gray }}>
+            A Burati GT e a Btax já transformam desafios tributários em soluções. Agora é hora de transformar a operação interna também.
+          </p>
+
+          <div className="grid md:grid-cols-3 gap-6 mb-20 relative">
+            {[
+              { t: "Reunião de Diagnóstico", d: "Entendemos os fluxos atuais, volumes de dados, dores por área e mapeamos todas as integrações possíveis e os contratos com sobreposição.", time: "60–90 minutos" },
+              { t: "Proposta Personalizada", d: "Com base no diagnóstico, entregamos escopo detalhado, arquitetura de dados, cronograma e investimento — sem surpresas.", time: "3–5 dias úteis" },
+              { t: "Início do Projeto", d: "Kick-off, setup do ambiente, primeiras integrações rodando e dashboard com dados reais — em até 30 dias.", time: "Primeiros resultados em 30 dias" },
+            ].map((s, i) => (
+              <motion.div
+                key={i}
+                variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} custom={i}
+                className="rounded-3xl p-6" style={{ backgroundColor: C.secondary }}
+              >
+                <div className="w-14 h-14 rounded-full flex items-center justify-center font-black text-xl mb-5"
+                  style={{ backgroundColor: C.primary, color: C.black }}>
+                  {i + 1}
+                </div>
+                <h3 className="font-bold text-xl mb-3">{s.t}</h3>
+                <p className="text-sm mb-4" style={{ color: C.gray }}>{s.d}</p>
+                <span className="text-xs font-bold" style={{ color: C.primary, letterSpacing: "2px" }}>{s.time}</span>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Form */}
+          <div className="rounded-3xl p-8 sm:p-10 max-w-3xl mx-auto" style={{ backgroundColor: C.secondary }}>
+            <h3 className="font-black text-2xl sm:text-3xl mb-6">Marque a reunião de diagnóstico</h3>
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                const msg = `Olá! Quero marcar a reunião de diagnóstico do Burati GT Hub.%0A%0ANome: ${form.nome}%0AEmpresa: ${form.empresa}%0ACargo: ${form.cargo}%0AWhatsApp: ${form.whats}%0ADor: ${form.dor}`;
+                window.open(`https://wa.me/5541992361868?text=${msg}`, "_blank");
+              }}
+              className="space-y-4"
+            >
+              <div className="grid sm:grid-cols-2 gap-4">
+                <input required placeholder="Nome" value={form.nome} onChange={(e) => setForm({ ...form, nome: e.target.value })}
+                  className="px-4 py-3 rounded-xl bg-transparent border outline-none focus:border-orange-500"
+                  style={{ borderColor: C.gray, color: "#fff" }} />
+                <input required placeholder="Empresa" value={form.empresa} onChange={(e) => setForm({ ...form, empresa: e.target.value })}
+                  className="px-4 py-3 rounded-xl bg-transparent border outline-none focus:border-orange-500"
+                  style={{ borderColor: C.gray, color: "#fff" }} />
+                <input required placeholder="Cargo" value={form.cargo} onChange={(e) => setForm({ ...form, cargo: e.target.value })}
+                  className="px-4 py-3 rounded-xl bg-transparent border outline-none focus:border-orange-500"
+                  style={{ borderColor: C.gray, color: "#fff" }} />
+                <input required placeholder="WhatsApp" value={form.whats} onChange={(e) => setForm({ ...form, whats: e.target.value })}
+                  className="px-4 py-3 rounded-xl bg-transparent border outline-none focus:border-orange-500"
+                  style={{ borderColor: C.gray, color: "#fff" }} />
+              </div>
+              <textarea required rows={4} placeholder="Qual é a maior dor operacional hoje?"
+                value={form.dor} onChange={(e) => setForm({ ...form, dor: e.target.value })}
+                className="w-full px-4 py-3 rounded-xl bg-transparent border outline-none focus:border-orange-500 resize-none"
+                style={{ borderColor: C.gray, color: "#fff" }} />
+              <button type="submit"
+                className="w-full sm:w-auto px-8 py-4 rounded-xl font-bold inline-flex items-center gap-2"
+                style={{ backgroundColor: C.primary, color: C.black }}>
+                Quero marcar a reunião de diagnóstico <ArrowUpRight className="w-4 h-4" />
+              </button>
+            </form>
+            <a href={WHATSAPP} target="_blank" rel="noopener noreferrer"
+              className="block mt-6 text-center text-sm underline" style={{ color: C.gray }}>
+              ou fale direto pelo WhatsApp
+            </a>
+          </div>
+
+          <div className="mt-16 rounded-3xl p-8 text-center" style={{ backgroundColor: C.primary, color: C.black }}>
+            <p className="font-bold text-xl sm:text-2xl">
+              "Empresas que integram seus sistemas de gestão relatam ROI médio de 250% no primeiro ano de operação."
+            </p>
+            <p className="mt-3 text-sm opacity-80">Aberdeen Group, 2024</p>
+          </div>
+        </div>
+      </section>
+
+      {/* ============ FOOTER ============ */}
+      <footer className="px-6 sm:px-10 py-12" style={{ backgroundColor: C.light, color: C.black }}>
+        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-8">
+          <div>
+            <div className="font-black text-2xl mb-2">Fluxrow</div>
+            <div className="text-sm mb-4" style={{ color: C.secondary }}>Inteligência Criativa</div>
+            <div className="text-xs" style={{ color: C.secondary }}>
+              © 2024 Fluxrow Inteligência Criativa. Todos os direitos reservados.
+            </div>
+          </div>
+          <div className="grid grid-cols-2 gap-6">
+            <div>
+              <div className="text-xs font-bold mb-3" style={{ color: C.primary, letterSpacing: "2px" }}>O HUB</div>
+              <ul className="space-y-2 text-sm">
+                <li><a href="#diagnostico">Diagnóstico</a></li>
+                <li><a href="#solucao">Arquitetura</a></li>
+                <li><a href="#solucao">Módulos</a></li>
+                <li><a href="#solucao">IA</a></li>
+              </ul>
+            </div>
+            <div>
+              <div className="text-xs font-bold mb-3" style={{ color: C.primary, letterSpacing: "2px" }}>CONTATO</div>
+              <ul className="space-y-2 text-sm">
+                <li><a href={WHATSAPP} target="_blank" rel="noopener noreferrer">Reunião</a></li>
+                <li><a href={WHATSAPP} target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
+              </ul>
+            </div>
           </div>
         </div>
       </footer>
