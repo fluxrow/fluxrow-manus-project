@@ -79,6 +79,7 @@ const App = () => (
         <Suspense fallback={<LazyFallback />}>
           <Routes>
             <Route path="/" element={<Index />} />
+            <Route path="/diagnostico" element={<Diagnostico />} />
             <Route path="/agencia" element={<Agencia />} />
             {/* Curso descontinuado — redirect 301 para /produtos */}
             <Route path="/curso" element={<Navigate to="/produtos" replace />} />
