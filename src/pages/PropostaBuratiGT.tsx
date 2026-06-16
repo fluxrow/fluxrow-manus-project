@@ -690,8 +690,8 @@ export default function PropostaBuratiGT() {
             className="mt-20 text-center font-bold text-2xl sm:text-3xl lg:text-4xl leading-tight"
             style={{ color: C.primary }}
           >
-            15 sistemas. Nenhum dado cruzado.<br />
-            Toda decisão estratégica baseada em informação incompleta.
+            15 sistemas isolados viram uma única inteligência.<br />
+            Decisões começam a ser baseadas nos dados completos de toda operação.
           </motion.p>
         </div>
       </section>
