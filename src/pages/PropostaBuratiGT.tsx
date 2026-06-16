@@ -831,8 +831,8 @@ export default function PropostaBuratiGT() {
           <SectionBadge icon={TrendingUp} label="Impacto Real" />
           <h2 className="font-black text-4xl sm:text-5xl lg:text-[52px] leading-[1.05] mb-16">
             O que muda<br />
-            a partir do<br />
-            <span className="italic" style={{ color: C.primary }}>primeiro mês.</span>
+            com a integração<br />
+            já no <span className="italic" style={{ color: C.primary }}>segundo mês.</span>
           </h2>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
