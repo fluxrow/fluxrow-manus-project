@@ -1,311 +1,402 @@
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
-import { ArrowDown, Sparkles, Workflow, Brain, Compass } from "lucide-react";
+import { ArrowUpRight, Sparkles, Workflow, Brain, Compass, Zap, Layers, GitBranch, TrendingUp, Check, Calendar, Wallet } from "lucide-react";
 import BackToHomeButton from "@/components/ui/BackToHomeButton";
-import FluxrowLogo from "@/components/ui/FluxrowLogo";
 import LeadRoutingPanel from "@/components/positivo/LeadRoutingPanel";
 import DoresGrid from "@/components/positivo/DoresGrid";
 import CronogramaTimeline from "@/components/positivo/CronogramaTimeline";
 import MagneticCTA from "@/components/positivo/MagneticCTA";
 import EsteiraLogistica from "@/components/positivo/EsteiraLogistica";
 import { PILARES, VISAO_FUTURO, INVESTIMENTO } from "@/data/propostaPositivo";
-import { Check } from "lucide-react";
 
+const C = {
+  primary: "#FF6709",
+  black: "#050505",
+  secondary: "#1C1C1C",
+  white: "#F5F5F5",
+  light: "#F5F3EE",
+  gray: "#C7C7C7",
+  ink: "#1A1A1A",
+};
+
+const fadeUp: any = {
+  hidden: { opacity: 0, y: 28 },
+  show: (i: number = 0) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] as any },
+  }),
+};
 
 const PILAR_ICONS = [Workflow, Brain, Compass];
 
-export default function PropostaPositivo() {
-  const scrollNext = () =>
-    window.scrollTo({ top: window.innerHeight, behavior: "smooth" });
-
+function SectionBadge({ icon: Icon, label, dark = false }: { icon: any; label: string; dark?: boolean }) {
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 overflow-x-hidden font-sans">
+    <div className="flex items-center gap-3 mb-8">
+      <span
+        className="w-11 h-11 rounded-full flex items-center justify-center shrink-0"
+        style={{ backgroundColor: C.primary }}
+      >
+        <Icon className="w-5 h-5" style={{ color: dark ? C.black : "#fff" }} />
+      </span>
+      <span
+        className="text-[11px] font-semibold uppercase"
+        style={{ letterSpacing: "3px", color: C.primary }}
+      >
+        {label}
+      </span>
+    </div>
+  );
+}
+
+export default function PropostaPositivo() {
+  return (
+    <div style={{ backgroundColor: C.light, color: C.ink, fontFamily: "Inter, system-ui, sans-serif" }}>
       <Helmet>
-        <title>Proposta Estratégica Positivo · Fluxrow</title>
+        <title>Proposta Estratégica · Fluxrow</title>
         <meta name="robots" content="noindex, nofollow" />
         <meta
           name="description"
-          content="Ecossistema unificado de atendimento, IA SDR e roteamento de leads desenvolvido pela Fluxrow para a Positivo."
+          content="Ecossistema unificado de atendimento, IA SDR e roteamento de leads desenvolvido pela Fluxrow."
         />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
       </Helmet>
 
       <BackToHomeButton />
       <MagneticCTA />
 
-      {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-40 bg-slate-950/80 backdrop-blur-md border-b border-slate-800/60">
-        <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
-          <FluxrowLogo size="md" />
-          <div className="flex items-center gap-2 text-[10px] md:text-xs font-mono text-slate-400">
-            <span className="hidden md:inline">Proposta confidencial</span>
-            <span className="px-2 py-0.5 rounded-full bg-[#f9b217]/10 text-[#f9b217] border border-[#f9b217]/30">
-              POSITIVO · 2026
-            </span>
-          </div>
-        </div>
-      </header>
-
-      {/* Hero */}
-      <section className="relative min-h-screen flex flex-col items-center justify-center px-6 pt-20">
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(800px circle at 50% 30%, rgba(249,178,23,0.08), transparent 60%)",
-          }}
-        />
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="relative z-10 text-center max-w-4xl"
-        >
-          <p className="text-[10px] md:text-xs uppercase tracking-[0.4em] text-[#f9b217] font-mono mb-6">
-            Proposta exclusiva · Fluxrow para Positivo
-          </p>
-          <h1 className="font-serif text-4xl md:text-7xl leading-[1.05] text-white mb-8">
-            Omnichannel, IA SDR e{" "}
-            <span className="italic text-[#f9b217]">Inteligência de Dados</span>{" "}
-            para o próximo patamar da Positivo.
+      {/* ============ HERO ============ */}
+      <section className="min-h-screen flex items-center px-6 sm:px-10 py-24" style={{ backgroundColor: C.light }}>
+        <div className="max-w-7xl mx-auto w-full">
+          <SectionBadge icon={Zap} label="Proposta Exclusiva · Fluxrow" />
+          <h1 className="font-black leading-[0.95] text-5xl sm:text-6xl lg:text-[84px] tracking-tight max-w-5xl">
+            {["Omnichannel,", "IA SDR e dados", "no centro"].map((t, i) => (
+              <motion.div key={i} variants={fadeUp} initial="hidden" animate="show" custom={i}>
+                {t}
+              </motion.div>
+            ))}
+            <motion.div
+              variants={fadeUp}
+              initial="hidden"
+              animate="show"
+              custom={3}
+              className="italic"
+              style={{ color: C.primary }}
+            >
+              da operação.
+            </motion.div>
           </h1>
-          <p className="text-base md:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed mb-12">
-            Um ecossistema unificado de atendimento, qualificação e ativação que
-            transforma Meta, LinkedIn e Google Meu Negócio em uma esteira
-            inteligente — entregando o lead certo ao vendedor certo em menos de
-            3 segundos.
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-6 text-xs font-mono text-slate-500">
+
+          <motion.p
+            variants={fadeUp}
+            initial="hidden"
+            animate="show"
+            custom={5}
+            className="mt-8 text-lg sm:text-xl max-w-2xl"
+            style={{ color: C.secondary }}
+          >
+            Um ecossistema unificado de atendimento, qualificação e ativação que transforma
+            Meta, LinkedIn e Google Meu Negócio em uma esteira inteligente — entregando o
+            lead certo ao vendedor certo em menos de 3 segundos.
+          </motion.p>
+
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            animate="show"
+            custom={7}
+            className="mt-10 flex flex-wrap gap-4"
+          >
+            <a
+              href="#diagnostico"
+              className="px-7 py-4 rounded-xl font-bold text-sm sm:text-base"
+              style={{ backgroundColor: C.black, color: "#fff" }}
+            >
+              Ver o diagnóstico
+            </a>
+            <a
+              href="#investimento"
+              className="px-7 py-4 rounded-xl font-bold text-sm sm:text-base inline-flex items-center gap-2"
+              style={{ backgroundColor: C.primary, color: C.black }}
+            >
+              Conhecer a solução <ArrowUpRight className="w-4 h-4" />
+            </a>
+          </motion.div>
+
+          <div className="mt-16 flex flex-wrap items-center gap-6 text-xs font-semibold uppercase" style={{ letterSpacing: "2px", color: C.secondary }}>
             <span>Emissão · Junho 2026</span>
-            <span className="w-1 h-1 rounded-full bg-slate-700" />
+            <span className="w-1 h-1 rounded-full" style={{ backgroundColor: C.ink, opacity: 0.3 }} />
             <span>Validade · 30 dias</span>
-            <span className="w-1 h-1 rounded-full bg-slate-700" />
+            <span className="w-1 h-1 rounded-full" style={{ backgroundColor: C.ink, opacity: 0.3 }} />
             <span>Apresentação técnica · 22/06</span>
           </div>
-          <button
-            onClick={scrollNext}
-            className="mt-16 inline-flex items-center gap-2 text-xs font-mono text-slate-400 hover:text-[#f9b217] transition-colors"
-          >
-            ler proposta
-            <ArrowDown className="w-3.5 h-3.5 animate-bounce" />
-          </button>
-        </motion.div>
-      </section>
-
-      {/* Sumário Executivo */}
-      <section className="max-w-3xl mx-auto px-6 py-24">
-        <p className="text-[10px] uppercase tracking-[0.3em] text-[#f9b217] font-mono mb-4">
-          01 · Sumário executivo
-        </p>
-        <h2 className="font-serif text-3xl md:text-5xl text-white leading-tight mb-8">
-          O ponto de inflexão.
-        </h2>
-        <div className="space-y-6 text-slate-300 leading-relaxed text-base md:text-lg">
-          <p>
-            Como a maior empresa de seu segmento na América Latina, a Positivo
-            atingiu um patamar de escala onde a eficiência operacional e a
-            experiência do cliente não podem sofrer fricção.
-          </p>
-          <p>
-            Atualmente, o ecossistema de atendimento e qualificação de leads
-            enfrenta um gargalo crítico: soluções isoladas no WhatsApp que não
-            cumprem o escopo técnico prometido, geram desalinhamento e operam de
-            forma cega em relação aos dados gerados nas principais vitrines
-            digitais da marca — Meta, LinkedIn e Google Meu Negócio.
-          </p>
-          <p className="text-white">
-            Esta proposta não substitui uma ferramenta. Implanta um{" "}
-            <span className="text-[#f9b217]">
-              Ecossistema Unificado de Atendimento, Qualificação (SDR) e
-              Ativação de Dados
-            </span>
-            — transformando canais de tráfego em uma esteira automatizada que
-            identifica intenção, segmenta por linha de produto e direciona com
-            precisão cirúrgica para o vendedor responsável.
-          </p>
         </div>
       </section>
 
-      {/* Lead Routing Panel */}
-      <section className="max-w-6xl mx-auto px-6 py-24">
-        <div className="text-center mb-12">
-          <p className="text-[10px] uppercase tracking-[0.3em] text-[#f9b217] font-mono mb-4">
-            02 · Esteira inteligente
-          </p>
-          <h2 className="font-serif text-3xl md:text-5xl text-white leading-tight max-w-3xl mx-auto">
-            Da origem do lead ao vendedor certo —{" "}
-            <span className="italic text-[#f9b217]">em menos de 3 segundos.</span>
-          </h2>
-        </div>
-        <LeadRoutingPanel />
-      </section>
-
-      {/* Pilares da Solução */}
-      <section className="max-w-6xl mx-auto px-6 py-24 border-t border-slate-900">
-        <div className="text-center mb-14">
-          <p className="text-[10px] uppercase tracking-[0.3em] text-[#f9b217] font-mono mb-4">
-            03 · Arquitetura da solução
-          </p>
-          <h2 className="font-serif text-3xl md:text-5xl text-white leading-tight">
-            Três camadas. Uma operação fluida.
-          </h2>
-        </div>
-        <div className="grid md:grid-cols-3 gap-6">
-          {PILARES.map((p, i) => {
-            const Icon = PILAR_ICONS[i];
-            return (
-              <motion.div
-                key={p.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="rounded-2xl border border-slate-800 bg-slate-900/60 p-7 hover:border-[#f9b217]/50 transition-colors"
-              >
-                <div className="flex items-center justify-between mb-6">
-                  <div className="flex items-center justify-center w-11 h-11 rounded-lg bg-[#f9b217]/10 border border-[#f9b217]/30">
-                    <Icon className="w-5 h-5 text-[#f9b217]" />
-                  </div>
-                  <span className="text-xs font-mono text-slate-500">{p.numero}</span>
-                </div>
-                <h3 className="font-serif text-2xl text-white mb-3">{p.titulo}</h3>
-                <p className="text-sm text-slate-400 leading-relaxed">{p.descricao}</p>
-              </motion.div>
-            );
-          })}
-        </div>
-        <EsteiraLogistica />
-      </section>
-
-
-      {/* Dores */}
-      <section className="max-w-6xl mx-auto px-6 py-24 border-t border-slate-900">
-        <div className="text-center mb-14">
-          <p className="text-[10px] uppercase tracking-[0.3em] text-[#f9b217] font-mono mb-4">
-            04 · Engenharia de dores
-          </p>
-          <h2 className="font-serif text-3xl md:text-5xl text-white leading-tight max-w-3xl mx-auto">
-            Diagnóstico técnico —{" "}
-            <span className="italic text-[#f9b217]">passe o mouse para revelar a solução.</span>
-          </h2>
-        </div>
-        <DoresGrid />
-      </section>
-
-      {/* Cronograma */}
-      <section className="max-w-5xl mx-auto px-6 py-24 border-t border-slate-900">
-        <div className="mb-14">
-          <p className="text-[10px] uppercase tracking-[0.3em] text-[#f9b217] font-mono mb-4">
-            05 · Cronograma
-          </p>
-          <h2 className="font-serif text-3xl md:text-5xl text-white leading-tight max-w-3xl">
-            Entrega ágil em fases modulares.
-          </h2>
-        </div>
-        <CronogramaTimeline />
-      </section>
-
-      {/* Visão de Futuro */}
-      <section className="max-w-5xl mx-auto px-6 py-24 border-t border-slate-900">
+      {/* Ticker laranja */}
+      <div className="overflow-hidden py-4" style={{ backgroundColor: C.primary }}>
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.7 }}
+          className="flex gap-8 whitespace-nowrap font-bold text-sm sm:text-base"
+          style={{ color: C.black, letterSpacing: "2px" }}
+          animate={{ x: ["0%", "-50%"] }}
+          transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
         >
-          <div className="mb-14">
-            <p className="text-[10px] uppercase tracking-[0.3em] text-[#f9b217] font-mono mb-4">
-              06 · Visão de futuro
+          {Array(6).fill(0).map((_, i) => (
+            <span key={i}>OMNICHANNEL • IA SDR • ROTEAMENTO PREDITIVO • DADOS EM TEMPO REAL •</span>
+          ))}
+        </motion.div>
+      </div>
+
+      {/* ============ SUMÁRIO EXECUTIVO ============ */}
+      <section className="px-6 sm:px-10 py-24" style={{ backgroundColor: C.light }}>
+        <div className="max-w-4xl mx-auto">
+          <SectionBadge icon={Layers} label="01 · Sumário Executivo" />
+          <h2 className="font-black text-4xl sm:text-5xl lg:text-[56px] leading-[1.05] mb-10" style={{ color: C.ink }}>
+            O ponto <span className="italic" style={{ color: C.primary }}>de inflexão.</span>
+          </h2>
+          <div className="space-y-6 text-lg leading-relaxed" style={{ color: C.secondary }}>
+            <p>
+              Como a maior empresa de seu segmento na América Latina, atingiu-se um patamar
+              de escala onde a eficiência operacional e a experiência do cliente não podem
+              sofrer fricção.
             </p>
-            <h2 className="font-serif text-3xl md:text-5xl text-white leading-tight max-w-3xl">
-              A Fluxrow não é fornecedor.{" "}
-              <span className="italic text-[#f9b217]">É parceira estratégica de longo prazo.</span>
-            </h2>
+            <p>
+              Atualmente, o ecossistema de atendimento e qualificação de leads enfrenta um
+              gargalo crítico: soluções isoladas no WhatsApp que não cumprem o escopo técnico
+              prometido, geram desalinhamento e operam de forma cega em relação aos dados
+              gerados nas principais vitrines digitais — Meta, LinkedIn e Google Meu Negócio.
+            </p>
+            <p className="font-bold" style={{ color: C.ink }}>
+              Esta proposta não substitui uma ferramenta. Implanta um{" "}
+              <span style={{ color: C.primary }}>
+                Ecossistema Unificado de Atendimento, Qualificação (SDR) e Ativação de Dados
+              </span>
+              {" "}— transformando canais de tráfego em uma esteira automatizada que identifica
+              intenção, segmenta por linha de produto e direciona com precisão cirúrgica para
+              o vendedor responsável.
+            </p>
           </div>
+        </div>
+      </section>
+
+      {/* ============ ESTEIRA INTELIGENTE (bloco escuro) ============ */}
+      <section className="px-6 sm:px-10 py-24" style={{ backgroundColor: C.black, color: "#fff" }}>
+        <div className="max-w-7xl mx-auto">
+          <SectionBadge icon={GitBranch} label="02 · Esteira Inteligente" />
+          <h2 className="font-black text-4xl sm:text-5xl lg:text-[56px] leading-[1.05] mb-6">
+            Da origem do lead ao vendedor certo —<br />
+            <span className="italic" style={{ color: C.primary }}>em menos de 3 segundos.</span>
+          </h2>
+          <p className="text-lg max-w-3xl mb-14" style={{ color: C.gray }}>
+            Toda a jornada do lead acontece dentro de uma camada proprietária Fluxrow:
+            captação, normalização, leitura de intenção e roteamento preditivo.
+          </p>
+          <LeadRoutingPanel />
+        </div>
+      </section>
+
+      {/* ============ PILARES ============ */}
+      <section className="px-6 sm:px-10 py-24" style={{ backgroundColor: C.light }}>
+        <div className="max-w-7xl mx-auto">
+          <SectionBadge icon={Workflow} label="03 · Arquitetura da Solução" />
+          <h2 className="font-black text-4xl sm:text-5xl lg:text-[56px] leading-[1.05] mb-14" style={{ color: C.ink }}>
+            Três camadas. <span className="italic" style={{ color: C.primary }}>Uma operação fluida.</span>
+          </h2>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {PILARES.map((p, i) => {
+              const Icon = PILAR_ICONS[i];
+              const dark = i === 1; // pilar central destacado
+              return (
+                <motion.div
+                  key={p.id}
+                  variants={fadeUp}
+                  initial="hidden"
+                  whileInView="show"
+                  viewport={{ once: true }}
+                  custom={i}
+                  className="rounded-3xl p-8"
+                  style={{
+                    backgroundColor: dark ? C.black : "#fff",
+                    color: dark ? "#fff" : C.ink,
+                    border: dark ? "none" : "1px solid rgba(26,26,26,0.08)",
+                  }}
+                >
+                  <div className="flex items-center justify-between mb-8">
+                    <span
+                      className="w-12 h-12 rounded-full flex items-center justify-center"
+                      style={{ backgroundColor: C.primary }}
+                    >
+                      <Icon className="w-5 h-5" style={{ color: dark ? C.black : C.black }} />
+                    </span>
+                    <span
+                      className="text-[11px] font-bold uppercase"
+                      style={{ letterSpacing: "3px", color: dark ? C.primary : C.secondary }}
+                    >
+                      {p.numero}
+                    </span>
+                  </div>
+                  <h3 className="font-black text-2xl sm:text-3xl mb-4 leading-tight">{p.titulo}</h3>
+                  <p className="text-base leading-relaxed" style={{ color: dark ? C.gray : C.secondary }}>
+                    {p.descricao}
+                  </p>
+                </motion.div>
+              );
+            })}
+          </div>
+
+          <EsteiraLogistica />
+        </div>
+      </section>
+
+      {/* ============ DORES ============ */}
+      <section id="diagnostico" className="px-6 sm:px-10 py-24" style={{ backgroundColor: C.secondary, color: "#fff" }}>
+        <div className="max-w-7xl mx-auto">
+          <SectionBadge icon={Sparkles} label="04 · Engenharia de Dores" />
+          <h2 className="font-black text-4xl sm:text-5xl lg:text-[56px] leading-[1.05] mb-6">
+            Diagnóstico técnico —<br />
+            <span className="italic" style={{ color: C.primary }}>passe o mouse para revelar a solução.</span>
+          </h2>
+          <p className="text-lg max-w-3xl mb-14" style={{ color: C.gray }}>
+            Cada sintoma abaixo é um gargalo mapeado em conversas, dashboards e relatórios.
+            A coluna escondida é a resposta da Fluxrow.
+          </p>
+          <DoresGrid />
+        </div>
+      </section>
+
+      {/* ============ CRONOGRAMA ============ */}
+      <section className="px-6 sm:px-10 py-24" style={{ backgroundColor: C.light }}>
+        <div className="max-w-5xl mx-auto">
+          <SectionBadge icon={Calendar} label="05 · Cronograma" />
+          <h2 className="font-black text-4xl sm:text-5xl lg:text-[56px] leading-[1.05] mb-14" style={{ color: C.ink }}>
+            Entrega ágil <span className="italic" style={{ color: C.primary }}>em fases modulares.</span>
+          </h2>
+          <CronogramaTimeline />
+        </div>
+      </section>
+
+      {/* ============ VISÃO DE FUTURO ============ */}
+      <section className="px-6 sm:px-10 py-24" style={{ backgroundColor: C.black, color: "#fff" }}>
+        <div className="max-w-6xl mx-auto">
+          <SectionBadge icon={TrendingUp} label="06 · Visão de Futuro" />
+          <h2 className="font-black text-4xl sm:text-5xl lg:text-[56px] leading-[1.05] mb-14">
+            A Fluxrow não é fornecedor.<br />
+            <span className="italic" style={{ color: C.primary }}>É parceira estratégica de longo prazo.</span>
+          </h2>
           <div className="grid md:grid-cols-2 gap-6">
             {VISAO_FUTURO.map((v, i) => (
               <motion.div
                 key={v.titulo}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="show"
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.2 + i * 0.15 }}
-                className="rounded-2xl border border-slate-800 bg-gradient-to-br from-slate-900/80 to-slate-950 p-7"
+                custom={i}
+                className="rounded-3xl p-8"
+                style={{ backgroundColor: C.secondary, border: "1px solid rgba(255,255,255,0.06)" }}
               >
-                <Sparkles className="w-5 h-5 text-[#f9b217] mb-4" />
-                <h3 className="font-serif text-2xl text-white mb-3">{v.titulo}</h3>
-                <p className="text-sm text-slate-400 leading-relaxed">
+                <span
+                  className="w-11 h-11 rounded-full flex items-center justify-center mb-6"
+                  style={{ backgroundColor: C.primary }}
+                >
+                  <Sparkles className="w-5 h-5" style={{ color: C.black }} />
+                </span>
+                <h3 className="font-black text-2xl sm:text-3xl mb-4 leading-tight">{v.titulo}</h3>
+                <p className="text-base leading-relaxed" style={{ color: C.gray }}>
                   {v.descricao}
                 </p>
               </motion.div>
             ))}
           </div>
-        </motion.div>
+        </div>
       </section>
 
-      {/* Investimento */}
-      <section className="max-w-6xl mx-auto px-6 py-24 border-t border-slate-900">
-        <div className="mb-14">
-          <p className="text-[10px] uppercase tracking-[0.3em] text-[#f9b217] font-mono mb-4">
-            07 · Investimento
-          </p>
-          <h2 className="font-serif text-3xl md:text-5xl text-white leading-tight max-w-3xl">
-            Estrutura comercial enxuta —{" "}
-            <span className="italic text-[#f9b217]">setup único + sustentação contínua.</span>
+      {/* ============ INVESTIMENTO ============ */}
+      <section id="investimento" className="px-6 sm:px-10 py-24" style={{ backgroundColor: C.light }}>
+        <div className="max-w-7xl mx-auto">
+          <SectionBadge icon={Wallet} label="07 · Investimento" />
+          <h2 className="font-black text-4xl sm:text-5xl lg:text-[56px] leading-[1.05] mb-14" style={{ color: C.ink }}>
+            Estrutura comercial enxuta —<br />
+            <span className="italic" style={{ color: C.primary }}>setup único + sustentação contínua.</span>
           </h2>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            {INVESTIMENTO.map((card, i) => {
+              const highlight = card.id === "setup";
+              return (
+                <motion.div
+                  key={card.id}
+                  variants={fadeUp}
+                  initial="hidden"
+                  whileInView="show"
+                  viewport={{ once: true }}
+                  custom={i}
+                  className="relative rounded-3xl p-8 sm:p-10"
+                  style={{
+                    backgroundColor: highlight ? C.black : "#fff",
+                    color: highlight ? "#fff" : C.ink,
+                    border: highlight ? "none" : "1px solid rgba(26,26,26,0.08)",
+                  }}
+                >
+                  <span
+                    className="inline-flex items-center px-3 py-1 rounded-full text-[10px] font-bold uppercase"
+                    style={{
+                      letterSpacing: "2px",
+                      backgroundColor: highlight ? C.primary : C.ink,
+                      color: highlight ? C.black : "#fff",
+                    }}
+                  >
+                    {card.tipo}
+                  </span>
+                  <h3 className="font-black text-3xl sm:text-4xl mt-6 mb-8 leading-tight">{card.titulo}</h3>
+                  <div className="flex items-baseline gap-3 mb-10">
+                    <span className="font-black text-5xl sm:text-6xl" style={{ color: highlight ? C.primary : C.ink }}>
+                      {card.valor}
+                    </span>
+                    <span className="text-sm font-semibold uppercase" style={{ letterSpacing: "2px", color: highlight ? C.gray : C.secondary }}>
+                      {card.unidade}
+                    </span>
+                  </div>
+                  <ul className="space-y-4">
+                    {card.entregas.map((e) => (
+                      <li key={e} className="flex items-start gap-3 text-base">
+                        <span
+                          className="shrink-0 w-5 h-5 rounded-full flex items-center justify-center mt-0.5"
+                          style={{ backgroundColor: C.primary }}
+                        >
+                          <Check className="w-3 h-3" style={{ color: C.black }} strokeWidth={3} />
+                        </span>
+                        <span style={{ color: highlight ? "#fff" : C.secondary }}>{e}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </motion.div>
+              );
+            })}
+          </div>
+
+          <p className="mt-10 text-sm text-center" style={{ color: C.secondary }}>
+            Mídia paga e custos de terceiros (cloud, APIs oficiais) não inclusos · faturamento direto pelo fornecedor.
+          </p>
         </div>
-        <div className="grid md:grid-cols-2 gap-6">
-          {INVESTIMENTO.map((card, i) => (
-            <motion.div
-              key={card.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.6, delay: i * 0.15 }}
-              className={`relative rounded-2xl border p-8 ${
-                card.id === "setup"
-                  ? "border-[#f9b217]/40 bg-gradient-to-br from-[#f9b217]/5 to-slate-950"
-                  : "border-slate-800 bg-slate-900/60"
-              }`}
-            >
-              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full border border-slate-700 bg-slate-950 text-[10px] font-mono text-slate-400 uppercase tracking-wider">
-                {card.tipo}
-              </span>
-              <h3 className="font-serif text-2xl text-white mt-5 mb-6">{card.titulo}</h3>
-              <div className="flex items-baseline gap-2 mb-8">
-                <span className="font-serif text-5xl text-white">{card.valor}</span>
-                <span className="text-xs font-mono text-slate-500">{card.unidade}</span>
-              </div>
-              <ul className="space-y-3">
-                {card.entregas.map((e) => (
-                  <li key={e} className="flex items-start gap-3 text-sm text-slate-300">
-                    <Check className="w-4 h-4 mt-0.5 text-[#f9b217] flex-shrink-0" />
-                    <span>{e}</span>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-          ))}
-        </div>
-        <p className="mt-8 text-xs font-mono text-slate-500 text-center">
-          Mídia paga e custos de terceiros (cloud, APIs oficiais) não inclusos · faturamento direto pelo fornecedor.
-        </p>
       </section>
 
-      {/* Fechamento */}
-
-      <section className="max-w-3xl mx-auto px-6 py-24 text-center border-t border-slate-900">
-        <p className="text-[10px] uppercase tracking-[0.3em] text-[#f9b217] font-mono mb-4">
-          08 · Próximos passos
-        </p>
-        <h2 className="font-serif text-3xl md:text-5xl text-white leading-tight mb-6">
-          Pronto para iniciar o setup?
-        </h2>
-        <p className="text-slate-400 mb-2">
-          Aceite a proposta e a Fluxrow agenda o kickoff técnico em até 48h.
-        </p>
-        <p className="text-xs font-mono text-slate-600">
-          Fluxrow 2026 · Confidencialidade estrita para Positivo.
-        </p>
+      {/* ============ FECHAMENTO ============ */}
+      <section className="px-6 sm:px-10 py-24" style={{ backgroundColor: C.black, color: "#fff" }}>
+        <div className="max-w-3xl mx-auto text-center">
+          <SectionBadge icon={ArrowUpRight} label="08 · Próximos Passos" />
+          <h2 className="font-black text-4xl sm:text-5xl lg:text-[64px] leading-[1.05] mb-6">
+            Pronto para <span className="italic" style={{ color: C.primary }}>iniciar o setup?</span>
+          </h2>
+          <p className="text-lg mb-10" style={{ color: C.gray }}>
+            Aceite a proposta e a Fluxrow agenda o kickoff técnico em até 48h.
+          </p>
+          <p className="text-xs uppercase font-semibold" style={{ letterSpacing: "3px", color: C.gray, opacity: 0.6 }}>
+            Fluxrow 2026 · Confidencialidade estrita.
+          </p>
+        </div>
       </section>
     </div>
   );

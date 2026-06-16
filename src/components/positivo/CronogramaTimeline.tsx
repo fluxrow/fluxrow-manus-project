@@ -2,13 +2,19 @@ import { motion } from "framer-motion";
 import { Check } from "lucide-react";
 import { FASES } from "@/data/propostaPositivo";
 
+const ORANGE = "#FF6709";
+const INK = "#1A1A1A";
+
 export default function CronogramaTimeline() {
   return (
     <div className="relative">
       {/* linha vertical */}
-      <div className="absolute left-5 top-2 bottom-2 w-px bg-slate-800 md:left-6" />
+      <div
+        className="absolute left-6 top-2 bottom-2 w-px"
+        style={{ backgroundColor: "rgba(26,26,26,0.15)" }}
+      />
 
-      <div className="space-y-10">
+      <div className="space-y-12">
         {FASES.map((fase, idx) => (
           <motion.div
             key={fase.numero}
@@ -16,35 +22,41 @@ export default function CronogramaTimeline() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: false, amount: 0.4 }}
             transition={{ duration: 0.5, delay: idx * 0.05 }}
-            className="relative pl-16 md:pl-20"
+            className="relative pl-20 md:pl-24"
           >
             <motion.div
-              initial={{ scale: 0.6, backgroundColor: "rgba(15,23,42,1)" }}
-              whileInView={{
-                scale: 1,
-                backgroundColor: "#f9b217",
-                boxShadow: "0 0 24px rgba(249,178,23,0.6)",
-              }}
+              initial={{ scale: 0.6 }}
+              whileInView={{ scale: 1 }}
               viewport={{ once: false, amount: 0.5 }}
               transition={{ duration: 0.4 }}
-              className="absolute left-0 top-1 w-10 h-10 md:w-12 md:h-12 rounded-full border border-slate-700 flex items-center justify-center font-mono text-sm font-semibold text-slate-950"
+              className="absolute left-0 top-1 w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center font-black text-base"
+              style={{
+                backgroundColor: ORANGE,
+                color: "#050505",
+                boxShadow: "0 6px 20px rgba(255,103,9,0.4)",
+              }}
             >
               0{fase.numero}
             </motion.div>
 
-            <p className="text-[10px] uppercase tracking-[0.3em] text-[#f9b217] font-mono mb-2">
+            <p className="text-[10px] uppercase font-bold mb-2" style={{ letterSpacing: "3px", color: ORANGE }}>
               {fase.periodo}
             </p>
-            <h3 className="font-serif text-2xl md:text-3xl text-white mb-3 leading-tight">
+            <h3 className="font-black text-2xl md:text-3xl mb-3 leading-tight" style={{ color: INK }}>
               {fase.titulo}
             </h3>
-            <p className="text-sm text-slate-300 leading-relaxed mb-4 max-w-2xl">
+            <p className="text-base leading-relaxed mb-5 max-w-2xl" style={{ color: "#444" }}>
               {fase.descricao}
             </p>
-            <ul className="space-y-1.5">
+            <ul className="space-y-2">
               {fase.entregaveis.map((e) => (
-                <li key={e} className="flex items-center gap-2 text-xs text-slate-400">
-                  <Check className="w-3.5 h-3.5 text-[#f9b217]" />
+                <li key={e} className="flex items-center gap-3 text-sm font-medium" style={{ color: INK }}>
+                  <span
+                    className="shrink-0 w-5 h-5 rounded-full flex items-center justify-center"
+                    style={{ backgroundColor: ORANGE }}
+                  >
+                    <Check className="w-3 h-3" style={{ color: "#050505" }} strokeWidth={3} />
+                  </span>
                   {e}
                 </li>
               ))}

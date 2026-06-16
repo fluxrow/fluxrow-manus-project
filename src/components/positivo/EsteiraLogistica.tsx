@@ -1,26 +1,38 @@
 import { motion } from "framer-motion";
 import { ESTEIRA_ETAPAS } from "@/data/propostaPositivo";
 
+const ORANGE = "#FF6709";
+const INK = "#1A1A1A";
+
 export default function EsteiraLogistica() {
   return (
-    <div className="mt-16 rounded-2xl border border-slate-800 bg-slate-900/40 p-6 md:p-10">
-      <div className="flex items-center justify-between mb-8">
+    <div
+      className="mt-16 rounded-3xl p-6 md:p-10"
+      style={{ backgroundColor: "#fff", border: "1px solid rgba(26,26,26,0.08)" }}
+    >
+      <div className="flex items-center justify-between mb-10">
         <div>
-          <p className="text-[10px] uppercase tracking-[0.3em] text-[#f9b217] font-mono">
+          <p className="text-[10px] uppercase font-bold mb-2" style={{ letterSpacing: "3px", color: ORANGE }}>
             esteira logística do lead
           </p>
-          <h3 className="font-serif text-xl md:text-2xl text-white mt-2">
+          <h3 className="font-black text-xl md:text-2xl" style={{ color: INK }}>
             Camada proprietária Fluxrow · pipeline interno
           </h3>
         </div>
-        <span className="hidden md:inline text-[10px] font-mono text-slate-500">
+        <span
+          className="hidden md:inline text-[10px] font-bold uppercase px-3 py-1 rounded-full"
+          style={{ letterSpacing: "2px", backgroundColor: INK, color: "#fff" }}
+        >
           payload → routing · &lt; 3s
         </span>
       </div>
 
       <div className="relative">
         {/* linha conectora */}
-        <div className="absolute left-0 right-0 top-5 h-px bg-gradient-to-r from-transparent via-[#f9b217]/40 to-transparent" />
+        <div
+          className="absolute left-0 right-0 top-6 h-px"
+          style={{ background: `linear-gradient(to right, transparent, ${ORANGE}, transparent)` }}
+        />
 
         <div className="relative grid grid-cols-2 md:grid-cols-4 gap-6">
           {ESTEIRA_ETAPAS.map((etapa, i) => (
@@ -32,13 +44,23 @@ export default function EsteiraLogistica() {
               transition={{ duration: 0.45, delay: i * 0.12 }}
               className="relative flex flex-col items-center text-center"
             >
-              <div className="relative z-10 w-10 h-10 rounded-full bg-slate-950 border border-[#f9b217]/50 flex items-center justify-center">
-                <span className="text-[11px] font-mono text-[#f9b217]">
+              <div
+                className="relative z-10 w-12 h-12 rounded-full flex items-center justify-center"
+                style={{ backgroundColor: ORANGE, boxShadow: "0 4px 12px rgba(255,103,9,0.35)" }}
+              >
+                <span className="text-sm font-black" style={{ color: "#050505" }}>
                   {String(i + 1).padStart(2, "0")}
                 </span>
               </div>
-              <p className="mt-4 text-sm text-slate-200">{etapa.label}</p>
-              <span className="mt-2 inline-flex items-center px-2 py-0.5 rounded-full border border-slate-700 bg-slate-900 text-[10px] font-mono text-slate-400">
+              <p className="mt-4 text-sm font-bold" style={{ color: INK }}>{etapa.label}</p>
+              <span
+                className="mt-2 inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-bold uppercase"
+                style={{
+                  letterSpacing: "1px",
+                  backgroundColor: "rgba(26,26,26,0.05)",
+                  color: "#444",
+                }}
+              >
                 {etapa.badge}
               </span>
             </motion.div>
@@ -46,7 +68,10 @@ export default function EsteiraLogistica() {
         </div>
       </div>
 
-      <p className="mt-8 text-[11px] font-mono text-slate-500 text-center">
+      <p
+        className="mt-10 text-[11px] text-center font-mono"
+        style={{ color: "#888" }}
+      >
         // detalhes de implementação omitidos por confidencialidade técnica
       </p>
     </div>
