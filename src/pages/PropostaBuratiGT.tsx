@@ -552,8 +552,21 @@ function HeroOrbit() {
 export default function PropostaBuratiGT() {
   const [form, setForm] = useState({ nome: "", empresa: "", cargo: "", whats: "", dor: "" });
 
+  // The site-wide [data-palette="burati"] CSS overrides force ALL h1-h4/p/span/li/a to dark
+  // (#1A1A1A), which breaks the white text on the dark sections of this proposal page.
+  // We temporarily remove the attribute while this page is mounted and restore it on unmount.
+  useEffect(() => {
+    const body = document.body;
+    const prev = body.getAttribute("data-palette");
+    body.removeAttribute("data-palette");
+    return () => {
+      if (prev !== null) body.setAttribute("data-palette", prev);
+    };
+  }, []);
+
   return (
     <div style={{ backgroundColor: C.light, color: C.black, fontFamily: "Inter, system-ui, sans-serif" }}>
+
       <Helmet>
         <title>Burati GT Hub — Proposta de Transformação Digital</title>
         <meta name="description" content="De 15 sistemas fragmentados para uma inteligência única. Proposta Fluxrow para o ecossistema Burati GT e Btax." />
