@@ -3,6 +3,8 @@ import { useRef, useState, MouseEvent } from "react";
 import { ArrowRight } from "lucide-react";
 import { WHATSAPP_CTA } from "@/data/propostaPositivo";
 
+const ORANGE = "#FF6709";
+
 interface Particle {
   id: number;
   angle: number;
@@ -23,10 +25,8 @@ export default function MagneticCTA() {
     const r = el.getBoundingClientRect();
     const cx = r.left + r.width / 2;
     const cy = r.top + r.height / 2;
-    const dx = (e.clientX - cx) * 0.25;
-    const dy = (e.clientY - cy) * 0.25;
-    x.set(dx);
-    y.set(dy);
+    x.set((e.clientX - cx) * 0.25);
+    y.set((e.clientY - cy) * 0.25);
   };
 
   const handleLeave = () => {
@@ -49,7 +49,6 @@ export default function MagneticCTA() {
   return (
     <div className="fixed bottom-6 right-6 z-50 pointer-events-none">
       <div className="relative pointer-events-auto">
-        {/* partículas */}
         {particles.map((p) => (
           <motion.span
             key={p.id}
@@ -62,7 +61,7 @@ export default function MagneticCTA() {
             }}
             transition={{ duration: 0.85, ease: "easeOut" }}
             className="absolute left-1/2 top-1/2 w-2 h-2 rounded-full pointer-events-none"
-            style={{ backgroundColor: "#f9b217", willChange: "transform, opacity" }}
+            style={{ backgroundColor: ORANGE, willChange: "transform, opacity" }}
           />
         ))}
 
@@ -74,9 +73,16 @@ export default function MagneticCTA() {
           onMouseMove={handleMove}
           onMouseLeave={handleLeave}
           onClick={handleBurst}
-          style={{ x: sx, y: sy, willChange: "transform" }}
+          style={{
+            x: sx,
+            y: sy,
+            backgroundColor: ORANGE,
+            color: "#050505",
+            boxShadow: "0 10px 40px -10px rgba(255,103,9,0.6)",
+            fontFamily: "Inter, system-ui, sans-serif",
+          }}
           whileTap={{ scale: 0.96 }}
-          className="group inline-flex items-center gap-3 rounded-full bg-[#f9b217] px-5 md:px-7 py-3 md:py-4 text-sm md:text-base font-semibold text-slate-950 shadow-[0_10px_40px_-10px_rgba(249,178,23,0.6)] hover:shadow-[0_15px_50px_-10px_rgba(249,178,23,0.8)] transition-shadow"
+          className="group inline-flex items-center gap-3 rounded-full px-6 md:px-7 py-3 md:py-4 text-sm md:text-base font-bold transition-shadow hover:shadow-[0_15px_50px_-10px_rgba(255,103,9,0.8)]"
         >
           Aceitar Proposta e Iniciar Setup
           <ArrowRight className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-0.5 transition-transform" />
