@@ -280,11 +280,12 @@ function AIChat() {
   const [idx, setIdx] = useState(0);
   const [typed, setTyped] = useState("");
   const [showAnswer, setShowAnswer] = useState(false);
-  const current = AI_QUESTIONS[idx];
+  const current = AI_QUESTIONS[idx] ?? AI_QUESTIONS[0];
 
   useEffect(() => {
-    const q = AI_QUESTIONS[idx].q;
+    const q = (AI_QUESTIONS[idx] ?? AI_QUESTIONS[0])?.q ?? "";
     setTyped(""); setShowAnswer(false);
+    if (!q) return;
     let i = 0;
     const typer = setInterval(() => {
       i++;
