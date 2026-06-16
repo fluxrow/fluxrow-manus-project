@@ -34,11 +34,14 @@ const Header = () => {
 
   return (
     <header
-      className="fixed top-0 w-full z-50 border-b border-white/5 backdrop-blur-md"
-      style={{ backgroundColor: 'rgba(8, 8, 7, 0.85)' }}
+      className="fixed top-0 w-full z-50 border-b backdrop-blur-md"
+      style={{
+        backgroundColor: 'rgba(245, 243, 238, 0.88)',
+        borderColor: 'rgba(26, 26, 26, 0.08)',
+      }}
     >
       <nav className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-2">
+        <Link to="/" className="flex items-center gap-2 text-[#1A1A1A]">
           <FluxrowLogo size="sm" variant="light" />
         </Link>
 
@@ -48,7 +51,9 @@ const Header = () => {
               key={item.to}
               to={item.to}
               className={`transition-colors ${
-                isActive(item.to) ? 'text-white' : 'text-white/55 hover:text-white'
+                isActive(item.to)
+                  ? 'text-[#1A1A1A]'
+                  : 'text-[#1A1A1A]/55 hover:text-[#FF6709]'
               }`}
             >
               {item.label}
@@ -58,14 +63,14 @@ const Header = () => {
 
         <Link
           to="/contato"
-          className="hidden md:inline-flex items-center justify-center px-5 py-2 rounded-sm bg-white text-[#080807] text-sm font-mono hover:bg-white/90 transition-colors"
+          className="hidden md:inline-flex items-center justify-center px-5 py-2 rounded-sm bg-[#FF6709] text-[#F5F3EE] text-sm font-mono hover:bg-[#e85a00] transition-colors"
         >
           Falar com a gente
         </Link>
 
         <button
           onClick={() => setMobileMenuOpen((v) => !v)}
-          className="md:hidden text-white p-2"
+          className="md:hidden text-[#1A1A1A] p-2"
           aria-label="Abrir menu"
         >
           {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
@@ -75,7 +80,7 @@ const Header = () => {
       {mobileMenuOpen && (
         <div
           className="fixed inset-0 z-40 backdrop-blur-md"
-          style={{ backgroundColor: 'rgba(8, 8, 7, 0.96)' }}
+          style={{ backgroundColor: 'rgba(245, 243, 238, 0.97)' }}
         >
           <div className="flex flex-col items-center justify-center h-full gap-8 px-8">
             {NAV_ITEMS.map((item) => (
@@ -84,7 +89,9 @@ const Header = () => {
                 to={item.to}
                 onClick={() => setMobileMenuOpen(false)}
                 className={`font-serif text-3xl transition-colors ${
-                  isActive(item.to) ? 'text-white' : 'text-white/60 hover:text-white'
+                  isActive(item.to)
+                    ? 'text-[#1A1A1A]'
+                    : 'text-[#1A1A1A]/60 hover:text-[#FF6709]'
                 }`}
               >
                 {item.label}
@@ -93,7 +100,7 @@ const Header = () => {
             <Link
               to="/contato"
               onClick={() => setMobileMenuOpen(false)}
-              className="mt-6 inline-flex items-center justify-center px-7 py-3 rounded-sm bg-white text-[#080807] text-sm font-mono hover:bg-white/90 transition-colors"
+              className="mt-6 inline-flex items-center justify-center px-7 py-3 rounded-sm bg-[#FF6709] text-[#F5F3EE] text-sm font-mono hover:bg-[#e85a00] transition-colors"
             >
               Falar com a gente
             </Link>
