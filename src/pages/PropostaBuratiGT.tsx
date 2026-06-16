@@ -691,7 +691,7 @@ export default function PropostaBuratiGT() {
             <span className="italic" style={{ color: C.primary }}>mesma língua?</span>
           </h2>
           <p className="text-lg max-w-3xl mb-16" style={{ color: C.secondary }}>
-            O Burati GT Hub não é só uma integração. É uma camada de inteligência que se conecta aos seus sistemas via API, unifica os dados em um banco central e entrega visão completa do negócio em tempo real — sem trocar o que já funciona.
+            O Burati GT Hub não é só uma integração. É uma camada de inteligência que se conecta aos seus sistemas via API, unifica os dados em um banco central e entrega visão completa do negócio em tempo real, sem trocar o que já funciona.
           </p>
 
           <div className="space-y-6 mb-16">
