@@ -20,6 +20,9 @@ const STATS = [
 ];
 
 const Index = () => {
+  const [palette, setPalette] = useState<"fluxrow" | "burati">("fluxrow");
+  const isBurati = palette === "burati";
+
   const orgJsonLd = {
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -34,8 +37,9 @@ const Index = () => {
 
   return (
     <div
-      className="min-h-screen text-white overflow-x-hidden"
-      style={{ backgroundColor: "#080807" }}
+      data-palette={palette}
+      className="min-h-screen text-white overflow-x-hidden transition-colors duration-500"
+      style={{ backgroundColor: isBurati ? "#F5F3EE" : "#080807" }}
     >
       <SEO
         title="Fluxrow — sistemas, SaaS e automações com IA"
