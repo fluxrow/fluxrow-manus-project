@@ -343,7 +343,7 @@ const Agencia = () => {
         </section>
 
         {/* CTA final */}
-        <SectionShell width="4xl" divided>
+        <SectionShell width="5xl" divided>
           <div className="text-center">
             <SectionBadge icon={Sparkles} label="PRÓXIMO PASSO" />
             <h2 className="font-serif text-4xl md:text-5xl leading-tight mb-6">
