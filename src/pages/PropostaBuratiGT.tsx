@@ -253,14 +253,26 @@ const MODULES = [
 ];
 
 const AI_QUESTIONS = [
-  "Quantos boletos em atraso temos de 01/06 a 15/06?",
-  "Qual consultor fechou mais em maio?",
-  "Quais clientes têm contrato ativo mas NF pendente?",
-  "Me dá o top 10 devedores do trimestre",
-  "Qual o custo total de RH do mês de junho?",
-  "Quantos projetos estão atrasados essa semana?",
-  "Qual o LTV médio dos clientes ativos da Btax?",
-  "Quais obrigações fiscais vencem essa semana?",
+  {
+    q: "Qual o faturamento consolidado da Btax, Bcont e Bprev no mês passado?",
+    sources: ["OMIE", "iRecebi", "PipeRun"],
+    a: "R$ 2,84M consolidado — Btax R$ 1,12M · Bcont R$ 980k · Bprev R$ 740k. Crescimento de 8,2% vs. mês anterior.",
+  },
+  {
+    q: "Quantos projetos estão atrasados essa semana e quem é o responsável?",
+    sources: ["Gestão de Projetos", "RH"],
+    a: "7 projetos atrasados: 4 sob a equipe Fiscal (resp. Carla) e 3 no time Contábil (resp. Marcos). 2 com SLA vencendo em 48h.",
+  },
+  {
+    q: "Quais obrigações fiscais vencem nos próximos 7 dias?",
+    sources: ["OMIE", "Calendário Fiscal"],
+    a: "12 obrigações: 5 SPED Fiscal, 4 DCTFWeb, 3 EFD-Contribuições. Total de tributos a recolher: R$ 487k.",
+  },
+  {
+    q: "Qual o ticket médio e LTV dos clientes ativos da Btax?",
+    sources: ["PipeRun", "iRecebi"],
+    a: "Ticket médio mensal: R$ 4.200. LTV médio: R$ 138k (33 meses de retenção). Top 10 clientes = 41% do MRR.",
+  },
 ];
 
 /* ---------- AI Chat Demo ---------- */
@@ -268,9 +280,10 @@ function AIChat() {
   const [idx, setIdx] = useState(0);
   const [typed, setTyped] = useState("");
   const [showAnswer, setShowAnswer] = useState(false);
+  const current = AI_QUESTIONS[idx];
 
   useEffect(() => {
-    const q = AI_QUESTIONS[idx];
+    const q = AI_QUESTIONS[idx].q;
     setTyped(""); setShowAnswer(false);
     let i = 0;
     const typer = setInterval(() => {
@@ -278,38 +291,79 @@ function AIChat() {
       setTyped(q.slice(0, i));
       if (i >= q.length) {
         clearInterval(typer);
-        setTimeout(() => setShowAnswer(true), 400);
-        setTimeout(() => setIdx((p) => (p + 1) % AI_QUESTIONS.length), 3800);
+        setTimeout(() => setShowAnswer(true), 500);
+        setTimeout(() => setIdx((p) => (p + 1) % AI_QUESTIONS.length), 5400);
       }
-    }, 32);
+    }, 28);
     return () => clearInterval(typer);
   }, [idx]);
 
   return (
-    <div className="rounded-2xl p-5 font-mono text-sm" style={{ backgroundColor: C.black, color: "#fff" }}>
-      <div className="flex items-center gap-2 mb-4 opacity-60">
-        <span className="w-3 h-3 rounded-full bg-red-500" />
-        <span className="w-3 h-3 rounded-full bg-yellow-500" />
-        <span className="w-3 h-3 rounded-full bg-green-500" />
-        <span className="ml-2 text-xs">gt-hub-ai · live</span>
-      </div>
-      <div className="space-y-3 min-h-[140px]">
-        <div className="flex gap-2">
-          <span style={{ color: C.primary }}>→</span>
-          <span>{typed}<span className="animate-pulse">▍</span></span>
+    <div className="rounded-2xl overflow-hidden border shadow-sm" style={{ backgroundColor: "#fff", borderColor: "#E5E5E0" }}>
+      {/* Header */}
+      <div className="flex items-center justify-between px-5 py-3 border-b" style={{ borderColor: "#E5E5E0" }}>
+        <div className="flex items-center gap-2.5">
+          <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{ backgroundColor: C.primary }}>
+            <Bot size={15} color="#fff" />
+          </div>
+          <div>
+            <div className="text-sm font-semibold" style={{ color: C.black }}>Burati GT Assistant</div>
+            <div className="text-[10px] flex items-center gap-1.5" style={{ color: C.secondary }}>
+              <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+              Online · conectado aos 15 sistemas
+            </div>
+          </div>
         </div>
+        <span className="text-[10px] px-2 py-1 rounded-md" style={{ backgroundColor: "#F5F5F0", color: C.secondary }}>IA Interna</span>
+      </div>
+
+      {/* Conversation */}
+      <div className="px-5 py-5 space-y-3 min-h-[220px]" style={{ backgroundColor: "#FAFAF7" }}>
+        <div className="flex justify-end">
+          <div className="max-w-[88%] rounded-2xl rounded-tr-sm px-4 py-2.5 text-sm leading-snug" style={{ backgroundColor: C.black, color: "#fff" }}>
+            {typed}{!showAnswer && <span className="animate-pulse">▍</span>}
+          </div>
+        </div>
+
         {showAnswer && (
           <motion.div
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            className="ml-5 pl-3 border-l-2 text-xs leading-relaxed"
-            style={{ borderColor: C.primary, color: C.gray }}
+            className="flex justify-start"
           >
-            ✓ Consultando OMIE + iRecebi + PipeRun…<br />
-            ✓ Cruzando dados das últimas 24h<br />
-            <span style={{ color: C.primary }}>→ Resposta entregue em 1.8s</span>
+            <div className="max-w-[92%] space-y-2">
+              <div className="rounded-2xl rounded-tl-sm px-4 py-3 text-sm leading-relaxed border" style={{ backgroundColor: "#fff", borderColor: "#E5E5E0", color: C.black }}>
+                {current.a}
+              </div>
+              <div className="flex items-center gap-1.5 flex-wrap pl-1">
+                <span className="text-[10px] uppercase tracking-wider" style={{ color: C.secondary }}>Fontes:</span>
+                {current.sources.map((s) => (
+                  <span key={s} className="text-[10px] px-2 py-0.5 rounded-full border" style={{ borderColor: C.primary, color: C.primary }}>
+                    {s}
+                  </span>
+                ))}
+                <span className="text-[10px] ml-auto" style={{ color: C.secondary }}>respondido em 1.8s</span>
+              </div>
+            </div>
           </motion.div>
         )}
+      </div>
+
+      {/* Input */}
+      <div className="px-3 py-3 border-t" style={{ borderColor: "#E5E5E0", backgroundColor: "#fff" }}>
+        <div className="flex items-center gap-2 rounded-xl border px-3 py-2" style={{ borderColor: "#E5E5E0" }}>
+          <input
+            readOnly
+            placeholder="Pergunte algo sobre o negócio…"
+            className="flex-1 bg-transparent outline-none text-sm placeholder:text-neutral-400"
+            style={{ color: C.black }}
+          />
+          <button type="button" className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ backgroundColor: C.primary }} aria-label="Enviar">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+              <path d="M8 14V3M8 3L3 8M8 3L13 8" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </button>
+        </div>
       </div>
     </div>
   );
