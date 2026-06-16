@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diagnóstico gratuito — Fluxrow</title>
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="description" content="Descubra o que está travando suas vendas no WhatsApp e o que fazer agora.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #050505; --bg2: #0d0d0d; --bg3: #161616;
+      --border: rgba(255,255,255,0.08); --border2: rgba(255,255,255,0.15);
+      --text: #f0f0f0; --text2: #888; --text3: #555;
+      --green: #FF6709; --radius: 12px; --radius-sm: 8px;
+    }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; line-height: 1.6; }
+
+    .hero { max-width: 720px; margin: 0 auto; padding: 4rem 1.5rem 2rem; text-align: center; }
+    .logo { font-size: 13px; font-weight: 600; letter-spacing: 0.12em; color: var(--text3); text-transform: uppercase; margin-bottom: 2.5rem; }
+    .hero-tag { display: inline-block; font-size: 12px; font-weight: 500; color: var(--green); background: rgba(255,103,9,0.1); border: 1px solid rgba(255,103,9,0.2); border-radius: 20px; padding: 4px 14px; margin-bottom: 1.2rem; }
+    .hero h1 { font-size: clamp(26px, 5vw, 42px); font-weight: 600; line-height: 1.2; margin-bottom: 1rem; letter-spacing: -0.02em; }
+    .hero h1 span { color: var(--green); }
+    .hero p { font-size: 16px; color: var(--text2); max-width: 520px; margin: 0 auto 2rem; }
+
+    .video-wrap { max-width: 720px; margin: 0 auto 1rem; padding: 0 1.5rem; }
+    .video-container { position: relative; width: 100%; padding-top: 56.25%; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); background: var(--bg2); }
+    .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+    .video-placeholder { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; color: var(--text3); font-size: 14px; }
+    .video-placeholder svg { width: 48px; height: 48px; opacity: 0.3; }
+    .video-caption { text-align: center; font-size: 13px; color: var(--text3); margin-top: 10px; margin-bottom: 3rem; }
+
+    .divider { max-width: 720px; margin: 0 auto 3rem; padding: 0 1.5rem; display: flex; align-items: center; gap: 16px; }
+    .divider-line { flex: 1; height: 1px; background: var(--border); }
+    .divider-text { font-size: 13px; color: var(--text3); white-space: nowrap; }
+
+    .quiz-wrap { max-width: 560px; margin: 0 auto; padding: 0 1.5rem 4rem; }
+    .progress-bar { height: 2px; background: var(--border); border-radius: 2px; margin-bottom: 2.5rem; }
+    .progress-fill { height: 2px; background: var(--green); border-radius: 2px; transition: width 0.4s ease; }
+
+    .step { display: none; }
+    .step.active { display: block; }
+    .step-label { font-size: 11px; color: var(--text3); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 10px; }
+    .question { font-size: 22px; font-weight: 600; color: var(--text); margin-bottom: 8px; line-height: 1.3; letter-spacing: -0.01em; }
+    .sub { font-size: 14px; color: var(--text2); margin-bottom: 1.5rem; }
+    .multi-hint { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text3); background: var(--bg3); border: 1px solid var(--border); border-radius: 20px; padding: 3px 10px; margin-bottom: 1rem; }
+
+    .options { display: grid; gap: 8px; margin-bottom: 1.5rem; }
+    .opt { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; cursor: pointer; font-size: 14px; color: var(--text); text-align: left; transition: border-color 0.15s, background 0.15s; display: flex; align-items: center; gap: 12px; font-family: 'Inter', sans-serif; line-height: 1.4; }
+    .opt:hover { border-color: var(--border2); background: var(--bg3); }
+    .opt.selected { border-color: var(--green); background: rgba(255,103,9,0.08); }
+    .opt-icon { width: 34px; height: 34px; border-radius: var(--radius-sm); background: var(--bg3); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 16px; }
+    .opt.selected .opt-icon { background: rgba(255,103,9,0.15); }
+    .check-box { width: 18px; height: 18px; border-radius: 4px; border: 1px solid var(--border2); flex-shrink: 0; margin-left: auto; display: flex; align-items: center; justify-content: center; transition: background 0.15s, border-color 0.15s; }
+    .opt.selected .check-box { background: var(--green); border-color: var(--green); }
+    .check-box svg { display: none; }
+    .opt.selected .check-box svg { display: block; }
+
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 8px; }
+    .btn-back { background: none; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 10px 20px; font-size: 14px; color: var(--text2); cursor: pointer; font-family: 'Inter', sans-serif; transition: border-color 0.15s; }
+    .btn-back:hover { border-color: var(--border2); color: var(--text); }
+    .btn-next { background: var(--green); border: none; border-radius: var(--radius-sm); padding: 10px 28px; font-size: 14px; font-weight: 500; color: #fff; cursor: pointer; font-family: 'Inter', sans-serif; transition: opacity 0.15s; }
+    .btn-next:disabled { opacity: 0.25; cursor: default; }
+    .btn-next:not(:disabled):hover { opacity: 0.85; }
+
+    .input-field { width: 100%; padding: 12px 14px; font-size: 15px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--bg2); color: var(--text); margin-bottom: 10px; font-family: 'Inter', sans-serif; transition: border-color 0.15s; }
+    .input-field::placeholder { color: var(--text3); }
+    .input-field:focus { outline: none; border-color: var(--green); }
+
+    .result-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; margin-bottom: 12px; }
+    .fit-badge { display: inline-block; font-size: 11px; font-weight: 600; padding: 3px 12px; border-radius: 20px; margin-bottom: 14px; letter-spacing: 0.06em; text-transform: uppercase; }
+    .fit-alto { background: rgba(255,103,9,0.15); color: #5DCAA5; }
+    .fit-medio { background: rgba(239,159,39,0.15); color: #EF9F27; }
+    .fit-baixo { background: rgba(226,75,74,0.15); color: #F09595; }
+    .fit-title { font-size: 18px; font-weight: 600; color: var(--text); margin-bottom: 8px; letter-spacing: -0.01em; }
+    .fit-desc { font-size: 14px; color: var(--text2); line-height: 1.7; margin-bottom: 1.2rem; }
+    .rec-item { display: flex; align-items: flex-start; gap: 10px; padding: 10px 0; border-top: 1px solid var(--border); font-size: 13px; color: var(--text2); line-height: 1.5; }
+    .rec-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); flex-shrink: 0; margin-top: 6px; }
+
+    .btn-wa { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; background: #25D366; border: none; border-radius: var(--radius-sm); padding: 14px; font-size: 15px; font-weight: 600; color: #fff; cursor: pointer; font-family: 'Inter', sans-serif; transition: opacity 0.15s; margin-bottom: 10px; }
+    .btn-wa:hover { opacity: 0.88; }
+
+    .upsell-card { background: var(--bg2); border: 1px solid rgba(255,103,9,0.25); border-radius: var(--radius); padding: 1.25rem 1.5rem; margin-top: 1.5rem; display: flex; align-items: center; gap: 16px; }
+    .upsell-icon { width: 44px; height: 44px; border-radius: var(--radius-sm); background: rgba(255,103,9,0.1); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 22px; }
+    .upsell-text { flex: 1; }
+    .upsell-text p { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 3px; }
+    .upsell-text span { font-size: 12px; color: var(--text2); line-height: 1.5; }
+    .btn-upsell { background: none; border: 1px solid rgba(255,103,9,0.4); border-radius: var(--radius-sm); padding: 8px 16px; font-size: 13px; font-weight: 500; color: var(--green); cursor: pointer; font-family: 'Inter', sans-serif; white-space: nowrap; transition: background 0.15s; flex-shrink: 0; }
+    .btn-upsell:hover { background: rgba(255,103,9,0.08); }
+
+    .wa-note { text-align: center; font-size: 12px; color: var(--text3); margin-top: 6px; }
+    @media (max-width: 480px) {
+      .hero { padding: 3rem 1rem 1.5rem; }
+      .question { font-size: 18px; }
+      .upsell-card { flex-direction: column; align-items: flex-start; }
+      .btn-upsell { width: 100%; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="hero">
+    <p class="logo">Fluxrow</p>
+    <span class="hero-tag">Diagnóstico gratuito</span>
+    <h1>Descubra o que está travando suas <span>vendas no WhatsApp</span></h1>
+    <p>Assista ao vídeo e responda 7 perguntas rápidas. Em menos de 3 minutos você sabe exatamente o que fazer.</p>
+  </div>
+
+  <div class="video-wrap">
+    <div class="video-container">
+      <!-- SUBSTITUA PELO SEU VÍDEO: <iframe src="https://www.youtube.com/embed/SEU_ID" allowfullscreen></iframe> -->
+      <div class="video-placeholder">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"/></svg>
+        <span>Vídeo em breve</span>
+      </div>
+    </div>
+    <p class="video-caption">Como o sistema funciona na prática — agente, disparos, kanban e follow-up automático</p>
+  </div>
+
+  <div class="divider">
+    <div class="divider-line"></div>
+    <span class="divider-text">Agora responda 7 perguntas</span>
+    <div class="divider-line"></div>
+  </div>
+
+  <div class="quiz-wrap">
+    <div class="progress-bar"><div class="progress-fill" id="prog" style="width:14%"></div></div>
+
+    <!-- S1 -->
+    <div class="step active" id="s1">
+      <p class="step-label">passo 1 de 7</p>
+      <p class="question">Qual é o seu negócio principal?</p>
+      <p class="sub">O que você já faz hoje ou quer transformar em mentoria.</p>
+      <div class="options">
+        <button class="opt" data-key="negocio" data-val="Saúde (dentista, médico, terapeuta)"><div class="opt-icon">🏥</div><span>Saúde — dentista, médico, terapeuta</span></button>
+        <button class="opt" data-key="negocio" data-val="Educação / Mentoria / Coach"><div class="opt-icon">🎓</div><span>Educação, mentoria ou coach</span></button>
+        <button class="opt" data-key="negocio" data-val="Serviços (agência, consultor, freelancer)"><div class="opt-icon">💼</div><span>Serviços — agência, consultor, freelancer</span></button>
+        <button class="opt" data-key="negocio" data-val="Comércio / Produto físico"><div class="opt-icon">🛍️</div><span>Comércio ou produto físico</span></button>
+        <button class="opt" data-key="negocio" data-val="Outro negócio"><div class="opt-icon">✦</div><span>Outro</span></button>
+      </div>
+      <div class="nav"><span></span><button class="btn-next" id="n1" disabled onclick="next(1)">Continuar →</button></div>
+    </div>
+
+    <!-- S2 multi -->
+    <div class="step" id="s2">
+      <p class="step-label">passo 2 de 7</p>
+      <p class="question">Como você vende hoje?</p>
+      <span class="multi-hint">✦ pode marcar mais de uma</span>
+      <div class="options">
+        <button class="opt multi" data-key="canal" data-val="Indicação de clientes"><div class="opt-icon">👥</div><span>Indicação de clientes</span><div class="check-box"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></button>
+        <button class="opt multi" data-key="canal" data-val="Instagram / redes sociais"><div class="opt-icon">📱</div><span>Instagram / redes sociais</span><div class="check-box"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></button>
+        <button class="opt multi" data-key="canal" data-val="Anúncios pagos (Meta, Google)"><div class="opt-icon">🎯</div><span>Anúncios pagos (Meta, Google)</span><div class="check-box"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></button>
+        <button class="opt multi" data-key="canal" data-val="WhatsApp direto"><div class="opt-icon">💬</div><span>WhatsApp direto</span><div class="check-box"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></button>
+        <button class="opt multi" data-key="canal" data-val="Ainda não vendo / estou começando"><div class="opt-icon">🌱</div><span>Ainda não vendo / estou começando</span><div class="check-box"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></button>
+      </div>
+      <div class="nav"><button class="btn-back" onclick="back(1)">← Voltar</button><button class="btn-next" id="n2" disabled onclick="next(2)">Continuar →</button></div>
+    </div>
+
+    <!-- S3 multi -->
+    <div class="step" id="s3">
+      <p class="step-label">passo 3 de 7</p>
+      <p class="question">Quais são suas maiores dores com leads?</p>
+      <span class="multi-hint">✦ pode marcar mais de uma</span>
+      <div class="options">
+        <button class="opt multi" data-key="dor" data-val="Demoro pra responder e perco o lead"><div class="opt-icon">⏱️</div><span>Demoro pra responder e perco o lead</span><div class="check-box"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></button>
+        <button class="opt multi" data-key="dor" data-val="Não faço follow-up, esqueço dos leads"><div class="opt-icon">🔕</div><span>Não faço follow-up, esqueço dos leads</span><div class="check-box"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></button>
+        <button class="opt multi" data-key="dor" data-val="Não sei quais leads estão quentes"><div class="opt-icon">📊</div><span>Não sei quais leads estão quentes</span><div class="check-box"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></button>
+        <button class="opt multi" data-key="dor" data-val="Gasto muito tempo em conversas repetitivas"><div class="opt-icon">🔁</div><span>Gasto muito tempo em conversas repetitivas</span><div class="check-box"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></button>
+        <button class="opt multi" data-key="dor" data-val="Não tenho leads suficientes ainda"><div class="opt-icon">🔍</div><span>Não tenho leads suficientes ainda</span><div class="check-box"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></button>
+      </div>
+      <div class="nav"><button class="btn-back" onclick="back(2)">← Voltar</button><button class="btn-next" id="n3" disabled onclick="next(3)">Continuar →</button></div>
+    </div>
+
+    <!-- S4 -->
+    <div class="step" id="s4">
+      <p class="step-label">passo 4 de 7</p>
+      <p class="question">Quantos leads chegam por mês?</p>
+      <p class="sub">WhatsApp, DM, formulários — tudo junto.</p>
+      <div class="options">
+        <button class="opt" data-key="volume" data-val="Menos de 20 leads/mês"><div class="opt-icon">👤</div><span>Menos de 20 por mês</span></button>
+        <button class="opt" data-key="volume" data-val="Entre 20 e 100 leads/mês"><div class="opt-icon">👥</div><span>Entre 20 e 100 por mês</span></button>
+        <button class="opt" data-key="volume" data-val="Mais de 100 leads/mês"><div class="opt-icon">🚀</div><span>Mais de 100 por mês</span></button>
+      </div>
+      <div class="nav"><button class="btn-back" onclick="back(3)">← Voltar</button><button class="btn-next" id="n4" disabled onclick="next(4)">Continuar →</button></div>
+    </div>
+
+    <!-- S5 -->
+    <div class="step" id="s5">
+      <p class="step-label">passo 5 de 7</p>
+      <p class="question">Você organiza seus leads de alguma forma?</p>
+      <div class="options">
+        <button class="opt" data-key="sistema" data-val="Nada — tudo na cabeça ou no WhatsApp"><div class="opt-icon">🧠</div><span>Nada — tudo na cabeça ou no WhatsApp</span></button>
+        <button class="opt" data-key="sistema" data-val="Uso planilha"><div class="opt-icon">📋</div><span>Planilha</span></button>
+        <button class="opt" data-key="sistema" data-val="Uso algum CRM ou app"><div class="opt-icon">⚙️</div><span>Algum CRM ou app</span></button>
+      </div>
+      <div class="nav"><button class="btn-back" onclick="back(4)">← Voltar</button><button class="btn-next" id="n5" disabled onclick="next(5)">Continuar →</button></div>
+    </div>
+
+    <!-- S6 multi -->
+    <div class="step" id="s6">
+      <p class="step-label">passo 6 de 7</p>
+      <p class="question">O que você mais precisa agora?</p>
+      <span class="multi-hint">✦ pode marcar mais de uma</span>
+      <div class="options">
+        <button class="opt multi" data-key="objetivo" data-val="Vender mais a minha mentoria ou serviço"><div class="opt-icon">🚀</div><span>Vender mais a minha mentoria ou serviço</span><div class="check-box"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></button>
+        <button class="opt multi" data-key="objetivo" data-val="Automatizar o atendimento e ganhar tempo"><div class="opt-icon">🤖</div><span>Automatizar o atendimento e ganhar tempo</span><div class="check-box"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></button>
+        <button class="opt multi" data-key="objetivo" data-val="Organizar os leads e parar de perder venda"><div class="opt-icon">📌</div><span>Organizar os leads e parar de perder venda</span><div class="check-box"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></button>
+        <button class="opt multi" data-key="objetivo" data-val="Ter uma régua de follow-up automática"><div class="opt-icon">📅</div><span>Ter uma régua de follow-up automática</span><div class="check-box"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></button>
+      </div>
+      <div class="nav"><button class="btn-back" onclick="back(5)">← Voltar</button><button class="btn-next" id="n6" disabled onclick="next(6)">Continuar →</button></div>
+    </div>
+
+    <!-- S7 -->
+    <div class="step" id="s7">
+      <p class="step-label">passo 7 de 7</p>
+      <p class="question">Quase lá — quem é você?</p>
+      <p class="sub">Vou analisar suas respostas e te mandar o diagnóstico no WhatsApp.</p>
+      <input class="input-field" type="text" id="nome" placeholder="Seu nome" oninput="checkForm()">
+      <input class="input-field" type="tel" id="wa" placeholder="WhatsApp com DDD (ex: 41 99999-0000)" oninput="checkForm()">
+      <div class="nav"><button class="btn-back" onclick="back(6)">← Voltar</button><button class="btn-next" id="n7" disabled onclick="showResult()">Ver meu diagnóstico →</button></div>
+    </div>
+
+    <!-- RESULTADO -->
+    <div class="step" id="sfinal">
+      <div class="result-card" id="result-card"></div>
+
+      <button class="btn-wa" onclick="openWA()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Receber meu diagnóstico no WhatsApp
+      </button>
+      <p class="wa-note">Você vai pro WhatsApp com as respostas já formatadas.</p>
+
+      <!-- UPSELL -->
+      <div class="upsell-card">
+        <div class="upsell-icon">⚡</div>
+        <div class="upsell-text">
+          <p>Quer esse quiz no seu negócio?</p>
+          <span>Posso montar um diagnóstico igual a esse pra você qualificar e capturar leads automaticamente.</span>
+        </div>
+        <button class="btn-upsell" onclick="openUpsell()">Quero saber →</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const answers = {};
+
+    document.querySelectorAll('.opt:not(.multi)').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const key = this.dataset.key;
+        document.querySelectorAll(`[data-key="${key}"]:not(.multi)`).forEach(b => b.classList.remove('selected'));
+        this.classList.add('selected');
+        answers[key] = this.dataset.val;
+        const stepNum = parseInt(this.closest('.step').id.replace('s',''));
+        document.getElementById('n' + stepNum).disabled = false;
+      });
+    });
+
+    document.querySelectorAll('.opt.multi').forEach(btn => {
+      btn.addEventListener('click', function() {
+        this.classList.toggle('selected');
+        const key = this.dataset.key;
+        const sel = [...document.querySelectorAll(`.opt.multi[data-key="${key}"].selected`)].map(b => b.dataset.val);
+        answers[key] = sel.join(' + ');
+        const stepNum = parseInt(this.closest('.step').id.replace('s',''));
+        document.getElementById('n' + stepNum).disabled = sel.length === 0;
+      });
+    });
+
+    function next(from) {
+      document.getElementById('s' + from).classList.remove('active');
+      const to = from + 1;
+      document.getElementById('s' + to).classList.add('active');
+      document.getElementById('prog').style.width = Math.round((to / 7) * 100) + '%';
+      
+    }
+
+    function back(from) {
+      document.getElementById('s' + from).classList.remove('active');
+      const to = from - 1;
+      document.getElementById('s' + to).classList.add('active');
+      document.getElementById('prog').style.width = Math.round((to / 7) * 100) + '%';
+      
+    }
+
+    function checkForm() {
+      const n = document.getElementById('nome').value.trim();
+      const w = document.getElementById('wa').value.trim();
+      document.getElementById('n7').disabled = !(n.length > 1 && w.length > 7);
+    }
+
+    function calcFit() {
+      let score = 0;
+      if (answers.volume && answers.volume.includes('100')) score += 3;
+      else if (answers.volume && answers.volume.includes('20 e 100')) score += 2;
+      else score += 1;
+      if (answers.sistema && answers.sistema.includes('Nada')) score += 2;
+      else if (answers.sistema && answers.sistema.includes('planilha')) score += 1;
+      if (answers.dor && (answers.dor.includes('responder') || answers.dor.includes('follow'))) score += 2;
+      if (answers.canal && answers.canal.includes('Anúncios')) score += 2;
+      if (score >= 6) return 'alto';
+      if (score >= 3) return 'medio';
+      return 'baixo';
+    }
+
+    function showResult() {
+      document.getElementById('s7').classList.remove('active');
+      document.getElementById('prog').style.width = '100%';
+      const fit = calcFit();
+      const nome = document.getElementById('nome').value.trim().split(' ')[0];
+      answers.nome = document.getElementById('nome').value.trim();
+      answers.whatsapp = document.getElementById('wa').value.trim();
+      answers.fit = fit.toUpperCase();
+
+      const fitData = {
+        alto: {
+          badge: 'fit-alto', label: 'Fit alto — pronto pra escalar',
+          title: nome + ', você está perdendo dinheiro agora',
+          desc: 'Seu perfil mostra que os leads chegam mas a operação não acompanha. Um agente de WhatsApp com kanban mudaria sua conversão já na primeira semana.',
+          recs: ['Agente respondendo e qualificando leads 24h no WhatsApp','Kanban de vendas com visibilidade total do funil','Régua de follow-up automática até o fechamento']
+        },
+        medio: {
+          badge: 'fit-medio', label: 'Fit médio — hora de organizar',
+          title: nome + ', você está pronto pro próximo passo',
+          desc: 'Seus leads chegam mas não são trabalhados do jeito certo. Com follow-up e organização você aumenta a conversão sem precisar gerar mais tráfego.',
+          recs: ['Follow-up automático nos leads que sumiram','Organização por etapas no kanban de vendas','Agente treinado com as objeções do seu nicho']
+        },
+        baixo: {
+          badge: 'fit-baixo', label: 'Primeiro: construir a base',
+          title: nome + ', vamos construir a base certa',
+          desc: 'Antes de automatizar, precisamos garantir um fluxo consistente de leads. Quando isso estiver funcionando, a automação vai multiplicar o resultado.',
+          recs: ['Funil de captação com anúncio + agente qualificador','Estratégia de conteúdo para gerar leads orgânicos','Sistema pronto para escalar quando os leads chegarem']
+        }
+      };
+
+      const f = fitData[fit];
+      const recsHtml = f.recs.map(r => `<div class="rec-item"><div class="rec-dot"></div><span>${r}</span></div>`).join('');
+      document.getElementById('result-card').innerHTML = `
+        <span class="fit-badge ${f.badge}">${f.label}</span>
+        <p class="fit-title">${f.title}</p>
+        <p class="fit-desc">${f.desc}</p>
+        ${recsHtml}
+      `;
+      document.getElementById('sfinal').classList.add('active');
+      
+    }
+
+    function openWA() {
+      const msg = `Olá Cauã! Fiz o diagnóstico no site 👇\n\n*Nome:* ${answers.nome}\n*Negócio:* ${answers.negocio || '-'}\n*Vende por:* ${answers.canal || '-'}\n*Maiores dores:* ${answers.dor || '-'}\n*Leads/mês:* ${answers.volume || '-'}\n*Sistema atual:* ${answers.sistema || '-'}\n*Precisa de:* ${answers.objetivo || '-'}\n\n*Diagnóstico: FIT ${answers.fit}*\n\nQuero entender como isso funciona!`;
+      window.open('https://wa.me/5541992361868?text=' + encodeURIComponent(msg), '_blank');
+    }
+
+    function openUpsell() {
+      const nome = answers.nome ? answers.nome.split(' ')[0] : '';
+      const msg = `Oi Cauã! Vi o quiz de diagnóstico e quero um igual pro meu negócio. ${nome ? 'Me chamo ' + nome + '.' : ''} Pode me contar como funciona?`;
+      window.open('https://wa.me/5541992361868?text=' + encodeURIComponent(msg), '_blank');
+    }
+  </script>
+</body>
+</html>
