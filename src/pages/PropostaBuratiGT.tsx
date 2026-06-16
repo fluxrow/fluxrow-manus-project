@@ -318,10 +318,11 @@ function AIChat() {
 /* ---------- Architecture Diagram (15 nodes) ---------- */
 function ArchDiagram() {
   const groups = SYSTEM_GROUPS;
-  const cx = 400, cy = 400, R = 280;
+  const R = 260;
+  const R_sys = 340;
   return (
     <div className="w-full max-w-4xl mx-auto">
-      <svg viewBox="0 0 800 800" className="w-full h-auto">
+      <svg viewBox="-60 -60 920 920" className="w-full h-auto">
         <defs>
           <radialGradient id="hubGlow">
             <stop offset="0%" stopColor={C.primary} stopOpacity="0.4" />
@@ -330,18 +331,28 @@ function ArchDiagram() {
         </defs>
         <circle cx={cx} cy={cy} r="120" fill="url(#hubGlow)" />
 
-        {/* lines + nodes */}
+        {/* area title labels (rendered first so lines/nodes sit on top) */}
         {groups.map((g, gi) => {
           const groupAngle = (gi / groups.length) * Math.PI * 2 - Math.PI / 2;
           const gx = cx + Math.cos(groupAngle) * R;
           const gy = cy + Math.sin(groupAngle) * R;
           return (
+            <text key={`t-${gi}`} x={gx} y={gy - 42} textAnchor="middle" fill={g.color} fontSize="11" fontWeight="700" letterSpacing="2">
+              {g.area.toUpperCase()}
+            </text>
+          );
+        })}
+
+        {/* lines + nodes */}
+        {groups.map((g, gi) => {
+          const groupAngle = (gi / groups.length) * Math.PI * 2 - Math.PI / 2;
+          return (
             <g key={gi}>
               {g.systems.map((s, si) => {
                 const spread = (si - (g.systems.length - 1) / 2) * 0.18;
                 const a = groupAngle + spread;
-                const x = cx + Math.cos(a) * R;
-                const y = cy + Math.sin(a) * R;
+                const x = cx + Math.cos(a) * R_sys;
+                const y = cy + Math.sin(a) * R_sys;
                 return (
                   <g key={si}>
                     <motion.line
@@ -365,9 +376,6 @@ function ArchDiagram() {
                   </g>
                 );
               })}
-              <text x={gx} y={gy - 50} textAnchor="middle" fill={g.color} fontSize="11" fontWeight="700" letterSpacing="2">
-                {g.area.toUpperCase()}
-              </text>
             </g>
           );
         })}
