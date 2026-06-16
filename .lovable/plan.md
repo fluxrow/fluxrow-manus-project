@@ -1,53 +1,87 @@
-# Migração visual: linguagem Burati GT → Fluxrow
+# Plano — Refino visual /agencia
 
-Mantém a paleta dark Fluxrow (#080807, Instrument Serif, DM Mono) e importa só a **linguagem de composição** do Burati GT. Vou página a página, com aprovação entre cada uma.
+## Diagnóstico
 
-## Sistema de design compartilhado (passo 0 — fundação)
+**1. Cards "cinzas e sem harmonia"**
+O `SoftCard` foi desenhado pra fundo escuro (`bg-white/[0.03]`, `border-white/10`). Os overrides globais traduzem isso pra `rgba(26,26,26,0.04)` sobre cream, resultando em blocos quase invisíveis, sem hierarquia e sem peso visual. Falta cor de superfície, sombra suave e ritmo.
 
-Antes de tocar nas páginas, crio primitivas reutilizáveis em `src/components/fluxrow/`:
+**2. Briefing "horroroso"**
+`EnhancedInteractiveBriefing` (457 linhas) usa:
+- Confetti com cores neon (cyan/purple/pink) que brigam com o laranja Burati
+- Emojis (🛒⚙️💼) misturados em cards — quebra a estética editorial
+- Botões e gradientes pensados para tema escuro
+- Step indicator e cards de opção com classes dark que viram blocos cinzas
 
-- **`SectionBadge`** — bolinha de accent + label uppercase tracked `[0.3em]`, padrão de abertura de toda seção.
-- **`Counter`** — número que anima de 0 ao valor final via `framer-motion` + `useInView`, com `prefix`/`suffix`.
-- **`SoftCard`** — wrapper `rounded-2xl border border-white/10 bg-white/[0.03] p-6/p-8` com hover sutil.
-- **`SectionShell`** — `min-h-screen flex items-center px-6 sm:px-10 py-24`, grid `lg:grid-cols-2 gap-12 items-center`, com slot opcional de badge.
-- **`fadeUp`** — variant motion compartilhado (já existe inline no Burati, vira `src/lib/motion.ts`).
+## Mudanças
 
-Adaptação ao dark:
-- Bordas Burati `#E5E5E0` → `border-white/10` (hover `white/20`).
-- Fundos cream `#FAFAF7` → `bg-white/[0.02]` ou `bg-white/[0.04]` para "ilhas" dentro do dark.
-- Accent fica o cyan/serif italic atual da Fluxrow (não importa o laranja Burati).
+### Etapa A — Refino do SoftCard (afeta Home + Agência)
 
-## Ordem de execução (uma por turno, com aprovação)
+Reescrever `src/components/fluxrow/SoftCard.tsx` com tokens próprios da paleta Burati, sem depender dos overrides:
 
-### Etapa 1 — Home (`src/pages/Index.tsx`)
-- Hero ganha SectionBadge no kicker ("FLUXROW · SISTEMAS COM IA").
-- Bloco STATS vira Counters animados em grid 2/4 colunas, mantendo `font-serif` + `gradient-accent-text`.
-- "Para quem é" e demais seções viram `SectionShell` `min-h-screen` com grid 2-col (texto + visual/card).
-- Cards dos caminhos A/B refatorados pra `SoftCard`.
-- Mantém starfield/bg atual da home.
+- **Surface:** `#FAF8F2` (cream levemente mais claro que o fundo `#F5F3EE`) → cria separação real
+- **Border:** `rgba(26,26,26,0.08)` → linha fina editorial
+- **Shadow:** `0 1px 2px rgba(26,26,26,0.04), 0 8px 24px -12px rgba(26,26,26,0.08)` → flutuação sutil
+- **Hover (interactive):** border `rgba(255,103,9,0.35)` + shadow um pouco mais densa
+- **Radius:** mantém `rounded-2xl`
 
-### Etapa 2 — Agência (`src/pages/Agencia.tsx`)
-- Mesma fundação: SectionBadge em cada seção, SectionShell, SoftCard pra serviços.
-- Métricas de resultado viram Counters.
-- Grid 2-col alternando lado do visual (zigzag suave, igual Burati).
+Resultado: cards com presença sem virar bloco pesado. Hierarquia clara contra o fundo.
 
-### Etapa 3 — Conteúdos + Blog
-- `Conteudos.tsx`: hub com SoftCard grid pros artigos, SectionBadge por categoria.
-- `Blog.tsx` + `BlogPost.tsx`: badge no topo, layout single-column respirado, related posts em SoftCard.
+### Etapa B — Reconstrução do Briefing
 
-## Regras de execução
+Substituir `EnhancedInteractiveBriefing` por um novo `BriefingFlow` na linguagem Burati. Manter a mesma lógica de perguntas (i18n keys + `sessionStorage` + WhatsApp ao fim), trocar apenas a casca visual.
 
-1. **Uma página por turno.** Termino, mostro, espero ok antes da próxima.
-2. **Zero mudança de copy** (a menos que peça) — só estrutura visual.
-3. **Zero mudança em rotas, lógica ou tracking.**
-4. **Componentes do passo 0 são criados junto com a Etapa 1** (não em PR separado), pra você já ver eles em uso.
-5. **Memory `mem://style/design-consistency-constraint`** continua válida — nada de SaaS tropes, fundo deep dark, serif + mono mantidos.
+Estrutura nova:
+```text
+┌─────────────────────────────────────────────┐
+│  PROGRESS · 02 / 05         ← voltar        │
+├─────────────────────────────────────────────┤
+│                                             │
+│   Pergunta 02                               │
+│   Qual o seu maior objetivo?                │
+│   subtítulo discreto em DM Mono             │
+│                                             │
+│   ┌──────────┐ ┌──────────┐ ┌──────────┐   │
+│   │ Leads    │ │ Vendas   │ │ Atend.   │   │
+│   │ desc...  │ │ desc...  │ │ desc...  │   │
+│   └──────────┘ └──────────┘ └──────────┘   │
+│                                             │
+│              [continuar →]                  │
+└─────────────────────────────────────────────┘
+```
+
+Decisões:
+- **Sem emojis nos cards** (mantém ícones lucide pequenos, monocromáticos)
+- **Sem confetti neon** → tela final com `Sparkles` em laranja e mensagem editorial
+- **Step indicator** vira barra fina cream + segmento laranja preenchendo
+- **Cards de opção** usam o novo SoftCard com estado `selected` (border laranja sólido + fundo cream-claro)
+- **Transições Typeform-style** (slide + fade) com `framer-motion` — já temos `fadeUp` em `@/lib/motion`
+- **Tela final** com resumo das respostas + CTA WhatsApp (preserva tracking via `sessionStorage`)
+- **Mantém `useTranslation`** — não mexe em copy nem keys
+
+### Etapa C — Pequenos ajustes de harmonia
+
+- `border-t border-white/10` nas SectionShells → trocar por `border-t border-[#1A1A1A]/8` direto na Agencia/Home pra não depender do override
+- Hover dos links do nav: já está em laranja, manter
+- Counters do hero da Agência: garantir que o `border-t` acima dos números fique no tom certo
 
 ## Detalhes técnicos
 
-- `framer-motion` já está no projeto (usado em Burati e outras propostas).
-- Novos arquivos: `src/components/fluxrow/SectionBadge.tsx`, `Counter.tsx`, `SoftCard.tsx`, `SectionShell.tsx`, `src/lib/motion.ts`.
-- Páginas editadas: `Index.tsx`, `Agencia.tsx`, `Conteudos.tsx`, `Blog.tsx`, `BlogPost.tsx`.
-- Header/Footer/SEO permanecem intactos.
+**Arquivos alterados:**
+- `src/components/fluxrow/SoftCard.tsx` — reescrita completa
+- `src/components/agency/BriefingFlow.tsx` — novo arquivo (~250 linhas)
+- `src/pages/Agencia.tsx` — troca import `EnhancedInteractiveBriefing` → `BriefingFlow`
+- `src/components/fluxrow/SectionShell.tsx` — ajuste do `divided` para cor neutra
 
-Quando aprovar, começo pela **fundação + Etapa 1 (Home)**.
+**Arquivos preservados (não tocar):**
+- `EnhancedInteractiveBriefing.tsx` fica no repo (caso queira reverter)
+- i18n (`src/i18n/locales/*.json`) — usa as mesmas keys do briefing antigo
+
+**Sem mudanças em:** rotas, dados, lógica de submit, tracking, SEO.
+
+## Ordem de execução
+
+1. SoftCard novo (impacto imediato Home + Agência)
+2. BriefingFlow novo + swap no Agencia.tsx
+3. Ajustes finos de divisores
+
+Posso seguir?
