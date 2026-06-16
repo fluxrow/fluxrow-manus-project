@@ -33,10 +33,11 @@ export function SectionShell({
   return (
     <section
       id={id}
+      style={divided ? { borderColor: "rgba(26,26,26,0.08)" } : undefined}
       className={[
         "px-6 sm:px-10",
         full ? "min-h-screen flex items-center py-24" : "py-20 md:py-24",
-        divided ? "border-t border-white/5" : "",
+        divided ? "border-t" : "",
         className,
       ]
         .filter(Boolean)
