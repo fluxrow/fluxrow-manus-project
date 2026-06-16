@@ -59,6 +59,7 @@ const KitReader = React.lazy(() => import("./pages/KitReader"));
 const Unsubscribe = React.lazy(() => import("./pages/Unsubscribe"));
 const Blog = React.lazy(() => import("./pages/Blog"));
 const BlogPost = React.lazy(() => import("./pages/BlogPost"));
+const Diagnostico = React.lazy(() => import("./pages/Diagnostico"));
 
 const queryClient = new QueryClient();
 
