@@ -919,3 +919,52 @@ img:not(.lazy) {
     position: relative !important;
   }
 }
+
+/* ============================================================
+   Home palette toggle — Burati GT light variant
+   Activated when wrapper has data-palette="burati"
+   ============================================================ */
+[data-palette="burati"] {
+  background-color: #F5F3EE !important;
+  color: #1A1A1A !important;
+}
+[data-palette="burati"] .text-white,
+[data-palette="burati"] h1,
+[data-palette="burati"] h2,
+[data-palette="burati"] h3,
+[data-palette="burati"] p,
+[data-palette="burati"] span,
+[data-palette="burati"] li,
+[data-palette="burati"] a {
+  color: #1A1A1A;
+}
+[data-palette="burati"] .text-white\/85,
+[data-palette="burati"] .text-white\/75,
+[data-palette="burati"] .text-white\/70,
+[data-palette="burati"] .text-white\/65,
+[data-palette="burati"] .text-white\/60,
+[data-palette="burati"] .text-white\/55,
+[data-palette="burati"] .text-white\/50,
+[data-palette="burati"] .text-white\/40 {
+  color: rgba(26, 26, 26, 0.65);
+}
+[data-palette="burati"] .border-white\/15,
+[data-palette="burati"] .border-white\/10,
+[data-palette="burati"] .border-white\/5 {
+  border-color: rgba(26, 26, 26, 0.12) !important;
+}
+[data-palette="burati"] .bg-white\/\[0\.04\],
+[data-palette="burati"] .bg-white\/\[0\.03\] {
+  background-color: rgba(26, 26, 26, 0.025) !important;
+}
+[data-palette="burati"] .bg-white\/85 {
+  background-color: #FF6709 !important;
+}
+[data-palette="burati"] .gradient-accent-text {
+  background: none !important;
+  -webkit-text-fill-color: #FF6709 !important;
+  color: #FF6709 !important;
+}
+[data-palette="burati"] [data-section-badge-dot] {
+  background-color: #FF6709 !important;
+}
