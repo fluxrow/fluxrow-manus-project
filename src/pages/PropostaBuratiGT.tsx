@@ -318,6 +318,7 @@ function AIChat() {
 /* ---------- Architecture Diagram (15 nodes) ---------- */
 function ArchDiagram() {
   const groups = SYSTEM_GROUPS;
+  const cx = 400, cy = 400;
   const R = 260;
   const R_sys = 340;
   return (
