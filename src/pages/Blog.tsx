@@ -70,7 +70,7 @@ export default function Blog() {
   const canonical = `https://fluxrow.com/blog${lang === "en" ? "?lang=en" : ""}`;
 
   return (
-    <div className="min-h-screen bg-[#080807] text-white">
+    <div className="min-h-screen bg-[#080807] text-[#1A1A1A]">
       <Helmet>
         <html lang={lang === "en" ? "en" : "pt-BR"} />
         <title>{t.title}</title>
@@ -86,45 +86,45 @@ export default function Blog() {
         <link rel="alternate" type="application/rss+xml" title="Fluxrow Blog RSS" href={`https://lpuybtjctiffqlabjszc.supabase.co/functions/v1/blog-rss?lang=${lang}`} />
       </Helmet>
 
-      <header className="border-b border-white/10 px-6 py-8 sticky top-0 bg-[#080807]/90 backdrop-blur z-10">
+      <header className="border-b border-[#1A1A1A]/12 px-6 py-8 sticky top-0 bg-[#F5F3EE]/92 backdrop-blur z-10">
         <div className="max-w-5xl mx-auto flex items-center justify-between">
           <Link to="/" className="font-serif text-2xl">Fluxrow</Link>
           <div className="flex items-center gap-4 text-sm">
-            <button onClick={() => { window.location.search = "?lang=pt"; }} className={lang === "pt" ? "text-white" : "text-white/50"}>PT</button>
-            <button onClick={() => { window.location.search = "?lang=en"; }} className={lang === "en" ? "text-white" : "text-white/50"}>EN</button>
+            <button onClick={() => { window.location.search = "?lang=pt"; }} className={lang === "pt" ? "text-[#1A1A1A]" : "text-[#1A1A1A]/55"}>PT</button>
+            <button onClick={() => { window.location.search = "?lang=en"; }} className={lang === "en" ? "text-[#1A1A1A]" : "text-[#1A1A1A]/55"}>EN</button>
           </div>
         </div>
       </header>
 
       <main className="max-w-5xl mx-auto px-6 py-16">
         <h1 className="font-serif text-5xl md:text-6xl mb-4">{t.h1}</h1>
-        <p className="text-white/60 text-lg max-w-2xl mb-16">{t.sub}</p>
+        <p className="text-[#1A1A1A]/55 text-lg max-w-2xl mb-16">{t.sub}</p>
 
         {loading ? (
-          <div className="text-white/55">…</div>
+          <div className="text-[#1A1A1A]/55">…</div>
         ) : posts.length === 0 ? (
-          <div className="text-white/55 border border-dashed border-white/10 rounded-xl p-12 text-center">{t.empty}</div>
+          <div className="text-[#1A1A1A]/55 border border-dashed border-[#1A1A1A]/12 rounded-xl p-12 text-center">{t.empty}</div>
         ) : (
           <div className="grid gap-8">
             {posts.map((p) => (
               <Link
                 key={p.slug}
                 to={`/blog/${p.slug}?lang=${lang}`}
-                className="group block border-b border-white/10 pb-8 hover:border-white/30 transition"
+                className="group block border-b border-[#1A1A1A]/12 pb-8 hover:border-white/30 transition"
               >
-                <div className="flex items-center gap-4 text-xs text-white/55 mb-3 font-mono uppercase tracking-wider">
+                <div className="flex items-center gap-4 text-xs text-[#1A1A1A]/55 mb-3 font-mono uppercase tracking-wider">
                   <span className="flex items-center gap-1.5"><Calendar className="w-3 h-3" />{new Date(p.published_at).toLocaleDateString(lang === "en" ? "en-US" : "pt-BR", { day: "2-digit", month: "short", year: "numeric" })}</span>
                   <span className="flex items-center gap-1.5"><Clock className="w-3 h-3" />{p.reading_minutes} {t.min}</span>
                 </div>
-                <h2 className="font-serif text-3xl md:text-4xl mb-3 group-hover:text-white transition">{p.title}</h2>
-                <p className="text-white/60 text-base mb-4 max-w-3xl">{p.excerpt}</p>
+                <h2 className="font-serif text-3xl md:text-4xl mb-3 group-hover:text-[#1A1A1A] transition">{p.title}</h2>
+                <p className="text-[#1A1A1A]/55 text-base mb-4 max-w-3xl">{p.excerpt}</p>
                 <div className="flex items-center justify-between">
                   <div className="flex flex-wrap gap-2">
                     {p.tags.slice(0, 4).map((tag) => (
-                      <span key={tag} className="text-xs px-2 py-1 border border-white/10 rounded text-white/50 font-mono">{tag}</span>
+                      <span key={tag} className="text-xs px-2 py-1 border border-[#1A1A1A]/12 rounded text-[#1A1A1A]/55 font-mono">{tag}</span>
                     ))}
                   </div>
-                  <span className="text-sm text-white/55 group-hover:text-white flex items-center gap-1 transition">
+                  <span className="text-sm text-[#1A1A1A]/55 group-hover:text-[#1A1A1A] flex items-center gap-1 transition">
                     {t.read} <ArrowRight className="w-3 h-3" />
                   </span>
                 </div>

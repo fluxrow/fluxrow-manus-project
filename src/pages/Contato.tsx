@@ -49,7 +49,7 @@ const Contato = () => {
   ];
 
   return (
-    <div className="min-h-screen text-white" style={{ backgroundColor: '#080807' }}>
+    <div className="min-h-screen text-[#1A1A1A]" style={{ backgroundColor: '#080807' }}>
       <SEO
         title="Contato — Fluxrow"
         description="Fale com a Fluxrow. WhatsApp, e-mail ou formulário. Atendemos projetos de sistemas com IA, automação e SaaS sob medida."
@@ -59,13 +59,13 @@ const Contato = () => {
 
       <main className="pt-32 pb-20">
         <section className="max-w-5xl mx-auto px-6 mb-16">
-          <p className="text-xs uppercase tracking-[0.3em] text-white/55 font-mono mb-6">
+          <p className="text-xs uppercase tracking-[0.3em] text-[#1A1A1A]/55 font-mono mb-6">
             Contato
           </p>
           <h1 className="font-serif text-[2.5rem] sm:text-5xl md:text-6xl leading-[1.05] mb-6 max-w-3xl break-words">
             Conta o que você precisa. A gente responde rápido.
           </h1>
-          <p className="text-base sm:text-lg text-white/60 max-w-2xl leading-relaxed">
+          <p className="text-base sm:text-lg text-[#1A1A1A]/55 max-w-2xl leading-relaxed">
             Pra dúvida sobre produto, escopo de projeto ou parceria — escolha o canal
             mais confortável pra você.
           </p>
@@ -78,21 +78,21 @@ const Contato = () => {
               href={c.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="group block border border-white/10 hover:border-white/30 transition-colors p-6 sm:p-8 rounded-sm bg-white/[0.02] hover:bg-white/[0.04]"
+              className="group block border border-[#1A1A1A]/12 hover:border-white/30 transition-colors p-6 sm:p-8 rounded-sm bg-white/[0.02] hover:bg-[#1A1A1A]/[0.04]"
             >
               <div className="flex items-start gap-4 mb-5">
-                <c.icon className="w-5 h-5 text-white/60 mt-1 shrink-0" />
+                <c.icon className="w-5 h-5 text-[#1A1A1A]/55 mt-1 shrink-0" />
                 <div className="min-w-0">
-                  <p className="text-xs uppercase tracking-[0.2em] text-white/55 font-mono mb-2">
+                  <p className="text-xs uppercase tracking-[0.2em] text-[#1A1A1A]/55 font-mono mb-2">
                     {c.eyebrow}
                   </p>
                   <h2 className="font-serif text-xl sm:text-2xl leading-tight break-words">{c.title}</h2>
                 </div>
               </div>
-              <p className="text-white/60 text-sm leading-relaxed mb-6">
+              <p className="text-[#1A1A1A]/55 text-sm leading-relaxed mb-6">
                 {c.description}
               </p>
-              <span className="inline-flex items-center gap-2 text-sm font-mono text-white group-hover:gap-3 transition-all">
+              <span className="inline-flex items-center gap-2 text-sm font-mono text-[#1A1A1A] group-hover:gap-3 transition-all">
                 {c.action} →
               </span>
             </a>
@@ -100,7 +100,7 @@ const Contato = () => {
         </section>
 
         <section className="max-w-5xl mx-auto px-6 mb-16">
-          <p className="text-xs uppercase tracking-[0.2em] text-white/55 font-mono mb-3">
+          <p className="text-xs uppercase tracking-[0.2em] text-[#1A1A1A]/55 font-mono mb-3">
             Formulário
           </p>
           <h2 className="font-serif text-3xl md:text-4xl leading-tight mb-8">
@@ -110,11 +110,11 @@ const Contato = () => {
           {!isSubmitted ? (
             <form
               onSubmit={handleSubmit}
-              className="border border-white/10 rounded-sm bg-white/[0.02] p-8 space-y-5"
+              className="border border-[#1A1A1A]/12 rounded-sm bg-white/[0.02] p-8 space-y-5"
             >
               <div className="grid md:grid-cols-2 gap-5">
                 <div>
-                  <label className="block text-xs uppercase tracking-wider text-white/50 font-mono mb-2">
+                  <label className="block text-xs uppercase tracking-wider text-[#1A1A1A]/55 font-mono mb-2">
                     Nome
                   </label>
                   <input
@@ -123,12 +123,12 @@ const Contato = () => {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full bg-transparent border border-white/15 rounded-sm px-4 py-3 text-white placeholder-white/30 focus:border-white/50 focus:outline-none transition-colors"
+                    className="w-full bg-transparent border border-[#1A1A1A]/12 rounded-sm px-4 py-3 text-[#1A1A1A] placeholder-white/30 focus:border-[#FF6709]/60 focus:outline-none transition-colors"
                     placeholder="Seu nome"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs uppercase tracking-wider text-white/50 font-mono mb-2">
+                  <label className="block text-xs uppercase tracking-wider text-[#1A1A1A]/55 font-mono mb-2">
                     E-mail
                   </label>
                   <input
@@ -137,14 +137,14 @@ const Contato = () => {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full bg-transparent border border-white/15 rounded-sm px-4 py-3 text-white placeholder-white/30 focus:border-white/50 focus:outline-none transition-colors"
+                    className="w-full bg-transparent border border-[#1A1A1A]/12 rounded-sm px-4 py-3 text-[#1A1A1A] placeholder-white/30 focus:border-[#FF6709]/60 focus:outline-none transition-colors"
                     placeholder="voce@empresa.com"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs uppercase tracking-wider text-white/50 font-mono mb-2">
+                <label className="block text-xs uppercase tracking-wider text-[#1A1A1A]/55 font-mono mb-2">
                   Assunto
                 </label>
                 <select
@@ -152,7 +152,7 @@ const Contato = () => {
                   value={formData.subject}
                   onChange={handleChange}
                   required
-                  className="w-full bg-[#080807] border border-white/15 rounded-sm px-4 py-3 text-white focus:border-white/50 focus:outline-none transition-colors"
+                  className="w-full bg-[#080807] border border-[#1A1A1A]/12 rounded-sm px-4 py-3 text-[#1A1A1A] focus:border-[#FF6709]/60 focus:outline-none transition-colors"
                 >
                   <option value="">Selecione</option>
                   <option value="produto">Dúvida sobre o AI Operator Kit</option>
@@ -163,7 +163,7 @@ const Contato = () => {
               </div>
 
               <div>
-                <label className="block text-xs uppercase tracking-wider text-white/50 font-mono mb-2">
+                <label className="block text-xs uppercase tracking-wider text-[#1A1A1A]/55 font-mono mb-2">
                   Mensagem
                 </label>
                 <textarea
@@ -172,28 +172,28 @@ const Contato = () => {
                   onChange={handleChange}
                   required
                   rows={5}
-                  className="w-full bg-transparent border border-white/15 rounded-sm px-4 py-3 text-white placeholder-white/30 focus:border-white/50 focus:outline-none transition-colors resize-none"
+                  className="w-full bg-transparent border border-[#1A1A1A]/12 rounded-sm px-4 py-3 text-[#1A1A1A] placeholder-white/30 focus:border-[#FF6709]/60 focus:outline-none transition-colors resize-none"
                   placeholder="Conte rapidamente seu contexto e o que precisa."
                 />
               </div>
 
               <button
                 type="submit"
-                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-white text-[#080807] font-medium rounded-sm hover:bg-white/90 transition-colors text-sm"
+                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-[#FF6709] text-[#F5F3EE] font-medium rounded-sm hover:bg-[#e85a00] transition-colors text-sm"
               >
                 <Send className="w-4 h-4" /> Enviar mensagem
               </button>
             </form>
           ) : (
-            <div className="border border-white/10 rounded-sm bg-white/[0.02] p-10 text-center">
-              <CheckCircle className="w-10 h-10 text-white/70 mx-auto mb-5" />
+            <div className="border border-[#1A1A1A]/12 rounded-sm bg-white/[0.02] p-10 text-center">
+              <CheckCircle className="w-10 h-10 text-[#1A1A1A]/75 mx-auto mb-5" />
               <h3 className="font-serif text-2xl mb-3">Mensagem recebida.</h3>
-              <p className="text-white/60 mb-6 max-w-md mx-auto">
+              <p className="text-[#1A1A1A]/55 mb-6 max-w-md mx-auto">
                 A gente responde em até 1 dia útil. Pra urgência, prefira o WhatsApp.
               </p>
               <button
                 onClick={() => setIsSubmitted(false)}
-                className="inline-flex items-center gap-2 text-sm font-mono text-white/70 hover:text-white transition-colors"
+                className="inline-flex items-center gap-2 text-sm font-mono text-[#1A1A1A]/75 hover:text-[#1A1A1A] transition-colors"
               >
                 Enviar outra mensagem
               </button>
@@ -201,18 +201,18 @@ const Contato = () => {
           )}
         </section>
 
-        <section className="max-w-5xl mx-auto px-6 pt-12 border-t border-white/5">
-          <div className="grid sm:grid-cols-3 gap-6 text-sm text-white/60">
+        <section className="max-w-5xl mx-auto px-6 pt-12 border-t border-[#1A1A1A]/12">
+          <div className="grid sm:grid-cols-3 gap-6 text-sm text-[#1A1A1A]/55">
             <div className="flex items-center gap-3">
-              <Phone className="w-4 h-4 text-white/55" />
+              <Phone className="w-4 h-4 text-[#1A1A1A]/55" />
               <span>(41) 99236-1868</span>
             </div>
             <div className="flex items-center gap-3">
-              <Mail className="w-4 h-4 text-white/55" />
+              <Mail className="w-4 h-4 text-[#1A1A1A]/55" />
               <span>contato@fluxrow.com</span>
             </div>
             <div className="flex items-center gap-3">
-              <MapPin className="w-4 h-4 text-white/55" />
+              <MapPin className="w-4 h-4 text-[#1A1A1A]/55" />
               <span>Curitiba · PR</span>
             </div>
           </div>
@@ -224,7 +224,7 @@ const Contato = () => {
                 href={s.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white/50 hover:text-white transition-colors"
+                className="text-[#1A1A1A]/55 hover:text-[#1A1A1A] transition-colors"
                 aria-label={s.name}
               >
                 <s.icon className="w-5 h-5" />

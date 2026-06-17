@@ -87,13 +87,13 @@ export default function BlogPost() {
   }, [slug]);
 
   if (loading) {
-    return <div className="min-h-screen bg-[#080807] flex items-center justify-center text-white/55">…</div>;
+    return <div className="min-h-screen bg-[#080807] flex items-center justify-center text-[#1A1A1A]/55">…</div>;
   }
 
   if (!post) {
     return (
-      <div className="min-h-screen bg-[#080807] text-white flex flex-col items-center justify-center px-6">
-        <p className="text-white/60 mb-4">{lang === "en" ? "Article not found." : "Artigo não encontrado."}</p>
+      <div className="min-h-screen bg-[#080807] text-[#1A1A1A] flex flex-col items-center justify-center px-6">
+        <p className="text-[#1A1A1A]/55 mb-4">{lang === "en" ? "Article not found." : "Artigo não encontrado."}</p>
         <Link to="/blog" className="underline">{lang === "en" ? "Back to blog" : "Voltar ao blog"}</Link>
       </div>
     );
@@ -118,7 +118,7 @@ export default function BlogPost() {
   };
 
   return (
-    <div className="min-h-screen bg-[#080807] text-white">
+    <div className="min-h-screen bg-[#080807] text-[#1A1A1A]">
       <Helmet>
         <html lang={lang === "en" ? "en" : "pt-BR"} />
         <title>{post.seo_title || post.title}</title>
@@ -138,13 +138,13 @@ export default function BlogPost() {
         <script type="application/ld+json">{JSON.stringify(articleSchema)}</script>
       </Helmet>
 
-      <header className="border-b border-white/10 px-6 py-6 sticky top-0 bg-[#080807]/90 backdrop-blur z-10">
+      <header className="border-b border-[#1A1A1A]/12 px-6 py-6 sticky top-0 bg-[#F5F3EE]/92 backdrop-blur z-10">
         <div className="max-w-3xl mx-auto flex items-center justify-between">
-          <Link to="/blog" className="text-sm text-white/60 hover:text-white flex items-center gap-2">
+          <Link to="/blog" className="text-sm text-[#1A1A1A]/55 hover:text-[#1A1A1A] flex items-center gap-2">
             <ArrowLeft className="w-4 h-4" /> {lang === "en" ? "All articles" : "Todos os artigos"}
           </Link>
           {hasOtherLang && (
-            <a href={lang === "en" ? ptUrl : enUrl} className="text-xs font-mono text-white/50 hover:text-white">
+            <a href={lang === "en" ? ptUrl : enUrl} className="text-xs font-mono text-[#1A1A1A]/55 hover:text-[#1A1A1A]">
               {lang === "en" ? "Ler em PT" : "Read in EN"}
             </a>
           )}
@@ -152,34 +152,34 @@ export default function BlogPost() {
       </header>
 
       <article className="max-w-3xl mx-auto px-6 py-16">
-        <div className="flex items-center gap-4 text-xs text-white/55 mb-4 font-mono uppercase tracking-wider">
+        <div className="flex items-center gap-4 text-xs text-[#1A1A1A]/55 mb-4 font-mono uppercase tracking-wider">
           <span className="flex items-center gap-1.5"><Calendar className="w-3 h-3" />{new Date(post.published_at).toLocaleDateString(lang === "en" ? "en-US" : "pt-BR", { day: "2-digit", month: "short", year: "numeric" })}</span>
           <span className="flex items-center gap-1.5"><Clock className="w-3 h-3" />{post.reading_minutes} {lang === "en" ? "min read" : "min de leitura"}</span>
         </div>
 
         <h1 className="font-serif text-4xl md:text-5xl leading-tight mb-6">{post.title}</h1>
-        <p className="text-white/70 text-lg mb-10">{post.excerpt}</p>
+        <p className="text-[#1A1A1A]/75 text-lg mb-10">{post.excerpt}</p>
 
         <div className="prose prose-invert prose-lg max-w-none
-          prose-headings:font-serif prose-headings:text-white
+          prose-headings:font-serif prose-headings:text-[#1A1A1A]
           prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-4
           prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3
-          prose-p:text-white/80 prose-p:leading-relaxed
-          prose-a:text-white prose-a:no-underline hover:prose-a:underline
-          prose-strong:text-white
-          prose-li:text-white/80
-          prose-code:text-cyan-200 prose-code:bg-white/5 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded
-          prose-blockquote:border-l-cyan-500 prose-blockquote:text-white/60">
+          prose-p:text-[#1A1A1A]/75 prose-p:leading-relaxed
+          prose-a:text-[#1A1A1A] prose-a:no-underline hover:prose-a:underline
+          prose-strong:text-[#1A1A1A]
+          prose-li:text-[#1A1A1A]/75
+          prose-code:text-cyan-200 prose-code:bg-[#1A1A1A]/[0.04] prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded
+          prose-blockquote:border-l-cyan-500 prose-blockquote:text-[#1A1A1A]/55">
           <ReactMarkdown remarkPlugins={[remarkGfm]}>{post.body_md}</ReactMarkdown>
         </div>
 
         {post.sources?.length > 0 && (
-          <div className="mt-16 pt-8 border-t border-white/10">
-            <h3 className="font-serif text-lg mb-4 text-white/60">{lang === "en" ? "Sources" : "Fontes consultadas"}</h3>
+          <div className="mt-16 pt-8 border-t border-[#1A1A1A]/12">
+            <h3 className="font-serif text-lg mb-4 text-[#1A1A1A]/55">{lang === "en" ? "Sources" : "Fontes consultadas"}</h3>
             <ul className="space-y-2 text-sm">
               {post.sources.map((s, i) => (
                 <li key={i}>
-                  <a href={s.url} target="_blank" rel="noopener noreferrer" className="text-white/50 hover:text-white inline-flex items-center gap-2">
+                  <a href={s.url} target="_blank" rel="noopener noreferrer" className="text-[#1A1A1A]/55 hover:text-[#1A1A1A] inline-flex items-center gap-2">
                     <ExternalLink className="w-3 h-3" />
                     {s.title || s.url.replace(/^https?:\/\//, "")}
                   </a>
@@ -192,7 +192,7 @@ export default function BlogPost() {
         {post.tags?.length > 0 && (
           <div className="mt-8 flex flex-wrap gap-2">
             {post.tags.map((tag) => (
-              <span key={tag} className="text-xs px-2 py-1 border border-white/10 rounded text-white/50 font-mono">{tag}</span>
+              <span key={tag} className="text-xs px-2 py-1 border border-[#1A1A1A]/12 rounded text-[#1A1A1A]/55 font-mono">{tag}</span>
             ))}
           </div>
         )}
@@ -202,12 +202,12 @@ export default function BlogPost() {
           <h3 className="font-serif text-2xl mb-3">
             {lang === "en" ? "Want to put AI to work in your business?" : "Quer colocar IA pra trabalhar no seu negócio?"}
           </h3>
-          <p className="text-white/70 mb-5">
+          <p className="text-[#1A1A1A]/75 mb-5">
             {lang === "en"
               ? "The AI Operator Kit is the practitioner's playbook to ship real AI workflows in days, not months."
               : "O AI Operator Kit é o playbook prático para você operar IA de verdade em dias, não meses."}
           </p>
-          <Link to={`/produtos/ai-operator-kit?lang=${lang}`} className="inline-block bg-white text-black px-6 py-3 rounded-lg font-medium hover:bg-white/90 transition">
+          <Link to={`/produtos/ai-operator-kit?lang=${lang}`} className="inline-block bg-white text-black px-6 py-3 rounded-lg font-medium hover:bg-[#e85a00] transition">
             {lang === "en" ? "See the Kit →" : "Conhecer o Kit →"}
           </Link>
         </div>
@@ -217,9 +217,9 @@ export default function BlogPost() {
             <h3 className="font-serif text-2xl mb-6">{lang === "en" ? "Read next" : "Leia também"}</h3>
             <div className="grid gap-4">
               {related.map((r) => (
-                <Link key={r.slug} to={`/blog/${r.slug}?lang=${lang}`} className="block border border-white/10 rounded-lg p-5 hover:border-white/30 transition">
+                <Link key={r.slug} to={`/blog/${r.slug}?lang=${lang}`} className="block border border-[#1A1A1A]/12 rounded-lg p-5 hover:border-white/30 transition">
                   <h4 className="font-serif text-lg mb-2">{r.title}</h4>
-                  <p className="text-white/50 text-sm line-clamp-2">{r.excerpt}</p>
+                  <p className="text-[#1A1A1A]/55 text-sm line-clamp-2">{r.excerpt}</p>
                 </Link>
               ))}
             </div>
