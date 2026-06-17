@@ -176,7 +176,7 @@ const Agencia = () => {
             custom={2}
             initial="hidden"
             animate="show"
-            className="text-lg md:text-xl text-white/70 max-w-2xl mb-12 leading-relaxed"
+            className="text-lg md:text-xl text-[#1A1A1A]/75 max-w-2xl mb-12 leading-relaxed"
           >
             Sistemas, SaaS e automações sob medida pra empresas que querem
             terceirizar a infraestrutura técnica e focar no negócio.
@@ -199,14 +199,14 @@ const Agencia = () => {
               href={WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 px-7 py-3.5 border border-white/15 rounded-md hover:border-white/30 transition-colors"
+              className="inline-flex items-center justify-center gap-2 px-7 py-3.5 border border-[#1A1A1A]/12 rounded-md hover:border-white/30 transition-colors"
             >
               <MessageCircle className="w-4 h-4" /> WhatsApp direto
             </a>
           </motion.div>
 
           {/* Counters */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-y-10 gap-x-6 border-t border-white/10 pt-10">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-y-10 gap-x-6 border-t border-[#1A1A1A]/12 pt-10">
             {STATS.map((s, i) => (
               <motion.div
                 key={s.label}
@@ -219,7 +219,7 @@ const Agencia = () => {
                 <p className="font-serif text-4xl md:text-5xl gradient-accent-text leading-none mb-3">
                   <Counter to={s.value} prefix={s.prefix} suffix={s.suffix} />
                 </p>
-                <p className="text-xs uppercase tracking-[0.2em] text-white/55 font-mono">
+                <p className="text-xs uppercase tracking-[0.2em] text-[#1A1A1A]/55 font-mono">
                   {s.label}
                 </p>
               </motion.div>
@@ -237,7 +237,7 @@ const Agencia = () => {
                 <span className="gradient-accent-text italic">Uma só ponta.</span>
               </h2>
             </div>
-            <p className="text-white/65 leading-relaxed lg:pt-12">
+            <p className="text-[#1A1A1A]/55 leading-relaxed lg:pt-12">
               Estratégia, sistema, automação e operação contínua. Tudo construído
               por um time só — sem terceirizar pedaços críticos da sua operação.
             </p>
@@ -246,14 +246,14 @@ const Agencia = () => {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {SERVICES.map((s) => (
               <SoftCard key={s.title} padding="lg" className="h-full">
-                <s.icon className="w-5 h-5 text-white/55 mb-5" strokeWidth={1.6} />
-                <p className="text-[11px] uppercase tracking-[0.3em] text-white/55 font-mono mb-3">
+                <s.icon className="w-5 h-5 text-[#1A1A1A]/55 mb-5" strokeWidth={1.6} />
+                <p className="text-[11px] uppercase tracking-[0.3em] text-[#1A1A1A]/55 font-mono mb-3">
                   {s.tag}
                 </p>
                 <h3 className="font-serif text-2xl mb-3 leading-tight">
                   {s.title}
                 </h3>
-                <p className="text-sm text-white/65 leading-relaxed">{s.body}</p>
+                <p className="text-sm text-[#1A1A1A]/55 leading-relaxed">{s.body}</p>
               </SoftCard>
             ))}
           </div>
@@ -269,7 +269,7 @@ const Agencia = () => {
                 <span className="gradient-accent-text italic">no mundo real.</span>
               </h2>
             </div>
-            <p className="text-sm font-mono text-white/55 max-w-xs">
+            <p className="text-sm font-mono text-[#1A1A1A]/55 max-w-xs">
               Recortes de projetos entregues nos últimos 18 meses.
             </p>
           </div>
@@ -277,20 +277,20 @@ const Agencia = () => {
           <div className="grid md:grid-cols-2 gap-4">
             {CASES.map((c) => (
               <SoftCard key={c.title} padding="lg" className="h-full">
-                <p className="text-[11px] uppercase tracking-[0.3em] text-white/55 font-mono mb-4">
+                <p className="text-[11px] uppercase tracking-[0.3em] text-[#1A1A1A]/55 font-mono mb-4">
                   {c.meta}
                 </p>
                 <h3 className="font-serif text-2xl md:text-3xl mb-3 leading-tight">
                   {c.title}
                 </h3>
-                <p className="text-sm text-white/65 leading-relaxed mb-6">
+                <p className="text-sm text-[#1A1A1A]/55 leading-relaxed mb-6">
                   {c.body}
                 </p>
-                <div className="flex items-baseline gap-3 pt-5 border-t border-white/10">
+                <div className="flex items-baseline gap-3 pt-5 border-t border-[#1A1A1A]/12">
                   <p className="font-serif text-3xl gradient-accent-text leading-none">
                     {c.metric}
                   </p>
-                  <p className="text-xs uppercase tracking-[0.2em] text-white/55 font-mono">
+                  <p className="text-xs uppercase tracking-[0.2em] text-[#1A1A1A]/55 font-mono">
                     {c.metricLabel}
                   </p>
                 </div>
@@ -309,7 +309,7 @@ const Agencia = () => {
                 <span className="gradient-accent-text italic">Sem mistério.</span>
               </h2>
             </div>
-            <p className="text-white/65 leading-relaxed lg:pt-12">
+            <p className="text-[#1A1A1A]/55 leading-relaxed lg:pt-12">
               Diagnóstico, arquitetura, build e operação. Cada fase com entregáveis
               claros e prazo definido — você acompanha tudo em tempo real.
             </p>
@@ -319,15 +319,15 @@ const Agencia = () => {
             {PROCESS.map((p) => (
               <SoftCard key={p.step} padding="lg" className="h-full">
                 <div className="flex items-center justify-between mb-6">
-                  <p className="font-mono text-xs uppercase tracking-[0.3em] text-white/55">
+                  <p className="font-mono text-xs uppercase tracking-[0.3em] text-[#1A1A1A]/55">
                     {p.step}
                   </p>
-                  <p.icon className="w-4 h-4 text-white/55" strokeWidth={1.6} />
+                  <p.icon className="w-4 h-4 text-[#1A1A1A]/55" strokeWidth={1.6} />
                 </div>
                 <h3 className="font-serif text-xl mb-3 leading-tight">
                   {p.title}
                 </h3>
-                <p className="text-sm text-white/65 leading-relaxed">{p.body}</p>
+                <p className="text-sm text-[#1A1A1A]/55 leading-relaxed">{p.body}</p>
               </SoftCard>
             ))}
           </div>
@@ -337,7 +337,7 @@ const Agencia = () => {
         <section
           id="briefing"
           aria-label="Briefing Inteligente"
-          className="border-t border-white/10"
+          className="border-t border-[#1A1A1A]/12"
         >
           <BriefingFlow />
         </section>
@@ -352,7 +352,7 @@ const Agencia = () => {
                 a infraestrutura?
               </span>
             </h2>
-            <p className="text-white/65 leading-relaxed max-w-xl mx-auto mb-10">
+            <p className="text-[#1A1A1A]/55 leading-relaxed max-w-xl mx-auto mb-10">
               Conversa de 30 minutos, sem custo. A gente entende o problema e
               devolve um mapa do que dá pra automatizar primeiro.
             </p>
@@ -367,7 +367,7 @@ const Agencia = () => {
               </a>
               <Link
                 to="/contato"
-                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 border border-white/15 rounded-md hover:border-white/30 transition-colors"
+                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 border border-[#1A1A1A]/12 rounded-md hover:border-white/30 transition-colors"
               >
                 Formulário de contato <ArrowRight className="w-4 h-4" />
               </Link>

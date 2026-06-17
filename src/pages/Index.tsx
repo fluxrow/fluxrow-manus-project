@@ -51,9 +51,9 @@ const Index = () => {
             animate="show"
             className="flex justify-center mb-8"
           >
-            <div className="inline-flex items-center gap-3 border border-white/15 bg-white/[0.04] rounded-full px-4 py-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-white/85" />
-              <span className="text-[11px] font-mono uppercase tracking-[0.3em] text-white/70">
+            <div className="inline-flex items-center gap-3 border border-[#1A1A1A]/12 bg-[#1A1A1A]/[0.04] rounded-full px-4 py-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#FF6709]" />
+              <span className="text-[11px] font-mono uppercase tracking-[0.3em] text-[#1A1A1A]/75">
                 Fluxrow · sistemas com IA
               </span>
             </div>
@@ -75,7 +75,7 @@ const Index = () => {
             custom={2}
             initial="hidden"
             animate="show"
-            className="text-lg md:text-xl text-white/70 max-w-2xl mx-auto mb-12 leading-relaxed"
+            className="text-lg md:text-xl text-[#1A1A1A]/75 max-w-2xl mx-auto mb-12 leading-relaxed"
           >
             Para solo operators e criadores que querem montar sua máquina de IA em dias — e para empresas que querem terceirizar o stack completo e focar no negócio.
           </motion.p>
@@ -93,10 +93,10 @@ const Index = () => {
               className="no-underline"
             >
               <SoftCard interactive padding="md" className="h-full text-left flex flex-col gap-2">
-                <p className="text-[11px] uppercase tracking-[0.3em] text-white/55 font-mono">CAMINHO A</p>
-                <p className="text-xl font-serif text-white">Sou solo operator ou criador</p>
-                <p className="text-sm text-white/60 leading-relaxed">Quero comprar o kit pronto e montar minha operação de IA essa semana.</p>
-                <ArrowRight className="w-4 h-4 text-white/40 mt-2" />
+                <p className="text-[11px] uppercase tracking-[0.3em] text-[#1A1A1A]/55 font-mono">CAMINHO A</p>
+                <p className="text-xl font-serif text-[#1A1A1A]">Sou solo operator ou criador</p>
+                <p className="text-sm text-[#1A1A1A]/55 leading-relaxed">Quero comprar o kit pronto e montar minha operação de IA essa semana.</p>
+                <ArrowRight className="w-4 h-4 text-[#1A1A1A]/55 mt-2" />
               </SoftCard>
             </Link>
             <Link
@@ -105,17 +105,17 @@ const Index = () => {
               className="no-underline"
             >
               <SoftCard interactive padding="md" className="h-full text-left flex flex-col gap-2">
-                <p className="text-[11px] uppercase tracking-[0.3em] text-white/55 font-mono">CAMINHO B</p>
-                <p className="text-xl font-serif text-white">Sou gestor ou empresa</p>
-                <p className="text-sm text-white/60 leading-relaxed">Quero terceirizar o stack completo — sistema, automação e operação contínua.</p>
-                <ArrowRight className="w-4 h-4 text-white/40 mt-2" />
+                <p className="text-[11px] uppercase tracking-[0.3em] text-[#1A1A1A]/55 font-mono">CAMINHO B</p>
+                <p className="text-xl font-serif text-[#1A1A1A]">Sou gestor ou empresa</p>
+                <p className="text-sm text-[#1A1A1A]/55 leading-relaxed">Quero terceirizar o stack completo — sistema, automação e operação contínua.</p>
+                <ArrowRight className="w-4 h-4 text-[#1A1A1A]/55 mt-2" />
               </SoftCard>
             </Link>
           </motion.div>
         </section>
 
         {/* Prova social — Counters animados */}
-        <SectionShell width="5xl" className="border-b border-white/5 !py-16 md:!py-20">
+        <SectionShell width="5xl" className="border-b border-[#1A1A1A]/12 !py-16 md:!py-20">
           <SectionBadge icon={Sparkles} label="NÚMEROS" />
           <div className="grid grid-cols-2 md:grid-cols-4 gap-y-10 gap-x-6">
             {STATS.map((s, i) => (
@@ -131,7 +131,7 @@ const Index = () => {
                 <p className="font-serif text-4xl md:text-5xl gradient-accent-text leading-none mb-3">
                   <Counter to={s.value} prefix={s.prefix} suffix={s.suffix} />
                 </p>
-                <p className="text-xs uppercase tracking-[0.2em] text-white/55 font-mono">
+                <p className="text-xs uppercase tracking-[0.2em] text-[#1A1A1A]/55 font-mono">
                   {s.label}
                 </p>
               </motion.div>
@@ -149,7 +149,7 @@ const Index = () => {
                 Uma missão:{" "}
                 <span className="gradient-accent-text italic">operar com IA.</span>
               </h2>
-              <p className="text-white/65 leading-relaxed max-w-md">
+              <p className="text-[#1A1A1A]/55 leading-relaxed max-w-md">
                 Você escolhe o caminho. A gente entrega a infraestrutura — pronta pra rodar ou operada de ponta a ponta.
               </p>
             </div>
@@ -157,13 +157,13 @@ const Index = () => {
             <div className="grid gap-5">
               {/* Perfil 01 */}
               <SoftCard padding="lg">
-                <p className="text-[11px] uppercase tracking-[0.3em] text-white/55 font-mono mb-4">
+                <p className="text-[11px] uppercase tracking-[0.3em] text-[#1A1A1A]/55 font-mono mb-4">
                   PERFIL 01
                 </p>
-                <h3 className="font-serif text-2xl md:text-3xl text-white mb-2 leading-tight">
+                <h3 className="font-serif text-2xl md:text-3xl text-[#1A1A1A] mb-2 leading-tight">
                   Solo operator ou criador
                 </h3>
-                <p className="text-sm text-white/60 mb-6">
+                <p className="text-sm text-[#1A1A1A]/55 mb-6">
                   Freelancer, creator, consultor, empreendedor solo
                 </p>
                 <ul className="space-y-3 mb-8">
@@ -172,7 +172,7 @@ const Index = () => {
                     "Quer automatizar prospecção, atendimento ou entrega — sem contratar",
                     "Precisa de um sistema pronto para instalar e começar a usar essa semana",
                   ].map((b) => (
-                    <li key={b} className="flex gap-3 text-sm text-white/75 leading-relaxed">
+                    <li key={b} className="flex gap-3 text-sm text-[#1A1A1A]/75 leading-relaxed">
                       <span className="gradient-accent-text font-mono shrink-0">→</span>
                       <span>{b}</span>
                     </li>
@@ -181,7 +181,7 @@ const Index = () => {
                 <Link
                   to="/produtos"
                   onClick={() => trackEvent("para_quem_cta_produtos")}
-                  className="inline-flex items-center gap-2 text-sm font-mono text-white hover:text-white/80 group"
+                  className="inline-flex items-center gap-2 text-sm font-mono text-[#1A1A1A] hover:text-[#1A1A1A]/75 group"
                 >
                   Ver o AI Operator Kit
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
@@ -190,13 +190,13 @@ const Index = () => {
 
               {/* Perfil 02 */}
               <SoftCard padding="lg">
-                <p className="text-[11px] uppercase tracking-[0.3em] text-white/55 font-mono mb-4">
+                <p className="text-[11px] uppercase tracking-[0.3em] text-[#1A1A1A]/55 font-mono mb-4">
                   PERFIL 02
                 </p>
-                <h3 className="font-serif text-2xl md:text-3xl text-white mb-2 leading-tight">
+                <h3 className="font-serif text-2xl md:text-3xl text-[#1A1A1A] mb-2 leading-tight">
                   Gestor ou empresa
                 </h3>
-                <p className="text-sm text-white/60 mb-6">
+                <p className="text-sm text-[#1A1A1A]/55 mb-6">
                   CEO, diretor, gestor de operações, equipe de 5–50 pessoas
                 </p>
                 <ul className="space-y-3 mb-8">
@@ -205,7 +205,7 @@ const Index = () => {
                     "Já testou ferramentas de IA mas sem uma arquitetura que funcione de verdade",
                     "Quer terceirizar o stack completo — sistema, automação e operação contínua",
                   ].map((b) => (
-                    <li key={b} className="flex gap-3 text-sm text-white/75 leading-relaxed">
+                    <li key={b} className="flex gap-3 text-sm text-[#1A1A1A]/75 leading-relaxed">
                       <span className="gradient-accent-text font-mono shrink-0">→</span>
                       <span>{b}</span>
                     </li>
@@ -214,7 +214,7 @@ const Index = () => {
                 <Link
                   to="/agencia"
                   onClick={() => trackEvent("para_quem_cta_agencia")}
-                  className="inline-flex items-center gap-2 text-sm font-mono text-white hover:text-white/80 group"
+                  className="inline-flex items-center gap-2 text-sm font-mono text-[#1A1A1A] hover:text-[#1A1A1A]/75 group"
                 >
                   Conhecer a agência
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
@@ -235,7 +235,7 @@ const Index = () => {
             </div>
             <Link
               to="/conteudos"
-              className="inline-flex items-center gap-2 text-sm font-mono text-white/75 hover:text-white md:justify-self-end group"
+              className="inline-flex items-center gap-2 text-sm font-mono text-[#1A1A1A]/75 hover:text-[#1A1A1A] md:justify-self-end group"
             >
               Ler todos
               <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
@@ -249,9 +249,9 @@ const Index = () => {
             ].map((c) => (
               <Link key={c.h} to={c.h} className="no-underline">
                 <SoftCard interactive padding="md" className="h-full">
-                  <Compass className="w-4 h-4 text-white/50 mb-3" strokeWidth={1.6} />
+                  <Compass className="w-4 h-4 text-[#1A1A1A]/55 mb-3" strokeWidth={1.6} />
                   <p className="font-serif text-lg mb-3">{c.t}</p>
-                  <span className="text-xs font-mono text-white/55 inline-flex items-center gap-1 group-hover:text-white/80 transition-colors">
+                  <span className="text-xs font-mono text-[#1A1A1A]/55 inline-flex items-center gap-1 group-hover:text-[#1A1A1A]/75 transition-colors">
                     Ler artigo <ArrowRight className="w-3 h-3" />
                   </span>
                 </SoftCard>

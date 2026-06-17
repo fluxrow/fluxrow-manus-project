@@ -90,7 +90,7 @@ const ProdutosHub = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#080807] text-white">
+    <div className="min-h-screen bg-[#F5F3EE] text-[#1A1A1A]">
       <SEO
         title={lang === "pt" ? "AI Operator Kit — Fluxrow" : "AI Operator Kit — Fluxrow"}
         description={c.intro}
@@ -104,12 +104,12 @@ const ProdutosHub = () => {
       <main className="max-w-5xl mx-auto px-6 pt-32 pb-24">
         <header className="mb-16 flex flex-col gap-6">
           <div className="flex items-center justify-between gap-4">
-            <p className="text-xs uppercase tracking-[0.3em] text-white/55 font-mono">
+            <p className="text-xs uppercase tracking-[0.3em] text-[#1A1A1A]/55 font-mono">
               {c.eyebrow}
             </p>
             <button
               onClick={switchLang}
-              className="text-xs font-mono text-white/60 hover:text-white border border-white/10 hover:border-white/30 px-3 py-1.5 rounded-md transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white/40"
+              className="text-xs font-mono text-[#1A1A1A]/55 hover:text-[#1A1A1A] border border-[#1A1A1A]/12 hover:border-white/30 px-3 py-1.5 rounded-md transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white/40"
               aria-label="Toggle language"
             >
               {c.toggle}
@@ -118,25 +118,25 @@ const ProdutosHub = () => {
           <h1 className="font-serif text-[2.5rem] sm:text-5xl md:text-6xl leading-[1.05] max-w-3xl break-words">
             {c.h1}
           </h1>
-          <p className="text-base sm:text-lg text-white/60 max-w-2xl leading-relaxed">{c.intro}</p>
+          <p className="text-base sm:text-lg text-[#1A1A1A]/55 max-w-2xl leading-relaxed">{c.intro}</p>
         </header>
 
         <section className="mb-16">
-          <article className="border border-white/10 hover:border-white/25 transition-all rounded-md bg-white/[0.02] overflow-hidden">
+          <article className="border border-[#1A1A1A]/12 hover:border-white/25 transition-all rounded-md bg-white/[0.02] overflow-hidden">
             <div className="grid md:grid-cols-[1.4fr_1fr]">
-              <div className="p-6 sm:p-8 md:p-10 border-b md:border-b-0 md:border-r border-white/10">
-                <p className="text-xs uppercase tracking-[0.2em] text-white/55 font-mono mb-6">
+              <div className="p-6 sm:p-8 md:p-10 border-b md:border-b-0 md:border-r border-[#1A1A1A]/12">
+                <p className="text-xs uppercase tracking-[0.2em] text-[#1A1A1A]/55 font-mono mb-6">
                   {c.cardEyebrow}
                 </p>
                 <h2 className="text-[1.65rem] sm:text-3xl md:text-4xl font-serif mb-4 leading-tight break-words">
                   {c.cardH2}
                 </h2>
-                <p className="text-white/70 mb-8 leading-relaxed">{c.cardP}</p>
+                <p className="text-[#1A1A1A]/75 mb-8 leading-relaxed">{c.cardP}</p>
 
-                <ul className="space-y-2 text-sm text-white/75 mb-10">
+                <ul className="space-y-2 text-sm text-[#1A1A1A]/75 mb-10">
                   {c.features.map((f) => (
                     <li key={f} className="flex gap-2">
-                      <Check className="w-4 h-4 text-white/55 shrink-0 mt-0.5" />
+                      <Check className="w-4 h-4 text-[#1A1A1A]/55 shrink-0 mt-0.5" />
                       <span className="min-w-0 flex-1 safe-wrap">{f}</span>
                     </li>
                   ))}
@@ -150,28 +150,28 @@ const ProdutosHub = () => {
                       lang,
                     })
                   }
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-white text-[#080807] font-medium rounded-md hover:bg-white/90 active:scale-[0.98] transition-all duration-150 text-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#080807]"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-[#FF6709] text-[#F5F3EE] font-medium rounded-md hover:bg-[#e85a00] active:scale-[0.98] transition-all duration-150 text-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#FF6709]/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#F5F3EE]"
                 >
                   {c.cta} <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>
 
               <div className="p-6 sm:p-8 md:p-10 bg-white/[0.015]">
-                <p className="text-xs font-mono text-white/55 mb-4 uppercase tracking-wider">
+                <p className="text-xs font-mono text-[#1A1A1A]/55 mb-4 uppercase tracking-wider">
                   {c.invest}
                 </p>
 
                 <p className="text-5xl font-serif mb-2 gradient-accent-text">
                   {c.price}
                 </p>
-                <p className="text-xs text-white/55 font-mono mb-6">
+                <p className="text-xs text-[#1A1A1A]/55 font-mono mb-6">
                   {c.priceNote}
                 </p>
 
-                <div className="pt-6 border-t border-white/10">
+                <div className="pt-6 border-t border-[#1A1A1A]/12">
                   <button
                     onClick={switchLang}
-                    className="text-xs text-white/55 hover:text-white font-mono transition-colors"
+                    className="text-xs text-[#1A1A1A]/55 hover:text-[#1A1A1A] font-mono transition-colors"
                   >
                     {c.secondary} →
                   </button>
@@ -180,20 +180,20 @@ const ProdutosHub = () => {
             </div>
           </article>
 
-          <p className="text-xs text-white/55 mt-6 font-mono text-center">
+          <p className="text-xs text-[#1A1A1A]/55 mt-6 font-mono text-center">
             {c.guarantee}
           </p>
         </section>
 
-        <section className="border-t border-white/10 pt-12">
+        <section className="border-t border-[#1A1A1A]/12 pt-12">
           <h2 className="text-2xl font-serif mb-3">{c.customH2}</h2>
-          <p className="text-white/70 mb-6 max-w-2xl">{c.customP}</p>
+          <p className="text-[#1A1A1A]/75 mb-6 max-w-2xl">{c.customP}</p>
           <Link
             to="/contato"
             onClick={() =>
               trackEvent("agency_lead_click", { source: "produtos_hub" })
             }
-            className="inline-flex items-center gap-2 text-sm font-mono text-white/80 hover:text-white group"
+            className="inline-flex items-center gap-2 text-sm font-mono text-[#1A1A1A]/75 hover:text-[#1A1A1A] group"
           >
             {c.customCta}
             <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
