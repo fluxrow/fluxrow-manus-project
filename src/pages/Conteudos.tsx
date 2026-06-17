@@ -82,7 +82,7 @@ const conteudos = [
 
 const Conteudos = () => {
   return (
-    <div className="min-h-screen text-[#1A1A1A]" style={{ backgroundColor: '#080807' }}>
+    <div className="min-h-screen text-[#1A1A1A]" style={{ backgroundColor: '#F5F3EE' }}>
       <SEO
         title="Conteúdos — Fluxrow"
         description="Guias práticos sobre IA, Claude Code, MCP, Skills, automação e como escalar negócios com inteligência artificial. Leitura curta e direta."

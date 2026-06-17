@@ -49,7 +49,7 @@ const Contato = () => {
   ];
 
   return (
-    <div className="min-h-screen text-[#1A1A1A]" style={{ backgroundColor: '#080807' }}>
+    <div className="min-h-screen text-[#1A1A1A]" style={{ backgroundColor: '#F5F3EE' }}>
       <SEO
         title="Contato — Fluxrow"
         description="Fale com a Fluxrow. WhatsApp, e-mail ou formulário. Atendemos projetos de sistemas com IA, automação e SaaS sob medida."
