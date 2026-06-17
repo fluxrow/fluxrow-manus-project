@@ -152,7 +152,7 @@ const Contato = () => {
                   value={formData.subject}
                   onChange={handleChange}
                   required
-                  className="w-full bg-[#080807] border border-[#1A1A1A]/12 rounded-sm px-4 py-3 text-[#1A1A1A] focus:border-[#FF6709]/60 focus:outline-none transition-colors"
+                  className="w-full bg-[#F5F3EE] border border-[#1A1A1A]/12 rounded-sm px-4 py-3 text-[#1A1A1A] focus:border-[#FF6709]/60 focus:outline-none transition-colors"
                 >
                   <option value="">Selecione</option>
                   <option value="produto">Dúvida sobre o AI Operator Kit</option>

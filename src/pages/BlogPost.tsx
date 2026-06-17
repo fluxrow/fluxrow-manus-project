@@ -87,12 +87,12 @@ export default function BlogPost() {
   }, [slug]);
 
   if (loading) {
-    return <div className="min-h-screen bg-[#080807] flex items-center justify-center text-[#1A1A1A]/55">…</div>;
+    return <div className="min-h-screen bg-[#F5F3EE] flex items-center justify-center text-[#1A1A1A]/55">…</div>;
   }
 
   if (!post) {
     return (
-      <div className="min-h-screen bg-[#080807] text-[#1A1A1A] flex flex-col items-center justify-center px-6">
+      <div className="min-h-screen bg-[#F5F3EE] text-[#1A1A1A] flex flex-col items-center justify-center px-6">
         <p className="text-[#1A1A1A]/55 mb-4">{lang === "en" ? "Article not found." : "Artigo não encontrado."}</p>
         <Link to="/blog" className="underline">{lang === "en" ? "Back to blog" : "Voltar ao blog"}</Link>
       </div>
@@ -118,7 +118,7 @@ export default function BlogPost() {
   };
 
   return (
-    <div className="min-h-screen bg-[#080807] text-[#1A1A1A]">
+    <div className="min-h-screen bg-[#F5F3EE] text-[#1A1A1A]">
       <Helmet>
         <html lang={lang === "en" ? "en" : "pt-BR"} />
         <title>{post.seo_title || post.title}</title>

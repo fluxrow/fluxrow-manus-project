@@ -70,7 +70,7 @@ export default function Blog() {
   const canonical = `https://fluxrow.com/blog${lang === "en" ? "?lang=en" : ""}`;
 
   return (
-    <div className="min-h-screen bg-[#080807] text-[#1A1A1A]">
+    <div className="min-h-screen bg-[#F5F3EE] text-[#1A1A1A]">
       <Helmet>
         <html lang={lang === "en" ? "en" : "pt-BR"} />
         <title>{t.title}</title>

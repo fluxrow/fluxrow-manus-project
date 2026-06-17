@@ -90,7 +90,7 @@ const ProdutosHub = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#080807] text-[#1A1A1A]">
+    <div className="min-h-screen bg-[#F5F3EE] text-[#1A1A1A]">
       <SEO
         title={lang === "pt" ? "AI Operator Kit — Fluxrow" : "AI Operator Kit — Fluxrow"}
         description={c.intro}
