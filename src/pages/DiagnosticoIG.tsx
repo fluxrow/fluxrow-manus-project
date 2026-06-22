@@ -137,7 +137,7 @@ const DiagnosticoIG = () => {
         await showTyping(i === 0 ? 600 : 400);
         await addBubble(step.msgs[i], "bot");
       }
-      setControl({ kind: "opts", opts: step.opts });
+      setControl(step.multi ? { kind: "multi", opts: step.opts } : { kind: "opts", opts: step.opts });
     } else if (s.step === STEPS.length) {
       if (!s.uname) {
         await showTyping(600);
