@@ -143,8 +143,9 @@ const DiagnosticoIG = () => {
     if (s.step < STEPS.length) {
       const step = STEPS[s.step];
       for (let i = 0; i < step.msgs.length; i++) {
-        await showTyping(i === 0 ? 600 : 400);
+        await showTyping(i === 0 ? 1000 : 750);
         await addBubble(step.msgs[i], "bot");
+        if (i < step.msgs.length - 1) await wait(350);
       }
       setControl(step.multi ? { kind: "multi", opts: step.opts } : { kind: "opts", opts: step.opts });
     } else if (s.step === STEPS.length) {
