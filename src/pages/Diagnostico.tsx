@@ -299,7 +299,7 @@ const Diagnostico = () => {
     if (field === "whatsapp") {
       s.whatsapp = value;
       await showTyping(1100);
-      await addBubble("Pronto! Aqui está o seu diagnóstico 👇", "bot");
+      await addBubble("Prontinho! Já montei seu diagnóstico, dá uma olhada aqui embaixo 👇", "bot");
       const fit = calcFit(s.answers);
       setReport({ fit, whatsappMsg: buildMsg(fit) });
       setStatus("análise pronta ✓");
