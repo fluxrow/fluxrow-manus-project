@@ -14,8 +14,8 @@ const STEPS: Step[] = [
   {
     key: "negocio",
     msgs: [
-      "Pra começar, qual é o seu negócio principal?",
-      "O que você já faz hoje ou quer transformar.",
+      "Antes de qualquer coisa, me conta: qual é o seu negócio hoje?",
+      "Pode ser o que você já toca ou o que tá querendo destravar. 🙂",
     ],
     opts: [
       { label: "🏥 Saúde — dentista, médico, terapeuta", val: "Saúde (dentista, médico, terapeuta)" },
@@ -27,7 +27,7 @@ const STEPS: Step[] = [
   },
   {
     key: "canal",
-    msgs: ["Como você vende hoje?", "Pode marcar mais de uma."],
+    msgs: ["Show! E como as vendas chegam pra você hoje?", "Pode marcar mais de uma, fica à vontade."],
     multi: true,
     opts: [
       { label: "👥 Indicação de clientes", val: "Indicação de clientes" },
@@ -39,7 +39,7 @@ const STEPS: Step[] = [
   },
   {
     key: "dor",
-    msgs: ["Quais são suas maiores dores com leads?", "Pode marcar mais de uma."],
+    msgs: ["Agora a parte sincera: o que mais te incomoda na hora de lidar com os leads?", "Pode marcar tudo que se aplica."],
     multi: true,
     opts: [
       { label: "⏱️ Demoro pra responder e perco o lead", val: "Demoro pra responder e perco o lead" },
@@ -51,7 +51,7 @@ const STEPS: Step[] = [
   },
   {
     key: "volume",
-    msgs: ["Quantos leads chegam por mês?", "WhatsApp, DM, formulários — tudo junto."],
+    msgs: ["Pra eu ter ideia do tamanho da casa: mais ou menos quantos leads chegam por mês?", "Conta tudo junto — WhatsApp, DM, formulário, o que vier."],
     opts: [
       { label: "👤 Menos de 20 por mês", val: "Menos de 20 leads/mês" },
       { label: "👥 Entre 20 e 100 por mês", val: "Entre 20 e 100 leads/mês" },
@@ -60,7 +60,7 @@ const STEPS: Step[] = [
   },
   {
     key: "sistema",
-    msgs: ["Você organiza seus leads de alguma forma?"],
+    msgs: ["E hoje, como você organiza esses leads? Sem julgamento, pode falar a real 😄"],
     opts: [
       { label: "🧠 Nada — tudo na cabeça ou no WhatsApp", val: "Nada — tudo na cabeça ou no WhatsApp" },
       { label: "📋 Planilha", val: "Uso planilha" },
@@ -69,7 +69,7 @@ const STEPS: Step[] = [
   },
   {
     key: "objetivo",
-    msgs: ["O que você mais precisa agora?", "Pode marcar mais de uma."],
+    msgs: ["Última pergunta, prometo! O que você mais precisa destravar agora?", "Pode marcar mais de uma."],
     multi: true,
     opts: [
       { label: "🚀 Vender mais a minha mentoria/serviço", val: "Vender mais a minha mentoria ou serviço" },
