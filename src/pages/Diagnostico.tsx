@@ -199,13 +199,15 @@ const Diagnostico = () => {
     const ABERTURA = [
       greeting + " 👋",
       "Aqui é o Cauã, da Fluxrow.",
-      "Vou te fazer 6 perguntas rápidas pra entender seu cenário com leads e WhatsApp, e te devolver um diagnóstico de verdade — com próximos passos práticos.",
+      "Que bom ter você por aqui — já é um sinal de que você quer destravar a parte de leads e vendas de forma saudável. 🙌",
+      "Vou te fazer 6 perguntas rápidas pra entender seu cenário hoje e te devolver um diagnóstico de verdade, com próximos passos práticos pro seu caso.",
       "Leva menos de 2 minutos. Bora? 👇",
     ];
     for (let i = 0; i < ABERTURA.length; i++) {
-      await showTyping(i === 0 ? 1000 : 900);
+      const dur = i === 0 ? 1100 : i === 2 ? 1400 : 900;
+      await showTyping(dur);
       await addBubble(ABERTURA[i], "bot");
-      await wait(400);
+      await wait(420);
     }
     setControl({ kind: "start" });
   };
@@ -223,7 +225,7 @@ const Diagnostico = () => {
     } else if (s.step === STEPS.length) {
       if (!s.uname) {
         await showTyping(600);
-        await addBubble("Quase lá! Qual é o seu nome?", "bot");
+        await addBubble("Quase lá! Como posso te chamar?", "bot");
         setControl({ kind: "input", placeholder: "Seu nome...", field: "name" });
       } else {
         await askWA();
@@ -233,13 +235,14 @@ const Diagnostico = () => {
 
   const askWA = async () => {
     const s = stateRef.current;
-    await showTyping(600);
+    await showTyping(700);
     await addBubble(
-      "Ótimo" + (s.uname ? ", " + s.uname.split(" ")[0] : "") + "! Me passa seu WhatsApp pra eu te chamar depois se fizer sentido.",
+      "Boa" + (s.uname ? ", " + s.uname.split(" ")[0] : "") + "! Agora me deixa seu WhatsApp pra eu te chamar depois, caso faça sentido pra gente trocar uma ideia. 😉",
       "bot"
     );
     setControl({ kind: "input", placeholder: "(41) 99999-0000", field: "whatsapp" });
   };
+
 
   const handlePick = async (o: Opt) => {
     setControl({ kind: "none" });
