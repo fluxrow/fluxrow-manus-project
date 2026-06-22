@@ -178,6 +178,25 @@ const DiagnosticoIG = () => {
     await runStep();
   };
 
+  const handleMultiConfirm = async (selected: Opt[]) => {
+    setControl({ kind: "none" });
+    const s = stateRef.current;
+    for (const o of selected) {
+      if (o.pillars) s.contributions.push(o.pillars);
+      if (o.meta?.teamSize) {
+        s.teamSize = o.meta.teamSize;
+        s.teamSizeBase = o.meta.teamSizeBase ?? 0;
+      }
+      if (typeof o.meta?.repetitivePct === "number") {
+        s.repetitivePct = o.meta.repetitivePct;
+      }
+    }
+    const labels = selected.map((o) => o.label).join(", ");
+    s.answers[STEPS[s.step].key] = labels;
+    await addBubble(labels, "usr");
+    s.step++;
+    await runStep();
+
   const handleStart = async () => {
     setControl({ kind: "none" });
     await addBubble("Bora!", "usr");
