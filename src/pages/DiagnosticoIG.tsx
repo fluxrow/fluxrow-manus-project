@@ -487,7 +487,7 @@ const DiagnosticoIG = () => {
 
       <div className="dig-wrap">
         <div className="dig-h">
-          <div className="dig-av">C</div>
+          <div className="dig-av"><img src={cauaAvatar.url} alt="Cauã Farias" /></div>
           <div className="dig-h-info">
             <p>Cauã Farias · Fluxrow</p>
             <span>{status}</span>
