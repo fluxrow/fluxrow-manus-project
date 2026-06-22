@@ -365,6 +365,54 @@ export type Database = {
         }
         Relationships: []
       }
+      quiz_leads: {
+        Row: {
+          answers: Json
+          areas: string[]
+          created_at: string
+          id: string
+          lang: string
+          name: string
+          referrer: string | null
+          result_tier: string
+          score: number
+          source: string
+          user_agent: string | null
+          utm: Json | null
+          whatsapp: string
+        }
+        Insert: {
+          answers?: Json
+          areas?: string[]
+          created_at?: string
+          id?: string
+          lang?: string
+          name: string
+          referrer?: string | null
+          result_tier: string
+          score: number
+          source?: string
+          user_agent?: string | null
+          utm?: Json | null
+          whatsapp: string
+        }
+        Update: {
+          answers?: Json
+          areas?: string[]
+          created_at?: string
+          id?: string
+          lang?: string
+          name?: string
+          referrer?: string | null
+          result_tier?: string
+          score?: number
+          source?: string
+          user_agent?: string | null
+          utm?: Json | null
+          whatsapp?: string
+        }
+        Relationships: []
+      }
       relatorios_semanais: {
         Row: {
           conversas_mensagem: Json | null
