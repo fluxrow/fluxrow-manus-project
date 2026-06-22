@@ -196,6 +196,9 @@ const DiagnosticoIG = () => {
     await addBubble(labels, "usr");
     s.step++;
     await runStep();
+  };
+
+
 
   const handleStart = async () => {
     setControl({ kind: "none" });
