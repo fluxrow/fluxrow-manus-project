@@ -28,12 +28,14 @@ export type Step = {
   key: string;
   msgs: string[];
   opts: Opt[];
+  multi?: boolean;
 };
 
 export const STEPS: Step[] = [
   {
     key: "cargo",
-    msgs: ["Qual é o seu papel na empresa?"],
+    msgs: ["Qual é o seu papel na empresa? (pode marcar mais de um)"],
+    multi: true,
     opts: [
       { label: "Dono / Sócio" },
       { label: "Diretor / C-Level" },
