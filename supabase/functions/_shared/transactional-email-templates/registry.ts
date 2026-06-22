@@ -11,8 +11,10 @@ export interface TemplateEntry {
 
 import { template as kitDeliveryPt } from './kit-delivery-pt.tsx'
 import { template as kitDeliveryEn } from './kit-delivery-en.tsx'
+import { template as diagnosticoCompleto } from './diagnostico-completo.tsx'
 
 export const TEMPLATES: Record<string, TemplateEntry> = {
   'kit-delivery-pt': kitDeliveryPt,
   'kit-delivery-en': kitDeliveryEn,
+  'diagnostico-completo': diagnosticoCompleto,
 }
