@@ -370,13 +370,18 @@ export type Database = {
           answers: Json
           areas: string[]
           created_at: string
+          email: string | null
+          estimated_hours_saved: number | null
           id: string
           lang: string
           name: string
+          pillar_scores: Json | null
           referrer: string | null
+          report_sent_at: string | null
           result_tier: string
           score: number
           source: string
+          team_size: string | null
           user_agent: string | null
           utm: Json | null
           whatsapp: string
@@ -385,13 +390,18 @@ export type Database = {
           answers?: Json
           areas?: string[]
           created_at?: string
+          email?: string | null
+          estimated_hours_saved?: number | null
           id?: string
           lang?: string
           name: string
+          pillar_scores?: Json | null
           referrer?: string | null
+          report_sent_at?: string | null
           result_tier: string
           score: number
           source?: string
+          team_size?: string | null
           user_agent?: string | null
           utm?: Json | null
           whatsapp: string
@@ -400,13 +410,18 @@ export type Database = {
           answers?: Json
           areas?: string[]
           created_at?: string
+          email?: string | null
+          estimated_hours_saved?: number | null
           id?: string
           lang?: string
           name?: string
+          pillar_scores?: Json | null
           referrer?: string | null
+          report_sent_at?: string | null
           result_tier?: string
           score?: number
           source?: string
+          team_size?: string | null
           user_agent?: string | null
           utm?: Json | null
           whatsapp?: string

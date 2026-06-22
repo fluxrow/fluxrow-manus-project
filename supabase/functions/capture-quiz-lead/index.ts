@@ -16,6 +16,9 @@ const json = (body: Record<string, unknown>, status = 200) =>
     headers: { ...corsHeaders, "Content-Type": "application/json" },
   });
 
+const isEmail = (v: string) =>
+  /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i.test(v) && v.length <= 255;
+
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") return new Response(null, { headers: corsHeaders });
 
@@ -34,7 +37,9 @@ Deno.serve(async (req) => {
   const name = typeof body.name === "string" ? body.name.trim() : "";
   const whatsappRaw = typeof body.whatsapp === "string" ? body.whatsapp.trim() : "";
   const whatsapp = whatsappRaw.slice(0, 32);
-  const score = typeof body.score === "number" && Number.isFinite(body.score) ? Math.trunc(body.score) : -1;
+  const score = typeof body.score === "number" && Number.isFinite(body.score)
+    ? Math.trunc(body.score)
+    : -1;
   const result_tier = typeof body.result_tier === "string" ? body.result_tier.trim().slice(0, 32) : "";
   const areas = Array.isArray(body.areas)
     ? body.areas.filter((a): a is string => typeof a === "string").slice(0, 10).map((a) => a.slice(0, 64))
@@ -44,6 +49,16 @@ Deno.serve(async (req) => {
   const lang = body.lang === "en" ? "en" : "pt";
   const utm = body.utm && typeof body.utm === "object" ? body.utm : null;
   const referrer = typeof body.referrer === "string" ? body.referrer.slice(0, 500) : null;
+
+  const pillar_scores =
+    body.pillar_scores && typeof body.pillar_scores === "object" ? body.pillar_scores : null;
+  const team_size = typeof body.team_size === "string" ? body.team_size.slice(0, 32) : null;
+  const estimated_hours_saved =
+    typeof body.estimated_hours_saved === "number" && Number.isFinite(body.estimated_hours_saved)
+      ? Math.trunc(body.estimated_hours_saved)
+      : null;
+  const emailRaw = typeof body.email === "string" ? body.email.trim().toLowerCase() : "";
+  const email = emailRaw && isEmail(emailRaw) ? emailRaw : null;
 
   if (!name || name.length < 2 || name.length > 100) {
     return json({ ok: false, error: "invalid_input" }, 400);
@@ -63,26 +78,33 @@ Deno.serve(async (req) => {
   const supabase = createClient(SUPABASE_URL, SERVICE_ROLE_KEY);
 
   try {
-    const { error } = await supabase.from("quiz_leads").insert({
-      name,
-      whatsapp,
-      score,
-      result_tier,
-      areas,
-      answers,
-      source,
-      lang,
-      utm,
-      user_agent: req.headers.get("user-agent") ?? null,
-      referrer,
-    });
+    const { data, error } = await supabase
+      .from("quiz_leads")
+      .insert({
+        name,
+        whatsapp,
+        score,
+        result_tier,
+        areas,
+        answers,
+        source,
+        lang,
+        utm,
+        user_agent: req.headers.get("user-agent") ?? null,
+        referrer,
+        pillar_scores,
+        team_size,
+        estimated_hours_saved,
+        email,
+      })
+      .select("id")
+      .single();
 
     if (error) {
       return json({ ok: false, error: "insert_failed" }, 500);
     }
+    return json({ ok: true, id: data?.id ?? null });
   } catch (_err) {
     return json({ ok: false, error: "internal_error" }, 500);
   }
-
-  return json({ ok: true });
 });

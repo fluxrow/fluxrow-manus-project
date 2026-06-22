@@ -1,41 +1,126 @@
-# Quiz "Diagnóstico IG" — bio link
+# Diagnóstico IG v2 — mais profundidade, mais valor
 
-Página standalone no estilo conversa de WhatsApp (Cauã Farias · Fluxrow) que faz 5 perguntas, gera um score de maturidade e redireciona pro WhatsApp. Cada lead é salvo no backend antes do redirect.
+Mantém o tom WhatsApp do Cauã. Expande o quiz, mostra resultado por pilar com benchmark, gera quick wins acionáveis, estima horas economizadas e oferece relatório por e-mail.
 
-## Rota
-- URL pública: `/diagnóstico-IG` (com acento) + alias ASCII `/diagnostico-ig` para evitar problemas de copy/paste.
-- Servido como página React lazy (mesmo padrão das outras), não como `public/*.html`, pra ficar integrado ao roteamento e ao SEO do app.
+## 1. Perguntas reorganizadas por pilar (10 perguntas)
 
-## UI
-- Componente novo `src/pages/DiagnosticoIG.tsx` que reproduz fielmente o HTML enviado:
-  - Header WhatsApp verde (#075e54), avatar laranja "C", "online agora".
-  - Bolhas bot/usr com animação de digitação (3 pontinhos).
-  - Botões de opção, input de nome/WhatsApp, card de resultado com barra de progresso, chips de áreas e CTA verde WhatsApp.
-- Mesmas perguntas, scores, áreas, faixas de resultado e mensagens de abertura do arquivo enviado — nada alterado no conteúdo.
-- Suporte ao `?nome=` igual ao original.
-- CTA final mantém `https://wa.me/5541992361868` com mensagem pré-preenchida.
-- Estilos isolados em `<style>` inline no componente (não toca no tema cream do site).
+Cada resposta agora contribui pra um **pilar** específico (0-10 pontos por pilar). Pilares:
 
-## Captura de lead (backend)
-- Nova tabela `public.quiz_leads`:
-  - `name`, `whatsapp`, `score`, `result_tier` (`baixa`|`media`|`alta`), `areas` (text[]), `answers` (jsonb), `source` (default `diagnostico-ig`), `lang` (default `pt`), `utm` (jsonb), `user_agent`, `referrer`.
-  - RLS habilitado; sem grant pra `anon`/`authenticated` — escrita só via edge function com service role. `service_role` com `ALL`.
-- Nova edge function `capture-quiz-lead`:
-  - Valida com Zod (nome 2-100, whatsapp 8-20, score 0-30, arrays/jsonb limitados).
-  - Verifica `apikey`, retorna erros genéricos, sem stack trace (padrão do projeto).
-  - Insere com service role; retorna `{ ok: true }` ou `{ ok: false }` genérico.
-- Front chama `supabase.functions.invoke('capture-quiz-lead', ...)` no momento em que o WhatsApp é informado, antes de abrir o link. Falha de rede não bloqueia o redirect (lead é "best effort", a conversa do WhatsApp é o que importa).
+- **Processos** — repetição manual, padronização
+- **Dados** — visibilidade, decisões com dado
+- **Atendimento** — volume, SLA, qualificação
+- **Comercial** — captação, follow-up, conversão
+- **IA/Automação** — uso atual e maturidade
+- **Pessoas** — sobrecarga, alocação
 
-## SEO
-- `<SEO>` com `noindex` (página de bio não precisa indexar) + título "Diagnóstico Fluxrow" + canonical em `/diagnostico-ig`.
+Distribuição (mantém perguntas atuais + 5 novas):
 
-## Não toca em
-- Páginas `/proposta/positivo`, `/proposta/burati-gt`, `public/diagnostico.html`, tema cream/laranja do site.
+| # | Pergunta | Pilar |
+|---|---|---|
+| 1 | Papel na empresa | contexto (não pontua) |
+| 2 | Tamanho do time | contexto (usado no cálculo) |
+| 3 | Área que mais consome tempo | Processos |
+| 4 | Uso atual de IA/automação | IA |
+| 5 | Maior obstáculo | varia |
+| 6 | **Volume de atendimentos/mês** | Atendimento |
+| 7 | **Como acompanha resultados hoje** (planilha/BI/nada) | Dados |
+| 8 | **Quantos leads/mês entram** | Comercial |
+| 9 | **% do tempo do time em tarefas repetitivas** (slider 0-100) | Pessoas/Processos |
+| 10 | **Já tentou automatizar antes?** (sim com sucesso / tentou e parou / nunca) | IA |
 
-## Detalhes técnicos
-- Arquivos novos:
-  - `src/pages/DiagnosticoIG.tsx`
-  - `supabase/functions/capture-quiz-lead/index.ts` (+ `deno.json`)
-  - Migration criando `quiz_leads` com GRANT + RLS.
-- Editado: `src/App.tsx` adiciona rotas `/diagnóstico-IG` e `/diagnostico-ig` (lazy).
-- Migration roda primeiro pra regenerar `types.ts`; depois o front e a edge function.
+Pergunta de cargo continua só pra contexto. "Última!" muda pra "Última!" na #10.
+
+## 2. Resultado por pilar (substitui card único)
+
+Card "Mapa de maturidade" com **6 barras** (uma por pilar), cada uma com label, % e cor (verde/amarelo/vermelho conforme score). Score geral fica em cima como hoje (emoji + título + descrição).
+
+```text
+🟠 Operação em transição              68%
+─────────────────────────────────────
+Processos     ████████░░░░░░░░  45%
+Dados         ██░░░░░░░░░░░░░░  18%   ← gargalo
+Atendimento   ███████████░░░░░  72%
+Comercial     █████████░░░░░░░  58%
+IA            ██░░░░░░░░░░░░░░  20%   ← gargalo
+Pessoas       █████░░░░░░░░░░░  35%
+```
+
+## 3. Benchmark vs mercado
+
+Abaixo das barras, linha curta:
+
+> "Empresas com **11-50 pessoas** costumam pontuar **52%** em maturidade. Você está **+16 pts acima** da média."
+
+Valores fixos (tabela hardcoded por faixa de porte) — não precisa de chamada externa.
+
+## 4. Quick wins 30/60/90 dias
+
+Bloco "Próximos passos pra você" com 3 cards curtos baseados nos **2 pilares mais fracos**:
+
+- **30 dias** — ação rápida (ex: "Mapear os 3 processos mais repetitivos do time")
+- **60 dias** — implementação (ex: "Automatizar coleta de leads do WhatsApp + planilha única de funil")
+- **90 dias** — escala (ex: "Agente IA de qualificação + dashboard semanal automático")
+
+Mapeamento fixo: pra cada pilar fraco existe um conjunto de quick wins. Sem IA generativa — regra determinística pra ficar previsível.
+
+## 5. Estimativa de horas economizadas
+
+Cálculo:
+
+```text
+horas/mês = tamanho_time × 160h × (% tempo repetitivo / 100) × fator_automação
+fator_automação = 0.35 (padrão conservador)
+```
+
+Mostra em destaque: "Potencial estimado: **~340h/mês** liberadas (≈ 2 pessoas em tempo integral)".
+Quando o usuário escolhe "Mais de 200 pessoas" usa 200 como base; quando não responde slider, usa 30%.
+
+## 6. Relatório completo por e-mail (opcional)
+
+Depois do card de resultado, novo passo:
+
+> "Quer que eu te mande esse diagnóstico completo + um plano detalhado por e-mail?"
+> [ Sim, manda aí ]  [ Pode deixar ]
+
+Se sim → input de e-mail → dispara app email (`diagnostico-completo`) com:
+- Saudação + nome
+- Score geral + barras por pilar
+- Benchmark
+- Quick wins 30/60/90 (mais detalhados que no card)
+- Horas estimadas
+- CTA pra WhatsApp
+
+**Requer e-mail domain configurado**. Se não tiver, eu mostro o diálogo de setup antes de implementar o passo de e-mail (resto do quiz funciona normal).
+
+## 7. Persistência
+
+Tabela `quiz_leads` ganha colunas:
+- `pillar_scores` jsonb — `{ processos: 45, dados: 18, ... }`
+- `email` text nullable
+- `team_size` text nullable
+- `estimated_hours_saved` integer nullable
+- `report_sent_at` timestamptz nullable
+
+Edge function `capture-quiz-lead` aceita esses campos novos (todos opcionais pra não quebrar). Nova edge function `send-quiz-report` (ou reaproveita `send-transactional-email`) dispara o e-mail e marca `report_sent_at`.
+
+## 8. UI / tom
+
+- Mantém bolhas WhatsApp, mesma cara
+- O card de resultado fica mais alto (mais conteúdo), com scroll natural
+- Pilar fraco ganha pequeno badge "gargalo" laranja
+- Tudo em PT-BR, mesmo tom do Cauã
+
+## Arquivos afetados
+
+- `src/pages/DiagnosticoIG.tsx` — perguntas, lógica de scoring por pilar, card expandido, passo de e-mail
+- `src/data/diagnosticoIG.ts` (novo) — perguntas, mapa pilar→quick wins, benchmarks por porte
+- Migration: novas colunas em `quiz_leads`
+- `supabase/functions/capture-quiz-lead/index.ts` — aceitar novos campos
+- `supabase/functions/_shared/transactional-email-templates/diagnostico-completo.tsx` (novo) + registry
+- Possível setup de e-mail domain antes (se ainda não tiver)
+
+## Fora de escopo
+
+- Não muda nada nas propostas Positivo/Burati
+- Não muda outras rotas
+- Sem IA generativa — todo conteúdo é determinístico (rápido, previsível, sem custo de inferência)

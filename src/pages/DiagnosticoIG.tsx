@@ -1,128 +1,93 @@
 import { useEffect, useRef, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import SEO from "@/components/SEO";
-
-type Opt = { label: string; score: number; area?: string };
-type Step = { key: string; msgs: string[]; opts: Opt[] };
-
-const STEPS: Step[] = [
-  {
-    key: "cargo",
-    msgs: ["Qual é o seu papel na empresa?"],
-    opts: [
-      { label: "Dono / Sócio", score: 3 },
-      { label: "Diretor / C-Level", score: 3 },
-      { label: "Gerente / Gestor", score: 2 },
-      { label: "Outro cargo", score: 1 },
-    ],
-  },
-  {
-    key: "porte",
-    msgs: ["Quantas pessoas tem no time?"],
-    opts: [
-      { label: "Até 10 pessoas", score: 1 },
-      { label: "11 a 50 pessoas", score: 2 },
-      { label: "51 a 200 pessoas", score: 3 },
-      { label: "Mais de 200 pessoas", score: 3 },
-    ],
-  },
-  {
-    key: "dor",
-    msgs: ["Qual área consome mais tempo do seu time hoje?"],
-    opts: [
-      { label: "Atendimento ao cliente", score: 2, area: "Atendimento" },
-      { label: "Processos manuais e repetitivos", score: 3, area: "Processos" },
-      { label: "Captação e qualificação de leads", score: 2, area: "Comercial" },
-      { label: "Relatórios e análise de dados", score: 2, area: "Dados" },
-      { label: "Gestão interna e aprovações", score: 2, area: "Gestão" },
-    ],
-  },
-  {
-    key: "ia",
-    msgs: ["A empresa já usa IA ou automação de algum jeito?"],
-    opts: [
-      { label: "Ainda não usa nada", score: 3 },
-      { label: "Usa, mas sem resultado claro", score: 3 },
-      { label: "Usa bem em algumas áreas", score: 2 },
-      { label: "Tem operação estruturada em IA", score: 1 },
-    ],
-  },
-  {
-    key: "obstaculo",
-    msgs: ["Última! Qual é o maior obstáculo que você enfrenta agora?"],
-    opts: [
-      { label: "Custo alto de operação", score: 2 },
-      { label: "Time sobrecarregado", score: 2 },
-      { label: "Perda de leads e oportunidades", score: 3 },
-      { label: "Decisões sem dados confiáveis", score: 2 },
-      { label: "Processos lentos e inconsistentes", score: 3 },
-    ],
-  },
-];
-
-const RESULTS = [
-  {
-    min: 0,
-    max: 7,
-    tier: "baixa",
-    emoji: "🟡",
-    titulo: "Operação com potencial represado",
-    desc: "Sua operação tem margem real de melhoria. Já identifiquei áreas onde a IA pode reduzir custo e aumentar velocidade — sem precisar contratar mais ninguém.",
-    pct: 32,
-  },
-  {
-    min: 8,
-    max: 11,
-    tier: "media",
-    emoji: "🟠",
-    titulo: "Operação em transição",
-    desc: "Você já saiu do zero, mas ainda depende muito de pessoas pra tarefas que um sistema deveria resolver. O próximo passo é claro e pode ser implementado em semanas.",
-    pct: 62,
-  },
-  {
-    min: 12,
-    max: 20,
-    tier: "alta",
-    emoji: "🔴",
-    titulo: "Operação pronta pra escalar com IA",
-    desc: "Seu negócio tem estrutura pra aplicar IA de forma estratégica. Os resultados podem ser expressivos. Isso merece uma conversa aprofundada.",
-    pct: 88,
-  },
-];
+import {
+  STEPS,
+  PILLAR_LABELS,
+  QUICK_WINS,
+  TIERS,
+  tierFromScore,
+  computePillarScores,
+  overallScore,
+  weakestPillars,
+  estimatedHoursSaved,
+  benchmarkFor,
+  type Pillar,
+  type Opt,
+} from "@/data/diagnosticoIG";
 
 type Bubble = { id: number; kind: "bot" | "usr"; text: string };
 type Control =
   | { kind: "none" }
   | { kind: "start" }
   | { kind: "opts"; opts: Opt[] }
-  | { kind: "input"; placeholder: string; field: "name" | "whatsapp" };
+  | { kind: "input"; placeholder: string; field: "name" | "whatsapp" | "email" }
+  | { kind: "yesno"; yes: string; no: string; onYes: () => void; onNo: () => void };
 
 const wait = (ms: number) => new Promise<void>((r) => setTimeout(r, ms));
-
 let bubbleId = 0;
 const nextId = () => ++bubbleId;
 
+const teamSizeLabel = (s?: string) => {
+  switch (s) {
+    case "ate-10":
+      return "até 10 pessoas";
+    case "11-50":
+      return "11 a 50 pessoas";
+    case "51-200":
+      return "51 a 200 pessoas";
+    case "200+":
+      return "mais de 200 pessoas";
+    default:
+      return "";
+  }
+};
+
+const barColor = (pct: number) => {
+  if (pct >= 66) return "#0a8a3a";
+  if (pct >= 41) return "#FF6B35";
+  return "#cc4d1a";
+};
+
 const DiagnosticoIG = () => {
-  const params = new URLSearchParams(typeof window !== "undefined" ? window.location.search : "");
+  const params = new URLSearchParams(
+    typeof window !== "undefined" ? window.location.search : ""
+  );
   const leadName = params.get("nome") || params.get("name") || "";
 
   const [bubbles, setBubbles] = useState<Bubble[]>([]);
   const [typing, setTyping] = useState(false);
   const [control, setControl] = useState<Control>({ kind: "none" });
   const [status, setStatus] = useState("online agora");
-  const [resultCard, setResultCard] = useState<{
-    res: typeof RESULTS[number];
-    areas: string[];
-    msg: string;
-  } | null>(null);
-  const [barPct, setBarPct] = useState(0);
+  const [report, setReport] = useState<null | {
+    pillars: Record<Pillar, number>;
+    overall: number;
+    tierKey: keyof typeof TIERS;
+    benchmark: number;
+    weak: Pillar[];
+    hours: number;
+    teamSize?: string;
+    whatsappMsg: string;
+  }>(null);
+  const [barWidths, setBarWidths] = useState<Record<Pillar, number>>({
+    processos: 0,
+    dados: 0,
+    atendimento: 0,
+    comercial: 0,
+    ia: 0,
+    pessoas: 0,
+  });
 
   const stateRef = useRef({
     step: 0,
-    score: 0,
-    areas: [] as string[],
+    contributions: [] as Array<Partial<Record<Pillar, number>>>,
     answers: {} as Record<string, string>,
     uname: leadName,
+    whatsapp: "",
+    teamSize: undefined as string | undefined,
+    teamSizeBase: 0,
+    repetitivePct: 30,
+    leadId: null as string | null,
   });
   const startedRef = useRef(false);
   const mlRef = useRef<HTMLDivElement | null>(null);
@@ -152,8 +117,8 @@ const DiagnosticoIG = () => {
       greeting + " 👋",
       "Aqui é o Cauã, da Fluxrow.",
       "Muito bom ter você aqui e ver seu interesse em organizar a casa usando mapeamento de setores e IA de forma saudável na operação. 🙌",
-      "Antes de a gente começar, me responde algumas perguntas rápidas pra eu entender melhor o seu cenário.",
-      "Vai levar menos de 2 minutos. Bora? 👇",
+      "Vou te fazer 10 perguntas rápidas pra montar um diagnóstico de verdade do seu cenário — com mapa por pilar, comparação com o mercado e os próximos passos.",
+      "Leva uns 2 minutos. Bora? 👇",
     ];
     for (let i = 0; i < ABERTURA.length; i++) {
       const dur = i === 0 ? 600 : i === 1 ? 500 : i === 2 ? 900 : 700;
@@ -168,7 +133,7 @@ const DiagnosticoIG = () => {
     if (s.step < STEPS.length) {
       const step = STEPS[s.step];
       for (let i = 0; i < step.msgs.length; i++) {
-        await showTyping(i === 0 ? 650 : 450);
+        await showTyping(i === 0 ? 600 : 400);
         await addBubble(step.msgs[i], "bot");
       }
       setControl({ kind: "opts", opts: step.opts });
@@ -189,7 +154,7 @@ const DiagnosticoIG = () => {
     await addBubble(
       "Ótimo" +
         (s.uname ? ", " + s.uname.split(" ")[0] : "") +
-        "! Me passa seu WhatsApp pra eu enviar a análise completa.",
+        "! Me passa seu WhatsApp pra eu te chamar depois se fizer sentido.",
       "bot"
     );
     setControl({ kind: "input", placeholder: "(11) 99999-9999", field: "whatsapp" });
@@ -198,8 +163,14 @@ const DiagnosticoIG = () => {
   const handlePick = async (o: Opt) => {
     setControl({ kind: "none" });
     const s = stateRef.current;
-    s.score += o.score;
-    if (o.area) s.areas.push(o.area);
+    if (o.pillars) s.contributions.push(o.pillars);
+    if (o.meta?.teamSize) {
+      s.teamSize = o.meta.teamSize;
+      s.teamSizeBase = o.meta.teamSizeBase ?? 0;
+    }
+    if (typeof o.meta?.repetitivePct === "number") {
+      s.repetitivePct = o.meta.repetitivePct;
+    }
     s.answers[STEPS[s.step].key] = o.label;
     await addBubble(o.label, "usr");
     s.step++;
@@ -208,51 +179,193 @@ const DiagnosticoIG = () => {
 
   const handleStart = async () => {
     setControl({ kind: "none" });
-    await addBubble("Vamos!", "usr");
+    await addBubble("Bora!", "usr");
     await runStep();
   };
 
-  const submitLead = async (whatsapp: string) => {
+  const buildReport = async (whatsapp: string) => {
     const s = stateRef.current;
-    const res = RESULTS.find((r) => s.score >= r.min && s.score <= r.max) || RESULTS[1];
+    const pillars = computePillarScores(s.contributions);
+    const overall = overallScore(pillars);
+    const tierKey = tierFromScore(overall);
+    const tier = TIERS[tierKey];
+    const benchmark = benchmarkFor(s.teamSize);
+    const weak = weakestPillars(pillars, 2);
+    const hours = s.teamSizeBase
+      ? estimatedHoursSaved(s.teamSizeBase, s.repetitivePct)
+      : 0;
+    const firstName = s.uname ? s.uname.split(" ")[0] : "";
+    const msg = `Olá Cauã! Fiz o diagnóstico Fluxrow.${
+      firstName ? " Me chamo " + firstName + "." : ""
+    } Meu score: ${overall}% (${tier.titulo}).`;
+
+    // best-effort save
     try {
-      await supabase.functions.invoke("capture-quiz-lead", {
+      const { data } = await supabase.functions.invoke("capture-quiz-lead", {
         body: {
           name: s.uname,
           whatsapp,
-          score: s.score,
-          result_tier: res.tier,
-          areas: s.areas,
+          score: overall,
+          result_tier: tierKey,
+          areas: weak.map((p) => PILLAR_LABELS[p]),
           answers: s.answers,
+          pillar_scores: pillars,
+          team_size: s.teamSize,
+          estimated_hours_saved: hours,
           source: "diagnostico-ig",
           lang: "pt",
           referrer: typeof document !== "undefined" ? document.referrer : null,
         },
       });
+      const id = (data as { id?: string } | null)?.id;
+      if (id) s.leadId = id;
     } catch {
-      // best effort — não bloqueia o redirect/WhatsApp
+      /* best effort */
     }
-    return res;
+
+    return { pillars, overall, tierKey, benchmark, weak, hours, msg };
   };
 
-  const handleInputSubmit = async (value: string, field: "name" | "whatsapp") => {
+  const handleInputSubmit = async (
+    value: string,
+    field: "name" | "whatsapp" | "email"
+  ) => {
     const s = stateRef.current;
     setControl({ kind: "none" });
     await addBubble(value, "usr");
+
     if (field === "name") {
       s.uname = value;
       await askWA();
-    } else {
-      await showTyping(1200);
+      return;
+    }
+
+    if (field === "whatsapp") {
+      s.whatsapp = value;
+      await showTyping(1100);
       await addBubble("Pronto! Aqui está o seu diagnóstico 👇", "bot");
-      const res = await submitLead(value);
-      const cl = s.areas.length ? s.areas : ["Processos", "Comercial"];
-      const firstName = s.uname ? s.uname.split(" ")[0] : "";
-      const msg = `Olá Cauã! Fiz o diagnóstico Fluxrow.${firstName ? " Me chamo " + firstName + "." : ""}`;
-      setResultCard({ res, areas: cl, msg });
+      const r = await buildReport(value);
+      setReport({
+        pillars: r.pillars,
+        overall: r.overall,
+        tierKey: r.tierKey,
+        benchmark: r.benchmark,
+        weak: r.weak,
+        hours: r.hours,
+        teamSize: s.teamSize,
+        whatsappMsg: r.msg,
+      });
       setStatus("análise pronta ✓");
       scrollDown();
-      setTimeout(() => setBarPct(res.pct), 500);
+      setTimeout(() => setBarWidths(r.pillars), 400);
+
+      await wait(1400);
+      await showTyping(700);
+      await addBubble(
+        "Quer que eu te mande esse diagnóstico completo + um plano detalhado por e-mail?",
+        "bot"
+      );
+      setControl({
+        kind: "yesno",
+        yes: "Sim, manda aí",
+        no: "Pode deixar",
+        onYes: async () => {
+          setControl({ kind: "none" });
+          await addBubble("Sim, manda aí", "usr");
+          await showTyping(500);
+          await addBubble("Qual seu melhor e-mail?", "bot");
+          setControl({
+            kind: "input",
+            placeholder: "voce@empresa.com",
+            field: "email",
+          });
+        },
+        onNo: async () => {
+          setControl({ kind: "none" });
+          await addBubble("Pode deixar", "usr");
+          await showTyping(400);
+          await addBubble("Tranquilo. Se quiser, é só me chamar no botão acima. 🙌", "bot");
+        },
+      });
+      return;
+    }
+
+    if (field === "email") {
+      await showTyping(900);
+      const ok = await sendReportEmail(value);
+      if (ok) {
+        await addBubble(
+          `Mandei agora pra ${value}. Dá uma olhada na caixa de entrada (e no spam, só pra garantir).`,
+          "bot"
+        );
+      } else {
+        await addBubble(
+          "Tive um problema pra mandar agora. Me chama no WhatsApp que eu te envio na hora.",
+          "bot"
+        );
+      }
+    }
+  };
+
+  const sendReportEmail = async (email: string): Promise<boolean> => {
+    if (!report) return false;
+    const s = stateRef.current;
+    const tier = TIERS[report.tierKey];
+    const pillarsArr = (Object.keys(report.pillars) as Pillar[]).map((k) => ({
+      key: k,
+      label: PILLAR_LABELS[k],
+      pct: report.pillars[k],
+    }));
+    const benchmarkLabel = s.teamSize ? `com ${teamSizeLabel(s.teamSize)}` : "no geral";
+    const primaryWeak = report.weak[0];
+    try {
+      // Persist email separately on the lead row if we have an id
+      if (s.leadId) {
+        try {
+          await supabase.functions.invoke("capture-quiz-lead", {
+            body: {
+              name: s.uname,
+              whatsapp: s.whatsapp,
+              score: report.overall,
+              result_tier: report.tierKey,
+              areas: report.weak.map((p) => PILLAR_LABELS[p]),
+              answers: { ...s.answers, _email_added: email },
+              pillar_scores: report.pillars,
+              team_size: s.teamSize,
+              estimated_hours_saved: report.hours,
+              email,
+              source: "diagnostico-ig-email",
+              lang: "pt",
+            },
+          });
+        } catch {
+          /* ignore */
+        }
+      }
+      const { error } = await supabase.functions.invoke("send-transactional-email", {
+        body: {
+          templateName: "diagnostico-completo",
+          recipientEmail: email,
+          idempotencyKey: `diag-ig-${s.leadId ?? Date.now()}`,
+          templateData: {
+            name: s.uname,
+            scoreOverall: report.overall,
+            tierTitulo: tier.titulo,
+            tierDesc: tier.desc,
+            pillars: pillarsArr,
+            benchmark: report.benchmark,
+            benchmarkLabel,
+            weakestLabels: report.weak.map((p) => PILLAR_LABELS[p]),
+            quickWins: QUICK_WINS[primaryWeak],
+            hoursSaved: report.hours,
+            teamSizeLabel: teamSizeLabel(s.teamSize),
+            whatsappUrl: `https://wa.me/5541992361868?text=${encodeURIComponent(report.whatsappMsg)}`,
+          },
+        },
+      });
+      return !error;
+    } catch {
+      return false;
     }
   };
 
@@ -266,6 +379,10 @@ const DiagnosticoIG = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const tier = report ? TIERS[report.tierKey] : null;
+  const diff = report ? report.overall - report.benchmark : 0;
+  const primaryWeak = report?.weak[0];
+
   return (
     <>
       <SEO
@@ -275,7 +392,7 @@ const DiagnosticoIG = () => {
       />
       <style>{`
         .dig-wrap{background:#ece5dd;min-height:100vh;display:flex;flex-direction:column;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;max-width:430px;margin:0 auto}
-        .dig-h{background:#075e54;padding:14px 16px;display:flex;align-items:center;gap:12px}
+        .dig-h{background:#075e54;padding:14px 16px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
         .dig-av{width:42px;height:42px;border-radius:50%;background:#FF6B35;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:17px;flex-shrink:0}
         .dig-h-info p{font-size:16px;font-weight:600;color:#fff;line-height:1.2;margin:0}
         .dig-h-info span{font-size:12px;color:#b2dfdb}
@@ -288,9 +405,11 @@ const DiagnosticoIG = () => {
         .dig-dots span{width:8px;height:8px;border-radius:50%;background:#aaa;animation:dig-bo .9s infinite}
         .dig-dots span:nth-child(2){animation-delay:.15s}
         .dig-dots span:nth-child(3){animation-delay:.3s}
-        .dig-opts{background:#ece5dd;padding:10px 10px 14px;display:flex;flex-direction:column;gap:8px}
+        .dig-opts{background:#ece5dd;padding:10px 10px 14px;display:flex;flex-direction:column;gap:8px;position:sticky;bottom:0}
         .dig-ob{background:#fff;border:2px solid #ccc;border-radius:12px;padding:14px 18px;font-size:15px;color:#111;cursor:pointer;text-align:left;line-height:1.4;font-family:inherit;font-weight:500;-webkit-tap-highlight-color:transparent;transition:border-color .15s}
         .dig-ob:active{background:#fff5f2;border-color:#FF6B35}
+        .dig-yesno{display:flex;gap:8px}
+        .dig-yesno .dig-ob{flex:1;text-align:center}
         .dig-start{background:#ece5dd;padding:10px 10px 14px}
         .dig-start-btn{width:100%;background:#FF6B35;border:none;border-radius:12px;padding:15px;font-size:16px;font-weight:700;color:#fff;cursor:pointer;font-family:inherit;-webkit-tap-highlight-color:transparent}
         .dig-start-btn:active{opacity:.88}
@@ -301,15 +420,31 @@ const DiagnosticoIG = () => {
         .dig-sb{width:44px;height:44px;border-radius:50%;background:#075e54;border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0}
         .dig-sb svg{width:20px;height:20px;fill:#fff}
         .dig-rc{background:#fff;border-radius:14px;padding:18px 16px;margin:4px 0;box-shadow:0 2px 6px rgba(0,0,0,.1);animation:dig-fi .35s ease}
-        .dig-re{font-size:36px;text-align:center;margin-bottom:10px}
-        .dig-rt{font-size:16px;font-weight:700;color:#111;text-align:center;margin-bottom:8px;line-height:1.3}
-        .dig-rd{font-size:14px;color:#333;line-height:1.6;margin-bottom:14px;text-align:center}
-        .dig-sb-bg{background:#e0e0e0;border-radius:20px;height:9px;overflow:hidden;margin-bottom:4px}
-        .dig-sb-fill{height:100%;border-radius:20px;background:#FF6B35;transition:width 1.1s ease}
-        .dig-sl{display:flex;justify-content:space-between;font-size:11.5px;color:#999;margin-bottom:14px}
-        .dig-chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
-        .dig-chip{background:#fff3ef;color:#cc4d1a;border-radius:20px;padding:5px 12px;font-size:13px;font-weight:600;border:1.5px solid #ffd5c2}
-        .dig-wab{display:block;width:100%;background:#25D366;color:#fff;border:none;border-radius:24px;padding:14px;font-size:15px;font-weight:700;text-align:center;cursor:pointer;text-decoration:none;font-family:inherit}
+        .dig-re{font-size:36px;text-align:center;margin-bottom:8px}
+        .dig-rt{font-size:17px;font-weight:700;color:#111;text-align:center;margin-bottom:6px;line-height:1.3}
+        .dig-overall{font-size:32px;font-weight:800;color:#FF6B35;text-align:center;margin:0 0 4px;letter-spacing:-0.02em}
+        .dig-overall-sub{font-size:12px;text-align:center;color:#888;margin-bottom:14px;letter-spacing:.05em;text-transform:uppercase}
+        .dig-rd{font-size:13.5px;color:#444;line-height:1.55;margin-bottom:14px;text-align:center}
+        .dig-section-title{font-size:12px;font-weight:700;color:#FF6B35;text-transform:uppercase;letter-spacing:.06em;margin:18px 0 10px}
+        .dig-pillar{margin-bottom:10px}
+        .dig-pillar-head{display:flex;justify-content:space-between;align-items:center;font-size:13px;color:#222;margin-bottom:4px}
+        .dig-pillar-name{font-weight:600;display:flex;align-items:center;gap:6px}
+        .dig-pillar-pct{font-weight:700;color:#555}
+        .dig-gargalo{font-size:10px;background:#FF6B35;color:#fff;padding:2px 6px;border-radius:8px;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+        .dig-pillar-bar{height:8px;background:#eee;border-radius:20px;overflow:hidden}
+        .dig-pillar-fill{height:100%;border-radius:20px;transition:width 1s ease;width:0}
+        .dig-bench{background:#f6f4f0;border-radius:10px;padding:12px 14px;margin:14px 0;font-size:13px;color:#333;line-height:1.5}
+        .dig-bench strong.up{color:#0a8a3a}
+        .dig-bench strong.down{color:#cc4d1a}
+        .dig-hours{background:#0a8a3a;color:#fff;border-radius:10px;padding:14px 16px;margin:14px 0}
+        .dig-hours-label{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:#d5f1de;margin-bottom:2px}
+        .dig-hours-value{font-size:24px;font-weight:800;margin-bottom:4px}
+        .dig-hours-sub{font-size:12.5px;color:#eaf6ee;line-height:1.5}
+        .dig-steps{margin-top:6px}
+        .dig-step{background:#fafafa;border:1px solid #eee;border-radius:10px;padding:10px 12px;margin-bottom:8px}
+        .dig-step-h{font-size:11px;font-weight:700;color:#FF6B35;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
+        .dig-step-t{font-size:13.5px;color:#222;line-height:1.5}
+        .dig-wab{display:block;width:100%;background:#25D366;color:#fff;border:none;border-radius:24px;padding:14px;font-size:15px;font-weight:700;text-align:center;cursor:pointer;text-decoration:none;font-family:inherit;margin-top:14px}
         .dig-wa-sub{text-align:center;font-size:12px;color:#999;margin-top:8px}
         @keyframes dig-fi{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
         @keyframes dig-bo{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-5px)}}
@@ -340,28 +475,83 @@ const DiagnosticoIG = () => {
               </div>
             </div>
           )}
-          {resultCard && (
+          {report && tier && (
             <div className="dig-rc">
-              <div className="dig-re">{resultCard.res.emoji}</div>
-              <div className="dig-rt">{resultCard.res.titulo}</div>
-              <div className="dig-rd">{resultCard.res.desc}</div>
-              <div className="dig-sb-bg">
-                <div className="dig-sb-fill" style={{ width: `${barPct}%` }} />
+              <div className="dig-re">{tier.emoji}</div>
+              <div className="dig-overall">{report.overall}%</div>
+              <div className="dig-overall-sub">Maturidade geral</div>
+              <div className="dig-rt">{tier.titulo}</div>
+              <div className="dig-rd">{tier.desc}</div>
+
+              <div className="dig-section-title">Mapa por pilar</div>
+              {(Object.keys(report.pillars) as Pillar[]).map((p) => {
+                const pct = report.pillars[p];
+                const isWeak = report.weak.includes(p);
+                return (
+                  <div key={p} className="dig-pillar">
+                    <div className="dig-pillar-head">
+                      <span className="dig-pillar-name">
+                        {PILLAR_LABELS[p]}
+                        {isWeak && <span className="dig-gargalo">gargalo</span>}
+                      </span>
+                      <span className="dig-pillar-pct">{pct}%</span>
+                    </div>
+                    <div className="dig-pillar-bar">
+                      <div
+                        className="dig-pillar-fill"
+                        style={{
+                          width: `${barWidths[p]}%`,
+                          background: barColor(pct),
+                        }}
+                      />
+                    </div>
+                  </div>
+                );
+              })}
+
+              <div className="dig-bench">
+                Empresas {stateRef.current.teamSize ? `com ${teamSizeLabel(stateRef.current.teamSize)}` : "no geral"} costumam pontuar <strong>{report.benchmark}%</strong>. Você está{" "}
+                <strong className={diff >= 0 ? "up" : "down"}>
+                  {diff >= 0 ? "+" : ""}
+                  {diff} pts
+                </strong>{" "}
+                {diff >= 0 ? "acima" : "abaixo"} da média.
               </div>
-              <div className="dig-sl">
-                <span>Início</span>
-                <span>Maturidade plena</span>
-              </div>
-              <div className="dig-chips">
-                {resultCard.areas.map((a) => (
-                  <span key={a} className="dig-chip">
-                    {a}
-                  </span>
-                ))}
-              </div>
+
+              {report.hours > 0 && (
+                <div className="dig-hours">
+                  <div className="dig-hours-label">Potencial estimado</div>
+                  <div className="dig-hours-value">~{report.hours}h/mês</div>
+                  <div className="dig-hours-sub">
+                    de tarefas operacionais que IA e automação podem absorver
+                    {stateRef.current.teamSize ? ` (base: ${teamSizeLabel(stateRef.current.teamSize)})` : ""}.
+                  </div>
+                </div>
+              )}
+
+              {primaryWeak && (
+                <>
+                  <div className="dig-section-title">Próximos passos pra você</div>
+                  <div className="dig-steps">
+                    <div className="dig-step">
+                      <div className="dig-step-h">Próximos 30 dias</div>
+                      <div className="dig-step-t">{QUICK_WINS[primaryWeak].d30}</div>
+                    </div>
+                    <div className="dig-step">
+                      <div className="dig-step-h">Em 60 dias</div>
+                      <div className="dig-step-t">{QUICK_WINS[primaryWeak].d60}</div>
+                    </div>
+                    <div className="dig-step">
+                      <div className="dig-step-h">Em 90 dias</div>
+                      <div className="dig-step-t">{QUICK_WINS[primaryWeak].d90}</div>
+                    </div>
+                  </div>
+                </>
+              )}
+
               <a
                 className="dig-wab"
-                href={`https://wa.me/5541992361868?text=${encodeURIComponent(resultCard.msg)}`}
+                href={`https://wa.me/5541992361868?text=${encodeURIComponent(report.whatsappMsg)}`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -390,9 +580,23 @@ const DiagnosticoIG = () => {
           </div>
         )}
 
+        {control.kind === "yesno" && (
+          <div className="dig-opts">
+            <div className="dig-yesno">
+              <button className="dig-ob" onClick={control.onYes}>
+                {control.yes}
+              </button>
+              <button className="dig-ob" onClick={control.onNo}>
+                {control.no}
+              </button>
+            </div>
+          </div>
+        )}
+
         {control.kind === "input" && (
           <InputBar
             placeholder={control.placeholder}
+            type={control.field === "email" ? "email" : "text"}
             onSubmit={(v) => handleInputSubmit(v, control.field)}
           />
         )}
@@ -403,9 +607,11 @@ const DiagnosticoIG = () => {
 
 const InputBar = ({
   placeholder,
+  type,
   onSubmit,
 }: {
   placeholder: string;
+  type: string;
   onSubmit: (v: string) => void;
 }) => {
   const [val, setVal] = useState("");
@@ -421,14 +627,14 @@ const InputBar = ({
     <div className="dig-ti">
       <input
         ref={inpRef}
-        type="text"
+        type={type}
         placeholder={placeholder}
         value={val}
         onChange={(e) => setVal(e.target.value)}
         onKeyDown={(e) => {
           if (e.key === "Enter") go();
         }}
-        maxLength={100}
+        maxLength={200}
       />
       <button className="dig-sb" onClick={go} aria-label="Enviar">
         <svg viewBox="0 0 24 24">
