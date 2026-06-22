@@ -271,8 +271,7 @@ const DiagnosticoIG = () => {
       <SEO
         title="Diagnóstico Fluxrow"
         description="Diagnóstico rápido de maturidade em IA da Fluxrow."
-        canonicalPath="/diagnostico-ig"
-        noindex
+        path="/diagnostico-ig"
       />
       <style>{`
         .dig-wrap{background:#ece5dd;min-height:100vh;display:flex;flex-direction:column;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;max-width:430px;margin:0 auto}
