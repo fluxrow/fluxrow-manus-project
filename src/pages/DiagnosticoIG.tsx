@@ -21,6 +21,7 @@ type Control =
   | { kind: "none" }
   | { kind: "start" }
   | { kind: "opts"; opts: Opt[] }
+  | { kind: "multi"; opts: Opt[] }
   | { kind: "input"; placeholder: string; field: "name" | "whatsapp" | "email" }
   | { kind: "yesno"; yes: string; no: string; onYes: () => void; onNo: () => void };
 
