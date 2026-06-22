@@ -28,12 +28,14 @@ export type Step = {
   key: string;
   msgs: string[];
   opts: Opt[];
+  multi?: boolean;
 };
 
 export const STEPS: Step[] = [
   {
     key: "cargo",
-    msgs: ["Qual é o seu papel na empresa?"],
+    msgs: ["Qual é o seu papel na empresa? (pode marcar mais de um)"],
+    multi: true,
     opts: [
       { label: "Dono / Sócio" },
       { label: "Diretor / C-Level" },
@@ -53,7 +55,8 @@ export const STEPS: Step[] = [
   },
   {
     key: "dor",
-    msgs: ["Qual área consome mais tempo do seu time hoje?"],
+    msgs: ["Qual área consome mais tempo do seu time hoje? (pode marcar mais de uma)"],
+    multi: true,
     opts: [
       // a dor escolhida = pilar fraco (maturidade baixa)
       { label: "Atendimento ao cliente", pillars: { atendimento: 25 } },
@@ -124,7 +127,8 @@ export const STEPS: Step[] = [
   },
   {
     key: "obstaculo",
-    msgs: ["Última! Qual é o maior obstáculo agora?"],
+    msgs: ["Última! Qual é o maior obstáculo agora? (pode marcar mais de um)"],
+    multi: true,
     opts: [
       { label: "Custo alto de operação", pillars: { processos: 35, pessoas: 35 } },
       { label: "Time sobrecarregado", pillars: { pessoas: 20 } },
@@ -186,7 +190,7 @@ export const TIERS: Record<
   baixa: {
     emoji: "🟡",
     titulo: "Operação com potencial represado",
-    desc: "Sua operação tem margem real de melhoria. Já identifiquei áreas onde a IA pode reduzir custo e aumentar velocidade — sem precisar contratar mais ninguém.",
+    desc: "Sua operação tem margem real de melhoria. Já identifiquei áreas onde a IA pode reduzir custo e aumentar velocidade, sem precisar contratar mais ninguém.",
     min: 0,
     max: 40,
   },

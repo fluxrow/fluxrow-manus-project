@@ -21,6 +21,7 @@ type Control =
   | { kind: "none" }
   | { kind: "start" }
   | { kind: "opts"; opts: Opt[] }
+  | { kind: "multi"; opts: Opt[] }
   | { kind: "input"; placeholder: string; field: "name" | "whatsapp" | "email" }
   | { kind: "yesno"; yes: string; no: string; onYes: () => void; onNo: () => void };
 
@@ -117,7 +118,7 @@ const DiagnosticoIG = () => {
       greeting + " 👋",
       "Aqui é o Cauã, da Fluxrow.",
       "Muito bom ter você aqui e ver seu interesse em organizar a casa usando mapeamento de setores e IA de forma saudável na operação. 🙌",
-      "Vou te fazer 10 perguntas rápidas pra montar um diagnóstico de verdade do seu cenário — com mapa por pilar, comparação com o mercado e os próximos passos.",
+      "Vou te fazer 10 perguntas rápidas pra montar um diagnóstico de verdade do seu cenário, com mapa por pilar, comparação com o mercado e os próximos passos.",
       "Leva uns 2 minutos. Bora? 👇",
     ];
     for (let i = 0; i < ABERTURA.length; i++) {
@@ -136,7 +137,7 @@ const DiagnosticoIG = () => {
         await showTyping(i === 0 ? 600 : 400);
         await addBubble(step.msgs[i], "bot");
       }
-      setControl({ kind: "opts", opts: step.opts });
+      setControl(step.multi ? { kind: "multi", opts: step.opts } : { kind: "opts", opts: step.opts });
     } else if (s.step === STEPS.length) {
       if (!s.uname) {
         await showTyping(600);
@@ -176,6 +177,28 @@ const DiagnosticoIG = () => {
     s.step++;
     await runStep();
   };
+
+  const handleMultiConfirm = async (selected: Opt[]) => {
+    setControl({ kind: "none" });
+    const s = stateRef.current;
+    for (const o of selected) {
+      if (o.pillars) s.contributions.push(o.pillars);
+      if (o.meta?.teamSize) {
+        s.teamSize = o.meta.teamSize;
+        s.teamSizeBase = o.meta.teamSizeBase ?? 0;
+      }
+      if (typeof o.meta?.repetitivePct === "number") {
+        s.repetitivePct = o.meta.repetitivePct;
+      }
+    }
+    const labels = selected.map((o) => o.label).join(", ");
+    s.answers[STEPS[s.step].key] = labels;
+    await addBubble(labels, "usr");
+    s.step++;
+    await runStep();
+  };
+
+
 
   const handleStart = async () => {
     setControl({ kind: "none" });
@@ -580,6 +603,10 @@ const DiagnosticoIG = () => {
           </div>
         )}
 
+        {control.kind === "multi" && (
+          <MultiPicker opts={control.opts} onConfirm={handleMultiConfirm} />
+        )}
+
         {control.kind === "yesno" && (
           <div className="dig-opts">
             <div className="dig-yesno">
@@ -640,6 +667,56 @@ const InputBar = ({
         <svg viewBox="0 0 24 24">
           <path d="M2 21l21-9L2 3v7l15 2-15 2v7z" />
         </svg>
+      </button>
+    </div>
+  );
+};
+
+const MultiPicker = ({
+  opts,
+  onConfirm,
+}: {
+  opts: Opt[];
+  onConfirm: (selected: Opt[]) => void;
+}) => {
+  const [picked, setPicked] = useState<string[]>([]);
+  const toggle = (label: string) => {
+    setPicked((p) => (p.includes(label) ? p.filter((x) => x !== label) : [...p, label]));
+  };
+  const confirm = () => {
+    if (!picked.length) return;
+    const selected = opts.filter((o) => picked.includes(o.label));
+    onConfirm(selected);
+  };
+  return (
+    <div className="dig-opts">
+      {opts.map((o) => {
+        const on = picked.includes(o.label);
+        return (
+          <button
+            key={o.label}
+            className="dig-ob"
+            style={
+              on
+                ? { borderColor: "#FF6B35", background: "#fff5f2" }
+                : undefined
+            }
+            onClick={() => toggle(o.label)}
+          >
+            <span style={{ marginRight: 8, fontWeight: 700, color: on ? "#FF6B35" : "#bbb" }}>
+              {on ? "✓" : "○"}
+            </span>
+            {o.label}
+          </button>
+        );
+      })}
+      <button
+        className="dig-start-btn"
+        style={{ marginTop: 4, opacity: picked.length ? 1 : 0.5 }}
+        disabled={!picked.length}
+        onClick={confirm}
+      >
+        Confirmar {picked.length > 0 ? `(${picked.length})` : ""}
       </button>
     </div>
   );
