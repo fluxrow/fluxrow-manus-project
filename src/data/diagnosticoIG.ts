@@ -55,7 +55,8 @@ export const STEPS: Step[] = [
   },
   {
     key: "dor",
-    msgs: ["Qual área consome mais tempo do seu time hoje?"],
+    msgs: ["Qual área consome mais tempo do seu time hoje? (pode marcar mais de uma)"],
+    multi: true,
     opts: [
       // a dor escolhida = pilar fraco (maturidade baixa)
       { label: "Atendimento ao cliente", pillars: { atendimento: 25 } },
