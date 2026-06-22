@@ -127,7 +127,8 @@ export const STEPS: Step[] = [
   },
   {
     key: "obstaculo",
-    msgs: ["Última! Qual é o maior obstáculo agora?"],
+    msgs: ["Última! Qual é o maior obstáculo agora? (pode marcar mais de um)"],
+    multi: true,
     opts: [
       { label: "Custo alto de operação", pillars: { processos: 35, pessoas: 35 } },
       { label: "Time sobrecarregado", pillars: { pessoas: 20 } },
