@@ -45,6 +45,21 @@ const teamSizeLabel = (s?: string) => {
   }
 };
 
+const QUESTION_LABELS: Record<string, string> = {
+  cargo: "Papel na empresa",
+  porte: "Tamanho do time",
+  dor: "Área que mais consome tempo",
+  dados: "Como acompanha resultados",
+  atendimento: "Volume de atendimentos/mês",
+  comercial: "Leads novos/mês",
+  ia: "Uso atual de IA/automação",
+  tentativa: "Já tentou automatizar antes",
+  repetitivo: "% do tempo em tarefas repetitivas",
+  obstaculo: "Maior obstáculo agora",
+};
+
+const INTERNAL_NOTIFY_EMAIL = "contato@fluxrow.com";
+
 const barColor = (pct: number) => {
   if (pct >= 66) return "#0a8a3a";
   if (pct >= 41) return "#FF6B35";
@@ -280,6 +295,59 @@ const DiagnosticoIG = () => {
       });
       const id = (data as { id?: string } | null)?.id;
       if (id) s.leadId = id;
+    } catch {
+      /* best effort */
+    }
+
+    // Internal notification to operator (best-effort, fire-and-forget)
+    try {
+      const pillarsArr = (Object.keys(pillars) as Pillar[]).map((k) => ({
+        key: k,
+        label: PILLAR_LABELS[k],
+        pct: pillars[k],
+      }));
+      const answersArr = Object.entries(s.answers).map(([k, v]) => ({
+        question: QUESTION_LABELS[k] ?? k,
+        answer: String(v),
+      }));
+      const primaryWeakLabel = weak[0] ? PILLAR_LABELS[weak[0]] : "operacional";
+      const secondaryWeakLabel = weak[1] ? PILLAR_LABELS[weak[1]] : "";
+      const followUpMessage = [
+        `Oi ${firstName || "tudo bem"}, aqui é o Cauã da Fluxrow.`,
+        ``,
+        `Vi que você acabou de fazer o diagnóstico (score ${overall}% — ${tier.titulo}).`,
+        `Reparei que ${primaryWeakLabel}${secondaryWeakLabel ? " e " + secondaryWeakLabel : ""} ${secondaryWeakLabel ? "são" : "é"} o que mais pode destravar resultado pra vocês agora.`,
+        hours ? `Pelo porte do time (${teamLabel}), dá pra recuperar uns ${hours}h/mês com IA e automação.` : null,
+        ``,
+        `Consegue 15min essa semana pra eu te mostrar 2-3 caminhos práticos?`,
+      ]
+        .filter(Boolean)
+        .join("\n");
+      const waDeep = `https://wa.me/${whatsapp.replace(/\D/g, "")}?text=${encodeURIComponent(followUpMessage)}`;
+      await supabase.functions.invoke("send-transactional-email", {
+        body: {
+          templateName: "diagnostico-lead-interno",
+          recipientEmail: INTERNAL_NOTIFY_EMAIL,
+          idempotencyKey: `diag-internal-${s.leadId ?? whatsapp}-${overall}`,
+          templateData: {
+            leadName: s.uname,
+            leadWhatsapp: whatsapp,
+            leadEmail: "",
+            scoreOverall: overall,
+            tierTitulo: tier.titulo,
+            benchmark,
+            teamSizeLabel: teamLabel ?? "",
+            hoursSaved: hours,
+            pillars: pillarsArr,
+            weakestLabels: weak.map((p) => PILLAR_LABELS[p]),
+            answers: answersArr,
+            whatsappDeepLink: waDeep,
+            followUpMessage,
+            source: "diagnostico-ig",
+            createdAtLabel: new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" }),
+          },
+        },
+      });
     } catch {
       /* best effort */
     }
