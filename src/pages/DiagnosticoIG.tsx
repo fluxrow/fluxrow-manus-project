@@ -45,6 +45,21 @@ const teamSizeLabel = (s?: string) => {
   }
 };
 
+const QUESTION_LABELS: Record<string, string> = {
+  cargo: "Papel na empresa",
+  porte: "Tamanho do time",
+  dor: "Área que mais consome tempo",
+  dados: "Como acompanha resultados",
+  atendimento: "Volume de atendimentos/mês",
+  comercial: "Leads novos/mês",
+  ia: "Uso atual de IA/automação",
+  tentativa: "Já tentou automatizar antes",
+  repetitivo: "% do tempo em tarefas repetitivas",
+  obstaculo: "Maior obstáculo agora",
+};
+
+const INTERNAL_NOTIFY_EMAIL = "contato@fluxrow.com";
+
 const barColor = (pct: number) => {
   if (pct >= 66) return "#0a8a3a";
   if (pct >= 41) return "#FF6B35";
