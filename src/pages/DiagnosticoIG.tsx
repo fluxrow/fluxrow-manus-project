@@ -117,7 +117,7 @@ const DiagnosticoIG = () => {
       greeting + " 👋",
       "Aqui é o Cauã, da Fluxrow.",
       "Muito bom ter você aqui e ver seu interesse em organizar a casa usando mapeamento de setores e IA de forma saudável na operação. 🙌",
-      "Vou te fazer 10 perguntas rápidas pra montar um diagnóstico de verdade do seu cenário — com mapa por pilar, comparação com o mercado e os próximos passos.",
+      "Vou te fazer 10 perguntas rápidas pra montar um diagnóstico de verdade do seu cenário, com mapa por pilar, comparação com o mercado e os próximos passos.",
       "Leva uns 2 minutos. Bora? 👇",
     ];
     for (let i = 0; i < ABERTURA.length; i++) {
