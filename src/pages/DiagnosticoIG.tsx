@@ -672,4 +672,54 @@ const InputBar = ({
   );
 };
 
+const MultiPicker = ({
+  opts,
+  onConfirm,
+}: {
+  opts: Opt[];
+  onConfirm: (selected: Opt[]) => void;
+}) => {
+  const [picked, setPicked] = useState<string[]>([]);
+  const toggle = (label: string) => {
+    setPicked((p) => (p.includes(label) ? p.filter((x) => x !== label) : [...p, label]));
+  };
+  const confirm = () => {
+    if (!picked.length) return;
+    const selected = opts.filter((o) => picked.includes(o.label));
+    onConfirm(selected);
+  };
+  return (
+    <div className="dig-opts">
+      {opts.map((o) => {
+        const on = picked.includes(o.label);
+        return (
+          <button
+            key={o.label}
+            className="dig-ob"
+            style={
+              on
+                ? { borderColor: "#FF6B35", background: "#fff5f2" }
+                : undefined
+            }
+            onClick={() => toggle(o.label)}
+          >
+            <span style={{ marginRight: 8, fontWeight: 700, color: on ? "#FF6B35" : "#bbb" }}>
+              {on ? "✓" : "○"}
+            </span>
+            {o.label}
+          </button>
+        );
+      })}
+      <button
+        className="dig-start-btn"
+        style={{ marginTop: 4, opacity: picked.length ? 1 : 0.5 }}
+        disabled={!picked.length}
+        onClick={confirm}
+      >
+        Confirmar {picked.length > 0 ? `(${picked.length})` : ""}
+      </button>
+    </div>
+  );
+};
+
 export default DiagnosticoIG;
