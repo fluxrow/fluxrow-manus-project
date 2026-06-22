@@ -426,7 +426,8 @@ const DiagnosticoIG = () => {
       <style>{`
         .dig-wrap{background:#ece5dd;min-height:100vh;display:flex;flex-direction:column;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;max-width:430px;margin:0 auto}
         .dig-h{background:#075e54;padding:14px 16px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
-        .dig-av{width:42px;height:42px;border-radius:50%;background:#FF6B35;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:17px;flex-shrink:0}
+        .dig-av{width:42px;height:42px;border-radius:50%;background:#FF6B35;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:17px;flex-shrink:0;overflow:hidden}
+        .dig-av img{width:100%;height:100%;object-fit:cover;display:block}
         .dig-h-info p{font-size:16px;font-weight:600;color:#fff;line-height:1.2;margin:0}
         .dig-h-info span{font-size:12px;color:#b2dfdb}
         .dig-ml{flex:1;padding:14px 10px;display:flex;flex-direction:column;gap:8px;overflow-y:auto;min-height:280px}
