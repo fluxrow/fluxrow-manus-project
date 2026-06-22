@@ -229,9 +229,36 @@ const DiagnosticoIG = () => {
       ? estimatedHoursSaved(s.teamSizeBase, s.repetitivePct)
       : 0;
     const firstName = s.uname ? s.uname.split(" ")[0] : "";
-    const msg = `Olá Cauã! Fiz o diagnóstico Fluxrow.${
-      firstName ? " Me chamo " + firstName + "." : ""
-    } Meu score: ${overall}% (${tier.titulo}).`;
+    const teamLabel = s.teamSize
+      ? ({ "ate-10": "até 10", "11-50": "11 a 50", "51-200": "51 a 200", "200+": "200+" } as Record<string, string>)[s.teamSize]
+      : null;
+    const pillarsList = (Object.keys(pillars) as Array<keyof typeof pillars>)
+      .map((p) => `- ${PILLAR_LABELS[p]}: ${pillars[p]}%`)
+      .join("\n");
+    const weakList = weak.map((p) => PILLAR_LABELS[p]).join(" e ");
+    const answersList = Object.entries(s.answers)
+      .map(([k, v]) => `- ${k}: ${v}`)
+      .join("\n");
+    const msg = [
+      `Olá Cauã! Fiz o diagnóstico Fluxrow.${firstName ? " Me chamo " + firstName + "." : ""}`,
+      ``,
+      `*Score geral:* ${overall}% (${tier.titulo})`,
+      `*Benchmark do meu porte:* ${benchmark}%`,
+      teamLabel ? `*Time:* ${teamLabel} pessoas` : null,
+      hours ? `*Horas/mês estimadas a recuperar:* ~${hours}h` : null,
+      ``,
+      `*Maturidade por pilar:*`,
+      pillarsList,
+      ``,
+      `*Pilares mais fracos:* ${weakList}`,
+      ``,
+      `*Minhas respostas:*`,
+      answersList,
+      ``,
+      `Quero conversar sobre os próximos passos.`,
+    ]
+      .filter(Boolean)
+      .join("\n");
 
     // best-effort save
     try {
