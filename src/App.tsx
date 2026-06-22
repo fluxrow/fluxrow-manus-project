@@ -60,6 +60,7 @@ const Unsubscribe = React.lazy(() => import("./pages/Unsubscribe"));
 const Blog = React.lazy(() => import("./pages/Blog"));
 const BlogPost = React.lazy(() => import("./pages/BlogPost"));
 const Diagnostico = React.lazy(() => import("./pages/Diagnostico"));
+const DiagnosticoIG = React.lazy(() => import("./pages/DiagnosticoIG"));
 
 const queryClient = new QueryClient();
 
