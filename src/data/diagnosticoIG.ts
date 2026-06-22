@@ -190,7 +190,7 @@ export const TIERS: Record<
   baixa: {
     emoji: "🟡",
     titulo: "Operação com potencial represado",
-    desc: "Sua operação tem margem real de melhoria. Já identifiquei áreas onde a IA pode reduzir custo e aumentar velocidade — sem precisar contratar mais ninguém.",
+    desc: "Sua operação tem margem real de melhoria. Já identifiquei áreas onde a IA pode reduzir custo e aumentar velocidade, sem precisar contratar mais ninguém.",
     min: 0,
     max: 40,
   },
