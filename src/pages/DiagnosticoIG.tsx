@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import cauaAvatar from "@/assets/caua-avatar.png.asset.json";
 import { supabase } from "@/integrations/supabase/client";
 import SEO from "@/components/SEO";
 import {
