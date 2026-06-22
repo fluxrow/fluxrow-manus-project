@@ -54,7 +54,7 @@ const DiagnosticoIG = () => {
   useEffect(() => {
     const style = document.createElement("style");
     style.id = "hide-sofia-widget";
-    style.textContent = `iframe[src*="gptmaker"], iframe[src*="sofia"], div[id*="gptmaker"], div[class*="gptmaker"], #gptmaker-widget, .gptmaker-widget, [class*="float-widget"], [id*="float-widget"] { display: none !important; visibility: hidden !important; }`;
+    style.textContent = `iframe[src*="gptmaker"], #click-plug-to-support, [id*="plug-to-support"], div[id*="gptmaker"], div[class*="gptmaker"] { display: none !important; visibility: hidden !important; }`;
     document.head.appendChild(style);
     return () => { style.remove(); };
   }, []);
