@@ -130,9 +130,10 @@ const DiagnosticoIG = () => {
       "Leva uns 2 minutos. Bora? 👇",
     ];
     for (let i = 0; i < ABERTURA.length; i++) {
-      const dur = i === 0 ? 600 : i === 1 ? 500 : i === 2 ? 900 : 700;
+      const dur = i === 0 ? 1100 : i === 1 ? 900 : i === 2 ? 1500 : 1200;
       await showTyping(dur);
       await addBubble(ABERTURA[i], "bot");
+      await wait(450);
     }
     setControl({ kind: "start" });
   };
@@ -142,8 +143,9 @@ const DiagnosticoIG = () => {
     if (s.step < STEPS.length) {
       const step = STEPS[s.step];
       for (let i = 0; i < step.msgs.length; i++) {
-        await showTyping(i === 0 ? 600 : 400);
+        await showTyping(i === 0 ? 1000 : 750);
         await addBubble(step.msgs[i], "bot");
+        if (i < step.msgs.length - 1) await wait(350);
       }
       setControl(step.multi ? { kind: "multi", opts: step.opts } : { kind: "opts", opts: step.opts });
     } else if (s.step === STEPS.length) {
