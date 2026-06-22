@@ -14,8 +14,8 @@ const STEPS: Step[] = [
   {
     key: "negocio",
     msgs: [
-      "Pra começar, qual é o seu negócio principal?",
-      "O que você já faz hoje ou quer transformar.",
+      "Antes de qualquer coisa, me conta: qual é o seu negócio hoje?",
+      "Pode ser o que você já toca ou o que tá querendo destravar. 🙂",
     ],
     opts: [
       { label: "🏥 Saúde — dentista, médico, terapeuta", val: "Saúde (dentista, médico, terapeuta)" },
@@ -27,7 +27,7 @@ const STEPS: Step[] = [
   },
   {
     key: "canal",
-    msgs: ["Como você vende hoje?", "Pode marcar mais de uma."],
+    msgs: ["Show! E como as vendas chegam pra você hoje?", "Pode marcar mais de uma, fica à vontade."],
     multi: true,
     opts: [
       { label: "👥 Indicação de clientes", val: "Indicação de clientes" },
@@ -39,7 +39,7 @@ const STEPS: Step[] = [
   },
   {
     key: "dor",
-    msgs: ["Quais são suas maiores dores com leads?", "Pode marcar mais de uma."],
+    msgs: ["Agora a parte sincera: o que mais te incomoda na hora de lidar com os leads?", "Pode marcar tudo que se aplica."],
     multi: true,
     opts: [
       { label: "⏱️ Demoro pra responder e perco o lead", val: "Demoro pra responder e perco o lead" },
@@ -51,7 +51,7 @@ const STEPS: Step[] = [
   },
   {
     key: "volume",
-    msgs: ["Quantos leads chegam por mês?", "WhatsApp, DM, formulários — tudo junto."],
+    msgs: ["Pra eu ter ideia do tamanho da casa: mais ou menos quantos leads chegam por mês?", "Conta tudo junto — WhatsApp, DM, formulário, o que vier."],
     opts: [
       { label: "👤 Menos de 20 por mês", val: "Menos de 20 leads/mês" },
       { label: "👥 Entre 20 e 100 por mês", val: "Entre 20 e 100 leads/mês" },
@@ -60,7 +60,7 @@ const STEPS: Step[] = [
   },
   {
     key: "sistema",
-    msgs: ["Você organiza seus leads de alguma forma?"],
+    msgs: ["E hoje, como você organiza esses leads? Sem julgamento, pode falar a real 😄"],
     opts: [
       { label: "🧠 Nada — tudo na cabeça ou no WhatsApp", val: "Nada — tudo na cabeça ou no WhatsApp" },
       { label: "📋 Planilha", val: "Uso planilha" },
@@ -69,7 +69,7 @@ const STEPS: Step[] = [
   },
   {
     key: "objetivo",
-    msgs: ["O que você mais precisa agora?", "Pode marcar mais de uma."],
+    msgs: ["Última pergunta, prometo! O que você mais precisa destravar agora?", "Pode marcar mais de uma."],
     multi: true,
     opts: [
       { label: "🚀 Vender mais a minha mentoria/serviço", val: "Vender mais a minha mentoria ou serviço" },
@@ -199,13 +199,15 @@ const Diagnostico = () => {
     const ABERTURA = [
       greeting + " 👋",
       "Aqui é o Cauã, da Fluxrow.",
-      "Vou te fazer 6 perguntas rápidas pra entender seu cenário com leads e WhatsApp, e te devolver um diagnóstico de verdade — com próximos passos práticos.",
+      "Que bom ter você por aqui — já é um sinal de que você quer destravar a parte de leads e vendas de forma saudável. 🙌",
+      "Vou te fazer 6 perguntas rápidas pra entender seu cenário hoje e te devolver um diagnóstico de verdade, com próximos passos práticos pro seu caso.",
       "Leva menos de 2 minutos. Bora? 👇",
     ];
     for (let i = 0; i < ABERTURA.length; i++) {
-      await showTyping(i === 0 ? 1000 : 900);
+      const dur = i === 0 ? 1100 : i === 2 ? 1400 : 900;
+      await showTyping(dur);
       await addBubble(ABERTURA[i], "bot");
-      await wait(400);
+      await wait(420);
     }
     setControl({ kind: "start" });
   };
@@ -223,7 +225,7 @@ const Diagnostico = () => {
     } else if (s.step === STEPS.length) {
       if (!s.uname) {
         await showTyping(600);
-        await addBubble("Quase lá! Qual é o seu nome?", "bot");
+        await addBubble("Quase lá! Como posso te chamar?", "bot");
         setControl({ kind: "input", placeholder: "Seu nome...", field: "name" });
       } else {
         await askWA();
@@ -233,13 +235,14 @@ const Diagnostico = () => {
 
   const askWA = async () => {
     const s = stateRef.current;
-    await showTyping(600);
+    await showTyping(700);
     await addBubble(
-      "Ótimo" + (s.uname ? ", " + s.uname.split(" ")[0] : "") + "! Me passa seu WhatsApp pra eu te chamar depois se fizer sentido.",
+      "Boa" + (s.uname ? ", " + s.uname.split(" ")[0] : "") + "! Agora me deixa seu WhatsApp pra eu te chamar depois, caso faça sentido pra gente trocar uma ideia. 😉",
       "bot"
     );
     setControl({ kind: "input", placeholder: "(41) 99999-0000", field: "whatsapp" });
   };
+
 
   const handlePick = async (o: Opt) => {
     setControl({ kind: "none" });
@@ -296,7 +299,7 @@ const Diagnostico = () => {
     if (field === "whatsapp") {
       s.whatsapp = value;
       await showTyping(1100);
-      await addBubble("Pronto! Aqui está o seu diagnóstico 👇", "bot");
+      await addBubble("Prontinho! Já montei seu diagnóstico, dá uma olhada aqui embaixo 👇", "bot");
       const fit = calcFit(s.answers);
       setReport({ fit, whatsappMsg: buildMsg(fit) });
       setStatus("análise pronta ✓");
