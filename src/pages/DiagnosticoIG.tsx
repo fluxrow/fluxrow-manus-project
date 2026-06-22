@@ -130,9 +130,10 @@ const DiagnosticoIG = () => {
       "Leva uns 2 minutos. Bora? 👇",
     ];
     for (let i = 0; i < ABERTURA.length; i++) {
-      const dur = i === 0 ? 600 : i === 1 ? 500 : i === 2 ? 900 : 700;
+      const dur = i === 0 ? 1100 : i === 1 ? 900 : i === 2 ? 1500 : 1200;
       await showTyping(dur);
       await addBubble(ABERTURA[i], "bot");
+      await wait(450);
     }
     setControl({ kind: "start" });
   };
