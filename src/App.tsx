@@ -81,6 +81,9 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/diagnostico" element={<Diagnostico />} />
+            <Route path="/diagnostico-ig" element={<DiagnosticoIG />} />
+            <Route path="/diagn%C3%B3stico-ig" element={<DiagnosticoIG />} />
+            <Route path="/diagn%C3%B3stico-IG" element={<DiagnosticoIG />} />
             <Route path="/agencia" element={<Agencia />} />
             {/* Curso descontinuado — redirect 301 para /produtos */}
             <Route path="/curso" element={<Navigate to="/produtos" replace />} />
