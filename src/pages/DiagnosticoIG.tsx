@@ -137,7 +137,7 @@ const DiagnosticoIG = () => {
   };
 
   const runAbertura = async () => {
-    const greeting = leadName ? "Fala " + leadName.split(" ")[0] + "!" : "Fala!";
+    const greeting = leadName ? "Opa " + leadName.split(" ")[0] + "! Tudo certo por aí?" : "Opa! Tudo certo por aí?";
     const ABERTURA = [
       greeting + " 👋",
       "Aqui é o Cauã, da Fluxrow.",
