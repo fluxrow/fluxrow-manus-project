@@ -58,7 +58,7 @@ const QUESTION_LABELS: Record<string, string> = {
   obstaculo: "Maior obstáculo agora",
 };
 
-const INTERNAL_NOTIFY_EMAIL = "contato@fluxrow.com";
+const INTERNAL_NOTIFY_EMAIL = "fbcfarias@icloud.com";
 
 const barColor = (pct: number) => {
   if (pct >= 66) return "#0a8a3a";
