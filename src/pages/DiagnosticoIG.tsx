@@ -603,6 +603,10 @@ const DiagnosticoIG = () => {
           </div>
         )}
 
+        {control.kind === "multi" && (
+          <MultiPicker opts={control.opts} onConfirm={handleMultiConfirm} />
+        )}
+
         {control.kind === "yesno" && (
           <div className="dig-opts">
             <div className="dig-yesno">
